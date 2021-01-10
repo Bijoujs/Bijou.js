@@ -1,4 +1,4 @@
-const _ = {
+let _temp = {
 		primesTo: (num) => {
 			let arr = Array.from({
 					length: num - 1,
@@ -414,7 +414,7 @@ const _ = {
 			var computedstyles = window.getComputedStyle(el);
 			return computedstyles.getPropertyValue(prop);
 		},
-		RGBtoHex: (rgb) => {
+		rgbToHex: (rgb) => {
 			let sep = rgb.indexOf(",") > -1 ? "," : " ";
 			rgb = rgb.substr(4).split(")")[0].split(sep);
 
@@ -428,7 +428,7 @@ const _ = {
 
 			return "#" + r + g + b;
 		},
-		HextoRGB: (hex) => {
+		hexToRGB: (hex) => {
 			let alpha = false,
 				h = hex.slice(hex.startsWith("#") ? 1 : 0);
 			if (h.length === 3) h = [...h].map((x) => x + x).join("");
@@ -564,4 +564,7 @@ const _ = {
 			t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
 			return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 		},
-	};
+  };
+_temp = _temp.sortObj(_temp);
+console.log(_temp)
+const _ = _temp;
