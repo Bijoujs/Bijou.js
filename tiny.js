@@ -210,13 +210,20 @@ let _temp = {
 			callback(array[i]);
 		}
 	},
-	map: (array, map_function) => {
-		var output = [];
-		for (let i = 0; i < array.length; i++) {
-			output.push(map_function(array));
-		}
-		return output;
-	},
+	mapObjectKeys: (obj, fn) =>
+		Array.isArray(obj)
+			? obj.map((val) => _.mapObjectKeys(val, fn))
+			: typeof obj === "object"
+			? Object.keys(obj).reduce((acc, current) => {
+					const key = fn(current);
+					const val = obj[current];
+					acc[key] =
+						val !== null && typeof val === "object"
+							? _.mapObjectKeys(val, fn)
+							: val;
+					return acc;
+			  }, {})
+			: obj,
 	arrayToCSV: (arr, delimiter = ",") =>
 		arr
 			.map((v) =>
@@ -582,13 +589,27 @@ let desc = {
 	each:
 		"Runs a function with each element of an array: \n\n\t_.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array times 3",
 	escapeHTML:
-    "Returns an escaped version of the HTML string provided: \n\n\t_.escapeHTML('<script>');//'&lt;script&gt;'",
-  formToObject: "Converts a form to a javascript object using each element's 'name' attribute as the key and the 'value' attribute as the value.",
-  formatMilliseconds: "Formats a number of milliseconds into a human-readable duration of time, e.g. \n\n\t_.formatMilliseconds(600000);//Returns '10 minutes'",
-  hexToRGB: "Converts a hex value into an RGB color.",
-  inPartialView: "Returns whether the specified element is visible at all in the viewport. Usefull for lazy loading images!",
-  inView: "Returns whether the specified element is completely visible in the viewport.",
-  jsonToCsv: "Converts a JSON object to CSV.",
+		"Returns an escaped version of the HTML string provided: \n\n\t_.escapeHTML('<script>');//'&lt;script&gt;'",
+	formToObject:
+		"Converts a form to a javascript object using each element's 'name' attribute as the key and the 'value' attribute as the value.",
+	formatMilliseconds:
+		"Formats a number of milliseconds into a human-readable duration of time, e.g. \n\n\t_.formatMilliseconds(600000);//Returns '10 minutes'",
+	hexToRGB: "Converts a hex value into an RGB color.",
+	inPartialView:
+		"Returns whether the specified element is visible at all in the viewport. Usefull for lazy loading images!",
+	inView:
+		"Returns whether the specified element is completely visible in the viewport.",
+	jsonToCsv: "Converts a JSON object to CSV.",
+	lightOrDark:
+		"Returns an object, the key 'lightordark' returns either 'light' or 'dark' and the key 'hsp' returns the value of the color from 0 (completely dark) to 255 (completely bright).",
+	lightenColor:
+		"Lightens or darkens a hex color by a certain amount, on a scale rom 0 (completely dark) to 255 (completely bright): \n\n\t_.lightenColor('#ffffff', -20);//Returns '#ebebeb'.",
+	mapObjectKeys:
+		"Maps an object's keys recursively: \n\n\t_.mapObjectKeys({\r\n    key: 'value',\r\n    another: {\r\n        deep: 'thing',\r\n        map: 'another'\r\n    }\r\n}, (key) => key.toUpperCase()); // Transforms every key of the object to uppercase.",
+	notify:
+		"Notifies the user through a desktop notification. Takes 3 arguments: text, body, icon. Text is the title of the notification, body is the message of it, and icon is the icon displayed next to the notification.",
+	onOutsideClick:
+		'Returns the callback when a click is called outside the specified element:\r\n\r\n    _.onoutsideclick(document.querySelector("h1"), () => {alert("You clicked outside the header")}); // Alerts when the user clicks anywhere that is NOT the h1 in question.',
 };
 _temp.info = (prop) => {
 	console.log(desc[prop]);
