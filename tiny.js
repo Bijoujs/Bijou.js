@@ -565,14 +565,30 @@ _temp = _temp.sortObj(_temp);
 let desc = {
 	addStyles:
 		"Add the styles in an object to a specified element:\n\n \t_.addStyles(element, {background: 'red'});\n\n(Changes the background color of the element to red!)",
-	arrayToCSV:
-    `Returns a comma seperated list from the specified array. \n\n\t_.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b"\n"c","d"'\n\nNote that this also escapes characters such as quotes.`,
-  averageBy: "This returns the average of an array based on the given function, for example:\n\n\t_.averageBy([1,2,3,4], (val) => val / 2);//Returns the average of each element after each element has been divided by 2.",
-  async: "Runs the given function in a web worker, returning a promise with the return value. This is useful to prevent the main thread from becoming clogged while trying to compute something.",
-  browser: "Returns the current browser without sniffing the user-agent string. e.g. 'Chrome'",
-  compStyle: "Returns an element of the computed style, e.g. \n\n\t_.compStyle(document.querySelector('h1'), 'background-color'); //Returns the background-color of the first <h1>",
-  copy: "Copies the text specified to the clipboard, e.g. \n\n\t_.copy('Hello world');",
-  createElement: "Returns a DOM element who's outerHTML is the string provided: \n\n\t_.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whoose id is 'fun' and whoose innerText is 'Hello'"
+	arrayToCSV: `Returns a comma seperated list from the specified array. \n\n\t_.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b"\n"c","d"'\n\nNote that this also escapes characters such as quotes.`,
+	averageBy:
+		"This returns the average of an array based on the given function, for example:\n\n\t_.averageBy([1,2,3,4], (val) => val / 2);//Returns the average of each element after each element has been divided by 2.",
+	async:
+		"Runs the given function in a web worker, returning a promise with the return value. This is useful to prevent the main thread from becoming clogged while trying to compute something.",
+	browser:
+		"Returns the current browser without sniffing the user-agent string. e.g. 'Chrome'",
+	compStyle:
+		"Returns an element of the computed style, e.g. \n\n\t_.compStyle(document.querySelector('h1'), 'background-color'); //Returns the background-color of the first <h1>",
+	copy:
+		"Copies the text specified to the clipboard, e.g. \n\n\t_.copy('Hello world');",
+	createElement:
+		"Returns a DOM element who's outerHTML is the string provided: \n\n\t_.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whoose id is 'fun' and whoose innerText is 'Hello'",
+	dayName: "Returns the day of the week from a Date object.",
+	each:
+		"Runs a function with each element of an array: \n\n\t_.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array times 3",
+	escapeHTML:
+    "Returns an escaped version of the HTML string provided: \n\n\t_.escapeHTML('<script>');//'&lt;script&gt;'",
+  formToObject: "Converts a form to a javascript object using each element's 'name' attribute as the key and the 'value' attribute as the value.",
+  formatMilliseconds: "Formats a number of milliseconds into a human-readable duration of time, e.g. \n\n\t_.formatMilliseconds(600000);//Returns '10 minutes'",
+  hexToRGB: "Converts a hex value into an RGB color.",
+  inPartialView: "Returns whether the specified element is visible at all in the viewport. Usefull for lazy loading images!",
+  inView: "Returns whether the specified element is completely visible in the viewport.",
+  jsonToCsv: "Converts a JSON object to CSV.",
 };
 _temp.info = (prop) => {
 	console.log(desc[prop]);
