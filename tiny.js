@@ -566,7 +566,7 @@ let desc = {
 	addStyles:
 		"Add the styles in an object to a specified element:\n\n \t_.addStyles(element, {background: 'red'});\n\n(Changes the background color of the element to red!)",
 	arrayToCSV:
-    "Returns a comma seperated list from the specified array. \n\n\t_.arrayToCSV([1, 4, 5, 3]);// '1,4,5,3'\n\nNote that this also escapes characters such as quotes.",
+    `Returns a comma seperated list from the specified array. \n\n\t_.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b"\n"c","d"'\n\nNote that this also escapes characters such as quotes.`,
   averageBy: "This returns the average of an array based on the given function, for example:\n\n\t_.averageBy([1,2,3,4], (val) => val / 2);//Returns the average of each element after each element has been divided by 2.",
   async: "Runs the given function in a web worker, returning a promise with the return value. This is useful to prevent the main thread from becoming clogged while trying to compute something."
 };
