@@ -610,6 +610,18 @@ let desc = {
 		"Notifies the user through a desktop notification. Takes 3 arguments: text, body, icon. Text is the title of the notification, body is the message of it, and icon is the icon displayed next to the notification.",
 	onOutsideClick:
 		'Returns the callback when a click is called outside the specified element:\r\n\r\n    _.onoutsideclick(document.querySelector("h1"), () => {alert("You clicked outside the header")}); // Alerts when the user clicks anywhere that is NOT the h1 in question.',
+	onScrollStop: "Returns the callback when a user stops scrolling the window. ",
+	previousPage: "Returns the url of the previous page that the user visited.",
+	primesTo: "Returns an array of all the prime numbers up to the number given.",
+	querySelector: "Generates a unique querySelector for the given element.",
+	random:
+		"Returns a random number between two numbers:\n\n\t_.random(-10,10,false);//Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)",
+	randomColor: "Returns a random hex color.",
+	removeComments: "Removes comments from the HTML element specified.",
+	replaceText:
+		'Replaces the text of the specified element by passing the old value through a function:\r\n\r\n    _.replaceText(document, (oldtext) => oldtext.replace(" ", "-"));//Replace all spaces in the document with a hyphen.',
+	rgbToHex: "Returns the hex code of a given RGB string.",
+	seedRandom: "Gives a random number based on a whole number seed.",
 };
 _temp.info = (prop) => {
 	console.log(desc[prop]);
