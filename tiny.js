@@ -1,4 +1,4 @@
-let _ = {
+const _ = {
 		primesTo: (num) => {
 			let arr = Array.from({
 					length: num - 1,
