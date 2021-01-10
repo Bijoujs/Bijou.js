@@ -568,7 +568,11 @@ let desc = {
 	arrayToCSV:
     `Returns a comma seperated list from the specified array. \n\n\t_.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b"\n"c","d"'\n\nNote that this also escapes characters such as quotes.`,
   averageBy: "This returns the average of an array based on the given function, for example:\n\n\t_.averageBy([1,2,3,4], (val) => val / 2);//Returns the average of each element after each element has been divided by 2.",
-  async: "Runs the given function in a web worker, returning a promise with the return value. This is useful to prevent the main thread from becoming clogged while trying to compute something."
+  async: "Runs the given function in a web worker, returning a promise with the return value. This is useful to prevent the main thread from becoming clogged while trying to compute something.",
+  browser: "Returns the current browser without sniffing the user-agent string. e.g. 'Chrome'",
+  compStyle: "Returns an element of the computed style, e.g. \n\n\t_.compStyle(document.querySelector('h1'), 'background-color'); //Returns the background-color of the first <h1>",
+  copy: "Copies the text specified to the clipboard, e.g. \n\n\t_.copy('Hello world');",
+  createElement: "Returns a DOM element who's outerHTML is the string provided: \n\n\t_.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whoose id is 'fun' and whoose innerText is 'Hello'"
 };
 _temp.info = (prop) => {
 	console.log(desc[prop]);
