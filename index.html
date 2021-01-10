@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Static Template</title>
+	</head>
+	<svg style="display: none;">
+		<filter id="turbulence">
+			<feTurbulence
+				id="turbulence-filter"
+				type="turbulence"
+				baseFrequency="0.05"
+				numOctaves="2"
+				result="turbulence"
+			/>
+			<feDisplacementMap
+				in2="turbulence"
+				in="SourceGraphic"
+				scale="5"
+				xChannelSelector="R"
+				yChannelSelector="G"
+			/>
+			<animate
+				xlink:href="#turbulence-filter"
+				attributeName="baseFrequency"
+				dur="10s"
+				keyTimes="0;0.5;1"
+				values="0.02 0.06;0.04 0.08;0.02 0.06"
+				repeatCount="indefinite"
+			/>
+		</filter>
+	</svg>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+		<defs>
+			<filter id="goo">
+				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+				<feColorMatrix
+					in="blur"
+					mode="matrix"
+					values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+					result="goo"
+				/>
+				<feBlend in="SourceGraphic" in2="goo" />
+			</filter>
+		</defs>
+	</svg>
+	<body>
+		<p><span id="header">Tiny</span><span>A simple JS library I made!</span></p>
+		<div class="blobs"></div>
+	</body>
+</html>
+<style>
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+	* {
+		font-family: "Poppins", sans-serif;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	body {
+		background: #101010;
+		width: 100vw;
+		height: 100vh;
+		overflow: hidden;
+	}
+	p {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: block;
+	}
+	p * {
+		text-align: center;
+		display: block;
+	}
+	p span#header {
+		font-weight: 900;
+		font-size: 20vmin;
+		color: white;
+		filter: url(#turbulence);
+	}
+	p span:not(#header) {
+		font-size: 5vmin;
+		color: white;
+	}
+
+	.blob {
+		transition: all 3s ease;
+		z-index: -100;
+		border-radius: 50%;
+		position: absolute;
+	}
+	.blobs {
+		top: 0;
+		left: 0;
+		filter: url(#goo);
+		position: fixed;
+		z-index: -100;
+	}
+</style>
+<script src="tiny.js"></script>
+<script>
+	let mouse = { x: 0, y: 0 };
+	window.onmousemove = (e) => {
+		mouse = { x: e.clientX, y: e.clientY };
+	};
+	_ = _.sortobj(_);
+	for (let i = 0; i < 40; i++) {
+		document
+			.querySelector(".blobs")
+			.appendChild(_.createElement("<div class='blob'></div>"));
+	}
+
+	_.each(document.querySelectorAll(".blob"), (blob) => {
+		blob.style.top = `${window.innerHeight / 2}px`;
+		blob.style.left = `${window.innerWidth / 2}px`;
+		blob.style.background = `#0889`;
+		let random = _.random(30, 70);
+		blob.style.width = `${random}px`;
+		blob.style.height = `${random}px`;
+		let randomtime = _.random(1000, 2000);
+		setInterval(() => {
+			let random = _.random(30, 100);
+			blob.style.width = `${random}px`;
+			blob.style.height = `${random}px`;
+			blob.style.top = `${_.random(mouse.y - 150, mouse.y + 150)}px`;
+			blob.style.left = `${_.random(mouse.x - 150, mouse.x + 150)}px`;
+			blob.style.transitionDuration = randomtime + "ms";
+		}, randomtime);
+	});
+</script>
