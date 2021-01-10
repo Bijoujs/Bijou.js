@@ -1,2 +1,2 @@
 # tiny.js
-Created with CodeSandbox
+A tiny library of JavaScript snipets!
