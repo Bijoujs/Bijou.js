@@ -78,7 +78,7 @@
 		</defs>
 	</svg>
 	<div class="blobs"></div>
-	<body>
+	<body style="visibility: hidden;" onload="js_Load()">
 		<section>
 			<p>
 				<span id="header">Tiny</span><span>A simple JS library I made!</span>
@@ -177,6 +177,9 @@
 	}
 </style>
 <script>
+	function js_Load() {
+		document.body.style.visibility = "visible";
+	}
 	let mouse = { x: 0, y: 0 };
 	window.onmousemove = (e) => {
 		mouse = { x: e.clientX, y: e.clientY };
