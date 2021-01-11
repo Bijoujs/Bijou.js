@@ -1,126 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<script src="tiny.js" onload="init()" defer></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.14.17/hls.min.js"
-			defer
-		></script>
-		<title>Tiny.js</title>
-	</head>
-	<svg style="display: none;">
-		<filter id="turbulence">
-			<feTurbulence
-				id="turbulence-filter"
-				type="turbulence"
-				baseFrequency="0.05"
-				numOctaves="2"
-				result="turbulence"
-			/>
-			<feDisplacementMap
-				in2="turbulence"
-				in="SourceGraphic"
-				scale="5"
-				xChannelSelector="R"
-				yChannelSelector="G"
-			/>
-			<animate
-				xlink:href="#turbulence-filter"
-				attributeName="baseFrequency"
-				dur="10s"
-				keyTimes="0;0.5;1"
-				values="0.02 0.06;0.04 0.08;0.02 0.06"
-				repeatCount="indefinite"
-			/>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<script src="tiny.js" onload="init()" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.14.17/hls.min.js" defer></script>
+	<title>Tiny.js</title>
+</head>
+<svg style="display: none;">
+	<filter id="turbulence">
+		<feTurbulence id="turbulence-filter" type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence" />
+		<feDisplacementMap in2="turbulence" in="SourceGraphic" scale="5" xChannelSelector="R" yChannelSelector="G" />
+		<animate xlink:href="#turbulence-filter" attributeName="baseFrequency" dur="10s" keyTimes="0;0.5;1"
+			values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite" />
+	</filter>
+</svg>
+<svg style="display: none;">
+	<filter id="turbulence-2">
+		<feTurbulence id="turbulence-filter-2" type="turbulence" baseFrequency="0.05" numOctaves="2"
+			result="turbulence-2" />
+		<feDisplacementMap in2="turbulence-2" in="SourceGraphic" scale="2" xChannelSelector="R" yChannelSelector="G" />
+		<animate xlink:href="#turbulence-filter-2" attributeName="baseFrequency" dur="10s" keyTimes="0;0.5;1"
+			values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite" />
+	</filter>
+</svg>
+<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">
+	<defs>
+		<filter id="goo">
+			<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+			<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+			<feBlend in="SourceGraphic" in2="goo" />
 		</filter>
-	</svg>
-	<svg style="display: none;">
-		<filter id="turbulence-2">
-			<feTurbulence
-				id="turbulence-filter-2"
-				type="turbulence"
-				baseFrequency="0.05"
-				numOctaves="2"
-				result="turbulence-2"
-			/>
-			<feDisplacementMap
-				in2="turbulence-2"
-				in="SourceGraphic"
-				scale="2"
-				xChannelSelector="R"
-				yChannelSelector="G"
-			/>
-			<animate
-				xlink:href="#turbulence-filter-2"
-				attributeName="baseFrequency"
-				dur="10s"
-				keyTimes="0;0.5;1"
-				values="0.02 0.06;0.04 0.08;0.02 0.06"
-				repeatCount="indefinite"
-			/>
-		</filter>
-	</svg>
-	<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">
-		<defs>
-			<filter id="goo">
-				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-				<feColorMatrix
-					in="blur"
-					mode="matrix"
-					values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
-					result="goo"
-				/>
-				<feBlend in="SourceGraphic" in2="goo" />
-			</filter>
-		</defs>
-	</svg>
-	<div class="blobs"></div>
-	<body style="visibility: hidden;" onload="js_Load()">
-		<section>
-			<p>
-				<span id="header">Tiny</span><span>A simple JS library I made!</span>
-			</p>
-		</section>
-		<section>
-			<h1>How to use Tiny.js</h1>
-			<p>
-				Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:
-			</p>
-			<h2>Import it:</h2>
-			<span id="code"
-				>&lt;script
-				src=&quot;https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@latest/tiny.min.js&quot;&gt;&lt;/script&gt;</span
-			>
-			<h2>Functions:</h2>
-			<ul id="documentation"></ul>
-		</section>
-	</body>
+	</defs>
+</svg>
+<div class="blobs"></div>
+
+<body style="visibility: hidden;" onload="js_Load()">
+	<section>
+		<p>
+			<span id="header">Tiny</span><span>A simple JS library I made!</span>
+		</p>
+	</section>
+	<section>
+		<h1>How to use Tiny.js</h1>
+		<p>
+			Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:
+		</p>
+		<h2>Import it:</h2>
+		<span id="code">&lt;script
+			src=&quot;https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@latest/tiny.min.js&quot;&gt;&lt;/script&gt;</span>
+		<h2>Functions:</h2>
+		<ul id="documentation"></ul>
+	</section>
+</body>
+
 </html>
 <style>
 	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
 	svg {
 		display: none;
 	}
+
 	* {
 		font-family: "Poppins", sans-serif;
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
 	}
+
 	h1,
 	h2 {
 		font-size: 10vmin;
 		filter: url(#turbulence-2);
 	}
+
 	h2 {
 		font-size: 6vmin;
 	}
+
 	h3 {
 		font-size: 5vmin;
 	}
+
 	body {
 		background: #101010;
 		width: 100vw;
@@ -130,6 +94,7 @@
 		align-items: center;
 		flex-direction: column;
 	}
+
 	section {
 		border-radius: 10px;
 		display: flex;
@@ -145,33 +110,40 @@
 		backdrop-filter: blur(10px);
 		max-width: 600px;
 	}
+
 	p * {
 		text-align: center;
 		display: block;
 	}
+
 	p span#header {
 		font-weight: 900;
 		font-size: 20vmin;
 		color: white;
 		filter: url(#turbulence);
 	}
+
 	p span:not(#header) {
 		font-size: 5vmin;
 		color: white;
 	}
+
 	details[open] {
 		padding: 10px 0px;
 	}
+
 	summary:focus {
 		color: lightseagreen;
 		outline: none;
 	}
+
 	.blob {
 		transition: all 3s ease;
 		z-index: -100;
 		border-radius: 50%;
 		position: fixed;
 	}
+
 	.blobs {
 		top: 0;
 		left: 0;
@@ -179,13 +151,16 @@
 		position: fixed;
 		z-index: -100;
 	}
+
 	section:first-of-type {
 		backdrop-filter: none;
 		background: transparent;
 	}
+
 	ul {
 		width: 100%;
 	}
+
 	span#code {
 		font-family: monospace;
 		white-space: nowrap;
@@ -201,11 +176,11 @@
 <script>
 	function js_Load() {
 		document.body.style.visibility = "visible";
-				_$.each(document.querySelectorAll("h1, h2, h3"), (e) => {
+		_$.each(document.querySelectorAll("h1, h2, h3"), (e) => {
 			e.innerHTML = _$.widows(e.innerHTML);
 		});
 	}
-	let mouse = { x: window.innerWidth /2, y: window.innerHeight /2 };
+	let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 	window.onmousemove = (e) => {
 		mouse = { x: e.clientX, y: e.clientY };
 	};
@@ -244,7 +219,7 @@
 					outputhtml += `<details><summary>${el}</summary><hr>\n${_$.escapeHTML(
 						_$.info(el),
 					)}</details>`;
-				} catch (e) {}
+				} catch (e) { }
 			}
 			return outputhtml;
 		}
