@@ -645,7 +645,6 @@ let desc = {
 	formatNumber: "Adds commas to large numbers in the right place.",
 };
 _temp.info = (prop) => {
-	console.log(desc[prop]);
 	return desc[prop];
 };
 const _$ = _temp;
