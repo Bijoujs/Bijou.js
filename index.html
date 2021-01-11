@@ -190,25 +190,25 @@
 		for (let i = 0; i < 40; i++) {
 			document
 				.querySelector(".blobs")
-				.appendChild(_.createElement("<div class='blob'></div>"));
+				.appendChild(_$.createElement("<div class='blob'></div>"));
 		}
-		_.each(document.querySelectorAll("h1, h2, h3"), (e) => {
-			e.innerHTML = _.widows(e.innerText);
+		_$.each(document.querySelectorAll("h1, h2, h3"), (e) => {
+			e.innerHTML = _$.widows(e.innerText);
 		});
-		_.each(document.querySelectorAll(".blob"), (blob) => {
+		_$.each(document.querySelectorAll(".blob"), (blob) => {
 			blob.style.top = `${window.innerHeight / 2}px`;
 			blob.style.left = `${window.innerWidth / 2}px`;
 			blob.style.background = `#0889`;
-			let random = _.random(30, 70);
+			let random = _$.random(30, 70);
 			blob.style.width = `${random}px`;
 			blob.style.height = `${random}px`;
-			let randomtime = _.random(1000, 2000);
+			let randomtime = _$.random(1000, 2000);
 			setInterval(() => {
-				let random = _.random(30, 100);
+				let random = _$.random(30, 100);
 				blob.style.width = `${random}px`;
 				blob.style.height = `${random}px`;
-				blob.style.top = `${_.random(mouse.y - 150, mouse.y + 150)}px`;
-				blob.style.left = `${_.random(mouse.x - 150, mouse.x + 150)}px`;
+				blob.style.top = `${_$.random(mouse.y - 150, mouse.y + 150)}px`;
+				blob.style.left = `${_$.random(mouse.x - 150, mouse.x + 150)}px`;
 				blob.style.transitionDuration = randomtime + "ms";
 			}, randomtime);
 		});
@@ -218,8 +218,8 @@
 			for (let j = 0; j < keys.length; j++) {
 				const el = keys[j];
 				try {
-					outputhtml += `<details><summary>${el}</summary><hr>\n${_.escapeHTML(
-						_.info(el),
+					outputhtml += `<details><summary>${el}</summary><hr>\n${_$.escapeHTML(
+						_$.info(el),
 					)}</details>`;
 				} catch (e) {}
 			}
