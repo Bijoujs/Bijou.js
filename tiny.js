@@ -649,4 +649,5 @@ _temp.info = (prop) => {
 	return desc[prop];
 };
 const _ = _temp;
+const _$ = _temp;
 const explosion = _temp;
