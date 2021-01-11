@@ -115,6 +115,12 @@
 		font-size: 10vmin;
 		filter: url(#turbulence-2);
 	}
+	h2 {
+		font-size: 6vmin;
+	}
+	h3 {
+		font-size: 5vmin;
+	}
 	body {
 		background: #101010;
 		width: 100vw;
@@ -179,6 +185,9 @@
 <script>
 	function js_Load() {
 		document.body.style.visibility = "visible";
+				_$.each(document.querySelectorAll("h1, h2, h3"), (e) => {
+			e.innerHTML = _$.widows(e.innerHTML);
+		});
 	}
 	let mouse = { x: 0, y: 0 };
 	window.onmousemove = (e) => {
@@ -192,9 +201,7 @@
 				.querySelector(".blobs")
 				.appendChild(_$.createElement("<div class='blob'></div>"));
 		}
-		_$.each(document.querySelectorAll("h1, h2, h3"), (e) => {
-			e.innerHTML = _$.widows(e.innerText);
-		});
+
 		_$.each(document.querySelectorAll(".blob"), (blob) => {
 			blob.style.top = `${window.innerHeight / 2}px`;
 			blob.style.left = `${window.innerWidth / 2}px`;
