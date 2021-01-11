@@ -4,6 +4,14 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script
+			src="https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@latest/tiny.min.js"
+			defer
+		></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.14.17/hls.min.js"
+			defer
+		></script>
 		<title>Tiny.js</title>
 	</head>
 	<svg style="display: none;">
@@ -32,7 +40,33 @@
 			/>
 		</filter>
 	</svg>
-	<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+	<svg style="display: none;">
+		<filter id="turbulence-2">
+			<feTurbulence
+				id="turbulence-filter-2"
+				type="turbulence"
+				baseFrequency="0.05"
+				numOctaves="2"
+				result="turbulence-2"
+			/>
+			<feDisplacementMap
+				in2="turbulence-2"
+				in="SourceGraphic"
+				scale="2"
+				xChannelSelector="R"
+				yChannelSelector="G"
+			/>
+			<animate
+				xlink:href="#turbulence-filter-2"
+				attributeName="baseFrequency"
+				dur="10s"
+				keyTimes="0;0.5;1"
+				values="0.02 0.06;0.04 0.08;0.02 0.06"
+				repeatCount="indefinite"
+			/>
+		</filter>
+	</svg>
+	<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">
 		<defs>
 			<filter id="goo">
 				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
@@ -55,6 +89,11 @@
 		</section>
 		<section>
 			<h1>How to use Tiny.js</h1>
+			<p>
+				Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:
+			</p>
+			<h1>Functions:</h1>
+			<ul id="documentation"></ul>
 		</section>
 	</body>
 </html>
@@ -72,19 +111,29 @@
 	h1,
 	h2 {
 		font-size: 10vmin;
-		filter: url(#turbulence);
+		filter: url(#turbulence-2);
 	}
 	body {
 		background: #101010;
 		width: 100vw;
 		height: fit-content;
-	}
-	section {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
+	}
+	section {
+		border-radius: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		padding: 20px 40px;
+		width: 80vw;
 		min-height: 100vh;
-		background: white;
+		height: fit-content;
+		background: #0009;
+		color: white;
 		backdrop-filter: blur(10px);
 	}
 	p * {
@@ -101,7 +150,9 @@
 		font-size: 5vmin;
 		color: white;
 	}
-
+	details[open] {
+		padding: 10px 0px;
+	}
 	.blob {
 		transition: all 3s ease;
 		z-index: -100;
@@ -119,34 +170,52 @@
 		backdrop-filter: none;
 		background: transparent;
 	}
+	ul {
+		width: 100%;
+	}
 </style>
-<script src="tiny.js"></script>
 <script>
 	let mouse = { x: 0, y: 0 };
 	window.onmousemove = (e) => {
 		mouse = { x: e.clientX, y: e.clientY };
 	};
-	for (let i = 0; i < 40; i++) {
-		document
-			.querySelector(".blobs")
-			.appendChild(_.createElement("<div class='blob'></div>"));
-	}
-
-	_.each(document.querySelectorAll(".blob"), (blob) => {
-		blob.style.top = `${window.innerHeight / 2}px`;
-		blob.style.left = `${window.innerWidth / 2}px`;
-		blob.style.background = `#0889`;
-		let random = _.random(30, 70);
-		blob.style.width = `${random}px`;
-		blob.style.height = `${random}px`;
-		let randomtime = _.random(1000, 2000);
-		setInterval(() => {
-			let random = _.random(30, 100);
+	function init() {
+		let newhtml = generateHTML();
+		document.getElementById("documentation").innerHTML = newhtml;
+		for (let i = 0; i < 40; i++) {
+			document
+				.querySelector(".blobs")
+				.appendChild(_.createElement("<div class='blob'></div>"));
+		}
+		_.each(document.querySelectorAll(".blob"), (blob) => {
+			blob.style.top = `${window.innerHeight / 2}px`;
+			blob.style.left = `${window.innerWidth / 2}px`;
+			blob.style.background = `#0889`;
+			let random = _.random(30, 70);
 			blob.style.width = `${random}px`;
 			blob.style.height = `${random}px`;
-			blob.style.top = `${_.random(mouse.y - 150, mouse.y + 150)}px`;
-			blob.style.left = `${_.random(mouse.x - 150, mouse.x + 150)}px`;
-			blob.style.transitionDuration = randomtime + "ms";
-		}, randomtime);
-	});
+			let randomtime = _.random(1000, 2000);
+			setInterval(() => {
+				let random = _.random(30, 100);
+				blob.style.width = `${random}px`;
+				blob.style.height = `${random}px`;
+				blob.style.top = `${_.random(mouse.y - 150, mouse.y + 150)}px`;
+				blob.style.left = `${_.random(mouse.x - 150, mouse.x + 150)}px`;
+				blob.style.transitionDuration = randomtime + "ms";
+			}, randomtime);
+		});
+		function generateHTML() {
+			var outputhtml = "";
+			let keys = Object.keys(_);
+			for (let j = 0; j < keys.length; j++) {
+				const el = keys[j];
+				try {
+					outputhtml += `<details><summary>${el}</summary><hr>\n${_.escapeHTML(
+						_.info(el),
+					)}</details>`;
+				} catch (e) {}
+			}
+			return outputhtml;
+		}
+	}
 </script>
