@@ -188,6 +188,7 @@
 				.querySelector(".blobs")
 				.appendChild(_.createElement("<div class='blob'></div>"));
 		}
+		_.each(document.querySelectorAll('h1, h2, h3'), (e) => e.innerHTML = _.widows(e.innerText))
 		_.each(document.querySelectorAll(".blob"), (blob) => {
 			blob.style.top = `${window.innerHeight / 2}px`;
 			blob.style.left = `${window.innerWidth / 2}px`;
