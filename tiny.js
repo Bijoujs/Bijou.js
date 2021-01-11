@@ -621,7 +621,15 @@ let desc = {
 	replaceText:
 		'Replaces the text of the specified element by passing the old value through a function:\r\n\r\n    _.replaceText(document, (oldtext) => oldtext.replace(" ", "-"));//Replace all spaces in the document with a hyphen.',
 	rgbToHex: "Returns the hex code of a given RGB string.",
-	seedRandom: "Gives a random number based on a whole number seed.",
+  seedRandom: "Gives a random number based on a whole number seed.",
+  serializeForm: "Convert a form to url queries",
+  sortObj: "Returns an alphabetized copy of the object by keys.",
+  throttle: "Runs the function specified, the second input controls at MAX how much wait there is between the next time it runs:\n\n\t_.throttle(() => alert('hello'), 10000);\n\nRunning this like any other function will simply just run the function, however if you try to run the throttled function in a setInterval loop or before its timeout ends it will not run.",
+  timeFunction: "Use console.time to how long the function inputted takes to execute.",
+  unescapeHTML: "Unescapes the string of HTML specified.",
+  unionArrays: "Merges two arrays using union, meaning that any duplicates between the two arrays will be removed.",
+  uuid: "Generates a unique id, like the uuid npm package.\n\n\tFor example:\n8dfe52e3-7beb-48eb-8282-209ff1c5250f",
+  widows: "Replaces the last space character between words with '&nbsp;', preventing a single word on a newline."
 };
 _temp.info = (prop) => {
 	console.log(desc[prop]);
