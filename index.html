@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<title>Static Template</title>
+		<title>Tiny.js</title>
 	</head>
 	<svg style="display: none;">
 		<filter id="turbulence">
@@ -46,32 +46,46 @@
 			</filter>
 		</defs>
 	</svg>
+	<div class="blobs"></div>
 	<body>
-		<p><span id="header">Tiny</span><span>A simple JS library I made!</span></p>
-		<div class="blobs"></div>
+		<section>
+			<p>
+				<span id="header">Tiny</span><span>A simple JS library I made!</span>
+			</p>
+		</section>
+		<section>
+			<h1>How to use Tiny.js</h1>
+		</section>
 	</body>
 </html>
 <style>
 	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
-
+	svg {
+		display: none;
+	}
 	* {
 		font-family: "Poppins", sans-serif;
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
 	}
+	h1,
+	h2 {
+		font-size: 10vmin;
+		filter: url(#turbulence);
+	}
 	body {
 		background: #101010;
 		width: 100vw;
-		height: 100vh;
-		overflow: hidden;
+		height: fit-content;
 	}
-	p {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		display: block;
+	section {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 100vh;
+		background: white;
+		backdrop-filter: blur(10px);
 	}
 	p * {
 		text-align: center;
@@ -92,7 +106,7 @@
 		transition: all 3s ease;
 		z-index: -100;
 		border-radius: 50%;
-		position: absolute;
+		position: fixed;
 	}
 	.blobs {
 		top: 0;
@@ -100,6 +114,10 @@
 		filter: url(#goo);
 		position: fixed;
 		z-index: -100;
+	}
+	section:first-of-type {
+		backdrop-filter: none;
+		background: transparent;
 	}
 </style>
 <script src="tiny.js"></script>
