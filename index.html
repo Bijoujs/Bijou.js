@@ -1,76 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<script src="tiny.js" defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.14.17/hls.min.js" defer></script>
-	<title>Tiny.js</title>
-</head>
-<svg style="display: none;">
-	<filter id="turbulence">
-		<feTurbulence id="turbulence-filter" type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence" />
-		<feDisplacementMap in2="turbulence" in="SourceGraphic" scale="5" xChannelSelector="R" yChannelSelector="G" />
-		<animate xlink:href="#turbulence-filter" attributeName="baseFrequency" dur="10s" keyTimes="0;0.5;1"
-			values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite" />
-	</filter>
-</svg>
-<svg style="display: none;">
-	<filter id="turbulence-2">
-		<feTurbulence id="turbulence-filter-2" type="turbulence" baseFrequency="0.05" numOctaves="2"
-			result="turbulence-2" />
-		<feDisplacementMap in2="turbulence-2" in="SourceGraphic" scale="2" xChannelSelector="R" yChannelSelector="G" />
-		<animate xlink:href="#turbulence-filter-2" attributeName="baseFrequency" dur="10s" keyTimes="0;0.5;1"
-			values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite" />
-	</filter>
-</svg>
-<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">
-	<defs>
-		<filter id="goo">
-			<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-			<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-			<feBlend in="SourceGraphic" in2="goo" />
-		</filter>
-	</defs>
-</svg>
-<div class="blobs"></div>
-
-<body style="visibility: hidden;" onload="js_Load()">
-	<section>
-		<p>
-			<span id="header">Tiny</span><span>A simple JS library I made!</span>
-		</p>
-	</section>
-	<section>
-		<h1>How to use Tiny.js</h1>
-		<p>
-			Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:
-		</p>
-		<h2>Import it:</h2>
-		<span id="code">&lt;script
-			src=&quot;https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@latest/tiny.min.js&quot;&gt;&lt;/script&gt;</span>
-		<h2>Functions:</h2>
-		<ul id="documentation"></ul>
-	</section>
-</body>
-
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="tiny.js" defer></script>
+		<title>Tiny.js</title>
+	</head>
+	<body style="visibility: visible;" onload="js_Load()">
+		<section>
+			<p>
+				<span id="header">Tiny</span><span>A simple JS library I made!</span>
+			</p>
+			<div class="btn">
+				<a class="btn" href="https://github.com/explosion-scratch/tiny.js"
+					>GitHub</a
+				><a href="mailto:explosionscratch@gmail.com" class="btn">Email</a>
+			</div>
+		</section>
+		<section>
+			<h1>How to use Tiny.js</h1>
+			<p>
+				Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:
+			</p>
+			<h2>Import it:</h2>
+			<span id="code"
+				>&lt;script
+				src=&quot;https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@latest/tiny.min.js&quot;&gt;&lt;/script&gt;</span
+			>
+			<h2>Basic usage:</h2>
+			<p>To use tiny.js simply call one of the many functios built into it!</p>
+			<span id="code">_$.function_here()</span>
+			<p>Below you can see all of the functions along with what they do!</p>
+			<h2>Functions:</h2>
+			<ul id="documentation"></ul>
+		</section>
+	</body>
 </html>
 <style>
-	@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
-
 	svg {
 		display: none;
 	}
 
 	* {
-		font-family: "Poppins", sans-serif;
+		font-family: sans-serif;
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
 	}
-
+	*:focus {
+		outline: none;
+	}
 	h1,
 	h2 {
 		font-size: 10vmin;
@@ -115,7 +95,19 @@
 		text-align: center;
 		display: block;
 	}
-
+	hr {
+		display: block;
+		width: 100%;
+		height: 2px;
+		border: none;
+		outline: none;
+		background: linear-gradient(
+			to right,
+			transparent,
+			lightseagreen,
+			transparent
+		);
+	}
 	p span#header {
 		font-weight: 900;
 		font-size: 20vmin;
@@ -132,12 +124,14 @@
 		padding: 10px 0px;
 	}
 
-	summary:focus {
-		color: lightseagreen;
-		outline: none;
+	details[open] summary {
+		text-align: center;
+		font-size: 4vmin;
+		font-weight: 500;
 	}
 
 	.blob {
+		will-change: height, width, top, left;
 		transition: all 3s ease;
 		z-index: -100;
 		border-radius: 50%;
@@ -172,22 +166,106 @@
 		background: #fff3;
 		max-width: 100%;
 	}
+	a.btn {
+		transition: background-color 0.3s ease, box-shadow 0.3s ease;
+		display: inline-block;
+		padding: 10px 30px;
+		background: transparent;
+		backdrop-filter: blur(30px);
+		border: 1px solid lightblue;
+		box-shadow: 0 0 0 5px #3bb4;
+		text-decoration: none;
+		color: white;
+		border-radius: 5px;
+		margin: 8px;
+	}
+	a:hover {
+		background: #333;
+		box-shadow: none;
+	}
 </style>
 <script>
 	function js_Load() {
-		document.body.style.visibility = "visible";
+		// document.body.style.visibility = "visible";
 		_$.each(document.querySelectorAll("h1, h2, h3"), (e) => {
 			e.innerHTML = _$.widows(e.innerHTML);
 		});
-		setTimeout(() => {
-			init()
-		}, 400);
+		init();
+		setTimeout(() => {}, 400);
 	}
 	let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 	window.onmousemove = (e) => {
 		mouse = { x: e.clientX, y: e.clientY };
 	};
 	function init() {
+		document.body.innerHTML += `
+	<svg style="display: none;">
+		<filter id="turbulence-2">
+			<feTurbulence
+				id="turbulence-filter-2"
+				type="turbulence"
+				baseFrequency="0.05"
+				numOctaves="2"
+				result="turbulence-2"
+			/>
+			<feDisplacementMap
+				in2="turbulence-2"
+				in="SourceGraphic"
+				scale="2"
+				xChannelSelector="R"
+				yChannelSelector="G"
+			/>
+			<animate
+				xlink:href="#turbulence-filter-2"
+				attributeName="baseFrequency"
+				dur="10s"
+				keyTimes="0;0.5;1"
+				values="0.02 0.06;0.04 0.08;0.02 0.06"
+				repeatCount="indefinite"
+			/>
+		</filter>
+	</svg>
+	<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">
+		<defs>
+			<filter id="goo">
+				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+				<feColorMatrix
+					in="blur"
+					mode="matrix"
+					values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+					result="goo"
+				/>
+				<feBlend in="SourceGraphic" in2="goo" />
+			</filter>
+		</defs>
+	</svg>
+		<svg style="display: none;">
+		<filter id="turbulence">
+			<feTurbulence
+				id="turbulence-filter"
+				type="turbulence"
+				baseFrequency="0.05"
+				numOctaves="2"
+				result="turbulence"
+			/>
+			<feDisplacementMap
+				in2="turbulence"
+				in="SourceGraphic"
+				scale="5"
+				xChannelSelector="R"
+				yChannelSelector="G"
+			/>
+			<animate
+				xlink:href="#turbulence-filter"
+				attributeName="baseFrequency"
+				dur="10s"
+				keyTimes="0;0.5;1"
+				values="0.02 0.06;0.04 0.08;0.02 0.06"
+				repeatCount="indefinite"
+			/>
+		</filter>
+	</svg>
+	<div class="blobs"></div>`;
 		let newhtml = generateHTML();
 		document.getElementById("documentation").innerHTML = newhtml;
 		for (let i = 0; i < 40; i++) {
@@ -201,7 +279,7 @@
 			blob.style.top = `${window.innerHeight / 2}px`;
 			blob.style.left = `${window.innerWidth / 2}px`;
 			blob.style.background = `#0889`;
-			let random = _$.random(30, 70);
+			let random = _$.random(30, 150);
 			blob.style.width = `${random}px`;
 			blob.style.height = `${random}px`;
 			let randomtime = _$.random(1000, 2000);
@@ -224,7 +302,7 @@
 					outputhtml += `<details><summary>${el}</summary><hr>\n${_$.escapeHTML(
 						_$.info(el),
 					)}</details>`;
-				} catch (e) { }
+				} catch (e) {}
 			}
 			return outputhtml;
 		}
