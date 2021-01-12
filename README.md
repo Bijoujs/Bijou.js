@@ -258,6 +258,15 @@ Gives a random number based on a whole number seed.</details>
 * * *
 
 Convert a form to url queries</details>
+<details><summary>spliceArrayBuffer</summary>
+  
+  * * *
+  
+  Splices a number as if it's 8 bits long and converts it to a single number:
+  ```js
+  _$.spliceArrayBuffer([5, 8, 255], 0, 2, true);//16713733
+  ```
+<details>
 <details><summary>sortObj</summary>
 
 * * *
