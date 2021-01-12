@@ -30,7 +30,7 @@ Below you can see all of the functions along with what they do!
 
 Add the styles in an object to a specified element: 
 ```js
-_.addStyles(element, {background: 'red'}); (Changes the background color of the element to red!)
+_$.addStyles(element, {background: 'red'}); (Changes the background color of the element to red!)
 ```
 </details>
 <details><summary>arrayToCSV</summary>
@@ -39,7 +39,7 @@ _.addStyles(element, {background: 'red'}); (Changes the background color of the 
 
 Returns a comma seperated list from the specified array. 
 ```js
-_.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b" "c","d"' Note that this also escapes characters such as quotes.
+_$.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b" "c","d"' Note that this also escapes characters such as quotes.
 ```
 </details>
 <details><summary>async</summary>
@@ -53,7 +53,7 @@ Runs the given function in a web worker, returning a promise with the return val
 
 This returns the average of an array based on the given function, for example: 
 ```js
-_.averageBy([1,2,3,4], (val) => val / 2);//Returns the average of each element after each element has been divided by 2.
+_$.averageBy([1,2,3,4], (val) => val / 2);//Returns the average of each element after each element has been divided by 2.
 ```
 </details>
 <details><summary>browser</summary>
@@ -67,7 +67,7 @@ Returns the current browser without sniffing the user-agent string. e.g. 'Chrome
 
 Returns an element of the computed style, e.g. 
 ```js
-_.compStyle(document.querySelector('h1'), 'background-color'); //Returns the background-color of the first <h1>
+_$.compStyle(document.querySelector('h1'), 'background-color'); //Returns the background-color of the first <h1>
 ```
 </details>
 <details><summary>copy</summary>
@@ -76,7 +76,7 @@ _.compStyle(document.querySelector('h1'), 'background-color'); //Returns the bac
 
 Copies the text specified to the clipboard, e.g. 
 ```js
-_.copy('Hello world');
+_$.copy('Hello world');
 ```
 </details>
 <details><summary>createElement</summary>
@@ -85,7 +85,7 @@ _.copy('Hello world');
 
 Returns a DOM element who's outerHTML is the string provided: 
 ```js
-_.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whoose id is 'fun' and whoose innerText is 'Hello'
+_$.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whoose id is 'fun' and whoose innerText is 'Hello'
 ```
 </details>
 <details><summary>dayName</summary>
@@ -99,7 +99,7 @@ Returns the day of the week from a Date object.</details>
 
 Runs a function with each element of an array: 
 ```js
-_.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array times 3
+_$.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array times 3
 ```
 </details>
 <details><summary>escapeHTML</summary>
@@ -108,7 +108,7 @@ _.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array times
 
 Returns an escaped version of the HTML string provided: 
 ```js
-_.escapeHTML('<script>');//'&lt;script&gt;'
+_$.escapeHTML('<script>');//'&lt;script&gt;'
 ```
 </details>
 <details><summary>flatten</summary>
@@ -127,7 +127,7 @@ Converts a form to a javascript object using each element's 'name' attribute as 
 
 Formats a number of milliseconds into a human-readable duration of time, e.g.
 ```js
-_.formatMilliseconds(600000);//Returns '10 minutes'
+_$.formatMilliseconds(600000);//Returns '10 minutes'
 ```
 </details>
 <details><summary>formatNumber</summary>
@@ -166,7 +166,7 @@ Returns an object, the key 'lightordark' returns either 'light' or 'dark' and th
 
 Lightens or darkens a hex color by a certain amount, on a scale rom 0 (completely dark) to 255 (completely bright):
 ```js
-_.lightenColor('#ffffff', -20);//Returns '#ebebeb'.
+_$.lightenColor('#ffffff', -20);//Returns '#ebebeb'.
 ```
 </details>
 <details><summary>mapObjectKeys</summary>
@@ -175,7 +175,7 @@ _.lightenColor('#ffffff', -20);//Returns '#ebebeb'.
 
 Maps an object's keys recursively: 
 ```js
-_.mapObjectKeys({ key: 'value', another: { deep: 'thing', map: 'another' } }, (key) => key.toUpperCase()); // Transforms every key of the object to uppercase.
+_$.mapObjectKeys({ key: 'value', another: { deep: 'thing', map: 'another' } }, (key) => key.toUpperCase()); // Transforms every key of the object to uppercase.
 ```
 </details>
 <details><summary>notify</summary>
@@ -218,7 +218,7 @@ Generates a unique querySelector for the given element.</details>
 
 Returns a random number between two numbers: 
 ```js
-_.random(-10,10,false);//Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)
+_$.random(-10,10,false);//Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)
 ```
 </details>
 <details><summary>randomColor</summary>
@@ -266,7 +266,7 @@ Returns an alphabetized copy of the object by keys.</details>
 
 Runs the function specified, the second input controls at MAX how much wait there is between the next time it runs: 
 ```js
-_.throttle(() => alert('hello'), 10000); 
+_$.throttle(() => alert('hello'), 10000); 
 ```
 Running this like any other function will simply just run the function, however if you try to run the throttled function in a setInterval loop or before its timeout ends it will not run.</details>
 <details><summary>timeFunction</summary>
@@ -299,4 +299,3 @@ Generates a unique id, like the uuid npm package. For example: 8dfe52e3-7beb-48e
 * * *
 
 Replaces the last space character between words with '&nbsp;', preventing a single word on a newline.</details>
-
