@@ -14,8 +14,9 @@ Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:
 ## Basic usage:
 
 To use tiny.js simply call one of the many functios built into it!
-
-<span id="code">_$.function_here()</span>
+```js
+_$.function_here()
+```
 
 Below you can see all of the functions along with what they do!
 
@@ -25,12 +26,20 @@ Below you can see all of the functions along with what they do!
 
 * * *
 
-Add the styles in an object to a specified element: _.addStyles(element, {background: 'red'}); (Changes the background color of the element to red!)</details>
+Add the styles in an object to a specified element: 
+```js
+_.addStyles(element, {background: 'red'}); (Changes the background color of the element to red!)
+```
+</details>
 <details><summary>arrayToCSV</summary>
 
 * * *
 
-Returns a comma seperated list from the specified array. _.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b" "c","d"' Note that this also escapes characters such as quotes.</details>
+Returns a comma seperated list from the specified array. 
+```js
+_.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b" "c","d"' Note that this also escapes characters such as quotes.
+```
+</details>
 <details><summary>async</summary>
 
 * * *
