@@ -53,18 +53,10 @@
 	}
 	h1,
 	h2 {
-		font-size: 10vmin;
+		padding: 4px;
+		margin: 4px;
 		filter: url(#turbulence-2);
 	}
-
-	h2 {
-		font-size: 6vmin;
-	}
-
-	h3 {
-		font-size: 5vmin;
-	}
-
 	body {
 		background: #101010;
 		width: 100vw;
@@ -76,6 +68,7 @@
 	}
 
 	section {
+		font-size: 20px;
 		border-radius: 10px;
 		display: flex;
 		justify-content: center;
@@ -278,7 +271,7 @@
 			blob.style.opacity = 0;
 			blob.style.top = `${window.innerHeight / 2}px`;
 			blob.style.left = `${window.innerWidth / 2}px`;
-			blob.style.background = `#0889`;
+			blob.style.background = `#0559`;
 			let random = _$.random(30, 150);
 			blob.style.width = `${random}px`;
 			blob.style.height = `${random}px`;
