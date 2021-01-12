@@ -18,7 +18,8 @@ Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:
 
 ## Basic usage:
 
-To use tiny.js simply call one of the many functios built into it!
+To use tiny.js simply call one of the many functions built into it!
+
 ```js
 _$.function_here()
 ```
@@ -32,6 +33,7 @@ Below you can see all of the functions along with what they do!
 * * *
 
 Add the styles in an object to a specified element: 
+
 ```js
 _$.addStyles(element, {background: 'red'}); (Changes the background color of the element to red!)
 ```
@@ -41,6 +43,7 @@ _$.addStyles(element, {background: 'red'}); (Changes the background color of the
 * * *
 
 Returns a comma seperated list from the specified array. 
+
 ```js
 _$.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b" "c","d"' Note that this also escapes characters such as quotes.
 ```
@@ -55,6 +58,7 @@ Runs the given function in a web worker, returning a promise with the return val
 * * *
 
 This returns the average of an array based on the given function, for example: 
+
 ```js
 _$.averageBy([1,2,3,4], (val) => val / 2);//Returns the average of each element after each element has been divided by 2.
 ```
@@ -69,6 +73,7 @@ Returns the current browser without sniffing the user-agent string. e.g. 'Chrome
 * * *
 
 Returns an element of the computed style, e.g. 
+
 ```js
 _$.compStyle(document.querySelector('h1'), 'background-color'); //Returns the background-color of the first <h1>
 ```
@@ -78,6 +83,7 @@ _$.compStyle(document.querySelector('h1'), 'background-color'); //Returns the ba
 * * *
 
 Copies the text specified to the clipboard, e.g. 
+
 ```js
 _$.copy('Hello world');
 ```
@@ -87,6 +93,7 @@ _$.copy('Hello world');
 * * *
 
 Returns a DOM element who's outerHTML is the string provided: 
+
 ```js
 _$.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whoose id is 'fun' and whoose innerText is 'Hello'
 ```
@@ -101,6 +108,7 @@ Returns the day of the week from a Date object.</details>
 * * *
 
 Runs a function with each element of an array: 
+
 ```js
 _$.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array times 3
 ```
@@ -110,6 +118,7 @@ _$.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array time
 * * *
 
 Returns an escaped version of the HTML string provided: 
+
 ```js
 _$.escapeHTML('<script>');//'&lt;script&gt;'
 ```
@@ -129,6 +138,7 @@ Converts a form to a javascript object using each element's 'name' attribute as 
 * * *
 
 Formats a number of milliseconds into a human-readable duration of time, e.g.
+
 ```js
 _$.formatMilliseconds(600000);//Returns '10 minutes'
 ```
@@ -168,6 +178,7 @@ Returns an object, the key 'lightordark' returns either 'light' or 'dark' and th
 * * *
 
 Lightens or darkens a hex color by a certain amount, on a scale rom 0 (completely dark) to 255 (completely bright):
+
 ```js
 _$.lightenColor('#ffffff', -20);//Returns '#ebebeb'.
 ```
@@ -177,6 +188,7 @@ _$.lightenColor('#ffffff', -20);//Returns '#ebebeb'.
 * * *
 
 Maps an object's keys recursively: 
+
 ```js
 _$.mapObjectKeys({ key: 'value', another: { deep: 'thing', map: 'another' } }, (key) => key.toUpperCase()); // Transforms every key of the object to uppercase.
 ```
@@ -191,6 +203,7 @@ Notifies the user through a desktop notification. Takes 3 arguments: text, body,
 * * *
 
 Returns the callback when a click is called outside the specified element:
+
 ```js
 _$.onoutsideclick(document.querySelector("h1"), () => {alert("You clicked outside the header")}); // Alerts when the user clicks anywhere that is NOT the h1 in question.
 ```
@@ -220,6 +233,7 @@ Generates a unique querySelector for the given element.</details>
 * * *
 
 Returns a random number between two numbers: 
+
 ```js
 _$.random(-10,10,false);//Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)
 ```
@@ -239,6 +253,7 @@ Removes comments from the HTML element specified.</details>
 * * *
 
 Replaces the text of the specified element by passing the old value through a function: 
+
 ```js
 _$.replaceText(document, (oldtext) => oldtext.replace(" ", "-"));//Replace all spaces in the document with a hyphen.
 ```
@@ -263,6 +278,7 @@ Convert a form to url queries</details>
   * * *
   
   Splices a number as if it's 8 bits long and converts it to a single number:
+  
   ```js
   _$.spliceArrayBuffer([5, 8, 255], 0, 2, true);//16713733
   ```
@@ -277,6 +293,7 @@ Returns an alphabetized copy of the object by keys.</details>
 * * *
 
 Runs the function specified, the second input controls at MAX how much wait there is between the next time it runs: 
+
 ```js
 _$.throttle(() => alert('hello'), 10000); 
 ```
