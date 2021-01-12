@@ -266,7 +266,7 @@ Convert a form to url queries</details>
   ```js
   _$.spliceArrayBuffer([5, 8, 255], 0, 2, true);//16713733
   ```
-<details>
+</details>
 <details><summary>sortObj</summary>
 
 * * *
