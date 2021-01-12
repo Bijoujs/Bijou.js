@@ -1,332 +1,372 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<script src="tiny.js" defer></script>
-		<title>Tiny.js</title>
-	</head>
-	<body style="visibility: hidden;" onload="js_Load()">
-		<section>
-			<p>
-				<span id="header">Tiny</span><span>A simple JS library I made!</span>
-			</p>
-			<div class="btn">
-				<a class="btn" href="https://github.com/explosion-scratch/tiny.js"
-					>GitHub</a
-				><a href="mailto:explosionscratch@gmail.com" class="btn">Email</a>
-			</div>
-		</section>
-		<section>
-			<h1 id="tiny.js">Tiny.js</h1>
-			<p><a href="https://www.jsdelivr.com/package/gh/explosion-scratch/tiny.js"><img
-						src="https://data.jsdelivr.com/v1/package/gh/explosion-scratch/tiny.js/badge" /></a></p>
-			<h1 id="what-is-tiny.js">What is Tiny.js?</h1>
-			<p>Tiny.js is a well, tiny, library of super helpful JavaScript snippets! It has a bunch of useful snipets for all your
-				coding needs! If there's something that's not in here currently but you use frequently feel free to submit an issue!
-				I'd be happy to add it! Tiny's goal is to eliminate the need to copy paste the same thing from stackoverflow, another
-				project or anywhere else! So if you ever find yourself typing the same thing over and over again, copy pasting the
-				same snippet as you did a few days ago, use tiny.js! If the snippet you're using isn't in Tiny.js just submit an issue
-				with the code!</p>
-			<h1 id="how-to-usetiny.js">How to use Tiny.js</h1>
-			<p>Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:</p>
-			<h2 id="importit">Import it:</h2>
-			<pre
-				class="js"><code>&lt;script src=&quot;https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@latest/tiny.min.js&quot;&gt;&lt;/script&gt;</code></pre>
-			<h2 id="basicusage">Basic usage:</h2>
-			<p>To use tiny.js simply call one of the many functions built into it!</p>
-			<pre class="js"><code>_$.function_here()</code></pre>
-			<p>Below you can see all of the functions along with what they do!</p>
-			<h2 id="functions">Functions:</h2>
-			<p>
-				<details>
-					<summary>addStyles</summary>
-			</p>
-			<hr />
-			<p>Add the styles in an object to a specified element:</p>
-			<pre
-				class="js"><code>_$.addStyles(element, {background: &#39;red&#39;}); (Changes the background color of the element to red!)</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>arrayToCSV</summary>
-			</p>
-			<hr />
-			<p>Returns a comma seperated list from the specified array.</p>
-			<pre
-				class="js"><code>_$.arrayToCSV([[&#39;a&#39;, &#39;b&#39;], [&#39;c&#39;, &#39;d&#39;]]);//&#39;&quot;a&quot;,&quot;b&quot; &quot;c&quot;,&quot;d&quot;&#39; Note that this also escapes characters such as quotes.</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>async</summary>
-			</p>
-			<hr />
-			<p>Runs the given function in a web worker, returning a promise with the return value. This is useful to prevent the
-				main thread from becoming clogged while trying to compute something.</details><br />
-				<details>
-					<summary>averageBy</summary>
-			</p>
-			<hr />
-			<p>This returns the average of an array based on the given function, for example:</p>
-			<pre
-				class="js"><code>_$.averageBy([1,2,3,4], (val) =&gt; val / 2);//Returns the average of each element after each element has been divided by 2.</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>browser</summary>
-			</p>
-			<hr />
-			<p>Returns the current browser without sniffing the user-agent string. e.g. 'Chrome'</details><br />
-				<details>
-					<summary>compStyle</summary>
-			</p>
-			<hr />
-			<p>Returns an element of the computed style, e.g.</p>
-			<pre
-				class="js"><code>_$.compStyle(document.querySelector(&#39;h1&#39;), &#39;background-color&#39;); //Returns the background-color of the first &lt;h1&gt;</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>copy</summary>
-			</p>
-			<hr />
-			<p>Copies the text specified to the clipboard, e.g.</p>
-			<pre class="js"><code>_$.copy(&#39;Hello world&#39;);</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>createElement</summary>
-			</p>
-			<hr />
-			<p>Returns a DOM element who's outerHTML is the string provided:</p>
-			<pre
-				class="js"><code>_$.createElement(&#39;&lt;div id=`fun`&gt;Hello&lt;/div&gt;);//Returns a DOM element whoose id is &#39;fun&#39; and whoose innerText is &#39;Hello&#39;</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>dayName</summary>
-			</p>
-			<hr />
-			<p>Returns the day of the week from a Date object.</details><br />
-				<details>
-					<summary>each</summary>
-			</p>
-			<hr />
-			<p>Runs a function with each element of an array:</p>
-			<pre
-				class="js"><code>_$.each([1,2,3], (num) =&gt; alert(num * 3));//Alerts each number in the array times 3</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>escapeHTML</summary>
-			</p>
-			<hr />
-			<p>Returns an escaped version of the HTML string provided:</p>
-			<pre class="js"><code>_$.escapeHTML(&#39;&lt;script&gt;&#39;);//&#39;&amp;lt;script&amp;gt;&#39;</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>flatten</summary>
-			</p>
-			<hr />
-			<p>This takes a 2d array (an array of arrays) and flattens in into a 1d array (a list of items).</details><br />
-				<details>
-					<summary>formToObject</summary>
-			</p>
-			<hr />
-			<p>Converts a form to a javascript object using each element's 'name' attribute as the key and the 'value' attribute as
-				the value.</details><br />
-				<details>
-					<summary>formatMilliseconds</summary>
-			</p>
-			<hr />
-			<p>Formats a number of milliseconds into a human-readable duration of time, e.g.</p>
-			<pre class="js"><code>_$.formatMilliseconds(600000);//Returns &#39;10 minutes&#39;</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>formatNumber</summary>
-			</p>
-			<hr />
-			<p>Adds commas to large numbers in the right place.</details><br />
-				<details>
-					<summary>hexToRGB</summary>
-			</p>
-			<hr />
-			<p>Converts a hex value into an RGB color.</details><br />
-				<details>
-					<summary>inPartialView</summary>
-			</p>
-			<hr />
-			<p>Returns whether the specified element is visible at all in the viewport. Usefull for lazy loading images!</details>
-				<br />
-				<details>
-					<summary>inView</summary>
-			</p>
-			<hr />
-			<p>Returns whether the specified element is completely visible in the viewport.</details><br />
-				<details>
-					<summary>jsonToCsv</summary>
-			</p>
-			<hr />
-			<p>Converts a JSON object to CSV.</details><br />
-				<details>
-					<summary>lightOrDark</summary>
-			</p>
-			<hr />
-			<p>Returns an object, the key 'lightordark' returns either 'light' or 'dark' and the key 'hsp' returns the value of the
-				color from 0 (completely dark) to 255 (completely bright).</details><br />
-				<details>
-					<summary>lightenColor</summary>
-			</p>
-			<hr />
-			<p>Lightens or darkens a hex color by a certain amount, on a scale rom 0 (completely dark) to 255 (completely bright):
-			</p>
-			<pre class="js"><code>_$.lightenColor(&#39;#ffffff&#39;, -20);//Returns &#39;#ebebeb&#39;.</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>mapObjectKeys</summary>
-			</p>
-			<hr />
-			<p>Maps an object's keys recursively:</p>
-			<pre
-				class="js"><code>_$.mapObjectKeys({ key: &#39;value&#39;, another: { deep: &#39;thing&#39;, map: &#39;another&#39; } }, (key) =&gt; key.toUpperCase()); // Transforms every key of the object to uppercase.</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>notify</summary>
-			</p>
-			<hr />
-			<p>Notifies the user through a desktop notification. Takes 3 arguments: text, body, icon. Text is the title of the
-				notification, body is the message of it, and icon is the icon displayed next to the notification.</details><br />
-				<details>
-					<summary>onOutsideClick</summary>
-			</p>
-			<hr />
-			<p>Returns the callback when a click is called outside the specified element:</p>
-			<pre
-				class="js"><code>_$.onoutsideclick(document.querySelector(&quot;h1&quot;), () =&gt; {alert(&quot;You clicked outside the header&quot;)}); // Alerts when the user clicks anywhere that is NOT the h1 in question.</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>onScrollStop</summary>
-			</p>
-			<hr />
-			<p>Returns the callback when a user stops scrolling the window.</details><br />
-				<details>
-					<summary>previousPage</summary>
-			</p>
-			<hr />
-			<p>Returns the url of the previous page that the user visited.</details><br />
-				<details>
-					<summary>primesTo</summary>
-			</p>
-			<hr />
-			<p>Returns an array of all the prime numbers up to the number given.</details><br />
-				<details>
-					<summary>querySelector</summary>
-			</p>
-			<hr />
-			<p>Generates a unique querySelector for the given element.</details><br />
-				<details>
-					<summary>random</summary>
-			</p>
-			<hr />
-			<p>Returns a random number between two numbers:</p>
-			<pre
-				class="js"><code>_$.random(-10,10,false);//Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>randomColor</summary>
-			</p>
-			<hr />
-			<p>Returns a random hex color.</details><br />
-				<details>
-					<summary>removeComments</summary>
-			</p>
-			<hr />
-			<p>Removes comments from the HTML element specified.</details><br />
-				<details>
-					<summary>replaceText</summary>
-			</p>
-			<hr />
-			<p>Replaces the text of the specified element by passing the old value through a function:</p>
-			<pre
-				class="js"><code>_$.replaceText(document, (oldtext) =&gt; oldtext.replace(&quot; &quot;, &quot;-&quot;));//Replace all spaces in the document with a hyphen.</code></pre>
-			<p>
-				</details><br />
-				<details>
-					<summary>rgbToHex</summary>
-			</p>
-			<hr />
-			<p>Returns the hex code of a given RGB string.</details><br />
-				<details>
-					<summary>seedRandom</summary>
-			</p>
-			<hr />
-			<p>Gives a random number based on a whole number seed.</details><br />
-				<details>
-					<summary>serializeForm</summary>
-			</p>
-			<hr />
-			<p>Convert a form to url queries</details><br />
-				<details>
-					<summary>spliceArrayBuffer</summary>
-			</p>
-			<hr />
-			<p>Splices a number as if it's 8 bits long and converts it to a single number:</p>
-			<p><code>js   _$.spliceArrayBuffer([5, 8, 255], 0, 2, true);//16713733</code><br /></details><br />
-				<details>
-					<summary>sortObj</summary>
-			</p>
-			<hr />
-			<p>Returns an alphabetized copy of the object by keys.</details><br />
-				<details>
-					<summary>throttle</summary>
-			</p>
-			<hr />
-			<p>Runs the function specified, the second input controls at MAX how much wait there is between the next time it runs:
-			</p>
-			<pre class="js"><code>_$.throttle(() =&gt; alert(&#39;hello&#39;), 10000); </code></pre>
-			<p>Running this like any other function will simply just run the function, however if you try to run the throttled
-				function in a setInterval loop or before its timeout ends it will not run.</details><br />
-				<details>
-					<summary>timeFunction</summary>
-			</p>
-			<hr />
-			<p>Use console.time to how long the function inputted takes to execute.</details><br />
-				<details>
-					<summary>unescapeHTML</summary>
-			</p>
-			<hr />
-			<p>Unescapes the string of HTML specified.</details><br />
-				<details>
-					<summary>unionArrays</summary>
-			</p>
-			<hr />
-			<p>Merges two arrays using union, meaning that any duplicates between the two arrays will be removed.</details><br />
-				<details>
-					<summary>uniqueArray</summary>
-			</p>
-			<hr />
-			<p>Removes duplicates from an array</details><br />
-				<details>
-					<summary>uuid</summary>
-			</p>
-			<hr />
-			<p>Generates a unique id, like the uuid npm package. For example: 8dfe52e3-7beb-48eb-8282-209ff1c5250f</details><br />
-				<details>
-					<summary>widows</summary>
-			</p>
-			<hr />
-			<p>Replaces the last space character between words with ' ', preventing a single word on a newline.</details>
-			</p>
 
-		</section>
-	</body>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<script src="tiny.js" defer></script>
+	<title>Tiny.js</title>
+</head>
+
+<body style="visibility: hidden;" onload="js_Load()">
+	<section>
+		<p>
+			<span id="header">Tiny</span><span>A simple JS library I made!</span>
+		</p>
+		<div class="btn">
+			<a class="btn" href="https://github.com/explosion-scratch/tiny.js">GitHub</a><a
+				href="mailto:explosionscratch@gmail.com" class="btn">Email</a>
+		</div>
+	</section>
+	<section>
+		<h1 id="tiny.js">Tiny.js</h1>
+		<p><a href="https://www.jsdelivr.com/package/gh/explosion-scratch/tiny.js"><img
+					src="https://data.jsdelivr.com/v1/package/gh/explosion-scratch/tiny.js/badge" /></a></p>
+		<h1 id="what-is-tiny.js">What is Tiny.js?</h1>
+		<p>Tiny.js is a well, tiny, library of super helpful JavaScript snippets! It has a bunch of useful snipets for all
+			your
+			coding needs! If there's something that's not in here currently but you use frequently feel free to submit an
+			issue!
+			I'd be happy to add it! Tiny's goal is to eliminate the need to copy paste the same thing from stackoverflow,
+			another
+			project or anywhere else! So if you ever find yourself typing the same thing over and over again, copy pasting the
+			same snippet as you did a few days ago, use tiny.js! If the snippet you're using isn't in Tiny.js just submit an
+			issue
+			with the code!</p>
+		<h1 id="how-to-usetiny.js">How to use Tiny.js</h1>
+		<p>Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:</p>
+		<h2 id="importit">Import it:</h2>
+		<pre
+			class="js"><code>&lt;script src=&quot;https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@latest/tiny.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+		<h2 id="basicusage">Basic usage:</h2>
+		<p>To use tiny.js simply call one of the many functions built into it!</p>
+		<pre class="js"><code>_$.function_here()</code></pre>
+		<p>Below you can see all of the functions along with what they do!</p>
+		<h2 id="functions">Functions:</h2>
+		<p>
+			<details>
+				<summary>addStyles</summary>
+		</p>
+		<hr />
+		<p>Add the styles in an object to a specified element:</p>
+		<pre
+			class="js"><code>_$.addStyles(element, {background: &#39;red&#39;}); (Changes the background color of the element to red!)</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>arrayToCSV</summary>
+		</p>
+		<hr />
+		<p>Returns a comma seperated list from the specified array.</p>
+		<pre
+			class="js"><code>_$.arrayToCSV([[&#39;a&#39;, &#39;b&#39;], [&#39;c&#39;, &#39;d&#39;]]);//&#39;&quot;a&quot;,&quot;b&quot; &quot;c&quot;,&quot;d&quot;&#39; Note that this also escapes characters such as quotes.</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>async</summary>
+		</p>
+		<hr />
+		<p>Runs the given function in a web worker, returning a promise with the return value. This is useful to prevent the
+			main thread from becoming clogged while trying to compute something.
+			</details><br />
+			<details>
+				<summary>averageBy</summary>
+		</p>
+		<hr />
+		<p>This returns the average of an array based on the given function, for example:</p>
+		<pre
+			class="js"><code>_$.averageBy([1,2,3,4], (val) =&gt; val / 2);//Returns the average of each element after each element has been divided by 2.</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>browser</summary>
+		</p>
+		<hr />
+		<p>Returns the current browser without sniffing the user-agent string. e.g. 'Chrome'
+			</details><br />
+			<details>
+				<summary>compStyle</summary>
+		</p>
+		<hr />
+		<p>Returns an element of the computed style, e.g.</p>
+		<pre
+			class="js"><code>_$.compStyle(document.querySelector(&#39;h1&#39;), &#39;background-color&#39;); //Returns the background-color of the first &lt;h1&gt;</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>copy</summary>
+		</p>
+		<hr />
+		<p>Copies the text specified to the clipboard, e.g.</p>
+		<pre class="js"><code>_$.copy(&#39;Hello world&#39;);</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>createElement</summary>
+		</p>
+		<hr />
+		<p>Returns a DOM element who's outerHTML is the string provided:</p>
+		<pre
+			class="js"><code>_$.createElement(&#39;&lt;div id=`fun`&gt;Hello&lt;/div&gt;);//Returns a DOM element whoose id is &#39;fun&#39; and whoose innerText is &#39;Hello&#39;</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>dayName</summary>
+		</p>
+		<hr />
+		<p>Returns the day of the week from a Date object.
+			</details><br />
+			<details>
+				<summary>each</summary>
+		</p>
+		<hr />
+		<p>Runs a function with each element of an array:</p>
+		<pre
+			class="js"><code>_$.each([1,2,3], (num) =&gt; alert(num * 3));//Alerts each number in the array times 3</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>escapeHTML</summary>
+		</p>
+		<hr />
+		<p>Returns an escaped version of the HTML string provided:</p>
+		<pre class="js"><code>_$.escapeHTML(&#39;&lt;script&gt;&#39;);//&#39;&amp;lt;script&amp;gt;&#39;</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>flatten</summary>
+		</p>
+		<hr />
+		<p>This takes a 2d array (an array of arrays) and flattens in into a 1d array (a list of items).
+			</details><br />
+			<details>
+				<summary>formToObject</summary>
+		</p>
+		<hr />
+		<p>Converts a form to a javascript object using each element's 'name' attribute as the key and the 'value' attribute
+			as
+			the value.
+			</details><br />
+			<details>
+				<summary>formatMilliseconds</summary>
+		</p>
+		<hr />
+		<p>Formats a number of milliseconds into a human-readable duration of time, e.g.</p>
+		<pre class="js"><code>_$.formatMilliseconds(600000);//Returns &#39;10 minutes&#39;</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>formatNumber</summary>
+		</p>
+		<hr />
+		<p>Adds commas to large numbers in the right place.
+			</details><br />
+			<details>
+				<summary>hexToRGB</summary>
+		</p>
+		<hr />
+		<p>Converts a hex value into an RGB color.
+			</details><br />
+			<details>
+				<summary>inPartialView</summary>
+		</p>
+		<hr />
+		<p>Returns whether the specified element is visible at all in the viewport. Usefull for lazy loading images!
+			</details>
+			<br />
+			<details>
+				<summary>inView</summary>
+		</p>
+		<hr />
+		<p>Returns whether the specified element is completely visible in the viewport.
+			</details><br />
+			<details>
+				<summary>jsonToCsv</summary>
+		</p>
+		<hr />
+		<p>Converts a JSON object to CSV.
+			</details><br />
+			<details>
+				<summary>lightOrDark</summary>
+		</p>
+		<hr />
+		<p>Returns an object, the key 'lightordark' returns either 'light' or 'dark' and the key 'hsp' returns the value of
+			the
+			color from 0 (completely dark) to 255 (completely bright).
+			</details><br />
+			<details>
+				<summary>lightenColor</summary>
+		</p>
+		<hr />
+		<p>Lightens or darkens a hex color by a certain amount, on a scale rom 0 (completely dark) to 255 (completely
+			bright):
+		</p>
+		<pre class="js"><code>_$.lightenColor(&#39;#ffffff&#39;, -20);//Returns &#39;#ebebeb&#39;.</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>mapObjectKeys</summary>
+		</p>
+		<hr />
+		<p>Maps an object's keys recursively:</p>
+		<pre
+			class="js"><code>_$.mapObjectKeys({ key: &#39;value&#39;, another: { deep: &#39;thing&#39;, map: &#39;another&#39; } }, (key) =&gt; key.toUpperCase()); // Transforms every key of the object to uppercase.</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>notify</summary>
+		</p>
+		<hr />
+		<p>Notifies the user through a desktop notification. Takes 3 arguments: text, body, icon. Text is the title of the
+			notification, body is the message of it, and icon is the icon displayed next to the notification.
+			</details><br />
+			<details>
+				<summary>onOutsideClick</summary>
+		</p>
+		<hr />
+		<p>Returns the callback when a click is called outside the specified element:</p>
+		<pre
+			class="js"><code>_$.onoutsideclick(document.querySelector(&quot;h1&quot;), () =&gt; {alert(&quot;You clicked outside the header&quot;)}); // Alerts when the user clicks anywhere that is NOT the h1 in question.</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>onScrollStop</summary>
+		</p>
+		<hr />
+		<p>Returns the callback when a user stops scrolling the window.
+			</details><br />
+			<details>
+				<summary>previousPage</summary>
+		</p>
+		<hr />
+		<p>Returns the url of the previous page that the user visited.
+			</details><br />
+			<details>
+				<summary>primesTo</summary>
+		</p>
+		<hr />
+		<p>Returns an array of all the prime numbers up to the number given.
+			</details><br />
+			<details>
+				<summary>querySelector</summary>
+		</p>
+		<hr />
+		<p>Generates a unique querySelector for the given element.
+			</details><br />
+			<details>
+				<summary>random</summary>
+		</p>
+		<hr />
+		<p>Returns a random number between two numbers:</p>
+		<pre
+			class="js"><code>_$.random(-10,10,false);//Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>randomColor</summary>
+		</p>
+		<hr />
+		<p>Returns a random hex color.
+			</details><br />
+			<details>
+				<summary>removeComments</summary>
+		</p>
+		<hr />
+		<p>Removes comments from the HTML element specified.
+			</details><br />
+			<details>
+				<summary>replaceText</summary>
+		</p>
+		<hr />
+		<p>Replaces the text of the specified element by passing the old value through a function:</p>
+		<pre
+			class="js"><code>_$.replaceText(document, (oldtext) =&gt; oldtext.replace(&quot; &quot;, &quot;-&quot;));//Replace all spaces in the document with a hyphen.</code></pre>
+		<p>
+			</details><br />
+			<details>
+				<summary>rgbToHex</summary>
+		</p>
+		<hr />
+		<p>Returns the hex code of a given RGB string.
+			</details><br />
+			<details>
+				<summary>seedRandom</summary>
+		</p>
+		<hr />
+		<p>Gives a random number based on a whole number seed.
+			</details><br />
+			<details>
+				<summary>serializeForm</summary>
+		</p>
+		<hr />
+		<p>Convert a form to url queries
+			</details><br />
+			<details>
+				<summary>spliceArrayBuffer</summary>
+		</p>
+		<hr />
+		<p>Splices a number as if it's 8 bits long and converts it to a single number:</p>
+		<p><code>js _$.spliceArrayBuffer([5, 8, 255], 0, 2, true);//16713733</code><br />
+			</details><br />
+			<details>
+				<summary>sortObj</summary>
+		</p>
+		<hr />
+		<p>Returns an alphabetized copy of the object by keys.
+			</details><br />
+			<details>
+				<summary>throttle</summary>
+		</p>
+		<hr />
+		<p>Runs the function specified, the second input controls at MAX how much wait there is between the next time it
+			runs:
+		</p>
+		<pre class="js"><code>_$.throttle(() =&gt; alert(&#39;hello&#39;), 10000); </code></pre>
+		<p>Running this like any other function will simply just run the function, however if you try to run the throttled
+			function in a setInterval loop or before its timeout ends it will not run.
+			</details><br />
+			<details>
+				<summary>timeFunction</summary>
+		</p>
+		<hr />
+		<p>Use console.time to how long the function inputted takes to execute.
+			</details><br />
+			<details>
+				<summary>unescapeHTML</summary>
+		</p>
+		<hr />
+		<p>Unescapes the string of HTML specified.
+			</details><br />
+			<details>
+				<summary>unionArrays</summary>
+		</p>
+		<hr />
+		<p>Merges two arrays using union, meaning that any duplicates between the two arrays will be removed.
+			</details><br />
+			<details>
+				<summary>uniqueArray</summary>
+		</p>
+		<hr />
+		<p>Removes duplicates from an array
+			</details><br />
+			<details>
+				<summary>uuid</summary>
+		</p>
+		<hr />
+		<p>Generates a unique id, like the uuid npm package. For example: 8dfe52e3-7beb-48eb-8282-209ff1c5250f
+			</details><br />
+			<details>
+				<summary>widows</summary>
+		</p>
+		<hr />
+		<p>Replaces the last space character between words with ' ', preventing a single word on a newline.
+			</details>
+		</p>
+
+	</section>
+</body>
+
 </html>
 <style>
 	svg {
@@ -339,15 +379,18 @@
 		padding: 0;
 		box-sizing: border-box;
 	}
+
 	*:focus {
 		outline: none;
 	}
+
 	h1,
 	h2 {
 		padding: 4px;
 		margin: 4px;
 		filter: url(#turbulence-2);
 	}
+
 	body {
 		background: #101010;
 		width: 100vw;
@@ -379,19 +422,19 @@
 		text-align: center;
 		display: block;
 	}
+
 	hr {
 		display: block;
 		width: 100%;
 		height: 2px;
 		border: none;
 		outline: none;
-		background: linear-gradient(
-			to right,
+		background: linear-gradient(to right,
 			transparent,
 			lightseagreen,
-			transparent
-		);
+			transparent);
 	}
+
 	p span#header {
 		font-weight: 900;
 		font-size: 20vmin;
@@ -403,10 +446,12 @@
 		font-size: 5vmin;
 		color: white;
 	}
-details {
-	width: 100%;
-	display: block;
-}
+
+	details {
+		width: 100%;
+		display: block;
+	}
+
 	details[open] {
 		padding: 10px 0px;
 	}
@@ -453,6 +498,7 @@ details {
 		background: #fff3;
 		max-width: 100%;
 	}
+
 	a.btn {
 		transition: background-color 0.3s ease, box-shadow 0.3s ease;
 		display: inline-block;
@@ -466,6 +512,7 @@ details {
 		border-radius: 5px;
 		margin: 8px;
 	}
+
 	a:hover {
 		background: #333;
 		box-shadow: none;
@@ -478,12 +525,19 @@ details {
 			e.innerHTML = _$.widows(e.innerHTML);
 		});
 		init();
-		setTimeout(() => {}, 400);
+		setTimeout(() => { }, 400);
 	}
-	let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-	window.onmousemove = (e) => {
-		mouse = { x: e.clientX, y: e.clientY };
+	let mouse = {
+		x: window.innerWidth / 2,
+		y: window.innerHeight / 2
 	};
+	window.onmousemove = (e) => {
+		mouse = {
+			x: e.clientX,
+			y: e.clientY
+		};
+	};
+
 	function init() {
 		document.body.innerHTML += `
 	<svg style="display: none;">
@@ -578,6 +632,7 @@ details {
 				blob.style.transitionDuration = randomtime + "ms";
 			}, randomtime);
 		});
+
 		function generateHTML() {
 			var outputhtml = "";
 			let keys = Object.keys(_$);
@@ -587,7 +642,7 @@ details {
 					outputhtml += `<details><summary>${el}</summary><hr>\n${_$.escapeHTML(
 						_$.info(el),
 					)}</details>`;
-				} catch (e) {}
+				} catch (e) { }
 			}
 			return outputhtml;
 		}
