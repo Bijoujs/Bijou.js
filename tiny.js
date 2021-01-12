@@ -1,4 +1,5 @@
-document.head.innerHTML += '<script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.43/polyfill.min.js" integrity="sha512-lvWiOP+aMKHllm4THsjzNleVuGOh0WGniJ3lgu/nvCbex1LlaQSxySUjAu/LTJw9FhnSL/PVYoQcckg1Q03+fQ==" crossorigin="anonymous"></script>'
+document.head.innerHTML +=
+	'<script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.43/polyfill.min.js" integrity="sha512-lvWiOP+aMKHllm4THsjzNleVuGOh0WGniJ3lgu/nvCbex1LlaQSxySUjAu/LTJw9FhnSL/PVYoQcckg1Q03+fQ==" crossorigin="anonymous"></script>';
 let _temp = {
 	primesTo: (num) => {
 		let arr = Array.from({
@@ -572,33 +573,43 @@ let _temp = {
 	flatten: (arr) => arr.reduce((a, c) => a.concat(c), []),
 	uniqueArray: (array) => [...new Set(array)],
 	formatNumber: (n) => n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
+	spliceArrayBuffer: (arr, start, end, endian) => {
+		endian = endian || false;
+		var direction = endian ? -1 : 1;
+		if (endian) [start, end] = [end, start];
+		start = Math.floor(start);
+		end = Math.floor(end) + direction;
+		for (var i = start, value = 0; i != end; i += direction)
+			value = 256 * value + arr[i];
+		return value;
+	},
 };
 _temp = _temp.sortObj(_temp);
 let desc = {
 	addStyles:
-		"Add the styles in an object to a specified element:\n\n \t_.addStyles(element, {background: 'red'});\n\n(Changes the background color of the element to red!)",
-	arrayToCSV: `Returns a comma seperated list from the specified array. \n\n\t_.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b"\n"c","d"'\n\nNote that this also escapes characters such as quotes.`,
+		"Add the styles in an object to a specified element:\n\n \t_$.addStyles(element, {background: 'red'});\n\n(Changes the background color of the element to red!)",
+	arrayToCSV: `Returns a comma seperated list from the specified array. \n\n\t_$.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b"\n"c","d"'\n\nNote that this also escapes characters such as quotes.`,
 	averageBy:
-		"This returns the average of an array based on the given function, for example:\n\n\t_.averageBy([1,2,3,4], (val) => val / 2);//Returns the average of each element after each element has been divided by 2.",
+		"This returns the average of an array based on the given function, for example:\n\n\t_$.averageBy([1,2,3,4], (val) => val / 2);//Returns the average of each element after each element has been divided by 2.",
 	async:
 		"Runs the given function in a web worker, returning a promise with the return value. This is useful to prevent the main thread from becoming clogged while trying to compute something.",
 	browser:
 		"Returns the current browser without sniffing the user-agent string. e.g. 'Chrome'",
 	compStyle:
-		"Returns an element of the computed style, e.g. \n\n\t_.compStyle(document.querySelector('h1'), 'background-color'); //Returns the background-color of the first <h1>",
+		"Returns an element of the computed style, e.g. \n\n\t_$.compStyle(document.querySelector('h1'), 'background-color'); //Returns the background-color of the first <h1>",
 	copy:
-		"Copies the text specified to the clipboard, e.g. \n\n\t_.copy('Hello world');",
+		"Copies the text specified to the clipboard, e.g. \n\n\t_$.copy('Hello world');",
 	createElement:
-		"Returns a DOM element who's outerHTML is the string provided: \n\n\t_.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whoose id is 'fun' and whoose innerText is 'Hello'",
+		"Returns a DOM element who's outerHTML is the string provided: \n\n\t_$.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whoose id is 'fun' and whoose innerText is 'Hello'",
 	dayName: "Returns the day of the week from a Date object.",
 	each:
-		"Runs a function with each element of an array: \n\n\t_.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array times 3",
+		"Runs a function with each element of an array: \n\n\t_$.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array times 3",
 	escapeHTML:
-		"Returns an escaped version of the HTML string provided: \n\n\t_.escapeHTML('<script>');//'&lt;script&gt;'",
+		"Returns an escaped version of the HTML string provided: \n\n\t_$.escapeHTML('<script>');//'&lt;script&gt;'",
 	formToObject:
 		"Converts a form to a javascript object using each element's 'name' attribute as the key and the 'value' attribute as the value.",
 	formatMilliseconds:
-		"Formats a number of milliseconds into a human-readable duration of time, e.g. \n\n\t_.formatMilliseconds(600000);//Returns '10 minutes'",
+		"Formats a number of milliseconds into a human-readable duration of time, e.g. \n\n\t_$.formatMilliseconds(600000);//Returns '10 minutes'",
 	hexToRGB: "Converts a hex value into an RGB color.",
 	inPartialView:
 		"Returns whether the specified element is visible at all in the viewport. Usefull for lazy loading images!",
@@ -608,9 +619,9 @@ let desc = {
 	lightOrDark:
 		"Returns an object, the key 'lightordark' returns either 'light' or 'dark' and the key 'hsp' returns the value of the color from 0 (completely dark) to 255 (completely bright).",
 	lightenColor:
-		"Lightens or darkens a hex color by a certain amount, on a scale rom 0 (completely dark) to 255 (completely bright): \n\n\t_.lightenColor('#ffffff', -20);//Returns '#ebebeb'.",
+		"Lightens or darkens a hex color by a certain amount, on a scale rom 0 (completely dark) to 255 (completely bright): \n\n\t_$.lightenColor('#ffffff', -20);//Returns '#ebebeb'.",
 	mapObjectKeys:
-		"Maps an object's keys recursively: \n\n\t_.mapObjectKeys({\r\n    key: 'value',\r\n    another: {\r\n        deep: 'thing',\r\n        map: 'another'\r\n    }\r\n}, (key) => key.toUpperCase()); // Transforms every key of the object to uppercase.",
+		"Maps an object's keys recursively: \n\n\t_$.mapObjectKeys({\r\n    key: 'value',\r\n    another: {\r\n        deep: 'thing',\r\n        map: 'another'\r\n    }\r\n}, (key) => key.toUpperCase()); // Transforms every key of the object to uppercase.",
 	notify:
 		"Notifies the user through a desktop notification. Takes 3 arguments: text, body, icon. Text is the title of the notification, body is the message of it, and icon is the icon displayed next to the notification.",
 	onOutsideClick:
@@ -620,7 +631,7 @@ let desc = {
 	primesTo: "Returns an array of all the prime numbers up to the number given.",
 	querySelector: "Generates a unique querySelector for the given element.",
 	random:
-		"Returns a random number between two numbers:\n\n\t_.random(-10,10,false);//Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)",
+		"Returns a random number between two numbers:\n\n\t_$.random(-10,10,false);//Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)",
 	randomColor: "Returns a random hex color.",
 	removeComments: "Removes comments from the HTML element specified.",
 	replaceText:
@@ -630,7 +641,7 @@ let desc = {
 	serializeForm: "Convert a form to url queries",
 	sortObj: "Returns an alphabetized copy of the object by keys.",
 	throttle:
-		"Runs the function specified, the second input controls at MAX how much wait there is between the next time it runs:\n\n\t_.throttle(() => alert('hello'), 10000);\n\nRunning this like any other function will simply just run the function, however if you try to run the throttled function in a setInterval loop or before its timeout ends it will not run.",
+		"Runs the function specified, the second input controls at MAX how much wait there is between the next time it runs:\n\n\t_$.throttle(() => alert('hello'), 10000);\n\nRunning this like any other function will simply just run the function, however if you try to run the throttled function in a setInterval loop or before its timeout ends it will not run.",
 	timeFunction:
 		"Use console.time to how long the function inputted takes to execute.",
 	unescapeHTML: "Unescapes the string of HTML specified.",
@@ -644,6 +655,8 @@ let desc = {
 		"This takes a 2d array (an array of arrays) and flattens in into a 1d array (a list of items).",
 	uniqueArray: "Removes duplicates from an array",
 	formatNumber: "Adds commas to large numbers in the right place.",
+	spliceArrayBuffer:
+		"Splices a number as if it's 8 bits long and converts it to a single number:\n\n\t_$.spliceArrayBuffer([5, 8, 255], 0, 2, true);//16713733",
 };
 _temp.info = (prop) => {
 	return desc[prop];
