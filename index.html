@@ -7,7 +7,7 @@
 		<script src="tiny.js" defer></script>
 		<title>Tiny.js</title>
 	</head>
-	<body style="visibility: visible;" onload="js_Load()">
+	<body style="visibility: hidden;" onload="js_Load()">
 		<section>
 			<p>
 				<span id="header">Tiny</span><span>A simple JS library I made!</span>
@@ -473,7 +473,7 @@ details {
 </style>
 <script>
 	function js_Load() {
-		// document.body.style.visibility = "visible";
+		document.body.style.visibility = "visible";
 		_$.each(document.querySelectorAll("h1, h2, h3"), (e) => {
 			e.innerHTML = _$.widows(e.innerHTML);
 		});
