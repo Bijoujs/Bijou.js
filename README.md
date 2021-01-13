@@ -6,7 +6,7 @@
 
 # What is Tiny.js?
 
-Tiny.js is a well, tiny, library of super helpful JavaScript snippets! It has a bunch of useful snippets for all your coding needs! If there's something that's not in here currently but you use frequently feel free to submit an issue! I'd be happy to add it! Tiny's goal is to eliminate the need to copy paste the same thing from stackoverflow, another project or anywhere else! So if you ever find yourself typing the same thing over and over again, copy pasting the same snippet as you did a few days ago, use tiny.js! If the snippet you're using isn't in Tiny.js just submit an issue with the code!
+Tiny.js is a well, tiny, library of super helpful JavaScript snippets! It has a bunch of useful snippets for all your coding needs! If there's something that's not in here currently but you use frequently feel free to submit an issue! I'd be happy to add it! Tiny's goal is to eliminate the need to copy paste the same thing from StackOverflow, another project or anywhere else! So if you ever find yourself typing the same thing over and over again, copy pasting the same snippet as you did a few days ago, use tiny.js! If the snippet you're using isn't in Tiny.js just submit an issue with the code!
 
 # How to use Tiny.js
 
