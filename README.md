@@ -3,7 +3,7 @@
 <br>
 <br>
 <br>
-<br>
+
 <b><h1 align="center">Welcome to Tiny.js!</h1></b>
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/tiny.js/badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/tiny.js)
