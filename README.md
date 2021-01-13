@@ -204,7 +204,7 @@ Converts a JSON object to CSV.</details>
 
 ---
 
-Returns an object, the key 'lightordark' returns either 'light' or 'dark' and the key 'hsp' returns the value of the color from 0 (completely dark) to 255 (completely bright).</details>
+Returns an object, the key "lightordark" returns either 'light' or 'dark' and the key 'hsp' returns the value of the color from 0 (completely dark) to 255 (completely bright).</details>
 
 <details><summary>lightenColor</summary>
 
