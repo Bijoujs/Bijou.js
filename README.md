@@ -365,7 +365,7 @@ Use console.time to how long the function inputted takes to execute.</details>
 
 ---
 
-Unescapes the string of HTML specified.</details>
+Un-escapes the string of HTML specified.</details>
 
 <details><summary>unionArrays</summary>
 
