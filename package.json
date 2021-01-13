@@ -1,7 +1,7 @@
 {
   "name": "tiny-js",
   "version": "1.0.0",
-  "description": "Tiny.js is a well, tiny, library of super helpful JavaScript snippets! It has a bunch of useful snipets for all your coding needs! If there's something that's not in here currently but you use frequently feel free to submit an issue! I'd be happy to add it! Tiny's goal is to eliminate the need to copy paste the same thing from stackoverflow, another project or anywhere else! So if you ever find yourself typing the same thing over and over again, copy pasting the same snippet as you did a few days ago, use tiny.js! If the snippet you're using isn't in Tiny.js just submit an issue with the code!",
+  "description": "Tiny.js is a well, tiny, library of super helpful JavaScript snippets! It has a bunch of useful snippets for all your coding needs! If there's something that's not in here currently but you use frequently feel free to submit an issue! I'd be happy to add it! Tiny's goal is to eliminate the need to copy paste the same thing from stackoverflow, another project or anywhere else! So if you ever find yourself typing the same thing over and over again, copy pasting the same snippet as you did a few days ago, use tiny.js! If the snippet you're using isn't in Tiny.js just submit an issue with the code!",
   "main": "tiny.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,8 +20,5 @@
   "bugs": {
     "url": "https://github.com/explosion-scratch/tiny.js/issues"
   },
-  "homepage": "https://github.com/explosion-scratch/tiny.js/#readme",
-  "dependencies": {
-    "showdown": "^1.9.1"
-  }
+  "homepage": "https://github.com/explosion-scratch/tiny.js/#readme"
 }
