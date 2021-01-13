@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<script src="tiny.js" defer></script>
-		<title>Tiny.js</title>
-	</head>
 
-	<body style="visibility: hidden;" onload="js_Load()">
-		<section>
-			<p>
-				<span id="header">Tiny</span><span>A simple JS library I made!</span>
-			</p>
-			<div class="btn">
-				<a class="btn" href="https://github.com/explosion-scratch/tiny.js"
-					>GitHub</a
-				><a href="mailto:explosionscratch@gmail.com" class="btn">Email</a>
-			</div>
-		</section>
-		<section id="readme"></section>
-	</body>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<script src="tiny.js" defer></script>
+	<title>Tiny.js</title>
+</head>
+
+<body style="visibility: hidden;" onload="js_Load()">
+	<section>
+		<p>
+			<span id="header">Tiny</span><span>A simple JS library I made!</span>
+		</p>
+		<div class="btn">
+			<a class="btn" href="https://github.com/explosion-scratch/tiny.js">GitHub</a><a
+				href="mailto:explosionscratch@gmail.com" class="btn">Email</a>
+		</div>
+	</section>
+	<section id="readme"></section>
+</body>
+
 </html>
 <style>
 	@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
@@ -85,12 +86,10 @@
 		height: 2px;
 		border: none;
 		outline: none;
-		background: linear-gradient(
-			to right,
-			transparent,
-			lightseagreen,
-			transparent
-		);
+		background: linear-gradient(to right,
+				transparent,
+				lightseagreen,
+				transparent);
 	}
 
 	p span#header {
@@ -163,6 +162,7 @@
 		background: #333;
 		box-shadow: none;
 	}
+
 	pre {
 		font-family: monospace !important;
 		white-space: nowrap;
@@ -174,10 +174,16 @@
 		background: #fff3;
 		max-width: 100%;
 	}
+
+	pre * {
+		font-family: monospace !important;
+	}
+
 	iframe {
 		visibility: hidden !important;
 		display: none !important;
 	}
+
 	section br {
 		display: none;
 	}
@@ -287,7 +293,7 @@
 			let random = _$.random(30, 150);
 			blob.style.width = `${random}px`;
 			blob.style.height = `${random}px`;
-			let randomtime = _$.random(1000, 2000);
+			let randomTime = _$.random(1000, 2000);
 			setInterval(() => {
 				blob.style.opacity = 1;
 				let random = _$.random(30, 100);
@@ -295,22 +301,22 @@
 				blob.style.height = `${random}px`;
 				blob.style.top = `${_$.random(mouse.y - 150, mouse.y + 150)}px`;
 				blob.style.left = `${_$.random(mouse.x - 150, mouse.x + 150)}px`;
-				blob.style.transitionDuration = randomtime + "ms";
-			}, randomtime);
+				blob.style.transitionDuration = randomTime + "ms";
+			}, randomTime);
 		});
 
 		function generateHTML() {
-			var outputhtml = "";
+			var outputHTML = "";
 			let keys = Object.keys(_$);
 			for (let j = 0; j < keys.length; j++) {
 				const el = keys[j];
 				try {
-					outputhtml += `<details><summary>${el}</summary><hr>\n${_$.escapeHTML(
+					outputHTML += `<details><summary>${el}</summary><hr>\n${_$.escapeHTML(
 						_$.info(el),
 					)}</details>`;
-				} catch (e) {}
+				} catch (e) { }
 			}
-			return outputhtml;
+			return outputHTML;
 		}
 	}
 </script>
