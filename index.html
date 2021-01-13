@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<script src="src/tiny.js" defer></script>
+		<script src="tiny.js" defer></script>
 		<title>Tiny.js</title>
 	</head>
 
@@ -202,7 +202,7 @@
 	};
 
 	function init() {
-		fetch("resources/README.html")
+		fetch("README.html")
 			.then((res) => res.text())
 			.then((text) => (document.getElementById("readme").innerHTML = text));
 		document.body.innerHTML += `
