@@ -91,7 +91,7 @@ Returns the current browser without sniffing the user-agent string. e.g. 'Chrome
 Returns an element of the computed style, e.g.
 
 ```js
-_$.compStyle(document.querySelector("h1"), "background-color"); //Returns the background-color of the first <h1>
+_$.compStyle(document.querySelector("h1"), "background-color"); //Returns the background-color of the first &lt;h1&gt;
 ```
 
 </details>
@@ -141,7 +141,7 @@ _$.each([1, 2, 3], (num) => alert(num * 3)); //Alerts each number in the array t
 Returns an escaped version of the HTML string provided:
 
 ```js
-_$.escapeHTML("<script>"); //'&lt;script&gt;'
+_$.escapeHTML("&lt;script&gt;"); //'&amp;lt;script&amp;gt;'
 ```
 
 </details>
@@ -401,4 +401,4 @@ Generates a unique id, like the uuid npm package. For example: 8dfe52e3-7beb-48e
 
 ---
 
-Replaces the last space character between words with '&nbsp;', preventing a single word on a newline.</details>
+Replaces the last space character between words with '&amp;nbsp;', preventing a single word on a newline.</details>
