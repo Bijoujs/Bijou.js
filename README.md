@@ -20,7 +20,7 @@ Tiny.js is a well, tiny, library of super helpful JavaScript snippets! It has a 
 Well, a few reasons:
 1. <s>I made it.</s>
 2. It's useful! (If it's not useful just tell me what you want added in the issues tab! I'd be happy to add it!)
-3. It's jam packed full of functions that are super useful but hard to think of! (With the exeption of ) 
+3. It's jam packed full of functions that are super useful but hard to think of! (With the exeption of ```_$.each()```) 
 
 # How to use Tiny.js
 
