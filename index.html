@@ -240,6 +240,7 @@
   };
 
   function init() {
+    // Fill in the readme
     fetch("README.html")
       .then((res) => res.text())
       .then((text) => (document.getElementById("readme").innerHTML = text));
