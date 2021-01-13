@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/explosion-scratch/tiny.js/issues"
   },
-  "homepage": "https://github.com/explosion-scratch/tiny.js/#readme"
+  "homepage": "https://github.com/explosion-scratch/tiny.js/#readme",
+  "dependencies": {
+    "showdown": "^1.9.1"
+  }
 }
