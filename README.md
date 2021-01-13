@@ -21,7 +21,9 @@ Well, a few reasons:
 1. <s>I made it.</s>
 2. It's useful! (If it's not useful just tell me what you want added in the issues tab! I'd be happy to add it!)
 3. It's jam packed full of functions that are super useful but hard to think of!
-4. 31 other people this month used it, so why shouldn't you? 
+4. 31 other people this month used it, so why shouldn't you?
+
+<small>You can probably see I'm pretty desperate for people to use this.</small> 
 
 # How to use Tiny.js
 
