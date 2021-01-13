@@ -25,6 +25,10 @@ To use tiny.js simply call one of the many functions built into it!
 ```js
 _$.anyFunction();
 ```
+Such as this one!
+```js
+_$.uuid()//
+```
 
 Below you can see all of the functions along with what they do!
 
