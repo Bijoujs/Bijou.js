@@ -1,6 +1,8 @@
 # Tiny.js
 
 [![](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/tiny.js/badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/tiny.js)
+[![GitHub issues](https://img.shields.io/github/issues/explosion-scratch/tiny.js)](https://github.com/explosion-scratch/tiny.js/issues)
+[![GitHub stars](https://img.shields.io/github/stars/explosion-scratch/tiny.js)](https://github.com/explosion-scratch/tiny.js/stargazers)
 
 # What is Tiny.js?
 
