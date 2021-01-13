@@ -304,7 +304,7 @@ Removes comments from the HTML element specified.</details>
 Replaces the text of the specified element by passing the old value through a function:
 
 ```js
-_$.replaceText(document, (oldtext) => oldtext.replace(" ", "-")); //Replace all spaces in the document with a hyphen.
+_$.replaceText(document, (oldText) => oldText.replace(" ", "-")); //Replace all spaces in the document with a hyphen.
 ```
 
 </details>
