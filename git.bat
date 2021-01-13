@@ -3,7 +3,7 @@ while true; do
   showdown makehtml -i README.md -o README.html
   terser --compress --mangle -o tiny-min.js -- tiny.js
   git stage .
-  git commit -m "Auto-commit"
+  git commit -m "Some changes"
   git push
   sleep 1
   done
