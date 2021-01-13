@@ -600,7 +600,7 @@ let desc = {
   copy:
     "Copies the text specified to the clipboard, e.g. \n\n\t_$.copy('Hello world');",
   createElement:
-    "Returns a DOM element who's outerHTML is the string provided: \n\n\t_$.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whoose id is 'fun' and whoose innerText is 'Hello'",
+    "Returns a DOM element who's outerHTML is the string provided: \n\n\t_$.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whose id is 'fun' and whose innerText is 'Hello'",
   dayName: "Returns the day of the week from a Date object.",
   each:
     "Runs a function with each element of an array: \n\n\t_$.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array times 3",
