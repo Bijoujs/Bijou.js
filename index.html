@@ -244,6 +244,7 @@
     fetch("README.html")
       .then((res) => res.text())
       .then((text) => (document.getElementById("readme").innerHTML = text));
+    // Add <svg> filters
     document.body.innerHTML += `
 	<svg style="display: none;">
 		<filter id="turbulence-2">
