@@ -353,6 +353,7 @@
         blob.style.top = `${_$.random(mouse.y - 150, mouse.y + 150)}px`;
         blob.style.left = `${_$.random(mouse.x - 150, mouse.x + 150)}px`;
         blob.style.transitionDuration = randomTime + "ms";
+        randomTime += _$.random(-50, 50)
       }, randomTime);
     });
 
