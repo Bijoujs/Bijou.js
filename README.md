@@ -23,7 +23,7 @@ Well, a few reasons:
 3. It's jam packed full of functions that are super useful but hard to think of!
 4. 31 other people this month used it, so why shouldn't you?
 
-<small>You can probably see I'm pretty desperate for people to use this.</small> 
+<small>(You can probably see I'm pretty desperate for people to use this.)</small> 
 
 # How to use Tiny.js
 
