@@ -1,4 +1,4 @@
-# Tiny.js
+<h1> Tiny.js </h1>
 
 [![](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/tiny.js/badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/tiny.js)
 [![GitHub issues](https://img.shields.io/github/issues/explosion-scratch/tiny.js)](https://github.com/explosion-scratch/tiny.js/issues)
