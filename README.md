@@ -1,4 +1,4 @@
-<a href='http://3iohp.csb.app/'><img src='tiny.png' alt='Tiny.js Logo' align="center" width="100%"></img></a>
+<a href='http://3iohp.csb.app/'><img src='tiny.png' alt='Tiny.js Logo' align="center" width="1000000"></img></a>
 
 <b><h1 align="center"> Tiny.js </h1></b>
 
