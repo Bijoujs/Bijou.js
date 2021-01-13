@@ -5,5 +5,6 @@ while true; do
   git stage .
   git commit -m "Some changes"
   git push
+  clear
   sleep 1
   done
