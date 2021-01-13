@@ -186,7 +186,7 @@ Converts a hex value into an RGB color.</details>
 
 ---
 
-Returns whether the specified element is visible at all in the viewport. Usefull for lazy loading images!</details>
+Returns whether the specified element is visible at all in the viewport. This is useful for lazy loading images!</details>
 
 <details><summary>inView</summary>
 
