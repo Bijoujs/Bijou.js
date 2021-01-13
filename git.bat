@@ -6,4 +6,4 @@ while true; do
   git commit -m "Auto-commit"
   git push
   sleep 1
-  done 
+  done
