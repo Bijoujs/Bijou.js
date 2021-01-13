@@ -53,7 +53,7 @@ to use css properties normally.
 
 ---
 
-Returns a comma seperated list from the specified array.
+Returns a comma separated list from the specified array.
 
 ```js
 _$.arrayToCSV([
