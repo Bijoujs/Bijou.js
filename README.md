@@ -244,7 +244,7 @@ Notifies the user through a desktop notification. Takes 3 arguments: text, body,
 Returns the callback when a click is called outside the specified element:
 
 ```js
-_$.onoutsideclick(document.querySelector("h1"), () => {
+_$.onOutsideClick(document.querySelector("h1"), () => {
 	alert("You clicked outside the header");
 }); // Alerts when the user clicks anywhere that is NOT the h1 in question.
 ```
