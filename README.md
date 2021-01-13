@@ -115,7 +115,7 @@ _$.copy("Hello world");
 Returns a DOM element who's outerHTML is the string provided:
 
 ```js
-_$.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whoose id is 'fun' and whoose innerText is 'Hello'
+_$.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whose id is 'fun' and whose innerText is 'Hello'
 ```
 
 </details>
