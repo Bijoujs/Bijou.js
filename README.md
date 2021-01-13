@@ -23,7 +23,7 @@ Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:
 To use tiny.js simply call one of the many functions built into it!
 
 ```js
-_$.function_here();
+_$.anyFunction();
 ```
 
 Below you can see all of the functions along with what they do!
