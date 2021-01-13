@@ -29,7 +29,7 @@ _$.anyFunction();
 ```
 Such as this one!
 ```js
-_$.uuid()//
+_$.uuid()//Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
 ```
 
 Below you can see all of the functions along with what they do!
