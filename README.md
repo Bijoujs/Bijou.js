@@ -1,4 +1,4 @@
-<img src='tiny.png' alt='Tiny.js Logo'></img>
+<img src='tiny.png' alt='Tiny.js Logo' align="center"></img>
 
 <b><h1 align="center"> Tiny.js </h1></b>
 
