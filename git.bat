@@ -4,5 +4,5 @@ while true; do
   git stage .
   git commit -m "Auto-commit"
   git push
-  sleep 1
+  sleep 2
   done
