@@ -219,6 +219,7 @@
 
     // Makes the body visible
     document.body.style.visibility = "visible";
+    // Applies the _$.widow effect to headers (Changes the last space to a &nbsp;)
     _$.each(document.querySelectorAll("h1, h2, h3"), (e) => {
       e.innerHTML = _$.widows(e.innerHTML);
     });
