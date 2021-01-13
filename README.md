@@ -1,3 +1,5 @@
+![Tiny.js logo](tiny.png)
+
 <h1 align="center"> Tiny.js </h1>
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/tiny.js/badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/tiny.js)
