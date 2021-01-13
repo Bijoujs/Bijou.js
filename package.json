@@ -19,6 +19,7 @@
   "homepage": "https://github.com/explosion-scratch/tiny.js/#readme",
   "dependencies": {
     "markdown-toc": "^1.2.0",
-    "showdown": "^1.9.1"
+    "showdown": "^1.9.1",
+    "terser": "^5.5.1"
   }
 }
