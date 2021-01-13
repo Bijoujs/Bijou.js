@@ -569,7 +569,6 @@ let _temp = {
 		t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
 		return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 	},
-	//New
 	flatten: (arr) => arr.reduce((a, c) => a.concat(c), []),
 	uniqueArray: (array) => [...new Set(array)],
 	formatNumber: (n) => n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
@@ -583,6 +582,7 @@ let _temp = {
 			value = 256 * value + arr[i];
 		return value;
 	},
+	unCamelCase: function (str) { return str.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/\b([A-Z]+)([A-Z])([a-z])/, '$1 $2$3').replace(/^./, function (s) { return s.toUpperCase(); }) }
 };
 _temp = _temp.sortObj(_temp);
 let desc = {
@@ -657,6 +657,7 @@ let desc = {
 	formatNumber: "Adds commas to large numbers in the right place.",
 	spliceArrayBuffer:
 		"Splices a number as if it's 8 bits long and converts it to a single number:\n\n\t_$.spliceArrayBuffer([5, 8, 255], 0, 2, true);//16713733",
+	unCamelCase: "Un-camelCases a string. Camel case is when a string's case looks like this: camelCase, where the normal version would be Camel Case."
 };
 _temp.info = (prop) => {
 	return desc[prop];
