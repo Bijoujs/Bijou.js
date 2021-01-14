@@ -36,7 +36,7 @@ Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:
 ```
 Also, did you know there's tiny.css? It's also useful! It's all the stuff I use:
 ```html
-<link rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@v2.1.0/tiny.css">
 ```
 
 ## Basic usage:
