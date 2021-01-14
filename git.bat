@@ -12,6 +12,7 @@ function commit {
   git commit -m "${COMMIT}" -m "${COMMIT_MSG}"
   git push
 }
+
 while true; do
   commit
   done
