@@ -119,7 +119,8 @@
   max-width: 100%;
   overflow: scroll;
   white-space: pre;
-  
+  border-radius: 5px;
+  background: #
 }
 /* Transition effects */
 .transition-bg {
