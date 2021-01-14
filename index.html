@@ -210,7 +210,7 @@
         html = _$.parseHTML(text);
         html.remove(html.querySelector("img"));
         
-        document.getElementById("readme").innerHTML = html 
+        document.getElementById("readme").innerHTML = html.documentElement.innerHTML;
       });
     document.body.innerHTML += `
 	<svg style="display: none;">
