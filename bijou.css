@@ -84,11 +84,10 @@
 }
 .flex-container.center {
   display: flex  justify-content: center;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  flex-direction: row;
-}
-columnco.fixed.center {
-  min  position: fixed;
+  flex-direction: column;  min  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
