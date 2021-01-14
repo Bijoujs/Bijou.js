@@ -113,7 +113,7 @@
   font-size: 5vmin;
 }
 .inline-code {
-  
+  font-family: var(--monospace);
 }
 /* Transition effects */
 .transition-bg {
