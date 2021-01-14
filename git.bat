@@ -1,6 +1,6 @@
 npm i -g showdown terser prettier figlet-cli
 function commit {
-  COMMIT=$(git diff --name-only HEAD)
+  COMMIT=$(git status --porcelain)
   if [[ ${#COMMIT} -ge 1 ]] ; then
     cd /workspace/bijou.js
     showdown makehtml -i README.md -o README.html
