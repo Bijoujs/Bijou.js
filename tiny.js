@@ -668,7 +668,7 @@ let desc = {
     "Splices a number as if it's 8 bits long and converts it to a single number:\n\n\t_$.spliceArrayBuffer([5, 8, 255], 0, 2, true);//16713733",
   unCamelCase:
     "Un-camelCases a string. Camel case is when a string's case looks like this: camelCase, where the normal version would be Camel Case.",
-  parseHTML: "Parses HTML and returns a document object represent"
+  parseHTML: "Parses HTML and returns a document object representing the pa"
 }
 _temp.info = (prop) => {
   return desc[prop]
