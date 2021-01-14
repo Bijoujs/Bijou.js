@@ -200,7 +200,7 @@
   opacity: 0.5;
 }
 .button:hover {
-  background: white;
+  background: var(--background);
   color: var(--text);
   border-color: var(--border-color);
 }
