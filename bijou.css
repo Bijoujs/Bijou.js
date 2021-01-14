@@ -118,6 +118,7 @@
   display: inline-block;
   max-width: 100%;
   overflow: scroll;
+  white-space: pre;
   
 }
 /* Transition effects */
