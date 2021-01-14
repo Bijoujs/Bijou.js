@@ -22,6 +22,9 @@
 .transition-bg {
   transition-property: background-color;
 }
+.transition-fast {
+  transition-duration: .3s;
+}
 /* Button styling */
 .button {
   padding: 10px 15px;
