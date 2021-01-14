@@ -20,7 +20,7 @@
   transition-property: background-color, color, box-shadow;
 }
 .transition-bg {
-  transition-property: background-color, color, box-shadow;
+  transition-property: background-color;
 }
 /* Button styling */
 .button {
