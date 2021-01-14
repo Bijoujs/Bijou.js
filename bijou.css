@@ -187,7 +187,7 @@
 .button {
   padding: 10px 15px;
   text-decoration: none;
-  color: white;
+  color: var(--background);
   background: var(--text);
   border-radius: 5px;
   border-color: transparent;
