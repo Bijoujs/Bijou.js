@@ -4,6 +4,7 @@ while true; do
   terser --compress --mangle -o tiny-min.js -- tiny.js
   git stage .
   git commit -m "Some changes"
+  
   git push
   printf "\033c"
   sleep 1
