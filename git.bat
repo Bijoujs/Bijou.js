@@ -1,5 +1,4 @@
 npm i -g showdown terser prettier figlet
-
 function commit {
   COMMIT=$(git diff --name-only HEAD)
   if [[ ${#COMMIT} -ge 1 ]] ; then
