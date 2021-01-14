@@ -54,7 +54,8 @@
   transform: translate(-50%, -50%);
 }
 .flex-container.center {
-  display:
+  display: flex;
+  jus
 }
 .fixed.center {
   position: fixed;
