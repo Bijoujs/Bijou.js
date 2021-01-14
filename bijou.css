@@ -178,7 +178,7 @@
 .border-button {
   padding: 10px 15px;
   text-decoration: none;
-  color: white;
+  color: var(--text);
   background: transparent;
   border-radius: 5px;
   border-color: transparent;
