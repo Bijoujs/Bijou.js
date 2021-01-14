@@ -6,5 +6,4 @@ function commit {
   git stage .
   git commit -m "Some changes"
   git push
-  sleep 1
 }
