@@ -4,6 +4,7 @@
   --text: #333;
   --box-shadow-spread: 5px;
   --box-shadow: #0001;
+  --box-shadow-blur: 0px;
   --border-color: lightgrey;
   --success-color: rgb(21, 163, 16);
   --success-color-hover: rgb(16, 116, 16);
