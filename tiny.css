@@ -66,6 +66,9 @@
   background: white;
   color: #333;
 }
+.button.error {
+  background-color: var(--error-color);
+}
 .button.success {
   background-color: var(--success-color)
 }
