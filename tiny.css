@@ -27,6 +27,9 @@
 .border-radius {
   border-radius: 10px;
 }
+.monospace {
+  font-family: 'Courier New', Courier, monospace;
+}
 /* Transition effects */
 .transition-bg {
   transition-property: background-color;
