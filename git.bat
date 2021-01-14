@@ -23,4 +23,4 @@ function beautify {
 }
 while true; do
   commit
-  donebr
+  done
