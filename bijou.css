@@ -52,7 +52,9 @@
 .full-height {
   min-height: 100vh;
 }
-.light-border
+.light-border {
+  bor
+}
 .border {
   border: 2px solid var(--border-color);
 }
