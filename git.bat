@@ -1,4 +1,4 @@
-function commit
+function commit {
   cd /workspace/tiny.js
   showdown makehtml -i README.md -o README.html
   terser --compress --mangle -o tiny-min.js -- tiny.js
@@ -7,3 +7,4 @@ function commit
   git commit -m "Some changes"
   git push
   sleep 1
+}
