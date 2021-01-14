@@ -282,6 +282,7 @@ Parses HTML and returns a document object representing the parsed HTML.
 
 ```js
 _$.parseHTML("<div><section><h1>Hello</h1></section></div>").querySelector("h1").innerText;
+//Returns "Hello"!
 ```
 </details>
 
