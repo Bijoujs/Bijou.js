@@ -81,6 +81,7 @@
   width: fit-content;
 }
 .fill-viewport {
+  width: 80vw;
   
 }
 /* Transition effects */
