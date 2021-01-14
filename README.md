@@ -6,9 +6,9 @@
 
 <b><h1 align="center">Welcome to Bijou.js!</h1></b>
 
-[![Bijou.js CDN (jsDelivr)](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/Bijou.js/badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/Bijou.js)
-[![Bijou.js GitHub issues](https://img.shields.io/github/issues/explosion-scratch/Bijou.js)](https://github.com/explosion-scratch/Bijou.js/issues)
-[![Bijou.js GitHub stars](https://img.shields.io/github/stars/explosion-scratch/Bijou.js)](https://github.com/explosion-scratch/Bijou.js/stargazers)
+[![Bijou.js CDN (jsDelivr)](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/bijou.js/badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/bijou.js)
+[![Bijou.js GitHub issues](https://img.shields.io/github/issues/explosion-scratch/bijou.js)](https://github.com/explosion-scratch/bijou.js/issues)
+[![Bijou.js GitHub stars](https://img.shields.io/github/stars/explosion-scratch/Bijou.js)](https://github.com/explosion-scratch/bijou.js/stargazers)
 
 Congrats! You discovered Bijou.js! Read more below!
 # What is Bijou.js?
