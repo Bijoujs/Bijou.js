@@ -52,7 +52,7 @@
   padding: var(--padding);
 }
 .margin-top {
-  margin-top: 10px;
+  margin-top: var(--margin-top);
 }
 .hr {
   display: block;
