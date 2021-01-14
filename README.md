@@ -52,6 +52,7 @@ _$.uuid()//Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
 Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes and more! Also thanks to people like retronbv for helping brainstorm names for this (I still need a different one, tiny.js is taken :'( So if you think of a good one than make an issue for it and tell me.)
 
 ### PLEASE CAN I JUST USE IT NOW?
+
 Yes. Here's the documentation:
 
 ## Functions:
