@@ -590,7 +590,7 @@ let _temp = {
   },
   parseHTML: (string) => {
     const domparser = new DOMParser()
-
+    return domparser.parseFromString(string, mimeType)
   }
 }
 _temp = _temp.sortObj(_temp)
