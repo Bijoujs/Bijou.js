@@ -9,7 +9,7 @@ function commit {
   USER=$(git config user.name)
   EMAIL=$(git config user.email)
   REPO=$(basename -s .git `git config --get remote.origin.url`)
-  FIGLET=$(figlet $REPO)
+  FIGLET=$(figlet -k $REPO)
   COMMIT_MSG=$"Files changed: ${COMMIT}, Date: ${DATE}, User: ${USER}, Email: ${EMAIL}"
   git commit -m "${COMMIT}" -m "${COMMIT_MSG}"
   git push
