@@ -53,7 +53,7 @@
   min-height: 100vh;
 }
 .light-border {
-  bor
+  border: 1px solid var(--border-color);
 }
 .border {
   border: 2px solid var(--border-color);
