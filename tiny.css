@@ -25,6 +25,9 @@
 .transition-fast {
   transition-duration: .3s;
 }
+.transition-ease {
+  transition-property: ease;
+}
 /* Button styling */
 .button {
   padding: 10px 15px;
