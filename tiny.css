@@ -1,5 +1,6 @@
 /* Tiny.css library! */
 :root {
+  --box-shadow-spread: 5px;
   --box-shadow: #0001;
   --success-color-hover: rgb(16,116,16);
   --success-color: rgb(21,163,16);
@@ -16,10 +17,10 @@
 /* Box shadows and soon more general stylings */
 .box-shadow-focus:focus {
   outline: none;
-  box-shadow: 0 0 0 5px var(--box-shadow);
+  box-shadow: 0 0 0 var(--box-shadow-spread) var(--box-shadow);
 }
 .box-shadow-hover:hover {
-  box-shadow: 0 0 0 5px var(--box-shadow);
+  box-shadow: 0 0 0 var(--box-shadow-spread) var(--box-shadow);
 }
 /* Transition effects */
 .transition-bg {
