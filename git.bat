@@ -6,4 +6,5 @@ while true; do
   git commit -m "Some changes"
   git push
   printf "\033c"
+  sleep 1
   done
