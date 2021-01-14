@@ -201,7 +201,7 @@
 }
 .button:hover {
   background: white;
-  color: #333;
+  color: var(--text);
   border-color: var(--border-color);
 }
 .button.error {
