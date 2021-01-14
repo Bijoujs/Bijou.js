@@ -277,7 +277,10 @@ _$.onOutsideClick(document.querySelector("h1"), () => {
 ---
 
 Returns the callback when a user stops scrolling the window.</details>
-<details><summary>parseHTML</summary></details>
+<details><summary>parseHTML</summary>
+
+</details>
+
 <details><summary>previousPage</summary>
 
 ---
