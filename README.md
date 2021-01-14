@@ -1,4 +1,4 @@
-<a href='http://3iohp.csb.app/'><img src='Bijou.png' alt='Bijou.js Logo' align="center"></img></a>
+<a href='http://3iohp.csb.app/'><img src='bijou.png' alt='Bijou.js Logo' align="center"></img></a>
 <br>
 <br>
 <br>
