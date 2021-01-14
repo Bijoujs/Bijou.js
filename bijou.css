@@ -72,7 +72,7 @@
   flex-direction: column;
 }
 .flex-row {
-  flex-direction: column;
+  flex-direction: row;
 }
 .absolute.center {
   position: absolute;
