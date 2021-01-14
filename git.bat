@@ -17,7 +17,7 @@ function commit {
     git push
   fi
 }
-
+function beautify
 while true; do
   commit
   done
