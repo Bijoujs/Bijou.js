@@ -9,7 +9,7 @@
   margin: 0;
   padding: 0;
 }
-
+/* Box shadows and soon more general styligns */
 .box-shadow-focus:focus {
   outline: none;
   box-shadow: 0 0 0 5px var(--box-shadow);
