@@ -17,7 +17,7 @@
 .transition-bg.transition-shadow {
   transition-property: background-color, color, box-shadow;
 }
-
+/* Button styling */
 .button {
   padding: 10px 15px;
   text-decoration: none;
