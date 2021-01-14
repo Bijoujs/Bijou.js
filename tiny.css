@@ -25,7 +25,7 @@
   box-shadow: 0 0 0 var(--box-shadow-spread) var(--box-shadow);
 }
 .border-radius {
-  border-radius: 10px
+  border-radius: 10px;
 }
 /* Transition effects */
 .transition-bg {
