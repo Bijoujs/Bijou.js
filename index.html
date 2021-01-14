@@ -241,9 +241,9 @@
       y: e.clientY,
     };
   };
-window.onscroll = (e) => {
-  document.getElementById('scroll-down-arrow').classList.add('hidd');
-}
+  window.onscroll = (e) => {
+    document.getElementById('scroll-down-arrow').classList.add('hidden');
+  }
   function init() {
     fetch("README.html")
       .then((res) => res.text())
