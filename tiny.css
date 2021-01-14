@@ -19,12 +19,16 @@
   box-shadow: 0 0 0 5px var(--box-shadow);
 }
 /* Transition effects */
-.transition-bg.transition-shadow {
-  transition-property: background-color, color, box-shadow;
-}
 .transition-bg {
   transition-property: background-color;
 }
+.transition-shadow {
+  transition-property: var(--box-shadow);
+}
+.transition-bg.transition-shadow {
+  transition-property: background-color, color, box-shadow;
+}
+
 .transition-slow {
   transition-duration: 3s;
 }
