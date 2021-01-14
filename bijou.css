@@ -185,8 +185,8 @@
   border-width: 2px;
 }
 .border-button:hover {
-  box-shadow: 
-}
+box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
+    var(--box-shadow);}
 .button {
   padding: 10px 15px;
   text-decoration: none;
