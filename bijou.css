@@ -184,7 +184,7 @@
 .button:hover {
   background: white;
   color: #333;
-  border: 1px solid var(--border-color)
+  border-color: 1px solid var(--border-color)
 }
 .button.error {
   background-color: var(--error-color);
