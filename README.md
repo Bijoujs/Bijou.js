@@ -38,7 +38,7 @@ Also, did you know there's tiny.css? It's also useful! It's all the stuff I use:
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@latest/tiny.css">
 ```
-
+it pretty much just uses classes. 
 ## Basic usage:
 
 To use tiny.js simply call one of the many functions built into it!
