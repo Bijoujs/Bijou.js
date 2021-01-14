@@ -8,7 +8,7 @@ function commit {
   DATE=$(date +"%F %H:%M:%S")
   USER=$(git congif user.name)
   EMAIL=$(git config user.email)
-  COMMIT_MSG=$"Files changed: ${COMMIT}, Date: ${DATE}, User: ${USER}, Email: ${}"
+  COMMIT_MSG=$"Files changed: ${COMMIT}, Date: ${DATE}, User: ${USER}, Email: ${EMAIL}"
   git commit -m "${COMMIT}" -m "${COMMIT_MSG}"
   git push
 }
