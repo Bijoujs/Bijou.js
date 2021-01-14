@@ -16,7 +16,7 @@
   box-shadow: 0 0 0 5px var(--box-shadow);
 }
 .box-shadow-hover:hover {
-box-shadow: 0 0 0 5px var(--box-shadow);
+  box-shadow: 0 0 0 5px var(--box-shadow);
 }
 /* Transition effects */
 .transition-bg.transition-shadow {
