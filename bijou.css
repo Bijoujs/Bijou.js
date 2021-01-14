@@ -20,7 +20,7 @@
   --margin-top: 10px;
   --margin-bottom: 10px;
   --margin-left: 10px;
-  --margin-right: 10px;  
+  --margin-right: 10px;
 }
 /* Initial styles */
 .initial-styles,
@@ -185,8 +185,9 @@
   border-width: 2px;
 }
 .border-button:hover {
-box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
-    var(--box-shadow);}
+  box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
+    var(--box-shadow);
+}
 .button {
   padding: 10px 15px;
   text-decoration: none;
@@ -202,7 +203,7 @@ box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
 .button:hover {
   background: white;
   color: #333;
-  border-color: var(--border-color)
+  border-color: var(--border-color);
 }
 .button.error {
   background-color: var(--error-color);
@@ -212,7 +213,7 @@ box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
 }
 .button.success {
   background-color: var(--success-color);
-  border-color: var(--success-color-hover)
+  border-color: var(--success-color-hover);
 }
 .button.success:hover {
   background-color: var(--success-color-hover);
