@@ -208,7 +208,11 @@
     animation: pulse 1s ease infinite;
     color: white;
   }
-#scroll-down-arrow:
+
+  #scroll-down-arrow.hidden {
+    opacity: 0;
+  }
+
   @keyframes pulse {
     0% {
       bottom: 20px
