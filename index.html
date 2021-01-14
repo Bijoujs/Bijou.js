@@ -207,7 +207,8 @@
     fetch("README.html")
       .then((res) => res.text())
       .then((text) => { 
-        html = 
+        html = _$.parseHTML(text);
+        
         document.getElementById("readme").innerHTML = html 
       });
     document.body.innerHTML += `
