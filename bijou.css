@@ -116,7 +116,7 @@
   font-family: var(--monospace-font), Courier, monospace;
   padding: 4px;
   display: inline-block;
-  max-width: 100%;
+  max-width: 90%;
   overflow: scroll;
   white-space: pre;
   border-radius: 5px;
