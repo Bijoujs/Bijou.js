@@ -588,7 +588,10 @@ let _temp = {
         return s.toUpperCase()
       })
   },
-  parseHTML
+  parseHTML: (string) => {
+    const domparser = new DOMParser()
+
+  }
 }
 _temp = _temp.sortObj(_temp)
 let desc = {
