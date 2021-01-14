@@ -74,8 +74,10 @@
 .flex-row {
   flex-direction: row;
 }
-.absol ute.center {
-  position: absolute;
+.flex-column {
+  f
+}
+.absol  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
