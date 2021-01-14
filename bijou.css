@@ -153,6 +153,7 @@
 .transition-bg.transition-shadow {
   transition-property: background-color, color, box-shadow;
 }
+.transition-
 .transition-slow {
   transition-duration: var(--slow-transition);
 }
