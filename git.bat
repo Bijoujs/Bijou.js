@@ -11,7 +11,7 @@ function commit {
     USER=$(git config user.name)
     EMAIL=$(git config user.email)
     REPO="BIJOU.JS"
-    FIGLET_REPO=$(figlet $REPO)
+    FIGLET_REPO=$(figlet -kf big -- $REPO)
     BR=$'\n'
     COMMIT_MSG=$"${FIGLET_REPO}${BR}Files changed: ${COMMIT}${BR}Date: ${DATE}${BR}User: ${USER}${BR}Email: ${EMAIL}"
     git commit -m "${COMMIT}" -m "${COMMIT_MSG}"
