@@ -209,7 +209,7 @@
 }
 .button.error:hover {
   background-color: var(--error-color-hover);
-  color: 
+  color: var()
 }
 .button.success {
   background-color: var(--success-color);
