@@ -83,8 +83,7 @@
   transform: translate(-50%, -50%);
 }
 .flex-container.center {
-  display: flex;
-  justify-content: center;
+  display: flex  justify-content: center;
   align-items: center;
   flex-direction: row;
 }
