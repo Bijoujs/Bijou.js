@@ -6,7 +6,7 @@ function commit {
   git stage .
   COMMIT=$(git diff --name-only --cached)
   DATE=$(date +"%F %H:%M:%S")
-  USER=$()
+  USER=$(git )
   COMMIT_MSG=$"Files changed: ${COMMIT}, Date: ${DATE}, User: ${USER}"
   git commit -m "${COMMIT}" -m "${COMMIT_MSG}"
   git push
