@@ -1,8 +1,8 @@
 /* Tiny.css library! */
 :root {
   --box-shadow: #0001;
-  --success-hover: rgb(16,116,16);
-  --success-color-hover: rgb(21,163,16);
+  --success-color-hover: rgb(16,116,16);
+  --success-color: rgb(21,163,16);
 }
 .initial-styles {
   box-sizing: border-box;
@@ -30,9 +30,9 @@
   color: #333;
 }
 .button.success {
-  background-color: rgb(21, 163, 21)
+  background-color: var(--success-color)
 }
 .button.success:hover {
-  background-color: rgb(16, 116, 16);
+  background-color: var(--success-color-hover);
   color: white;
 }
