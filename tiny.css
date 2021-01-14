@@ -23,7 +23,7 @@
   transition-property: background-color;
 }
 .transition-shadow {
-  transition-property: var(--box-shadow);
+  transition-property: box-shadow;
 }
 .transition-bg.transition-shadow {
   transition-property: background-color, color, box-shadow;
