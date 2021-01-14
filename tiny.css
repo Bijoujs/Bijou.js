@@ -42,6 +42,9 @@
   align-items: center;
   flex-direction: row;
 }
+.flex-row {
+  flex-direction: ;
+}
 /* Transition effects */
 .transition-bg {
   transition-property: background-color;
