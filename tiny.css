@@ -82,7 +82,8 @@
 }
 .fill-viewport {
   width: 80vw;
-  
+  max-width: 600px;
+  height
 }
 /* Transition effects */
 .transition-bg {
