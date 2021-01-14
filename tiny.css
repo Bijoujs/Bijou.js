@@ -43,7 +43,7 @@
   flex-direction: row;
 }
 .flex-row {
-  flex-direction: colum;
+  flex-direction: column;
 }
 /* Transition effects */
 .transition-bg {
