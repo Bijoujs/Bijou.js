@@ -7,6 +7,7 @@
   --success-color-hover: rgb(16, 116, 16);
   --error-color: rgb(212, 72, 47);
   --error-color-hover: rgb(180, 52, 30);
+  --hr-color: lightseagreen;
   --slow-transition: 3s;
   --medium-transition: 0.5s;
   --fast-transition: 0.3s;
