@@ -13,7 +13,8 @@ function commit {
     REPO="BIJOU.JS"
     FIGLET_REPO=$(figlet -kf Big -- $REPO)
     BR=$'\n'
-    COMMIT_MSG=$"${FIGLET_REPO}${BR}Files changed: ${BR}${COMMIT}${BR}Date: ${DATE}${BR}User: ${USER}${BR}Email: ${EMAIL}"
+    TAB=$'\t'
+    COMMIT_MSG=$"${FIGLET_REPO}${BR}Files changed: ${BR}${BR}${TAB}${COMMIT}${BR}${BR}Date: ${DATE}${BR}User: ${USER}${BR}Email: ${EMAIL}"
     git commit -m "${COMMIT_FILE}" -m "${COMMIT_MSG}"
     git push
   fi
