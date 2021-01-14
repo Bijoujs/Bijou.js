@@ -107,7 +107,9 @@
   max-width: 600px;
   height: fit-content;
 }
-.
+.header {
+  text-align
+}
 /* Transition effects */
 .transition-bg {
   transition-property: background-color;
