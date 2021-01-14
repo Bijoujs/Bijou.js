@@ -1,6 +1,7 @@
 npm i -g showdown terser prettier
+
 function commit {
-  COMMIT=$(git diff --name-only --cached)
+  COMMIT=$(git diff --name-only HEAD)
   if [[ ${#COMMIT} -ge 1 ]] ; then
     cd /workspace/bijou.js
     showdown makehtml -i README.md -o README.html
