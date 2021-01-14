@@ -69,7 +69,7 @@ Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes
 ### PLEASE CAN I JUST USE IT NOW?
 
 Yes. Here\'s the documentation:
- 
+
 ## Functions:
 
 <details><summary>addStyles</summary>
