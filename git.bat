@@ -8,7 +8,7 @@ function commit {
   DATE=$(date +"%F %H:%M:%S")
   USER=$(git config user.name)
   EMAIL=$(git config user.email)
-  REPO=$()
+  REPO=$(basename -s .git `git config --get remote.origin.url`)
   COMMIT_MSG=$"Files changed: ${COMMIT}, Date: ${DATE}, User: ${USER}, Email: ${EMAIL}"
   git commit -m "${COMMIT}" -m "${COMMIT_MSG}"
   git push
