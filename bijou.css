@@ -52,7 +52,8 @@
 .full-height {
   min-height: 100vh;
 }
-.border {
+
+ {
   border: 2px solid var(--border-color);
 }
 .padding {
