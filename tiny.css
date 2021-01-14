@@ -27,10 +27,10 @@
   background: white;
   color: #333;
 }
-.button_success {
+.button.success {
   background-color: rgb(21, 163, 21)
 }
-.button_success:hover {
+.button.success:hover {
   background-color: rgb(16, 116, 16);
   color: white;
 }
