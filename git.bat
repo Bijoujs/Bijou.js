@@ -8,7 +8,7 @@ function commit {
   DATE=$(date +"%F %H:%M:%S")
   USER=$(git config user.name)
   EMAIL=$(git config user.email)
-  REPO=$(basename -s .git `git config --get remote.origin.url`)
+  REPO="Bijou.js"
   FIGLET_REPO=$(figlet $REPO)
   BR=$'\n'
   COMMIT_MSG=$"${FIGLET_REPO}${BR}Files changed: ${COMMIT}${BR}Date: ${DATE}${BR}User: ${USER}${BR}Email: ${EMAIL}"
