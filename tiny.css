@@ -80,7 +80,9 @@
 .fit-content-width {
   width: fit-content;
 }
-
+.fill-viewport {
+  
+}
 /* Transition effects */
 .transition-bg {
   transition-property: background-color;
