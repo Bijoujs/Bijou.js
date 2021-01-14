@@ -6,6 +6,6 @@ function commit {
   git stage .
   echo "What commit message?"
   read commitmsg
-  git commit -m commitmsg
+  git commit -m $commitmsg
   git push
 }
