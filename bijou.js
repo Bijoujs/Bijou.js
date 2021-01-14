@@ -994,7 +994,7 @@ let desc = {
     "Un-camelCases a string. Camel case is when a string's case looks like this: camelCase, where the normal version would be Camel Case.",
   parseHTML:
     "Parses HTML and returns a document object representing the parsed HTML.",
-  syntaxHighlight: "Highlight an element's innerText!\n\n\t_$.syntaxHighlight(document.querySelector('pre code'), 'js');//Syntax highlights the element.\n\nAlso supports CSS and HTML"
+  syntaxHighlight: "Highlight an element's innerText!\n\n\t_$.syntaxHighlight(document.querySelector('pre code'), 'js');//Syntax highlights the element.\n\nAlso supports CSS and HTML. Note: This needs <br> tags instead of normal line breaks."
 }
 _temp.info = (prop) => {
   return desc[prop]
