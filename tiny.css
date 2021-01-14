@@ -1,4 +1,7 @@
 /* Tiny.css library! */
+:root {
+  --box-shadow: #0001;
+}
 .initial-styles {
   box-sizing: border-box;
   margin: 0;
@@ -6,5 +9,5 @@
 }
 .box-shadow-focus:focus {
   outline: none;
-  box-shadow: 0 0 0 5px #0001;
+  box-shadow: 0 0 0 5px var(--box-shadow);
 }
