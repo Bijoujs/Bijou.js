@@ -17,7 +17,9 @@ function commit {
     git push
   fi
 }
-function beautify
+function beautify {
+      prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- /workspace/
+}
 while true; do
   commit
   done
