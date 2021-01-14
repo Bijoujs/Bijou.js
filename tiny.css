@@ -10,10 +10,11 @@
   --medium-transition: .5s;
   --fast-transition: .3s;
   --monospace-font: "Courier New"
-  --main-font: "Poppins", sans-serif;;
+  --main-font: "Poppins", sans-serif;
 }
 /* Initial styles */
 .initial-styles {
+  font-family: var(--main-font);
   box-sizing: border-box;
   margin: 0;
   padding: 0;
