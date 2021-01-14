@@ -53,7 +53,8 @@
 }
 .margin-top {
   margin-top: var(--margin-top);
-}.margin-bottom {
+}
+.margin-bottom {
   margin-bottom: var(--margin-bottom);
 }.margin-left {
   margin-left: var(--margin-left);
