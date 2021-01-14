@@ -115,7 +115,10 @@
 .inline-code {
   font-family: var(--monospace-font), Courier, monospace;
   padding: 4px;
-  display: inlien
+  display: inline-block;
+  max-width: 100%;
+  overflow: scroll;
+  
 }
 /* Transition effects */
 .transition-bg {
