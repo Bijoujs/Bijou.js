@@ -1,4 +1,4 @@
-function
+function commit
   cd /workspace/tiny.js
   showdown makehtml -i README.md -o README.html
   terser --compress --mangle -o tiny-min.js -- tiny.js
