@@ -68,12 +68,8 @@ Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes
 
 ## Functions:
 
-<details>
-
-<summary>addStyles</summary>
-
----
-
+<details><summary>addStyles</summary><----------
+>
 Add the styles in an object to a specified element:
 
 ```js
