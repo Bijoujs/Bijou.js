@@ -28,7 +28,6 @@
 .transition-bg.transition-shadow {
   transition-property: background-color, color, box-shadow;
 }
-
 .transition-slow {
   transition-duration: 3s;
 }
