@@ -75,7 +75,7 @@
   flex-direction: row;
 }
 .flex-column {
-  f
+  flex-direction: column;
 }
 .absol  position: absolute;
   top: 50%;
