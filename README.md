@@ -105,6 +105,7 @@ _$.unCamelCase("CSS property name here").toLowerCase().replace(/ /g, "-")
 to use css properties normally.
 
 </details>
+
 <details><summary>arrayToCSV</summary>
 
 ---
