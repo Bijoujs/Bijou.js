@@ -56,9 +56,9 @@
 }.margin-bottom {
   margin-top: var(--margin-bottom);
 }.margin-left {
-  margin-top: var(--margin-top);
+  margin-top: var(--margin-left);
 }.margin-right {
-  margin-top: var(--margin-top);
+  margin-top: var(--margin-right);
 }
 
 .hr {
