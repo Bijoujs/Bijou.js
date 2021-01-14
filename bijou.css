@@ -88,7 +88,6 @@
   flex-direction: row;
 }
 columnco.fixed.center {
-
   min  position: fixed;
   top: 50%;
   left: 50%;
