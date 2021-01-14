@@ -18,22 +18,25 @@
 <li>It's jam packed full of functions that are super useful but hard to think of!</li>
 <li>31 other people this month used it, so why shouldn't you?</li>
 </ol>
-<p><small>(You can probably see I'm pretty desperate for people to use this.)</small> </p>
+<p><small>(You can probably see I'm pretty desperate for people to use this.)</small></p>
 <h1 id="howtousenbspbijoujs">How to use&nbsp;Bijou.js</h1>
 <p>Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:</p>
 <h2 id="importnbspit">Import&nbsp;it:</h2>
 <pre><code class="html language-html">&lt;script src="https://cdn.jsdelivr.net/gh/explosion-scratch/Bijou.js@latest/Bijou.min.js"&gt;&lt;/script&gt;
 </code></pre>
 <p>Also, did you know there's Bijou.css? It's also useful! It's all the stuff I use:</p>
-<pre><code class="html language-html">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou.css"&gt;
+<pre><code class="html language-html">&lt;link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou.css"
+/&gt;
 </code></pre>
-<p>it pretty much just uses classes. </p>
+<p>it pretty much just uses classes.</p>
 <h2 id="basicnbspusage">Basic&nbsp;usage:</h2>
 <p>To use Bijou.js simply call one of the many functions built into it!</p>
-<pre><code class="js language-js">_$.anyFunction();
+<pre><code class="js language-js">_$.anyFunction()
 </code></pre>
 <p>Such as this one!</p>
-<pre><code class="js language-js">_$.uuid()//Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
+<pre><code class="js language-js">_$.uuid() //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
 </code></pre>
 <h2 id="whomadebijoujs">Who made Bijou.js?</h2>
 <p>Mostly me! But as always my friend GrahamSH helped a <em>ton</em> with ideas, bug fixes and more! Also thanks to people like retronbv for helping brainstorm names for this (I still need a different one, Bijou.js is taken :'( So if you think of a good one than make an issue for it and tell me.)</p>
@@ -43,10 +46,10 @@
 <p><details><summary>addStyles</summary></p>
 <hr />
 <p>Add the styles in an object to a specified element:</p>
-<pre><code class="js language-js">_$.addStyles(element, { background: "red" }); // (Changes the background color of the element to red!)
+<pre><code class="js language-js">_$.addStyles(element, { background: "red" }) // (Changes the background color of the element to red!)
 </code></pre>
 <p>Also note that this only works when the property is camelCased, as in JavScript. For example doing this: <code>{"background-color": "red"}</code> would not work, but <code>{backgroundColor: "red"}</code> will work fine. Feel free to use</p>
-<pre><code class="js language-js">_$.unCamelCase("CSS property name here").toLowerCase().replace(/ /g, "-");
+<pre><code class="js language-js">_$.unCamelCase("CSS property name here").toLowerCase().replace(/ /g, "-")
 </code></pre>
 <p>to use css properties normally.</p>
 <p></details>
@@ -54,9 +57,9 @@
 <hr />
 <p>Returns a comma separated list from the specified array.</p>
 <pre><code class="js language-js">_$.arrayToCSV([
-    ["a", "b"],
-    ["c", "d"],
-]); //'"a","b" "c","d"' Note that this also escapes characters such as quotes.
+  ["a", "b"],
+  ["c", "d"],
+]) //'"a","b" "c","d"' Note that this also escapes characters such as quotes.
 </code></pre>
 <p></details>
 <details><summary>async</summary></p>
@@ -65,7 +68,7 @@
 <p><details><summary>averageBy</summary></p>
 <hr />
 <p>This returns the average of an array based on the given function, for example:</p>
-<pre><code class="js language-js">_$.averageBy([1, 2, 3, 4], (val) =&gt; val / 2); //Returns the average of each element after each element has been divided by 2.
+<pre><code class="js language-js">_$.averageBy([1, 2, 3, 4], (val) =&gt; val / 2) //Returns the average of each element after each element has been divided by 2.
 </code></pre>
 <p></details>
 <details><summary>browser</summary></p>
@@ -74,13 +77,13 @@
 <p><details><summary>compStyle</summary></p>
 <hr />
 <p>Returns an element of the computed style, e.g.</p>
-<pre><code class="js language-js">_$.compStyle(document.querySelector("h1"), "background-color"); //Returns the background-color of the first &amp;lt;h1&amp;gt;
+<pre><code class="js language-js">_$.compStyle(document.querySelector("h1"), "background-color") //Returns the background-color of the first &amp;lt;h1&amp;gt;
 </code></pre>
 <p></details>
 <details><summary>copy</summary></p>
 <hr />
 <p>Copies the text specified to the clipboard, e.g.</p>
-<pre><code class="js language-js">_$.copy("Hello world");
+<pre><code class="js language-js">_$.copy("Hello world")
 </code></pre>
 <p></details>
 <details><summary>createElement</summary></p>
@@ -95,13 +98,13 @@
 <p><details><summary>each</summary></p>
 <hr />
 <p>Runs a function with each element of an array:</p>
-<pre><code class="js language-js">_$.each([1, 2, 3], (num) =&gt; alert(num * 3)); //Alerts each number in the array times 3
+<pre><code class="js language-js">_$.each([1, 2, 3], (num) =&gt; alert(num * 3)) //Alerts each number in the array times 3
 </code></pre>
 <p></details>
 <details><summary>escapeHTML</summary></p>
 <hr />
 <p>Returns an escaped version of the HTML string provided:</p>
-<pre><code class="js language-js">_$.escapeHTML("&amp;lt;script&amp;gt;"); //'&amp;amp;lt;script&amp;amp;gt;'
+<pre><code class="js language-js">_$.escapeHTML("&amp;lt;script&amp;gt;") //'&amp;amp;lt;script&amp;amp;gt;'
 </code></pre>
 <p></details>
 <details><summary>formToObject</summary></p>
@@ -110,7 +113,7 @@
 <p><details><summary>formatMilliseconds</summary></p>
 <hr />
 <p>Formats a number of milliseconds into a human-readable duration of time, e.g.</p>
-<pre><code class="js language-js">_$.formatMilliseconds(600000); //Returns '10 minutes'
+<pre><code class="js language-js">_$.formatMilliseconds(600000) //Returns '10 minutes'
 </code></pre>
 <p></details>
 <details><summary>formatNumber</summary></p>
@@ -134,16 +137,16 @@
 <p><details><summary>lightenColor</summary></p>
 <hr />
 <p>Lightens or darkens a hex color by a certain amount, on a scale rom 0 (completely dark) to 255 (completely bright):</p>
-<pre><code class="js language-js">_$.lightenColor("#ffffff", -20); //Returns '#ebebeb'.
+<pre><code class="js language-js">_$.lightenColor("#ffffff", -20) //Returns '#ebebeb'.
 </code></pre>
 <p></details>
 <details><summary>mapObjectKeys</summary></p>
 <hr />
 <p>Maps an object's keys recursively:</p>
 <pre><code class="js language-js">_$.mapObjectKeys(
-    { key: "value", another: { deep: "thing", map: "another" } },
-    (key) =&gt; key.toUpperCase(),
-); // Transforms every key of the object to uppercase.
+  { key: "value", another: { deep: "thing", map: "another" } },
+  (key) =&gt; key.toUpperCase(),
+) // Transforms every key of the object to uppercase.
 </code></pre>
 <p></details>
 <details><summary>notify</summary></p>
@@ -153,16 +156,17 @@
 <hr />
 <p>Returns the callback when a click is called outside the specified element:</p>
 <pre><code class="js language-js">_$.onOutsideClick(document.querySelector("h1"), () =&gt; {
-    alert("You clicked outside the header");
-}); // Alerts when the user clicks anywhere that is NOT the h1 in question.
+  alert("You clicked outside the header")
+}) // Alerts when the user clicks anywhere that is NOT the h1 in question.
 </code></pre>
 <p></details>
 <details><summary>onScrollStop</summary></p>
 <hr />
-<p>Returns the callback when a user stops scrolling the window.</details>
-<details><summary>parseHTML</summary>
+<p>Returns the callback when a user stops scrolling the window.</details></p>
+<p><details><summary>parseHTML</summary>
 Parses HTML and returns a document object representing the parsed HTML.</p>
-<pre><code class="js language-js">_$.parseHTML("&lt;div&gt;&lt;section&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/section&gt;&lt;/div&gt;").querySelector("h1").innerText;
+<pre><code class="js language-js">_$.parseHTML("&lt;div&gt;&lt;section&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/section&gt;&lt;/div&gt;").querySelector("h1")
+  .innerText
 //Returns "Hello"!
 </code></pre>
 <p></details></p>
@@ -178,7 +182,7 @@ Parses HTML and returns a document object representing the parsed HTML.</p>
 <p><details><summary>random</summary></p>
 <hr />
 <p>Returns a random number between two numbers:</p>
-<pre><code class="js language-js">_$.random(-10, 10, false); //Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)
+<pre><code class="js language-js">_$.random(-10, 10, false) //Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)
 </code></pre>
 <p></details>
 <details><summary>randomColor</summary></p>
@@ -190,7 +194,7 @@ Parses HTML and returns a document object representing the parsed HTML.</p>
 <p><details><summary>replaceText</summary></p>
 <hr />
 <p>Replaces the text of the specified element by passing the old value through a function:</p>
-<pre><code class="js language-js">_$.replaceText(document, (oldText) =&gt; oldText.replace(" ", "-")); //Replace all spaces in the document with a hyphen.
+<pre><code class="js language-js">_$.replaceText(document, (oldText) =&gt; oldText.replace(" ", "-")) //Replace all spaces in the document with a hyphen.
 </code></pre>
 <p></details>
 <details><summary>rgbToHex</summary></p>
@@ -205,7 +209,7 @@ Parses HTML and returns a document object representing the parsed HTML.</p>
 <p><details><summary>spliceArrayBuffer</summary></p>
 <hr />
 <p>Splices a number as if it's 8 bits long and converts it to a single number:</p>
-<pre><code class="js language-js">_$.spliceArrayBuffer([5, 8, 255], 0, 2, true); //16713733
+<pre><code class="js language-js">_$.spliceArrayBuffer([5, 8, 255], 0, 2, true) //16713733
 </code></pre>
 <p></details>
 <details><summary>sortObj</summary></p>
@@ -214,7 +218,7 @@ Parses HTML and returns a document object representing the parsed HTML.</p>
 <p><details><summary>throttle</summary></p>
 <hr />
 <p>Runs the function specified, the second input controls at MAX how much wait there is between the next time it runs:</p>
-<pre><code class="js language-js">_$.throttle(() =&gt; alert("hello"), 10000);
+<pre><code class="js language-js">_$.throttle(() =&gt; alert("hello"), 10000)
 </code></pre>
 <p>Running this like any other function will simply just run the function, however if you try to run the throttled function in a setInterval loop or before its timeout ends it will not run.</details></p>
 <p><details><summary>timeFunction</summary></p>
@@ -235,7 +239,7 @@ Parses HTML and returns a document object representing the parsed HTML.</p>
   </summary></p>
 <hr />
 <p>Un-camelCases a string. Camel case is when a string's case looks like this: camelCase, where the normal version would be Camel Case:</p>
-<pre><code class="js language-js">_$.unCamelCase("someCrazyName"); //Returns "Some Crazy Name"
+<pre><code class="js language-js">_$.unCamelCase("someCrazyName") //Returns "Some Crazy Name"
 </code></pre>
 <p></details>
 <details><summary>uuid</summary></p>

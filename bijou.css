@@ -19,7 +19,8 @@
   --large-padding: 20px;
 }
 /* Initial styles */
-.initial-styles, .initial-styles * {
+.initial-styles,
+.initial-styles * {
   color: var(--text);
   background: var(--background);
   font-family: var(--main-font);
@@ -30,10 +31,12 @@
 /* Box shadows and soon more general stylings */
 .box-shadow-focus:focus {
   outline: none;
-  box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread) var(--box-shadow);
+  box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
+    var(--box-shadow);
 }
 .box-shadow-hover:hover {
-  box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread) var(--box-shadow);
+  box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
+    var(--box-shadow);
 }
 /* General elements */
 .border-radius {
@@ -49,16 +52,18 @@
   padding: var(--padding);
 }
 .hr {
-    display: block;
-    width: 100%;
-    height: 2px;
-    border: none;
-    outline: none;
-    background: linear-gradient(to right,
-        transparent,
-        var(--hr-color),
-        transparent);
-  }
+  display: block;
+  width: 100%;
+  height: 2px;
+  border: none;
+  outline: none;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--hr-color),
+    transparent
+  );
+}
 /* Flex */
 .flex {
   display: flex;
@@ -171,5 +176,5 @@
   padding: 10px;
   border-radius: 5px;
   background: var(--background);
-  border: 1px solid var(--border-color)
+  border: 1px solid var(--border-color);
 }

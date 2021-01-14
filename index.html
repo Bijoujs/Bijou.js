@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="bijou.js" defer></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <title>Bijou.js</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <script src="bijou.js" defer></script>
-  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-  <title>Bijou.js</title>
-</head>
-
-<body style="visibility: hidden;" onload="js_Load()">
-  <section>
-    <p>
-      <span id="header">Bijou</span><span id='small-text'><i><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> Small and
-          elegant</i></span>
-    </p>
-    <div class="btn">
-      <a class="btn" href="https://github.com/explosion-scratch/Bijou.js"><span class="iconify"
-          data-icon="icomoon-free:github"></span></a><a href="mailto:explosionscratch@gmail.com" class="btn"><span
-          class="iconify" data-icon="eva:email-outline"></span></a>
-    </div>
-  </section>
-  <span class="iconify" style="font-size: 50px !important" data-icon="fluent:caret-down-20-filled"
-    id='scroll-down-arrow'></span>
-  <section id="readme"></section>
-</body>
-
+  <body style="visibility: hidden" onload="js_Load()">
+    <section>
+      <p>
+        <span id="header">Bijou</span
+        ><span id="small-text"
+          ><i><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> Small and elegant</i></span
+        >
+      </p>
+      <div class="btn">
+        <a class="btn" href="https://github.com/explosion-scratch/Bijou.js"
+          ><span class="iconify" data-icon="icomoon-free:github"></span></a
+        ><a href="mailto:explosionscratch@gmail.com" class="btn"
+          ><span class="iconify" data-icon="eva:email-outline"></span
+        ></a>
+      </div>
+    </section>
+    <span
+      class="iconify"
+      style="font-size: 50px !important"
+      data-icon="fluent:caret-down-20-filled"
+      id="scroll-down-arrow"
+    ></span>
+    <section id="readme"></section>
+  </body>
 </html>
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
@@ -87,10 +93,12 @@
     height: 2px;
     border: none;
     outline: none;
-    background: linear-gradient(to right,
-        transparent,
-        lightseagreen,
-        transparent);
+    background: linear-gradient(
+      to right,
+      transparent,
+      lightseagreen,
+      transparent
+    );
   }
 
   p span#header {
@@ -155,7 +163,7 @@
   }
 
   a.btn {
-    transition: filter .3s ease;
+    transition: filter 0.3s ease;
     display: inline-block;
     padding: 5px;
     background: transparent;
@@ -195,7 +203,7 @@
   }
 
   .iconify {
-    font-size: 30px
+    font-size: 30px;
   }
 
   #scroll-down-arrow {
@@ -215,48 +223,49 @@
 
   @keyframes pulse {
     0% {
-      bottom: 20px
+      bottom: 20px;
     }
 
     50% {
-      bottom: 40px
+      bottom: 40px;
     }
 
     100% {
-      bottom: 20px
+      bottom: 20px;
     }
   }
 </style>
 <script>
   function js_Load() {
-    document.body.style.visibility = "visible";
+    document.body.style.visibility = "visible"
     _$.each(document.querySelectorAll("h1, h2, h3"), (e) => {
-      e.innerHTML = _$.widows(e.innerHTML);
-    });
-    init();
+      e.innerHTML = _$.widows(e.innerHTML)
+    })
+    init()
   }
   let mouse = {
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
-  };
+  }
   window.onmousemove = (e) => {
     mouse = {
       x: e.clientX,
       y: e.clientY,
-    };
-  };
+    }
+  }
   window.onscroll = (e) => {
-    document.getElementById('scroll-down-arrow').classList.add('hidden');
+    document.getElementById("scroll-down-arrow").classList.add("hidden")
   }
   function init() {
     fetch("README.html")
       .then((res) => res.text())
       .then((text) => {
-        html = _$.parseHTML(text);
-        html.querySelector("img").remove();
+        html = _$.parseHTML(text)
+        html.querySelector("img").remove()
         _$.each(html.querySelectorAll("br"), (br) => br.remove())
-        document.getElementById("readme").innerHTML = html.documentElement.innerHTML;
-      });
+        document.getElementById("readme").innerHTML =
+          html.documentElement.innerHTML
+      })
     document.body.innerHTML += `
 	<svg style="display: none;">
 		<filter id="turbulence-2">
@@ -324,45 +333,45 @@
 			/>
 		</filter>
 	</svg>
-	<div class="blobs"></div>`;
+	<div class="blobs"></div>`
     for (let i = 0; i < 40; i++) {
       document
         .querySelector(".blobs")
-        .appendChild(_$.createElement("<div class='blob'></div>"));
+        .appendChild(_$.createElement("<div class='blob'></div>"))
     }
 
     _$.each(document.querySelectorAll(".blob"), (blob) => {
-      blob.style.opacity = 0;
-      blob.style.top = `${window.innerHeight / 2}px`;
-      blob.style.left = `${window.innerWidth / 2}px`;
-      blob.style.background = `#0559`;
-      let random = _$.random(30, 150);
-      blob.style.width = `${random}px`;
-      blob.style.height = `${random}px`;
-      let randomtime = _$.random(1000, 2000);
+      blob.style.opacity = 0
+      blob.style.top = `${window.innerHeight / 2}px`
+      blob.style.left = `${window.innerWidth / 2}px`
+      blob.style.background = `#0559`
+      let random = _$.random(30, 150)
+      blob.style.width = `${random}px`
+      blob.style.height = `${random}px`
+      let randomtime = _$.random(1000, 2000)
       setInterval(() => {
-        blob.style.opacity = 1;
-        let random = _$.random(30, 100);
-        blob.style.width = `${random}px`;
-        blob.style.height = `${random}px`;
-        blob.style.top = `${_$.random(mouse.y - 150, mouse.y + 150)}px`;
-        blob.style.left = `${_$.random(mouse.x - 150, mouse.x + 150)}px`;
-        blob.style.transitionDuration = randomtime + "ms";
-      }, randomtime);
-    });
+        blob.style.opacity = 1
+        let random = _$.random(30, 100)
+        blob.style.width = `${random}px`
+        blob.style.height = `${random}px`
+        blob.style.top = `${_$.random(mouse.y - 150, mouse.y + 150)}px`
+        blob.style.left = `${_$.random(mouse.x - 150, mouse.x + 150)}px`
+        blob.style.transitionDuration = randomtime + "ms"
+      }, randomtime)
+    })
 
     function generateHTML() {
-      var outputhtml = "";
-      let keys = Object.keys(_$);
+      var outputhtml = ""
+      let keys = Object.keys(_$)
       for (let j = 0; j < keys.length; j++) {
-        const el = keys[j];
+        const el = keys[j]
         try {
           outputhtml += `<details><summary>${el}</summary><hr>\n${_$.escapeHTML(
             _$.info(el),
-          )}</details>`;
-        } catch (e) { }
+          )}</details>`
+        } catch (e) {}
       }
-      return outputhtml;
+      return outputhtml
     }
   }
 </script>
