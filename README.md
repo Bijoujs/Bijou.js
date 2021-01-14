@@ -179,11 +179,6 @@ _$.escapeHTML("&lt;script&gt;"); //'&amp;lt;script&amp;gt;'
 ```
 
 </details>
-<details><summary>flatten</summary>
-
----
-
-This takes a 2d array (an array of arrays) and flattens in into a 1d array (a list of items).</details>
 
 <details><summary>formToObject</summary>
 
