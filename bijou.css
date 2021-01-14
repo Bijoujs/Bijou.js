@@ -184,7 +184,9 @@
   border-color: transparent;
   border-width: 2px;
 }
-.border-bt
+.border-button:hover {
+  
+}
 .button {
   padding: 10px 15px;
   text-decoration: none;
