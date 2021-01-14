@@ -208,7 +208,7 @@
       .then((res) => res.text())
       .then((text) => {
         html = _$.parseHTML(text);
-        html.remove(html.querySelector("img"));
+        html.remove();
         _$.each(html.querySelectorAll("br"), (br) => br.remove())
         document.getElementById("readme").innerHTML = html.documentElement.innerHTML;
       });
