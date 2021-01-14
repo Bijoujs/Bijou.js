@@ -1,38 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="bijou.js" defer></script>
-    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-    <title>Bijou.js</title>
-  </head>
 
-  <body style="visibility: hidden" onload="js_Load()">
-    <section>
-      <p>
-        <span id="header">Bijou</span
-        ><span id="small-text"
-          ><i><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> Small and elegant</i></span
-        >
-      </p>
-      <div class="btn">
-        <a class="btn" href="https://github.com/explosion-scratch/Bijou.js"
-          ><span class="iconify" data-icon="icomoon-free:github"></span></a
-        ><a href="mailto:explosionscratch@gmail.com" class="btn"
-          ><span class="iconify" data-icon="eva:email-outline"></span
-        ></a>
-      </div>
-    </section>
-    <span
-      class="iconify"
-      style="font-size: 50px !important"
-      data-icon="fluent:caret-down-20-filled"
-      id="scroll-down-arrow"
-    ></span>
-    <section id="readme"></section>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <script src="bijou.js" defer></script>
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+  <title>Bijou.js</title>
+</head>
+
+<body style="visibility: hidden" onload="js_Load()">
+  <section>
+    <p>
+      <span id="header">Bijou</span><span id="small-text"><i><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> Small and
+          elegant</i></span>
+    </p>
+    <div class="btn">
+      <a class="btn" href="https://github.com/explosion-scratch/Bijou.js"><span class="iconify"
+          data-icon="icomoon-free:github"></span></a><a href="mailto:explosionscratch@gmail.com" class="btn"><span
+          class="iconify" data-icon="eva:email-outline"></span></a>
+    </div>
+  </section>
+  <span class="iconify" style="font-size: 50px !important" data-icon="fluent:caret-down-20-filled"
+    id="scroll-down-arrow"></span>
+  <section id="readme"></section>
+</body>
+
 </html>
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
@@ -93,12 +87,10 @@
     height: 2px;
     border: none;
     outline: none;
-    background: linear-gradient(
-      to right,
-      transparent,
-      lightseagreen,
-      transparent
-    );
+    background: linear-gradient(to right,
+        transparent,
+        lightseagreen,
+        transparent);
   }
 
   p span#header {
@@ -239,8 +231,6 @@
     display: inline-block;
     font-family: "Courier New", monospace;
     font-size: 13px;
-    background: #fff3;
-    padding: 4px;
     border-radius: 3px;
   }
 </style>
@@ -378,7 +368,7 @@
           outputhtml += `<details><summary>${el}</summary><hr>\n${_$.escapeHTML(
             _$.info(el),
           )}</details>`
-        } catch (e) {}
+        } catch (e) { }
       }
       return outputhtml
     }
