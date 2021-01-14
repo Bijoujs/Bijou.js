@@ -3,7 +3,7 @@
   --box-shadow-spread: 5px;
   --box-shadow: #0001;
   --success-color: rgb(21,163,16);
-   --success-color-hover: rgb(16,116,16);
+  --success-color-hover: rgb(16,116,16);
   --error-color: rgb(212, 72, 47);
   --error-color-hover: rgb(180, 52, 30);
   --slow-transition: 3s;
