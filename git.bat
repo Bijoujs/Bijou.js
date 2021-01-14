@@ -2,7 +2,7 @@ while true; do
   cd /workspace/tiny.js
   showdown makehtml -i README.md -o README.html
   terser --compress --mangle -o tiny-min.js -- tiny.js
-  prettier --single-quote --trailing-comma all --loglevel
+  prettier --single-quote --trailing-comma all --loglevel silent
   git stage .
   git commit -m "Some changes"
   git push
