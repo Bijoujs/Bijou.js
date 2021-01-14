@@ -49,7 +49,7 @@ _$.uuid()//Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
 ```
 ## Who made tiny.js?
 
-Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes and more! Also thanks to people like retronbv for helping brainstorm names for this (I still need a different one, tiny.js is taken :'( )
+Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes and more! Also thanks to people like retronbv for helping brainstorm names for this (I still need a different one, tiny.js is taken :'( So if you think of a good one than make an issue for it and tell me)
 Below you can see all of the functions along with what they do!
 
 ## Functions:
