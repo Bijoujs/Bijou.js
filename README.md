@@ -82,14 +82,20 @@ Add the styles in an object to a specified element:
 _$.addStyles(element, { background: "red" }) // (Changes the background color of the element to red!)
 ```
 
-Also note that this only works when the property is camelCased, as in JavScript. For example doing this: 
+Also note that this only works when the property is camelCased, as in JavScript. For example doing this:
+
 ```js
 {"background-color": "red"}
 ```
- would not work, but 
- ```js
- {backgroundColor: "red"}
- ```
+
+would not work, but
+
+```js
+{
+  backgroundColor: "red"
+}
+```
+
 will work fine. Feel free to use
 
 ```js
