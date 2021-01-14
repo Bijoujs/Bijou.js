@@ -12,9 +12,10 @@
   outline: none;
   box-shadow: 0 0 0 5px var(--box-shadow);
 }
-.transition-bg {
-  transition-property: background-color, color;
+.transition-bg.transition-shadow {
+  transition-property: background-color, color, box-shadow;
 }
+
 .button {
   padding: 10px 15px;
   text-decoration: none;
