@@ -114,6 +114,7 @@
 }
 .inline-code {
   font-family: var(--monospace-font), Courier, monospace;
+  
 }
 /* Transition effects */
 .transition-bg {
