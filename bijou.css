@@ -176,7 +176,7 @@
 }
 /* Button styling */
 .border-button {
-  transition: 
+  transition: box-shadow .3s ease;
   padding: 10px 15px;
   text-decoration: none;
   color: var(--text);
