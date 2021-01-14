@@ -4,6 +4,7 @@
   --success-color-hover: rgb(16,116,16);
   --success-color: rgb(21,163,16);
 }
+/* Initial styles */
 .initial-styles {
   box-sizing: border-box;
   margin: 0;
