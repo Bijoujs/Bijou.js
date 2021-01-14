@@ -5,6 +5,7 @@ function commit {
     cd /workspace/bijou.js
     showdown makehtml -i README.md -o README.html
     terser --compress --mangle -o bijou-min.js -- bijou.js
+    COMMIT_FILE=$(git diff --name-only)
     git stage .
     DATE=$(date +"%F %H:%M:%S")
     USER=$(git config user.name)
@@ -12,8 +13,8 @@ function commit {
     REPO="BIJOU.JS"
     FIGLET_REPO=$(figlet -kf Big -- $REPO)
     BR=$'\n'
-    COMMIT_MSG=$"${FIGLET_REPO}${BR}Files changed: ${COMMIT}${BR}Date: ${DATE}${BR}User: ${USER}${BR}Email: ${EMAIL}"
-    git commit -m "${COMMIT}" -m "${COMMIT_MSG}"
+    COMMIT_MSG=$"${FIGLET_REPO}${BR}Files changed: ${BR}${COMMIT}${BR}Date: ${DATE}${BR}User: ${USER}${BR}Email: ${EMAIL}"
+    git commit -m "${COMMIT_FILE}" -m "${COMMIT_MSG}"
     git push
   fi
 }
