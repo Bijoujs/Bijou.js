@@ -55,7 +55,9 @@
 }
 .flex-container.center {
   display: flex;
-  jus
+  justify-content: center;
+  align-items: center;
+  
 }
 .fixed.center {
   position: fixed;
