@@ -1,4 +1,4 @@
-npm i -g showdown terser prettier
+npm i -g showdown terser prettier figlet
 
 function commit {
   COMMIT=$(git diff --name-only HEAD)
