@@ -17,10 +17,10 @@
   --monospace-font: "Courier New";
   --main-font: "Poppins", sans-serif;
   --large-padding: 20px;
-  
-  
-  
-    
+  --margin-top: 10px;
+  --margin-top: 10px;
+  --margin-top: 10px;
+  --margin-top: 10px;  
 }
 /* Initial styles */
 .initial-styles,
@@ -94,13 +94,16 @@
 .flex-column {
   flex-direction: column;
 }
-.absol  position: absolute;
+.absolute.center {
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.flex-container.center {
- top: 50%;
+
+.fixed.center {
+  position: fixed;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -178,9 +181,9 @@
 .button:hover {
   background: white;
   color: #333;
+  border: 1px solid var(--border-color)
 }
-
-border-c--border-colorvar()--  border: 1px solid .button.error {
+.button.error {
   background-color: var(--error-color);
 }
 .button.error:hover {
