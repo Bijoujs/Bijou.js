@@ -77,6 +77,9 @@
 .fit-content-height {
   height: fit-content;
 }
+.fit-content-width {
+  width: fit-content;
+}
 /* Transition effects */
 .transition-bg {
   transition-property: background-color;
