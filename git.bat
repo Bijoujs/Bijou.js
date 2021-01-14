@@ -1,5 +1,5 @@
 function commit {
-  cd /workspace/tiny.js
+  cd /workspace/bijou.js
   showdown makehtml -i README.md -o README.html
   terser --compress --mangle -o bijou-min.js -- bijou.js
   prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- tiny.js
