@@ -588,7 +588,7 @@ let _temp = {
         return s.toUpperCase()
       })
   },
-  
+  parseHTML
 }
 _temp = _temp.sortObj(_temp)
 let desc = {
