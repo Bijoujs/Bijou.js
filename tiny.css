@@ -32,4 +32,5 @@
 }
 .button_success:hover {
   background-color: rgb(16, 116, 16);
+  color: white;
 }
