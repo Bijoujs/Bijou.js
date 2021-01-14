@@ -567,7 +567,6 @@ let _temp = {
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296
   },
-  flatten: (arr) => arr.reduce((a, c) => a.concat(c), []),
   uniqueArray: (array) => [...new Set(array)],
   formatNumber: (n) => n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
   spliceArrayBuffer: (arr, start, end, endian) => {
