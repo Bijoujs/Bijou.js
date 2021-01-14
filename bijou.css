@@ -167,6 +167,7 @@
 }
 /* Button styling */
 .button {
+  border: 1px solid 
   padding: 10px 15px;
   text-decoration: none;
   color: white;
