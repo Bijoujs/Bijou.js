@@ -108,7 +108,7 @@
   height: fit-content;
 }
 .header {
-  text-align
+  text-align: center;
 }
 /* Transition effects */
 .transition-bg {
