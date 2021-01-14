@@ -3,12 +3,15 @@ function commit {
   showdown makehtml -i README.md -o README.html
   git stage .
   git commit -m "README to HTML"
+  git push
   terser --compress --mangle -o bijou-min.js -- bijou.js
   git stage .
   git commit -m "Minified source"
+  git push
   prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- /workspace/
   git stage .
   git commit -m "Beautified files"
+  git push
   git stage .
   COMMIT=$(git diff --name-only --cached)
   DATE=$(date +"%F %H:%M:%S")
