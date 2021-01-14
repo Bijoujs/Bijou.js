@@ -27,7 +27,7 @@
 .box-shadow-hover:hover {
   box-shadow: 0 0 0 var(--box-shadow-spread) var(--box-shadow);
 }
-/*  */
+/* General elements */
 .border-radius {
   border-radius: 10px;
 }
