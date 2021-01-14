@@ -19,6 +19,7 @@
 }
 /* Initial styles */
 .initial-styles {
+  color: var(--text)
   font-family: var(--main-font);
   box-sizing: border-box;
   margin: 0;
