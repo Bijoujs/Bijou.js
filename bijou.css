@@ -112,7 +112,9 @@
   font-weight: 900;
   font-size: 5vmin;
 }
-.
+.inline-code {
+  
+}
 /* Transition effects */
 .transition-bg {
   transition-property: background-color;
