@@ -170,7 +170,7 @@
   color: #333;
 }
 
-var()--  border: 1px solid .button.error {
+border-c--border-colorvar()--  border: 1px solid .button.error {
   background-color: var(--error-color);
 }
 .button.error:hover {
