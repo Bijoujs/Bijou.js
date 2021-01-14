@@ -51,7 +51,9 @@
 .padding {
   padding: var(--padding);
 }
-.margin-top 
+.margin-top {
+  margin-top: 10px;
+}
 .hr {
   display: block;
   width: 100%;
