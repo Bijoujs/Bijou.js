@@ -212,5 +212,5 @@
   padding: 10px;
   border-radius: 5px;
   background: var(--background);
-  border: 1px solid var(--border-color);
+  border-color: var(--border-color);
 }
