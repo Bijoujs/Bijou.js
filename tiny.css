@@ -134,5 +134,5 @@
 .input {
   padding: 10px;
   background-color: var(--background-color);
-  border: 1px solid var(--bordewr);
+  border: 1px solid var(--border-color);
 }
