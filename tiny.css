@@ -3,6 +3,9 @@
   --box-shadow: #0001;
   --success-color-hover: rgb(16,116,16);
   --success-color: rgb(21,163,16);
+  --slow-transition: 3s;
+  --medium-transition: .5s;
+  --fast-transition: .3s;
 }
 /* Initial styles */
 .initial-styles {
@@ -29,13 +32,13 @@
   transition-property: background-color, color, box-shadow;
 }
 .transition-slow {
-  transition-duration: 3s;
+  transition-duration: var(--slow-transition);
 }
 .transition-medium {
-  transition-duration: .5s;
+  transition-duration: var(--medium-transition);
 }
 .transition-fast {
-  transition-duration: .3s;
+  transition-duration: var(--fast-transition);
 }
 .transition-ease {
   transition-property: ease;
