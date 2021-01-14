@@ -214,7 +214,7 @@
         html = _$.parseHTML(text);
         html.querySelector("img").remove();
         _$.each(html.querySelectorAll("br"), (br) => br.remove())
-        _$.each(html.querySelector("img"))
+        _$.each(html.querySelector("img"), (img) => {img})
         document.getElementById("readme").innerHTML = html.documentElement.innerHTML;
       });
     document.body.innerHTML += `
