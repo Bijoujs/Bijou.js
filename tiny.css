@@ -22,6 +22,12 @@
 .transition-bg {
   transition-property: background-color;
 }
+.transition-slow {
+  transition-duration: 3s;
+}
+.transition-medium {
+  transition-duration: .5s;
+}
 .transition-fast {
   transition-duration: .3s;
 }
