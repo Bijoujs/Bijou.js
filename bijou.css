@@ -74,7 +74,7 @@
 .flex-row {
   flex-direction: row;
 }
-.absolute.center {
+.absol ute.center {
   position: absolute;
   top: 50%;
   left: 50%;
