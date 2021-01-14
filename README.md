@@ -280,7 +280,7 @@ Returns the callback when a user stops scrolling the window.</details>
 <details><summary>parseHTML</summary>
 Parses HTML and returns a document object representing the parsed HTML.
 ```js
-_$.parseHTML(document.querySelector("#"))
+_$.parseHTML('')
 </details>
 
 <details><summary>previousPage</summary>
