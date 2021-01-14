@@ -182,7 +182,7 @@
   background: transparent;
   border-radius: 5px;
   border-color: var(--border-color);
-  border-width: 2px;
+  border-width: 2px ;
 }
 .border-button:hover {
   box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
