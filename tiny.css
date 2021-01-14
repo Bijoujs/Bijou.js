@@ -12,9 +12,10 @@
   outline: none;
   box-shadow: 0 0 0 5px var(--box-shadow);
 }
-
-.button {
+.transition-bg {
   transition-property: background-color, color;
+}
+.button {
   padding: 10px 15px;
   text-decoration: none;
   color: white;
