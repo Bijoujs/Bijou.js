@@ -588,7 +588,7 @@ let _temp = {
         return s.toUpperCase()
       })
   },
-  parseHTML: (string) => {
+  parseHTML: (string, mimeType = "") => {
     const domparser = new DOMParser()
     return domparser.parseFromString(string, mimeType)
   }
