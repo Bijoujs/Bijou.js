@@ -50,7 +50,7 @@
     outline: none;
     background: linear-gradient(to right,
         transparent,
-        lightseagreen,
+        var(--hr-color),
         transparent);
   }
 /* Flex */
