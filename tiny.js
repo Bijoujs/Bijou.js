@@ -591,7 +591,7 @@ let _temp = {
 }
 _temp = _temp.sortObj(_temp)
 let desc = {
-  addStyles:
+  "addStyles":
     "Add the styles in an object to a specified element:\n\n \t_$.addStyles(element, {background: 'red'});\n\n(Changes the background color of the element to red!)",
   arrayToCSV: `Returns a comma separated list from the specified array. \n\n\t_$.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b"\n"c","d"'\n\nNote that this also escapes characters such as quotes.`,
   averageBy:
