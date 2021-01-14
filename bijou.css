@@ -181,9 +181,7 @@
   color: var(--text);
   background: transparent;
   border-radius: 5px;
-  border-color: var(--border-color);
-  border-sty
-  border-width: 2px 2px 2px 2px;
+  border: 1px solid var()
 }
 .border-button:hover {
   box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
