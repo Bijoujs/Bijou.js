@@ -16,6 +16,7 @@ function commit {
   if -n COMMIT
   then
     git push
+  fi
 }
 
 while true; do
