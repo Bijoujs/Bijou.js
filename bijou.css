@@ -191,6 +191,7 @@
 }
 .button.success {
   background-color: var(--success-color);
+  
 }
 .button.success:hover {
   background-color: var(--success-color-hover);
