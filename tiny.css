@@ -1,7 +1,7 @@
 /* Tiny.css library! */
 :root {
   --box-shadow: #0001;
-  --success-color: rgb(21,163,16)
+  --success-color: rgb(21,163,16);
 }
 .initial-styles {
   box-sizing: border-box;
