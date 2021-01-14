@@ -209,6 +209,7 @@
       .then((text) => { 
         html = _$.parseHTML(text);
         html.remove(html.querySelector("img"));
+        
         document.getElementById("readme").innerHTML = html 
       });
     document.body.innerHTML += `
