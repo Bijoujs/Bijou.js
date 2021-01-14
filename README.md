@@ -6,9 +6,9 @@
 
 <b><h1 align="center">Welcome to Tiny.js!</h1></b>
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/tiny.js/badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/tiny.js)
-[![GitHub issues](https://img.shields.io/github/issues/explosion-scratch/tiny.js)](https://github.com/explosion-scratch/tiny.js/issues)
-[![GitHub stars](https://img.shields.io/github/stars/explosion-scratch/tiny.js)](https://github.com/explosion-scratch/tiny.js/stargazers)
+[![Tiny.js CDN (jsDelivr)](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/tiny.js/badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/tiny.js)
+[![Tiny.js GitHub issues](https://img.shields.io/github/issues/explosion-scratch/tiny.js)](https://github.com/explosion-scratch/tiny.js/issues)
+[![Tiny.js GitHub stars](https://img.shields.io/github/stars/explosion-scratch/tiny.js)](https://github.com/explosion-scratch/tiny.js/stargazers)
 
 Congrats! You discovered tiny.js! Read more below!
 # What is Tiny.js?
