@@ -52,6 +52,9 @@
 .full-height {
   min-height: 100vh;
 }
+.border {
+  border: 2px solid var(--border-color);
+}
 .padding {
   padding: var(--padding);
 }
@@ -174,7 +177,6 @@
   border-radius: 5px;
   border: 1px solid transparent;
 }
-
 .button:disabled,
 .button.disabled {
   opacity: 0.5;
