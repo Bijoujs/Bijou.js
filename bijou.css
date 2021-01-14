@@ -56,9 +56,11 @@
 }
 .margin-bottom {
   margin-bottom: var(--margin-bottom);
-}.margin-left {
+}
+.margin-left {
   margin-left: var(--margin-left);
-}.margin-right {
+}
+.margin-right {
   margin-right: var(--margin-right);
 }
 
