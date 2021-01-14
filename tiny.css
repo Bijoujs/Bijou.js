@@ -14,6 +14,7 @@
   outline: none;
   box-shadow: 0 0 0 5px var(--box-shadow);
 }
+/* Transition effects */
 .transition-bg.transition-shadow {
   transition-property: background-color, color, box-shadow;
 }
