@@ -36,7 +36,7 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 ```
 Also, did you know there's Bijou.css? It's also useful! It's all the stuff I use:
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/explosion-scratch/Bijou.js@latest/Bijou.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou.css">
 ```
 it pretty much just uses classes. 
 
