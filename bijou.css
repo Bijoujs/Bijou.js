@@ -176,6 +176,7 @@
 }
 /* Button styling */
 .border-button {
+  transition: 
   padding: 10px 15px;
   text-decoration: none;
   color: var(--text);
