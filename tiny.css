@@ -53,6 +53,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.flex-container.center {
+  
+}
 .fixed.center {
   position: fixed;
   top: 50%;
