@@ -88,7 +88,7 @@
   align-items: center;
   flex-direction: row;
 }
-.fixed.center {
+columnco.fixed.center {
   position: fixed;
   top: 50%;
   left: 50%;
