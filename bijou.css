@@ -54,10 +54,10 @@
 .margin-top {
   margin-top: var(--margin-top);
 }.margin-bottom {
-  margin-top: var(--margin-top);
+  margin-top: var(--margin-bottom);
 }.margin-left {
   margin-top: var(--margin-top);
-}.margin-top {
+}.margin-right {
   margin-top: var(--margin-top);
 }
 
