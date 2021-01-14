@@ -1,8 +1,14 @@
 function commit {
   cd /workspace/bijou.js
   showdown makehtml -i README.md -o README.html
+  git stage .
+  git commit -m "README to HTML"
   terser --compress --mangle -o bijou-min.js -- bijou.js
+  git stage .
+  git commit -m "Minified source"
   prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- /workspace/
+  git stage .
+  git commit -m "Beautified files"
   git stage .
   COMMIT=$(git diff --name-only --cached)
   DATE=$(date +"%F %H:%M:%S")
