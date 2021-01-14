@@ -48,7 +48,8 @@
   flex-direction: column;
 }
 .block-center {
-  margin: 0 auto
+  margin: 0 auto;
+  display: block;
 }
 /* Transition effects */
 .transition-bg {
