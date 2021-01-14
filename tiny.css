@@ -4,6 +4,8 @@
   --box-shadow: #0001;
   --success-color-hover: rgb(16,116,16);
   --success-color: rgb(21,163,16);
+  --error-color: rgb(212, 72, 47);
+  --error-color: rgb(180, 52, 30);
   --slow-transition: 3s;
   --medium-transition: .5s;
   --fast-transition: .3s;
@@ -69,6 +71,9 @@
 .button.error {
   background-color: var(--error-color);
 }
+.button.error:hover {
+  background-color: var(--error-color-hover);
+}
 .button.success {
   background-color: var(--success-color)
 }
@@ -77,3 +82,7 @@
   color: white;
 }
 /* Inputs */
+.input {
+  padding: 10px;
+  background-color: var(--background-color)
+}
