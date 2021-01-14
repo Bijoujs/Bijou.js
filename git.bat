@@ -4,6 +4,8 @@ function commit {
   terser --compress --mangle -o tiny-min.js -- tiny.js
   prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- tiny.js
   git stage .
-  git commit -m "Some changes"
+  echo "What commit message?"
+  read commitmsg
+  git commit -m commitmsg
   git push
 }
