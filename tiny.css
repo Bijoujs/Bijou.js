@@ -3,13 +3,13 @@
   --box-shadow-spread: 5px;
   --box-shadow: #0001;
   --border-color: lightgrey;
-  --success-color: rgb(21,163,16);
-  --success-color-hover: rgb(16,116,16);
+  --success-color: rgb(21, 163, 16);
+  --success-color-hover: rgb(16, 116, 16);
   --error-color: rgb(212, 72, 47);
   --error-color-hover: rgb(180, 52, 30);
   --slow-transition: 3s;
-  --medium-transition: .5s;
-  --fast-transition: .3s;
+  --medium-transition: 0.5s;
+  --fast-transition: 0.3s;
   --monospace-font: "Courier New";
   --main-font: "Poppins", sans-serif;
   --large-padding: 20px;
@@ -40,7 +40,7 @@
   min-height: 100vh;
 }
 .padding {
-  padding: var(--padding)
+  padding: var(--padding);
 }
 /* Flex */
 .flex {
@@ -111,8 +111,9 @@
   border-radius: 10px;
   border: none;
 }
-.button:disabled, .button.disabled {
-  opacity: .5;
+.button:disabled,
+.button.disabled {
+  opacity: 0.5;
 }
 .button:hover {
   background: white;
@@ -125,7 +126,7 @@
   background-color: var(--error-color-hover);
 }
 .button.success {
-  background-color: var(--success-color)
+  background-color: var(--success-color);
 }
 .button.success:hover {
   background-color: var(--success-color-hover);
