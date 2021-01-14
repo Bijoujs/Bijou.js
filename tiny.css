@@ -33,6 +33,11 @@
 .monospace {
   font-family: var(--monospace-font), Courier, monospace;
 }
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* Transition effects */
 .transition-bg {
   transition-property: background-color;
