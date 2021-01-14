@@ -64,12 +64,11 @@ _$.uuid() //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
 
 ## Who made Bijou.js?
 
-Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes and more! Also thanks to people like retronbv for helping brainstorm names for this (I still need a different one, Bijou.js is taken :'( So if you think of a good one than make an issue for it and tell me.)
+Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes and more! Also thanks to people like retronbv for helping brainstorm names for this! :)
 
 ## Functions:
 
-<details><summary>addStyles</summary><----------
->
+<details><summary>addStyles</summary><hr />
 Add the styles in an object to a specified element:
 
 ```js
