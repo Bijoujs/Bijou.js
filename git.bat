@@ -13,7 +13,7 @@ function commit {
   BR=$'\n'
   COMMIT_MSG=$"${FIGLET_REPO}${BR}Files changed: ${COMMIT}${BR}Date: ${DATE}${BR}User: ${USER}${BR}Email: ${EMAIL}"
   git commit -m "${COMMIT}" -m "${COMMIT_MSG}"
-  
+  if ()
   git push
 }
 
