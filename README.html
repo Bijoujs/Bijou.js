@@ -171,8 +171,9 @@
 <details><summary>onScrollStop</summary></p>
 <hr />
 <p>Returns the callback when a user stops scrolling the window.</details></p>
-<p><details><summary>parseHTML</summary>
-Parses HTML and returns a document object representing the parsed HTML.</p>
+<p><details><summary>parseHTML</summary></p>
+<hr />
+<p>Parses HTML and returns a document object representing the parsed HTML.</p>
 <pre><code class="js language-js">_$.parseHTML("&lt;div&gt;&lt;section&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/section&gt;&lt;/div&gt;").querySelector("h1")
   .innerText
 //Returns "Hello"!
@@ -223,7 +224,14 @@ Parses HTML and returns a document object representing the parsed HTML.</p>
 <details><summary>sortObj</summary></p>
 <hr />
 <p>Returns an alphabetized copy of the object by keys.</details></p>
-<p><details><summary>throttle</summary></p>
+<p><details><summary>syntaxHighlight</summary></p>
+<hr />
+<p>Syntax highlights a string! Supports JS, CSS, and HTML:</p>
+<pre><code class="js language-js">const coloroptions = {} //An object representing the color options for highlighting. See line 594 of bijou.js for more information.
+_$.syntaxHighlight(document.querySelector("pre code"), "js", coloroptions)
+</code></pre>
+<p></details>
+<details><summary>throttle</summary></p>
 <hr />
 <p>Runs the function specified, the second input controls at MAX how much wait there is between the next time it runs:</p>
 <pre><code class="js language-js">_$.throttle(() =&gt; alert("hello"), 10000)

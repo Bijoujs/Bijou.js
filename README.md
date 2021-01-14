@@ -307,6 +307,9 @@ _$.onOutsideClick(document.querySelector("h1"), () => {
 Returns the callback when a user stops scrolling the window.</details>
 
 <details><summary>parseHTML</summary>
+
+---
+
 Parses HTML and returns a document object representing the parsed HTML.
 
 ```js
@@ -404,6 +407,18 @@ _$.spliceArrayBuffer([5, 8, 255], 0, 2, true) //16713733
 
 Returns an alphabetized copy of the object by keys.</details>
 
+<details><summary>syntaxHighlight</summary>
+
+---
+
+Syntax highlights a string! Supports JS, CSS, and HTML:
+
+```js
+const coloroptions = {} //An object representing the color options for highlighting. See line 594 of bijou.js for more information.
+_$.syntaxHighlight(document.querySelector("pre code"), "js", coloroptions)
+```
+
+</details>
 <details><summary>throttle</summary>
 
 ---
