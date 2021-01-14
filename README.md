@@ -1,21 +1,21 @@
-<a href='http://3iohp.csb.app/'><img src='tiny.png' alt='Tiny.js Logo' align="center"></img></a>
+<a href='http://3iohp.csb.app/'><img src='Bijou.png' alt='Bijou.js Logo' align="center"></img></a>
 <br>
 <br>
 <br>
 <br>
 
-<b><h1 align="center">Welcome to Tiny.js!</h1></b>
+<b><h1 align="center">Welcome to Bijou.js!</h1></b>
 
-[![Tiny.js CDN (jsDelivr)](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/tiny.js/badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/tiny.js)
-[![Tiny.js GitHub issues](https://img.shields.io/github/issues/explosion-scratch/tiny.js)](https://github.com/explosion-scratch/tiny.js/issues)
-[![Tiny.js GitHub stars](https://img.shields.io/github/stars/explosion-scratch/tiny.js)](https://github.com/explosion-scratch/tiny.js/stargazers)
+[![Bijou.js CDN (jsDelivr)](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/Bijou.js/badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/Bijou.js)
+[![Bijou.js GitHub issues](https://img.shields.io/github/issues/explosion-scratch/Bijou.js)](https://github.com/explosion-scratch/Bijou.js/issues)
+[![Bijou.js GitHub stars](https://img.shields.io/github/stars/explosion-scratch/Bijou.js)](https://github.com/explosion-scratch/Bijou.js/stargazers)
 
-Congrats! You discovered tiny.js! Read more below!
-# What is Tiny.js?
+Congrats! You discovered Bijou.js! Read more below!
+# What is Bijou.js?
 
-Tiny.js is a tiny, library of super helpful JavaScript snippets! It has a bunch of useful snippets for all your coding needs! If there's something that's not in here currently but you use frequently feel free to submit an issue! I'd be happy to add it! Tiny's goal is to eliminate the need to copy paste the same thing from StackOverflow, another project or anywhere else! So if you ever find yourself typing the same thing over and over again, copy pasting the same snippet as you did a few days ago, use tiny.js! If the snippet you're using isn't in Tiny.js just submit an issue with the code!
+Bijou.js is a Bijou, library of super helpful JavaScript snippets! It has a bunch of useful snippets for all your coding needs! If there's something that's not in here currently but you use frequently feel free to submit an issue! I'd be happy to add it! Bijou's goal is to eliminate the need to copy paste the same thing from StackOverflow, another project or anywhere else! So if you ever find yourself typing the same thing over and over again, copy pasting the same snippet as you did a few days ago, use Bijou.js! If the snippet you're using isn't in Bijou.js just submit an issue with the code!
 
-# Why use tiny?
+# Why use Bijou?
 
 Well, a few reasons:
 1. <s>I made it.</s>
@@ -25,24 +25,24 @@ Well, a few reasons:
 
 <small>(You can probably see I'm pretty desperate for people to use this.)</small> 
 
-# How to use Tiny.js
+# How to use Bijou.js
 
-Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:
+Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 
 ## Import it:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@latest/tiny.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/explosion-scratch/Bijou.js@latest/Bijou.min.js"></script>
 ```
-Also, did you know there's tiny.css? It's also useful! It's all the stuff I use:
+Also, did you know there's Bijou.css? It's also useful! It's all the stuff I use:
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@latest/tiny.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/explosion-scratch/Bijou.js@latest/Bijou.css">
 ```
 it pretty much just uses classes. 
 
 ## Basic usage:
 
-To use tiny.js simply call one of the many functions built into it!
+To use Bijou.js simply call one of the many functions built into it!
 
 ```js
 _$.anyFunction();
@@ -52,9 +52,9 @@ Such as this one!
 ```js
 _$.uuid()//Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
 ```
-## Who made tiny.js?
+## Who made Bijou.js?
 
-Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes and more! Also thanks to people like retronbv for helping brainstorm names for this (I still need a different one, tiny.js is taken :'( So if you think of a good one than make an issue for it and tell me.)
+Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes and more! Also thanks to people like retronbv for helping brainstorm names for this (I still need a different one, Bijou.js is taken :'( So if you think of a good one than make an issue for it and tell me.)
 
 ### PLEASE CAN I JUST USE IT NOW?
 
