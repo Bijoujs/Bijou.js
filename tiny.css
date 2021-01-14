@@ -5,5 +5,5 @@
   padding: 0;
 }
 .box-shadow-focus:focus {
-
+  outline: none;
 }
