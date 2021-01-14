@@ -5,7 +5,7 @@ function commit {
   prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- tiny.js
   git stage .
   COMMIT=$(git diff --name-only --cached)
-  DATE=$(date +"%Y-%m-%d  %H:")
+  DATE=$(date +"%Y-%m-%d  %H:%M:%S")
   COMMIT_MSG=$"Files changed: ${COMMIT} Date: ${DATE}"
   git commit -m "${COMMIT}" -m "${COMMIT_MSG}"
   git push
