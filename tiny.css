@@ -47,7 +47,9 @@
 .flex-row {
   flex-direction: column;
 }
-
+.flex.center {
+  
+}
 .block.center {
   margin: 0 auto;
   display: block;
