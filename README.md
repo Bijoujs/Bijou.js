@@ -179,7 +179,6 @@ _$.escapeHTML("&lt;script&gt;"); //'&amp;lt;script&amp;gt;'
 ```
 
 </details>
-
 <details><summary>formToObject</summary>
 
 ---
