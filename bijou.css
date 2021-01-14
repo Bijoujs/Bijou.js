@@ -182,6 +182,7 @@
   background: transparent;
   border-radius: 5px;
   border-color: var(--border-color);
+  border-sty
   border-width: 2px 2px 2px 2px;
 }
 .border-button:hover {
