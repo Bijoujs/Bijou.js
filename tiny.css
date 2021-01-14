@@ -47,7 +47,9 @@
 .flex-row {
   flex-direction: column;
 }
-.block-center
+.block-center {
+  margin: 
+}
 /* Transition effects */
 .transition-bg {
   transition-property: background-color;
