@@ -34,7 +34,7 @@ Thanks for using Tiny.js! It's pretty simple to use, but here's a guide:
 ```js
 <script src="https://cdn.jsdelivr.net/gh/explosion-scratch/tiny.js@latest/tiny.min.js"></script>
 ```
-Also, did you know there's tiny.css? It's also useful! 
+Also, did you know there's tiny.css? It's also useful! It's all the stuff I use
 
 ## Basic usage:
 
