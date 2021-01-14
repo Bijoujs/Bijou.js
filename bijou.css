@@ -194,7 +194,7 @@
 }
 .button.success:hover {
   background-color: var(--success-color-hover);
-  border:
+  border
   color: white;
 }
 /* Inputs */
