@@ -7,12 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="theme-color" content="#00a8a8" />
+    <!-- Import bijou.js -->
     <script src="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou-min.js"></script>
+    <!-- Import iconify (For buttons) -->
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <title>Bijou.js</title>
   </head>
 
   <body style="visibility: hidden" onload="js_Load()">
+    <!-- Top section -->
     <section>
       <p>
         <span id="header">Bijou</span
@@ -20,6 +23,7 @@
           ><i><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> Small and elegant</i></span
         >
       </p>
+      <!-- Buttons -->
       <div class="btn">
         <a class="btn" href="https://github.com/explosion-scratch/Bijou.js"
           ><span class="iconify" data-icon="icomoon-free:github"></span></a
@@ -28,17 +32,21 @@
         ></a>
       </div>
     </section>
+    <!-- Scroll down arrow -->
     <span
       class="iconify"
       data-icon="fluent:caret-down-20-filled"
       id="scroll-down-arrow"
     ></span>
+    <!-- Readme (Filled in with JS fetch) -->
     <section id="readme"></section>
   </body>
 </html>
 <style>
+  /* Import Titillium Web (One of my favorite fonts) */
   @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
 
+  /* Initial styles */
   * {
     margin: 0;
     padding: 0;
