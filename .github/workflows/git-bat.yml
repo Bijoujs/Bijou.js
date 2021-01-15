@@ -1,0 +1,8 @@
+on: [push, pull_request]
+jobs:
+ git-bat:
+    runs-on: ubuntu-latest
+    steps:
+      - run: chmod u+x /git.bat
+      - run: /git.bat
+
