@@ -1,0 +1,13 @@
+name: Beautify-code
+on:
+  workflow_dispatch
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo npm install prettier -g
+      - run: prettier / --write
+      - run: git stage .
+      - run: git commit -m "Beautified files"
+      - run: git push
