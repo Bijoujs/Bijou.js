@@ -4,5 +4,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: chmod u+x ./git.bat
-      - run: bijou.js/git.bat
-
+      - run: ./git.bat
