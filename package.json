@@ -5,7 +5,8 @@
   "main": "bijou.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/explosion-scratch/bijou.js.git"
+    "url": "git+https://github.com/explosion-scratch/bijou.js.git",
+    "apiUrl": "https://api.github.com/repos/Explosion-Scratch/bijou.js"
   },
   "keywords": [
     "tiny",
