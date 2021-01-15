@@ -64,13 +64,13 @@ it pretty much just uses classes.
 To use Bijou.js simply call one of the many functions built into it!
 
 ```js
-_$.anyFunction();
+_$.anyFunction()
 ```
 
 Such as this one!
 
 ```js
-_$.uuid(); //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
+_$.uuid() //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
 ```
 
 ## Who made Bijou.js?
@@ -85,7 +85,7 @@ this! :)
 Add the styles in an object to a specified element:
 
 ```js
-_$.addStyles(element, { background: "red" }); // (Changes the background color of the element to red!)
+_$.addStyles(element, { background: "red" }) // (Changes the background color of the element to red!)
 ```
 
 Also note that this only works when the property is camelCased, as in JavScript.
@@ -99,14 +99,14 @@ would not work, but
 
 ```js
 {
-  backgroundColor: "red";
+  backgroundColor: "red"
 }
 ```
 
 will work fine. Feel free to use
 
 ```js
-_$.unCamelCase("CSS property name here").toLowerCase().replace(/ /g, "-");
+_$.unCamelCase("CSS property name here").toLowerCase().replace(/ /g, "-")
 ```
 
 to use css properties normally.
@@ -123,7 +123,7 @@ Returns a comma separated list from the specified array.
 _$.arrayToCSV([
   ["a", "b"],
   ["c", "d"],
-]); //'"a","b" "c","d"' Note that this also escapes characters such as quotes.
+]) //'"a","b" "c","d"' Note that this also escapes characters such as quotes.
 ```
 
 </details>
@@ -142,7 +142,7 @@ trying to compute something.</details>
 This returns the average of an array based on the given function, for example:
 
 ```js
-_$.averageBy([1, 2, 3, 4], (val) => val / 2); //Returns the average of each element after each element has been divided by 2.
+_$.averageBy([1, 2, 3, 4], (val) => val / 2) //Returns the average of each element after each element has been divided by 2.
 ```
 
 </details>
@@ -160,7 +160,7 @@ Returns the current browser without sniffing the user-agent string. e.g.
 Returns an element of the computed style, e.g.
 
 ```js
-_$.compStyle(document.querySelector("h1"), "background-color"); //Returns the background-color of the first &lt;h1&gt;
+_$.compStyle(document.querySelector("h1"), "background-color") //Returns the background-color of the first &lt;h1&gt;
 ```
 
 </details>
@@ -171,7 +171,7 @@ _$.compStyle(document.querySelector("h1"), "background-color"); //Returns the ba
 Copies the text specified to the clipboard, e.g.
 
 ```js
-_$.copy("Hello world");
+_$.copy("Hello world")
 ```
 
 </details>
@@ -199,7 +199,7 @@ Returns the day of the week from a Date object.</details>
 Runs a function with each element of an array:
 
 ```js
-_$.each([1, 2, 3], (num) => alert(num * 3)); //Alerts each number in the array times 3
+_$.each([1, 2, 3], (num) => alert(num * 3)) //Alerts each number in the array times 3
 ```
 
 </details>
@@ -210,7 +210,7 @@ _$.each([1, 2, 3], (num) => alert(num * 3)); //Alerts each number in the array t
 Returns an escaped version of the HTML string provided:
 
 ```js
-_$.escapeHTML("&lt;script&gt;"); //'&amp;lt;script&amp;gt;'
+_$.escapeHTML("&lt;script&gt;") //'&amp;lt;script&amp;gt;'
 ```
 
 </details>
@@ -228,7 +228,7 @@ the key and the 'value' attribute as the value.</details>
 Formats a number of milliseconds into a human-readable duration of time, e.g.
 
 ```js
-_$.formatMilliseconds(600000); //Returns '10 minutes'
+_$.formatMilliseconds(600000) //Returns '10 minutes'
 ```
 
 </details>
@@ -280,7 +280,7 @@ Lightens or darkens a hex color by a certain amount, on a scale rom 0
 (completely dark) to 255 (completely bright):
 
 ```js
-_$.lightenColor("#ffffff", -20); //Returns '#ebebeb'.
+_$.lightenColor("#ffffff", -20) //Returns '#ebebeb'.
 ```
 
 </details>
@@ -293,8 +293,8 @@ Maps an object's keys recursively:
 ```js
 _$.mapObjectKeys(
   { key: "value", another: { deep: "thing", map: "another" } },
-  (key) => key.toUpperCase()
-); // Transforms every key of the object to uppercase.
+  (key) => key.toUpperCase(),
+) // Transforms every key of the object to uppercase.
 ```
 
 </details>
@@ -314,8 +314,8 @@ Returns the callback when a click is called outside the specified element:
 
 ```js
 _$.onOutsideClick(document.querySelector("h1"), () => {
-  alert("You clicked outside the header");
-}); // Alerts when the user clicks anywhere that is NOT the h1 in question.
+  alert("You clicked outside the header")
+}) // Alerts when the user clicks anywhere that is NOT the h1 in question.
 ```
 
 </details>
@@ -333,7 +333,7 @@ Parses HTML and returns a document object representing the parsed HTML.
 
 ```js
 _$.parseHTML("<div><section><h1>Hello</h1></section></div>").querySelector("h1")
-  .innerText;
+  .innerText
 //Returns "Hello"!
 ```
 
@@ -364,7 +364,7 @@ Generates a unique querySelector for the given element.</details>
 Returns a random number between two numbers:
 
 ```js
-_$.random(-10, 10, false); //Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)
+_$.random(-10, 10, false) //Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)
 ```
 
 </details>
@@ -388,7 +388,7 @@ Replaces the text of the specified element by passing the old value through a
 function:
 
 ```js
-_$.replaceText(document, (oldText) => oldText.replace(" ", "-")); //Replace all spaces in the document with a hyphen.
+_$.replaceText(document, (oldText) => oldText.replace(" ", "-")) //Replace all spaces in the document with a hyphen.
 ```
 
 </details>
@@ -417,7 +417,7 @@ Convert a form to url queries</details>
 Splices a number as if it's 8 bits long and converts it to a single number:
 
 ```js
-_$.spliceArrayBuffer([5, 8, 255], 0, 2, true); //16713733
+_$.spliceArrayBuffer([5, 8, 255], 0, 2, true) //16713733
 ```
 
 </details>
@@ -434,8 +434,8 @@ Returns an alphabetized copy of the object by keys.</details>
 Syntax highlights a string! Supports JS, CSS, and HTML:
 
 ```js
-const coloroptions = {}; //An object representing the color options for highlighting. See line 594 of bijou.js for more information.
-_$.syntaxHighlight(document.querySelector("pre code"), "js", coloroptions);
+const coloroptions = {} //An object representing the color options for highlighting. See line 594 of bijou.js for more information.
+_$.syntaxHighlight(document.querySelector("pre code"), "js", coloroptions)
 ```
 
 </details>
@@ -447,7 +447,7 @@ Runs the function specified, the second input controls at MAX how much wait
 there is between the next time it runs:
 
 ```js
-_$.throttle(() => alert("hello"), 10000);
+_$.throttle(() => alert("hello"), 10000)
 ```
 
 Running this like any other function will simply just run the function, however
@@ -490,7 +490,7 @@ Un-camelCases a string. Camel case is when a string's case looks like this:
 camelCase, where the normal version would be Camel Case:
 
 ```js
-_$.unCamelCase("someCrazyName"); //Returns "Some Crazy Name"
+_$.unCamelCase("someCrazyName") //Returns "Some Crazy Name"
 ```
 
 </details>
