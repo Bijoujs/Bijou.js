@@ -124,8 +124,11 @@ trying to compute something.</details></p>
 <p></details></p>
 <p><details><summary>dayName</summary></p>
 <hr />
-<p>Returns the day of the week from a Date object.</details></p>
-<p><details><summary>each</summary></p>
+<p>Returns the day of the week from a Date object.</details>
+<details><summary>desktopOrMobile</summary></p>
+<hr />
+<p>Returns either "desktop" or "mobile", depending on what device the user is using. (It uses user-agent sniffing though, meaning that it can be spoofed.)</details>
+<details><summary>each</summary></p>
 <hr />
 <p>Runs a function with each element of an array:</p>
 <pre><code class="js language-js">_$.each([1, 2, 3], (num) =&gt; alert(num * 3)) //Alerts each number in the array times 3
@@ -229,8 +232,14 @@ is the icon displayed next to the notification.</details></p>
 <p>Returns a random hex color.</details></p>
 <p><details><summary>removeComments</summary></p>
 <hr />
-<p>Removes comments from the HTML element specified.</details></p>
-<p><details><summary>replaceText</summary></p>
+<p>Removes comments from the HTML element specified.</details>
+<details><summary>removeTags</summary></p>
+<hr />
+<p>Removes tags from the HTML string specified:</p>
+<pre><code class="js language-js">_$.removeTags("&lt;a href='#'&gt;HTML tags!&lt;/a&gt;");//Returns "HTML tags!"
+</code></pre>
+<p></details>
+<details><summary>replaceText</summary></p>
 <hr />
 <p>Replaces the text of the specified element by passing the old value through a
 function:</p>
