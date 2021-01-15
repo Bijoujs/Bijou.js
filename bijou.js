@@ -1341,6 +1341,10 @@ let desc = {
 _temp.info = (prop) => {
   return desc[prop]
 }
+function _generateHTMLfromDocs() {
+  var converter = new showdown.Converter()
+  _.each
+}
 const _$ = _temp
 const _ = _temp
 const explosion = _temp
