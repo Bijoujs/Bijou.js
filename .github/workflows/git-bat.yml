@@ -3,6 +3,6 @@ jobs:
  git-bat:
     runs-on: ubuntu-latest
     steps:
-      - run: chmod u+x /git.bat
-      - run: /git.bat
+      - run: chmod u+x ./git.bat
+      - run: ./git.bat
 
