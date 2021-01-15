@@ -25,3 +25,18 @@ function beautify {
   prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- /workspace/
   commit
 }
+function release {
+  OWNER="Explosion-Scratch"
+  REPOSITORY="bijou.js"
+  read -sp "Enter access token" ACCESS_TOKEN
+  read -p "Version" VERSION
+  npm version "${VERSION}"
+  npm publish
+  curl --data '{"tag_name": "v$VERSION",
+                  "target_commitish": "master",
+                  "name": "v$VERSION",
+                  "body": "Release of version $VERSION",
+                  "draft": false,
+                  "prerelease": false}' \
+      https://api.github.com/repos/$OWNER/$REPOSITORY/releases?access_token=$ACCESS_TOKEN
+}
