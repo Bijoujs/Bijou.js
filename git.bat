@@ -32,13 +32,14 @@ function release {
   echo
   read -p "Version:  " VERSION
   echo
-  npm version "${VERSION}"
-  npm publish
-  curl --data '{"tag_name": "v${VERSION}",
+echo "Releasing version: ${VERSION}"
+  curl --data '{"tag_name": $VERSION,
                   "target_commitish": "master",
-                  "name": "v${VERSION}",
+                  "name": $VERSION,
                   "body": "Release of version ${VERSION}",
                   "draft": false,
                   "prerelease": false}' \
       https://api.github.com/repos/$OWNER/$REPOSITORY/releases?access_token=$ACCESS_TOKEN
 }
+  npm version "${VERSION}"
+  npm publish
