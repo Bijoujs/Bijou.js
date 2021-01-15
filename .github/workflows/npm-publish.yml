@@ -3,8 +3,7 @@
 
 name: Node.js Package
 
-on:
-  release
+on: [release, workflow_dispatch]
 
 jobs:
   build:
