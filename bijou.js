@@ -1,4 +1,10 @@
-if (document) {
+let documentExists = true
+if (typeof window === "undefined") {
+  documentExists = true
+} else {
+  documentExists = false
+}
+if (!documentExists) {
   document.head.innerHTML +=
     '<script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.43/polyfill.min.js" integrity="sha512-lvWiOP+aMKHllm4THsjzNleVuGOh0WGniJ3lgu/nvCbex1LlaQSxySUjAu/LTJw9FhnSL/PVYoQcckg1Q03+fQ==" crossorigin="anonymous"></script>'
 } else {
@@ -6,11 +12,12 @@ if (document) {
     "There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsdom to recreate the document element.",
   )
 }
+
 let _temp = {
   primesTo: (num) => {
     let arr = Array.from({
-      length: num - 1,
-    }).map((x, i) => i + 2),
+        length: num - 1,
+      }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -59,7 +66,7 @@ let _temp = {
   },
   onScrollStop: (callback) => {
     let isScrolling
-    if (!(document && window)) {
+    if (documentExists) {
       throw new Error("No document element! (You are probably using Node.js)")
     }
     window.addEventListener(
@@ -74,7 +81,7 @@ let _temp = {
     )
   },
   copy: (str) => {
-    if (!(document && window)) {
+    if (documentExists) {
       throw new Error("No document element! (You are probably using Node.js)")
     }
     const el = document.createElement("textarea")
@@ -116,7 +123,7 @@ let _temp = {
     }
   },
   createElement: (str) => {
-    if (!(document && window)) {
+    if (documentExists) {
       throw new Error("No document element! (You are probably using Node.js)")
     }
     const el = document.createElement("div")
@@ -124,7 +131,7 @@ let _temp = {
     return el.firstElementChild
   },
   browser: () => {
-    if (!(document && window)) {
+    if (documentExists) {
       throw new Error("No document element! (You are probably using Node.js)")
     }
     var isOpera =
@@ -138,7 +145,7 @@ let _temp = {
         return p.toString() === "[object SafariRemoteNotification]"
       })(
         !window["safari"] ||
-        (typeof safari !== "undefined" && window["safari"].pushNotification),
+          (typeof safari !== "undefined" && window["safari"].pushNotification),
       )
     var isIE = /*@cc_on!@*/ false || !!document.documentMode
     var isEdge = !isIE && !!window.StyleMedia
@@ -172,7 +179,7 @@ let _temp = {
     }
   },
   notify: (text, body, icon) => {
-    if (!(document && window)) {
+    if (documentExists) {
       throw new Error("No document element! (You are probably using Node.js)")
     }
     if (!window.Notification) {
@@ -212,7 +219,7 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-            !obj[key] ? "" : obj[key]
+              !obj[key] ? "" : obj[key]
             }"`,
           "",
         ),
@@ -237,7 +244,7 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-        ? Object.keys(obj).reduce((acc, current) => {
+      ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current)
           const val = obj[current]
           acc[key] =
@@ -246,7 +253,7 @@ let _temp = {
               : val
           return acc
         }, {})
-        : obj,
+      : obj,
   arrayToCSV: (arr, delimiter = ",") =>
     arr
       .map((v) =>
@@ -260,7 +267,7 @@ let _temp = {
       .map(typeof fn === "function" ? fn : (val) => val[fn])
       .reduce((acc, val) => acc + val, 0) / arr.length,
   inView: (el) => {
-    if (!(document && window)) {
+    if (documentExists) {
       throw new Error("No document element! (You are probably using Node.js)")
     }
     var top = el.offsetTop
@@ -282,7 +289,7 @@ let _temp = {
     )
   },
   inPartialView: (el) => {
-    if (!(document && window)) {
+    if (documentExists) {
       throw new Error("No document element! (You are probably using Node.js)")
     }
     var top = el.offsetTop
@@ -347,7 +354,7 @@ let _temp = {
         }[tag] || tag),
     ),
   previousPage: () => {
-    if (!(document && window)) {
+    if (documentExists) {
       throw new Error("No document element! (You are probably using Node.js)")
     }
     return document.referrer || window.location.href
@@ -355,14 +362,14 @@ let _temp = {
   replaceText: (el, callback) => {
     for (
       var e,
-      t = (function () {
-        for (var e, t = el, o = [], a = 0; a < t.length; a++)
-          (e = t[a].childNodes[0]),
-            t[a].hasChildNodes() && 3 == e.nodeType && o.push(e)
-        return o
-      })(),
-      o = 0,
-      a = t.length;
+        t = (function () {
+          for (var e, t = el, o = [], a = 0; a < t.length; a++)
+            (e = t[a].childNodes[0]),
+              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e)
+          return o
+        })(),
+        o = 0,
+        a = t.length;
       o < a;
       o++
     )
@@ -485,7 +492,7 @@ let _temp = {
     )
   },
   querySelector: (elem) => {
-    if (!(document && window)) {
+    if (documentExists) {
       throw new Error("No document element! (You are probably using Node.js)")
     }
     var element = elem
@@ -627,7 +634,7 @@ let _temp = {
     return domparser.parseFromString(string, mimeType)
   },
   syntaxHighlight: (elmnt, mode, colors) => {
-    if (!(document && window)) {
+    if (documentExists) {
       throw new Error("No document element! (You are probably using Node.js)")
     }
     // Credit to w3schools for this
@@ -1197,26 +1204,26 @@ let _temp = {
     }
     function getNumPos(txt, func) {
       var arr = [
-        "<br>",
-        " ",
-        ";",
-        "(",
-        "+",
-        ")",
-        "[",
-        "]",
-        ",",
-        "&",
-        ":",
-        "{",
-        "}",
-        "/",
-        "-",
-        "*",
-        "|",
-        "%",
-        "=",
-      ],
+          "<br>",
+          " ",
+          ";",
+          "(",
+          "+",
+          ")",
+          "[",
+          "]",
+          ",",
+          "&",
+          ":",
+          "{",
+          "}",
+          "/",
+          "-",
+          "*",
+          "|",
+          "%",
+          "=",
+        ],
         i,
         j,
         c,
@@ -1337,4 +1344,4 @@ _temp.info = (prop) => {
 const _$ = _temp
 const _ = _temp
 const explosion = _temp
-module.exports = _$;
+module.exports = _$
