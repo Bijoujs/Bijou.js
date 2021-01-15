@@ -1,5 +1,5 @@
 on: [push, pull_request]
-name: Run Git.bat
+name: Automated CI
 jobs:
  git-bat:
     runs-on: ubuntu-latest
