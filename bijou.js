@@ -1257,6 +1257,10 @@ let _temp = {
       return [-1, -1, func]
     }
   },
+  composeFunction: (...functions) => (args) =>
+    functions.reduceRight((arg, fn) => fn(arg), args),
+  curryFunction: (fn, arity = fn.length, ...args) =>
+    arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args),
 }
 _temp = _temp.sortObj(_temp)
 let desc = {
@@ -1337,6 +1341,10 @@ let desc = {
     "Parses HTML and returns a document object representing the parsed HTML.",
   syntaxHighlight:
     "Highlight an element's innerText!\n\n\t_$.syntaxHighlight(document.querySelector('pre code'), 'js');//Syntax highlights the element.\n\nAlso supports CSS and HTML. Note: This needs <br> tags instead of normal line breaks.",
+  composeFunction:
+    "Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj",
+  curryFunction:
+    "Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb",
 }
 _temp.info = (prop) => {
   return desc[prop]

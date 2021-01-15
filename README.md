@@ -163,6 +163,13 @@ Returns an element of the computed style, e.g.
 _$.compStyle(document.querySelector("h1"), "background-color") //Returns the background-color of the first &lt;h1&gt;
 ```
 
+</details><details>
+<summary>composeFunction</summary>
+
+---
+
+Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
+
 </details>
 <details><summary>copy</summary>
 
@@ -186,6 +193,14 @@ _$.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whose id is
 ```
 
 </details>
+<details><summary>curryFunction</summary>
+
+---
+
+Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
+
+</details>
+
 <details><summary>dayName</summary>
 
 ---
