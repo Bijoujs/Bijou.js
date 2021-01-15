@@ -1,0 +1,5 @@
+jobs:
+  main:
+  - name: Build and test
+    runs-on: ubuntu-latest
+  - name: Check Commit Message
