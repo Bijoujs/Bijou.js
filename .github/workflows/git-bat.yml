@@ -12,18 +12,8 @@ jobs:
       - run: prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- ./
       - run: terser --compress --mangle -o bijou-min.js -- bijou.js
       - run: showdown makehtml -i README.md -o README.html
-      - run: |
-             COMMIT_FILE=$(git diff --name-only)
-             DATE=$(date +"%F %H:%M:%S")
-             USER=$(git config user.name)
-             EMAIL=$(git config user.email)
-             REPO="BIJOU.JS"
-             FIGLET_REPO=$(figlet -kf Big -- $REPO)
-             BR=$'\n'
-             COMMIT_MSG=$"${FIGLET_REPO}${BR}Files changed: ${BR}${BR}${COMMIT}${BR}${BR}Date: ${DATE}${BR}User: ${USER}${BR}Email: ${EMAIL}"
-
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-         commit_message: ${COMMIT_MSG} ${COMMIT_FILE}
+         commit_message: Applying automated CI items
 
         
