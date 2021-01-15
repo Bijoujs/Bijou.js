@@ -3,6 +3,9 @@ jobs:
  git-bat:
     runs-on: ubuntu-latest
     steps:
-      - run: chmod u+x bijou.js/git.bat
-      - run: bijou.js/git.bat
-
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.4
+      - run: chmod u+x ./git.bat
+      - run: ./git.bat
