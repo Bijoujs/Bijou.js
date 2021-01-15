@@ -1344,4 +1344,4 @@ _temp.info = (prop) => {
 const _$ = _temp
 const _ = _temp
 const explosion = _temp
-module.exports = _$
+module.exports = _temp
