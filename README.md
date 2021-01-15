@@ -14,18 +14,27 @@ Congrats! You discovered Bijou.js! Read more below!
 
 # What is Bijou.js?
 
-Bijou.js is a library of super helpful JavaScript snippets! It has a bunch of useful snippets for all your coding needs! If there's something that's not in here currently but you use frequently feel free to submit an issue! I'd be happy to add it! Bijou's goal is to eliminate the need to copy paste the same thing from StackOverflow, another project or anywhere else! So if you ever find yourself typing the same thing over and over again, copy pasting the same snippet as you did a few days ago, use Bijou.js! If the snippet you're using isn't in Bijou.js just submit an issue with the code!
+Bijou.js is a library of super helpful JavaScript snippets! It has a bunch of
+useful snippets for all your coding needs! If there's something that's not in
+here currently but you use frequently feel free to submit an issue! I'd be happy
+to add it! Bijou's goal is to eliminate the need to copy paste the same thing
+from StackOverflow, another project or anywhere else! So if you ever find
+yourself typing the same thing over and over again, copy pasting the same
+snippet as you did a few days ago, use Bijou.js! If the snippet you're using
+isn't in Bijou.js just submit an issue with the code!
 
 # Why use Bijou?
 
 Well, a few reasons:
 
 1. <s>I made it.</s>
-2. It's useful! (If it's not useful just tell me what you want added in the issues tab! I'd be happy to add it!)
+2. It's useful! (If it's not useful just tell me what you want added in the
+   issues tab! I'd be happy to add it!)
 3. It's jam packed full of functions that are super useful but hard to think of!
 4. 31 other people this month used it, so why shouldn't you?
 
-<small>(You can probably see I'm pretty desperate for people to use this.)</small>
+<small>(You can probably see I'm pretty desperate for people to use
+this.)</small>
 
 # How to use Bijou.js
 
@@ -37,7 +46,8 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 <script src="https://cdn.jsdelivr.net/gh/explosion-scratch/Bijou.js@latest/Bijou.min.js"></script>
 ```
 
-Also, did you know there's Bijou.css? It's also useful! It's all the stuff I use:
+Also, did you know there's Bijou.css? It's also useful! It's all the stuff I
+use:
 
 ```html
 <link
@@ -53,18 +63,20 @@ it pretty much just uses classes.
 To use Bijou.js simply call one of the many functions built into it!
 
 ```js
-_$.anyFunction()
+_$.anyFunction();
 ```
 
 Such as this one!
 
 ```js
-_$.uuid() //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
+_$.uuid(); //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
 ```
 
 ## Who made Bijou.js?
 
-Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes and more! Also thanks to people like retronbv for helping brainstorm names for this! :)
+Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes
+and more! Also thanks to people like retronbv for helping brainstorm names for
+this! :)
 
 ## Functions:
 
@@ -72,10 +84,11 @@ Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes
 Add the styles in an object to a specified element:
 
 ```js
-_$.addStyles(element, { background: "red" }) // (Changes the background color of the element to red!)
+_$.addStyles(element, { background: "red" }); // (Changes the background color of the element to red!)
 ```
 
-Also note that this only works when the property is camelCased, as in JavScript. For example doing this:
+Also note that this only works when the property is camelCased, as in JavScript.
+For example doing this:
 
 ```js
 {"background-color": "red"}
@@ -85,14 +98,14 @@ would not work, but
 
 ```js
 {
-  backgroundColor: "red"
+  backgroundColor: "red";
 }
 ```
 
 will work fine. Feel free to use
 
 ```js
-_$.unCamelCase("CSS property name here").toLowerCase().replace(/ /g, "-")
+_$.unCamelCase("CSS property name here").toLowerCase().replace(/ /g, "-");
 ```
 
 to use css properties normally.
@@ -109,7 +122,7 @@ Returns a comma separated list from the specified array.
 _$.arrayToCSV([
   ["a", "b"],
   ["c", "d"],
-]) //'"a","b" "c","d"' Note that this also escapes characters such as quotes.
+]); //'"a","b" "c","d"' Note that this also escapes characters such as quotes.
 ```
 
 </details>
@@ -117,7 +130,9 @@ _$.arrayToCSV([
 
 ---
 
-Runs the given function in a web worker, returning a promise with the return value. This is useful to prevent the main thread from becoming clogged while trying to compute something.</details>
+Runs the given function in a web worker, returning a promise with the return
+value. This is useful to prevent the main thread from becoming clogged while
+trying to compute something.</details>
 
 <details><summary>averageBy</summary>
 
@@ -126,7 +141,7 @@ Runs the given function in a web worker, returning a promise with the return val
 This returns the average of an array based on the given function, for example:
 
 ```js
-_$.averageBy([1, 2, 3, 4], (val) => val / 2) //Returns the average of each element after each element has been divided by 2.
+_$.averageBy([1, 2, 3, 4], (val) => val / 2); //Returns the average of each element after each element has been divided by 2.
 ```
 
 </details>
@@ -134,7 +149,8 @@ _$.averageBy([1, 2, 3, 4], (val) => val / 2) //Returns the average of each eleme
 
 ---
 
-Returns the current browser without sniffing the user-agent string. e.g. 'Chrome'</details>
+Returns the current browser without sniffing the user-agent string. e.g.
+'Chrome'</details>
 
 <details><summary>compStyle</summary>
 
@@ -143,7 +159,7 @@ Returns the current browser without sniffing the user-agent string. e.g. 'Chrome
 Returns an element of the computed style, e.g.
 
 ```js
-_$.compStyle(document.querySelector("h1"), "background-color") //Returns the background-color of the first &lt;h1&gt;
+_$.compStyle(document.querySelector("h1"), "background-color"); //Returns the background-color of the first &lt;h1&gt;
 ```
 
 </details>
@@ -154,7 +170,7 @@ _$.compStyle(document.querySelector("h1"), "background-color") //Returns the bac
 Copies the text specified to the clipboard, e.g.
 
 ```js
-_$.copy("Hello world")
+_$.copy("Hello world");
 ```
 
 </details>
@@ -182,7 +198,7 @@ Returns the day of the week from a Date object.</details>
 Runs a function with each element of an array:
 
 ```js
-_$.each([1, 2, 3], (num) => alert(num * 3)) //Alerts each number in the array times 3
+_$.each([1, 2, 3], (num) => alert(num * 3)); //Alerts each number in the array times 3
 ```
 
 </details>
@@ -193,7 +209,7 @@ _$.each([1, 2, 3], (num) => alert(num * 3)) //Alerts each number in the array ti
 Returns an escaped version of the HTML string provided:
 
 ```js
-_$.escapeHTML("&lt;script&gt;") //'&amp;lt;script&amp;gt;'
+_$.escapeHTML("&lt;script&gt;"); //'&amp;lt;script&amp;gt;'
 ```
 
 </details>
@@ -201,7 +217,8 @@ _$.escapeHTML("&lt;script&gt;") //'&amp;lt;script&amp;gt;'
 
 ---
 
-Converts a form to a javascript object using each element's 'name' attribute as the key and the 'value' attribute as the value.</details>
+Converts a form to a javascript object using each element's 'name' attribute as
+the key and the 'value' attribute as the value.</details>
 
 <details><summary>formatMilliseconds</summary>
 
@@ -210,7 +227,7 @@ Converts a form to a javascript object using each element's 'name' attribute as 
 Formats a number of milliseconds into a human-readable duration of time, e.g.
 
 ```js
-_$.formatMilliseconds(600000) //Returns '10 minutes'
+_$.formatMilliseconds(600000); //Returns '10 minutes'
 ```
 
 </details>
@@ -230,13 +247,15 @@ Converts a hex value into an RGB color.</details>
 
 ---
 
-Returns whether the specified element is visible at all in the viewport. This is useful for lazy loading images!</details>
+Returns whether the specified element is visible at all in the viewport. This is
+useful for lazy loading images!</details>
 
 <details><summary>inView</summary>
 
 ---
 
-Returns whether the specified element is completely visible in the viewport.</details>
+Returns whether the specified element is completely visible in the
+viewport.</details>
 
 <details><summary>jsonToCsv</summary>
 
@@ -248,16 +267,19 @@ Converts a JSON object to CSV.</details>
 
 ---
 
-Returns an object, the key "lightordark" returns either 'light' or 'dark' and the key 'hsp' returns the value of the color from 0 (completely dark) to 255 (completely bright).</details>
+Returns an object, the key "lightordark" returns either 'light' or 'dark' and
+the key 'hsp' returns the value of the color from 0 (completely dark) to 255
+(completely bright).</details>
 
 <details><summary>lightenColor</summary>
 
 ---
 
-Lightens or darkens a hex color by a certain amount, on a scale rom 0 (completely dark) to 255 (completely bright):
+Lightens or darkens a hex color by a certain amount, on a scale rom 0
+(completely dark) to 255 (completely bright):
 
 ```js
-_$.lightenColor("#ffffff", -20) //Returns '#ebebeb'.
+_$.lightenColor("#ffffff", -20); //Returns '#ebebeb'.
 ```
 
 </details>
@@ -270,8 +292,8 @@ Maps an object's keys recursively:
 ```js
 _$.mapObjectKeys(
   { key: "value", another: { deep: "thing", map: "another" } },
-  (key) => key.toUpperCase(),
-) // Transforms every key of the object to uppercase.
+  (key) => key.toUpperCase()
+); // Transforms every key of the object to uppercase.
 ```
 
 </details>
@@ -279,7 +301,9 @@ _$.mapObjectKeys(
 
 ---
 
-Notifies the user through a desktop notification. Takes 3 arguments: text, body, icon. Text is the title of the notification, body is the message of it, and icon is the icon displayed next to the notification.</details>
+Notifies the user through a desktop notification. Takes 3 arguments: text, body,
+icon. Text is the title of the notification, body is the message of it, and icon
+is the icon displayed next to the notification.</details>
 
 <details><summary>onOutsideClick</summary>
 
@@ -289,8 +313,8 @@ Returns the callback when a click is called outside the specified element:
 
 ```js
 _$.onOutsideClick(document.querySelector("h1"), () => {
-  alert("You clicked outside the header")
-}) // Alerts when the user clicks anywhere that is NOT the h1 in question.
+  alert("You clicked outside the header");
+}); // Alerts when the user clicks anywhere that is NOT the h1 in question.
 ```
 
 </details>
@@ -308,7 +332,7 @@ Parses HTML and returns a document object representing the parsed HTML.
 
 ```js
 _$.parseHTML("<div><section><h1>Hello</h1></section></div>").querySelector("h1")
-  .innerText
+  .innerText;
 //Returns "Hello"!
 ```
 
@@ -339,7 +363,7 @@ Generates a unique querySelector for the given element.</details>
 Returns a random number between two numbers:
 
 ```js
-_$.random(-10, 10, false) //Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)
+_$.random(-10, 10, false); //Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)
 ```
 
 </details>
@@ -359,10 +383,11 @@ Removes comments from the HTML element specified.</details>
 
 ---
 
-Replaces the text of the specified element by passing the old value through a function:
+Replaces the text of the specified element by passing the old value through a
+function:
 
 ```js
-_$.replaceText(document, (oldText) => oldText.replace(" ", "-")) //Replace all spaces in the document with a hyphen.
+_$.replaceText(document, (oldText) => oldText.replace(" ", "-")); //Replace all spaces in the document with a hyphen.
 ```
 
 </details>
@@ -391,7 +416,7 @@ Convert a form to url queries</details>
 Splices a number as if it's 8 bits long and converts it to a single number:
 
 ```js
-_$.spliceArrayBuffer([5, 8, 255], 0, 2, true) //16713733
+_$.spliceArrayBuffer([5, 8, 255], 0, 2, true); //16713733
 ```
 
 </details>
@@ -408,8 +433,8 @@ Returns an alphabetized copy of the object by keys.</details>
 Syntax highlights a string! Supports JS, CSS, and HTML:
 
 ```js
-const coloroptions = {} //An object representing the color options for highlighting. See line 594 of bijou.js for more information.
-_$.syntaxHighlight(document.querySelector("pre code"), "js", coloroptions)
+const coloroptions = {}; //An object representing the color options for highlighting. See line 594 of bijou.js for more information.
+_$.syntaxHighlight(document.querySelector("pre code"), "js", coloroptions);
 ```
 
 </details>
@@ -417,13 +442,16 @@ _$.syntaxHighlight(document.querySelector("pre code"), "js", coloroptions)
 
 ---
 
-Runs the function specified, the second input controls at MAX how much wait there is between the next time it runs:
+Runs the function specified, the second input controls at MAX how much wait
+there is between the next time it runs:
 
 ```js
-_$.throttle(() => alert("hello"), 10000)
+_$.throttle(() => alert("hello"), 10000);
 ```
 
-Running this like any other function will simply just run the function, however if you try to run the throttled function in a setInterval loop or before its timeout ends it will not run.</details>
+Running this like any other function will simply just run the function, however
+if you try to run the throttled function in a setInterval loop or before its
+timeout ends it will not run.</details>
 
 <details><summary>timeFunction</summary>
 
@@ -441,7 +469,8 @@ Un-escapes the string of HTML specified.</details>
 
 ---
 
-Merges two arrays using union, meaning that any duplicates between the two arrays will be removed.</details>
+Merges two arrays using union, meaning that any duplicates between the two
+arrays will be removed.</details>
 
 <details><summary>uniqueArray</summary>
 
@@ -456,10 +485,11 @@ Removes duplicates from an array</details>
 
 ---
 
-Un-camelCases a string. Camel case is when a string's case looks like this: camelCase, where the normal version would be Camel Case:
+Un-camelCases a string. Camel case is when a string's case looks like this:
+camelCase, where the normal version would be Camel Case:
 
 ```js
-_$.unCamelCase("someCrazyName") //Returns "Some Crazy Name"
+_$.unCamelCase("someCrazyName"); //Returns "Some Crazy Name"
 ```
 
 </details>
@@ -467,10 +497,12 @@ _$.unCamelCase("someCrazyName") //Returns "Some Crazy Name"
 
 ---
 
-Generates a unique id, like the uuid npm package. For example: 8dfe52e3-7beb-48eb-8282-209ff1c5250f</details>
+Generates a unique id, like the uuid npm package. For example:
+8dfe52e3-7beb-48eb-8282-209ff1c5250f</details>
 
 <details><summary>widows</summary>
 
 ---
 
-Replaces the last space character between words with '&amp;nbsp;', preventing a single word on a newline.</details>
+Replaces the last space character between words with '&amp;nbsp;', preventing a
+single word on a newline.</details>
