@@ -1,3 +1,4 @@
+// Testing
 let documentExists = false
 if (typeof window === "undefined") {
   documentExists = true
