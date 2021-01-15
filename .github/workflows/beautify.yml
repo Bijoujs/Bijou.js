@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: sudo npm install prettier -g
-      - run: prettier / --write
+      - run: sudo prettier / --write
       - run: git stage .
       - run: git commit -m "Beautified files"
       - run: git push
