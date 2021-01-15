@@ -9,3 +9,6 @@ jobs:
         uses: actions/setup-node@v2.1.4
       - run: chmod u+x ./git.bat
       - run: ./git.bat
+      - uses: stefanzweifel/git-auto-commit-action@v4
+
+        
