@@ -28,14 +28,16 @@ function beautify {
 function release {
   OWNER="Explosion-Scratch"
   REPOSITORY="bijou.js"
-  read -sp "Enter access token" ACCESS_TOKEN
-  read -p "Version" VERSION
+  read -sp "Enter access token:  " ACCESS_TOKEN
+  echo
+  read -p "Version:  " VERSION
+  echo
   npm version "${VERSION}"
   npm publish
-  curl --data '{"tag_name": "v$VERSION",
+  curl --data '{"tag_name": "v${VERSION}",
                   "target_commitish": "master",
-                  "name": "v$VERSION",
-                  "body": "Release of version $VERSION",
+                  "name": "v${VERSION}",
+                  "body": "Release of version ${VERSION}",
                   "draft": false,
                   "prerelease": false}' \
       https://api.github.com/repos/$OWNER/$REPOSITORY/releases?access_token=$ACCESS_TOKEN
