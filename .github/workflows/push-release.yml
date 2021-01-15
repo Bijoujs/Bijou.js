@@ -13,7 +13,6 @@ jobs:
           pattern: '^v[0-9].[0-9].[0-9]'
           flags: 'gm'
           error: 'This commit does not release a version'
-      - name: Release
   build:
     name: Create Release
     runs-on: ubuntu-latest
