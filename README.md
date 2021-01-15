@@ -44,7 +44,18 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 ## Import it:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/explosion-scratch/Bijou.js@latest/Bijou.min.js"></script>
+<!-- Any of these (Don't do all of them lol) -->
+
+<!-- jsDelivr -->
+<script src="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"></script>
+
+<!-- UNPKG -->
+<script src="https://unpkg.com/bijou.js@latest/bijou.js"></script>
+
+<!-- Or minified: -->
+<script src="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-js"></script>
 ```
 
 Also, did you know there's Bijou.css? It's also useful! It's all the stuff I
@@ -61,10 +72,23 @@ it pretty much just uses classes.
 
 ## Basic usage:
 
+### Import it
+Browser:
+```js
+// You can use any of these to reference bijou:
+// _ , _$ , explosion
+// Or name it something different:
+const this_is_bijou = _$;
+```
+NodeJS:
+```js
+const _$ = require("bijou.js");//You can use any name
+console.log(_$.primesTo(300));//Logs all primes to 100
+```
 To use Bijou.js simply call one of the many functions built into it!
 
 ```js
-_$.anyFunction()
+_$.anyFunction();//If you're using node you can name bijou anything.
 ```
 
 Such as this one!
