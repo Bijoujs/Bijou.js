@@ -6,10 +6,10 @@
 
 <b><h1 align="center">Welcome to Bijou.js!</h1></b>
 
-[![Bijou.js CDN (jsDelivr)](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/bijou.js/badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/bijou.js)
-[![Bijou.js GitHub issues](https://img.shields.io/github/issues/explosion-scratch/bijou.js)](https://github.com/explosion-scratch/bijou.js/issues)
-[![Bijou.js GitHub stars](https://img.shields.io/github/stars/explosion-scratch/Bijou.js)](https://github.com/explosion-scratch/bijou.js/stargazers)
-
+[![Bijou.js CDN (jsDelivr)](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/bijou.js/badge?style=flat-square)](https://www.jsdelivr.com/package/gh/explosion-scratch/bijou.js)
+[![Bijou.js GitHub issues](https://img.shields.io/github/issues/explosion-scratch/bijou.js?style=flat-square)](https://github.com/explosion-scratch/bijou.js/issues)
+[![Bijou.js GitHub stars](https://img.shields.io/github/stars/explosion-scratch/Bijou.js?style=flat-square)](https://github.com/explosion-scratch/bijou.js/stargazers)
+[![JS.ORG](https://img.shields.io/badge/js.org-for%20domain-FFE70B.svg?style=flat-square)](http://js.org)
 Congrats! You discovered Bijou.js! Read more below!
 
 # What is Bijou.js?
