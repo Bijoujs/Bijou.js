@@ -17,8 +17,8 @@ if (!documentExists) {
 let _temp = {
   primesTo: (num) => {
     let arr = Array.from({
-        length: num - 1,
-      }).map((x, i) => i + 2),
+      length: num - 1,
+    }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -146,7 +146,7 @@ let _temp = {
         return p.toString() === "[object SafariRemoteNotification]"
       })(
         !window["safari"] ||
-          (typeof safari !== "undefined" && window["safari"].pushNotification),
+        (typeof safari !== "undefined" && window["safari"].pushNotification),
       )
     var isIE = /*@cc_on!@*/ false || !!document.documentMode
     var isEdge = !isIE && !!window.StyleMedia
@@ -220,7 +220,7 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-              !obj[key] ? "" : obj[key]
+            !obj[key] ? "" : obj[key]
             }"`,
           "",
         ),
@@ -245,7 +245,7 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-      ? Object.keys(obj).reduce((acc, current) => {
+        ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current)
           const val = obj[current]
           acc[key] =
@@ -254,7 +254,7 @@ let _temp = {
               : val
           return acc
         }, {})
-      : obj,
+        : obj,
   arrayToCSV: (arr, delimiter = ",") =>
     arr
       .map((v) =>
@@ -363,14 +363,14 @@ let _temp = {
   replaceText: (el, callback) => {
     for (
       var e,
-        t = (function () {
-          for (var e, t = el, o = [], a = 0; a < t.length; a++)
-            (e = t[a].childNodes[0]),
-              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e)
-          return o
-        })(),
-        o = 0,
-        a = t.length;
+      t = (function () {
+        for (var e, t = el, o = [], a = 0; a < t.length; a++)
+          (e = t[a].childNodes[0]),
+            t[a].hasChildNodes() && 3 == e.nodeType && o.push(e)
+        return o
+      })(),
+      o = 0,
+      a = t.length;
       o < a;
       o++
     )
@@ -1205,26 +1205,26 @@ let _temp = {
     }
     function getNumPos(txt, func) {
       var arr = [
-          "<br>",
-          " ",
-          ";",
-          "(",
-          "+",
-          ")",
-          "[",
-          "]",
-          ",",
-          "&",
-          ":",
-          "{",
-          "}",
-          "/",
-          "-",
-          "*",
-          "|",
-          "%",
-          "=",
-        ],
+        "<br>",
+        " ",
+        ";",
+        "(",
+        "+",
+        ")",
+        "[",
+        "]",
+        ",",
+        "&",
+        ":",
+        "{",
+        "}",
+        "/",
+        "-",
+        "*",
+        "|",
+        "%",
+        "=",
+      ],
         i,
         j,
         c,
@@ -1263,20 +1263,10 @@ let _temp = {
   curryFunction: (fn, arity = fn.length, ...args) =>
     arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args),
   mobileOrDesktop: () =>
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent,
-    )
-      ? "mobile"
-      : "desktop",
-  removeTags: (html) => html.replace(/<[^>]*>/g, ""),
-  getJSON: (url, callback) => {
-    if (documentExists) {
-      throw new Error("No document element! (You are probably using Node.js)")
-    }
-    fetch(url)
-      .then((res) => res.json())
-      .then((json) => callback(json))
-  },
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      ? 'mobile'
+      : 'desktop',
+  removeTags: (html) => html.replace(/<[^>]*>/g, '')
 }
 _temp = _temp.sortObj(_temp)
 let desc = {
@@ -1361,6 +1351,8 @@ let desc = {
     "Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj",
   curryFunction:
     "Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb",
+  removeTags: "Returns an html string stripped of tags.",
+  desktopOrMobile: "Returns whether the user is using a desktop or mobile device. (Uses user-agent sniffing which can be spoofed)"
 }
 _temp.info = (prop) => {
   return desc[prop]
@@ -1373,3 +1365,9 @@ const _$ = _temp
 const _ = _temp
 const explosion = _temp
 module.exports = _temp
+
+
+
+
+
+

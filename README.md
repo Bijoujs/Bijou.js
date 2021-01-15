@@ -206,7 +206,11 @@ Returns the curried version of a function. Read more here: https://medium.com/@a
 ---
 
 Returns the day of the week from a Date object.</details>
+<details><summary>desktopOrMobile</summary>
 
+---
+
+Returns either "desktop" or "mobile", depending on what device the user is using. (It uses user-agent sniffing though, meaning that it can be spoofed.)</details>
 <details><summary>each</summary>
 
 ---
@@ -394,7 +398,15 @@ Returns a random hex color.</details>
 ---
 
 Removes comments from the HTML element specified.</details>
+<details><summary>removeTags</summary>
 
+---
+
+Removes tags from the HTML string specified:
+```js
+_$.removeTags("<a href='#'>HTML tags!</a>");//Returns "HTML tags!"
+```
+</details>
 <details><summary>replaceText</summary>
 
 ---
