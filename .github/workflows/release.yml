@@ -15,10 +15,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: NPM Config
+        run: git config user.email "explosionscratch@gmail.com"
+      - name: More config
+        run: git config user.name "Explosion-Scratch"
       - name: NPM version
         run: npm version ${{ github.event.inputs.version }} --allow-same-version
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
