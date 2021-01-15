@@ -1262,6 +1262,12 @@ let _temp = {
     functions.reduceRight((arg, fn) => fn(arg), args),
   curryFunction: (fn, arity = fn.length, ...args) =>
     arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args),
+  mobileOrDesktop: () =>
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      ? 'mobile'
+      : 'desktop',
+  removeTags: (html) => html.replace(/<[^>]*>/g, ''),
+  getJSON: (url, callback) => { if (documentExists) { throw new Error("No document element! (You are probably using Node.js)") }; fetch(url).then((res) => res.json()).then((json) => callback(json)) }
 }
 _temp = _temp.sortObj(_temp)
 let desc = {
