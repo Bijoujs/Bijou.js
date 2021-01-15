@@ -1,3 +1,4 @@
+name: Create Release
 on: 
   workflow_dispatch:
     inputs:
@@ -5,8 +6,6 @@ on:
         description: 'Version'     
         required: true
         default: 'v'
-
-name: Create Release
 
 jobs:
   build:
