@@ -32,7 +32,18 @@ this.)</small></p>
 <h1 id="howtousebijoujs">How to use Bijou.js</h1>
 <p>Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:</p>
 <h2 id="importit">Import it:</h2>
-<pre><code class="html language-html">&lt;script src="https://cdn.jsdelivr.net/gh/explosion-scratch/Bijou.js@latest/Bijou.min.js"&gt;&lt;/script&gt;
+<pre><code class="html language-html">&lt;!-- Any of these (Don't do all of them lol) --&gt;
+
+&lt;!-- jsDelivr --&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"&gt;&lt;/script&gt;
+
+&lt;!-- UNPKG --&gt;
+&lt;script src="https://unpkg.com/bijou.js@latest/bijou.js"&gt;&lt;/script&gt;
+
+&lt;!-- Or minified: --&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou-min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-js"&gt;&lt;/script&gt;
 </code></pre>
 <p>Also, did you know there's Bijou.css? It's also useful! It's all the stuff I
 use:</p>
@@ -43,8 +54,19 @@ use:</p>
 </code></pre>
 <p>it pretty much just uses classes.</p>
 <h2 id="basicusage">Basic usage:</h2>
+<h3 id="importit-1">Import it</h3>
+<p>Browser:</p>
+<pre><code class="js language-js">// You can use any of these to reference bijou:
+// _ , _$ , explosion
+// Or name it something different:
+const this_is_bijou = _$;
+</code></pre>
+<p>NodeJS:</p>
+<pre><code class="js language-js">const _$ = require("bijou.js");//You can use any name
+console.log(_$.primesTo(300));//Logs all primes to 100
+</code></pre>
 <p>To use Bijou.js simply call one of the many functions built into it!</p>
-<pre><code class="js language-js">_$.anyFunction()
+<pre><code class="js language-js">_$.anyFunction();//If you're using node you can name bijou anything.
 </code></pre>
 <p>Such as this one!</p>
 <pre><code class="js language-js">_$.uuid() //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
