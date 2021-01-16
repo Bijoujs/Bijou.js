@@ -1,4 +1,4 @@
-name: Create Release
+name: Release on push
 on: 
   push
 
@@ -6,6 +6,7 @@ jobs:
   get-version:
     name: Get package version
     runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'Actions: release version v')"
     steps:
     - name: get-npm-version
       id: package-version
