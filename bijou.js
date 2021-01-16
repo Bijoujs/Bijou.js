@@ -6,7 +6,7 @@
 //  |____/___\___/ \___/ \___(_)/ |___/
 //                            |__/     
 // --------------------------------------------------
-// Bijou.js 
+// Bijou.js is copy
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
   isNode = true;
