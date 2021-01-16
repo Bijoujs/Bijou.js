@@ -9,7 +9,7 @@
 [![](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/bijou.js/badge?style=rounded)](https://www.jsdelivr.com/package/gh/explosion-scratch/bijou.js)
 [![Bijou.js GitHub issues](https://img.shields.io/github/issues/explosion-scratch/bijou.js?style=rounded)](https://github.com/explosion-scratch/bijou.js/issues)
 [![Bijou.js GitHub stars](https://img.shields.io/github/stars/explosion-scratch/Bijou.js?style=rounded)](https://github.com/explosion-scratch/bijou.js/stargazers)
-[![JS.ORG](https://img.shields.io/badge/js.org-for%20domain-FFE70B.svg?style=rounded)](http://js.org)
+[![JS.ORG](https://img.shields.io/badge/js.org-for%20domain-FFE70B.svg?style=rounded)](http://bijou.js.org)
 
 Congrats! You discovered Bijou.js! Read more below!
 
