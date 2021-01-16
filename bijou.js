@@ -1,16 +1,16 @@
-// /* -------------------------------------------------- */
-// //   ____ ___    _  ___  _   _   _     
-// //  | __ )_ _|  | |/ _ \| | | | (_)___ 
-// //  |  _ \| |_  | | | | | | | | | / __|
-// //  | |_) | | |_| | |_| | |_| | | \__ \
-// //  |____/___\___/ \___/ \___(_)/ |___/
-// //                            |__/     
-// // --------------------------------------------------
-// // Bijou.js is copyrighted by Explosion-Scratch of GitHub and released under the MIT license.
-// // This software comes with ABSOLUTELY NO WARRANTY and with the best intentions of Explosion-Scratch and contributors.
-// // 
-// // (c) 2021
-// //
+/* -------------------------------------------------- */
+  ____ ___    _  ___  _   _   _     
+ | __ )_ _|  | |/ _ \| | | | (_)___ 
+ |  _ \| |_  | | | | | | | | | / __|
+ | |_) | | |_| | |_| | |_| | | \__ \
+ |____/___\___/ \___/ \___(_)/ |___/
+                           |__/     
+--------------------------------------------------
+Bijou.js is copyrighted by Explosion-Scratch of GitHub and released under the MIT license.
+This software comes with ABSOLUTELY NO WARRANTY and with the best intentions of Explosion-Scratch and contributors.
+
+(c) 2021
+
 
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
