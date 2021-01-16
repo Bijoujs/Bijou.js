@@ -14,8 +14,8 @@ if (isNode) {
 let _temp = {
   primesTo: (num) => {
     let arr = Array.from({
-        length: num - 1,
-      }).map((x, i) => i + 2),
+      length: num - 1,
+    }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -143,7 +143,7 @@ let _temp = {
         return p.toString() === "[object SafariRemoteNotification]";
       })(
         !window["safari"] ||
-          (typeof safari !== "undefined" && window["safari"].pushNotification)
+        (typeof safari !== "undefined" && window["safari"].pushNotification)
       );
     var isIE = /*@cc_on!@*/ false || !!document.documentMode;
     var isEdge = !isIE && !!window.StyleMedia;
@@ -217,7 +217,7 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-              !obj[key] ? "" : obj[key]
+            !obj[key] ? "" : obj[key]
             }"`,
           ""
         )
@@ -242,7 +242,7 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-      ? Object.keys(obj).reduce((acc, current) => {
+        ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current);
           const val = obj[current];
           acc[key] =
@@ -251,7 +251,7 @@ let _temp = {
               : val;
           return acc;
         }, {})
-      : obj,
+        : obj,
   arrayToCSV: (arr, delimiter = ",") =>
     arr
       .map((v) =>
@@ -360,14 +360,14 @@ let _temp = {
   replaceText: (el, callback) => {
     for (
       var e,
-        t = (function () {
-          for (var e, t = el, o = [], a = 0; a < t.length; a++)
-            (e = t[a].childNodes[0]),
-              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-          return o;
-        })(),
-        o = 0,
-        a = t.length;
+      t = (function () {
+        for (var e, t = el, o = [], a = 0; a < t.length; a++)
+          (e = t[a].childNodes[0]),
+            t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
+        return o;
+      })(),
+      o = 0,
+      a = t.length;
       o < a;
       o++
     )
@@ -1204,26 +1204,26 @@ let _temp = {
     }
     function getNumPos(txt, func) {
       var arr = [
-          "<br>",
-          " ",
-          ";",
-          "(",
-          "+",
-          ")",
-          "[",
-          "]",
-          ",",
-          "&",
-          ":",
-          "{",
-          "}",
-          "/",
-          "-",
-          "*",
-          "|",
-          "%",
-          "=",
-        ],
+        "<br>",
+        " ",
+        ";",
+        "(",
+        "+",
+        ")",
+        "[",
+        "]",
+        ",",
+        "&",
+        ":",
+        "{",
+        "}",
+        "/",
+        "-",
+        "*",
+        "|",
+        "%",
+        "=",
+      ],
         i,
         j,
         c,
@@ -1289,37 +1289,58 @@ let _temp = {
   },
   drag: (el) => {
     var initX, initY, mousePressX, mousePressY;
-    el.addEventListener(
-      "mousedown",
-      function (event) {
-        var style = window.getComputedStyle(el);
-        el.style.top = style.getPropertyValue("top");
-        el.style.left = style.getPropertyValue("left");
-        el.style.right = style.getPropertyValue("right");
-        el.style.bottom = style.getPropertyValue("bottom");
-        this.style.position = "absolute";
-        initX = this.offsetLeft;
-        initY = this.offsetTop;
-        mousePressX = event.clientX;
-        mousePressY = event.clientY;
-        this.addEventListener("mousemove", repositionElement, false);
+    el.addEventListener('mousedown', function (event) {
+      var style = window.getComputedStyle(el);
+      el.style.top = style.getPropertyValue('top');
+      el.style.left = style.getPropertyValue('left');
+      el.style.right = style.getPropertyValue('right');
+      el.style.bottom = style.getPropertyValue('bottom');
+      this.style.position = 'absolute';
+      initX = this.offsetLeft;
+      initY = this.offsetTop;
+      mousePressX = event.clientX;
+      mousePressY = event.clientY;
+      this.addEventListener('mousemove', repositionElement, false);
 
-        window.addEventListener(
-          "mouseup",
-          function () {
-            el.removeEventListener("mousemove", repositionElement, false);
-          },
-          false
-        );
-      },
-      false
-    );
+      window.addEventListener('mouseup', function () {
+        el.removeEventListener('mousemove', repositionElement, false);
+      }, false);
+
+    }, false);
 
     function repositionElement(event) {
-      this.style.left = initX + event.clientX - mousePressX + "px";
-      this.style.top = initY + event.clientY - mousePressY + "px";
+      this.style.left = initX + event.clientX - mousePressX + 'px';
+      this.style.top = initY + event.clientY - mousePressY + 'px';
     }
   },
+  ease = {
+    // no easing, no acceleration
+    linear: t => t,
+    // accelerating from zero velocity
+    easeInQuad: t => t * t,
+    // decelerating to zero velocity
+    easeOutQuad: t => t * (2 - t),
+    // acceleration until halfway, then deceleration
+    easeInOutQuad: t => t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
+    // accelerating from zero velocity 
+    easeInCubic: t => t * t * t,
+    // decelerating to zero velocity 
+    easeOutCubic: t => (--t) * t * t + 1,
+    // acceleration until halfway, then deceleration 
+    easeInOutCubic: t => t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
+    // accelerating from zero velocity 
+    easeInQuart: t => t * t * t * t,
+    // decelerating to zero velocity 
+    easeOutQuart: t => 1 - (--t) * t * t * t,
+    // acceleration until halfway, then deceleration
+    easeInOutQuart: t => t < .5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t,
+    // accelerating from zero velocity
+    easeInQuint: t => t * t * t * t * t,
+    // decelerating to zero velocity
+    easeOutQuint: t => 1 + (--t) * t * t * t * t,
+    // acceleration until halfway, then deceleration 
+    easeInOutQuint: t => t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t
+  }
 };
 _temp = _temp.sortObj(_temp);
 let desc = {
@@ -1411,6 +1432,7 @@ let desc = {
     "Takes a string as an input and returns the camelCased version of it.",
   scrambleString: "Scrambles a string's characters and returns the output.",
   drag: "Allows the element provided to be dragged. (Drag and drop.)",
+  ease: "The only non-function in Bijou.js. This has a variety of easing functions, all of which take a number between 0 and 1, and return a corresponding value for the easing function. For example this code: \n\n\t_$.ease.easeInOutQuad(.3);\n\nWould return "
 };
 _temp.info = (prop) => {
   return desc[prop];
