@@ -1269,7 +1269,7 @@ let _temp = {
       ? "mobile"
       : "desktop",
   removeTags: (html) => html.replace(/<[^>]*>/g, ""),
-  function camelize(str) {
+  camelize: (str) {
     return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
       return index === 0 ? word.toLowerCase() : word.toUpperCase();
     }).replace(/\s+/g, '');
