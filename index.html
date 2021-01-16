@@ -375,7 +375,7 @@
       let random = _$.random(30, 150);
       blob.style.width = `${random}px`;
       blob.style.height = `${random}px`;
-      let randomtime = _$.random(1000, 2000);
+      let randomTime = _$.random(1000, 2000);
       setInterval(() => {
         blob.style.opacity = 1;
         let random = _$.random(30, 100);
@@ -383,8 +383,8 @@
         blob.style.height = `${random}px`;
         blob.style.top = `${_$.random(mouse.y - 150, mouse.y + 150)}px`;
         blob.style.left = `${_$.random(mouse.x - 150, mouse.x + 150)}px`;
-        blob.style.transitionDuration = randomtime + "ms";
-      }, randomtime);
+        blob.style.transitionDuration = randomTime + "ms";
+      }, randomTime);
     });
   }
   function generateHTMLfromDocs() {
