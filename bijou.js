@@ -1361,7 +1361,7 @@ let desc = {
   removeTags: "Returns an html string stripped of tags.",
   desktopOrMobile:
     "Returns whether the user is using a desktop or mobile device. (Uses user-agent sniffing which can be spoofed)",
-  camelCase: "Takes a string as an"
+  camelCase: "Takes a string as an input and returns the "
 };
 _temp.info = (prop) => {
   return desc[prop];
