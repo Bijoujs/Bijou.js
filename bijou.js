@@ -10,6 +10,7 @@
 // This software comes with ABSOLUTELY NO WARRANTY and with the best intentions of Explosion-Scratch and contributors.
 // 
 // (c) 2020
+
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
   isNode = true;
