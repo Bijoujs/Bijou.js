@@ -1343,6 +1343,7 @@ let _temp = {
   }
 };
 _temp = _temp.sortObj(_temp);
+// Descriptions:
 let desc = {
   addStyles:
     "Add the styles in an object to a specified element:\n\n \t_$.addStyles(element, {background: 'red'});\n\n(Changes the background color of the element to red!)",
