@@ -5,5 +5,9 @@ jobs:
     if: "contains(github.event.head_commit.message, 'test-actions')"
     runs-on: ubuntu-latest
     steps:
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
       - run: echo "Running!!!"
+      - run: echo "${{ steps.package-version.outputs.current-version}}"
       - run: echo "${{ github.event.head_commit.message }}"
