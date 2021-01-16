@@ -15,7 +15,8 @@ This software comes with ABSOLUTELY NO WARRANTY and with the best intentions of 
  | |  | | | |  \| | | | | |_) || ||  _ \| | | | | || | | | |_) \___ \
  | |__| |_| | |\  | | | |  _ < | || |_) | |_| | | || |_| |  _ < ___) |
   \____\___/|_| \_| |_| |_| \_\___|____/ \___/  |_| \___/|_| \_\____/
--
+-------------------------------------------------
+Contri
 
 (c) 2021 Explosion-Scratch, all rights reserved.
 
