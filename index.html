@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Import stuff -->
+  <!-- Import stuff -->
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta name="theme-color" content="#00a8a8" />
-  <!-- Import bijou.js -->
-  <script src="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou-min.js"></script>
-  <!-- Import showdown -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"
-    integrity="sha512-L03kznCrNOfVxOUovR6ESfCz9Gfny7gihUX/huVbQB9zjODtYpxaVtIaAkpetoiyV2eqWbvxMH9fiSv5enX7bw=="
-    crossorigin="anonymous"></script>
-  <!-- Import iconify (For buttons) -->
-  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-  <title>Bijou.js</title>
-</head>
-<!-- Use JS to load -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="theme-color" content="#00a8a8" />
+    <!-- Import bijou.js -->
+    <script src="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou-min.js"></script>
+    <!-- Import showdown -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"
+      integrity="sha512-L03kznCrNOfVxOUovR6ESfCz9Gfny7gihUX/huVbQB9zjODtYpxaVtIaAkpetoiyV2eqWbvxMH9fiSv5enX7bw=="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Import iconify (For buttons) -->
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <title>Bijou.js</title>
+  </head>
+  <!-- Use JS to load -->
 
-<body style="visibility: hidden" onload="js_Load()">
-  <!-- Top section -->
-  <section>
-    <p>
-      <span id="header">Bijou</span><span id="small-text"><i><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> Small and
-          elegant</i></span>
-    </p>
-    <!-- Buttons (Using iconify)-->
-    <div class="btn">
-      <a class="btn" href="https://github.com/explosion-scratch/Bijou.js"><span class="iconify"
-          data-icon="icomoon-free:github"></span></a><a href="mailto:explosionscratch@gmail.com" class="btn"><span
-          class="iconify" data-icon="eva:email-outline"></span></a>
-    </div>
-  </section>
-  <!-- Scroll down arrow -->
-  <button onclick='document.querySelector("#readme h1").scrollIntoView();' id='scroll-down-button'><span class="iconify"
-      data-icon="fluent:caret-down-20-filled" id="scroll-down-arrow"></span></button>
-  <!-- Readme (Filled in with JS fetch) -->
-  <section id="readme"></section>
-</body>
-
+  <body style="visibility: hidden" onload="js_Load()">
+    <!-- Top section -->
+    <section>
+      <p>
+        <span id="header">Bijou</span
+        ><span id="small-text"
+          ><i><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> Small and elegant</i></span
+        >
+      </p>
+      <!-- Buttons (Using iconify)-->
+      <div class="btn">
+        <a class="btn" href="https://github.com/explosion-scratch/Bijou.js"
+          ><span class="iconify" data-icon="icomoon-free:github"></span></a
+        ><a href="mailto:explosionscratch@gmail.com" class="btn"
+          ><span class="iconify" data-icon="eva:email-outline"></span
+        ></a>
+      </div>
+    </section>
+    <!-- Scroll down arrow -->
+    <button
+      onclick='document.querySelector("#readme h1").scrollIntoView();'
+      id="scroll-down-button"
+    >
+      <span
+        class="iconify"
+        data-icon="fluent:caret-down-20-filled"
+        id="scroll-down-arrow"
+      ></span>
+    </button>
+    <!-- Readme (Filled in with JS fetch) -->
+    <section id="readme"></section>
+  </body>
 </html>
 <style>
   /* Import Titillium Web (One of my favorite fonts) */
@@ -108,10 +121,12 @@
     height: 2px;
     border: none;
     outline: none;
-    background: linear-gradient(to right,
-        transparent,
-        lightseagreen,
-        transparent);
+    background: linear-gradient(
+      to right,
+      transparent,
+      lightseagreen,
+      transparent
+    );
   }
 
   /* Top banner section header  */
@@ -234,7 +249,7 @@
 
   /* Scroll down arrow */
   #scroll-down-button {
-    transition: opacity .3s ease;
+    transition: opacity 0.3s ease;
     position: absolute;
     bottom: 20px;
     left: 50%;
@@ -284,7 +299,7 @@
     animation: none;
   }
 
-  #scroll-down-arrow>a {
+  #scroll-down-arrow > a {
     color: white;
   }
 </style>

@@ -260,6 +260,7 @@ Returns the day of the week from a Date object.</details>
 ---
 
 Returns either "desktop" or "mobile", depending on what device the user is using. (It uses user-agent sniffing though, meaning that it can be spoofed.)
+
 </details>
 <details>
 <summary>drag</summary>
@@ -267,6 +268,7 @@ Returns either "desktop" or "mobile", depending on what device the user is using
 ---
 
 Allows the element provided to be dragged. (Drag and drop.)
+
 ```js
 _$.drag(document.querySelector("div"));
 ```
