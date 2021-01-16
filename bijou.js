@@ -21,7 +21,7 @@ Contributors to Bijou.js:
   - GrahamSH-LLK
   - Touchcreator
   - TheColaber
-  - D
+  - dn_scrtch
 
 (c) 2021 Explosion-Scratch, all rights reserved.
 
