@@ -1,4 +1,5 @@
 npm i -g showdown terser prettier figlet-cli
+
 function commit {
   COMMIT=$(git status --porcelain)
   if [[ ${#COMMIT} -ge 1 ]] ; then
