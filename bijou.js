@@ -7,7 +7,7 @@ if (typeof window === "undefined") {
 }
 if (isNode) {
   console.warn(
-    "There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsdom to recreate the document element."
+    "There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element."
   );
 
 let _temp = {
