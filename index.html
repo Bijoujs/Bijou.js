@@ -19,7 +19,7 @@
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <title>Bijou.js</title>
   </head>
-<!-- Use JS to load -->
+  <!-- Use JS to load -->
   <body style="visibility: hidden" onload="js_Load()">
     <!-- Top section -->
     <section>
@@ -101,12 +101,12 @@
     backdrop-filter: blur(10px);
     max-width: 600px;
   }
-/* README styling */
+  /* README styling */
   p * {
     text-align: center;
     display: block;
   }
-/* Gradient <hr>'s */
+  /* Gradient <hr>'s */
   hr {
     display: block;
     width: 100%;
@@ -120,28 +120,28 @@
       transparent
     );
   }
-/* Top banner section header  */
+  /* Top banner section header  */
   p span#header {
     font-weight: 900;
     font-size: 20vmin;
     color: white;
     filter: url(#turbulence);
   }
-/* Small text subtitle */
+  /* Small text subtitle */
   #small-text i {
     font-size: 15px;
   }
-/* Pronunciation */
+  /* Pronunciation */
   #small-text i span {
     font-style: none;
     font-size: 14px;
   }
-
+  /* Paragraphs which are not headers (For the readme) */
   p span:not(#header) {
     font-size: 5vmin;
     color: white;
   }
-
+  /* Details tags */
   details {
     width: 100%;
     display: block;
@@ -156,7 +156,7 @@
     font-size: 4vmin;
     font-weight: 500;
   }
-
+  /* Blobs (Most of the movement is done with JS) */
   .blob {
     will-change: height, width, top, left;
     transition: all 3s ease;
@@ -164,7 +164,7 @@
     border-radius: 50%;
     position: fixed;
   }
-
+  /* The container for the blobs */
   .blobs {
     top: 0;
     left: 0;
@@ -172,7 +172,7 @@
     position: fixed;
     z-index: -100;
   }
-
+  /* The first section */
   section:first-of-type {
     backdrop-filter: none;
     background: transparent;
@@ -208,16 +208,16 @@
     background: #fff3;
     max-width: 100%;
   }
-
+  /* Inline code */
   pre * {
     font-family: monospace;
   }
-
+  /* Hide the open sandbox button */
   iframe {
     visibility: hidden !important;
     display: none !important;
   }
-
+  /* Hide the extra <br>'s that showdown puts in */
   section br {
     display: none;
   }
@@ -225,7 +225,7 @@
   .iconify {
     font-size: 30px;
   }
-
+  /* Scroll down arrow */
   #scroll-down-arrow {
     position: absolute;
     bottom: 20px;
@@ -236,7 +236,6 @@
     animation: pulse 1s ease infinite;
     color: white;
   }
-
   #scroll-down-arrow.hidden {
     opacity: 0;
   }
