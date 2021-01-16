@@ -5,9 +5,14 @@ jobs:
     if: "contains(github.event.head_commit.message, 'test-actions')"
     runs-on: ubuntu-latest
     steps:
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@master
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+      - name: Print version
+        run: echo ${{ steps.extract_version.outputs.version }}
       - run: echo "Running!!!"
-      - run: echo "${{ steps.package-version.outputs.current-version}}"
-      - run: echo "${{ github.event.head_commit.message }}"
+      - run: echo ${{ steps.extract_version.outputs.version }}
+      - run: echo ${{ github.event.head_commit.message }}
