@@ -1369,7 +1369,6 @@ function _generateHTMLfromDocs() {
 const _$ = _temp;
 const _ = _temp;
 const explosion = _temp;
-// Only export on node
 if (isNode) {
   module.exports = _temp;
 }
