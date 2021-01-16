@@ -1,7 +1,40 @@
+name: Create Release
+on: 
+  push
+
 jobs:
-  main:
-    name: Build and test
+  get-version:
+    name: Get package version
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, 'Release v')"
     steps:
-      
+    - name: get-npm-version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@master
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'Actions: release version v')"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: NPM Config
+        run: git config user.email "explosionscratch@gmail.com"
+      - name: More config
+        run: git config user.name "Explosion-Scratch"
+      - name: NPM version
+        run: npm version ${{ steps.package-version.outputs.current-version}} --allow-same-version
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+         commit_message: Applying automated CI items
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.package-version.outputs.current-version}}
+          release_name: Release ${{ steps.package-version.outputs.current-version}}
+          body: |
+            Automated release of version ${{ steps.package-version.outputs.current-version}}
+          draft: false
+          prerelease: false
