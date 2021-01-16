@@ -1,5 +1,5 @@
 /* -------------------------------------------------- */
-  ____ ___    _  ___  _   _   _     
+/*   ____ ___    _  ___  _   _   _     
  | __ )_ _|  | |/ _ \| | | | (_)___ 
  |  _ \| |_  | | | | | | | | | / __|
  | |_) | | |_| | |_| | |_| | | \__ \
@@ -10,7 +10,7 @@ Bijou.js is copyrighted by Explosion-Scratch of GitHub and released under the MI
 This software comes with ABSOLUTELY NO WARRANTY and with the best intentions of Explosion-Scratch and contributors.
 
 (c) 2021
-
+ */
 
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
