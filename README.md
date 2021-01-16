@@ -300,6 +300,7 @@ For reference here is the description of each function along with the equations 
 ```js
 let ease = {
   // ----------------------------------------------------------------
+  // Easing
   // no easing, no acceleration
   linear: t => t,
   // accelerating from zero velocity
