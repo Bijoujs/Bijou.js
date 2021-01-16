@@ -6,7 +6,7 @@
 //  |____/___\___/ \___/ \___(_)/ |___/
 //                            |__/     
 // --------------------------------------------------
-// Bijou.js is copyrighte
+// Bijou.js is copyrighted by Explosion-Scratch 
 // (c) 2020
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
