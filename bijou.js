@@ -1,6 +1,6 @@
 // Test
 let isNode = false;
-if (typeof window === "undefined") {
+if (typeof window === "undefined" || top) {
   isNode = true;
 } else {
   isNode = false;
