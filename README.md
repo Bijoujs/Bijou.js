@@ -189,14 +189,17 @@ _$.averageBy([1, 2, 3, 4], (val) => val / 2); //Returns the average of each elem
 
 Returns the current browser without sniffing the user-agent string. e.g.
 'Chrome'</details>
+
 <details><summary>camelCase</summary>
 
 ---
 
 Takes a string as an input and returns the camelCased version of it.
+
 ```js
-_$.camelCase("Hello world");//Returns "helloWorld"
+_$.camelCase("Hello world"); //Returns "helloWorld"
 ```
+
 </details>
 <details><summary>compStyle</summary>
 
@@ -234,7 +237,7 @@ _$.copy("Hello world");
 Returns a DOM element who's outerHTML is the string provided:
 
 ```js
-_$.createElement('<div id=`fun`>Hello</div>');//Returns a DOM element whose id is 'fun' and whose innerText is 'Hello'
+_$.createElement("<div id=`fun`>Hello</div>"); //Returns a DOM element whose id is 'fun' and whose innerText is 'Hello'
 ```
 
 </details>

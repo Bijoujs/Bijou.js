@@ -15,8 +15,8 @@ if (isNode) {
 let _temp = {
   primesTo: (num) => {
     let arr = Array.from({
-      length: num - 1,
-    }).map((x, i) => i + 2),
+        length: num - 1,
+      }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -144,7 +144,7 @@ let _temp = {
         return p.toString() === "[object SafariRemoteNotification]";
       })(
         !window["safari"] ||
-        (typeof safari !== "undefined" && window["safari"].pushNotification)
+          (typeof safari !== "undefined" && window["safari"].pushNotification)
       );
     var isIE = /*@cc_on!@*/ false || !!document.documentMode;
     var isEdge = !isIE && !!window.StyleMedia;
@@ -218,7 +218,7 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-            !obj[key] ? "" : obj[key]
+              !obj[key] ? "" : obj[key]
             }"`,
           ""
         )
@@ -243,7 +243,7 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-        ? Object.keys(obj).reduce((acc, current) => {
+      ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current);
           const val = obj[current];
           acc[key] =
@@ -252,7 +252,7 @@ let _temp = {
               : val;
           return acc;
         }, {})
-        : obj,
+      : obj,
   arrayToCSV: (arr, delimiter = ",") =>
     arr
       .map((v) =>
@@ -361,14 +361,14 @@ let _temp = {
   replaceText: (el, callback) => {
     for (
       var e,
-      t = (function () {
-        for (var e, t = el, o = [], a = 0; a < t.length; a++)
-          (e = t[a].childNodes[0]),
-            t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-        return o;
-      })(),
-      o = 0,
-      a = t.length;
+        t = (function () {
+          for (var e, t = el, o = [], a = 0; a < t.length; a++)
+            (e = t[a].childNodes[0]),
+              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
+          return o;
+        })(),
+        o = 0,
+        a = t.length;
       o < a;
       o++
     )
@@ -1205,26 +1205,26 @@ let _temp = {
     }
     function getNumPos(txt, func) {
       var arr = [
-        "<br>",
-        " ",
-        ";",
-        "(",
-        "+",
-        ")",
-        "[",
-        "]",
-        ",",
-        "&",
-        ":",
-        "{",
-        "}",
-        "/",
-        "-",
-        "*",
-        "|",
-        "%",
-        "=",
-      ],
+          "<br>",
+          " ",
+          ";",
+          "(",
+          "+",
+          ")",
+          "[",
+          "]",
+          ",",
+          "&",
+          ":",
+          "{",
+          "}",
+          "/",
+          "-",
+          "*",
+          "|",
+          "%",
+          "=",
+        ],
         i,
         j,
         c,
@@ -1270,10 +1270,12 @@ let _temp = {
       : "desktop",
   removeTags: (html) => html.replace(/<[^>]*>/g, ""),
   camelCase: (str) => {
-    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-      return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    }).replace(/\s+/g, '');
-  }
+    return str
+      .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+        return index === 0 ? word.toLowerCase() : word.toUpperCase();
+      })
+      .replace(/\s+/g, "");
+  },
 };
 _temp = _temp.sortObj(_temp);
 let desc = {
@@ -1361,7 +1363,8 @@ let desc = {
   removeTags: "Returns an html string stripped of tags.",
   desktopOrMobile:
     "Returns whether the user is using a desktop or mobile device. (Uses user-agent sniffing which can be spoofed)",
-  camelCase: "Takes a string as an input and returns the camelCased version of it."
+  camelCase:
+    "Takes a string as an input and returns the camelCased version of it.",
 };
 _temp.info = (prop) => {
   return desc[prop];
