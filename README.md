@@ -325,6 +325,7 @@ ease: {
   easeOutQuint: t => 1+(--t)*t*t*t*t,
   // acceleration until halfway, then deceleration 
   easeInOutQuint: t => t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t
+}
 ```
 </details>
 <details><summary>escapeHTML</summary>
