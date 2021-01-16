@@ -6,11 +6,15 @@
 
 <b><h1 align="center">Welcome to Bijou.js!</h1></b>
 
-[![](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/bijou.js/badge?style=for-the-badge)](https://www.jsdelivr.com/package/gh/explosion-scratch/bijou.js)
+[![](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/bijou.js/badge?style=for-the-badge&color=%230bb)](https://www.jsdelivr.com/package/gh/explosion-scratch/bijou.js)
 [![GitHub forks](https://img.shields.io/github/forks/explosion-scratch/bijou.js?color=%230bb&label=Forks&style=for-the-badge)](https://github.com/explosion-scratch/bijou.js/network)
 [![GitHub issues](https://img.shields.io/github/issues/explosion-scratch/bijou.js?color=%230bb&style=for-the-badge)](https://github.com/explosion-scratch/bijou.js/issues)
 [![GitHub stars](https://img.shields.io/github/stars/explosion-scratch/bijou.js?color=%230bb&style=for-the-badge)](https://github.com/explosion-scratch/bijou.js/stargazers)
-[![JS.ORG](https://img.shields.io/badge/js.org-for%20domain-FFE70B.svg?style=rounded)](http://bijou.js.org)
+![GitHub search hit counter](https://img.shields.io/github/search/explosion-scratch/bijou.js/bijou?color=%230bb&label=Bijou.js%20search%20results&style=for-the-badge)
+[![JS.ORG](https://img.shields.io/badge/js.org-for%20domain-FFE70B.svg?style=for-the-badge)](http://bijou.js.org)
+![GitHub language count](https://img.shields.io/github/languages/count/explosion-scratch/bijou.js?color=%230bb&style=for-the-badge)
+![GitHub top language](https://img.shields.io/github/languages/top/explosion-scratch/bijou.js?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/explosion-scratch/bijou.js?color=%23&style=for-the-badge)
 
 Congrats! You discovered Bijou.js! Read more below!
 
