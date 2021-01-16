@@ -23,6 +23,7 @@ Contributors to Bijou.js:
   - TheColaber
   - dn-scrtch
   - D1WK
+  -
 
 (c) 2021 Explosion-Scratch, all rights reserved.
 
