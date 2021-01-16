@@ -302,7 +302,7 @@ let ease = {
   // ----------------------------------------------------------------
   // Easing function descriptions
   // ----------------------------------------------------------------
-  // To use each do _$.ease.linear([NUMBER BETWEEN 0])
+  // To use each do _$.ease.linear([NUMBER BETWEEN 0 and 1 HERE])
   // no easing, no acceleration
   linear: t => t,
   // accelerating from zero velocity
