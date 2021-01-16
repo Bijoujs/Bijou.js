@@ -264,8 +264,9 @@ Returns either "desktop" or "mobile", depending on what device the user is using
 <details>
 <summary>drag</summary>
 
-----
+---
 
+Allows the element provided to be dragged. (Drag and drop.).
 </details>
 <details><summary>each</summary>
 
