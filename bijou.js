@@ -6,7 +6,7 @@
 //  |____/___\___/ \___/ \___(_)/ |___/
 //                            |__/     
 // --------------------------------------------------
-// Bijou.js is copyright
+// Bijou.js is copyri
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
   isNode = true;
