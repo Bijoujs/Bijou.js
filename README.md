@@ -302,7 +302,7 @@ let ease = {
   // ----------------------------------------------------------------
   // Easing function descriptions
   // ----------------------------------------------------------------
-  // t
+  // To use each do 
   // no easing, no acceleration
   linear: t => t,
   // accelerating from zero velocity
