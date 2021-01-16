@@ -477,15 +477,18 @@ _$.replaceText(document, (oldText) => oldText.replace(" ", "-")); //Replace all 
 ---
 
 Returns the hex code of a given RGB string.</details>
+
 <details>
 <summary>scrambleString</summary>
 
 ---
 
 Scrambles the characters in a string:
+
 ```js
-_$.scrambleString("Hello world");//Returns "llo rweHldo"
+_$.scrambleString("Hello world"); //Returns "llo rweHldo"
 ```
+
 </details>
 <details><summary>seedRandom</summary>
 
