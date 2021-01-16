@@ -1432,7 +1432,7 @@ let desc = {
     "Takes a string as an input and returns the camelCased version of it.",
   scrambleString: "Scrambles a string's characters and returns the output.",
   drag: "Allows the element provided to be dragged. (Drag and drop.)",
-  ease: "The only non-function in Bijou.js. This has a variety of easing functions, all of which take a number between 0 and 1, and return a corresponding value for the easing function. For example this code: \n\n\t_$.ease.easeInOutQuad(.3);\n\nWould return the eased value for "
+  ease: "The only non-function in Bijou.js. This has a variety of easing functions, all of which take a number between 0 and 1, and return a corresponding value for the easing function. For example this code: \n\n\t_$.ease.easeInOutQuad(.3);\n\nWould return the eased value for a point about a third of the way through the animaion."
 };
 _temp.info = (prop) => {
   return desc[prop];
