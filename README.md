@@ -268,7 +268,7 @@ Returns either "desktop" or "mobile", depending on what device the user is using
 
 Allows the element provided to be dragged. (Drag and drop.)
 ```js
-_$.drag(document.querySelectot)
+_$.drag(document.querySelector("div"))
 </details>
 <details><summary>each</summary>
 
