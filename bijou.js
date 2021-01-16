@@ -1314,7 +1314,7 @@ function repositionElement(event) {
   this.style.top = initY + event.clientY - mousePressY + 'px';
 }
 
-}
+
 };
 _temp = _temp.sortObj(_temp);
 let desc = {
