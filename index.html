@@ -322,7 +322,11 @@
     };
   };
   window.onscroll = (e) => {
-    document.getElementById("scroll-down-button").classList.add("hidden");
+	  if (window.scrollY != 0) {
+    		document.getElementById("scroll-down-button").classList.add("hidden");
+	  } else {
+		  document.getElementById("scroll-down-button").classList.remove("hidden");
+	  }
   };
   function init() {
     fetch("README.html")
