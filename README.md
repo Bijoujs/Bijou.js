@@ -286,7 +286,11 @@ _$.each([1, 2, 3], (num) => alert(num * 3)); //Alerts each number in the array t
 
 </details>
 <details>
-<summary>each</summary>
+<summary>ease</summary>
+
+---
+
+
 </details>
 <details><summary>escapeHTML</summary>
 
