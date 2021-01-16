@@ -199,14 +199,15 @@
 
   pre {
     font-family: monospace;
-    white-space: nowrap;
+    white-space: pre;
     padding: 8px;
     margin: 10px;
     overflow: scroll;
     display: block;
     border-radius: 4px;
     background: #fff3;
-    max-width: 100%;
+    width: 100%;
+    height: fit-content;
   }
   /* Inline code */
   pre * {
@@ -289,6 +290,7 @@
         html = _$.parseHTML(text);
         html.querySelector("img").remove();
         _$.each(html.querySelectorAll("br"), (br) => br.remove());
+        _$.each(html.querySelectorAll("img"), (br) => br.remove());
         document.getElementById("readme").innerHTML =
           html.documentElement.innerHTML;
       });
