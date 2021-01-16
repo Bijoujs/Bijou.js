@@ -298,7 +298,8 @@ Would return the eased value for a point about a third of the way through the an
 
 For reference here is the description of each function along with the equations for each of them:
 ```js
-let ease=  {
+let ease = {
+  // E
   // no easing, no acceleration
   linear: t => t,
   // accelerating from zero velocity
