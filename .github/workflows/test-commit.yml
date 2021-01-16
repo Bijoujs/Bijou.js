@@ -4,5 +4,5 @@ jobs:
     if: "contains(github.event.head_commit.message, 'test-actions')"
     runs-on: ubuntu-latest
     steps:
-      echo "Running!!!"
-      echo "${{ github.event.head_commit.message }}"
+      - run: echo "Running!!!"
+      - run: echo "${{ github.event.head_commit.message }}"
