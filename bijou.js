@@ -12,7 +12,7 @@ This software comes with ABSOLUTELY NO WARRANTY and with the best intentions of 
 -------------------------------------------------
 
 
-(c) 2021 Explosion-Scratch, a
+(c) 2021 Explosion-Scratch, all rights reserved.
 
  */
 
