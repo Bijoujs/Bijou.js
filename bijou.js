@@ -1,11 +1,11 @@
 // Test
-let documentExists = false;
+let isNode = false;
 if (typeof window === "undefined") {
-  documentExists = true;
+  isNode = true;
 } else {
-  documentExists = false;
+  isNode = false;
 }
-if (!documentExists) {
+if (!isNode) {
   document.head.innerHTML +=
     '<script src="https://cdnjs.cloudflare.com/ajax/libs/js-polyfills/0.1.43/polyfill.min.js" integrity="sha512-lvWiOP+aMKHllm4THsjzNleVuGOh0WGniJ3lgu/nvCbex1LlaQSxySUjAu/LTJw9FhnSL/PVYoQcckg1Q03+fQ==" crossorigin="anonymous"></script>';
 } else {
@@ -67,7 +67,7 @@ let _temp = {
   },
   onScrollStop: (callback) => {
     let isScrolling;
-    if (documentExists) {
+    if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     window.addEventListener(
@@ -82,7 +82,7 @@ let _temp = {
     );
   },
   copy: (str) => {
-    if (documentExists) {
+    if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     const el = document.createElement("textarea");
@@ -124,7 +124,7 @@ let _temp = {
     };
   },
   createElement: (str) => {
-    if (documentExists) {
+    if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     const el = document.createElement("div");
@@ -132,7 +132,7 @@ let _temp = {
     return el.firstElementChild;
   },
   browser: () => {
-    if (documentExists) {
+    if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     var isOpera =
@@ -180,7 +180,7 @@ let _temp = {
     }
   },
   notify: (text, body, icon) => {
-    if (documentExists) {
+    if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     if (!window.Notification) {
@@ -268,7 +268,7 @@ let _temp = {
       .map(typeof fn === "function" ? fn : (val) => val[fn])
       .reduce((acc, val) => acc + val, 0) / arr.length,
   inView: (el) => {
-    if (documentExists) {
+    if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     var top = el.offsetTop;
@@ -290,7 +290,7 @@ let _temp = {
     );
   },
   inPartialView: (el) => {
-    if (documentExists) {
+    if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     var top = el.offsetTop;
@@ -355,7 +355,7 @@ let _temp = {
         }[tag] || tag)
     ),
   previousPage: () => {
-    if (documentExists) {
+    if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     return document.referrer || window.location.href;
@@ -495,7 +495,7 @@ let _temp = {
     );
   },
   querySelector: (elem) => {
-    if (documentExists) {
+    if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     var element = elem;
@@ -637,7 +637,7 @@ let _temp = {
     return domparser.parseFromString(string, mimeType);
   },
   syntaxHighlight: (elmnt, mode, colors = {}) => {
-    if (documentExists) {
+    if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     // Credit to w3schools for this
@@ -1369,6 +1369,7 @@ function _generateHTMLfromDocs() {
 const _$ = _temp;
 const _ = _temp;
 const explosion = _temp;
-if (documentExists) {
+// Only export on node
+if (isNode) {
   module.exports = _temp;
 }
