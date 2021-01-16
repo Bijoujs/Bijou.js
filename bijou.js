@@ -1288,7 +1288,7 @@ let _temp = {
     }
     return a.join("");
   },
-  drag(el) {
+  drag: (el)=> {
     var initX, initY, mousePressX, mousePressY;
 el.addEventListener('mousedown', function (event) {
   var style = window.getComputedStyle(el);
