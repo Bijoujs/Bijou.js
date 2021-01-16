@@ -1288,6 +1288,33 @@ let _temp = {
     }
     return a.join("");
   },
+  function drag(el) {
+    var initX, initY, mousePressX, mousePressY;
+el.addEventListener('mousedown', function (event) {
+  var style = window.getComputedStyle(el);
+  el.style.top = style.getPropertyValue('top');
+  el.style.left = style.getPropertyValue('left');
+  el.style.right = style.getPropertyValue('right');
+  el.style.bottom = style.getPropertyValue('bottom');
+  this.style.position = 'absolute';
+  initX = this.offsetLeft;
+  initY = this.offsetTop;
+  mousePressX = event.clientX;
+  mousePressY = event.clientY;
+  this.addEventListener('mousemove', repositionElement, false);
+
+  window.addEventListener('mouseup', function () {
+    el.removeEventListener('mousemove', repositionElement, false);
+  }, false);
+
+}, false);
+
+function repositionElement(event) {
+  this.style.left = initX + event.clientX - mousePressX + 'px';
+  this.style.top = initY + event.clientY - mousePressY + 'px';
+}
+
+}
 };
 _temp = _temp.sortObj(_temp);
 let desc = {
