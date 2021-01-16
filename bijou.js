@@ -40,7 +40,16 @@ Contributors to Bijou.js:
 ╠═══════════════════╬════════════════════════════╣
 ║ TheColaber        ║ Collaborated?? (lol)       ║
 ║                   ║ Fixed tons of bugs         ║
+╠═══════════════════╬════════════════════════════╣
+║ Hans5958          ║ Helped fix glitches in the ║
+║                   ║ website and suggested      ║
+║                   ║ fixes for GitHub actions   ║
+║                   ║ glitches.                  ║
+╠═══════════════════╬════════════════════════════╣
+║ YOYITsM3M8        ║ Suggested a lot of         ║
+║ (AKA retronbv)    ║ features and bug fixes.    ║
 ╚═══════════════════╩════════════════════════════╝
+
 
 (c) 2021 Explosion-Scratch, all rights reserved.
 
