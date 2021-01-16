@@ -1342,6 +1342,7 @@ let _temp = {
     easeInOutQuint: t => t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t
   }
 };
+
 _temp = _temp.sortObj(_temp);
 // Descriptions:
 let desc = {
