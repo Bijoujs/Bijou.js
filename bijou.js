@@ -1313,8 +1313,7 @@ function repositionElement(event) {
   this.style.left = initX + event.clientX - mousePressX + 'px';
   this.style.top = initY + event.clientY - mousePressY + 'px';
 }
-
-
+  }
 };
 _temp = _temp.sortObj(_temp);
 let desc = {
