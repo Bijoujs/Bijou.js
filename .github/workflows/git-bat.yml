@@ -2,6 +2,7 @@ on: [pull_request, workflow_dispatch]
 name: Automated CI
 jobs:
  git-bat:
+    if: "!contains(github.event.head_commit.message, '[No-Actions]')"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
