@@ -19,7 +19,8 @@ This software comes with ABSOLUTELY NO WARRANTY and with the best intentions of 
 Contributors to Bijou.js:
   - Explosion-Scratch
   - GrahamSH-LLK
-  - Touch
+  - Touchcreator
+  - 
 
 (c) 2021 Explosion-Scratch, all rights reserved.
 
