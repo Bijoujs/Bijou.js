@@ -18,6 +18,7 @@
 ![Website](https://img.shields.io/website?down_color=tomato&down_message=Down%20%3A%27%28&label=Website%20status&style=for-the-badge&up_color=%23&up_message=Online%21&url=https%3A%2F%2Fbijou.js.org)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/explosion-scratch/bijou.js?color=%23&label=Commits&style=for-the-badge)
 ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/explosion-scratch/bijou.js/latest?color=%23&style=for-the-badge)
+![Discord](https://img.shields.io/discord/789662824678686720?style=for-the-badge)
 
 Congrats! You discovered Bijou.js! Read more below!
 
