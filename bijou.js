@@ -11,6 +11,7 @@
 // 
 // (c) 2021
 
+
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
   isNode = true;
