@@ -5,7 +5,8 @@
 //  | |_) | | |_| | |_| | |_| | | \__ \
 //  |____/___\___/ \___/ \___(_)/ |___/
 //                            |__/     
-// -
+// --------------------------------------------------
+// 
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
   isNode = true;
