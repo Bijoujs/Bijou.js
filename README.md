@@ -295,6 +295,7 @@ The only non-function in Bijou.js. This has a variety of easing functions, all o
 _$.ease.easeInOutQuad(.3);
 ```
 Would return the eased value for a point about a third of the way through the animation.
+
 </details>
 <details><summary>escapeHTML</summary>
 
