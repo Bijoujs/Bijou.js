@@ -296,6 +296,7 @@ _$.ease.easeInOutQuad(.3);
 ```
 Would return the eased value for a point about a third of the way through the animation.
 
+<details>
 </details>
 <details><summary>escapeHTML</summary>
 
