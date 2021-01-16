@@ -301,7 +301,8 @@ For reference here is the description of each function along with the equations 
 let ease = {
   // ----------------------------------------------------------------
   // Easing function descriptions
-  // 
+  // ----------------------------------------------------------------
+  
   // no easing, no acceleration
   linear: t => t,
   // accelerating from zero velocity
