@@ -17,13 +17,53 @@ This software comes with ABSOLUTELY NO WARRANTY and with the best intentions of 
   \____\___/|_| \_| |_| |_| \_\___|____/ \___/  |_| \___/|_| \_\____/
 -------------------------------------------------
 Contributors to Bijou.js:
-  - Explosion-Scratch
-  - GrahamSH-LLK
-  - Touchcreator
-  - TheColaber
-  - dn-scrtch
-  - D1WK
-  - YOYITsM3M8 (AKA retronbv)
+╔═══════════════════╦════════════════════════════╗
+║ GITHUB USERNAME   ║ CONTRIBUTIONS              ║
+╠═══════════════════╬════════════════════════════╣
+║ Explosion-Scratch ║ Founder and creator of     ║
+║                   ║ Bijou.js, over 1500        ║
+║                   ║ commits to the source      ║
+║                   ║ repository.                ║
+╠═══════════════════╬════════════════════════════╣
+║ GrahamSH-LLK      ║ Great guy, contributed     ║
+║                   ║ a ton towards the          ║
+║                   ║ development of this        ║
+║                   ║ project. He fixed glitches ║
+║                   ║ suggested new features,    ║
+║                   ║ and helped publish this    ║
+║                   ║ to NPM and fix the GitHub  ║
+║                   ║ actions on the project.    ║
+╠═══════════════════╬════════════════════════════╣
+║ Touchcreator      ║ Pointed out several bugs   ║
+║                   ║ in Bijou.js and suggested  ║
+║                   ║ several new features.      ║
+╠═══════════════════╬════════════════════════════╣
+║ TheColaber        ║ Collaborated?? (lol)       ║
+║                   ║ Fixed tons of bugs         ║
+╚═══════════════════╩════════════════════════════╝╔═══════════════════╦════════════════════════════╗
+║ GITHUB USERNAME   ║ CONTRIBUTIONS              ║
+╠═══════════════════╬════════════════════════════╣
+║ Explosion-Scratch ║ Founder and creator of     ║
+║                   ║ Bijou.js, over 1500        ║
+║                   ║ commits to the source      ║
+║                   ║ repository.                ║
+╠═══════════════════╬════════════════════════════╣
+║ GrahamSH-LLK      ║ Great guy, contributed     ║
+║                   ║ a ton towards the          ║
+║                   ║ development of this        ║
+║                   ║ project. He fixed glitches ║
+║                   ║ suggested new features,    ║
+║                   ║ and helped publish this    ║
+║                   ║ to NPM and fix the GitHub  ║
+║                   ║ actions on the project.    ║
+╠═══════════════════╬════════════════════════════╣
+║ Touchcreator      ║ Pointed out several bugs   ║
+║                   ║ in Bijou.js and suggested  ║
+║                   ║ several new features.      ║
+╠═══════════════════╬════════════════════════════╣
+║ TheColaber        ║ Collaborated?? (lol)       ║
+║                   ║ Fixed tons of bugs         ║
+╚═══════════════════╩════════════════════════════╝
 
 (c) 2021 Explosion-Scratch, all rights reserved.
 
