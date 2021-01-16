@@ -263,6 +263,9 @@ Returns either "desktop" or "mobile", depending on what device the user is using
 </details>
 <details>
 <summary>drag</summary>
+
+----
+
 </details>
 <details><summary>each</summary>
 
