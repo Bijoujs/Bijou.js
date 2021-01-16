@@ -12,7 +12,7 @@
 // (c) 2021
 
 
-let isNode = false;
+let isNde = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
   isNode = true;
 } else {
