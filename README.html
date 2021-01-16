@@ -125,11 +125,11 @@ trying to compute something.</details></p>
 <details><summary>browser</summary></p>
 <hr />
 <p>Returns the current browser without sniffing the user-agent string. e.g.
-'Chrome'</details>
-<details><summary>camelCase</summary></p>
+'Chrome'</details></p>
+<p><details><summary>camelCase</summary></p>
 <hr />
 <p>Takes a string as an input and returns the camelCased version of it.</p>
-<pre><code class="js language-js">_$.camelCase("Hello world");//Returns "helloWorld"
+<pre><code class="js language-js">_$.camelCase("Hello world"); //Returns "helloWorld"
 </code></pre>
 <p></details>
 <details><summary>compStyle</summary></p>
@@ -151,7 +151,7 @@ trying to compute something.</details></p>
 <details><summary>createElement</summary></p>
 <hr />
 <p>Returns a DOM element who's outerHTML is the string provided:</p>
-<pre><code class="js language-js">_$.createElement('&lt;div id=`fun`&gt;Hello&lt;/div&gt;');//Returns a DOM element whose id is 'fun' and whose innerText is 'Hello'
+<pre><code class="js language-js">_$.createElement("&lt;div id=`fun`&gt;Hello&lt;/div&gt;"); //Returns a DOM element whose id is 'fun' and whose innerText is 'Hello'
 </code></pre>
 <p></details>
 <details><summary>curryFunction</summary></p>
@@ -284,8 +284,15 @@ function:</p>
 <p></details>
 <details><summary>rgbToHex</summary></p>
 <hr />
-<p>Returns the hex code of a given RGB string.</details></p>
-<p><details><summary>seedRandom</summary></p>
+<p>Returns the hex code of a given RGB string.</details>
+<details>
+<summary>scrambleString</summary></p>
+<hr />
+<p>Scrambles the characters in a string:</p>
+<pre><code class="js language-js">_$.scrambleString("Hello world");//Returns "llo rweHldo"
+</code></pre>
+<p></details>
+<details><summary>seedRandom</summary></p>
 <hr />
 <p>Gives a random number based on a whole number seed.</details></p>
 <p><details><summary>serializeForm</summary></p>
