@@ -25,4 +25,6 @@ function beautify {
   prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- /workspace/
   commit
 }
-beautify
+while true; do 
+  commit
+  done
