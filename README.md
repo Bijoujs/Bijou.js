@@ -195,7 +195,7 @@ Returns the current browser without sniffing the user-agent string. e.g.
 
 Takes a string as an input and returns the camelCased version of it.
 ```js
-
+_$.camelCase(")
 ```
 </details>
 <details><summary>compStyle</summary>
