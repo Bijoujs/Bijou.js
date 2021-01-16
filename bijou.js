@@ -1404,7 +1404,7 @@ let desc = {
   camelCase:
     "Takes a string as an input and returns the camelCased version of it.",
   scrambleString: "Scrambles a string's characters and returns the output.",
-  drag: "Allows the element provided to be dragged. ()"
+  drag: "Allows the element provided to be dragged. (Drag and drop.)"
 };
 _temp.info = (prop) => {
   return desc[prop];
