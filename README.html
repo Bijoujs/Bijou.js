@@ -182,294 +182,185 @@ trying to compute something.</details></p>
 <summary>ease</summary></p>
 <hr />
 <p>The only non-function in Bijou.js. This has a variety of easing functions, all of which take a number between 0 and 1, and return a corresponding value for the easing function. For example this code: </p>
-<pre><code class="js language-js">_$.ease.easeInOutQuad(.3);\n\nWould return the eased value for a point about a third of the way through the animation.
-&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;escapeHTML&lt;/summary&gt;
-
----
-
-Returns an escaped version of the HTML string provided:
+<pre><code class="js language-js">_$.ease.easeInOutQuad(.3);
 </code></pre>
-<p>js
-_$.escapeHTML("&lt;script&gt;"); //'&amp;lt;script&amp;gt;'</p>
-<pre><code>&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;formToObject&lt;/summary&gt;
-
----
-
-Converts a form to a javascript object using each element's 'name' attribute as
-the key and the 'value' attribute as the value.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;formatMilliseconds&lt;/summary&gt;
-
----
-
-Formats a number of milliseconds into a human-readable duration of time, e.g.
+<p>Would return the eased value for a point about a third of the way through the animation.
+</details>
+<details><summary>escapeHTML</summary></p>
+<hr />
+<p>Returns an escaped version of the HTML string provided:</p>
+<pre><code class="js language-js">_$.escapeHTML("&amp;lt;script&amp;gt;"); //'&amp;amp;lt;script&amp;amp;gt;'
 </code></pre>
-<p>js
-_$.formatMilliseconds(600000); //Returns '10 minutes'</p>
-<pre><code>&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;formatNumber&lt;/summary&gt;
-
----
-
-Adds commas to large numbers in the right place.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;hexToRGB&lt;/summary&gt;
-
----
-
-Converts a hex value into an RGB color.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;inPartialView&lt;/summary&gt;
-
----
-
-Returns whether the specified element is visible at all in the viewport. This is
-useful for lazy loading images!&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;inView&lt;/summary&gt;
-
----
-
-Returns whether the specified element is completely visible in the
-viewport.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;jsonToCsv&lt;/summary&gt;
-
----
-
-Converts a JSON object to CSV.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;lightOrDark&lt;/summary&gt;
-
----
-
-Returns an object, the key "lightordark" returns either 'light' or 'dark' and
+<p></details>
+<details><summary>formToObject</summary></p>
+<hr />
+<p>Converts a form to a javascript object using each element's 'name' attribute as
+the key and the 'value' attribute as the value.</details></p>
+<p><details><summary>formatMilliseconds</summary></p>
+<hr />
+<p>Formats a number of milliseconds into a human-readable duration of time, e.g.</p>
+<pre><code class="js language-js">_$.formatMilliseconds(600000); //Returns '10 minutes'
+</code></pre>
+<p></details>
+<details><summary>formatNumber</summary></p>
+<hr />
+<p>Adds commas to large numbers in the right place.</details></p>
+<p><details><summary>hexToRGB</summary></p>
+<hr />
+<p>Converts a hex value into an RGB color.</details></p>
+<p><details><summary>inPartialView</summary></p>
+<hr />
+<p>Returns whether the specified element is visible at all in the viewport. This is
+useful for lazy loading images!</details></p>
+<p><details><summary>inView</summary></p>
+<hr />
+<p>Returns whether the specified element is completely visible in the
+viewport.</details></p>
+<p><details><summary>jsonToCsv</summary></p>
+<hr />
+<p>Converts a JSON object to CSV.</details></p>
+<p><details><summary>lightOrDark</summary></p>
+<hr />
+<p>Returns an object, the key "lightordark" returns either 'light' or 'dark' and
 the key 'hsp' returns the value of the color from 0 (completely dark) to 255
-(completely bright).&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;lightenColor&lt;/summary&gt;
-
----
-
-Lightens or darkens a hex color by a certain amount, on a scale rom 0
-(completely dark) to 255 (completely bright):
+(completely bright).</details></p>
+<p><details><summary>lightenColor</summary></p>
+<hr />
+<p>Lightens or darkens a hex color by a certain amount, on a scale rom 0
+(completely dark) to 255 (completely bright):</p>
+<pre><code class="js language-js">_$.lightenColor("#ffffff", -20); //Returns '#ebebeb'.
 </code></pre>
-<p>js
-_$.lightenColor("#ffffff", -20); //Returns '#ebebeb'.</p>
-<pre><code>&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;mapObjectKeys&lt;/summary&gt;
-
----
-
-Maps an object's keys recursively:
-</code></pre>
-<p>js
-_$.mapObjectKeys(
+<p></details>
+<details><summary>mapObjectKeys</summary></p>
+<hr />
+<p>Maps an object's keys recursively:</p>
+<pre><code class="js language-js">_$.mapObjectKeys(
   { key: "value", another: { deep: "thing", map: "another" } },
   (key) =&gt; key.toUpperCase()
-); // Transforms every key of the object to uppercase.</p>
-<pre><code>&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;notify&lt;/summary&gt;
-
----
-
-Notifies the user through a desktop notification. Takes 3 arguments: text, body,
+); // Transforms every key of the object to uppercase.
+</code></pre>
+<p></details>
+<details><summary>notify</summary></p>
+<hr />
+<p>Notifies the user through a desktop notification. Takes 3 arguments: text, body,
 icon. Text is the title of the notification, body is the message of it, and icon
-is the icon displayed next to the notification.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;onOutsideClick&lt;/summary&gt;
-
----
-
-Returns the callback when a click is called outside the specified element:
-</code></pre>
-<p>js
-_$.onOutsideClick(document.querySelector("h1"), () =&gt; {
+is the icon displayed next to the notification.</details></p>
+<p><details><summary>onOutsideClick</summary></p>
+<hr />
+<p>Returns the callback when a click is called outside the specified element:</p>
+<pre><code class="js language-js">_$.onOutsideClick(document.querySelector("h1"), () =&gt; {
   alert("You clicked outside the header");
-}); // Alerts when the user clicks anywhere that is NOT the h1 in question.</p>
-<pre><code>&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;onScrollStop&lt;/summary&gt;
-
----
-
-Returns the callback when a user stops scrolling the window.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;parseHTML&lt;/summary&gt;
-
----
-
-Parses HTML and returns a document object representing the parsed HTML.
+}); // Alerts when the user clicks anywhere that is NOT the h1 in question.
 </code></pre>
-<p>js
-_$.parseHTML("<div><section><h1>Hello</h1></section></div>").querySelector("h1")
+<p></details>
+<details><summary>onScrollStop</summary></p>
+<hr />
+<p>Returns the callback when a user stops scrolling the window.</details></p>
+<p><details><summary>parseHTML</summary></p>
+<hr />
+<p>Parses HTML and returns a document object representing the parsed HTML.</p>
+<pre><code class="js language-js">_$.parseHTML("&lt;div&gt;&lt;section&gt;&lt;h1&gt;Hello&lt;/h1&gt;&lt;/section&gt;&lt;/div&gt;").querySelector("h1")
   .innerText;
-//Returns "Hello"!</p>
-<pre><code>&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;previousPage&lt;/summary&gt;
-
----
-
-Returns the url of the previous page that the user visited.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;primesTo&lt;/summary&gt;
-
----
-
-Returns an array of all the prime numbers up to the number given.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;querySelector&lt;/summary&gt;
-
----
-
-Generates a unique querySelector for the given element.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;random&lt;/summary&gt;
-
----
-
-Returns a random number between two numbers:
+//Returns "Hello"!
 </code></pre>
-<p>js
-_$.random(-10, 10, false); //Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)</p>
-<pre><code>&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;randomColor&lt;/summary&gt;
-
----
-
-Returns a random hex color.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;removeComments&lt;/summary&gt;
-
----
-
-Removes comments from the HTML element specified.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;removeTags&lt;/summary&gt;
-
----
-
-Removes tags from the HTML string specified:
+<p></details></p>
+<p><details><summary>previousPage</summary></p>
+<hr />
+<p>Returns the url of the previous page that the user visited.</details></p>
+<p><details><summary>primesTo</summary></p>
+<hr />
+<p>Returns an array of all the prime numbers up to the number given.</details></p>
+<p><details><summary>querySelector</summary></p>
+<hr />
+<p>Generates a unique querySelector for the given element.</details></p>
+<p><details><summary>random</summary></p>
+<hr />
+<p>Returns a random number between two numbers:</p>
+<pre><code class="js language-js">_$.random(-10, 10, false); //Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)
 </code></pre>
-<p>js
-_$.removeTags("<a href='#'>HTML tags!</a>"); //Returns "HTML tags!"</p>
-<pre><code>&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;replaceText&lt;/summary&gt;
-
----
-
-Replaces the text of the specified element by passing the old value through a
-function:
+<p></details>
+<details><summary>randomColor</summary></p>
+<hr />
+<p>Returns a random hex color.</details></p>
+<p><details><summary>removeComments</summary></p>
+<hr />
+<p>Removes comments from the HTML element specified.</details></p>
+<p><details><summary>removeTags</summary></p>
+<hr />
+<p>Removes tags from the HTML string specified:</p>
+<pre><code class="js language-js">_$.removeTags("&lt;a href='#'&gt;HTML tags!&lt;/a&gt;"); //Returns "HTML tags!"
 </code></pre>
-<p>js
-_$.replaceText(document, (oldText) =&gt; oldText.replace(" ", "-")); //Replace all spaces in the document with a hyphen.</p>
-<pre><code>&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;rgbToHex&lt;/summary&gt;
-
----
-
-Returns the hex code of a given RGB string.&lt;/details&gt;
-
-&lt;details&gt;
-&lt;summary&gt;scrambleString&lt;/summary&gt;
-
----
-
-Scrambles the characters in a string:
+<p></details>
+<details><summary>replaceText</summary></p>
+<hr />
+<p>Replaces the text of the specified element by passing the old value through a
+function:</p>
+<pre><code class="js language-js">_$.replaceText(document, (oldText) =&gt; oldText.replace(" ", "-")); //Replace all spaces in the document with a hyphen.
 </code></pre>
-<p>js
-_$.scrambleString("Hello world"); //Returns "llo rweHldo"</p>
-<pre><code>&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;seedRandom&lt;/summary&gt;
-
----
-
-Gives a random number based on a whole number seed.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;serializeForm&lt;/summary&gt;
-
----
-
-Convert a form to url queries&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;spliceArrayBuffer&lt;/summary&gt;
-
----
-
-Splices a number as if it's 8 bits long and converts it to a single number:
+<p></details>
+<details><summary>rgbToHex</summary></p>
+<hr />
+<p>Returns the hex code of a given RGB string.</details></p>
+<p><details>
+<summary>scrambleString</summary></p>
+<hr />
+<p>Scrambles the characters in a string:</p>
+<pre><code class="js language-js">_$.scrambleString("Hello world"); //Returns "llo rweHldo"
 </code></pre>
-<p>js
-_$.spliceArrayBuffer([5, 8, 255], 0, 2, true); //16713733</p>
-<pre><code>&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;sortObj&lt;/summary&gt;
-
----
-
-Returns an alphabetized copy of the object by keys.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;syntaxHighlight&lt;/summary&gt;
-
----
-
-Syntax highlights a string! Supports JS, CSS, and HTML:
+<p></details>
+<details><summary>seedRandom</summary></p>
+<hr />
+<p>Gives a random number based on a whole number seed.</details></p>
+<p><details><summary>serializeForm</summary></p>
+<hr />
+<p>Convert a form to url queries</details></p>
+<p><details><summary>spliceArrayBuffer</summary></p>
+<hr />
+<p>Splices a number as if it's 8 bits long and converts it to a single number:</p>
+<pre><code class="js language-js">_$.spliceArrayBuffer([5, 8, 255], 0, 2, true); //16713733
 </code></pre>
-<p>js
-const coloroptions = {}; //An object representing the color options for highlighting. See line 594 of bijou.js for more information.
-_$.syntaxHighlight(document.querySelector("pre code"), "js", coloroptions);</p>
-<pre><code>&lt;/details&gt;
-&lt;details&gt;&lt;summary&gt;throttle&lt;/summary&gt;
-
----
-
-Runs the function specified, the second input controls at MAX how much wait
-there is between the next time it runs:
+<p></details>
+<details><summary>sortObj</summary></p>
+<hr />
+<p>Returns an alphabetized copy of the object by keys.</details></p>
+<p><details><summary>syntaxHighlight</summary></p>
+<hr />
+<p>Syntax highlights a string! Supports JS, CSS, and HTML:</p>
+<pre><code class="js language-js">const coloroptions = {}; //An object representing the color options for highlighting. See line 594 of bijou.js for more information.
+_$.syntaxHighlight(document.querySelector("pre code"), "js", coloroptions);
 </code></pre>
-<p>js
-_$.throttle(() =&gt; alert("hello"), 10000);</p>
-<pre><code>Running this like any other function will simply just run the function, however
+<p></details>
+<details><summary>throttle</summary></p>
+<hr />
+<p>Runs the function specified, the second input controls at MAX how much wait
+there is between the next time it runs:</p>
+<pre><code class="js language-js">_$.throttle(() =&gt; alert("hello"), 10000);
+</code></pre>
+<p>Running this like any other function will simply just run the function, however
 if you try to run the throttled function in a setInterval loop or before its
-timeout ends it will not run.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;timeFunction&lt;/summary&gt;
-
----
-
-Use console.time to how long the function inputted takes to execute.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;unescapeHTML&lt;/summary&gt;
-
----
-
-Un-escapes the string of HTML specified.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;unionArrays&lt;/summary&gt;
-
----
-
-Merges two arrays using union, meaning that any duplicates between the two
-arrays will be removed.&lt;/details&gt;
-
-&lt;details&gt;&lt;summary&gt;uniqueArray&lt;/summary&gt;
-
----
-
-Removes duplicates from an array&lt;/details&gt;
-
-&lt;details&gt;
-  &lt;summary&gt;
+timeout ends it will not run.</details></p>
+<p><details><summary>timeFunction</summary></p>
+<hr />
+<p>Use console.time to how long the function inputted takes to execute.</details></p>
+<p><details><summary>unescapeHTML</summary></p>
+<hr />
+<p>Un-escapes the string of HTML specified.</details></p>
+<p><details><summary>unionArrays</summary></p>
+<hr />
+<p>Merges two arrays using union, meaning that any duplicates between the two
+arrays will be removed.</details></p>
+<p><details><summary>uniqueArray</summary></p>
+<hr />
+<p>Removes duplicates from an array</details></p>
+<p><details>
+  <summary>
   unCamelCase
-  &lt;/summary&gt;
-
----
-
-Un-camelCases a string. Camel case is when a string's case looks like this:
-camelCase, where the normal version would be Camel Case:
+  </summary></p>
+<hr />
+<p>Un-camelCases a string. Camel case is when a string's case looks like this:
+camelCase, where the normal version would be Camel Case:</p>
+<pre><code class="js language-js">_$.unCamelCase("someCrazyName"); //Returns "Some Crazy Name"
 </code></pre>
-<p>js
-_$.unCamelCase("someCrazyName"); //Returns "Some Crazy Name"
-```</p>
 <p></details>
 <details><summary>uuid</summary></p>
 <hr />
