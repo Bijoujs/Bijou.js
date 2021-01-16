@@ -189,7 +189,7 @@ _$.averageBy([1, 2, 3, 4], (val) => val / 2); //Returns the average of each elem
 
 Returns the current browser without sniffing the user-agent string. e.g.
 'Chrome'</details>
-<details></details>
+<details><summary>camelCase</summary></details>
 <details><summary>compStyle</summary>
 
 ---
