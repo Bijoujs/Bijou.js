@@ -7,7 +7,7 @@
 //                            |__/     
 // --------------------------------------------------
 // Bijou.js is copyrighted by Explosion-Scratch of GitHub and released under the MIT license.
-// This software 
+// This software comes 
 // (c) 2020
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
