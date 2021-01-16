@@ -292,7 +292,7 @@ _$.each([1, 2, 3], (num) => alert(num * 3)); //Alerts each number in the array t
 
 The only non-function in Bijou.js. This has a variety of easing functions, all of which take a number between 0 and 1, and return a corresponding value for the easing function. For example this code: 
 ```js
-\n\n\t_$.ease.easeInOutQuad(.3);\n\nWould return the eased value for a point about a third of the way through the animation.
+_$.ease.easeInOutQuad(.3);\n\nWould return the eased value for a point about a third of the way through the animation.
 </details>
 <details><summary>escapeHTML</summary>
 
