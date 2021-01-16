@@ -6,7 +6,7 @@
 
 <b><h1 align="center">Welcome to Bijou.js!</h1></b>
 
-[![](https://data.jsdelivr.com/v1/package/gh/explosion-scratch/bijou.js/badge?style=for-the-badge&color=%230bb)](https://www.jsdelivr.com/package/gh/explosion-scratch/bijou.js)
+[![](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge)](https://npmjs.com/bijou.js)
 [![GitHub forks](https://img.shields.io/github/forks/explosion-scratch/bijou.js?color=%230bb&label=Forks&style=for-the-badge)](https://github.com/explosion-scratch/bijou.js/network)
 [![GitHub issues](https://img.shields.io/github/issues/explosion-scratch/bijou.js?color=%230bb&style=for-the-badge)](https://github.com/explosion-scratch/bijou.js/issues)
 [![GitHub stars](https://img.shields.io/github/stars/explosion-scratch/bijou.js?color=%230bb&style=for-the-badge)](https://github.com/explosion-scratch/bijou.js/stargazers)
