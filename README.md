@@ -6,7 +6,7 @@
 
 <b><h1 align="center">Welcome to Bijou.js!</h1></b>
 
-[![](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
+[![NPM Downloads](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
 [![GitHub forks](https://img.shields.io/github/forks/explosion-scratch/bijou.js?color=lightseagreen&label=Forks&style=for-the-badge)](https://github.com/explosion-scratch/bijou.js/network)
 [![GitHub issues](https://img.shields.io/github/issues/explosion-scratch/bijou.js?color=lightseagreen&style=for-the-badge)](https://github.com/explosion-scratch/bijou.js/issues)
 [![GitHub stars](https://img.shields.io/github/stars/explosion-scratch/bijou.js?color=lightseagreen&style=for-the-badge)](https://github.com/explosion-scratch/bijou.js/stargazers)
@@ -14,10 +14,10 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/explosion-scratch/bijou.js?color=lightseagreen&style=for-the-badge)
 ![GitHub top language](https://img.shields.io/github/languages/top/explosion-scratch/bijou.js?style=for-the-badge&color=lightseagreen)
 ![GitHub repo size](https://img.shields.io/github/repo-size/explosion-scratch/bijou.js?color=lightseagreen&style=for-the-badge)
-![Website](https://img.shields.io/website?down_color=lightseagreen&down_message=Down%20%3A%27%28&label=Website%20status&style=for-the-badge&up_color=lightseagreen&up_message=Online%21&url=https%3A%2F%2Fbijou.js.org)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/explosion-scratch/bijou.js?style=for-the-badge&color=lightseagreen)
-![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/explosion-scratch/bijou.js/latest?color=lightseagreen&style=for-the-badge)
-![Discord](https://img.shields.io/discord/789662824678686720?style=for-the-badge&color=lightseagreen)
+[![Website](https://img.shields.io/website?down_color=lightseagreen&down_message=Down%20%3A%27%28&label=Website%20status&style=for-the-badge&up_color=lightseagreen&up_message=Online%21&url=https%3A%2F%2Fbijou.js.org)](https://bijou.js.org)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/y/explosion-scratch/bijou.js?style=for-the-badge&color=lightseagreen)](https://github.com/Explosion-Scratch/bijou.js/commits/main)
+[![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/explosion-scratch/bijou.js/latest?color=lightseagreen&style=for-the-badge)](https://github.com/Explosion-Scratch/bijou.js/commits/main)
+[![Discord](https://img.shields.io/discord/789662824678686720?style=for-the-badge&color=lightseagreen)](https://discord.gg/Ec5Wvp78w7)
 
 Congrats! You discovered Bijou.js! Read more below!
 
