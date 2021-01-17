@@ -389,7 +389,6 @@ getJSON
 
 ---
 Runs the callback with the JSON (as an object) from the url specified in the first argument.
-
 </details>
 <details><summary>hexToRGB</summary>
 
