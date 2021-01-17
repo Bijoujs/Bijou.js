@@ -1488,6 +1488,9 @@ let _temp = {
       .then((json) => callback(json));
   },
   getHTML: (url, callback) => {
+    if (isNode) {
+      throw new Error("No document element! (You are probably using Node.js)");
+    }
     fetch(url)
       .then((res) => res.text())
       .then((html) => callback(_$.parseHTML(html)));
