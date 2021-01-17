@@ -388,7 +388,9 @@ getJSON
 </summary>
 
 ---
-Runs the callback with the JSON (as an object) from the url specified in the first argument.
+Runs the callback with the JSON (as an object) from the url specified in the first argument:
+```js
+
 
 </details>
 <details><summary>hexToRGB</summary>
