@@ -589,7 +589,7 @@ Syntax highlights a string! Supports JS, CSS, and HTML:
 
 ```js
 const coloroptions = {}; //An object representing the color options for highlighting. See line 594 of bijou.js for more information.
-_$.syntaxHighlight(document.querySelector("pre code"), "js", coloroptions);
+_$.syntaxHighlight("alert('hello!')", "js", coloroptions);
 ```
 
 </details>
