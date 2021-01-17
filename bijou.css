@@ -136,10 +136,10 @@
   font-size: 5vmin;
 }
 .float-right {
-  float
+  float: right;
 }
 .float-left {
-  float
+  float: right;
 }
 .inline-code {
   font-family: var(--monospace-font), Courier, monospace;
