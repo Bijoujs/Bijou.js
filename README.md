@@ -368,6 +368,7 @@ _$.formatMilliseconds(600000); //Returns '10 minutes'
 ---
 
 Adds commas to large numbers in the right place.</details>
+<details>
 
 <details><summary>hexToRGB</summary>
 
