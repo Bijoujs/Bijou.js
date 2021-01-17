@@ -680,7 +680,10 @@ let _temp = {
         ""
       );
     } else if (typeof el === "string") {
-      return 
+      return .replace(
+        /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
+        ""
+      );
     }
   },
   random: (min, max, round = true) => {
