@@ -1505,5 +1505,3 @@ const explosion = _temp;
 if (isNode) {
   module.exports = _temp;
 }
-// Can't only export in NodeJS as export functions have to be at the top level (No if statements)
-export default _$
