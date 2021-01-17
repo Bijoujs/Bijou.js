@@ -366,7 +366,7 @@ let _temp = {
     );
   },
   serializeForm: (form) =>
-    {Array.from(new FormData(form), (field) =>
+    {return Array.from(new FormData(form), (field) =>
       field.map(encodeURIComponent).join("=")
     ).join("&")},
   formToObject: (form) =>
