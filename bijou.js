@@ -724,7 +724,9 @@ let _temp = {
     return domparser.parseFromString(string, mimeType);
   },
   syntaxHighlight: (string, mode = "html", colors = {}) => {
-    
+    if (isNode) {
+      throw new Error("No document element! (You are probably using Node.js)");
+    }
     let el = document.createElement("DIV");
     el.innerText = string;
     let highlightel = (elmnt, mode, colors = {}) => {
