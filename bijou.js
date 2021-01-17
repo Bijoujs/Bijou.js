@@ -365,13 +365,13 @@ let _temp = {
       left + width > window.pageXOffset
     );
   },
-  serializeForm: (form) =>
-  {
+  serializeForm: (form) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     } return Array.from(new FormData(form), (field) =>
       field.map(encodeURIComponent).join("=")
-    ).join("&")},
+    ).join("&")
+  },
   formToObject: (form) =>
     Array.from(new FormData(form)).reduce(
       (acc, [key, value]) => ({
