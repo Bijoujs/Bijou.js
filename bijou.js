@@ -1383,6 +1383,9 @@ let _temp = {
   curryFunction: (fn, arity = fn.length, ...args) =>
     arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args),
   mobileOrDesktop: () => {
+    if (isNode) {
+      throw new Error("No document element! (You are probably using Node.js)");
+    }
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     )
