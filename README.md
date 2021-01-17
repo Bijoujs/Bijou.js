@@ -376,7 +376,7 @@ getHTML
 ---
 Runs the callback with the HTML (as a parsed html object) from the url specified in the first argument:
 ```js
-getHTML("https://wikipedia.org)
+getHTML("https://wikipedia.org", () )
 
 </details>
 <details>
