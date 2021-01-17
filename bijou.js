@@ -380,6 +380,9 @@ let _temp = {
     ).join("&")
   },
   formToObject: (form) => {
+    if (isNode) {
+      throw new Error("No document element! (You are probably using Node.js)");
+    }
     return Array.from(new FormData(form)).reduce(
       (acc, [key, value]) => ({
         ...acc,
