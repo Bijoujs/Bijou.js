@@ -1562,7 +1562,7 @@ let desc = {
   getHTML:
     "Runs the callback with the HTML (as a parsed html object) from the url specified in the first argument.",
   shuffleArray: "Returns the input array shuffled",
-  hashString: "Returns the hashed version of a string. This is a very fast method! (So says sta)",
+  hashString: "Returns the hashed version of a string. This is a very fast method! (So says stackoverflow)",
 };
 desc = _temp.sortObj(desc);
 _temp.info = (prop) => {
