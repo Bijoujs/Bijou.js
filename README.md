@@ -95,7 +95,7 @@ NodeJS:
 
 ```js
 const _$ = require("bijou.js"); //You can use any name
-console.log(_$.primesTo(300)); //Logs all primes to 100
+console.log(_$.primesTo(300)); //Logs all primes to 300
 ```
 
 To use Bijou.js simply call one of the many functions built into it!
