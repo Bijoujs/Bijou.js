@@ -1480,6 +1480,9 @@ let _temp = {
       t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
   },
   getJSON: (url, callback) => {
+    if (isNode) {
+      throw new Error("No document element! (You are probably using Node.js)");
+    }
     fetch(url)
       .then((res) => res.json())
       .then((json) => callback(json));
