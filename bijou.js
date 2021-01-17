@@ -1497,10 +1497,6 @@ desc = _temp.sortObj(desc);
 _temp.info = (prop) => {
   return desc[prop];
 };
-function _generateHTMLfromDocs() {
-  var converter = new showdown.Converter();
-  _.each;
-}
 
 // Imports and exports
 const _$ = _temp;
