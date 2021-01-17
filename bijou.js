@@ -379,7 +379,7 @@ let _temp = {
     ),
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
-      // Convert string 
+      // Convert string to a nm
       seed = _temp.hashString(seed) / 10000000000000000;
     }
     function _p8(s) {
