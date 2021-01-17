@@ -680,7 +680,7 @@ let _temp = {
         ""
       );
     } else if (typeof el === "string") {
-      return .replace(
+      return s.replace(
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
         ""
       );
