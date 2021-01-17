@@ -1370,7 +1370,7 @@ let _temp = {
       this.style.top = initY + event.clientY - mousePressY + 'px';
     }
   },
-  ease {
+  ease: {
     // no easing, no acceleration
     linear: t => t,
     // accelerating from zero velocity
