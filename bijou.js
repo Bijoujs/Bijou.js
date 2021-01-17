@@ -1406,7 +1406,7 @@ let _temp = {
   },
   getJSON: (url, callback) => { fetch(url).then(res => res.json()).then((json) => callback(json)) },
   getHTML: (url, callback) => { fetch(url).then(res => res.text()).then((html) => callback(_$.parseHTML(html))) },
-  shuffleArray: (array) => array.sort
+  shuffleArray: (array) => array.sort()
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
