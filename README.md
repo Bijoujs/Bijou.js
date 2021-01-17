@@ -586,7 +586,7 @@ Gives a random number based on a whole number seed.</details>
 Convert a form to url queries</details>
 <details>
 <summary>
-getJSON
+shuffleArray
 </summary>
 
 ---
