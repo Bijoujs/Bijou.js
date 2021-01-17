@@ -671,7 +671,7 @@ let _temp = {
     return str;
   },
   removeComments: (el) => {
-    if ()if (isNode) {
+    if (type)if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     el.innerHTML = el.innerHTML.replace(
