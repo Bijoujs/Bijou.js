@@ -724,6 +724,7 @@ let _temp = {
     return domparser.parseFromString(string, mimeType);
   },
   syntaxHighlight: (string, mode = "html", colors = {}) => {
+    
     let el = document.createElement("DIV");
     el.innerText = string;
     let highlightel = (elmnt, mode, colors = {}) => {
