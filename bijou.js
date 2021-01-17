@@ -1562,6 +1562,7 @@ let desc = {
   getHTML:
     "Runs the callback with the HTML (as a parsed html object) from the url specified in the first argument.",
   shuffleArray: "Returns the input array shuffled",
+  
 };
 desc = _temp.sortObj(desc);
 _temp.info = (prop) => {
