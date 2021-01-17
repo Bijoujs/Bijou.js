@@ -379,7 +379,7 @@ let _temp = {
     ),
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
-      // Convert string to a n
+      // Convert string to a number between 0 
       seed = _temp.hashString(seed) / 10000000000000000;
     }
     function _p8(s) {
