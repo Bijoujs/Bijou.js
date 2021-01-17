@@ -379,7 +379,7 @@ let _temp = {
     ),
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
-      seed = hash
+      seed = hashString
     }
     function _p8(s) {
       var p = (seed.toString(16) + "000000000").substr(2, 8);
