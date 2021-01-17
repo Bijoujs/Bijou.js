@@ -377,6 +377,15 @@ getJSON
 
 
 </details>
+<details>
+<summary>
+getJSON
+</summary>
+
+---
+
+
+</details>
 <details><summary>hexToRGB</summary>
 
 ---
