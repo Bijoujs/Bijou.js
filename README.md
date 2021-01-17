@@ -584,7 +584,7 @@ Gives a random number based on a whole number seed.</details>
 ---
 
 Convert a form to url queries</details>
-Runs the callback with the JSON (as an object) from the url specified in the first argument.
+
 <details><summary>spliceArrayBuffer</summary>
 
 ---
