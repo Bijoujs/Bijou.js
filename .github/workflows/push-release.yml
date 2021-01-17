@@ -36,7 +36,8 @@ jobs:
           tag_name: v${{ steps.extract_version.outputs.version }}
           release_name: Release ${{ steps.extract_version.outputs.version }}
           body: |
-            Automated release of version ${{ steps.extract_version.outputs.version }}
+            Automated release of version ${{ steps.extract_version.outputs.version }}, Commit message:\
+            ${{github.event.head_commit.message}}
           draft: false
           prerelease: false
   setup-release:
