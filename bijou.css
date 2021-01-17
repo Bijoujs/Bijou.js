@@ -136,7 +136,7 @@
   font-size: 5vmin;
 }
 .float-right {
-  
+  float
 }
 .inline-code {
   font-family: var(--monospace-font), Courier, monospace;
