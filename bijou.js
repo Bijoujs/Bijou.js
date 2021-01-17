@@ -1447,7 +1447,7 @@ let _temp = {
       .then((html) => callback(_$.parseHTML(html)));
   },
   shuffleArray: (array) => array.sort(() => Math.random() - 0.5),
-  hash {
+  hashString: {
     var hash = 0, i, chr;
     for (i = 0; i < this.length; i++) {
       chr = this.charCodeAt(i);
