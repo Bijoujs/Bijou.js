@@ -349,7 +349,7 @@
         html.querySelector("img").remove();
         _$.each(html.querySelectorAll("br"), (br) => br.remove());
         _$.each(html.querySelectorAll("img"), (br) => br.remove());
-        document.getElementById("readme").innerHTML =
+        document.getElementById("readme").innerHTML +=
           html.documentElement.innerHTML;
       });
     document.body.innerHTML += `
