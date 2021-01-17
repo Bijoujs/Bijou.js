@@ -369,7 +369,7 @@ let _temp = {
   {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
-    }return Array.from(new FormData(form), (field) =>
+    } return Array.from(new FormData(form), (field) =>
       field.map(encodeURIComponent).join("=")
     ).join("&")},
   formToObject: (form) =>
