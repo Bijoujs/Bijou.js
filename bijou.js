@@ -1447,6 +1447,15 @@ let _temp = {
       .then((html) => callback(_$.parseHTML(html)));
   },
   shuffleArray: (array) => array.sort(() => Math.random() - 0.5),
+  function() {
+    var hash = 0, i, chr;
+    for (i = 0; i < this.length; i++) {
+      chr = this.charCodeAt(i);
+      hash = ((hash << 5) - hash) + chr;
+      hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
+  }
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
