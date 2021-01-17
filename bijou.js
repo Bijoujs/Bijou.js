@@ -686,7 +686,7 @@ let _temp = {
       );
     }
   },
-  random: (min, max, round = true, seed = ) => {
+  random: (min, max, round = true, seed = Math.random()) => {
     if (round) {
       return Math.floor(Math.random() * (max - min + 1) + min);
     } else {
