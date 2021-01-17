@@ -590,7 +590,7 @@ shuffleArray
 </summary>
 
 ---
-"Returns the input array shuffled
+Returns the input array shuffled
 </details>
 <details><summary>spliceArrayBuffer</summary>
 
