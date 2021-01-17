@@ -379,13 +379,14 @@ let _temp = {
       field.map(encodeURIComponent).join("=")
     ).join("&")
   },
-  formToObject: (form) =>
-    {return Array.from(new FormData(form)).reduce(
+  formToObject: (form) => {
+    return Array.from(new FormData(form)).reduce(
       (acc, [key, value]) => ({
         ...acc,
         [key]: value,
       }),
-    )},
+    )
+  },
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
       // Convert string to a number between 0 and 1
