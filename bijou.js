@@ -724,7 +724,10 @@ let _temp = {
     return domparser.parseFromString(string, mimeType);
   },
   syntaxHighlight: (string, mode = "html", colors = {}) => {
-    
+    .replace(
+      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
+      ""
+    );
     let el = document.createElement("DIV");
     el.innerText = string;
     let highlightel = (elmnt, mode, colors = {}) => {
