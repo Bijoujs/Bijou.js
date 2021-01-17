@@ -375,8 +375,7 @@ let _temp = {
         ...acc,
         [key]: value,
       }),
-      {}}
-
+      {}},
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
       // Convert string to a number between 0 and 1
