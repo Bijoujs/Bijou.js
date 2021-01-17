@@ -680,7 +680,7 @@ let _temp = {
         ""
       );
     } else if (typeof el === "string") {
-      
+      return 
     }
   },
   random: (min, max, round = true) => {
