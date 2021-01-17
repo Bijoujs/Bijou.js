@@ -419,6 +419,7 @@ let _temp = {
     return document.referrer || window.location.href;
   },
   replaceText: (el, callback) => {
+    
     for (
       var e,
       t = (function () {
