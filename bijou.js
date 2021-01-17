@@ -1506,4 +1506,6 @@ const _ = _temp;
 const explosion = _temp;
 if (isNode) {
   module.exports = _temp;
+} else {
+  export default _$
 }
