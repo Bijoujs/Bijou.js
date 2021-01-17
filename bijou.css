@@ -139,7 +139,9 @@
   position: absolute;
   right: 10px;
 }
-.float-lef
+.float-left {
+  
+}
 .inline-code {
   font-family: var(--monospace-font), Courier, monospace;
   padding: 4px;
