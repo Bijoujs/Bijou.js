@@ -688,7 +688,7 @@ let _temp = {
   },
   random: (min, max, round = true, seed = Math.random()) => {
     if (round) {
-      return Math.floor(Math.random() * (max - min + 1) + min);
+      return Math.floor(seed * (max - min + 1) + min);
     } else {
       return Math.random() * (max - min + 1) + min;
     }
