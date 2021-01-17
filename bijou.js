@@ -370,12 +370,12 @@ let _temp = {
       field.map(encodeURIComponent).join("=")
     ).join("&"),
   formToObject: (form) =>
-    return Array.from(new FormData(form)).reduce(
+    {return Array.from(new FormData(form)).reduce(
       (acc, [key, value]) => ({
         ...acc,
         [key]: value,
       }),
-      {}
+      {}}
     ),
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
