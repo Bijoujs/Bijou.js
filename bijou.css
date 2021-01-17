@@ -135,6 +135,7 @@
   font-weight: 900;
   font-size: 5vmin;
 }
+,
 .inline-code {
   font-family: var(--monospace-font), Courier, monospace;
   padding: 4px;
