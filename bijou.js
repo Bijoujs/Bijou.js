@@ -676,7 +676,6 @@ let _temp = {
         throw new Error("No document element! (You are probably using Node.js)");
       }
     }
-
   },
   random: (min, max, round = true) => {
     if (round) {
