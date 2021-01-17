@@ -188,7 +188,7 @@
     var(--box-shadow);
 }
 .button {
-  display: inline-block
+  display: inline-block;
   padding: 10px 15px;
   text-decoration: none;
   color: var(--background);
