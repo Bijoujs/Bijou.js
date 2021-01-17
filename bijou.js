@@ -1413,6 +1413,9 @@ let _temp = {
     return a.join("");
   },
   drag: (el) => {
+    if (isNode) {
+      throw new Error("No document element! (You are probably using Node.js)");
+    }
     var initX, initY, mousePressX, mousePressY;
     el.addEventListener(
       "mousedown",
