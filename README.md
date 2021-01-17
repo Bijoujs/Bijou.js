@@ -380,7 +380,7 @@ getHTML("https://wikipedia.org", (html) => {
   console.log(html);
 })
 // Logs the HTML of wikipedia
-
+```
 </details>
 <details>
 <summary>
