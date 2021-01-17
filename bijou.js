@@ -1382,12 +1382,13 @@ let _temp = {
     functions.reduceRight((arg, fn) => fn(arg), args),
   curryFunction: (fn, arity = fn.length, ...args) =>
     arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args),
-  mobileOrDesktop: () =>
-    {return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+  mobileOrDesktop: () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     )
       ? "mobile"
-      : "desktop"},
+      : "desktop"
+  },
   removeTags: (html) => html.replace(/<[^>]*>/g, ""),
   camelCase: (str) => {
     return str
