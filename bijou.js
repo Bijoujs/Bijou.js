@@ -679,8 +679,8 @@ let _temp = {
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
         ""
       );
-    } else {
-      
+    } else if tye{
+
     }
   },
   random: (min, max, round = true) => {
