@@ -384,7 +384,6 @@ let _temp = {
     }
     return _p8() + _p8(true) + _p8(true) + _p8();
   },
-  
   escapeHTML: (str) =>
     str.replace(
       /[&<>'"]/g,
