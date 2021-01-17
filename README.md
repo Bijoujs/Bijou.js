@@ -379,7 +379,7 @@ Runs the callback with the HTML (as a parsed html object) from the url specified
 getHTML("https://wikipedia.org", (html) => {
   console.log(html);
 })
-// Logs the 
+// Logs the HG
 </details>
 <details>
 <summary>
