@@ -112,6 +112,9 @@ let _temp = {
       .join(", ");
   },
   addStyles: (el, styles) => {
+    if (isNode) {
+      throw new Error("No document element! (You are probably using Node.js)");
+    }
     return Object.assign(el.style, styles);
   },
   onOutsideClick: (element, callback) => {
