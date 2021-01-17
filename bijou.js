@@ -1403,7 +1403,8 @@ let _temp = {
     easeOutQuint: t => 1 + (--t) * t * t * t * t,
     // acceleration until halfway, then deceleration 
     easeInOutQuint: t => t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t
-  }
+  },
+  getJSON: (url, callback) => {fetch(url).then(res => res.json()).then((json) => callback(json))}
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);

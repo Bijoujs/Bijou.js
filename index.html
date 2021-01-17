@@ -422,11 +422,12 @@
 		</filter>
 	</svg>
 	<div class="blobs"></div>`;
-    for (let i = 0; i < 40; i++) {
+    _$.each(new Array(40), () => {
       document
         .querySelector(".blobs")
         .appendChild(_$.createElement("<div class='blob'></div>"));
-    }
+    })
+
 
     _$.each(document.querySelectorAll(".blob"), (blob) => {
       blob.style.opacity = 0;
