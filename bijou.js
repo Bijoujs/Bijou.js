@@ -1529,7 +1529,7 @@ let desc = {
   unionArrays:
     "Merges two arrays using union, meaning that any duplicates between the two arrays will be removed.",
   uuid:
-    "Generates a unique id, like the uuid npm package. Also can take a seed as the argument, this can either be a string or a number between 0 and 1\n\n\tFor example:\n8dfe52e3-7beb-48eb-8282-209ff1c5250f",
+    "Generates a unique id, like the uuid npm package. Also can take a seed as the argument, this can either be a string or a number between 0 and 1. \n\n\tFor example:\n8dfe52e3-7beb-48eb-8282-209ff1c5250f",
   widows:
     "Replaces the last space character between words with '&nbsp;', preventing a single word on a newline.",
   flatten:
