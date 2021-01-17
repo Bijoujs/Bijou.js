@@ -370,7 +370,7 @@ let _temp = {
       field.map(encodeURIComponent).join("=")
     ).join("&"),
   formToObject: (form) =>
-    Array.from(new FormData(form)).reduce(
+    return Array.from(new FormData(form)).reduce(
       (acc, [key, value]) => ({
         ...acc,
         [key]: value,
