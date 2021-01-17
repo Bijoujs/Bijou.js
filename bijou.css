@@ -137,8 +137,9 @@
 }
 .float-right {
   position: absolute;
-  right: 10x
+  right: 10px;
 }
+
 .inline-code {
   font-family: var(--monospace-font), Courier, monospace;
   padding: 4px;
