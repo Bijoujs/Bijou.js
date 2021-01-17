@@ -141,7 +141,7 @@
 }
 .float-left {
   position: absolute;
-  left: 
+  left: 10px;
 }
 .inline-code {
   font-family: var(--monospace-font), Courier, monospace;
