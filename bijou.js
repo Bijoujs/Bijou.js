@@ -516,6 +516,9 @@ let _temp = {
     }
   },
   compStyle: (el, prop) => {
+    if (isNode) {
+      throw new Error("No document element! (You are probably using Node.js)");
+    }
     var computedstyles = window.getComputedStyle(el);
     return computedstyles.getPropertyValue(prop);
   },
