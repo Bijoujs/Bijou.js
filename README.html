@@ -240,8 +240,27 @@ the key and the 'value' attribute as the value.</details></p>
 <p></details>
 <details><summary>formatNumber</summary></p>
 <hr />
-<p>Adds commas to large numbers in the right place.</details></p>
-<p><details><summary>hexToRGB</summary></p>
+<p>Adds commas to large numbers in the right place.</details>
+<details>
+<summary>
+getHTML
+</summary></p>
+<hr />
+<p>Runs the callback with the HTML (as a parsed html object) from the url specified in the first argument:</p>
+<pre><code class="js language-js">getHTML("https://wikipedia.org", (html) =&gt; {
+  console.log(html);
+})
+// Logs the HTML of wikipedia
+</code></pre>
+<p></details>
+<details>
+<summary>
+getJSON
+</summary></p>
+<hr />
+<p>Runs the callback with the JSON (as an object) from the url specified in the first argument.
+</details>
+<details><summary>hexToRGB</summary></p>
 <hr />
 <p>Converts a hex value into an RGB color.</details></p>
 <p><details><summary>inPartialView</summary></p>
@@ -349,8 +368,15 @@ function:</p>
 <p>Gives a random number based on a whole number seed.</details></p>
 <p><details><summary>serializeForm</summary></p>
 <hr />
-<p>Convert a form to url queries</details></p>
-<p><details><summary>spliceArrayBuffer</summary></p>
+<p>Convert a form to url queries</details>
+<details>
+<summary>
+shuffleArray
+</summary></p>
+<hr />
+<p>Returns the input array shuffled
+</details>
+<details><summary>spliceArrayBuffer</summary></p>
 <hr />
 <p>Splices a number as if it's 8 bits long and converts it to a single number:</p>
 <pre><code class="js language-js">_$.spliceArrayBuffer([5, 8, 255], 0, 2, true); //16713733
