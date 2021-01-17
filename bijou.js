@@ -385,7 +385,7 @@ let _temp = {
         ...acc,
         [key]: value,
       }),
-      {}
+      
     ),
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
