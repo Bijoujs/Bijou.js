@@ -679,7 +679,7 @@ let _temp = {
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
         ""
       );
-    } else if (typeof el ){
+    } else if (typeof el ==){
 
     }
   },
