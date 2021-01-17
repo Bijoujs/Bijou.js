@@ -374,7 +374,8 @@ getHTML
 </summary>
 
 ---
-Runs the callback with the HTML (as a parsed html object) from the url specified in the first argument.
+Runs the callback with the HTML (as a parsed html object) from the url specified in the first argument:
+
 
 </details>
 <details>
