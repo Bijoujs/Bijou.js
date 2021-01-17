@@ -419,7 +419,9 @@ let _temp = {
     return document.referrer || window.location.href;
   },
   replaceText: (el, callback) => {
-    
+    if (isNode) {
+      throw new Error("No document element! (You are probably using Node.js)");
+    }
     for (
       var e,
       t = (function () {
