@@ -1502,7 +1502,7 @@ function _generateHTMLfromDocs() {
   _.each;
 }
 const _$ = _temp;
-econst _ = _temp;
+const _ = _temp;
 const explosion = _temp;
 if (isNode) {
   module.exports = _temp;
