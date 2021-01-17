@@ -115,6 +115,9 @@ let _temp = {
     return Object.assign(el.style, styles);
   },
   onOutsideClick: (element, callback) => {
+    if (isNode) {
+      throw new Error("No document element! (You are probably using Node.js)");
+    }
     document.addEventListener("click", (e) => {
       if (!element.contains(e.target)) callback();
     });
