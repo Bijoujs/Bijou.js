@@ -671,6 +671,9 @@ let _temp = {
     return str;
   },
   removeComments: (el) => {
+    if (isNode) {
+      throw new Error("No document element! (You are probably using Node.js)");
+    }
     el.innerHTML = el.innerHTML.replace(
       /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
       ""
