@@ -1507,4 +1507,4 @@ const explosion = _temp;
 if (isNode) {
   module.exports = _temp;
 }
-export { as bijou}
+export {_$ as bijou}
