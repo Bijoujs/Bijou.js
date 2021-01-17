@@ -290,13 +290,16 @@ _$.each([1, 2, 3], (num) => alert(num * 3)); //Alerts each number in the array t
 
 ---
 
-The only non-function in Bijou.js. This has a variety of easing functions, all of which take a number between 0 and 1, and return a corresponding value for the easing function. For example this code: 
+The only non-function in Bijou.js. This has a variety of easing functions, all of which take a number between 0 and 1, and return a corresponding value for the easing function. For example this code:
+
 ```js
-_$.ease.easeInOutQuad(.3);
+_$.ease.easeInOutQuad(0.3);
 ```
+
 Would return the eased value for a point about a third of the way through the animation.
 
 For reference here is the description of each function along with the equations for each of them:
+
 ```js
 let ease = {
   // ----------------------------------------------------------------
@@ -304,35 +307,38 @@ let ease = {
   // ----------------------------------------------------------------
   // To use each do _$.ease.linear([NUMBER BETWEEN 0 and 1 HERE])
 
-  
   // no easing, no acceleration
-  linear: t => t,
+  linear: (t) => t,
   // accelerating from zero velocity
-  easeInQuad: t => t*t,
+  easeInQuad: (t) => t * t,
   // decelerating to zero velocity
-  easeOutQuad: t => t*(2-t),
+  easeOutQuad: (t) => t * (2 - t),
   // acceleration until halfway, then deceleration
-  easeInOutQuad: t => t<.5 ? 2*t*t : -1+(4-2*t)*t,
-  // accelerating from zero velocity 
-  easeInCubic: t => t*t*t,
-  // decelerating to zero velocity 
-  easeOutCubic: t => (--t)*t*t+1,
-  // acceleration until halfway, then deceleration 
-  easeInOutCubic: t => t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1,
-  // accelerating from zero velocity 
-  easeInQuart: t => t*t*t*t,
-  // decelerating to zero velocity 
-  easeOutQuart: t => 1-(--t)*t*t*t,
-  // acceleration until halfway, then deceleration
-  easeInOutQuart: t => t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t,
+  easeInOutQuad: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
   // accelerating from zero velocity
-  easeInQuint: t => t*t*t*t*t,
+  easeInCubic: (t) => t * t * t,
   // decelerating to zero velocity
-  easeOutQuint: t => 1+(--t)*t*t*t*t,
-  // acceleration until halfway, then deceleration 
-  easeInOutQuint: t => t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t
-}
+  easeOutCubic: (t) => --t * t * t + 1,
+  // acceleration until halfway, then deceleration
+  easeInOutCubic: (t) =>
+    t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
+  // accelerating from zero velocity
+  easeInQuart: (t) => t * t * t * t,
+  // decelerating to zero velocity
+  easeOutQuart: (t) => 1 - --t * t * t * t,
+  // acceleration until halfway, then deceleration
+  easeInOutQuart: (t) =>
+    t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
+  // accelerating from zero velocity
+  easeInQuint: (t) => t * t * t * t * t,
+  // decelerating to zero velocity
+  easeOutQuint: (t) => 1 + --t * t * t * t * t,
+  // acceleration until halfway, then deceleration
+  easeInOutQuint: (t) =>
+    t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
+};
 ```
+
 </details>
 <details><summary>escapeHTML</summary>
 
@@ -368,19 +374,23 @@ _$.formatMilliseconds(600000); //Returns '10 minutes'
 ---
 
 Adds commas to large numbers in the right place.</details>
+
 <details>
 <summary>
 getHTML
 </summary>
 
 ---
+
 Runs the callback with the HTML (as a parsed html object) from the url specified in the first argument:
+
 ```js
 getHTML("https://wikipedia.org", (html) => {
   console.log(html);
-})
+});
 // Logs the HTML of wikipedia
 ```
+
 </details>
 <details>
 <summary>
@@ -388,7 +398,9 @@ getJSON
 </summary>
 
 ---
+
 Runs the callback with the JSON (as an object) from the url specified in the first argument.
+
 </details>
 <details><summary>hexToRGB</summary>
 
@@ -584,13 +596,16 @@ Gives a random number based on a whole number seed.</details>
 ---
 
 Convert a form to url queries</details>
+
 <details>
 <summary>
 shuffleArray
 </summary>
 
 ---
+
 Returns the input array shuffled
+
 </details>
 <details><summary>spliceArrayBuffer</summary>
 
