@@ -233,7 +233,7 @@ let _temp = {
   _$.throttle(() => {
     alert("Hello")
   }, 500)
-})
+}, 1)
 * @returns {Array}
 */
   throttle: (fn, wait) => {
