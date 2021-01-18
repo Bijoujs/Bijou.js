@@ -435,7 +435,7 @@ let _temp = {
  * @param {Array} y The second array to join.
  * @example
  * _$.unionArrays([1,2,3], [4,5,6]);//Returns [1,2,3,4,5,6]
- * @returns {Array} The joined array from the two 
+ * @returns {Array} The joined array from the two other 
  */
   unionArrays: (x, y) => {
     var obj = {};
