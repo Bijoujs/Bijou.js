@@ -527,7 +527,7 @@ let _temp = {
 * @param {Element} el The element to test.
 * @example
 * //
-* @returns {Boolean} Whether the elem
+* @returns {Boolean} Whether the element is completely in view.
 */
   inView: (el) => {
     if (isNode) {
