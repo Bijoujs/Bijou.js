@@ -731,7 +731,7 @@ let _temp = {
  * @param {Function} fn The function to run and time.
  * @param {String} [name=_$ function timer]
  * @example
- * //Ri
+ * //Times how long o
  * _$.timeFunction(() => prompt("What's your name?"));
  * @returns
  */
