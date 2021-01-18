@@ -1877,7 +1877,7 @@ let _temp = {
 * @memberOf bijou
 * @param {String} str The string of non-camelCased text.
 * @example
-* console.log(_$.camelCase("H"))
+* console.log(_$.camelCase("Hel"))
 * @returns {String}
 */
   camelCase: (str) => {
