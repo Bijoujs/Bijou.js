@@ -346,7 +346,7 @@ let _temp = {
     }
   },
 /**
- * Displays a s
+ * Displays a desktop notification
  * @function
  * @memberOf bijou
  * @param
