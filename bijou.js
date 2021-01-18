@@ -659,7 +659,7 @@ let _temp = {
         }[tag] || tag)
     ),
 /**
-* Unescapes a string of 
+* Unescapes a string of HTML
 * @function
 * @memberOf bijou
 * @param
