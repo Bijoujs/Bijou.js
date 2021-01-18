@@ -275,7 +275,7 @@ let _temp = {
  * Creates an HTML element from the specified string.
  * @function
  * @memberOf bijou
- * @param {String} =
+ * @param {String} str 
  * @example
  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
  * @returns
