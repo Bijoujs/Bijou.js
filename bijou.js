@@ -71,7 +71,7 @@ if (isNode) {
 let _temp = {
 /**
 * Generates prime numbers to the inputted number.
-* @param {Number} num - The number to calculate
+* @param {Number} num - The number to calculate pr
 */
   primesTo: (num) => {
     let arr = Array.from({
