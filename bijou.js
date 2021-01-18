@@ -1954,6 +1954,15 @@ let _temp = {
     }
     return el;
   },
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param {String}
+* @example
+* //
+* @returns {String}
+*/
   ease: {
     // no easing, no acceleration
     linear: (t) => t,
