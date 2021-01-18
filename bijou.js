@@ -521,10 +521,10 @@ let _temp = {
       .map(typeof fn === "function" ? fn : (val) => val[fn])
       .reduce((acc, val) => acc + val, 0) / arr.length,
 /**
-* Tests
+* Tests whether the specified element is fully in view.
 * @function
 * @memberOf bijou
-* @param
+* @param {Element} 
 * @example
 * //
 * @returns {String} The day name from the date.
