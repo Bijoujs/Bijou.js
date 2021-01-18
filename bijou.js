@@ -834,7 +834,7 @@ let _temp = {
 * @param
 * @example
 *
-* @returns
+* @returns {Object}
 */
   lightOrDark: (color) => {
     var r, g, b, hsp;
