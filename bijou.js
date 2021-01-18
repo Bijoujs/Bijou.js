@@ -659,7 +659,7 @@ let _temp = {
         }[tag] || tag)
     ),
 /**
-* DESC
+* Unescape
 * @function
 * @memberOf bijou
 * @param
