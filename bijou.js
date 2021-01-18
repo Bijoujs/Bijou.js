@@ -221,7 +221,7 @@ let _temp = {
       document.getSelection().removeAllRanges();
       document.getSelection().addRange(selected);
     }
-    return 
+    return str.
   },
   throttle: (fn, wait) => {
     let inThrottle, lastFn, lastTime;
