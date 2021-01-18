@@ -589,7 +589,6 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Element} form The form element.
-* @example
 * 
 * @returns {String} The day name from the date.
 */
