@@ -1914,7 +1914,7 @@ let _temp = {
 * @memberOf bijou
 * @param {Element} el The element to be dragged (And dropped :P ).
 * @example
-* _$.drag(document.querySelector('div'));//Allows the first <div> on teh 
+* _$.drag(document.querySelector('div'));//Allows the first <div> on th
 * @returns {String}
 */
   drag: (el) => {
