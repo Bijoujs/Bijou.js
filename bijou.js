@@ -166,7 +166,7 @@ let _temp = {
     document.addEventListener("click", (e) => {
       if (!element.contains(e.target)) callback();
     });
-    return callback
+    return callback;
   },
   onScrollStop: (callback) => {
     let isScrolling;
