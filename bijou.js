@@ -79,7 +79,7 @@ let _temp = {
   /**
    * Gives an array of prime numbers up to a certain one.
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {Number} num - The number to give primes to.
    * @example
    * _$.primesTo(100);//Returns an array of prime numbers up to 100.
@@ -101,7 +101,7 @@ let _temp = {
   /**
    * Runs a function asynchronously in a web worker.
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {Function} fn The function to run
    * @example
    * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
@@ -125,7 +125,7 @@ let _temp = {
   /**
    * Formats a number of milliseconds
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {Number} ms The number of milliseconds to format to a string.
    * @example
    * _$.formatMilliseconds(4000);//Returns "4 seconds"
@@ -148,7 +148,7 @@ let _temp = {
   /**
    * Adds the specified styles to the element specified.
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {Element} el The element to add the styles to.
    * @param {Object} styles An object that represents the styles to be added. (camelCased)
    * @example
@@ -164,7 +164,7 @@ let _temp = {
   /**
    * Returns the callback when a a click is registered outside the selected element
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {Element} element The element to use as the outsideclick element.
    * @param {Function} callback The function to run when a click is registered outside the specified element.
    * @example
@@ -183,7 +183,7 @@ let _temp = {
   /**
    * Returns the callback when the user stops scrolling.
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {Function} callback The callback to call when the user stops scrolling.
    * @example
    * _$.onScrollStop(() => {alert("You stopped scrolling!")})
@@ -208,7 +208,7 @@ let _temp = {
   /**
    * Copies the string inputted the clipboard.
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {String} str The string to copy.
    * @example
    * _$.copy("Hello world")
@@ -240,7 +240,7 @@ let _temp = {
   /**
   * Only runs the input function at MAX with the delay specified.
   * @function
-* @memberOf bijou
+* @memberOf bijou.js
   * @param {Function} fn The function to run.
   * @param {Number} wait The number of milliseconds to wait.
   * @example
@@ -274,7 +274,7 @@ let _temp = {
   /**
    * Creates an HTML element from the specified string.
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {String} str The string of the HTML element to create.
    * @example
    * //Returns a div with an id of "id_here" and innerText of "Testing!"
@@ -292,7 +292,7 @@ let _temp = {
   /**
    * Returns the browser that the user is using.
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @example
    * _$.browser();//For me this (correctly) returns "Chrome"
    * @returns {String} A string of the browser name that the user is using.
@@ -348,7 +348,7 @@ let _temp = {
   /**
    * Displays a desktop notification with the specified text.
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {String} text The title of the notification.
    * @param {String} body The body of the notification.
    * @param {String} icon The url to the image for the icon of the notification.
@@ -389,7 +389,7 @@ let _temp = {
   /**
    * Returns the name of the weekday from the Date object specified.
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {Date} date The date object to use.
    * @param {String} [locale=en-US] The locale to use.
    * @example
@@ -403,7 +403,7 @@ let _temp = {
   /**
    * Converts JSON to a CSV string
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {Array} arr The array of objects to convert to CSV.
    * @param {String} columns The number of columns to use.
    * @param {String} [delimiter=","] The delimeter between cells, by default this is a comma.
@@ -430,7 +430,7 @@ let _temp = {
   /**
    * Joins two arrays together and removes duplicates.
    * @function
-   * @memberOf bijou
+   * @memberOf bijou.js
    * @param {Array} x The first array to join.
    * @param {Array} y The second array to join.
    * @example
@@ -450,7 +450,7 @@ let _temp = {
   /**
   * For each item in an array, run a callback with it.
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @param {Array} array The array of items to run the callback with.
   * @param {Function} callback The callback function to run on the array items.
   * @example
@@ -465,7 +465,7 @@ let _temp = {
   /**
   * Maps the keys of an object.
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @param {Object} obj The object to map.
   * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
   * @example
@@ -490,7 +490,7 @@ let _temp = {
   /**
   * Converts an array to CSV (Comma separated values) data.
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @param {Array} arr The array to convert.
   * @param {String} [delimiter=,] The separator (By default this is a comma.)
   * @example
@@ -508,7 +508,7 @@ let _temp = {
   /**
   * averageBy
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @param {Array.<number>} arr The array to average
   * @param {Function} fn The function to apply to each item of the array.
   * @example
@@ -523,7 +523,7 @@ let _temp = {
   /**
   * Tests whether the specified element is fully in view.
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @param {Element} el The DOM element to test.
   * @example
   * //Alerts "In view!" if the first <div> in the document is in view.
@@ -555,7 +555,7 @@ let _temp = {
   /**
   * Tests if the given DOM element is partially (or fully) in view.
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @param {Element} el The element to test.
   * @example
   * //Alerts "In view!" if the first <div> in the document is partially or fully view.
@@ -587,7 +587,7 @@ let _temp = {
   /**
   * Converts a form to URL queries using the name attribute.
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @param {Element} form The form element.
   * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
   */
@@ -602,7 +602,7 @@ let _temp = {
   /**
   * Converts a form to an Object.
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @param {Element} form The form element.
   * @example
   * //
@@ -620,7 +620,7 @@ let _temp = {
   /**
   * Generates a unique ID from a seed
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @param {Number|String} [seed=Math.random()] The seed to use.
   * @example
   * _$.uuid();//Returns a uuid!
@@ -640,7 +640,7 @@ let _temp = {
   /**
   * Escapes a string of HTML
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @param {String} str The string of HTML to escape.
   * @example
   * _$.escapeHTML("<div>"); Returns the escaped HTML: "&lt;div&gt;"
@@ -661,7 +661,7 @@ let _temp = {
   /**
   * Unescapes a string of HTML
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @param {String} str The string of HTML to unescape.
   * @example
   * _$.unescapeHTML("&lt;div&gt;");//Returns "<div>"
@@ -682,7 +682,7 @@ let _temp = {
   /**
   * Returns the previous page that the user visited.
   * @function
-  * @memberOf bijou
+  * @memberOf bijou.js
   * @example
   * _$.previousPage()
   * @returns {String} The url of the previous page the user visited.
