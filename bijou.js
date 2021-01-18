@@ -1064,7 +1064,7 @@ let _temp = {
 * Generates a random number between a minimum and maximum number
 * @function
 * @memberOf bijou.js
-* @param {Number} min The minimum number 
+* @param {Number} min The minimum number to gh
 * @example
 *
 * @returns
