@@ -229,7 +229,8 @@ let _temp = {
 * @param {Function} fn The function to run.
 * @param {Number} wait The number of milliseconds to wait.
 * @example
-* setInterval(() => {_$.throttle(alert("Hello"), 500)})
+* setInterval(() => {
+  _$.throttle(alert("Hello"), 500)})
 * @returns {Array}
 */
   throttle: (fn, wait) => {
