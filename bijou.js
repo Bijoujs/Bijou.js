@@ -224,7 +224,7 @@ let _temp = {
     return str;
   },
 /**
-* Only runs the input function at MAX 
+* Only runs the input function at MAX with the delay specified.
 * @function
 * @param {number} num - Params
 * @example
