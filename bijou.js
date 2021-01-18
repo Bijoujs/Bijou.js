@@ -54,7 +54,10 @@ Contributors to Bijou.js:
 (c) 2021 Explosion-Scratch, all rights reserved.
 
  */
-
+/**
+* Bijou.js source object.
+* @type {Object}
+*/
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
   isNode = true;
