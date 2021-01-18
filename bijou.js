@@ -1872,7 +1872,7 @@ let _temp = {
    */
   removeTags: (html) => html.replace(/<[^>]*>/g, ""),
 /**
-* camelCases a 
+* camelCases a string,
 * @function
 * @memberOf bijou
 * @param {Element} element The element to use as the outsideclick element.
