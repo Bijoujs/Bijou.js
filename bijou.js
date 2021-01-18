@@ -684,7 +684,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @example
-* _$.previousPage
+* _$.previousPage()
 * @returns {String} The day name from the date.
 */
   previousPage: () => {
