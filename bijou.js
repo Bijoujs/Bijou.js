@@ -781,15 +781,15 @@ let _temp = {
     }
     return finalTitle;
   },
-    /**
-   * DESC
-   * @function
-   * @memberOf bijou.js
-   * @param
-   * @example
-   * 
-   * @returns 
-   */
+/**
+* DESC
+* @function
+* @memberOf bijou.js
+* @param
+* @example
+*
+* @returns
+*/
   randomColor: () => "#" + Math.floor(Math.random() * 16777215).toString(16),
   lightenColor: (col, amt) => {
     var usePound = false;
