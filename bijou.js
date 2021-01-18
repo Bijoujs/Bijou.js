@@ -346,7 +346,7 @@ let _temp = {
     }
   },
 /**
- * Displays a desktop notification 
+ * Displays a desktop notification with the specf
  * @function
  * @memberOf bijou
  * @param
