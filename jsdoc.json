@@ -3,7 +3,7 @@
     "include": [
       "/workspace/"
     ],
-    "includePattern": ".",
+    "includePattern": "",
     "excludePattern": "(node_modules/|out/|.github/)"
   },
   "templates": {
