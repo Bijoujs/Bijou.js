@@ -1888,7 +1888,7 @@ let _temp = {
       .replace(/\s+/g, "");
   },
 /**
-* Scram
+* Scrambles the o
 * @function
 * @memberOf bijou
 * @param {String}
