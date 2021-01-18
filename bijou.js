@@ -834,7 +834,7 @@ let _temp = {
 * @param
 * @example
 *
-* @returns {Object} An objec
+* @returns {Object} An object that represents if the color is light or dark and how much. 
 */
   lightOrDark: (color) => {
     var r, g, b, hsp;
