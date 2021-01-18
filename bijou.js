@@ -157,7 +157,7 @@ let _temp = {
 * @param {Function} callback The function to run when a click is registered outside the specified element.
 * @example
 * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
-* @returns {Element} The elemen
+* @returns {Element} The element that 
 */
   onOutsideClick: (element, callback) => {
     if (isNode) {
