@@ -136,7 +136,7 @@ let _temp = {
       .join(", ");
   },
 /**
-* [Desc
+* [
 * @function
 * @param {number} num - Params
 * @example
