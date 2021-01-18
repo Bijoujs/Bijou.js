@@ -69,11 +69,8 @@ if (isNode) {
     "There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element."
   );
 }
-/**
- * Bijou.js source object. It contains all the functions of Bijou.
- * @type {Object}
- * @namespace bijou
- */
+  /**
+
 
 let _temp = {
   /**
