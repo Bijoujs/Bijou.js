@@ -4,6 +4,9 @@
     "includePattern": ".js$",
     "excludePattern": "(node_modules/|out/|.github/)"
   },
+  "plugins": [
+    "plugins/markdown"
+  ],
   "templates": {
     "cleverLinks": true,
     "monospaceLinks": true
