@@ -589,7 +589,6 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Element} form The form element.
-* 
 * @returns {String} The day name from the date.
 */
   serializeForm: (form) => {
