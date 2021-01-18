@@ -71,7 +71,7 @@ if (isNode) {
 let _temp = {
 /**
 * Generates prime numbers to the inputted number.
-* @param {num} num - The title of the book.
+* @param {Num} num - The title of the book.
 */
   primesTo: (num) => {
     let arr = Array.from({
