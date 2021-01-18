@@ -1875,7 +1875,7 @@ let _temp = {
 * camelCases a string.
 * @function
 * @memberOf bijou
-* @param {String} element The element to use as the outsideclick element.
+* @param {String} str The element to use as the outsideclick element.
 * @example
 * //
 * @returns {String}
