@@ -520,6 +520,15 @@ let _temp = {
     arr
       .map(typeof fn === "function" ? fn : (val) => val[fn])
       .reduce((acc, val) => acc + val, 0) / arr.length,
+  /**
+ * DESC
+ * @function
+ * @memberOf bijou
+ * @param
+ * @example
+ * //
+ * @returns {String} The day name from the date.
+ */
   inView: (el) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
