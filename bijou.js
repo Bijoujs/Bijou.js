@@ -290,7 +290,7 @@ let _temp = {
     return el.firstElementChild;
   },
 /**
- * [Desc]
+ * [
  * @function
  * @memberOf bijou
  * @param
