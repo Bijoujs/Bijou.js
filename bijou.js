@@ -644,7 +644,7 @@ let _temp = {
 * @param {String} str The string of HTML to escape.
 * @example
 * _$.escapeHTML("<div>"); Returns the escaped HTML: "&lt;div&gt;"
-* @returns {String} The escaped 
+* @returns {String} The escaped HTML.
 */
   escapeHTML: (str) =>
     str.replace(
