@@ -226,7 +226,7 @@ let _temp = {
 /**
 * Only runs the input function at MAX with the delay specified.
 * @function
-* @param {Function} fn - Params
+* @param {Function} fn 
 * @example
 * Example
 * @returns {Array}
