@@ -1887,6 +1887,15 @@ let _temp = {
       })
       .replace(/\s+/g, "");
   },
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param {String}
+* @example
+* //
+* @returns {String}
+*/
   scrambleString: (str) => {
     var a = str.split(""),
       n = a.length;
