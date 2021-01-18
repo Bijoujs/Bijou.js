@@ -521,7 +521,7 @@ let _temp = {
       .map(typeof fn === "function" ? fn : (val) => val[fn])
       .reduce((acc, val) => acc + val, 0) / arr.length,
 /**
-* T
+* Re
 * @function
 * @memberOf bijou
 * @param
