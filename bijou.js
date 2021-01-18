@@ -495,7 +495,7 @@ let _temp = {
 * @param {String} [delimeter=,] The separator (By default this is a comma.)
 * @example
 * _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
-* @returns {String} The comma seperated array.
+* @returns {String} The comma separated array.
 */
   arrayToCSV: (arr, delimiter = ",") =>
     arr
