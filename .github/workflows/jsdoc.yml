@@ -3,7 +3,6 @@ name: GitHub pages
 on:
   push:
     branches:
-      - main
       - JSDoc
 
 jobs:
@@ -25,5 +24,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           publish_dir: ./
-          github_token: ${{ secrets.GITHUB_TOKEN }} 
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          enable_jekyll: true
   
