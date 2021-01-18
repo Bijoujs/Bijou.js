@@ -877,8 +877,8 @@ let _temp = {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
-    var computedstyles = window.getComputedStyle(el);
-    return computedstyles.getPropertyValue(prop);
+    var computedStyles = window.getComputedStyle(el);
+    return computedStyles.getPropertyValue(prop);
   },
   rgbToHex: (rgb) => {
     let sep = rgb.indexOf(",") > -1 ? "," : " ";
