@@ -785,7 +785,6 @@ let _temp = {
 * Generates a random hex color.
 * @function
 * @memberOf bijou.js
-* @param
 * @example
 *
 * @returns
