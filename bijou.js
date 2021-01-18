@@ -524,9 +524,9 @@ let _temp = {
 * Tests whether the specified element is fully in view.
 * @function
 * @memberOf bijou
-* @param {Element} el The element to test.
+* @param {Element} el The DOM element to test.
 * @example
-* //
+* 
 * @returns {Boolean} Whether the element is completely in view.
 */
   inView: (el) => {
