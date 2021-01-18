@@ -1959,7 +1959,7 @@ let _temp = {
 * @Object
 * @memberOf bijou
 * @example
-* _$.ease.easeInOutQuad(.3);//Returns the eased point of about 1/3 alo
+* _$.ease.easeInOutQuad(.3);//Returns the eased point of about 1/3 along the pa
 * @returns {String}
 */
   ease: {
