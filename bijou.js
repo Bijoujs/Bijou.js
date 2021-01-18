@@ -765,7 +765,7 @@ let _temp = {
 * @param {String} text The string to replace
 * @example
 * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
-* //Replaces the last space in the <h1>'s inner
+* //Replaces the last space in the <h1>'s innerTExt 
 * @returns
 */
   widows: (text) => {
