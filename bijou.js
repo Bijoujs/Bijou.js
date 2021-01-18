@@ -151,7 +151,7 @@ let _temp = {
     return Object.assign(el.style, styles);
   },
 /**
-* 
+* Returns the call
 * @function
 * @param {number} num - Params
 * @example
