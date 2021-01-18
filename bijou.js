@@ -637,6 +637,15 @@ let _temp = {
     }
     return _p8() + _p8(true) + _p8(true) + _p8();
   },
+/**
+* E
+* @function
+* @memberOf bijou
+* @param
+* @example
+* //
+* @returns {String} The day name from the date.
+*/
   escapeHTML: (str) =>
     str.replace(
       /[&<>'"]/g,
