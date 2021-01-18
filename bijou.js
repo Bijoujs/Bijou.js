@@ -898,6 +898,7 @@ let _temp = {
 
     return "#" + r + g + b;
   },
+  
   hexToRGB: (hex) => {
     let alpha = false,
       h = hex.slice(hex.startsWith("#") ? 1 : 0);
