@@ -67,7 +67,14 @@ if (isNode) {
     "There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element."
   );
 }
-
+/**
+* Gives an array of prime numbers up to a certain one.
+* @function
+* @param {Number} num - The number to give primes to.
+* @example
+* _$.primesTo(100);//Returns an array of prime numbers up to 100.
+* @returns {Array} Returns an array of prime numbers up to the given number.
+*/
 let _temp = {
   /**
   * Gives an array of prime numbers up to a certain one.
