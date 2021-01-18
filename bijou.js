@@ -1909,7 +1909,7 @@ let _temp = {
     return a.join("");
   },
 /**
-* Allows an element to be dragged and dropp
+* Allows an element to be dragged and dropped int
 * @function
 * @memberOf bijou
 * @param {String}
