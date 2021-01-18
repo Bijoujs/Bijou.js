@@ -198,7 +198,7 @@ let _temp = {
 * @param {String} str The string to copy.
 * @example
 * _$.copy("Hello world")
-* @returns {String} 
+* @returns {String} The string copied.
 */
   copy: (str) => {
     if (isNode) {
