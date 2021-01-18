@@ -899,7 +899,7 @@ let _temp = {
     return "#" + r + g + b;
   },
 /**
-* Conver
+* Converts a hex 
 * @function
 * @memberOf bijou.js
 * @param
