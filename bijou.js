@@ -1320,7 +1320,7 @@ let _temp = {
         }
         return [s, e + end.length, func];
       }
-      /** */  */
+      /*  */
       function getNumPos(txt, func) {
         var arr = [
             "<br>",
