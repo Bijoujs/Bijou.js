@@ -491,7 +491,7 @@ let _temp = {
 * Converts an array to CSV (Comma seperated values) data.
 * @function
 * @memberOf bijou
-* @param
+* @param 
 * @example
 * //
 * @returns {String} The day name from the date.
