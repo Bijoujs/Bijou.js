@@ -875,7 +875,7 @@ let _temp = {
 * @param {String} prop The css-property value to get of the styles.
 * @example
 * console.log(_$.compStyle(document.documentElement, "background-color"));
-* @returns {String} The computed style property for the element pse
+* @returns {String} The computed style property for the element p
 */
   compStyle: (el, prop) => {
     if (isNode) {
