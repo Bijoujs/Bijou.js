@@ -744,7 +744,7 @@ let _temp = {
 * Sorts an object alphabetically by its keys.
 * @function
 * @memberOf bijou.js
-* @param {Object}
+* @param {Object} 
 * @example
 *
 * @returns
