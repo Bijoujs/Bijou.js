@@ -70,7 +70,7 @@ if (isNode) {
   );
 }
 /**
-* Bijou.js source object.
+* Bijou.js source object
 * @type {Object}
 */
 let _temp = {
