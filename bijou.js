@@ -87,8 +87,8 @@ let _temp = {
    */
   primesTo: (num) => {
     let arr = Array.from({
-      length: num - 1,
-    }).map((x, i) => i + 2),
+        length: num - 1,
+      }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -312,7 +312,7 @@ let _temp = {
         return p.toString() === "[object SafariRemoteNotification]";
       })(
         !window["safari"] ||
-        (typeof safari !== "undefined" && window["safari"].pushNotification)
+          (typeof safari !== "undefined" && window["safari"].pushNotification)
       );
     var isIE = /*@cc_on!@*/ false || !!document.documentMode;
     var isEdge = !isIE && !!window.StyleMedia;
@@ -396,7 +396,7 @@ let _temp = {
    * _$.primesTo(100);//Returns an array of prime numbers up to 100.
    * @returns {String} The day name from the date.
    */
-  dayName: (date, locale = 'en-US') =>
+  dayName: (date, locale = "en-US") =>
     date.toLocaleDateString(locale, {
       weekday: "long",
     }),
@@ -421,7 +421,7 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-            !obj[key] ? "" : obj[key]
+              !obj[key] ? "" : obj[key]
             }"`,
           ""
         )
@@ -448,36 +448,36 @@ let _temp = {
     return res;
   },
   /**
-  * For each item in an array, run a callback with it.
-  * @function
-  * @memberOf bijou
-  * @param {Array} array The array of items to run the callback with.
-  * @param {Function} callback The callback function to run on the array items.
-  * @example
-  * _$.each(new Array(40), (i) => console.log(i));//Logs the numbers up to 40.
-  * @returns undefined
-  */
+   * For each item in an array, run a callback with it.
+   * @function
+   * @memberOf bijou
+   * @param {Array} array The array of items to run the callback with.
+   * @param {Function} callback The callback function to run on the array items.
+   * @example
+   * _$.each(new Array(40), (i) => console.log(i));//Logs the numbers up to 40.
+   * @returns undefined
+   */
   each: (array, callback) => {
     for (let i = 0; i < array.length; i++) {
       callback(array[i], i, array);
     }
   },
   /**
-  * Maps the keys of an object.
-  * @function
-  * @memberOf bijou
-  * @param {Object} obj The object to map.
-  * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
-  * @example
-  * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
-  * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
-  * @returns {Object} The new Object.
-  */
+   * Maps the keys of an object.
+   * @function
+   * @memberOf bijou
+   * @param {Object} obj The object to map.
+   * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
+   * @example
+   * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
+   * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
+   * @returns {Object} The new Object.
+   */
   mapObjectKeys: (obj, fn) =>
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-        ? Object.keys(obj).reduce((acc, current) => {
+      ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current);
           const val = obj[current];
           acc[key] =
@@ -486,17 +486,17 @@ let _temp = {
               : val;
           return acc;
         }, {})
-        : obj,
+      : obj,
   /**
-  * Converts an array to CSV (Comma separated values) data.
-  * @function
-  * @memberOf bijou
-  * @param {Array} arr The array to convert.
-  * @param {String} [delimiter=,] The separator (By default this is a comma.)
-  * @example
-  * _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
-  * @returns {String} The comma separated array.
-  */
+   * Converts an array to CSV (Comma separated values) data.
+   * @function
+   * @memberOf bijou
+   * @param {Array} arr The array to convert.
+   * @param {String} [delimiter=,] The separator (By default this is a comma.)
+   * @example
+   * _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
+   * @returns {String} The comma separated array.
+   */
   arrayToCSV: (arr, delimiter = ",") =>
     arr
       .map((v) =>
@@ -506,30 +506,30 @@ let _temp = {
       )
       .join("\n"),
   /**
-  * averageBy
-  * @function
-  * @memberOf bijou
-  * @param {Array.<number>} arr The array to average
-  * @param {Function} fn The function to apply to each item of the array.
-  * @example
-  * //Averages the array 1,2,3,4 after squaring each number.
-  * _$.averageBy([1,2,3,4], (v) => v ** 2);
-  * @returns {Number} The average of the array.
-  */
+   * averageBy
+   * @function
+   * @memberOf bijou
+   * @param {Array.<number>} arr The array to average
+   * @param {Function} fn The function to apply to each item of the array.
+   * @example
+   * //Averages the array 1,2,3,4 after squaring each number.
+   * _$.averageBy([1,2,3,4], (v) => v ** 2);
+   * @returns {Number} The average of the array.
+   */
   averageBy: (arr, fn) =>
     arr
       .map(typeof fn === "function" ? fn : (val) => val[fn])
       .reduce((acc, val) => acc + val, 0) / arr.length,
   /**
-  * Tests whether the specified element is fully in view.
-  * @function
-  * @memberOf bijou
-  * @param {Element} el The DOM element to test.
-  * @example
-  * //Alerts "In view!" if the first <div> in the document is in view.
-  * if (_$.inView(document.querySelector("div"))) alert("In view!");
-  * @returns {Boolean} Whether the element is completely in view.
-  */
+   * Tests whether the specified element is fully in view.
+   * @function
+   * @memberOf bijou
+   * @param {Element} el The DOM element to test.
+   * @example
+   * //Alerts "In view!" if the first <div> in the document is in view.
+   * if (_$.inView(document.querySelector("div"))) alert("In view!");
+   * @returns {Boolean} Whether the element is completely in view.
+   */
   inView: (el) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -553,15 +553,15 @@ let _temp = {
     );
   },
   /**
-  * Tests if the given DOM element is partially (or fully) in view.
-  * @function
-  * @memberOf bijou
-  * @param {Element} el The element to test.
-  * @example
-  * //Alerts "In view!" if the first <div> in the document is partially or fully view.
-  * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
-  * @returns {Boolean} Whether the DOM element is partially in view.
-  */
+   * Tests if the given DOM element is partially (or fully) in view.
+   * @function
+   * @memberOf bijou
+   * @param {Element} el The element to test.
+   * @example
+   * //Alerts "In view!" if the first <div> in the document is partially or fully view.
+   * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
+   * @returns {Boolean} Whether the DOM element is partially in view.
+   */
   inPartialView: (el) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -585,12 +585,12 @@ let _temp = {
     );
   },
   /**
-  * Converts a form to URL queries using the name attribute.
-  * @function
-  * @memberOf bijou
-  * @param {Element} form The form element.
-  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
-  */
+   * Converts a form to URL queries using the name attribute.
+   * @function
+   * @memberOf bijou
+   * @param {Element} form The form element.
+   * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
+   */
   serializeForm: (form) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -600,14 +600,14 @@ let _temp = {
     ).join("&");
   },
   /**
-  * Converts a form to an Object.
-  * @function
-  * @memberOf bijou
-  * @param {Element} form The form element.
-  * @example
-  * //
-  * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
-  */
+   * Converts a form to an Object.
+   * @function
+   * @memberOf bijou
+   * @param {Element} form The form element.
+   * @example
+   * //
+   * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
+   */
   formToObject: (form) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -618,14 +618,14 @@ let _temp = {
     }));
   },
   /**
-  * Generates a unique ID from a seed
-  * @function
-  * @memberOf bijou
-  * @param {Number|String} [seed=Math.random()] The seed to use.
-  * @example
-  * _$.uuid();//Returns a uuid!
-  * @returns {String} The UUID
-  */
+   * Generates a unique ID from a seed
+   * @function
+   * @memberOf bijou
+   * @param {Number|String} [seed=Math.random()] The seed to use.
+   * @example
+   * _$.uuid();//Returns a uuid!
+   * @returns {String} The UUID
+   */
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
       // Convert string to a number between 0 and 1
@@ -638,14 +638,14 @@ let _temp = {
     return _p8() + _p8(true) + _p8(true) + _p8();
   },
   /**
-  * Escapes a string of HTML
-  * @function
-  * @memberOf bijou
-  * @param {String} str The string of HTML to escape.
-  * @example
-  * _$.escapeHTML("<div>"); Returns the escaped HTML: "&lt;div&gt;"
-  * @returns {String} The escaped HTML.
-  */
+   * Escapes a string of HTML
+   * @function
+   * @memberOf bijou
+   * @param {String} str The string of HTML to escape.
+   * @example
+   * _$.escapeHTML("<div>"); Returns the escaped HTML: "&lt;div&gt;"
+   * @returns {String} The escaped HTML.
+   */
   escapeHTML: (str) =>
     str.replace(
       /[&<>'"]/g,
@@ -659,14 +659,14 @@ let _temp = {
         }[tag] || tag)
     ),
   /**
-  * Unescapes a string of HTML
-  * @function
-  * @memberOf bijou
-  * @param {String} str The string of HTML to unescape.
-  * @example
-  * _$.unescapeHTML("&lt;div&gt;");//Returns "<div>"
-  * @returns {String} The unescaped HTML.
-  */
+   * Unescapes a string of HTML
+   * @function
+   * @memberOf bijou
+   * @param {String} str The string of HTML to unescape.
+   * @example
+   * _$.unescapeHTML("&lt;div&gt;");//Returns "<div>"
+   * @returns {String} The unescaped HTML.
+   */
   unescapeHTML: (str) =>
     str.replace(
       /&amp;|&lt;|&gt;|&#39;|&quot;/g,
@@ -680,13 +680,13 @@ let _temp = {
         }[tag] || tag)
     ),
   /**
-  * Returns the previous page that the user visited.
-  * @function
-  * @memberOf bijou
-  * @example
-  * _$.previousPage()
-  * @returns {String} The url of the previous page the user visited.
-  */
+   * Returns the previous page that the user visited.
+   * @function
+   * @memberOf bijou
+   * @example
+   * _$.previousPage()
+   * @returns {String} The url of the previous page the user visited.
+   */
   previousPage: () => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -694,35 +694,35 @@ let _temp = {
     return document.referrer || window.location.href;
   },
   /**
-  * Replaces the text in an element by running it through a callback.
-  * @function
-  * @memberOf bijou
-  * @param {Element} el The element to replace the text of.
-  * @param {Function} callback The callback to run (Gets passed the element's text).
-  * @example
-  * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
-  * //Converts the text of the first <div> element to upperCase.
-  * @returns {String} The element who's text was replaced.
-  */
+   * Replaces the text in an element by running it through a callback.
+   * @function
+   * @memberOf bijou
+   * @param {Element} el The element to replace the text of.
+   * @param {Function} callback The callback to run (Gets passed the element's text).
+   * @example
+   * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
+   * //Converts the text of the first <div> element to upperCase.
+   * @returns {String} The element who's text was replaced.
+   */
   replaceText: (el, callback) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     for (
       var e,
-      t = (function () {
-        for (var e, t = el, o = [], a = 0; a < t.length; a++)
-          (e = t[a].childNodes[0]),
-            t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-        return o;
-      })(),
-      o = 0,
-      a = t.length;
+        t = (function () {
+          for (var e, t = el, o = [], a = 0; a < t.length; a++)
+            (e = t[a].childNodes[0]),
+              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
+          return o;
+        })(),
+        o = 0,
+        a = t.length;
       o < a;
       o++
     )
       (e = t[o].nodeValue), (t[o].nodeValue = callback(e));
-    return el
+    return el;
   },
   /**
    * Times the function passed.
@@ -741,15 +741,15 @@ let _temp = {
     console.timeEnd(name);
   },
   /**
-  * Sorts an object alphabetically by its keys.
-  * @function
-  * @memberOf bijou
-  * @param {Object} obj The object to sort.
-  * @example
-  * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
-  * // The object is now {anotherThing: "Another value!", testing: "A value"}
-  * @returns {Object} The sorted object.
-  */
+   * Sorts an object alphabetically by its keys.
+   * @function
+   * @memberOf bijou
+   * @param {Object} obj The object to sort.
+   * @example
+   * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
+   * // The object is now {anotherThing: "Another value!", testing: "A value"}
+   * @returns {Object} The sorted object.
+   */
   sortObj: (obj) => {
     return Object.keys(obj)
       .sort()
@@ -759,15 +759,15 @@ let _temp = {
       }, {});
   },
   /**
-  * Returns the last space in the string given replaced with "&nbsp;"
-  * @function
-  * @memberOf bijou
-  * @param {String} text The string to replace
-  * @example
-  * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
-  * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
-  * @returns {String} The replaced string.
-  */
+   * Returns the last space in the string given replaced with "&nbsp;"
+   * @function
+   * @memberOf bijou
+   * @param {String} text The string to replace
+   * @example
+   * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
+   * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
+   * @returns {String} The replaced string.
+   */
   widows: (text) => {
     var wordArray = text.split(" ");
     var finalTitle = "";
@@ -782,24 +782,24 @@ let _temp = {
     return finalTitle;
   },
   /**
-  * Generates a random hex color.
-  * @function
-  * @memberOf bijou
-  * @example
-  * document.querySelector("div").style.backgroundColor = _$.randomColor()
-  * @returns {String} A random Hex color
-  */
+   * Generates a random hex color.
+   * @function
+   * @memberOf bijou
+   * @example
+   * document.querySelector("div").style.backgroundColor = _$.randomColor()
+   * @returns {String} A random Hex color
+   */
   randomColor: () => "#" + Math.floor(Math.random() * 16777215).toString(16),
   /**
-  * Lighten or darken a color by a certain amount
-  * @function
-  * @memberOf bijou
-  * @param {String} color The color to lighten/darken
-  * @param {Number} amt The amount to lighten the color.
-  * @example
-  * _$.lightenColor("#000000", 50);//Lightens black by 50 (Out of 255)
-  * @returns {String} The color lightened.
-  */
+   * Lighten or darken a color by a certain amount
+   * @function
+   * @memberOf bijou
+   * @param {String} color The color to lighten/darken
+   * @param {Number} amt The amount to lighten the color.
+   * @example
+   * _$.lightenColor("#000000", 50);//Lightens black by 50 (Out of 255)
+   * @returns {String} The color lightened.
+   */
   lightenColor: (col, amt) => {
     var usePound = false;
 
@@ -868,15 +868,15 @@ let _temp = {
     }
   },
   /**
-  * Gets a property from the computed style of an element.
-  * @function
-  * @memberOf bijou
-  * @param {Element} el The element whose styles to get.
-  * @param {String} prop The css-property value to get of the styles.
-  * @example
-  * console.log(_$.compStyle(document.documentElement, "background-color"));
-  * @returns {String} The computed style property for the element specified.
-  */
+   * Gets a property from the computed style of an element.
+   * @function
+   * @memberOf bijou
+   * @param {Element} el The element whose styles to get.
+   * @param {String} prop The css-property value to get of the styles.
+   * @example
+   * console.log(_$.compStyle(document.documentElement, "background-color"));
+   * @returns {String} The computed style property for the element specified.
+   */
   compStyle: (el, prop) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -899,12 +899,12 @@ let _temp = {
     return "#" + r + g + b;
   },
   /**
-  * Converts a hex code to a RGB color.
-  * @function
-  * @memberOf bijou
-  * @param {String} hex The hex code to convert.
-  * @returns {String} The RGB color converted from the hex code.
-  */
+   * Converts a hex code to a RGB color.
+   * @function
+   * @memberOf bijou
+   * @param {String} hex The hex code to convert.
+   * @returns {String} The RGB color converted from the hex code.
+   */
   hexToRGB: (hex) => {
     let alpha = false,
       h = hex.slice(hex.startsWith("#") ? 1 : 0);
@@ -925,15 +925,15 @@ let _temp = {
     );
   },
   /**
-  * Generates a querySelector for an element passed in.
-  * @function
-  * @memberOf bijou
-  * @param {Element} elem The element to generate the querySelector for.
-  * @example
-  * const textarea = document.getElementById('textarea');
-  * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
-  * @returns {String} The generated querySelector.
-  */
+   * Generates a querySelector for an element passed in.
+   * @function
+   * @memberOf bijou
+   * @param {Element} elem The element to generate the querySelector for.
+   * @example
+   * const textarea = document.getElementById('textarea');
+   * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
+   * @returns {String} The generated querySelector.
+   */
   querySelector: (elem) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -1034,14 +1034,14 @@ let _temp = {
     return str;
   },
   /**
-  * Removes comments from the element or string of code specified.
-  * @function
-  * @memberOf bijou
-  * @param {Element|String} el The element or string or code to remove comments from.
-  * @example
-  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
-  * @returns {String|Element} The string removed of comments or the element removed of comments.
-  */
+   * Removes comments from the element or string of code specified.
+   * @function
+   * @memberOf bijou
+   * @param {Element|String} el The element or string or code to remove comments from.
+   * @example
+   * _$.removeComments(document.documentElement);//Removes the comments from the document element.
+   * @returns {String|Element} The string removed of comments or the element removed of comments.
+   */
   removeComments: (el) => {
     if (typeof el === "element") {
       if (isNode) {
@@ -1053,7 +1053,7 @@ let _temp = {
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
         ""
       );
-      return el
+      return el;
     } else if (typeof el === "string") {
       return string.replace(
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
@@ -1062,15 +1062,15 @@ let _temp = {
     }
   },
   /**
-  * Generates a random number between a minimum and maximum number
-  * @function
-  * @memberOf bijou
-  * @param {Number} min The lowest number that the random value generated can be.
-  * @param {Number} max The highest number that the random value generated can be.
-  * @param {Number} [round=true] Weather to round the generated number
-  * @param {Number} [seed=Math.random()] The seed for the generated number (Between 0 and 1).
-  * @returns {Number} The random numebr generated.
-  */
+   * Generates a random number between a minimum and maximum number
+   * @function
+   * @memberOf bijou
+   * @param {Number} min The lowest number that the random value generated can be.
+   * @param {Number} max The highest number that the random value generated can be.
+   * @param {Number} [round=true] Weather to round the generated number
+   * @param {Number} [seed=Math.random()] The seed for the generated number (Between 0 and 1).
+   * @returns {Number} The random numebr generated.
+   */
   random: (min, max, round = true, seed = Math.random()) => {
     if (round) {
       return Math.floor(seed * (max - min + 1) + min);
@@ -1079,14 +1079,14 @@ let _temp = {
     }
   },
   /**
-  * Get a random number from a seed.
-  * @function
-  * @memberOf bijou
-  * @param {Number} seed The seed to use to generate random numbers.
-  * @example
-  * console.log(_$.seedRandom(13));
-  * @returns {Number} The random number from the seed.
-  */
+   * Get a random number from a seed.
+   * @function
+   * @memberOf bijou
+   * @param {Number} seed The seed to use to generate random numbers.
+   * @example
+   * console.log(_$.seedRandom(13));
+   * @returns {Number} The random number from the seed.
+   */
   seedRandom: (seed) => {
     var t = (seed += 0x6d2b79f5);
     t = Math.imul(t ^ (t >>> 15), t | 1);
@@ -1106,20 +1106,20 @@ let _temp = {
   */
   uniqueArray: (array) => [...new Set(array)],
   /**
-  * Formats a number by adding commas to it.
-  * @function
-  * @memberOf bijou
-  * @param {Number} n The number to format.
-  * @example
-  * console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
-  * @returns {String} The formatted string representation of the number.
-  */
+   * Formats a number by adding commas to it.
+   * @function
+   * @memberOf bijou
+   * @param {Number} n The number to format.
+   * @example
+   * console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
+   * @returns {String} The formatted string representation of the number.
+   */
   formatNumber: (n) => n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
   /**
-  * Splices an array buffer
-  * @function
-  * @memberOf bijou
-  */
+   * Splices an array buffer
+   * @function
+   * @memberOf bijou
+   */
   spliceArrayBuffer: (arr, start, end, endian) => {
     endian = endian || false;
     var direction = endian ? -1 : 1;
@@ -1131,14 +1131,14 @@ let _temp = {
     return value;
   },
   /**
-  * Undoes camelCase.
-  * @function
-  * @memberOf bijou
-  * @param {String} str The string to camelCase.
-  * @example
-  * console.log(_$.unCamelCase("helloWorld"));//Logs "Hello World" to the console.
-  * @returns {String} The string of unCamelCased code.
-  */
+   * Undoes camelCase.
+   * @function
+   * @memberOf bijou
+   * @param {String} str The string to camelCase.
+   * @example
+   * console.log(_$.unCamelCase("helloWorld"));//Logs "Hello World" to the console.
+   * @returns {String} The string of unCamelCased code.
+   */
   unCamelCase: function (str) {
     return str
       .replace(/([a-z])([A-Z])/g, "$1 $2")
@@ -1148,30 +1148,30 @@ let _temp = {
       });
   },
   /**
-  * Parses the string of HTML specified and returns an HTML element of it.
-  * @function
-  * @memberOf bijou
-  * @param {String} string The HTML string to parse.
-  * @param {String} [mimeType=text/html] The mimeType of the string.
-  * @example
-  * let html = _$.parseHTML("<div id='hello'><textarea></textarea></div>");
-  * html.querySelector("textarea");//Returns the textarea!
-  * @returns {Element} The HTML document element of the HTML string specified.
-  */
+   * Parses the string of HTML specified and returns an HTML element of it.
+   * @function
+   * @memberOf bijou
+   * @param {String} string The HTML string to parse.
+   * @param {String} [mimeType=text/html] The mimeType of the string.
+   * @example
+   * let html = _$.parseHTML("<div id='hello'><textarea></textarea></div>");
+   * html.querySelector("textarea");//Returns the textarea!
+   * @returns {Element} The HTML document element of the HTML string specified.
+   */
   parseHTML: (string, mimeType = "text/html") => {
     const domparser = new DOMParser();
     return domparser.parseFromString(string, mimeType);
   },
-/**
-* Syntax highlights a string of code.
-* @function
-* @memberOf bijou
-* @param {String} string The string of HTML to highlight.
-* @param {String} [mode=html] The mode to use for highlighting. (CSS, JS or HTML).
-* @example
-* _$.syntaxHighlight('alert(\"Hello\")', 'js');//Returns html of the syntax highlighted version.
-* @returns {String} The highlighted string of code as HTML code.
-*/
+  /**
+   * Syntax highlights a string of code.
+   * @function
+   * @memberOf bijou
+   * @param {String} string The string of HTML to highlight.
+   * @param {String} [mode=html] The mode to use for highlighting. (CSS, JS or HTML).
+   * @example
+   * _$.syntaxHighlight('alert(\"Hello\")', 'js');//Returns html of the syntax highlighted version.
+   * @returns {String} The highlighted string of code as HTML code.
+   */
   syntaxHighlight: (string, mode = "html", colors = {}) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -1771,26 +1771,26 @@ let _temp = {
       }
       function getNumPos(txt, func) {
         var arr = [
-          "<br>",
-          " ",
-          ";",
-          "(",
-          "+",
-          ")",
-          "[",
-          "]",
-          ",",
-          "&",
-          ":",
-          "{",
-          "}",
-          "/",
-          "-",
-          "*",
-          "|",
-          "%",
-          "=",
-        ],
+            "<br>",
+            " ",
+            ";",
+            "(",
+            "+",
+            ")",
+            "[",
+            "]",
+            ",",
+            "&",
+            ":",
+            "{",
+            "}",
+            "/",
+            "-",
+            "*",
+            "|",
+            "%",
+            "=",
+          ],
           i,
           j,
           c,
@@ -1827,30 +1827,30 @@ let _temp = {
     highlightel(el, mode, colors);
     return el.innerHTML;
   },
-/**
-* Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
-* @function
-* @memberOf bijou
-* @returns {Function} The composed function.
-*/
+  /**
+   * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
+   * @function
+   * @memberOf bijou
+   * @returns {Function} The composed function.
+   */
   composeFunction: (...functions) => (args) =>
     functions.reduceRight((arg, fn) => fn(arg), args),
-/**
-* Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
-* @function
-* @memberOf bijou
-* @param
-* @returns {Function} The curried version of the function.
-*/
+  /**
+   * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
+   * @function
+   * @memberOf bijou
+   * @param
+   * @returns {Function} The curried version of the function.
+   */
   curryFunction: (fn, arity = fn.length, ...args) =>
     arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args),
-/**
-* Returns either "mobile" or "desktop" depending on which type of device the user is using.
-* @function
-* @memberOf bijou
-* @param
-* @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
-*/
+  /**
+   * Returns either "mobile" or "desktop" depending on which type of device the user is using.
+   * @function
+   * @memberOf bijou
+   * @param
+   * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
+   */
   mobileOrDesktop: () => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -1861,15 +1861,15 @@ let _temp = {
       ? "mobile"
       : "desktop";
   },
-/**
-* Removes tags from the HTML string specified.
-* @function
-* @memberOf bijou
-* @param {String} html The string of HTML to remove tags from.
-* @example
-* console.log(_$.removeTags("<div>Hello</div>"));//Logs "Hello" to the console.
-* @returns {String} THe string of HTML without the tags.
-*/
+  /**
+   * Removes tags from the HTML string specified.
+   * @function
+   * @memberOf bijou
+   * @param {String} html The string of HTML to remove tags from.
+   * @example
+   * console.log(_$.removeTags("<div>Hello</div>"));//Logs "Hello" to the console.
+   * @returns {String} THe string of HTML without the tags.
+   */
   removeTags: (html) => html.replace(/<[^>]*>/g, ""),
   camelCase: (str) => {
     return str
