@@ -1894,7 +1894,7 @@ let _temp = {
 * @param {String} str The string to be scrambled
 * @example
 * console.log(_$.scrambleString("Hello world"));//Logs "owllH rdloe" to the console
-* @returns {String} The scra
+* @returns {String} The scramble
 */
   scrambleString: (str) => {
     var a = str.split(""),
