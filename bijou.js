@@ -70,15 +70,17 @@ if (isNode) {
 
 let _temp = {
 /**
-* Generates prime numbers to the inputted number.
-* @param {Number} num - The number to calculate prime numbers to.
+* Gives an array of prime numbers up to a certain one.
+* @function
+* @param {number} num - The number to give primes to.
 * @example
-* //Returns the prime numbers up to
+* _$.primesTo(100);//Returns an array of prime numbers up to 100.
+* @returns {Array} Returns an array of prime numbers up to the given number.
 */
   primesTo: (num) => {
     let arr = Array.from({
-        length: num - 1,
-      }).map((x, i) => i + 2),
+      length: num - 1,
+    }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -88,6 +90,14 @@ let _temp = {
     );
     return arr;
   },
+/**
+* Runs a function asynchronously in a web worker.
+* @function
+* @param {function} fn The function to run
+* @example
+* _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
+* @returns {Promise} A promise that resolves into the return value of the function.
+*/
   async: (fn) => {
     const worker = new Worker(
       URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
@@ -103,6 +113,14 @@ let _temp = {
       };
     });
   },
+/**
+* Formats a number of milliseconds
+* @function
+* @param {number} ms The number of milliseconds to format to a string.
+* @example
+* _$.formatMilliseconds(4000)
+* @returns {Array}
+*/
   formatMilliseconds: (ms) => {
     if (ms < 0) ms = -ms;
     const time = {
@@ -212,7 +230,7 @@ let _temp = {
         return p.toString() === "[object SafariRemoteNotification]";
       })(
         !window["safari"] ||
-          (typeof safari !== "undefined" && window["safari"].pushNotification)
+        (typeof safari !== "undefined" && window["safari"].pushNotification)
       );
     var isIE = /*@cc_on!@*/ false || !!document.documentMode;
     var isEdge = !isIE && !!window.StyleMedia;
@@ -286,7 +304,7 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-              !obj[key] ? "" : obj[key]
+            !obj[key] ? "" : obj[key]
             }"`,
           ""
         )
@@ -311,7 +329,7 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-      ? Object.keys(obj).reduce((acc, current) => {
+        ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current);
           const val = obj[current];
           acc[key] =
@@ -320,7 +338,7 @@ let _temp = {
               : val;
           return acc;
         }, {})
-      : obj,
+        : obj,
   arrayToCSV: (arr, delimiter = ",") =>
     arr
       .map((v) =>
@@ -441,14 +459,14 @@ let _temp = {
     }
     for (
       var e,
-        t = (function () {
-          for (var e, t = el, o = [], a = 0; a < t.length; a++)
-            (e = t[a].childNodes[0]),
-              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-          return o;
-        })(),
-        o = 0,
-        a = t.length;
+      t = (function () {
+        for (var e, t = el, o = [], a = 0; a < t.length; a++)
+          (e = t[a].childNodes[0]),
+            t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
+        return o;
+      })(),
+      o = 0,
+      a = t.length;
       o < a;
       o++
     )
@@ -1328,26 +1346,26 @@ let _temp = {
       }
       function getNumPos(txt, func) {
         var arr = [
-            "<br>",
-            " ",
-            ";",
-            "(",
-            "+",
-            ")",
-            "[",
-            "]",
-            ",",
-            "&",
-            ":",
-            "{",
-            "}",
-            "/",
-            "-",
-            "*",
-            "|",
-            "%",
-            "=",
-          ],
+          "<br>",
+          " ",
+          ";",
+          "(",
+          "+",
+          ")",
+          "[",
+          "]",
+          ",",
+          "&",
+          ":",
+          "{",
+          "}",
+          "/",
+          "-",
+          "*",
+          "|",
+          "%",
+          "=",
+        ],
           i,
           j,
           c,
@@ -1518,7 +1536,7 @@ let _temp = {
       Math.imul(h1 ^ (h1 >>> 13), 3266489909);
     return 4294967296 * (2097151 & h2) + (h1 >>> 0);
   },
-  
+
   blendColors: (color1, color2, percent = 50) => {
 
     const generateHex = (r, g, b) => {
