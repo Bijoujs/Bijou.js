@@ -150,7 +150,14 @@ let _temp = {
     }
     return Object.assign(el.style, styles);
   },
-  
+/**
+* [Desc]
+* @function
+* @param {number} num - Params
+* @example
+* Example
+* @returns {Array}
+*/
   onOutsideClick: (element, callback) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
