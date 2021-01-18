@@ -447,6 +447,15 @@ let _temp = {
     }
     return res;
   },
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param
+* @example
+* //
+* @returns {String} The day name from the date.
+*/
   each: (array, callback) => {
     for (let i = 0; i < array.length; i++) {
       callback(array[i], i, array);
