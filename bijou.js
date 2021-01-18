@@ -391,7 +391,7 @@ let _temp = {
    * @function
    * @memberOf bijou
    * @param {Date} date The date object to use.
-   * @param {String} locale The locale to use.
+   * @param {String} [locale=e] The locale to use.
    * @example
    * _$.primesTo(100);//Returns an array of prime numbers up to 100.
    * @returns {String} The day name from the date.
