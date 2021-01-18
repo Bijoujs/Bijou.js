@@ -685,7 +685,7 @@ let _temp = {
 * @memberOf bijou
 * @example
 * _$.previousPage()
-* @returns {String} The url of the pre
+* @returns {String} The url of the previous page the user visited.
 */
   previousPage: () => {
     if (isNode) {
