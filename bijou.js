@@ -272,7 +272,7 @@ let _temp = {
     };
   },
 /**
- * [Desc]
+ * [Desc
  * @function
  * @memberOf bijou
  * @param
