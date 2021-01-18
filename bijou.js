@@ -623,7 +623,7 @@ let _temp = {
 * @memberOf bijou
 * @param {Number|String} [seed=Math.random()] The seed to use.
 * @example
-* //
+* 
 * @returns {String} The day name from the date.
 */
   uuid: (seed = Math.random()) => {
