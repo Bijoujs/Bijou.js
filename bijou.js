@@ -55,7 +55,7 @@ Contributors to Bijou.js:
 
  */
 /**
-* @description Tests if the user is using
+* @description Tests if the user is using Node.jks
 */
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
