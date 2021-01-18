@@ -400,20 +400,20 @@ let _temp = {
     date.toLocaleDateString(locale, {
       weekday: "long",
     }),
-/**
- * Converts JSON to a CSV string
- * @function
- * @memberOf bijou
- * @param {Array} arr The array of objects to convert to CSV.
- * @param {String} columns The number of columns to use.
- * @param {String} [delimiter=","] The delimeter between cells, by default this is a comma.
- * @example
- * _$.jsonToCsv(
-  [{ a: 1, b: 2 }, { a: 3, b: 4, c: 5 }, { a: 6 }, { b: 7 }],
-  ['a', 'b']
-); // 'a,b\n"1","2"\n"3","4"\n"6",""\n"","7"'
- * @returns {String} The string of comma seperated values (CSV) created from the JSON.
- */
+  /**
+   * Converts JSON to a CSV string
+   * @function
+   * @memberOf bijou
+   * @param {Array} arr The array of objects to convert to CSV.
+   * @param {String} columns The number of columns to use.
+   * @param {String} [delimiter=","] The delimeter between cells, by default this is a comma.
+   * @example
+   * _$.jsonToCsv(
+    [{ a: 1, b: 2 }, { a: 3, b: 4, c: 5 }, { a: 6 }, { b: 7 }],
+    ['a', 'b']
+  ); // 'a,b\n"1","2"\n"3","4"\n"6",""\n"","7"'
+   * @returns {String} The string of comma seperated values (CSV) created from the JSON.
+   */
   jsonToCsv: (arr, columns, delimiter = ",") =>
     [
       columns.join(delimiter),
@@ -427,16 +427,16 @@ let _temp = {
         )
       ),
     ].join("\n"),
-/**
- * Joins two arrays together and removes duplicates.
- * @function
- * @memberOf bijou
- * @param {Array} x The first array to join.
- * @param {Array} y The second array to join.
- * @example
- * _$.unionArrays([1,2,3], [4,5,6]);//Returns [1,2,3,4,5,6]
- * @returns {Array} The joined array from the two other arrays.
- */
+  /**
+   * Joins two arrays together and removes duplicates.
+   * @function
+   * @memberOf bijou
+   * @param {Array} x The first array to join.
+   * @param {Array} y The second array to join.
+   * @example
+   * _$.unionArrays([1,2,3], [4,5,6]);//Returns [1,2,3,4,5,6]
+   * @returns {Array} The joined array from the two other arrays.
+   */
   unionArrays: (x, y) => {
     var obj = {};
     for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
@@ -447,32 +447,32 @@ let _temp = {
     }
     return res;
   },
-/**
-* For each item in an array, run a callback with it.
-* @function
-* @memberOf bijou
-* @param {Array} array The array of items to run the callback with.
-* @param {Function} callback The callback function to run on the array items.
-* @example
-* _$.each(new Array(40), (i) => console.log(i));//Logs the numbers up to 40.
-* @returns undefined
-*/
+  /**
+  * For each item in an array, run a callback with it.
+  * @function
+  * @memberOf bijou
+  * @param {Array} array The array of items to run the callback with.
+  * @param {Function} callback The callback function to run on the array items.
+  * @example
+  * _$.each(new Array(40), (i) => console.log(i));//Logs the numbers up to 40.
+  * @returns undefined
+  */
   each: (array, callback) => {
     for (let i = 0; i < array.length; i++) {
       callback(array[i], i, array);
     }
   },
-/**
-* Maps the keys of an object.
-* @function
-* @memberOf bijou
-* @param {Object} obj The object to map.
-* @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
-* @example
-* _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
-* //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
-* @returns {Object} The new Object.
-*/
+  /**
+  * Maps the keys of an object.
+  * @function
+  * @memberOf bijou
+  * @param {Object} obj The object to map.
+  * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
+  * @example
+  * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
+  * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
+  * @returns {Object} The new Object.
+  */
   mapObjectKeys: (obj, fn) =>
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
@@ -487,16 +487,16 @@ let _temp = {
           return acc;
         }, {})
         : obj,
-/**
-* Converts an array to CSV (Comma separated values) data.
-* @function
-* @memberOf bijou
-* @param {Array} arr The array to convert.
-* @param {String} [delimiter=,] The separator (By default this is a comma.)
-* @example
-* _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
-* @returns {String} The comma separated array.
-*/
+  /**
+  * Converts an array to CSV (Comma separated values) data.
+  * @function
+  * @memberOf bijou
+  * @param {Array} arr The array to convert.
+  * @param {String} [delimiter=,] The separator (By default this is a comma.)
+  * @example
+  * _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
+  * @returns {String} The comma separated array.
+  */
   arrayToCSV: (arr, delimiter = ",") =>
     arr
       .map((v) =>
@@ -505,31 +505,31 @@ let _temp = {
           .join(delimiter)
       )
       .join("\n"),
-/**
-* averageBy
-* @function
-* @memberOf bijou
-* @param {Array.<number>} arr The array to average
-* @param {Function} fn The function to apply to each item of the array.
-* @example
-* //Averages the array 1,2,3,4 after squaring each number.
-* _$.averageBy([1,2,3,4], (v) => v ** 2);
-* @returns {Number} The average of the array.
-*/
+  /**
+  * averageBy
+  * @function
+  * @memberOf bijou
+  * @param {Array.<number>} arr The array to average
+  * @param {Function} fn The function to apply to each item of the array.
+  * @example
+  * //Averages the array 1,2,3,4 after squaring each number.
+  * _$.averageBy([1,2,3,4], (v) => v ** 2);
+  * @returns {Number} The average of the array.
+  */
   averageBy: (arr, fn) =>
     arr
       .map(typeof fn === "function" ? fn : (val) => val[fn])
       .reduce((acc, val) => acc + val, 0) / arr.length,
-/**
-* Tests whether the specified element is fully in view.
-* @function
-* @memberOf bijou
-* @param {Element} el The DOM element to test.
-* @example
-* //Alerts "In view!" if the first <div> in the document is in view.
-* if (_$.inView(document.querySelector("div"))) alert("In view!");
-* @returns {Boolean} Whether the element is completely in view.
-*/
+  /**
+  * Tests whether the specified element is fully in view.
+  * @function
+  * @memberOf bijou
+  * @param {Element} el The DOM element to test.
+  * @example
+  * //Alerts "In view!" if the first <div> in the document is in view.
+  * if (_$.inView(document.querySelector("div"))) alert("In view!");
+  * @returns {Boolean} Whether the element is completely in view.
+  */
   inView: (el) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -552,16 +552,16 @@ let _temp = {
       left + width <= window.pageXOffset + window.innerWidth
     );
   },
-/**
-* Tests if the given DOM element is partially (or fully) in view.
-* @function
-* @memberOf bijou
-* @param {Element} el The element to test.
-* @example
-* //Alerts "In view!" if the first <div> in the document is partially or fully view.
-* if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
-* @returns {Boolean} Whether the DOM element is partially in view.
-*/
+  /**
+  * Tests if the given DOM element is partially (or fully) in view.
+  * @function
+  * @memberOf bijou
+  * @param {Element} el The element to test.
+  * @example
+  * //Alerts "In view!" if the first <div> in the document is partially or fully view.
+  * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
+  * @returns {Boolean} Whether the DOM element is partially in view.
+  */
   inPartialView: (el) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -584,13 +584,13 @@ let _temp = {
       left + width > window.pageXOffset
     );
   },
-/**
-* Converts a form to URL queries using the name attribute.
-* @function
-* @memberOf bijou
-* @param {Element} form The form element.
-* @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
-*/
+  /**
+  * Converts a form to URL queries using the name attribute.
+  * @function
+  * @memberOf bijou
+  * @param {Element} form The form element.
+  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
+  */
   serializeForm: (form) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -599,15 +599,15 @@ let _temp = {
       field.map(encodeURIComponent).join("=")
     ).join("&");
   },
-/**
-* Converts a form to an Object.
-* @function
-* @memberOf bijou
-* @param {Element} form The form element.
-* @example
-* //
-* @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
-*/
+  /**
+  * Converts a form to an Object.
+  * @function
+  * @memberOf bijou
+  * @param {Element} form The form element.
+  * @example
+  * //
+  * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
+  */
   formToObject: (form) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -617,15 +617,15 @@ let _temp = {
       [key]: value,
     }));
   },
-/**
-* Generates a unique ID from a seed
-* @function
-* @memberOf bijou
-* @param {Number|String} [seed=Math.random()] The seed to use.
-* @example
-* _$.uuid();//Returns a uuid!
-* @returns {String} The UUID
-*/
+  /**
+  * Generates a unique ID from a seed
+  * @function
+  * @memberOf bijou
+  * @param {Number|String} [seed=Math.random()] The seed to use.
+  * @example
+  * _$.uuid();//Returns a uuid!
+  * @returns {String} The UUID
+  */
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
       // Convert string to a number between 0 and 1
@@ -637,15 +637,15 @@ let _temp = {
     }
     return _p8() + _p8(true) + _p8(true) + _p8();
   },
-/**
-* Escapes a string of HTML
-* @function
-* @memberOf bijou
-* @param {String} str The string of HTML to escape.
-* @example
-* _$.escapeHTML("<div>"); Returns the escaped HTML: "&lt;div&gt;"
-* @returns {String} The escaped HTML.
-*/
+  /**
+  * Escapes a string of HTML
+  * @function
+  * @memberOf bijou
+  * @param {String} str The string of HTML to escape.
+  * @example
+  * _$.escapeHTML("<div>"); Returns the escaped HTML: "&lt;div&gt;"
+  * @returns {String} The escaped HTML.
+  */
   escapeHTML: (str) =>
     str.replace(
       /[&<>'"]/g,
@@ -658,15 +658,15 @@ let _temp = {
           '"': "&quot;",
         }[tag] || tag)
     ),
-/**
-* Unescapes a string of HTML
-* @function
-* @memberOf bijou
-* @param {String} str The string of HTML to unescape.
-* @example
-* _$.unescapeHTML("&lt;div&gt;");//Returns "<div>"
-* @returns {String} The unescaped HTML.
-*/
+  /**
+  * Unescapes a string of HTML
+  * @function
+  * @memberOf bijou
+  * @param {String} str The string of HTML to unescape.
+  * @example
+  * _$.unescapeHTML("&lt;div&gt;");//Returns "<div>"
+  * @returns {String} The unescaped HTML.
+  */
   unescapeHTML: (str) =>
     str.replace(
       /&amp;|&lt;|&gt;|&#39;|&quot;/g,
@@ -679,14 +679,14 @@ let _temp = {
           "&quot;": '"',
         }[tag] || tag)
     ),
-/**
-* Returns the previous page that the user visited.
-* @function
-* @memberOf bijou
-* @example
-* _$.previousPage()
-* @returns {String} The url of the previous page the user visited.
-*/
+  /**
+  * Returns the previous page that the user visited.
+  * @function
+  * @memberOf bijou
+  * @example
+  * _$.previousPage()
+  * @returns {String} The url of the previous page the user visited.
+  */
   previousPage: () => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
