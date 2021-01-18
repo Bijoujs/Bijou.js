@@ -169,7 +169,7 @@ let _temp = {
     return callback;
   },
 /**
-* [Desc]
+* Wh
 * @function
 * @param {number} num - Params
 * @example
