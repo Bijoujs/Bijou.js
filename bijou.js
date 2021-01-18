@@ -758,6 +758,15 @@ let _temp = {
         return result;
       }, {});
   },
+/**
+* DESC
+* @function
+* @memberOf bijou.js
+* @param
+* @example
+*
+* @returns
+*/
   widows: (text) => {
     var wordArray = text.split(" ");
     var finalTitle = "";
