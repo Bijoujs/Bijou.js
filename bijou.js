@@ -693,6 +693,15 @@ let _temp = {
     }
     return document.referrer || window.location.href;
   },
+/**
+* Returns the name of the weekday from the Date object specified.
+* @function
+* @memberOf bijou.js
+* @param
+* @example
+*
+* @returns
+*/
   replaceText: (el, callback) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
