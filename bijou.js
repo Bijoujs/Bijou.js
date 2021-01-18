@@ -526,7 +526,7 @@ let _temp = {
 * @memberOf bijou
 * @param {Element} el The DOM element to test.
 * @example
-* //Alerts "In view!" if the first <div
+* //Alerts "In view!" if the first <div> in the document is in view.
 * if (_$.inView(document.querySelector("div"))) alert("In view!");
 * @returns {Boolean} Whether the element is completely in view.
 */
