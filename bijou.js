@@ -70,17 +70,17 @@ if (isNode) {
 
 let _temp = {
   /**
-  * Gives an array of prime numbers up to a certain one.
-  * @function
-  * @param {Number} num - The number to give primes to.
-  * @example
-  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
-  * @returns {Array} Returns an array of prime numbers up to the given number.
-  */
+   * Gives an array of prime numbers up to a certain one.
+   * @function
+   * @param {Number} num - The number to give primes to.
+   * @example
+   * _$.primesTo(100);//Returns an array of prime numbers up to 100.
+   * @returns {Array} Returns an array of prime numbers up to the given number.
+   */
   primesTo: (num) => {
     let arr = Array.from({
-      length: num - 1,
-    }).map((x, i) => i + 2),
+        length: num - 1,
+      }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -91,13 +91,13 @@ let _temp = {
     return arr;
   },
   /**
-  * Runs a function asynchronously in a web worker.
-  * @function
-  * @param {Function} fn The function to run
-  * @example
-  * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
-  * @returns {Promise} A promise that resolves into the return value of the function.
-  */
+   * Runs a function asynchronously in a web worker.
+   * @function
+   * @param {Function} fn The function to run
+   * @example
+   * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
+   * @returns {Promise} A promise that resolves into the return value of the function.
+   */
   async: (fn) => {
     const worker = new Worker(
       URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
@@ -114,13 +114,13 @@ let _temp = {
     });
   },
   /**
-  * Formats a number of milliseconds
-  * @function
-  * @param {Number} ms The number of milliseconds to format to a string.
-  * @example
-  * _$.formatMilliseconds(4000);//Returns "4 seconds"
-  * @returns {Array}
-  */
+   * Formats a number of milliseconds
+   * @function
+   * @param {Number} ms The number of milliseconds to format to a string.
+   * @example
+   * _$.formatMilliseconds(4000);//Returns "4 seconds"
+   * @returns {Array}
+   */
   formatMilliseconds: (ms) => {
     if (ms < 0) ms = -ms;
     const time = {
@@ -136,14 +136,14 @@ let _temp = {
       .join(", ");
   },
   /**
-  * Adds the specified styles to the element specified.
-  * @function
-  * @param {Element} el The element to add the styles to.
-  * @param {Object} styles An object that represents the styles to be added. (camelCased) 
-  * @example
-  * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
-  * @returns {Object} the assigned object.
-  */
+   * Adds the specified styles to the element specified.
+   * @function
+   * @param {Element} el The element to add the styles to.
+   * @param {Object} styles An object that represents the styles to be added. (camelCased)
+   * @example
+   * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
+   * @returns {Object} the assigned object.
+   */
   addStyles: (el, styles) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -151,14 +151,14 @@ let _temp = {
     return Object.assign(el.style, styles);
   },
   /**
-  * Returns the callback when a a click is registered outside the selected element
-  * @function
-  * @param {Element} element The element to use as the outsideclick element.
-  * @param {Function} callback The function to run when a click is registered outside the specified element.
-  * @example
-  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
-  * @returns {Function} the function that was called. 
-  */
+   * Returns the callback when a a click is registered outside the selected element
+   * @function
+   * @param {Element} element The element to use as the outsideclick element.
+   * @param {Function} callback The function to run when a click is registered outside the specified element.
+   * @example
+   * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
+   * @returns {Function} the function that was called.
+   */
   onOutsideClick: (element, callback) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -169,13 +169,13 @@ let _temp = {
     return callback;
   },
   /**
-  * Returns the callback when the user stops scrolling.
-  * @function
-  * @param {Function} callback The callback to call when the user stops scrolling.
-  * @example
-  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
-  * @returns {undefined} Returns undefined.
-  */
+   * Returns the callback when the user stops scrolling.
+   * @function
+   * @param {Function} callback The callback to call when the user stops scrolling.
+   * @example
+   * _$.onScrollStop(() => {alert("You stopped scrolling!")})
+   * @returns {undefined} Returns undefined.
+   */
   onScrollStop: (callback) => {
     let isScrolling;
     if (isNode) {
@@ -193,13 +193,13 @@ let _temp = {
     );
   },
   /**
-  * Copies the string inputted the clipboard.
-  * @function
-  * @param {String} str The string to copy.
-  * @example
-  * _$.copy("Hello world")
-  * @returns {String} The string copied.
-  */
+   * Copies the string inputted the clipboard.
+   * @function
+   * @param {String} str The string to copy.
+   * @example
+   * _$.copy("Hello world")
+   * @returns {String} The string copied.
+   */
   copy: (str) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -279,7 +279,7 @@ let _temp = {
         return p.toString() === "[object SafariRemoteNotification]";
       })(
         !window["safari"] ||
-        (typeof safari !== "undefined" && window["safari"].pushNotification)
+          (typeof safari !== "undefined" && window["safari"].pushNotification)
       );
     var isIE = /*@cc_on!@*/ false || !!document.documentMode;
     var isEdge = !isIE && !!window.StyleMedia;
@@ -353,7 +353,7 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-            !obj[key] ? "" : obj[key]
+              !obj[key] ? "" : obj[key]
             }"`,
           ""
         )
@@ -378,7 +378,7 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-        ? Object.keys(obj).reduce((acc, current) => {
+      ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current);
           const val = obj[current];
           acc[key] =
@@ -387,7 +387,7 @@ let _temp = {
               : val;
           return acc;
         }, {})
-        : obj,
+      : obj,
   arrayToCSV: (arr, delimiter = ",") =>
     arr
       .map((v) =>
@@ -508,14 +508,14 @@ let _temp = {
     }
     for (
       var e,
-      t = (function () {
-        for (var e, t = el, o = [], a = 0; a < t.length; a++)
-          (e = t[a].childNodes[0]),
-            t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-        return o;
-      })(),
-      o = 0,
-      a = t.length;
+        t = (function () {
+          for (var e, t = el, o = [], a = 0; a < t.length; a++)
+            (e = t[a].childNodes[0]),
+              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
+          return o;
+        })(),
+        o = 0,
+        a = t.length;
       o < a;
       o++
     )
@@ -1395,26 +1395,26 @@ let _temp = {
       }
       function getNumPos(txt, func) {
         var arr = [
-          "<br>",
-          " ",
-          ";",
-          "(",
-          "+",
-          ")",
-          "[",
-          "]",
-          ",",
-          "&",
-          ":",
-          "{",
-          "}",
-          "/",
-          "-",
-          "*",
-          "|",
-          "%",
-          "=",
-        ],
+            "<br>",
+            " ",
+            ";",
+            "(",
+            "+",
+            ")",
+            "[",
+            "]",
+            ",",
+            "&",
+            ":",
+            "{",
+            "}",
+            "/",
+            "-",
+            "*",
+            "|",
+            "%",
+            "=",
+          ],
           i,
           j,
           c,
@@ -1587,7 +1587,6 @@ let _temp = {
   },
 
   blendColors: (color1, color2, percent = 50) => {
-
     const generateHex = (r, g, b) => {
       let R = r.toString(16);
       let G = g.toString(16);
@@ -1609,7 +1608,6 @@ let _temp = {
     const mix = (start, end, percent) =>
       start + (percent / 100) * (end - start);
 
-
     const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
     const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
     const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16);
@@ -1623,7 +1621,7 @@ let _temp = {
     const blue = Math.round(mix(blue1, blue2, percent));
 
     return generateHex(red, green, blue);
-  }
+  },
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
