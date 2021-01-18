@@ -290,7 +290,7 @@ let _temp = {
     return el.firstElementChild;
   },
 /**
- * Returns the browser that the user is 
+ * Returns the browser that the user is using.
  * @function
  * @memberOf bijou
  * @param
