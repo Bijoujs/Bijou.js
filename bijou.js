@@ -1033,6 +1033,15 @@ let _temp = {
 
     return str;
   },
+/**
+* DESC
+* @function
+* @memberOf bijou.js
+* @param
+* @example
+*
+* @returns
+*/
   removeComments: (el) => {
     if (typeof el === "element") {
       if (isNode) {
