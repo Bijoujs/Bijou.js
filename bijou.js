@@ -387,7 +387,7 @@ let _temp = {
     }
   },
 /**
- * Returns the name of the 
+ * Returns the name 
  * @function
  * @memberOf bijou
  * @param
