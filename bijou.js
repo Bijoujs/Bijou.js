@@ -488,7 +488,7 @@ let _temp = {
         }, {})
         : obj,
 /**
-* Converts an array to CSV (Comma seperated values) data.
+* Converts an array to CSV (Comma separated values) data.
 * @function
 * @memberOf bijou
 * @param {Array} arr The array to convert.
