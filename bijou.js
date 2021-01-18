@@ -345,6 +345,15 @@ let _temp = {
       return "Blink";
     }
   },
+/**
+ * [Desc]
+ * @function
+ * @memberOf bijou
+ * @param
+ * @example
+ * _$.primesTo(100);//Returns an array of prime numbers up to 100.
+ * @returns
+ */
   notify: (text, body, icon) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
