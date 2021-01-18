@@ -1,7 +1,7 @@
 {
   "source": {
     "include": [
-      "//home/runner/work/Bijou.js/Bijou.js"
+      "/home/runner/work/Bijou.js/Bijou.js"
     ],
     "includePattern": ".js$",
     "excludePattern": "(node_modules/|out/|.github/)"
