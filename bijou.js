@@ -1955,7 +1955,7 @@ let _temp = {
     return el;
   },
 /**
-* Easing 
+* Easing functions
 * @Object
 * @memberOf bijou
 * @param {String}
