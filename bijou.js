@@ -492,7 +492,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Array} arr The array to convert.
-* @param {String} [delimeter=] The seperator (By default this is a comma.)
+* @param {String} [delimeter=""] The seperator (By default this is a comma.)
 * @example
 * //
 * @returns {String} The day name from the date.
