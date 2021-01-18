@@ -142,7 +142,7 @@ let _temp = {
 * @param {Object} styles An object that represents the styles to be added. (camelCased) 
 * @example
 * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
-* @returns {Objecty}
+* @returns {Object} 
 */
   addStyles: (el, styles) => {
     if (isNode) {
