@@ -56,7 +56,6 @@ Contributors to Bijou.js:
  */
 /**
 * Bijou.js source object.
-* @type {Variable}
 */
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
