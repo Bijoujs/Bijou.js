@@ -506,7 +506,7 @@ let _temp = {
       )
       .join("\n"),
 /**
-* average
+* averageBy
 * @function
 * @memberOf bijou
 * @param
