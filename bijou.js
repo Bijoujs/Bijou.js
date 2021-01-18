@@ -350,6 +350,7 @@ let _temp = {
  * @function
  * @memberOf bijou
  * @param {String} text The title of the notification.
+ * @
  * @example
  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
  * @returns
