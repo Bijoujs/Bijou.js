@@ -494,7 +494,7 @@ let _temp = {
 * @param {Array} arr The array to convert.
 * @param {String} [delimeter=,] The seperator (By default this is a comma.)
 * @example
-* _$.arrayToCSV([])
+* _$.arrayToCSV([1,])
 * @returns {String} The day name from the date.
 */
   arrayToCSV: (arr, delimiter = ",") =>
