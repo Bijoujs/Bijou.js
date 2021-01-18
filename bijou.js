@@ -74,15 +74,7 @@ if (isNode) {
  * @type {Object}
  * @namespace bijou
  */
-/**
-   * [Desc]
-   * @function
-   * @memberOf bijou
-   * @param 
-   * @example
-   * _$.primesTo(100);//Returns an array of prime numbers up to 100.
-   * @returns 
-   */
+
 let _temp = {
   /**
    * Gives an array of prime numbers up to a certain one.
