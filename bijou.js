@@ -1034,7 +1034,7 @@ let _temp = {
     return str;
   },
 /**
-* DESC
+* R
 * @function
 * @memberOf bijou.js
 * @param
