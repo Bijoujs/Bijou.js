@@ -693,17 +693,17 @@ let _temp = {
     }
     return document.referrer || window.location.href;
   },
-/**
-* Replaces the text in an element by running it through a callback.
-* @function
-* @memberOf bijou.js
-* @param {Element} el The element to replace the text of.
-* @param {Function} callback The callback to run (Gets passed the element's text).
-* @example
-* _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
-* //Converts the text of the first <div> element to upperCase.
-* @returns {String} The element who's text was replaced.
-*/
+  /**
+  * Replaces the text in an element by running it through a callback.
+  * @function
+  * @memberOf bijou.js
+  * @param {Element} el The element to replace the text of.
+  * @param {Function} callback The callback to run (Gets passed the element's text).
+  * @example
+  * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
+  * //Converts the text of the first <div> element to upperCase.
+  * @returns {String} The element who's text was replaced.
+  */
   replaceText: (el, callback) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -724,32 +724,32 @@ let _temp = {
       (e = t[o].nodeValue), (t[o].nodeValue = callback(e));
     return el
   },
-/**
- * Times the function passed.
- * @function
- * @memberOf bijou.js
- * @param {Function} fn The function to run and time.
- * @param {String} [name=_$ function timer]
- * @example
- * //Times how long it took the user to enter their name.
- * _$.timeFunction(() => prompt("What's your name?"));
- * @returns undefined
- */
+  /**
+   * Times the function passed.
+   * @function
+   * @memberOf bijou.js
+   * @param {Function} fn The function to run and time.
+   * @param {String} [name=_$ function timer]
+   * @example
+   * //Times how long it took the user to enter their name.
+   * _$.timeFunction(() => prompt("What's your name?"));
+   * @returns undefined
+   */
   timeFunction: (fn, name = "_$ function timer") => {
     console.time(name);
     fn();
     console.timeEnd(name);
   },
-/**
-* Sorts an object alphabetically by its keys.
-* @function
-* @memberOf bijou.js
-* @param {Object} obj The object to sort.
-* @example
-* let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
-* // The object is now {anotherThing: "Another value!", testing: "A value"}
-* @returns {Object} The sorted object.
-*/
+  /**
+  * Sorts an object alphabetically by its keys.
+  * @function
+  * @memberOf bijou.js
+  * @param {Object} obj The object to sort.
+  * @example
+  * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
+  * // The object is now {anotherThing: "Another value!", testing: "A value"}
+  * @returns {Object} The sorted object.
+  */
   sortObj: (obj) => {
     return Object.keys(obj)
       .sort()
@@ -758,16 +758,16 @@ let _temp = {
         return result;
       }, {});
   },
-/**
-* Returns the last space in the string given replaced with "&nbsp;"
-* @function
-* @memberOf bijou.js
-* @param {String} text The string to replace
-* @example
-* document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
-* //Replaces the last space in the <h1>'s innerText with "&nbsp;"
-* @returns {String} The replaced string.
-*/
+  /**
+  * Returns the last space in the string given replaced with "&nbsp;"
+  * @function
+  * @memberOf bijou.js
+  * @param {String} text The string to replace
+  * @example
+  * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
+  * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
+  * @returns {String} The replaced string.
+  */
   widows: (text) => {
     var wordArray = text.split(" ");
     var finalTitle = "";
@@ -781,25 +781,25 @@ let _temp = {
     }
     return finalTitle;
   },
-/**
-* Generates a random hex color.
-* @function
-* @memberOf bijou.js
-* @example
-* document.querySelector("div").style.backgroundColor = _$.randomColor()
-* @returns {String} A random Hex color
-*/
+  /**
+  * Generates a random hex color.
+  * @function
+  * @memberOf bijou.js
+  * @example
+  * document.querySelector("div").style.backgroundColor = _$.randomColor()
+  * @returns {String} A random Hex color
+  */
   randomColor: () => "#" + Math.floor(Math.random() * 16777215).toString(16),
-/**
-* Lighten or darken a color by a certain amount
-* @function
-* @memberOf bijou.js
-* @param {String} color The color to lighten/darken
-* @param {Number} amt The amount to lighten the color.
-* @example
-* _$.lightenColor("#000000", 50);//Lightens black by 50 (Out of 255)
-* @returns {String} The color lightened.
-*/
+  /**
+  * Lighten or darken a color by a certain amount
+  * @function
+  * @memberOf bijou.js
+  * @param {String} color The color to lighten/darken
+  * @param {Number} amt The amount to lighten the color.
+  * @example
+  * _$.lightenColor("#000000", 50);//Lightens black by 50 (Out of 255)
+  * @returns {String} The color lightened.
+  */
   lightenColor: (col, amt) => {
     var usePound = false;
 
@@ -827,19 +827,19 @@ let _temp = {
 
     return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
   },
-/**
-* Tests if a color is light or dark and returns an object representation.
-* @function
-* @memberOf bijou.js
-* @param
-* @example
-* if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
-  document.querySelector("DIV").style.color = "white";
-} else {
-    document.querySelector("DIV").style.color = "black";
-}
-* @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
-*/
+  /**
+  * Tests if a color is light or dark and returns an object representation.
+  * @function
+  * @memberOf bijou.js
+  * @param
+  * @example
+  * if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
+    document.querySelector("DIV").style.color = "white";
+  } else {
+      document.querySelector("DIV").style.color = "black";
+  }
+  * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
+  */
   lightOrDark: (color) => {
     var r, g, b, hsp;
     if (color.match(/^rgb/)) {
@@ -867,16 +867,16 @@ let _temp = {
       return { lightOrDark: "dark", hsp: hsp };
     }
   },
-/**
-* Gets a property from the computed style of an element.
-* @function
-* @memberOf bijou.js
-* @param {Element} el The element whose styles to get.
-* @param {String} prop The css-property value to get of the styles.
-* @example
-* console.log(_$.compStyle(document.documentElement, "background-color"));
-* @returns {String} The computed style property for the element specified.
-*/
+  /**
+  * Gets a property from the computed style of an element.
+  * @function
+  * @memberOf bijou.js
+  * @param {Element} el The element whose styles to get.
+  * @param {String} prop The css-property value to get of the styles.
+  * @example
+  * console.log(_$.compStyle(document.documentElement, "background-color"));
+  * @returns {String} The computed style property for the element specified.
+  */
   compStyle: (el, prop) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
