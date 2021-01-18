@@ -230,7 +230,8 @@ let _temp = {
 * @param {Number} wait The number of milliseconds to wait.
 * @example
 * setInterval(() => {
-  _$.throttle(() => {}alert("Hello"), 500)
+  _$.throttle(() => {
+    alert("Hello"), 500)
 })
 * @returns {Array}
 */
