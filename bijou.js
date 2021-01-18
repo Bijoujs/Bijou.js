@@ -224,7 +224,7 @@ let _temp = {
     return str;
   },
 /**
-* [Desc]
+* [
 * @function
 * @param {number} num - Params
 * @example
