@@ -1891,7 +1891,7 @@ let _temp = {
 * Scrambles the order of characters in a string.
 * @function
 * @memberOf bijou
-* @param {String} str The s
+* @param {String} str The string to n
 * @example
 * //
 * @returns {String}
