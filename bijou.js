@@ -1037,7 +1037,7 @@ let _temp = {
 * Removes comments from the element specified.
 * @function
 * @memberOf bijou.js
-* @param {Element}
+* @param {Element} el The element to remove comments from.
 * @example
 *
 * @returns
