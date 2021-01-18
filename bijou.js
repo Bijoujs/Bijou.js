@@ -931,8 +931,8 @@ let _temp = {
 * @param {Element} elem The element to generate the querySelector for.
 * @example
 * const textarea = document.getElementById('textarea');
-* console.log(_$.querySelector(textarea)); //Logs "#textarea" 
-* @returns
+* console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
+* @returns 
 */
   querySelector: (elem) => {
     if (isNode) {
