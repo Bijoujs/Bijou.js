@@ -509,7 +509,7 @@ let _temp = {
 * averageBy
 * @function
 * @memberOf bijou
-* @param {Array.<} arr The array to average
+* @param {Array.<number>} arr The array to average
 * @param {Function} fn The function to apply to each item of the array.
 * @example
 * //Averages the array 1,2,3,4 after squaring each number.
