@@ -759,7 +759,7 @@ let _temp = {
       }, {});
   },
 /**
-* Returns the last space in the string given replaced with "&np"
+* Returns the last space in the string given replaced with "&n"
 * @function
 * @memberOf bijou.js
 * @param
