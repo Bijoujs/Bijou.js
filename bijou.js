@@ -295,7 +295,7 @@ let _temp = {
  * @memberOf bijou
  * @example
  * _$.browser();//For me this (correctly) returns "Chrome"
- * @returns {String} A string of the browser name that the user is
+ * @returns {String} A string of the browser name that the user is using.
  */
   browser: () => {
     if (isNode) {
