@@ -173,7 +173,7 @@ let _temp = {
 * @function
 * @param {Function} callback The callback to call when the user stops scrolling.
 * @example
-* _$.onScrollStop(() => {alert("Hello")})
+* _$.onScrollStop(() => {alert("You stopped st")})
 * @returns {Array}
 */
   onScrollStop: (callback) => {
