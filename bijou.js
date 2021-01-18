@@ -589,7 +589,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Element} form The form element.
-* @returns {String} The string of url queri
+* @returns {String} The string of url queries (Excluding the hsotname)
 */
   serializeForm: (form) => {
     if (isNode) {
