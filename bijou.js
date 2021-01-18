@@ -747,7 +747,7 @@ let _temp = {
 * @param {Object} obj The object to sort.
 * @example
 * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
-* // The obj
+* // The objec
 * @returns
 */
   sortObj: (obj) => {
