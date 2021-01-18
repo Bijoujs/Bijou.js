@@ -171,7 +171,7 @@ let _temp = {
 /**
 * Returns the callback when the user stops scrolling.
 * @function
-* @param {Function} num - Params
+* @param {Function} callback - Params
 * @example
 * Example
 * @returns {Array}
