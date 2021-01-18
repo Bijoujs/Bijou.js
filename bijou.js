@@ -828,7 +828,7 @@ let _temp = {
     return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
   },
 /**
-* Lightor
+* 
 * @function
 * @memberOf bijou.js
 * @param
