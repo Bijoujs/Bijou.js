@@ -223,6 +223,7 @@ let _temp = {
     }
     return str;
   },
+  
   throttle: (fn, wait) => {
     let inThrottle, lastFn, lastTime;
     return function () {
