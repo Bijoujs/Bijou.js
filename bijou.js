@@ -600,7 +600,7 @@ let _temp = {
     ).join("&");
   },
 /**
-* Con
+* Converts a form to an o
 * @function
 * @memberOf bijou
 * @param
