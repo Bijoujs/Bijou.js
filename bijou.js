@@ -787,7 +787,7 @@ let _temp = {
 * @memberOf bijou.js
 * @example
 * document.querySelector("div").style.backgroundColor = _$.randomColor()
-* @returns
+* @returns {String}
 */
   randomColor: () => "#" + Math.floor(Math.random() * 16777215).toString(16),
 /**
