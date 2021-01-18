@@ -401,7 +401,7 @@ let _temp = {
       weekday: "long",
     }),
 /**
- * Converts JSON T
+ * Converts JSON to 
  * @function
  * @memberOf bijou
  * @param {Array} arr
