@@ -351,7 +351,7 @@ let _temp = {
  * @memberOf bijou
  * @param {String} text The title of the notification.
  * @param {String} body The body of the notification.
- * @param {String}
+ * @param {String} icon 
  * @example
  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
  * @returns
