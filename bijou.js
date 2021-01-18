@@ -195,7 +195,7 @@ let _temp = {
 /**
 * Copies the string inputted the clipboard.
 * @function
-* @param {String} num - Params
+* @param {String} str - Params
 * @example
 * Example
 * @returns {Array}
