@@ -827,6 +827,15 @@ let _temp = {
 
     return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
   },
+/**
+* DESC
+* @function
+* @memberOf bijou.js
+* @param
+* @example
+*
+* @returns
+*/
   lightOrDark: (color) => {
     var r, g, b, hsp;
     if (color.match(/^rgb/)) {
