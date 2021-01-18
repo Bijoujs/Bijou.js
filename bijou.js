@@ -168,6 +168,14 @@ let _temp = {
     });
     return callback;
   },
+/**
+* [Desc]
+* @function
+* @param {number} num - Params
+* @example
+* Example
+* @returns {Array}
+*/
   onScrollStop: (callback) => {
     let isScrolling;
     if (isNode) {
