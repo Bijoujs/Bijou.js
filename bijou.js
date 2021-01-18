@@ -790,7 +790,15 @@ let _temp = {
 * @returns
 */
   randomColor: () => "#" + Math.floor(Math.random() * 16777215).toString(16),
-  
+/**
+* DESC
+* @function
+* @memberOf bijou.js
+* @param
+* @example
+*
+* @returns
+*/
   lightenColor: (col, amt) => {
     var usePound = false;
 
