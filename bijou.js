@@ -903,7 +903,7 @@ let _temp = {
 * @function
 * @memberOf bijou.js
 * @param {String} hex The hex code to convert.
-* @returns {String} The RGB color converted from teh hex code.
+* @returns {String} The RGB color converted from the hex code.
 */
   hexToRGB: (hex) => {
     let alpha = false,
