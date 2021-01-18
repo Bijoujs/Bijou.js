@@ -1060,6 +1060,15 @@ let _temp = {
       );
     }
   },
+/**
+* DESC
+* @function
+* @memberOf bijou.js
+* @param
+* @example
+*
+* @returns
+*/
   random: (min, max, round = true, seed = Math.random()) => {
     if (round) {
       return Math.floor(seed * (max - min + 1) + min);
