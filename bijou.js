@@ -72,14 +72,14 @@ if (isNode) {
 /**
  * Bijou.js source object. It contains all the functions of Bijou.
  * @type {Object}
- * @namespace bijou.js
+ * @namespace bijou
  */
 
 let _temp = {
   /**
    * Gives an array of prime numbers up to a certain one.
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {Number} num - The number to give primes to.
    * @example
    * _$.primesTo(100);//Returns an array of prime numbers up to 100.
@@ -101,7 +101,7 @@ let _temp = {
   /**
    * Runs a function asynchronously in a web worker.
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {Function} fn The function to run
    * @example
    * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
@@ -125,7 +125,7 @@ let _temp = {
   /**
    * Formats a number of milliseconds
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {Number} ms The number of milliseconds to format to a string.
    * @example
    * _$.formatMilliseconds(4000);//Returns "4 seconds"
@@ -148,7 +148,7 @@ let _temp = {
   /**
    * Adds the specified styles to the element specified.
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {Element} el The element to add the styles to.
    * @param {Object} styles An object that represents the styles to be added. (camelCased)
    * @example
@@ -164,7 +164,7 @@ let _temp = {
   /**
    * Returns the callback when a a click is registered outside the selected element
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {Element} element The element to use as the outsideclick element.
    * @param {Function} callback The function to run when a click is registered outside the specified element.
    * @example
@@ -183,7 +183,7 @@ let _temp = {
   /**
    * Returns the callback when the user stops scrolling.
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {Function} callback The callback to call when the user stops scrolling.
    * @example
    * _$.onScrollStop(() => {alert("You stopped scrolling!")})
@@ -208,7 +208,7 @@ let _temp = {
   /**
    * Copies the string inputted the clipboard.
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {String} str The string to copy.
    * @example
    * _$.copy("Hello world")
@@ -240,7 +240,7 @@ let _temp = {
   /**
   * Only runs the input function at MAX with the delay specified.
   * @function
-* @memberOf bijou.js
+* @memberOf bijou
   * @param {Function} fn The function to run.
   * @param {Number} wait The number of milliseconds to wait.
   * @example
@@ -274,7 +274,7 @@ let _temp = {
   /**
    * Creates an HTML element from the specified string.
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {String} str The string of the HTML element to create.
    * @example
    * //Returns a div with an id of "id_here" and innerText of "Testing!"
@@ -292,7 +292,7 @@ let _temp = {
   /**
    * Returns the browser that the user is using.
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @example
    * _$.browser();//For me this (correctly) returns "Chrome"
    * @returns {String} A string of the browser name that the user is using.
@@ -348,7 +348,7 @@ let _temp = {
   /**
    * Displays a desktop notification with the specified text.
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {String} text The title of the notification.
    * @param {String} body The body of the notification.
    * @param {String} icon The url to the image for the icon of the notification.
@@ -389,7 +389,7 @@ let _temp = {
   /**
    * Returns the name of the weekday from the Date object specified.
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {Date} date The date object to use.
    * @param {String} [locale=en-US] The locale to use.
    * @example
@@ -403,7 +403,7 @@ let _temp = {
   /**
    * Converts JSON to a CSV string
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {Array} arr The array of objects to convert to CSV.
    * @param {String} columns The number of columns to use.
    * @param {String} [delimiter=","] The delimeter between cells, by default this is a comma.
@@ -430,7 +430,7 @@ let _temp = {
   /**
    * Joins two arrays together and removes duplicates.
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {Array} x The first array to join.
    * @param {Array} y The second array to join.
    * @example
@@ -450,7 +450,7 @@ let _temp = {
   /**
   * For each item in an array, run a callback with it.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Array} array The array of items to run the callback with.
   * @param {Function} callback The callback function to run on the array items.
   * @example
@@ -465,7 +465,7 @@ let _temp = {
   /**
   * Maps the keys of an object.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Object} obj The object to map.
   * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
   * @example
@@ -490,7 +490,7 @@ let _temp = {
   /**
   * Converts an array to CSV (Comma separated values) data.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Array} arr The array to convert.
   * @param {String} [delimiter=,] The separator (By default this is a comma.)
   * @example
@@ -508,7 +508,7 @@ let _temp = {
   /**
   * averageBy
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Array.<number>} arr The array to average
   * @param {Function} fn The function to apply to each item of the array.
   * @example
@@ -523,7 +523,7 @@ let _temp = {
   /**
   * Tests whether the specified element is fully in view.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Element} el The DOM element to test.
   * @example
   * //Alerts "In view!" if the first <div> in the document is in view.
@@ -555,7 +555,7 @@ let _temp = {
   /**
   * Tests if the given DOM element is partially (or fully) in view.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Element} el The element to test.
   * @example
   * //Alerts "In view!" if the first <div> in the document is partially or fully view.
@@ -587,7 +587,7 @@ let _temp = {
   /**
   * Converts a form to URL queries using the name attribute.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Element} form The form element.
   * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
   */
@@ -602,7 +602,7 @@ let _temp = {
   /**
   * Converts a form to an Object.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Element} form The form element.
   * @example
   * //
@@ -620,7 +620,7 @@ let _temp = {
   /**
   * Generates a unique ID from a seed
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Number|String} [seed=Math.random()] The seed to use.
   * @example
   * _$.uuid();//Returns a uuid!
@@ -640,7 +640,7 @@ let _temp = {
   /**
   * Escapes a string of HTML
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {String} str The string of HTML to escape.
   * @example
   * _$.escapeHTML("<div>"); Returns the escaped HTML: "&lt;div&gt;"
@@ -661,7 +661,7 @@ let _temp = {
   /**
   * Unescapes a string of HTML
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {String} str The string of HTML to unescape.
   * @example
   * _$.unescapeHTML("&lt;div&gt;");//Returns "<div>"
@@ -682,7 +682,7 @@ let _temp = {
   /**
   * Returns the previous page that the user visited.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @example
   * _$.previousPage()
   * @returns {String} The url of the previous page the user visited.
@@ -696,7 +696,7 @@ let _temp = {
   /**
   * Replaces the text in an element by running it through a callback.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Element} el The element to replace the text of.
   * @param {Function} callback The callback to run (Gets passed the element's text).
   * @example
@@ -727,7 +727,7 @@ let _temp = {
   /**
    * Times the function passed.
    * @function
-   * @memberOf bijou.js
+   * @memberOf bijou
    * @param {Function} fn The function to run and time.
    * @param {String} [name=_$ function timer]
    * @example
@@ -743,7 +743,7 @@ let _temp = {
   /**
   * Sorts an object alphabetically by its keys.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Object} obj The object to sort.
   * @example
   * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
@@ -761,7 +761,7 @@ let _temp = {
   /**
   * Returns the last space in the string given replaced with "&nbsp;"
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {String} text The string to replace
   * @example
   * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
@@ -784,7 +784,7 @@ let _temp = {
   /**
   * Generates a random hex color.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @example
   * document.querySelector("div").style.backgroundColor = _$.randomColor()
   * @returns {String} A random Hex color
@@ -793,7 +793,7 @@ let _temp = {
   /**
   * Lighten or darken a color by a certain amount
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {String} color The color to lighten/darken
   * @param {Number} amt The amount to lighten the color.
   * @example
@@ -830,7 +830,7 @@ let _temp = {
   /**
   * Tests if a color is light or dark and returns an object representation.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param
   * @example
   * if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
@@ -870,7 +870,7 @@ let _temp = {
   /**
   * Gets a property from the computed style of an element.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Element} el The element whose styles to get.
   * @param {String} prop The css-property value to get of the styles.
   * @example
@@ -901,7 +901,7 @@ let _temp = {
   /**
   * Converts a hex code to a RGB color.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {String} hex The hex code to convert.
   * @returns {String} The RGB color converted from the hex code.
   */
@@ -927,7 +927,7 @@ let _temp = {
   /**
   * Generates a querySelector for an element passed in.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Element} elem The element to generate the querySelector for.
   * @example
   * const textarea = document.getElementById('textarea');
@@ -1036,7 +1036,7 @@ let _temp = {
   /**
   * Removes comments from the element or string of code specified.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Element|String} el The element or string or code to remove comments from.
   * @example
   * _$.removeComments(document.documentElement);//Removes the comments from the document element.
@@ -1064,7 +1064,7 @@ let _temp = {
   /**
   * Generates a random number between a minimum and maximum number
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Number} min The lowest number that the random value generated can be.
   * @param {Number} max The highest number that the random value generated can be.
   * @param {Number} [round=true] Weather to round the generated number
@@ -1081,7 +1081,7 @@ let _temp = {
   /**
   * Get a random number from a seed.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Number} seed The seed to use to generate random numbers.
   * @example
   * console.log(_$.seedRandom(13));
@@ -1096,7 +1096,7 @@ let _temp = {
   /**
   * Removes duplicates from an array
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Array} array The array to remove duplicates from.
   * @example
   * let an_array = [1,1,2,3,4,5,5,6]
@@ -1108,7 +1108,7 @@ let _temp = {
   /**
   * Formats a number by adding commas to it.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {Number} n The number to format.
   * @example
   * console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
@@ -1118,7 +1118,7 @@ let _temp = {
   /**
   * Splices an array buffer
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   */
   spliceArrayBuffer: (arr, start, end, endian) => {
     endian = endian || false;
@@ -1133,7 +1133,7 @@ let _temp = {
   /**
   * Undoes camelCase.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {String} str The string to camelCase.
   * @example
   * console.log(_$.unCamelCase("helloWorld"));//Logs "Hello World" to the console.
@@ -1150,7 +1150,7 @@ let _temp = {
   /**
   * Parses the string of HTML specified and returns an HTML element of it.
   * @function
-  * @memberOf bijou.js
+  * @memberOf bijou
   * @param {String} string The HTML string to parse.
   * @param {String} [mimeType=text/html] The mimeType of the string.
   * @example
@@ -1165,7 +1165,7 @@ let _temp = {
 /**
 * Syntax highlights a string of code.
 * @function
-* @memberOf bijou.js
+* @memberOf bijou
 * @param {String} string The string of HTML to highlight.
 * @param {String} [mode=html] The mode to use for highlighting. (CSS, JS or HTML).
 * @example
@@ -1830,7 +1830,7 @@ let _temp = {
 /**
 * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
 * @function
-* @memberOf bijou.js
+* @memberOf bijou
 * @returns {Function} The composed function.
 */
   composeFunction: (...functions) => (args) =>
@@ -1838,7 +1838,7 @@ let _temp = {
 /**
 * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
 * @function
-* @memberOf bijou.js
+* @memberOf bijou
 * @param
 * @returns {Function} The curried version of the function.
 */
@@ -1847,7 +1847,7 @@ let _temp = {
 /**
 * Returns either "mobile" or "desktop" depending on which type of device the user is using.
 * @function
-* @memberOf bijou.js
+* @memberOf bijou
 * @param
 * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
 */
@@ -1864,7 +1864,7 @@ let _temp = {
 /**
 * Removes tags from the HTML string specified.
 * @function
-* @memberOf bijou.js
+* @memberOf bijou
 * @param {String} html The string of HTML to remove tags from.
 * @example
 * console.log(_$.removeTags("<div>Hello</div>"));//Logs "Hello" to the console.
