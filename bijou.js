@@ -759,7 +759,7 @@ let _temp = {
       }, {});
   },
 /**
-* DESC
+* Returns the 
 * @function
 * @memberOf bijou.js
 * @param
