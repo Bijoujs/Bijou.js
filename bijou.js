@@ -606,7 +606,7 @@ let _temp = {
 * @param
 * @example
 * //
-* @returns {Object} The 
+* @returns {Object} The object of form data
 */
   formToObject: (form) => {
     if (isNode) {
