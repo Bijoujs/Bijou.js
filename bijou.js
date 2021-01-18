@@ -193,7 +193,7 @@ let _temp = {
     );
   },
 /**
-* Copies the string inputte
+* Copies the string inputted the click
 * @function
 * @param {number} num - Params
 * @example
