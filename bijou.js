@@ -606,7 +606,7 @@ let _temp = {
 * @param
 * @example
 * //
-* @returns {Object} The object of form data (The keys are the "name" atttri)
+* @returns {Object} The object of form data (The keys are the "name" atttributes of the form )
 */
   formToObject: (form) => {
     if (isNode) {
