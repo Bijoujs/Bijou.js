@@ -455,7 +455,7 @@ let _temp = {
 * @param {Function} callback The callback function to run on the array items.
 * @example
 * _$.each(new Array(40), (i) => console.log(i));//Logs the numbers up to 40.
-* @returns 
+* @returns undefined
 */
   each: (array, callback) => {
     for (let i = 0; i < array.length; i++) {
