@@ -448,7 +448,7 @@ let _temp = {
     return res;
   },
 /**
-* For each item in an 
+* For each item in an array
 * @function
 * @memberOf bijou
 * @param
