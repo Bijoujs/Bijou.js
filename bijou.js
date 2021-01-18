@@ -141,7 +141,7 @@ let _temp = {
 * @param {element} el The element to add the styles to.
 * @param {Object} styles An object that represents the styles to be added. (camelCased) 
 * @example
-* _
+* _$.addSty
 * @returns {Array}
 */
   addStyles: (el, styles) => {
