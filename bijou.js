@@ -798,7 +798,7 @@ let _temp = {
 * @param {Number} amt The amount to lighten the color.
 * @example
 * _$.lightenColor("#000000", 50);//Lightens black by 50 (Out of 255)
-* @returns
+* @returns 
 */
   lightenColor: (col, amt) => {
     var usePound = false;
