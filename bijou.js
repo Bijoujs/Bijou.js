@@ -404,7 +404,7 @@ let _temp = {
  * Returns the name of the weekday from the Date object specified.
  * @function
  * @memberOf bijou
- * @param {Array} arra
+ * @param {Array} arr
  * @example
  * //
  * @returns {String} The day name from the date.
