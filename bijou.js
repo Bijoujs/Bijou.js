@@ -173,7 +173,7 @@ let _temp = {
 * @function
 * @param {Function} callback The callback to call when the user stops scrolling.
 * @example
-* Example
+* _$.
 * @returns {Array}
 */
   onScrollStop: (callback) => {
