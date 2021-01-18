@@ -73,7 +73,7 @@ let _temp = {
 * Generates prime numbers to the inputted number.
 * @param {Number} num - The number to calculate prime numbers to.
 * @example
-* //Returns the prime number
+* //Returns the prime numbers up to
 */
   primesTo: (num) => {
     let arr = Array.from({
