@@ -428,7 +428,7 @@ let _temp = {
       ),
     ].join("\n"),
 /**
- * DESB
+ * DESC
  * @function
  * @memberOf bijou
  * @param
