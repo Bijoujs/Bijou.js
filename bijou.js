@@ -700,7 +700,7 @@ let _temp = {
 * @param {Element} el The element to replace the text of.
 * @param {Function} callback The callback to run (Gets passed the element's text).
 * @example
-* _$.
+* _$.replaceTExt
 * @returns
 */
   replaceText: (el, callback) => {
