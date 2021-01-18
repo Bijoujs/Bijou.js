@@ -1909,7 +1909,7 @@ let _temp = {
     return a.join("");
   },
 /**
-* All
+* Allows an ele
 * @function
 * @memberOf bijou
 * @param {String}
