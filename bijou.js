@@ -679,6 +679,15 @@ let _temp = {
           "&quot;": '"',
         }[tag] || tag)
     ),
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param
+* @example
+* //
+* @returns {String} The day name from the date.
+*/
   previousPage: () => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
