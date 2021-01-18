@@ -68,7 +68,7 @@ if (isNode) {
   );
 }
 /**
-* Bijou
+* Bijou.js sour
 * @function
 * @param {Number} num - The number to give primes to.
 * @example
