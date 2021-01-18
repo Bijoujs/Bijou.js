@@ -553,7 +553,7 @@ let _temp = {
     );
   },
 /**
-* Tests if the 
+* Tests if the given DOM element is partially 
 * @function
 * @memberOf bijou
 * @param
