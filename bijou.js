@@ -762,7 +762,7 @@ let _temp = {
 * Returns the last space in the string given replaced with "&nbsp;"
 * @function
 * @memberOf bijou.js
-* @param
+* @param {S}
 * @example
 *
 * @returns
