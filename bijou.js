@@ -390,7 +390,8 @@ let _temp = {
  * Returns the name of the weekday from the Date object specified.
  * @function
  * @memberOf bijou
- * @param {Date} date The date object to 
+ * @param {Date} date The date object to use.
+ * 
  * @example
  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
  * @returns
