@@ -136,7 +136,7 @@ let _temp = {
       .join(", ");
   },
 /**
-* Adds the specified styles to the element spe
+* Adds the specified styles to the element specified.
 * @function
 * @param {number} num - Params
 * @example
