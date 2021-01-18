@@ -505,7 +505,15 @@ let _temp = {
           .join(delimiter)
       )
       .join("\n"),
-      
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param
+* @example
+* //
+* @returns {String} The day name from the date.
+*/
   averageBy: (arr, fn) =>
     arr
       .map(typeof fn === "function" ? fn : (val) => val[fn])
