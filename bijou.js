@@ -409,7 +409,7 @@ let _temp = {
  * @param {String} [delimiter=","]
  * @example
  * //
- * @returns {String} The day name from 
+ * @returns {String} 
  */
   jsonToCsv: (arr, columns, delimiter = ",") =>
     [
