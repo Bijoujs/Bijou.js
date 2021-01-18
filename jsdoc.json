@@ -1,6 +1,6 @@
 {
   "source": {
-    "include": "/workspace/."
+    "include": "["/home/runner/work/Bijou.js/Bijou.js", "/workspace/"],"
     "includePattern": ".js$",
     "excludePattern": "(node_modules/|out/|.github/)"
   },
