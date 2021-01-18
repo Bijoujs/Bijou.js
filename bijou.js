@@ -925,7 +925,7 @@ let _temp = {
     );
   },
 /**
-* DESC
+* Generates a querySelector for 
 * @function
 * @memberOf bijou.js
 * @param
