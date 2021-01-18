@@ -621,7 +621,7 @@ let _temp = {
 * Generates a unique ID from a seed
 * @function
 * @memberOf bijou
-* @param {Number|String} [seed=Mat]
+* @param {Number|String} [seed=Math.random()] The seed to use.
 * @example
 * //
 * @returns {String} The day name from the date.
