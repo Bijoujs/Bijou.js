@@ -724,6 +724,7 @@ let _temp = {
       (e = t[o].nodeValue), (t[o].nodeValue = callback(e));
     return el
   },
+  
   timeFunction: (fn, name = "_ function timer") => {
     console.time(name);
     fn();
