@@ -463,7 +463,7 @@ let _temp = {
     }
   },
 /**
-* DESC
+* Maps 
 * @function
 * @memberOf bijou
 * @param
