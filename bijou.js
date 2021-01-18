@@ -1958,7 +1958,6 @@ let _temp = {
 * Easing functions
 * @Object
 * @memberOf bijou
-* @namespace ease
 * @example
 * _$.ease.easeInOutQuad(.3);//Returns the eased point of about 1/3 along the animation.
 * @returns {Function} The easing function.
