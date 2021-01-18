@@ -386,6 +386,15 @@ let _temp = {
       }
     }
   },
+/**
+ * [Desc]
+ * @function
+ * @memberOf bijou
+ * @param
+ * @example
+ * _$.primesTo(100);//Returns an array of prime numbers up to 100.
+ * @returns
+ */
   dayName: (date, locale) =>
     date.toLocaleDateString(locale, {
       weekday: "long",
