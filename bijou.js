@@ -527,7 +527,7 @@ let _temp = {
 * @param {Element} el The element to test.
 * @example
 * //
-* @returns {String} The day name from the date.
+* @returns {Boolean} The day name from the date.
 */
   inView: (el) => {
     if (isNode) {
