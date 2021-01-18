@@ -728,7 +728,7 @@ let _temp = {
  * Times the function passed.
  * @function
  * @memberOf bijou.js
- * @param {f}
+ * @param {Function}
  * @example
  *
  * @returns
