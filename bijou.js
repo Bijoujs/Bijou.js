@@ -197,7 +197,7 @@ let _temp = {
 * @function
 * @param {String} str The string to copy.
 * @example
-* _$.copy("Hel")
+* _$.copy("Hello world")
 * @returns {Array}
 */
   copy: (str) => {
