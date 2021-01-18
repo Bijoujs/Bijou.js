@@ -277,7 +277,7 @@ let _temp = {
  * @memberOf bijou
  * @param {String} str The string of the HTML element to create.
  * @example
- * _$.createElement("")
+ * _$.createElement("<div id='id")
  * @returns {Element} The created element.
  */
   createElement: (str) => {
