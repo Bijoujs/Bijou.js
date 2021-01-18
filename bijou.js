@@ -1956,7 +1956,7 @@ let _temp = {
   },
 /**
 * Ease
-* @Ob
+* @Object
 * @memberOf bijou
 * @param {String}
 * @example
