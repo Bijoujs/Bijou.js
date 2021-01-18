@@ -898,7 +898,15 @@ let _temp = {
 
     return "#" + r + g + b;
   },
-  
+/**
+* DESC
+* @function
+* @memberOf bijou.js
+* @param
+* @example
+*
+* @returns
+*/
   hexToRGB: (hex) => {
     let alpha = false,
       h = hex.slice(hex.startsWith("#") ? 1 : 0);
