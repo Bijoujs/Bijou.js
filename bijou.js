@@ -401,7 +401,7 @@ let _temp = {
       weekday: "long",
     }),
 /**
- * Cn
+ * C
  * @function
  * @memberOf bijou
  * @param {Array} arr
