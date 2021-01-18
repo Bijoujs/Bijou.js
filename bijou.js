@@ -471,7 +471,7 @@ let _temp = {
 * @example
 * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
 * //Returns:
-
+* 
 * @returns {String} The day name from the date.
 */
   mapObjectKeys: (obj, fn) =>
