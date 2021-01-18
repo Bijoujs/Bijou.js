@@ -512,7 +512,7 @@ let _temp = {
 * @param {Array} arr The array to average
 * @example
 * //
-* @returns {String} The day name from the date.
+* @returns {} The day name from the date.
 */
   averageBy: (arr, fn) =>
     arr
