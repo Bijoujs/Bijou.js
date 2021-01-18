@@ -492,7 +492,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Array} arr The array to convert.
-* @param {String} [delimeter=,] The seperator (By default this is a comma.)
+* @param {String} [delimeter=,] The separator (By default this is a comma.)
 * @example
 * _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
 * @returns {String} The comma seperated array.
