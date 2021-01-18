@@ -1893,7 +1893,7 @@ let _temp = {
 * @memberOf bijou
 * @param {String} str The string to be scrambled
 * @example
-* console.log(_$.scrambleString("Hello world"));//Logs "owllH rdloe" to the 
+* console.log(_$.scrambleString("Hello world"));//Logs "owllH rdloe" to the cons
 * @returns {String}
 */
   scrambleString: (str) => {
