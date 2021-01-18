@@ -396,7 +396,7 @@ let _temp = {
  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
  * @returns
  */
-  dayName: (date = ''en-US'', locale) =>
+  dayName: (date = 'en-US', locale) =>
     date.toLocaleDateString(locale, {
       weekday: "long",
     }),
