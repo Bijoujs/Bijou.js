@@ -782,7 +782,7 @@ let _temp = {
     return finalTitle;
   },
 /**
-* DESC
+* F
 * @function
 * @memberOf bijou.js
 * @param
