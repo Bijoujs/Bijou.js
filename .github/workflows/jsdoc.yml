@@ -1,5 +1,4 @@
-
-name: JS D
+name: JS Docs
 
 on:
   push:
