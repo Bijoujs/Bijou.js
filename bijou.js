@@ -138,7 +138,7 @@ let _temp = {
 /**
 * Adds the specified styles to the element specified.
 * @function
-* @param {element} el The element to add the styles to.
+* @param {Element} el The element to add the styles to.
 * @param {Object} styles An object that represents the styles to be added. (camelCased) 
 * @example
 * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
