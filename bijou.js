@@ -68,7 +68,7 @@ if (isNode) {
   );
 }
 /**
-* Bi
+* Bijou
 * @function
 * @param {Number} num - The number to give primes to.
 * @example
