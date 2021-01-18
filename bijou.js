@@ -153,7 +153,7 @@ let _temp = {
 /**
 * Returns the callback when a a click is registered outside the selected element
 * @function
-* @param {element} num - Params
+* @param {element} element - Params
 * @example
 * Example
 * @returns {Array}
