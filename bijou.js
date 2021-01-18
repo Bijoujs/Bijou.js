@@ -492,7 +492,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Array} arr The array to convert.
-* @param {String} 
+* @param {String} delimeter Tje
 * @example
 * //
 * @returns {String} The day name from the date.
