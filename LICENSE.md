@@ -1,4 +1,4 @@
-# Bijou.js license (MIT): 
+# Bijou.js license (MIT):
 
 Copyright (c) 2021 Bijou.js
 
