@@ -618,7 +618,7 @@ let _temp = {
     }));
   },
 /**
-* DESC
+* Generates a unique ID from a seed
 * @function
 * @memberOf bijou
 * @param
