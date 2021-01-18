@@ -1875,7 +1875,7 @@ let _temp = {
 * camelCases a string.
 * @function
 * @memberOf bijou
-* @param {String} str The 
+* @param {String} str 
 * @example
 * //
 * @returns {String}
