@@ -898,13 +898,13 @@ let _temp = {
 
     return "#" + r + g + b;
   },
-/**
-* Converts a hex code to a RGB color.
-* @function
-* @memberOf bijou.js
-* @param {String} hex The hex code to convert.
-* @returns {String} The RGB color converted from the hex code.
-*/
+  /**
+  * Converts a hex code to a RGB color.
+  * @function
+  * @memberOf bijou.js
+  * @param {String} hex The hex code to convert.
+  * @returns {String} The RGB color converted from the hex code.
+  */
   hexToRGB: (hex) => {
     let alpha = false,
       h = hex.slice(hex.startsWith("#") ? 1 : 0);
@@ -924,16 +924,16 @@ let _temp = {
       ")"
     );
   },
-/**
-* Generates a querySelector for an element passed in.
-* @function
-* @memberOf bijou.js
-* @param {Element} elem The element to generate the querySelector for.
-* @example
-* const textarea = document.getElementById('textarea');
-* console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
-* @returns {String} The generated querySelector.
-*/
+  /**
+  * Generates a querySelector for an element passed in.
+  * @function
+  * @memberOf bijou.js
+  * @param {Element} elem The element to generate the querySelector for.
+  * @example
+  * const textarea = document.getElementById('textarea');
+  * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
+  * @returns {String} The generated querySelector.
+  */
   querySelector: (elem) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -1033,15 +1033,15 @@ let _temp = {
 
     return str;
   },
-/**
-* Removes comments from the element specified.
-* @function
-* @memberOf bijou.js
-* @param {Element} el The element to remove comments from.
-* @example
-* _$.removeComments(document.documentElement);//Removes the comments from the document element.
-* @returns
-*/
+  /**
+  * Removes comments from the element or string of code specified.
+  * @function
+  * @memberOf bijou.js
+  * @param {Element|String} el The element or string or code to remove comments from.
+  * @example
+  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
+  * @returns {String|Element} The string removed of comments or the element removed of comments.
+  */
   removeComments: (el) => {
     if (typeof el === "element") {
       if (isNode) {
@@ -1053,6 +1053,7 @@ let _temp = {
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
         ""
       );
+      return el
     } else if (typeof el === "string") {
       return string.replace(
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
@@ -1060,15 +1061,16 @@ let _temp = {
       );
     }
   },
-/**
-* Generates a random number between a minimum and maximum number
-* @function
-* @memberOf bijou.js
-* @param {Number} min The 
-* @example
-*
-* @returns
-*/
+  /**
+  * Generates a random number between a minimum and maximum number
+  * @function
+  * @memberOf bijou.js
+  * @param {Number} min The lowest number that the random value generated can be.
+  * @param {Number} max The highest number that the random value generated can be.
+  * @param {Number} [round=true] Weather to round the generated number
+  * @param {Number} [seed=Math.random()] The seed for the generated number (Between 0 and 1).
+  * @returns {Number} The random numebr generated.
+  */
   random: (min, max, round = true, seed = Math.random()) => {
     if (round) {
       return Math.floor(seed * (max - min + 1) + min);
@@ -1076,14 +1078,48 @@ let _temp = {
       return Math.random() * (max - min + 1) + min;
     }
   },
+  /**
+  * Get a random number from a seed.
+  * @function
+  * @memberOf bijou.js
+  * @param {Number} seed The seed to use to generate random numbers.
+  * @example
+  * console.log(_$.seedRandom(13));
+  * @returns {Number} The random number from the seed.
+  */
   seedRandom: (seed) => {
     var t = (seed += 0x6d2b79f5);
     t = Math.imul(t ^ (t >>> 15), t | 1);
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   },
+  /**
+  * Removes duplicates from an array
+  * @function
+  * @memberOf bijou.js
+  * @param {Array} array The array to remove duplicates from.
+  * @example
+  * let an_array = [1,1,2,3,4,5,5,6]
+  an_array = _$.uniqueArray(an_array);
+  //Now an_array is [1,2,3,4,5,6]
+  * @returns {Array} The array with no duplicates.
+  */
   uniqueArray: (array) => [...new Set(array)],
+/**
+* Formats a number by adding commas to it.
+* @function
+* @memberOf bijou.js
+* @param {Number} n The number to format.
+* @example
+* console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
+* @returns {String} The formatted string representation of the number.
+*/
   formatNumber: (n) => n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
+/**
+* Splices an array buffer
+* @function
+* @memberOf bijou.js
+*/
   spliceArrayBuffer: (arr, start, end, endian) => {
     endian = endian || false;
     var direction = endian ? -1 : 1;
@@ -1094,6 +1130,15 @@ let _temp = {
       value = 256 * value + arr[i];
     return value;
   },
+/**
+* Undoes camelCase.
+* @function
+* @memberOf bijou.js
+* @param {String} str The string to camelCase.
+* @example
+* console.log(_$.unCamelCase("helloWorld"));//Logs "Hello World" to the console.
+* @returns {String} The string of unCamelCased code.
+*/
   unCamelCase: function (str) {
     return str
       .replace(/([a-z])([A-Z])/g, "$1 $2")
@@ -1102,6 +1147,16 @@ let _temp = {
         return s.toUpperCase();
       });
   },
+/**
+* Parses the string of HTML specified and returns an HTML element of it.
+* @function
+* @memberOf bijou.js
+* @param {String} string The HTML string to parse.
+* @param {String} [mimeType=text/html] The mimeType of the string.
+* @example
+* 
+* @returns
+*/
   parseHTML: (string, mimeType = "text/html") => {
     const domparser = new DOMParser();
     return domparser.parseFromString(string, mimeType);
