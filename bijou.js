@@ -643,7 +643,7 @@ let _temp = {
 * @memberOf bijou
 * @param {String} str The string of HTML to escape.
 * @example
-* _$.escapeHTML("<div>")
+* _$.escapeHTML("<div>");
 * @returns {String} The day name from the date.
 */
   escapeHTML: (str) =>
