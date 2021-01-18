@@ -1914,7 +1914,7 @@ let _temp = {
 * @memberOf bijou
 * @param {Element} el The element to be dragged (And dropped :P ).
 * @example
-* _$.drag(docu)
+* _$.drag(document.query)
 * @returns {String}
 */
   drag: (el) => {
