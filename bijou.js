@@ -118,7 +118,6 @@ let _temp = {
       };
       worker.onerror = (err) => {
         rej(err), worker.terminate();
-  },
   /**
   * Formats a number of milliseconds
   * @function
