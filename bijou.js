@@ -741,7 +741,7 @@ let _temp = {
     console.timeEnd(name);
   },
 /**
-* Sorts an object alphabetically by its key
+* Sorts an object alphabetically by its keys.
 * @function
 * @memberOf bijou.js
 * @param
