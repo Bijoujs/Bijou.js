@@ -1958,7 +1958,6 @@ let _temp = {
 * Easing functions
 * @Object
 * @memberOf bijou
-* @param {String}
 * @example
 * //
 * @returns {String}
