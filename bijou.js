@@ -70,7 +70,7 @@ if (isNode) {
 /**
 * Bijou.js source
 * @function
-* @type {Ob}
+* @type {Object}
 */
 let _temp = {
   /**
