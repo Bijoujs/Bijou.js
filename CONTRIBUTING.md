@@ -1,6 +1,7 @@
 # CONTRIBUTING GUIDELINES
 
 <h6 align="center">By contributing to Bijou.js in any way you agree to these guidelines.</h6>
+
 ### Be patient and courteous.
 
 ### Be inclusive.
