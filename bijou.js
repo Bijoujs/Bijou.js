@@ -585,7 +585,7 @@ let _temp = {
     );
   },
 /**
-* Converts a form to URL queries.
+* Converts a form to URL queries using the .
 * @function
 * @memberOf bijou
 * @param {Element} form The form element.
