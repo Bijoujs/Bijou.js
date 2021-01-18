@@ -193,7 +193,7 @@ let _temp = {
     );
   },
 /**
-* Copies the string inputted the clip
+* Copies the string inputted the clipboard.
 * @function
 * @param {number} num - Params
 * @example
