@@ -759,7 +759,7 @@ let _temp = {
       }, {});
   },
 /**
-* Returns the last space in the string given replaced wei
+* Returns the last space in the string given replaced with 
 * @function
 * @memberOf bijou.js
 * @param
