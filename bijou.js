@@ -931,7 +931,7 @@ let _temp = {
 * @param {Element} elem The element to generate the querySelector for.
 * @example
 * const textarea = document.getElementById('textarea');
-* console.log(_$.querySelector(textarea))
+* console.log(_$.querySelector(textarea)); 
 * @returns
 */
   querySelector: (elem) => {
