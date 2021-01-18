@@ -193,7 +193,7 @@ let _temp = {
     );
   },
 /**
-* [Desc]
+* 
 * @function
 * @param {number} num - Params
 * @example
