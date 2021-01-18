@@ -169,7 +169,7 @@ let _temp = {
     return callback;
   },
 /**
-* Returns the callback when 
+* Returns the callback when the user stops scroll
 * @function
 * @param {number} num - Params
 * @example
