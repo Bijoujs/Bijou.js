@@ -488,7 +488,7 @@ let _temp = {
         }, {})
         : obj,
 /**
-* Convert s
+* Converts an a
 * @function
 * @memberOf bijou
 * @param
