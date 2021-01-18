@@ -863,6 +863,15 @@ let _temp = {
       return { lightOrDark: "dark", hsp: hsp };
     }
   },
+/**
+* DESC
+* @function
+* @memberOf bijou.js
+* @param
+* @example
+*
+* @returns
+*/
   compStyle: (el, prop) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
