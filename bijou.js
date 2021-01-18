@@ -553,7 +553,7 @@ let _temp = {
     );
   },
 /**
-* DESC
+* 
 * @function
 * @memberOf bijou
 * @param
