@@ -556,7 +556,7 @@ let _temp = {
 * Tests if the given DOM element is partially (or fully) in view.
 * @function
 * @memberOf bijou
-* @param {Element} t
+* @param {Element} el the
 * @example
 * //
 * @returns {String} The day name from the date.
