@@ -764,7 +764,7 @@ let _temp = {
 * @memberOf bijou.js
 * @param {String} text The string to replace
 * @example
-* document.querySelectorAll
+* document.querySelectorA
 * @returns
 */
   widows: (text) => {
