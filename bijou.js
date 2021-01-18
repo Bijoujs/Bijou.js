@@ -724,7 +724,15 @@ let _temp = {
       (e = t[o].nodeValue), (t[o].nodeValue = callback(e));
     return el
   },
-  
+/**
+* Returns the name of the weekday from the Date object specified.
+* @function
+* @memberOf bijou.js
+* @param
+* @example
+*
+* @returns
+*/
   timeFunction: (fn, name = "_ function timer") => {
     console.time(name);
     fn();
