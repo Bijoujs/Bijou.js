@@ -665,7 +665,7 @@ let _temp = {
 * @param {String} str The string of HTML to unescape.
 * @example
 * _$.unescapeHTML("&lt;div&gt;");//Returns "<div>"
-* @returns {String} The unescape
+* @returns {String} The unescaped HTML.
 */
   unescapeHTML: (str) =>
     str.replace(
