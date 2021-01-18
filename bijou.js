@@ -1878,7 +1878,7 @@ let _temp = {
 * @param {String} str The string of non-camelCased text.
 * @example
 * console.log(_$.camelCase("Hello world"));//Logs "helloWorld" to the console.
-* @returns {String} The camelc
+* @returns {String} The camelCas
 */
   camelCase: (str) => {
     return str
