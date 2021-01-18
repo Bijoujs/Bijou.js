@@ -509,7 +509,7 @@ let _temp = {
 * averageBy
 * @function
 * @memberOf bijou
-* @param {Array} 
+* @param {Array} arr
 * @example
 * //
 * @returns {String} The day name from the date.
