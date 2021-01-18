@@ -1960,7 +1960,7 @@ let _temp = {
 * @memberOf bijou
 * @example
 * _$.ease.easeInOutQuad(.3);//Returns the eased point of about 1/3 along the animation.
-* @returns {String}
+* @returns {Function}
 */
   ease: {
     // no easing, no acceleration
