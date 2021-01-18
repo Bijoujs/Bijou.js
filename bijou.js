@@ -1105,21 +1105,21 @@ let _temp = {
   * @returns {Array} The array with no duplicates.
   */
   uniqueArray: (array) => [...new Set(array)],
-/**
-* Formats a number by adding commas to it.
-* @function
-* @memberOf bijou.js
-* @param {Number} n The number to format.
-* @example
-* console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
-* @returns {String} The formatted string representation of the number.
-*/
+  /**
+  * Formats a number by adding commas to it.
+  * @function
+  * @memberOf bijou.js
+  * @param {Number} n The number to format.
+  * @example
+  * console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
+  * @returns {String} The formatted string representation of the number.
+  */
   formatNumber: (n) => n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
-/**
-* Splices an array buffer
-* @function
-* @memberOf bijou.js
-*/
+  /**
+  * Splices an array buffer
+  * @function
+  * @memberOf bijou.js
+  */
   spliceArrayBuffer: (arr, start, end, endian) => {
     endian = endian || false;
     var direction = endian ? -1 : 1;
@@ -1130,15 +1130,15 @@ let _temp = {
       value = 256 * value + arr[i];
     return value;
   },
-/**
-* Undoes camelCase.
-* @function
-* @memberOf bijou.js
-* @param {String} str The string to camelCase.
-* @example
-* console.log(_$.unCamelCase("helloWorld"));//Logs "Hello World" to the console.
-* @returns {String} The string of unCamelCased code.
-*/
+  /**
+  * Undoes camelCase.
+  * @function
+  * @memberOf bijou.js
+  * @param {String} str The string to camelCase.
+  * @example
+  * console.log(_$.unCamelCase("helloWorld"));//Logs "Hello World" to the console.
+  * @returns {String} The string of unCamelCased code.
+  */
   unCamelCase: function (str) {
     return str
       .replace(/([a-z])([A-Z])/g, "$1 $2")
@@ -1147,20 +1147,31 @@ let _temp = {
         return s.toUpperCase();
       });
   },
-/**
-* Parses the string of HTML specified and returns an HTML element of it.
-* @function
-* @memberOf bijou.js
-* @param {String} string The HTML string to parse.
-* @param {String} [mimeType=text/html] The mimeType of the string.
-* @example
-* 
-* @returns
-*/
+  /**
+  * Parses the string of HTML specified and returns an HTML element of it.
+  * @function
+  * @memberOf bijou.js
+  * @param {String} string The HTML string to parse.
+  * @param {String} [mimeType=text/html] The mimeType of the string.
+  * @example
+  * let html = _$.parseHTML("<div id='hello'><textarea></textarea></div>");
+  * html.querySelector("textarea");//Returns the textarea!
+  * @returns {Element} The HTML document element of the HTML string specified.
+  */
   parseHTML: (string, mimeType = "text/html") => {
     const domparser = new DOMParser();
     return domparser.parseFromString(string, mimeType);
   },
+/**
+* Syntax highlights a string of code.
+* @function
+* @memberOf bijou.js
+* @param {String} string The string of HTML to highlight.
+* @param {String} [mode=html] The mode to use for highlighting. (CSS, JS or HTML).
+* @example
+* _$.syntaxHighlight('alert(\"Hello\")', 'js');//Returns html of the syntax highlighted version.
+* @returns {String} The highlighted string of code as HTML code.
+*/
   syntaxHighlight: (string, mode = "html", colors = {}) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -1816,10 +1827,30 @@ let _temp = {
     highlightel(el, mode, colors);
     return el.innerHTML;
   },
+/**
+* Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
+* @function
+* @memberOf bijou.js
+* @returns {Function} The composed function.
+*/
   composeFunction: (...functions) => (args) =>
     functions.reduceRight((arg, fn) => fn(arg), args),
+/**
+* Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
+* @function
+* @memberOf bijou.js
+* @param
+* @returns {Function} The curried version of the function.
+*/
   curryFunction: (fn, arity = fn.length, ...args) =>
     arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args),
+/**
+* Returns either "mobile" or "desktop" depending on which type of device the user is using.
+* @function
+* @memberOf bijou.js
+* @param
+* @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
+*/
   mobileOrDesktop: () => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -1830,6 +1861,15 @@ let _temp = {
       ? "mobile"
       : "desktop";
   },
+/**
+* Removes tags from the HTML string specified.
+* @function
+* @memberOf bijou.js
+* @param {String} html The string of HTML to remove tags from.
+* @example
+* console.log(_$.removeTags("<div>Hello</div>"));//Logs "Hello" to the console.
+* @returns {String} THe string of HTML without the tags.
+*/
   removeTags: (html) => html.replace(/<[^>]*>/g, ""),
   camelCase: (str) => {
     return str
