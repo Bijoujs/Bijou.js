@@ -462,7 +462,15 @@ let _temp = {
       callback(array[i], i, array);
     }
   },
-  
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param
+* @example
+* //
+* @returns {String} The day name from the date.
+*/
   mapObjectKeys: (obj, fn) =>
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
