@@ -1998,7 +1998,7 @@ let _temp = {
 * Gets JSON from a URL and performs a callback with it.
 * @function
 * @memberOf bijou
-* @param {String} url
+* @param {String} url The
 * @example
 * //
 * @returns {String}
