@@ -186,7 +186,7 @@ let _temp = {
       (e) => {
         clearTimeout(isScrolling);
         isScrolling = setTimeout(() => {
-          return callback();
+          callback();
         }, 150);
       },
       false
