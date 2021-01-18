@@ -585,7 +585,7 @@ let _temp = {
     );
   },
 /**
-* DESC
+* Conv
 * @function
 * @memberOf bijou
 * @param
