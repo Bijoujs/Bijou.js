@@ -560,7 +560,7 @@ let _temp = {
 * @example
 * //Alerts "In view!" if the first <div> in the document is partially or fully view.
 * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
-* @returns {String} The day name from the date.
+* @returns {Boolean} The day name from the date.
 */
   inPartialView: (el) => {
     if (isNode) {
