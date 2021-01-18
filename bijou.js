@@ -834,7 +834,7 @@ let _temp = {
 * @param
 * @example
 *
-* @returns {Object} An object that represents if the color is light or dark and how much. 
+* @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a vall
 */
   lightOrDark: (color) => {
     var r, g, b, hsp;
