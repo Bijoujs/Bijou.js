@@ -683,7 +683,6 @@ let _temp = {
 * Returns the previous page that the user visited.
 * @function
 * @memberOf bijou
-* @param
 * @example
 * //
 * @returns {String} The day name from the date.
