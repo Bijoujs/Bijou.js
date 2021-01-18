@@ -748,7 +748,7 @@ let _temp = {
 * @example
 * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
 * // The object is now {anotherThing: "Another value!", testing: "A value"}
-* @returns {Object} 
+* @returns {Object} The sorted object.
 */
   sortObj: (obj) => {
     return Object.keys(obj)
