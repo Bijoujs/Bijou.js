@@ -1,4 +1,31 @@
-/* --------------------------------------------------------------------------|
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSDoc: Source: bijou.js</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <h1 class="page-title">Source: bijou.js</h1>
+
+      <section>
+        <article>
+          <pre
+            class="prettyprint source linenums"
+          ><code>/* --------------------------------------------------------------------------|
   ____ ___    _  ___  _   _   _     
  | __ )_ _|  | |/ _ \| | | | (_)___ 
  |  _ \| |_  | | | | | | | | | / __|
@@ -13,7 +40,7 @@ This software comes with ABSOLUTELY NO WARRANTY and is provided "As is" (with th
    ____ ___  _   _ _____ ____  ___ ____  _   _ _____ ___  ____  ____
   / ___/ _ \| \ | |_   _|  _ \|_ _| __ )| | | |_   _/ _ \|  _ \/ ___|
  | |  | | | |  \| | | | | |_) || ||  _ \| | | | | || | | | |_) \___ \
- | |__| |_| | |\  | | | |  _ < | || |_) | |_| | | || |_| |  _ < ___) |
+ | |__| |_| | |\  | | | |  _ &lt; | || |_) | |_| | | || |_| |  _ &lt; ___) |
   \____\___/|_| \_| |_| |_| \_\___|____/ \___/  |_| \___/|_| \_\____/
 -----------------------------------------------------------------------------|
 Contributors to Bijou.js:
@@ -70,17 +97,17 @@ if (isNode) {
 
 let _temp = {
   /**
-   * Gives an array of prime numbers up to a certain one.
-   * @function
-   * @param {Number} num - The number to give primes to.
-   * @example
-   * _$.primesTo(100);//Returns an array of prime numbers up to 100.
-   * @returns {Array} Returns an array of prime numbers up to the given number.
-   */
+  * Gives an array of prime numbers up to a certain one.
+  * @function
+  * @param {Number} num - The number to give primes to.
+  * @example
+  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
+  * @returns {Array} Returns an array of prime numbers up to the given number.
+  */
   primesTo: (num) => {
     let arr = Array.from({
-        length: num - 1,
-      }).map((x, i) => i + 2),
+      length: num - 1,
+    }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -91,13 +118,13 @@ let _temp = {
     return arr;
   },
   /**
-   * Runs a function asynchronously in a web worker.
-   * @function
-   * @param {Function} fn The function to run
-   * @example
-   * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
-   * @returns {Promise} A promise that resolves into the return value of the function.
-   */
+  * Runs a function asynchronously in a web worker.
+  * @function
+  * @param {Function} fn The function to run
+  * @example
+  * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
+  * @returns {Promise} A promise that resolves into the return value of the function.
+  */
   async: (fn) => {
     const worker = new Worker(
       URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
@@ -114,15 +141,15 @@ let _temp = {
     });
   },
   /**
-   * Formats a number of milliseconds
-   * @function
-   * @param {Number} ms The number of milliseconds to format to a string.
-   * @example
-   * _$.formatMilliseconds(4000);//Returns "4 seconds"
-   * @returns {Array}
-   */
+  * Formats a number of milliseconds
+  * @function
+  * @param {Number} ms The number of milliseconds to format to a string.
+  * @example
+  * _$.formatMilliseconds(4000);//Returns "4 seconds"
+  * @returns {Array}
+  */
   formatMilliseconds: (ms) => {
-    if (ms < 0) ms = -ms;
+    if (ms &lt; 0) ms = -ms;
     const time = {
       day: Math.floor(ms / 86400000),
       hour: Math.floor(ms / 3600000) % 24,
@@ -136,14 +163,14 @@ let _temp = {
       .join(", ");
   },
   /**
-   * Adds the specified styles to the element specified.
-   * @function
-   * @param {Element} el The element to add the styles to.
-   * @param {Object} styles An object that represents the styles to be added. (camelCased)
-   * @example
-   * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
-   * @returns {Object} the assigned object.
-   */
+  * Adds the specified styles to the element specified.
+  * @function
+  * @param {Element} el The element to add the styles to.
+  * @param {Object} styles An object that represents the styles to be added. (camelCased) 
+  * @example
+  * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
+  * @returns {Object} the assigned object.
+  */
   addStyles: (el, styles) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -151,14 +178,14 @@ let _temp = {
     return Object.assign(el.style, styles);
   },
   /**
-   * Returns the callback when a a click is registered outside the selected element
-   * @function
-   * @param {Element} element The element to use as the outsideclick element.
-   * @param {Function} callback The function to run when a click is registered outside the specified element.
-   * @example
-   * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
-   * @returns {Function} the function that was called.
-   */
+  * Returns the callback when a a click is registered outside the selected element
+  * @function
+  * @param {Element} element The element to use as the outsideclick element.
+  * @param {Function} callback The function to run when a click is registered outside the specified element.
+  * @example
+  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
+  * @returns {Function} the function that was called. 
+  */
   onOutsideClick: (element, callback) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -169,13 +196,13 @@ let _temp = {
     return callback;
   },
   /**
-   * Returns the callback when the user stops scrolling.
-   * @function
-   * @param {Function} callback The callback to call when the user stops scrolling.
-   * @example
-   * _$.onScrollStop(() => {alert("You stopped scrolling!")})
-   * @returns {undefined} Returns undefined.
-   */
+  * Returns the callback when the user stops scrolling.
+  * @function
+  * @param {Function} callback The callback to call when the user stops scrolling.
+  * @example
+  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
+  * @returns {undefined} Returns undefined.
+  */
   onScrollStop: (callback) => {
     let isScrolling;
     if (isNode) {
@@ -193,13 +220,13 @@ let _temp = {
     );
   },
   /**
-   * Copies the string inputted the clipboard.
-   * @function
-   * @param {String} str The string to copy.
-   * @example
-   * _$.copy("Hello world")
-   * @returns {String} The string copied.
-   */
+  * Copies the string inputted the clipboard.
+  * @function
+  * @param {String} str The string to copy.
+  * @example
+  * _$.copy("Hello world")
+  * @returns {String} The string copied.
+  */
   copy: (str) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -269,7 +296,7 @@ let _temp = {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     var isOpera =
-      (!!window.opr && !!opr.addons) ||
+      (!!window.opr &amp;&amp; !!opr.addons) ||
       !!window.opera ||
       navigator.userAgent.indexOf(" OPR/") >= 0;
     var isFirefox = typeof InstallTrigger !== "undefined";
@@ -279,14 +306,14 @@ let _temp = {
         return p.toString() === "[object SafariRemoteNotification]";
       })(
         !window["safari"] ||
-          (typeof safari !== "undefined" && window["safari"].pushNotification)
+        (typeof safari !== "undefined" &amp;&amp; window["safari"].pushNotification)
       );
     var isIE = /*@cc_on!@*/ false || !!document.documentMode;
-    var isEdge = !isIE && !!window.StyleMedia;
+    var isEdge = !isIE &amp;&amp; !!window.StyleMedia;
     var isChrome =
-      !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
-    var isEdgeChromium = isChrome && navigator.userAgent.indexOf("Edg") != -1;
-    var isBlink = (isChrome || isOpera) && !!window.CSS;
+      !!window.chrome &amp;&amp; (!!window.chrome.webstore || !!window.chrome.runtime);
+    var isEdgeChromium = isChrome &amp;&amp; navigator.userAgent.indexOf("Edg") != -1;
+    var isBlink = (isChrome || isOpera) &amp;&amp; !!window.CSS;
     if (isOpera) {
       return "Opera";
     }
@@ -353,7 +380,7 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-              !obj[key] ? "" : obj[key]
+            !obj[key] ? "" : obj[key]
             }"`,
           ""
         )
@@ -370,7 +397,7 @@ let _temp = {
     return res;
   },
   each: (array, callback) => {
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i &lt; array.length; i++) {
       callback(array[i], i, array);
     }
   },
@@ -378,16 +405,16 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-      ? Object.keys(obj).reduce((acc, current) => {
+        ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current);
           const val = obj[current];
           acc[key] =
-            val !== null && typeof val === "object"
+            val !== null &amp;&amp; typeof val === "object"
               ? _$.mapObjectKeys(val, fn)
               : val;
           return acc;
         }, {})
-      : obj,
+        : obj,
   arrayToCSV: (arr, delimiter = ",") =>
     arr
       .map((v) =>
@@ -416,10 +443,10 @@ let _temp = {
     }
 
     return (
-      top >= window.pageYOffset &&
-      left >= window.pageXOffset &&
-      top + height <= window.pageYOffset + window.innerHeight &&
-      left + width <= window.pageXOffset + window.innerWidth
+      top >= window.pageYOffset &amp;&amp;
+      left >= window.pageXOffset &amp;&amp;
+      top + height &lt;= window.pageYOffset + window.innerHeight &amp;&amp;
+      left + width &lt;= window.pageXOffset + window.innerWidth
     );
   },
   inPartialView: (el) => {
@@ -438,9 +465,9 @@ let _temp = {
     }
 
     return (
-      top < window.pageYOffset + window.innerHeight &&
-      left < window.pageXOffset + window.innerWidth &&
-      top + height > window.pageYOffset &&
+      top &lt; window.pageYOffset + window.innerHeight &amp;&amp;
+      left &lt; window.pageXOffset + window.innerWidth &amp;&amp;
+      top + height > window.pageYOffset &amp;&amp;
       left + width > window.pageXOffset
     );
   },
@@ -450,7 +477,7 @@ let _temp = {
     }
     return Array.from(new FormData(form), (field) =>
       field.map(encodeURIComponent).join("=")
-    ).join("&");
+    ).join("&amp;");
   },
   formToObject: (form) => {
     if (isNode) {
@@ -474,26 +501,26 @@ let _temp = {
   },
   escapeHTML: (str) =>
     str.replace(
-      /[&<>'"]/g,
+      /[&amp;&lt;>'"]/g,
       (tag) =>
         ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          "'": "&#39;",
-          '"': "&quot;",
+          "&amp;": "&amp;amp;",
+          "&lt;": "&amp;lt;",
+          ">": "&amp;gt;",
+          "'": "&amp;#39;",
+          '"': "&amp;quot;",
         }[tag] || tag)
     ),
   unescapeHTML: (str) =>
     str.replace(
-      /&amp;|&lt;|&gt;|&#39;|&quot;/g,
+      /&amp;amp;|&amp;lt;|&amp;gt;|&amp;#39;|&amp;quot;/g,
       (tag) =>
         ({
-          "&amp;": "&",
-          "&lt;": "<",
-          "&gt;": ">",
-          "&#39;": "'",
-          "&quot;": '"',
+          "&amp;amp;": "&amp;",
+          "&amp;lt;": "&lt;",
+          "&amp;gt;": ">",
+          "&amp;#39;": "'",
+          "&amp;quot;": '"',
         }[tag] || tag)
     ),
   previousPage: () => {
@@ -508,15 +535,15 @@ let _temp = {
     }
     for (
       var e,
-        t = (function () {
-          for (var e, t = el, o = [], a = 0; a < t.length; a++)
-            (e = t[a].childNodes[0]),
-              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-          return o;
-        })(),
-        o = 0,
-        a = t.length;
-      o < a;
+      t = (function () {
+        for (var e, t = el, o = [], a = 0; a &lt; t.length; a++)
+          (e = t[a].childNodes[0]),
+            t[a].hasChildNodes() &amp;&amp; 3 == e.nodeType &amp;&amp; o.push(e);
+        return o;
+      })(),
+      o = 0,
+      a = t.length;
+      o &lt; a;
       o++
     )
       (e = t[o].nodeValue), (t[o].nodeValue = callback(e));
@@ -537,10 +564,10 @@ let _temp = {
   widows: (text) => {
     var wordArray = text.split(" ");
     var finalTitle = "";
-    for (var i = 0; i <= wordArray.length - 1; i++) {
+    for (var i = 0; i &lt;= wordArray.length - 1; i++) {
       finalTitle += wordArray[i];
       if (i == wordArray.length - 2) {
-        finalTitle += "&nbsp;";
+        finalTitle += "&amp;nbsp;";
       } else {
         finalTitle += " ";
       }
@@ -561,19 +588,19 @@ let _temp = {
     var r = (num >> 16) + amt;
 
     if (r > 255) r = 255;
-    else if (r < 0) r = 0;
+    else if (r &lt; 0) r = 0;
 
-    var b = ((num >> 8) & 0x00ff) + amt;
+    var b = ((num >> 8) &amp; 0x00ff) + amt;
 
     if (b > 255) b = 255;
-    else if (b < 0) b = 0;
+    else if (b &lt; 0) b = 0;
 
-    var g = (num & 0x0000ff) + amt;
+    var g = (num &amp; 0x0000ff) + amt;
 
     if (g > 255) g = 255;
-    else if (g < 0) g = 0;
+    else if (g &lt; 0) g = 0;
 
-    return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
+    return (usePound ? "#" : "") + (g | (b &lt;&lt; 8) | (r &lt;&lt; 16)).toString(16);
   },
   lightOrDark: (color) => {
     var r, g, b, hsp;
@@ -587,12 +614,12 @@ let _temp = {
       b = color[3];
     } else {
       color = +(
-        "0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&")
+        "0x" + color.slice(1).replace(color.length &lt; 5 &amp;&amp; /./g, "$&amp;$&amp;")
       );
 
       r = color >> 16;
-      g = (color >> 8) & 255;
-      b = color & 255;
+      g = (color >> 8) &amp; 255;
+      b = color &amp; 255;
     }
 
     hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
@@ -635,10 +662,10 @@ let _temp = {
       "(" +
       (h >>> (alpha ? 24 : 16)) +
       ", " +
-      ((h & (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
+      ((h &amp; (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
       ", " +
-      ((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
-      (alpha ? `, ${h & 0x000000ff}` : "") +
+      ((h &amp; (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
+      (alpha ? `, ${h &amp; 0x000000ff}` : "") +
       ")"
     );
   },
@@ -651,7 +678,7 @@ let _temp = {
 
     function loop(element) {
       if (
-        element.getAttribute("id") &&
+        element.getAttribute("id") &amp;&amp;
         document.querySelectorAll(`#${element.getAttribute("id")}`).length === 1
       ) {
         str = str.replace(/^/, " #" + element.getAttribute("id"));
@@ -673,13 +700,13 @@ let _temp = {
         var classNth = "";
         var childrens = element.parentNode.children;
 
-        if (childrens.length < 2) {
+        if (childrens.length &lt; 2) {
           return;
         }
 
         var similarClasses = [];
 
-        for (var i = 0; i < childrens.length; i++) {
+        for (var i = 0; i &lt; childrens.length; i++) {
           if (
             element.getAttribute("class") == childrens[i].getAttribute("class")
           ) {
@@ -688,7 +715,7 @@ let _temp = {
         }
 
         if (similarClasses.length > 1) {
-          for (var j = 0; j < similarClasses.length; j++) {
+          for (var j = 0; j &lt; similarClasses.length; j++) {
             if (element === similarClasses[j]) {
               j++;
               classNth = ":nth-of-type(" + j + ")";
@@ -708,14 +735,14 @@ let _temp = {
         if (childrens.length > 2) {
           var similarNodes = [];
 
-          for (var i = 0; i < childrens.length; i++) {
+          for (var i = 0; i &lt; childrens.length; i++) {
             if (element.nodeName == childrens[i].nodeName) {
               similarNodes.push(childrens[i]);
             }
           }
 
           if (similarNodes.length > 1) {
-            for (var j = 0; j < similarNodes.length; j++) {
+            for (var j = 0; j &lt; similarNodes.length; j++) {
               if (element === similarNodes[j]) {
                 j++;
                 nodeNth = ":nth-of-type(" + j + ")";
@@ -749,12 +776,12 @@ let _temp = {
         );
       }
       el.innerHTML = el.innerHTML.replace(
-        /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
+        /&lt;!--[\s\S]*?(?:-->)?&lt;!---+>?|&lt;!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|&lt;[?][^>]*>?/g,
         ""
       );
     } else if (typeof el === "string") {
       return string.replace(
-        /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
+        /&lt;!--[\s\S]*?(?:-->)?&lt;!---+>?|&lt;!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|&lt;[?][^>]*>?/g,
         ""
       );
     }
@@ -878,22 +905,22 @@ let _temp = {
           i;
         comment = new extract(
           rest,
-          "&lt;!--",
-          "--&gt;",
+          "&amp;lt;!--",
+          "--&amp;gt;",
           commentMode,
           "W3HTMLCOMMENTPOS"
         );
         rest = comment.rest;
-        while (rest.indexOf("&lt;") > -1) {
+        while (rest.indexOf("&amp;lt;") > -1) {
           note = "";
-          startpos = rest.indexOf("&lt;");
-          if (rest.substr(startpos, 9).toUpperCase() == "&LT;STYLE") {
+          startpos = rest.indexOf("&amp;lt;");
+          if (rest.substr(startpos, 9).toUpperCase() == "&amp;LT;STYLE") {
             note = "css";
           }
-          if (rest.substr(startpos, 10).toUpperCase() == "&LT;SCRIPT") {
+          if (rest.substr(startpos, 10).toUpperCase() == "&amp;LT;SCRIPT") {
             note = "javascript";
           }
-          endpos = rest.indexOf("&gt;", startpos);
+          endpos = rest.indexOf("&amp;gt;", startpos);
           if (endpos == -1) {
             endpos = rest.length;
           }
@@ -901,14 +928,14 @@ let _temp = {
           done += tagMode(rest.substring(startpos, endpos + 4));
           rest = rest.substr(endpos + 4);
           if (note == "css") {
-            endpos = rest.indexOf("&lt;/style&gt;");
+            endpos = rest.indexOf("&amp;lt;/style&amp;gt;");
             if (endpos > -1) {
               done += cssMode(rest.substring(0, endpos));
               rest = rest.substr(endpos);
             }
           }
           if (note == "javascript") {
-            endpos = rest.indexOf("&lt;/script&gt;");
+            endpos = rest.indexOf("&amp;lt;/script&amp;gt;");
             if (endpos > -1) {
               done += jsMode(rest.substring(0, endpos));
               rest = rest.substr(endpos);
@@ -916,7 +943,7 @@ let _temp = {
           }
         }
         rest = done + rest;
-        for (i = 0; i < comment.arr.length; i++) {
+        for (i = 0; i &lt; comment.arr.length; i++) {
           rest = rest.replace("W3HTMLCOMMENTPOS", comment.arr[i]);
         }
         return rest;
@@ -927,9 +954,9 @@ let _temp = {
           startpos,
           endpos,
           result;
-        while (rest.search(/(\s|<br>)/) > -1) {
-          startpos = rest.search(/(\s|<br>)/);
-          endpos = rest.indexOf("&gt;");
+        while (rest.search(/(\s|&lt;br>)/) > -1) {
+          startpos = rest.search(/(\s|&lt;br>)/);
+          endpos = rest.indexOf("&amp;gt;");
           if (endpos == -1) {
             endpos = rest.length;
           }
@@ -939,18 +966,18 @@ let _temp = {
         }
         result = done + rest;
         result =
-          "<span style=color:" +
+          "&lt;span style=color:" +
           tagcolor +
-          ">&lt;</span>" +
+          ">&amp;lt;&lt;/span>" +
           result.substring(4);
-        if (result.substr(result.length - 4, 4) == "&gt;") {
+        if (result.substr(result.length - 4, 4) == "&amp;gt;") {
           result =
             result.substring(0, result.length - 4) +
-            "<span style=color:" +
+            "&lt;span style=color:" +
             tagcolor +
-            ">&gt;</span>";
+            ">&amp;gt;&lt;/span>";
         }
-        return "<span style=color:" + tagnamecolor + ">" + result + "</span>";
+        return "&lt;span style=color:" + tagnamecolor + ">" + result + "&lt;/span>";
       }
       function attributeMode(txt) {
         var rest = txt,
@@ -967,25 +994,25 @@ let _temp = {
           doublefnuttpos = rest.indexOf('"', startpos);
           spacepos = rest.indexOf(" ", startpos + 2);
           if (
-            spacepos > -1 &&
-            (spacepos < singlefnuttpos || singlefnuttpos == -1) &&
-            (spacepos < doublefnuttpos || doublefnuttpos == -1)
+            spacepos > -1 &amp;&amp;
+            (spacepos &lt; singlefnuttpos || singlefnuttpos == -1) &amp;&amp;
+            (spacepos &lt; doublefnuttpos || doublefnuttpos == -1)
           ) {
             endpos = rest.indexOf(" ", startpos);
           } else if (
-            doublefnuttpos > -1 &&
-            (doublefnuttpos < singlefnuttpos || singlefnuttpos == -1) &&
-            (doublefnuttpos < spacepos || spacepos == -1)
+            doublefnuttpos > -1 &amp;&amp;
+            (doublefnuttpos &lt; singlefnuttpos || singlefnuttpos == -1) &amp;&amp;
+            (doublefnuttpos &lt; spacepos || spacepos == -1)
           ) {
             endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1);
           } else if (
-            singlefnuttpos > -1 &&
-            (singlefnuttpos < doublefnuttpos || doublefnuttpos == -1) &&
-            (singlefnuttpos < spacepos || spacepos == -1)
+            singlefnuttpos > -1 &amp;&amp;
+            (singlefnuttpos &lt; doublefnuttpos || doublefnuttpos == -1) &amp;&amp;
+            (singlefnuttpos &lt; spacepos || spacepos == -1)
           ) {
             endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1);
           }
-          if (!endpos || endpos == -1 || endpos < startpos) {
+          if (!endpos || endpos == -1 || endpos &lt; startpos) {
             endpos = rest.length;
           }
           done += rest.substring(0, startpos);
@@ -993,16 +1020,16 @@ let _temp = {
           rest = rest.substr(endpos + 1);
         }
         return (
-          "<span style=color:" + attributecolor + ">" + done + rest + "</span>"
+          "&lt;span style=color:" + attributecolor + ">" + done + rest + "&lt;/span>"
         );
       }
       function attributeValueMode(txt) {
         return (
-          "<span style=color:" + attributevaluecolor + ">" + txt + "</span>"
+          "&lt;span style=color:" + attributevaluecolor + ">" + txt + "&lt;/span>"
         );
       }
       function commentMode(txt) {
-        return "<span style=color:" + commentcolor + ">" + txt + "</span>";
+        return "&lt;span style=color:" + commentcolor + ">" + txt + "&lt;/span>";
       }
       function cssMode(txt) {
         var rest = txt,
@@ -1027,7 +1054,7 @@ let _temp = {
           midz = rest.substr(s + 1);
           cc = 1;
           c = 0;
-          for (i = 0; i < midz.length; i++) {
+          for (i = 0; i &lt; midz.length; i++) {
             if (midz.substr(i, 1) == "{") {
               cc++;
               c++;
@@ -1043,7 +1070,7 @@ let _temp = {
             c = 0;
           }
           e = s;
-          for (i = 0; i <= c; i++) {
+          for (i = 0; i &lt;= c; i++) {
             e = rest.indexOf("}", e + 1);
           }
           if (e == -1) {
@@ -1056,16 +1083,16 @@ let _temp = {
         rest = done + rest;
         rest = rest.replace(
           /{/g,
-          "<span style=color:" + cssdelimitercolor + ">{</span>"
+          "&lt;span style=color:" + cssdelimitercolor + ">{&lt;/span>"
         );
         rest = rest.replace(
           /}/g,
-          "<span style=color:" + cssdelimitercolor + ">}</span>"
+          "&lt;span style=color:" + cssdelimitercolor + ">}&lt;/span>"
         );
-        for (i = 0; i < comment.arr.length; i++) {
+        for (i = 0; i &lt; comment.arr.length; i++) {
           rest = rest.replace("W3CSSCOMMENTPOS", comment.arr[i]);
         }
-        return "<span style=color:" + cssselectorcolor + ">" + rest + "</span>";
+        return "&lt;span style=color:" + cssselectorcolor + ">" + rest + "&lt;/span>";
       }
       function cssPropertyMode(txt) {
         var rest = txt,
@@ -1084,7 +1111,7 @@ let _temp = {
           while (loop == true) {
             loop = false;
             e = rest.indexOf(";", n);
-            if (rest.substring(e - 5, e + 1) == "&nbsp;") {
+            if (rest.substring(e - 5, e + 1) == "&amp;nbsp;") {
               loop = true;
               n = e + 1;
             }
@@ -1097,12 +1124,12 @@ let _temp = {
           rest = rest.substr(e + 1);
         }
         return (
-          "<span style=color:" +
+          "&lt;span style=color:" +
           csspropertycolor +
           ">" +
           done +
           rest +
-          "</span>"
+          "&lt;/span>"
         );
       }
       function cssPropertyValueMode(txt) {
@@ -1110,9 +1137,9 @@ let _temp = {
           done = "",
           s;
         rest =
-          "<span style=color:" +
+          "&lt;span style=color:" +
           cssdelimitercolor +
-          ">:</span>" +
+          ">:&lt;/span>" +
           rest.substring(1);
         while (rest.search(/!important/i) > -1) {
           s = rest.search(/!important/i);
@@ -1122,33 +1149,33 @@ let _temp = {
         }
         result = done + rest;
         if (
-          result.substr(result.length - 1, 1) == ";" &&
-          result.substr(result.length - 6, 6) != "&nbsp;" &&
-          result.substr(result.length - 4, 4) != "&lt;" &&
-          result.substr(result.length - 4, 4) != "&gt;" &&
-          result.substr(result.length - 5, 5) != "&amp;"
+          result.substr(result.length - 1, 1) == ";" &amp;&amp;
+          result.substr(result.length - 6, 6) != "&amp;nbsp;" &amp;&amp;
+          result.substr(result.length - 4, 4) != "&amp;lt;" &amp;&amp;
+          result.substr(result.length - 4, 4) != "&amp;gt;" &amp;&amp;
+          result.substr(result.length - 5, 5) != "&amp;amp;"
         ) {
           result =
             result.substring(0, result.length - 1) +
-            "<span style=color:" +
+            "&lt;span style=color:" +
             cssdelimitercolor +
-            ">;</span>";
+            ">;&lt;/span>";
         }
         return (
-          "<span style=color:" +
+          "&lt;span style=color:" +
           csspropertyvaluecolor +
           ">" +
           result +
-          "</span>"
+          "&lt;/span>"
         );
       }
       function cssImportantMode(txt) {
         return (
-          "<span style=color:" +
+          "&lt;span style=color:" +
           cssimportantcolor +
           ";font-weight:bold;>" +
           txt +
-          "</span>"
+          "&lt;/span>"
         );
       }
       function jsMode(txt) {
@@ -1167,7 +1194,7 @@ let _temp = {
           mypos,
           dotpos,
           y;
-        for (i = 0; i < rest.length; i++) {
+        for (i = 0; i &lt; rest.length; i++) {
           cc = rest.substr(i, 1);
           if (cc == "\\") {
             esc.push(rest.substr(i, 2));
@@ -1182,7 +1209,7 @@ let _temp = {
           sfnuttpos = getPos(rest, "'", "'", jsStringMode);
           dfnuttpos = getPos(rest, '"', '"', jsStringMode);
           compos = getPos(rest, /\/\*/, "*/", commentMode);
-          comlinepos = getPos(rest, /\/\//, "<br>", commentMode);
+          comlinepos = getPos(rest, /\/\//, "&lt;br>", commentMode);
           numpos = getNumPos(rest, jsNumberMode);
           keywordpos = getKeywordPos("js", rest, jsKeywordMode);
           dotpos = getDotPos(rest, jsPropertyMode);
@@ -1218,22 +1245,22 @@ let _temp = {
           }
         }
         rest = done + rest;
-        for (i = 0; i < esc.length; i++) {
+        for (i = 0; i &lt; esc.length; i++) {
           rest = rest.replace("W3JSESCAPE", esc[i]);
         }
-        return "<span style=color:" + jscolor + ">" + rest + "</span>";
+        return "&lt;span style=color:" + jscolor + ">" + rest + "&lt;/span>";
       }
       function jsStringMode(txt) {
-        return "<span style=color:" + jsstringcolor + ">" + txt + "</span>";
+        return "&lt;span style=color:" + jsstringcolor + ">" + txt + "&lt;/span>";
       }
       function jsKeywordMode(txt) {
-        return "<span style=color:" + jskeywordcolor + ">" + txt + "</span>";
+        return "&lt;span style=color:" + jskeywordcolor + ">" + txt + "&lt;/span>";
       }
       function jsNumberMode(txt) {
-        return "<span style=color:" + jsnumbercolor + ">" + txt + "</span>";
+        return "&lt;span style=color:" + jsnumbercolor + ">" + txt + "&lt;/span>";
       }
       function jsPropertyMode(txt) {
-        return "<span style=color:" + jspropertycolor + ">" + txt + "</span>";
+        return "&lt;span style=color:" + jspropertycolor + ">" + txt + "&lt;/span>";
       }
       function getDotPos(txt, func) {
         var x,
@@ -1243,7 +1270,7 @@ let _temp = {
           e,
           arr = [
             ".",
-            "<",
+            "&lt;",
             " ",
             ";",
             "(",
@@ -1252,7 +1279,7 @@ let _temp = {
             "[",
             "]",
             ",",
-            "&",
+            "&amp;",
             ":",
             "{",
             "}",
@@ -1265,9 +1292,9 @@ let _temp = {
         s = txt.indexOf(".");
         if (s > -1) {
           x = txt.substr(s + 1);
-          for (j = 0; j < x.length; j++) {
+          for (j = 0; j &lt; x.length; j++) {
             cc = x[j];
-            for (i = 0; i < arr.length; i++) {
+            for (i = 0; i &lt; arr.length; i++) {
               if (cc.indexOf(arr[i]) > -1) {
                 e = j;
                 return [s + 1, e + s + 1, func];
@@ -1280,9 +1307,9 @@ let _temp = {
       function getMinPos() {
         var i,
           arr = [];
-        for (i = 0; i < arguments.length; i++) {
+        for (i = 0; i &lt; arguments.length; i++) {
           if (arguments[i][0] > -1) {
-            if (arr.length == 0 || arguments[i][0] < arr[0]) {
+            if (arr.length == 0 || arguments[i][0] &lt; arr[0]) {
               arr = arguments[i];
             }
           }
@@ -1367,15 +1394,15 @@ let _temp = {
             "yield",
           ];
         }
-        for (i = 0; i < words.length; i++) {
+        for (i = 0; i &lt; words.length; i++) {
           pos = txt.indexOf(words[i]);
           if (pos > -1) {
             patt = /\W/g;
             if (
-              txt.substr(pos + words[i].length, 1).match(patt) &&
+              txt.substr(pos + words[i].length, 1).match(patt) &amp;&amp;
               txt.substr(pos - 1, 1).match(patt)
             ) {
-              if (pos > -1 && (rpos == -1 || pos < rpos)) {
+              if (pos > -1 &amp;&amp; (rpos == -1 || pos &lt; rpos)) {
                 rpos = pos;
                 rpos2 = rpos + words[i].length;
               }
@@ -1395,44 +1422,44 @@ let _temp = {
       }
       function getNumPos(txt, func) {
         var arr = [
-            "<br>",
-            " ",
-            ";",
-            "(",
-            "+",
-            ")",
-            "[",
-            "]",
-            ",",
-            "&",
-            ":",
-            "{",
-            "}",
-            "/",
-            "-",
-            "*",
-            "|",
-            "%",
-            "=",
-          ],
+          "&lt;br>",
+          " ",
+          ";",
+          "(",
+          "+",
+          ")",
+          "[",
+          "]",
+          ",",
+          "&amp;",
+          ":",
+          "{",
+          "}",
+          "/",
+          "-",
+          "*",
+          "|",
+          "%",
+          "=",
+        ],
           i,
           j,
           c,
           startpos = 0,
           endpos,
           word;
-        for (i = 0; i < txt.length; i++) {
-          for (j = 0; j < arr.length; j++) {
+        for (i = 0; i &lt; txt.length; i++) {
+          for (j = 0; j &lt; arr.length; j++) {
             c = txt.substr(i, arr[j].length);
             if (c == arr[j]) {
               if (
-                c == "-" &&
+                c == "-" &amp;&amp;
                 (txt.substr(i - 1, 1) == "e" || txt.substr(i - 1, 1) == "E")
               ) {
                 continue;
               }
               endpos = i;
-              if (startpos < endpos) {
+              if (startpos &lt; endpos) {
                 word = txt.substring(startpos, endpos);
                 if (!isNaN(word)) {
                   return [startpos, endpos, func];
@@ -1454,7 +1481,7 @@ let _temp = {
   composeFunction: (...functions) => (args) =>
     functions.reduceRight((arg, fn) => fn(arg), args),
   curryFunction: (fn, arity = fn.length, ...args) =>
-    arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args),
+    arity &lt;= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args),
   mobileOrDesktop: () => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -1465,7 +1492,7 @@ let _temp = {
       ? "mobile"
       : "desktop";
   },
-  removeTags: (html) => html.replace(/<[^>]*>/g, ""),
+  removeTags: (html) => html.replace(/&lt;[^>]*>/g, ""),
   camelCase: (str) => {
     return str
       .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
@@ -1529,28 +1556,28 @@ let _temp = {
     // decelerating to zero velocity
     easeOutQuad: (t) => t * (2 - t),
     // acceleration until halfway, then deceleration
-    easeInOutQuad: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
+    easeInOutQuad: (t) => (t &lt; 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
     // accelerating from zero velocity
     easeInCubic: (t) => t * t * t,
     // decelerating to zero velocity
     easeOutCubic: (t) => --t * t * t + 1,
     // acceleration until halfway, then deceleration
     easeInOutCubic: (t) =>
-      t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
+      t &lt; 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
     // accelerating from zero velocity
     easeInQuart: (t) => t * t * t * t,
     // decelerating to zero velocity
     easeOutQuart: (t) => 1 - --t * t * t * t,
     // acceleration until halfway, then deceleration
     easeInOutQuart: (t) =>
-      t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
+      t &lt; 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
     // accelerating from zero velocity
     easeInQuint: (t) => t * t * t * t * t,
     // decelerating to zero velocity
     easeOutQuint: (t) => 1 + --t * t * t * t * t,
     // acceleration until halfway, then deceleration
     easeInOutQuint: (t) =>
-      t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
+      t &lt; 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
   },
   getJSON: (url, callback) => {
     if (isNode) {
@@ -1572,7 +1599,7 @@ let _temp = {
   hashString: (str, seed = 0) => {
     let h1 = 0xdeadbeef ^ seed,
       h2 = 0x41c6ce57 ^ seed;
-    for (let i = 0, ch; i < str.length; i++) {
+    for (let i = 0, ch; i &lt; str.length; i++) {
       ch = str.charCodeAt(i);
       h1 = Math.imul(h1 ^ ch, 2654435761);
       h2 = Math.imul(h2 ^ ch, 1597334677);
@@ -1583,22 +1610,23 @@ let _temp = {
     h2 =
       Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
       Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-    return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+    return 4294967296 * (2097151 &amp; h2) + (h1 >>> 0);
   },
 
   blendColors: (color1, color2, percent = 50) => {
+
     const generateHex = (r, g, b) => {
       let R = r.toString(16);
       let G = g.toString(16);
       let B = b.toString(16);
 
-      while (R.length < 2) {
+      while (R.length &lt; 2) {
         R = `0${R}`;
       }
-      while (G.length < 2) {
+      while (G.length &lt; 2) {
         G = `0${G}`;
       }
-      while (B.length < 2) {
+      while (B.length &lt; 2) {
         B = `0${B}`;
       }
 
@@ -1607,6 +1635,7 @@ let _temp = {
 
     const mix = (start, end, percent) =>
       start + (percent / 100) * (end - start);
+
 
     const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
     const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
@@ -1621,7 +1650,7 @@ let _temp = {
     const blue = Math.round(mix(blue1, blue2, percent));
 
     return generateHex(red, green, blue);
-  },
+  }
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
@@ -1637,16 +1666,16 @@ let desc = {
   browser:
     "Returns the current browser without sniffing the user-agent string. e.g. 'Chrome'",
   compStyle:
-    "Returns an element of the computed style, e.g. \n\n\t_$.compStyle(document.querySelector('h1'), 'background-color'); //Returns the background-color of the first <h1>",
+    "Returns an element of the computed style, e.g. \n\n\t_$.compStyle(document.querySelector('h1'), 'background-color'); //Returns the background-color of the first &lt;h1>",
   copy:
     "Copies the text specified to the clipboard, e.g. \n\n\t_$.copy('Hello world');",
   createElement:
-    "Returns a DOM element who's outerHTML is the string provided: \n\n\t_$.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whose id is 'fun' and whose innerText is 'Hello'",
+    "Returns a DOM element who's outerHTML is the string provided: \n\n\t_$.createElement('&lt;div id=`fun`>Hello&lt;/div>);//Returns a DOM element whose id is 'fun' and whose innerText is 'Hello'",
   dayName: "Returns the day of the week from a Date object.",
   each:
     "Runs a function with each element of an array: \n\n\t_$.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array times 3",
   escapeHTML:
-    "Returns an escaped version of the HTML string provided: \n\n\t_$.escapeHTML('<script>');//'&lt;script&gt;'",
+    "Returns an escaped version of the HTML string provided: \n\n\t_$.escapeHTML('&lt;script>');//'&amp;lt;script&amp;gt;'",
   formToObject:
     "Converts a form to a javascript object using each element's 'name' attribute as the key and the 'value' attribute as the value.",
   formatMilliseconds:
@@ -1691,7 +1720,7 @@ let desc = {
   uuid:
     "Generates a unique id, like the uuid npm package. Also can take a seed as the argument, this can either be a string or a number between 0 and 1. \n\n\tFor example:\n8dfe52e3-7beb-48eb-8282-209ff1c5250f",
   widows:
-    "Replaces the last space character between words with '&nbsp;', preventing a single word on a newline.",
+    "Replaces the last space character between words with '&amp;nbsp;', preventing a single word on a newline.",
   flatten:
     "This takes a 2d array (an array of arrays) and flattens in into a 1d array (a list of items).",
   uniqueArray: "Removes duplicates from an array",
@@ -1703,7 +1732,7 @@ let desc = {
   parseHTML:
     "Parses HTML and returns a document object representing the parsed HTML.",
   syntaxHighlight:
-    "Highlight a string of code! \n\n\t_$.syntaxHighlight('alert(\"Hello\")', 'js');//Returns html of the syntax highlighted version. \n\nAlso supports CSS and HTML. Note: This needs <br> tags instead of normal line breaks.",
+    "Highlight a string of code! \n\n\t_$.syntaxHighlight('alert(\"Hello\")', 'js');//Returns html of the syntax highlighted version. \n\nAlso supports CSS and HTML. Note: This needs &lt;br> tags instead of normal line breaks.",
   composeFunction:
     "Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj",
   curryFunction:
@@ -1737,3 +1766,26 @@ const explosion = _temp;
 if (isNode) {
   module.exports = _temp;
 }
+</code></pre>
+        </article>
+      </section>
+    </div>
+
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+    </nav>
+
+    <br class="clear" />
+
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Jan 18
+      2021 15:18:15 GMT+0000 (Coordinated Universal Time)
+    </footer>
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
+</html>
