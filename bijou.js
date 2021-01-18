@@ -467,7 +467,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Object} obj The object to map.
-
+* 
 * @example
 * //
 * @returns {String} The day name from the date.
