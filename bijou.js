@@ -1909,7 +1909,7 @@ let _temp = {
     return a.join("");
   },
 /**
-* DESC
+* All
 * @function
 * @memberOf bijou
 * @param {String}
