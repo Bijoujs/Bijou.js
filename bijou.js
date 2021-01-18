@@ -401,7 +401,7 @@ let _temp = {
       weekday: "long",
     }),
 /**
- * Returns the name of the weekday from the Date object specified.
+ * Cn
  * @function
  * @memberOf bijou
  * @param {Array} arr
