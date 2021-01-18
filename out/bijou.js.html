@@ -97,14 +97,14 @@ if (isNode) {
 }
 
 let _temp = {
-/**
-* Gives an array of prime numbers up to a certain one.
-* @function
-* @param {number} num - The number to give primes to.
-* @example
-* _$.primesTo(100);//Returns an array of prime numbers up to 100.
-* @returns {Array} Returns an array of prime numbers up to the given number.
-*/
+  /**
+  * Gives an array of prime numbers up to a certain one.
+  * @function
+  * @param {Number} num - The number to give primes to.
+  * @example
+  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
+  * @returns {Array} Returns an array of prime numbers up to the given number.
+  */
   primesTo: (num) => {
     let arr = Array.from({
       length: num - 1,
@@ -118,14 +118,14 @@ let _temp = {
     );
     return arr;
   },
-/**
-* Runs a function asynchronously in a web worker.
-* @function
-* @param {function} fn The function to run
-* @example
-* _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
-* @returns {Promise} A promise that resolves into the return value of the function.
-*/
+  /**
+  * Runs a function asynchronously in a web worker.
+  * @function
+  * @param {Function} fn The function to run
+  * @example
+  * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
+  * @returns {Promise} A promise that resolves into the return value of the function.
+  */
   async: (fn) => {
     const worker = new Worker(
       URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
@@ -141,14 +141,14 @@ let _temp = {
       };
     });
   },
-/**
-* Formats a number of milliseconds
-* @function
-* @param {number} ms The number of milliseconds to format to a string.
-* @example
-* _$.formatMilliseconds(4000);//Returns "4 seconds"
-* @returns {Array}
-*/
+  /**
+  * Formats a number of milliseconds
+  * @function
+  * @param {Number} ms The number of milliseconds to format to a string.
+  * @example
+  * _$.formatMilliseconds(4000);//Returns "4 seconds"
+  * @returns {Array}
+  */
   formatMilliseconds: (ms) => {
     if (ms &lt; 0) ms = -ms;
     const time = {
@@ -163,29 +163,30 @@ let _temp = {
       .map(([key, val]) => `${val} ${key}${val !== 1 ? "s" : ""}`)
       .join(", ");
   },
-/**
-* Adds the specified styles to the element specified.
-* @function
-* @param {element} el The element to add the styles to.
-* @param {Object} styles An object that represents the styles to be added. (camelCased) 
-* @example
-* _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
-* @returns {Object} the assigned object.
-*/
+  /**
+  * Adds the specified styles to the element specified.
+  * @function
+  * @param {Element} el The element to add the styles to.
+  * @param {Object} styles An object that represents the styles to be added. (camelCased) 
+  * @example
+  * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
+  * @returns {Object} the assigned object.
+  */
   addStyles: (el, styles) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
     return Object.assign(el.style, styles);
   },
-/**
-* Returns the callback when a a click is registered outside the selected element
-* @function
-* @param {number} num - Params
-* @example
-* Example
-* @returns {Array}
-*/
+  /**
+  * Returns the callback when a a click is registered outside the selected element
+  * @function
+  * @param {Element} element The element to use as the outsideclick element.
+  * @param {Function} callback The function to run when a click is registered outside the specified element.
+  * @example
+  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
+  * @returns {Function} the function that was called. 
+  */
   onOutsideClick: (element, callback) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -193,7 +194,16 @@ let _temp = {
     document.addEventListener("click", (e) => {
       if (!element.contains(e.target)) callback();
     });
+    return callback;
   },
+  /**
+  * Returns the callback when the user stops scrolling.
+  * @function
+  * @param {Function} callback The callback to call when the user stops scrolling.
+  * @example
+  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
+  * @returns {undefined} Returns undefined.
+  */
   onScrollStop: (callback) => {
     let isScrolling;
     if (isNode) {
@@ -204,12 +214,20 @@ let _temp = {
       (e) => {
         clearTimeout(isScrolling);
         isScrolling = setTimeout(() => {
-          callback();
+          callback(e);
         }, 150);
       },
       false
     );
   },
+  /**
+  * Copies the string inputted the clipboard.
+  * @function
+  * @param {String} str The string to copy.
+  * @example
+  * _$.copy("Hello world")
+  * @returns {String} The string copied.
+  */
   copy: (str) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -231,7 +249,21 @@ let _temp = {
       document.getSelection().removeAllRanges();
       document.getSelection().addRange(selected);
     }
+    return str;
   },
+  /**
+  * Only runs the input function at MAX with the delay specified.
+  * @function
+  * @param {Function} fn The function to run.
+  * @param {Number} wait The number of milliseconds to wait.
+  * @example
+  * setInterval(() => {
+    _$.throttle(() => {
+      alert("Hello")
+    }, 500)
+  }, 1)
+  * @returns {Array}
+  */
   throttle: (fn, wait) => {
     let inThrottle, lastFn, lastTime;
     return function () {
@@ -1751,7 +1783,7 @@ if (isNode) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Jan 18 2021 15:04:20 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Jan 18 2021 15:18:15 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
