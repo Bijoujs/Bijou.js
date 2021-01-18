@@ -729,7 +729,7 @@ let _temp = {
  * @function
  * @memberOf bijou.js
  * @param {Function} fn The function to run and time.
- * @param {S}
+ * @param {String}
  * @example
  *
  * @returns
