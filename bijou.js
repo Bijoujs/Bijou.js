@@ -394,7 +394,7 @@ let _temp = {
  * @param {String} locale The locale to use.
  * @example
  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
- * @returns {String} The day
+ * @returns {String} The day name from the 
  */
   dayName: (date = 'en-US', locale) =>
     date.toLocaleDateString(locale, {
