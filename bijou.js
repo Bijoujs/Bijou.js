@@ -514,7 +514,7 @@ let _temp = {
 * @example
 * //Averages the array 1,2,3,4 after squaring each number.
 * _$.averageBy([1,2,3,4], (v) => v ** 2);
-* @returns {Number} The day name from the date.
+* @returns {Number} s
 */
   averageBy: (arr, fn) =>
     arr
