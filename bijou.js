@@ -294,7 +294,7 @@ let _temp = {
  * @function
  * @memberOf bijou
  * @example
- * _$.browser();//For me this (correctly) return s
+ * _$.browser();//For me this (correctly) returns "Chr"
  * @returns
  */
   browser: () => {
