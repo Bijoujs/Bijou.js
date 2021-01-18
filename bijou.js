@@ -469,7 +469,7 @@ let _temp = {
 * @param {Object} obj The object to map.
 * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
 * @example
-* _$.mapObjectKeys({something: "A value", anotherThing: "Another "})
+* _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"})
 * @returns {String} The day name from the date.
 */
   mapObjectKeys: (obj, fn) =>
