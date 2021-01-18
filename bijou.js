@@ -701,7 +701,7 @@ let _temp = {
 * @param {Function} callback The callback to run (Gets passed the element's text).
 * @example
 * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
-* //Converts the text of the first <div> element to 
+* //Converts the text of the first <div> element to upperCase
 * @returns
 */
   replaceText: (el, callback) => {
