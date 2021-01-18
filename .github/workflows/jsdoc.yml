@@ -1,6 +1,7 @@
 name: GitHub pages
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - JSDoc
