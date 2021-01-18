@@ -599,6 +599,15 @@ let _temp = {
       field.map(encodeURIComponent).join("=")
     ).join("&");
   },
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param
+* @example
+* //
+* @returns {String} The day name from the date.
+*/
   formToObject: (form) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
