@@ -151,7 +151,7 @@ let _temp = {
     return Object.assign(el.style, styles);
   },
 /**
-* Returns the callback when a a click is registered 
+* Returns the callback when a a click is registered outside the sel
 * @function
 * @param {number} num - Params
 * @example
