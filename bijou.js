@@ -766,7 +766,7 @@ let _temp = {
 * @example
 * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
 * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
-* @returns {String} the s
+* @returns {String} The replaced string.
 */
   widows: (text) => {
     var wordArray = text.split(" ");
