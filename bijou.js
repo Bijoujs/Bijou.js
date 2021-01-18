@@ -428,7 +428,7 @@ let _temp = {
       ),
     ].join("\n"),
 /**
- * Returns the name of the weekday from the Date object specified.
+ * DE
  * @function
  * @memberOf bijou
  * @param
