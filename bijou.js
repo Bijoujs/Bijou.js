@@ -401,7 +401,7 @@ let _temp = {
       weekday: "long",
     }),
 /**
- * Converts JSON to a CSV
+ * Converts JSON to a CSV string
  * @function
  * @memberOf bijou
  * @param {Array} arr
