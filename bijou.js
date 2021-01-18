@@ -694,7 +694,7 @@ let _temp = {
     return document.referrer || window.location.href;
   },
 /**
-* Replaces the text in an element 
+* Replaces the text in an element by 
 * @function
 * @memberOf bijou.js
 * @param
