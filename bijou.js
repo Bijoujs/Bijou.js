@@ -617,6 +617,15 @@ let _temp = {
       [key]: value,
     }));
   },
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param
+* @example
+* //
+* @returns {String} The day name from the date.
+*/
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
       // Convert string to a number between 0 and 1
