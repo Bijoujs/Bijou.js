@@ -487,7 +487,15 @@ let _temp = {
           return acc;
         }, {})
         : obj,
-        
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param
+* @example
+* //
+* @returns {String} The day name from the date.
+*/
   arrayToCSV: (arr, delimiter = ",") =>
     arr
       .map((v) =>
