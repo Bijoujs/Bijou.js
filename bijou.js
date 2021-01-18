@@ -1888,7 +1888,7 @@ let _temp = {
       .replace(/\s+/g, "");
   },
 /**
-* Scrambles the order of characters in a
+* Scrambles the order of characters in a string.
 * @function
 * @memberOf bijou
 * @param {String}
