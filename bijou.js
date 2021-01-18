@@ -488,7 +488,7 @@ let _temp = {
         }, {})
         : obj,
 /**
-* Converts an array to CSV (Comma)
+* Converts an array to CSV (Comma seperate)
 * @function
 * @memberOf bijou
 * @param
