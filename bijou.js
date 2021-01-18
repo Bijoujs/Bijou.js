@@ -409,7 +409,7 @@ let _temp = {
  * @param {String} [delimiter=","]
  * @example
  * //
- * @returns {String} The string of comma seperated 
+ * @returns {String} The string of comma seperated values (CS)
  */
   jsonToCsv: (arr, columns, delimiter = ",") =>
     [
