@@ -1871,15 +1871,15 @@ let _temp = {
    * @returns {String} THe string of HTML without the tags.
    */
   removeTags: (html) => html.replace(/<[^>]*>/g, ""),
-   /**
-   * DESC
-   * @function
-   * @memberOf bijou
-   * @param {Element} element The element to use as the outsideclick element.
-   * @example
-   * //
-   * @returns {String}
-   */
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param {Element} element The element to use as the outsideclick element.
+* @example
+* //
+* @returns {String}
+*/
   camelCase: (str) => {
     return str
       .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
