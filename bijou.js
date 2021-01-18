@@ -448,7 +448,7 @@ let _temp = {
     return res;
   },
 /**
-* For each item in an array, run a callback t
+* For each item in an array, run a callback with it.
 * @function
 * @memberOf bijou
 * @param
