@@ -858,9 +858,9 @@ let _temp = {
 
     hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
     if (hsp > 127.5) {
-      return { lightordark: "light", hsp: hsp };
+      return { lightordar: "light", hsp: hsp };
     } else {
-      return { lightordark: "dark", hsp: hsp };
+      return { lightordar: "dark", hsp: hsp };
     }
   },
   compStyle: (el, prop) => {
