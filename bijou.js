@@ -930,7 +930,7 @@ let _temp = {
 * @memberOf bijou.js
 * @param {Element} elem The element to generate the querySelector for.
 * @example
-
+* const textarea = document.
 * console.log(_$.querySelector(textarea))
 * @returns
 */
