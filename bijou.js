@@ -354,7 +354,7 @@ let _temp = {
  * @param {String} icon The url to the image for the icon of the notification.
  * @example
  * _$.notify("Hello", "Hi there! This is a notification!");//Returns an array of prime numbers up to 100.
- * @returns undefined.
+ * @returns undefined
  */
   notify: (text, body, icon) => {
     if (isNode) {
