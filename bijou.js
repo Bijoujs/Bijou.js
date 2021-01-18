@@ -1952,6 +1952,7 @@ let _temp = {
       this.style.left = initX + event.clientX - mousePressX + "px";
       this.style.top = initY + event.clientY - mousePressY + "px";
     }
+    retur
   },
   ease: {
     // no easing, no acceleration
