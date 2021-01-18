@@ -346,7 +346,7 @@ let _temp = {
     }
   },
 /**
- * [Desc]
+ * [
  * @function
  * @memberOf bijou
  * @param
