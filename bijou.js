@@ -93,7 +93,7 @@ let _temp = {
 /**
 * Runs a function asynchronously in a web worker.
 * @function
-* @param {function} fn The function to run
+* @param {Function} fn The function to run
 * @example
 * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
 * @returns {Promise} A promise that resolves into the return value of the function.
