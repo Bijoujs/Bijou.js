@@ -387,7 +387,7 @@ let _temp = {
     }
   },
 /**
- * [De
+ * 
  * @function
  * @memberOf bijou
  * @param
