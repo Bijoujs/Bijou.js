@@ -272,7 +272,7 @@ let _temp = {
     };
   },
 /**
- * creates a
+ * creates an HTML element from the ps
  * @function
  * @memberOf bijou
  * @param
