@@ -387,7 +387,7 @@ let _temp = {
     }
   },
 /**
- * Returns the name 
+ * Returns the name of the week
  * @function
  * @memberOf bijou
  * @param
