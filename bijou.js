@@ -400,6 +400,15 @@ let _temp = {
     date.toLocaleDateString(locale, {
       weekday: "long",
     }),
+/**
+ * Returns the name of the weekday from the Date object specified.
+ * @function
+ * @memberOf bijou
+ * @param
+ * @example
+ * //
+ * @returns {String} The day name from the date.
+ */
   jsonToCsv: (arr, columns, delimiter = ",") =>
     [
       columns.join(delimiter),
