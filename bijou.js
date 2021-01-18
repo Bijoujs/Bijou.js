@@ -467,7 +467,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Object} obj The object to map.
-* @param {Function} fn The function to run (This is passed the )
+* @param {Function} fn The function to run ()
 * @example
 * //
 * @returns {String} The day name from the date.
