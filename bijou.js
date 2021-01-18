@@ -223,7 +223,14 @@ let _temp = {
     }
     return str;
   },
-  
+/**
+* [Desc]
+* @function
+* @param {number} num - Params
+* @example
+* Example
+* @returns {Array}
+*/
   throttle: (fn, wait) => {
     let inThrottle, lastFn, lastTime;
     return function () {
