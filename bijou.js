@@ -588,7 +588,7 @@ let _temp = {
 * Converts a form to URL queries.
 * @function
 * @memberOf bijou
-* @param
+* @param {Element }
 * @example
 * //
 * @returns {String} The day name from the date.
