@@ -463,7 +463,7 @@ let _temp = {
     }
   },
 /**
-* Maps the keys of an objecty.
+* Maps the keys of an object.
 * @function
 * @memberOf bijou
 * @param
