@@ -510,7 +510,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Array} arr The array to average
-* @param {Function} fn
+* @param {Function} fn 
 * @example
 * //
 * @returns {Number} The day name from the date.
