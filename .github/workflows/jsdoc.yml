@@ -1,23 +1,25 @@
+
 name: GitHub pages
 
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - main
 
 jobs:
-  jsdoc:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.1.4
-      - run: pwd
-      - run: sudo npm i -g jsdoc
-      - run: rm -r ./docs
-      - run: jsdoc -c ./jsdoc.json
-      - uses: stefanzweifel/git-auto-commit-action@v4
+
+      - name: Build
+        uses: andstor/jsdoc-action@v1
         with:
-         commit_message: JS docs
+          source_dir: ./
+          output_dir: ./docs
+          template: docdash
+          front_page: README.md
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
