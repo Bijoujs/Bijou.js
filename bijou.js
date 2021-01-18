@@ -495,7 +495,7 @@ let _temp = {
 * @param {String} [delimeter=,] The seperator (By default this is a comma.)
 * @example
 * _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
-* @returns {String} The day name from the date.
+* @returns {String} The day name from the date
 */
   arrayToCSV: (arr, delimiter = ",") =>
     arr
