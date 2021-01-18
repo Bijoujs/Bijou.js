@@ -406,7 +406,7 @@ let _temp = {
    * @memberOf bijou
    * @param {Array} arr The array of objects to convert to CSV.
    * @param {String} columns The number of columns to use.
-   * @param {String} [delimiter=","] The delimeter between cells, by default this is a comma.
+   * @param {String} [delimiter=","] The delimiter between cells, by default this is a comma.
    * @example
    * _$.jsonToCsv(
     [{ a: 1, b: 2 }, { a: 3, b: 4, c: 5 }, { a: 6 }, { b: 7 }],
