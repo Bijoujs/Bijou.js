@@ -75,7 +75,7 @@ if (isNode) {
  * @namespace bijou
  */
 /**
-   * Gives an array of prime numbers up to a certain one.
+   * [De]
    * @function
    * @memberOf bijou
    * @param {Number} num - The number to give primes to.
