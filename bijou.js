@@ -224,7 +224,7 @@ let _temp = {
     return str;
   },
 /**
-* Only runs the input function at MA
+* Only runs the input function at MAX the amount of 
 * @function
 * @param {number} num - Params
 * @example
