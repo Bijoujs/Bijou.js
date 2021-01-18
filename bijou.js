@@ -791,7 +791,7 @@ let _temp = {
 */
   randomColor: () => "#" + Math.floor(Math.random() * 16777215).toString(16),
 /**
-* Lighten a color by a certain am
+* Lighten a color by a certain amoutn
 * @function
 * @memberOf bijou.js
 * @param
