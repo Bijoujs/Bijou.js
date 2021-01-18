@@ -874,7 +874,7 @@ let _temp = {
 * @param {Element} el The element whose styles to get.
 * @param {String} prop The css-property value to get of the styles.
 * @example
-*
+* console.log(_$.)
 * @returns
 */
   compStyle: (el, prop) => {
