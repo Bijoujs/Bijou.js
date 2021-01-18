@@ -734,7 +734,7 @@ let _temp = {
  *
  * @returns
  */
-  timeFunction: (fn, name = "_ function timer") => {
+  timeFunction: (fn, name = "_$ function timer") => {
     console.time(name);
     fn();
     console.timeEnd(name);
