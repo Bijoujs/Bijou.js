@@ -835,6 +835,8 @@ let _temp = {
 * @example
 * if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
   document.querySelector("DIV").style.color = "white";
+} else {
+  
 }
 * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
 */
