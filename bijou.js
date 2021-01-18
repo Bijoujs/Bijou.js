@@ -746,7 +746,7 @@ let _temp = {
 * @memberOf bijou.js
 * @param {Object} obj The object to sort.
 * @example
-* _$.sortObj({testing: "A value", anotherThing: "Another value!"})
+* _$.sortObj({testing: "A value", anotherThing: "Another value!"});
 * @returns
 */
   sortObj: (obj) => {
