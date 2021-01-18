@@ -764,7 +764,7 @@ let _temp = {
 * @memberOf bijou.js
 * @param {String} text The string to replace
 * @example
-* document.querySelector("h1").innerHTML = _$.widows(do)
+* document.querySelector("h1").innerHTML = _$.widows(docum)
 * @returns
 */
   widows: (text) => {
