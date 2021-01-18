@@ -451,7 +451,7 @@ let _temp = {
 * For each item in an array, run a callback with it.
 * @function
 * @memberOf bijou
-* @param 
+* @param {A}
 * @example
 * //
 * @returns {String} The day name from the date.
