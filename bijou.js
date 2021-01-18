@@ -454,7 +454,7 @@ let _temp = {
 * @param {Array} array The array of items to run the callback with.
 * @param {Function} callback The callback function to run on the array items.
 * @example
-* _$.each(new Array(40), (i) => {console.log(i)})
+* _$.each(new Array(40), (i) => {console.log(i))
 * @returns {String} The day name from the date.
 */
   each: (array, callback) => {
