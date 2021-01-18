@@ -1994,6 +1994,15 @@ let _temp = {
     easeInOutQuint: (t) =>
       t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
   },
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param {String}
+* @example
+* //
+* @returns {String}
+*/
   getJSON: (url, callback) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
