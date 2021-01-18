@@ -1888,7 +1888,7 @@ let _temp = {
       .replace(/\s+/g, "");
   },
 /**
-* Scrambles the order of characters in a string. Thanks to @\Touchcreator for the suggestion for this.
+* Scrambles the order of characters in a string. Thanks to \@Touchcreator for the suggestion for this.
 * @function
 * @memberOf bijou
 * @param {String} str The string to be scrambled
