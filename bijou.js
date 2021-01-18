@@ -151,7 +151,7 @@ let _temp = {
     return Object.assign(el.style, styles);
   },
 /**
-* Returns the callback when an element is clicked 
+* Returns the callback when an element 
 * @function
 * @param {number} num - Params
 * @example
