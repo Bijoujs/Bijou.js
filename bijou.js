@@ -606,7 +606,7 @@ let _temp = {
 * @param
 * @example
 * //
-* @returns {Object} The day name from the date.
+* @returns {Object} The 
 */
   formToObject: (form) => {
     if (isNode) {
