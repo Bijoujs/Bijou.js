@@ -138,7 +138,7 @@ let _temp = {
 /**
 * Adds the specified styles to the element specified.
 * @function
-* @param {} num - Params
+* @param {element} num - Params
 * @example
 * Example
 * @returns {Array}
