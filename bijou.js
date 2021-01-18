@@ -624,7 +624,7 @@ let _temp = {
 * @param {Number|String} [seed=Math.random()] The seed to use.
 * @example
 * _$.uuid();//Returns a uuid!
-* @returns {String} The day name from the date.
+* @returns {String} The UUID
 */
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
