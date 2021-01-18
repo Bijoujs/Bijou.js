@@ -782,7 +782,7 @@ let _temp = {
     return finalTitle;
   },
 /**
-* G
+* Generates a random H
 * @function
 * @memberOf bijou.js
 * @param
