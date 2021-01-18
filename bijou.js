@@ -685,7 +685,7 @@ let _temp = {
 * @memberOf bijou
 * @example
 * _$.previousPage()
-* @returns {String} The day name from the date.
+* @returns {String} The url of the pre
 */
   previousPage: () => {
     if (isNode) {
