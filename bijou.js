@@ -406,7 +406,7 @@ let _temp = {
  * @memberOf bijou
  * @param {Array} arr
  * @param {String} columns 
- * @param {String} [delimiter=
+ * @param {String} [delimiter=","
  * @example
  * //
  * @returns {String} The day name from the date.
