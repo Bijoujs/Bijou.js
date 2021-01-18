@@ -680,7 +680,7 @@ let _temp = {
         }[tag] || tag)
     ),
 /**
-* DESC
+* Returns the previous page that the user visited.
 * @function
 * @memberOf bijou
 * @param
