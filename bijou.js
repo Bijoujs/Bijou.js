@@ -68,7 +68,7 @@ if (isNode) {
   );
 }
 /**
-* Gives an array of prime numbers up to a certain one.
+* Bi
 * @function
 * @param {Number} num - The number to give primes to.
 * @example
