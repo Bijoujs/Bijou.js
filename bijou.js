@@ -932,7 +932,7 @@ let _temp = {
 * @example
 * const textarea = document.getElementById('textarea');
 * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
-* @returns 
+* @returns {String} The generated querySelector.
 */
   querySelector: (elem) => {
     if (isNode) {
