@@ -427,15 +427,7 @@ let _temp = {
         )
       ),
     ].join("\n"),
-/**
- * DESC
- * @function
- * @memberOf bijou
- * @param
- * @example
- * //
- * @returns {String} The day name from the date.
- */
+
   unionArrays: (x, y) => {
     var obj = {};
     for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
