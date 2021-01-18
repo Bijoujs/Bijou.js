@@ -1908,15 +1908,15 @@ let _temp = {
     }
     return a.join("");
   },
-   /**
-   * DESC
-   * @function
-   * @memberOf bijou
-   * @param {String} 
-   * @example
-   * //
-   * @returns {String}
-   */
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param {String}
+* @example
+* //
+* @returns {String}
+*/
   drag: (el) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
