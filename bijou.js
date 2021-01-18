@@ -135,6 +135,7 @@ let _temp = {
       .map(([key, val]) => `${val} ${key}${val !== 1 ? "s" : ""}`)
       .join(", ");
   },
+  
   addStyles: (el, styles) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
