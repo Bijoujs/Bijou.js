@@ -641,9 +641,9 @@ let _temp = {
 * Escapes a string of HTML
 * @function
 * @memberOf bijou
-* @param {String} str 
+* @param {String} str The string of HTML to escape.
 * @example
-* //
+* 
 * @returns {String} The day name from the date.
 */
   escapeHTML: (str) =>
