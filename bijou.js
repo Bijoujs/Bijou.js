@@ -1512,7 +1512,7 @@ let _temp = {
       Math.imul(h1 ^ (h1 >>> 13), 3266489909);
     return 4294967296 * (2097151 & h2) + (h1 >>> 0);
   },
-  blendColors: (color1, color2, percent -50) => {
+  blendColors: (color1, color2, percent ) => {
 
     const generateHex = (r, g, b) => {
       let R = r.toString(16);
