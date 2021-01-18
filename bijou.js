@@ -662,7 +662,7 @@ let _temp = {
 * Unescapes a string of HTML
 * @function
 * @memberOf bijou
-* @param
+* @param {String}
 * @example
 * //
 * @returns {String} The day name from the date.
