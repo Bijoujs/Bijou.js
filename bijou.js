@@ -229,7 +229,7 @@ let _temp = {
 * @param {Function} fn The function to run.
 * @param {Number} wait The number of milliseconds to wait.
 * @example
-* setINter
+* setInter
 * @returns {Array}
 */
   throttle: (fn, wait) => {
