@@ -658,7 +658,15 @@ let _temp = {
           '"': "&quot;",
         }[tag] || tag)
     ),
-  
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param
+* @example
+* //
+* @returns {String} The day name from the date.
+*/
   unescapeHTML: (str) =>
     str.replace(
       /&amp;|&lt;|&gt;|&#39;|&quot;/g,
