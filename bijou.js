@@ -740,6 +740,15 @@ let _temp = {
     fn();
     console.timeEnd(name);
   },
+    /**
+   * DESC
+   * @function
+   * @memberOf bijou.js
+   * @param
+   * @example
+   * 
+   * @returns 
+   */
   sortObj: (obj) => {
     return Object.keys(obj)
       .sort()
