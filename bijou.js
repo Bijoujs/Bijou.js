@@ -118,7 +118,7 @@ let _temp = {
 * @function
 * @param {number} ms The number of milliseconds to format to a string.
 * @example
-* _$.formatMilliseconds(4000);
+* _$.formatMilliseconds(4000);//Returns 
 * @returns {Array}
 */
   formatMilliseconds: (ms) => {
