@@ -796,7 +796,7 @@ let _temp = {
 * @memberOf bijou.js
 * @param {String} color The color to lighten/darken
 * @param {Number}
- * @example
+* @example
 *
 * @returns
 */
