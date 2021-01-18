@@ -733,7 +733,7 @@ let _temp = {
  * @example
  * //Times how long it took the user to enter their name.
  * _$.timeFunction(() => prompt("What's your name?"));
- * @returns undefine
+ * @returns undefined
  */
   timeFunction: (fn, name = "_$ function timer") => {
     console.time(name);
