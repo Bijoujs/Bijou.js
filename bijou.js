@@ -70,7 +70,7 @@ if (isNode) {
   );
 }
 /**
-* Bijou.js source object. It 
+* Bijou.js source object. It contains all the functions of 
 * @type {Object}
 */
 let _temp = {
