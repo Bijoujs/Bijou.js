@@ -725,7 +725,7 @@ let _temp = {
     return el
   },
 /**
- * Time
+ * Times the 
  * @function
  * @memberOf bijou.js
  * @param
