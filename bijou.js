@@ -470,7 +470,7 @@ let _temp = {
 * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
 * @example
 * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
-* //Returns {SOMETHING: "A value", ANOTHERTHINGS: "Another value!"}
+* //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
 * @returns {String} The day name from the date.
 */
   mapObjectKeys: (obj, fn) =>
