@@ -387,7 +387,7 @@ let _temp = {
     }
   },
 /**
- * Returns the name of the week
+ * Returns the name of the weekday from teh D
  * @function
  * @memberOf bijou
  * @param
