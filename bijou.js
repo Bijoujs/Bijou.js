@@ -797,7 +797,7 @@ let _temp = {
 * @param {String} color The color to lighten/darken
 * @param {Number} amt The amount to lighten the color.
 * @example
-* _$.lighten
+* _$.lightenColor
 * @returns
 */
   lightenColor: (col, amt) => {
