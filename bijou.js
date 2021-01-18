@@ -70,7 +70,7 @@ if (isNode) {
 
 let _temp = {
 /**
-* Represents a book.
+* Generate
 * @param {num} title - The title of the book.
 */
   primesTo: (num) => {
