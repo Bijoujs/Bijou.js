@@ -452,7 +452,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Array} array The array of items to run the callback with.
-* @param {Function} callback The callback function to run on the
+* @param {Function} callback The callback function to run on thea
 * @example
 * //
 * @returns {String} The day name from the date.
