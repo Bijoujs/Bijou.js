@@ -759,7 +759,7 @@ let _temp = {
       }, {});
   },
 /**
-* Returns the last space in teh te
+* Returns the last space in the
 * @function
 * @memberOf bijou.js
 * @param
