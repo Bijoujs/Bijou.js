@@ -231,7 +231,7 @@ let _temp = {
 * @example
 * setInterval(() => {
   _$.throttle(() => {
-    alert("Hello"), 500)
+    alert("Hello"){}, 500)
 })
 * @returns {Array}
 */
