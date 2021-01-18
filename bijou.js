@@ -1959,7 +1959,7 @@ let _temp = {
 * @Object
 * @memberOf bijou
 * @example
-* _$.ease.easeInOutQuad
+* _$.ease.easeInOutQuad()
 * @returns {String}
 */
   ease: {
