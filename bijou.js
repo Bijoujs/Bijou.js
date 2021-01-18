@@ -78,6 +78,7 @@ let _temp = {
   /**
   * Gives an array of prime numbers up to a certain one.
   * @function
+* @memberOf bijou
   * @param {Number} num - The number to give primes to.
   * @example
   * _$.primesTo(100);//Returns an array of prime numbers up to 100.
@@ -99,6 +100,7 @@ let _temp = {
   /**
   * Runs a function asynchronously in a web worker.
   * @function
+* @memberOf bijou
   * @param {Function} fn The function to run
   * @example
   * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
@@ -122,6 +124,7 @@ let _temp = {
   /**
   * Formats a number of milliseconds
   * @function
+* @memberOf bijou
   * @param {Number} ms The number of milliseconds to format to a string.
   * @example
   * _$.formatMilliseconds(4000);//Returns "4 seconds"
@@ -144,6 +147,7 @@ let _temp = {
   /**
   * Adds the specified styles to the element specified.
   * @function
+* @memberOf bijou
   * @param {Element} el The element to add the styles to.
   * @param {Object} styles An object that represents the styles to be added. (camelCased) 
   * @example
@@ -159,6 +163,7 @@ let _temp = {
   /**
   * Returns the callback when a a click is registered outside the selected element
   * @function
+* @memberOf bijou
   * @param {Element} element The element to use as the outsideclick element.
   * @param {Function} callback The function to run when a click is registered outside the specified element.
   * @example
@@ -177,6 +182,7 @@ let _temp = {
   /**
   * Returns the callback when the user stops scrolling.
   * @function
+* @memberOf bijou
   * @param {Function} callback The callback to call when the user stops scrolling.
   * @example
   * _$.onScrollStop(() => {alert("You stopped scrolling!")})
@@ -201,6 +207,7 @@ let _temp = {
   /**
   * Copies the string inputted the clipboard.
   * @function
+* @memberOf bijou
   * @param {String} str The string to copy.
   * @example
   * _$.copy("Hello world")
@@ -232,6 +239,7 @@ let _temp = {
   /**
   * Only runs the input function at MAX with the delay specified.
   * @function
+* @memberOf bijou
   * @param {Function} fn The function to run.
   * @param {Number} wait The number of milliseconds to wait.
   * @example
