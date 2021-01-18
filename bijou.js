@@ -638,10 +638,10 @@ let _temp = {
     return _p8() + _p8(true) + _p8(true) + _p8();
   },
 /**
-* E
+* Escapes a string of HTML
 * @function
 * @memberOf bijou
-* @param
+* @param {String}
 * @example
 * //
 * @returns {String} The day name from the date.
