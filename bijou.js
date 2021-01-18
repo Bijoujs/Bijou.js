@@ -290,7 +290,7 @@ let _temp = {
     return el.firstElementChild;
   },
 /**
- * Returns the brows
+ * Returns the browser that the ue
  * @function
  * @memberOf bijou
  * @param
