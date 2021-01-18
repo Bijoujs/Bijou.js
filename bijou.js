@@ -552,6 +552,15 @@ let _temp = {
       left + width <= window.pageXOffset + window.innerWidth
     );
   },
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param
+* @example
+* //
+* @returns {String} The day name from the date.
+*/
   inPartialView: (el) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
