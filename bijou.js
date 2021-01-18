@@ -71,8 +71,8 @@ if (isNode) {
 let _temp = {
   primesTo: (num) => {
     let arr = Array.from({
-      length: num - 1,
-    }).map((x, i) => i + 2),
+        length: num - 1,
+      }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -206,7 +206,7 @@ let _temp = {
         return p.toString() === "[object SafariRemoteNotification]";
       })(
         !window["safari"] ||
-        (typeof safari !== "undefined" && window["safari"].pushNotification)
+          (typeof safari !== "undefined" && window["safari"].pushNotification)
       );
     var isIE = /*@cc_on!@*/ false || !!document.documentMode;
     var isEdge = !isIE && !!window.StyleMedia;
@@ -280,7 +280,7 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-            !obj[key] ? "" : obj[key]
+              !obj[key] ? "" : obj[key]
             }"`,
           ""
         )
@@ -305,7 +305,7 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-        ? Object.keys(obj).reduce((acc, current) => {
+      ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current);
           const val = obj[current];
           acc[key] =
@@ -314,7 +314,7 @@ let _temp = {
               : val;
           return acc;
         }, {})
-        : obj,
+      : obj,
   arrayToCSV: (arr, delimiter = ",") =>
     arr
       .map((v) =>
@@ -377,18 +377,16 @@ let _temp = {
     }
     return Array.from(new FormData(form), (field) =>
       field.map(encodeURIComponent).join("=")
-    ).join("&")
+    ).join("&");
   },
   formToObject: (form) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
     }
-    return Array.from(new FormData(form)).reduce(
-      (acc, [key, value]) => ({
-        ...acc,
-        [key]: value,
-      }),
-    )
+    return Array.from(new FormData(form)).reduce((acc, [key, value]) => ({
+      ...acc,
+      [key]: value,
+    }));
   },
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
@@ -437,14 +435,14 @@ let _temp = {
     }
     for (
       var e,
-      t = (function () {
-        for (var e, t = el, o = [], a = 0; a < t.length; a++)
-          (e = t[a].childNodes[0]),
-            t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-        return o;
-      })(),
-      o = 0,
-      a = t.length;
+        t = (function () {
+          for (var e, t = el, o = [], a = 0; a < t.length; a++)
+            (e = t[a].childNodes[0]),
+              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
+          return o;
+        })(),
+        o = 0,
+        a = t.length;
       o < a;
       o++
     )
@@ -671,9 +669,11 @@ let _temp = {
     return str;
   },
   removeComments: (el) => {
-    if (typeof el === 'element') {
+    if (typeof el === "element") {
       if (isNode) {
-        throw new Error("No document element! (You are probably using Node.js)");
+        throw new Error(
+          "No document element! (You are probably using Node.js)"
+        );
       }
       el.innerHTML = el.innerHTML.replace(
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
@@ -1322,26 +1322,26 @@ let _temp = {
       }
       function getNumPos(txt, func) {
         var arr = [
-          "<br>",
-          " ",
-          ";",
-          "(",
-          "+",
-          ")",
-          "[",
-          "]",
-          ",",
-          "&",
-          ":",
-          "{",
-          "}",
-          "/",
-          "-",
-          "*",
-          "|",
-          "%",
-          "=",
-        ],
+            "<br>",
+            " ",
+            ";",
+            "(",
+            "+",
+            ")",
+            "[",
+            "]",
+            ",",
+            "&",
+            ":",
+            "{",
+            "}",
+            "/",
+            "-",
+            "*",
+            "|",
+            "%",
+            "=",
+          ],
           i,
           j,
           c,
@@ -1390,7 +1390,7 @@ let _temp = {
       navigator.userAgent
     )
       ? "mobile"
-      : "desktop"
+      : "desktop";
   },
   removeTags: (html) => html.replace(/<[^>]*>/g, ""),
   camelCase: (str) => {
@@ -1497,16 +1497,21 @@ let _temp = {
   },
   shuffleArray: (array) => array.sort(() => Math.random() - 0.5),
   hashString: (str, seed = 0) => {
-    let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+    let h1 = 0xdeadbeef ^ seed,
+      h2 = 0x41c6ce57 ^ seed;
     for (let i = 0, ch; i < str.length; i++) {
       ch = str.charCodeAt(i);
       h1 = Math.imul(h1 ^ ch, 2654435761);
       h2 = Math.imul(h2 ^ ch, 1597334677);
     }
-    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    h1 =
+      Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
+      Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 =
+      Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
+      Math.imul(h1 ^ (h1 >>> 13), 3266489909);
     return 4294967296 * (2097151 & h2) + (h1 >>> 0);
-  }
+  },
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
@@ -1607,7 +1612,8 @@ let desc = {
   getHTML:
     "Runs the callback with the HTML (as a parsed html object) from the url specified in the first argument.",
   shuffleArray: "Returns the input array shuffled",
-  hashString: "Returns the hashed version of a string. This is a very fast method! (So says stackoverflow :P)",
+  hashString:
+    "Returns the hashed version of a string. This is a very fast method! (So says stackoverflow :P)",
 };
 desc = _temp.sortObj(desc);
 _temp.info = (prop) => {
