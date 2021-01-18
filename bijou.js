@@ -1034,10 +1034,10 @@ let _temp = {
     return str;
   },
 /**
-* R
+* Removes comments from the element specified.
 * @function
 * @memberOf bijou.js
-* @param
+* @param 
 * @example
 *
 * @returns
