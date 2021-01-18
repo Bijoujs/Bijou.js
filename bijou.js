@@ -868,7 +868,7 @@ let _temp = {
 * @function
 * @memberOf bijou.js
 * @param {Element} el The element whose styles to get.
-* @param {String}
+* @param {String} 
 * @example
 *
 * @returns
