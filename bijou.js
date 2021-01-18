@@ -702,7 +702,7 @@ let _temp = {
 * @example
 * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
 * //Converts the text of the first <div> element to upperCase.
-* @returns {String} The 
+* @returns {String} The element'
 */
   replaceText: (el, callback) => {
     if (isNode) {
