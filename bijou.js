@@ -694,7 +694,7 @@ let _temp = {
     return document.referrer || window.location.href;
   },
 /**
-* Returns the name of the weekday from the Date object specified.
+* E
 * @function
 * @memberOf bijou.js
 * @param
