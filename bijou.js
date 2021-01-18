@@ -723,7 +723,7 @@ let _temp = {
     const domparser = new DOMParser();
     return domparser.parseFromString(string, mimeType);
   },
-/** Syntax highlight a string  */
+/** Syntax highlight a string of HTML */
   syntaxHighlight: (string, mode = "html", colors = {}) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
