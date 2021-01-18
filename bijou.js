@@ -349,7 +349,7 @@ let _temp = {
  * Displays a desktop notification with the specified text.
  * @function
  * @memberOf bijou
- * @param {String}
+ * @param {String} text
  * @example
  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
  * @returns
