@@ -834,7 +834,7 @@ let _temp = {
 * @param
 * @example
 *
-* @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") 
+* @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dartk
 */
   lightOrDark: (color) => {
     var r, g, b, hsp;
