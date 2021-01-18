@@ -560,7 +560,7 @@ let _temp = {
 * @example
 * //Alerts "In view!" if the first <div> in the document is partially or fully view.
 * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
-* @returns {Boolean} Whether te
+* @returns {Boolean} Whether the object 
 */
   inPartialView: (el) => {
     if (isNode) {
