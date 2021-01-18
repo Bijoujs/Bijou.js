@@ -3,7 +3,7 @@ name: GitHub pages
 on:
   push:
     branches:
-      - JSDoc
+      - main
 
 jobs:
   deploy:
@@ -17,7 +17,7 @@ jobs:
         with:
           source_dir: ./
           output_dir: ./docs
-          template: minami
+          template: docdash
           front_page: README.md
 
       - name: Deploy
