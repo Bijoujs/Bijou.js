@@ -139,7 +139,7 @@ let _temp = {
 * Adds the specified styles to the element specified.
 * @function
 * @param {element} el The element to add the styles to.
-* @param {Object} styles An object that rep 
+* @param {Object} styles An object that represents the styles  
 * @example
 * Example
 * @returns {Array}
