@@ -71,7 +71,7 @@ if (isNode) {
 let _temp = {
 /**
 * Represents a book.
-* @param {string} title - The title of the book.
+* @param {num} title - The title of the book.
 */
   primesTo: (num) => {
     let arr = Array.from({
