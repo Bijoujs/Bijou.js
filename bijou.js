@@ -828,7 +828,7 @@ let _temp = {
     return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
   },
 /**
-* DESC
+* Lighto
 * @function
 * @memberOf bijou.js
 * @param
