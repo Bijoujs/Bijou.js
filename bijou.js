@@ -71,7 +71,6 @@ if (isNode) {
 let _temp = {
 /**
 * Represents a book.
-* @constructor
 * @param {string} title - The title of the book.
 */
   primesTo: (num) => {
