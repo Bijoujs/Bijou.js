@@ -828,7 +828,7 @@ let _temp = {
     return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
   },
 /**
-* Tests if a color is light or dark and returns 
+* Tests if a color is light or dark and returns an object representation.
 * @function
 * @memberOf bijou.js
 * @param
