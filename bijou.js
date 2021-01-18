@@ -584,6 +584,7 @@ let _temp = {
       left + width > window.pageXOffset
     );
   },
+  
   serializeForm: (form) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
