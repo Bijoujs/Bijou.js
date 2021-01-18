@@ -224,7 +224,7 @@ let _temp = {
     return str;
   },
 /**
-* [
+* Only runs the 
 * @function
 * @param {number} num - Params
 * @example
