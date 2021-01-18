@@ -664,7 +664,7 @@ let _temp = {
 * @memberOf bijou
 * @param {String} str The string of HTML to unescape.
 * @example
-* 
+* _$
 * @returns {String} The day name from the date.
 */
   unescapeHTML: (str) =>
