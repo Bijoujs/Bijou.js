@@ -169,7 +169,7 @@ let _temp = {
     return callback;
   },
 /**
-* Returns the 
+* Returns the callback when 
 * @function
 * @param {number} num - Params
 * @example
