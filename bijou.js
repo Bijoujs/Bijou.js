@@ -74,6 +74,7 @@ if (isNode) {
  * @type {Object}
  * @namespace bijou
  */
+
 let _temp = {
   /**
    * Gives an array of prime numbers up to a certain one.
