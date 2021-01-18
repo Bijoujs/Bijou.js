@@ -11,6 +11,7 @@
   "opts": {
     "recurse": true,
     "destination": "./docs/",
-    "readme": "README.md"
+    "readme": "README.md",
+    "template": "./node_modules/@pixi/jsdoc-template"
   }
 }
