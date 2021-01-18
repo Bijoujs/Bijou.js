@@ -1915,7 +1915,7 @@ let _temp = {
 * @param {Element} el The element to be dragged (And dropped :P ).
 * @example
 * _$.drag(document.querySelector('div'));//Allows the first <div> on the page to be dragged.
-* @returns u
+* @returns undefined
 */
   drag: (el) => {
     if (isNode) {
