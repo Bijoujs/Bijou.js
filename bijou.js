@@ -1998,10 +1998,11 @@ let _temp = {
 * Gets JSON from a URL and performs a callback with it.
 * @function
 * @memberOf bijou
-* @param {String} url The
+* @param {String} url The url of the JSON to be fetched.
+* @param {Function} callback The function to be run with the JSON code.
 * @example
-* //
-* @returns {String}
+* _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
+* @returns undefined
 */
   getJSON: (url, callback) => {
     if (isNode) {
@@ -2011,6 +2012,17 @@ let _temp = {
       .then((res) => res.json())
       .then((json) => callback(json));
   },
+/**
+* Gets HTML from a URL and performs a callback with it.
+* @function
+* @memberOf bijou
+* @param {String} url The url of the HTML to be fetched.
+* @param {Function} callback The function to be run with the HTML code.
+* @example
+* //Logs the HTML of wikipedia.org to the console.
+* _$.getHTML("https://wikipedia.org", (html) => console.log(html));
+* @returns undefined
+*/
   getHTML: (url, callback) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
@@ -2019,7 +2031,28 @@ let _temp = {
       .then((res) => res.text())
       .then((html) => callback(_$.parseHTML(html)));
   },
+/**
+* Shuffles an array
+* @function
+* @memberOf bijou
+* @param {Array} array The array to shuffle.
+* @example
+* let array = [1,2,3,4,5];
+* array = _$.shuffleArray(array);
+* //array is now something like this: [2,4,1,5,3].
+* @returns {Array} The shuffled array.
+*/
   shuffleArray: (array) => array.sort(() => Math.random() - 0.5),
+/**
+* Hashes a string to a unique integer (This cannot be decrypted easily).
+* @function
+* @memberOf bijou
+* @param {String} str The String to hash.
+* @param {Number} [seed=0] The seed of the hash.
+* @example
+* console.log(_$.hashString("Hello world"));//Logs 3494146707865688 to the console.
+* @returns {Number} The hashed string.
+*/
   hashString: (str, seed = 0) => {
     let h1 = 0xdeadbeef ^ seed,
       h2 = 0x41c6ce57 ^ seed;
@@ -2036,7 +2069,17 @@ let _temp = {
       Math.imul(h1 ^ (h1 >>> 13), 3266489909);
     return 4294967296 * (2097151 & h2) + (h1 >>> 0);
   },
-
+/**
+  * Blends two colors through additive blending by a percentage.
+  * @function
+  * @memberOf bijou
+  * @param {String} color1 The hex code of the first color to be blended
+  * @param {String} color2 The hex code of the second color to be blended.
+  * @param {Number} percent A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
+  * @example
+  * _$.blendColors("#ffffff", "#000000", 80); Blends white and black together, ending up in a color that is 80% white and 20% black.
+  * @returns {String} The blended color (A hex code).
+  */
   blendColors: (color1, color2, percent = 50) => {
     const generateHex = (r, g, b) => {
       let R = r.toString(16);
