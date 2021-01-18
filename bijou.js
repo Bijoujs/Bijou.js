@@ -1039,7 +1039,7 @@ let _temp = {
 * @memberOf bijou.js
 * @param {Element} el The element to remove comments from.
 * @example
-* _$.removeComments(d)
+* _$.removeComments(document.documentEleme)
 * @returns
 */
   removeComments: (el) => {
