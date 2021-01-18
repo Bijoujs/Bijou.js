@@ -55,7 +55,7 @@ Contributors to Bijou.js:
 
  */
 /**
-* @description Tests if 
+* @description Tests if the 
 */
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
