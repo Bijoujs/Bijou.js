@@ -431,7 +431,8 @@ let _temp = {
  * Joins two arrays together and removes duplicates.
  * @function
  * @memberOf bijou
- * @param {Array} x The first array to 
+ * @param {Array} x The first array to join.
+ * @param
  * @example
  * //
  * @returns {String} The day name from the date.
