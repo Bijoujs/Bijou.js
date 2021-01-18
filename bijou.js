@@ -697,7 +697,7 @@ let _temp = {
 * Replaces the text in an element by running it through a callback.
 * @function
 * @memberOf bijou.js
-* @param {Element}
+* @param {Element} el 
 * @example
 *
 * @returns
