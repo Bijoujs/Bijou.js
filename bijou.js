@@ -1995,7 +1995,7 @@ let _temp = {
       t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
   },
 /**
-* Gets JSON from a 
+* Gets JSON from a URL and per
 * @function
 * @memberOf bijou
 * @param {String}
