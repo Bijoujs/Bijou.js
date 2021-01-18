@@ -192,6 +192,14 @@ let _temp = {
       false
     );
   },
+/**
+* [Desc]
+* @function
+* @param {number} num - Params
+* @example
+* Example
+* @returns {Array}
+*/
   copy: (str) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
