@@ -404,7 +404,7 @@ let _temp = {
  * Converts JSON to a CSV string
  * @function
  * @memberOf bijou
- * @param {Array} arr
+ * @param {Array} arr 
  * @param {String} columns 
  * @param {String} [delimiter=","]
  * @example
