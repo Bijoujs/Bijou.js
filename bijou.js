@@ -790,6 +790,7 @@ let _temp = {
 * @returns
 */
   randomColor: () => "#" + Math.floor(Math.random() * 16777215).toString(16),
+  
   lightenColor: (col, amt) => {
     var usePound = false;
 
