@@ -1061,7 +1061,7 @@ let _temp = {
     }
   },
 /**
-* Generates a 
+* Generates a random number between a minimum
 * @function
 * @memberOf bijou.js
 * @param
