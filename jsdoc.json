@@ -1,0 +1,18 @@
+{
+  "source": {
+    "include": [
+      "/workspace/"
+    ],
+    "includePattern": ".js$",
+    "excludePattern": "(node_modules/|out/|.github/)"
+  },
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true
+  },
+  "opts": {
+    "recurse": true,
+    "destination": "./docs/",
+    "readme": "README.md"
+  }
+}
