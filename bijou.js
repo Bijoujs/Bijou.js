@@ -272,7 +272,7 @@ let _temp = {
     };
   },
 /**
- * [
+ * creates a
  * @function
  * @memberOf bijou
  * @param
