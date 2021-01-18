@@ -78,7 +78,7 @@ if (isNode) {
    * [Desc]
    * @function
    * @memberOf bijou
-   * @param {Number} num - The number to give primes to.
+   * @param 
    * @example
    * _$.primesTo(100);//Returns an array of prime numbers up to 100.
    * @returns {Array} Returns an array of prime numbers up to the given number.
