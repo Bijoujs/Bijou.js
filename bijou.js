@@ -553,7 +553,7 @@ let _temp = {
     );
   },
 /**
-* Tests if 
+* Tests if the 
 * @function
 * @memberOf bijou
 * @param
