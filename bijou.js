@@ -1912,7 +1912,7 @@ let _temp = {
 * Allows an element to be dragged and dropped.
 * @function
 * @memberOf bijou
-* @param {Element} el The element to be dragged (And dr).
+* @param {Element} el The element to be dragged (And dropped :).
 * @example
 * //
 * @returns {String}
