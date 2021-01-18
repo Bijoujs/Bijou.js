@@ -585,7 +585,7 @@ let _temp = {
     );
   },
 /**
-* Conv
+* Converts a form to URL queries.
 * @function
 * @memberOf bijou
 * @param
