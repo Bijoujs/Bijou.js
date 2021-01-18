@@ -353,7 +353,7 @@ let _temp = {
  * @param {String} body The body of the notification.
  * @param {String} icon The url to the image for the icon of the notification.
  * @example
- * _$.notify("Hello", "Hi there! ");//Returns an array of prime numbers up to 100.
+ * _$.notify("Hello", "Hi there! Thi ");//Returns an array of prime numbers up to 100.
  * @returns
  */
   notify: (text, body, icon) => {
