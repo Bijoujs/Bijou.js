@@ -558,7 +558,7 @@ let _temp = {
 * @memberOf bijou
 * @param {Element} el The element to test.
 * @example
-* //Alerts "In view!" if the first <div> in the document is partiall view.
+* //Alerts "In view!" if the first <div> in the document is partially or fully view.
 * if (_$.inView(document.querySelector("div"))) alert("In view!");
 * @returns {String} The day name from the date.
 */
