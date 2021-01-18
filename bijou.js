@@ -765,6 +765,7 @@ let _temp = {
 * @param {String} text The string to replace
 * @example
 * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
+
 * @returns
 */
   widows: (text) => {
