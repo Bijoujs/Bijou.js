@@ -428,7 +428,7 @@ let _temp = {
       ),
     ].join("\n"),
 /**
- * Joins two arrays to
+ * Joins two arrays together and removes d
  * @function
  * @memberOf bijou
  * @param
