@@ -782,7 +782,7 @@ let _temp = {
     return finalTitle;
   },
 /**
-* Generates a random hex 
+* Generates a random hex color.
 * @function
 * @memberOf bijou.js
 * @param
