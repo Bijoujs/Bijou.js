@@ -432,7 +432,7 @@ let _temp = {
  * @function
  * @memberOf bijou
  * @param {Array} x The first array to join.
- * @param
+ * @param {Array} y The second array to join.
  * @example
  * //
  * @returns {String} The day name from the date.
