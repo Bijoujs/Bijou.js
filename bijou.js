@@ -928,9 +928,9 @@ let _temp = {
 * Generates a querySelector for an element passed in.
 * @function
 * @memberOf bijou.js
-* @param {Element} elem The element to 
+* @param {Element} elem The element to generate the querySelector for.
 * @example
-*
+* 
 * @returns
 */
   querySelector: (elem) => {
