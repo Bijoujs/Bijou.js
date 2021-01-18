@@ -1,7 +1,7 @@
 {
   "source": {
     "include": [
-      "/workspace/"
+      "/"
     ],
     "includePattern": ".js$",
     "excludePattern": "(node_modules/|out/|.github/)"
