@@ -899,7 +899,7 @@ let _temp = {
     return "#" + r + g + b;
   },
 /**
-* DESC
+* Conver
 * @function
 * @memberOf bijou.js
 * @param
