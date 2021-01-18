@@ -864,7 +864,7 @@ let _temp = {
     }
   },
 /**
-* DESC
+* Gets 
 * @function
 * @memberOf bijou.js
 * @param
