@@ -434,7 +434,7 @@ let _temp = {
  * @param {Array} x The first array to join.
  * @param {Array} y The second array to join.
  * @example
- * _$.unionArrays([1,2,3], [4,5]);
+ * _$.unionArrays([1,2,3], [4,5,6]);
  * @returns {String} The day name from the date.
  */
   unionArrays: (x, y) => {
