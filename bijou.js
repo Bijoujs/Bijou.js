@@ -271,6 +271,15 @@ let _temp = {
       }
     };
   },
+/**
+ * [Desc]
+ * @function
+ * @memberOf bijou
+ * @param
+ * @example
+ * _$.primesTo(100);//Returns an array of prime numbers up to 100.
+ * @returns
+ */
   createElement: (str) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
