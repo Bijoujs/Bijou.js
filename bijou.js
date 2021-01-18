@@ -1877,7 +1877,7 @@ let _temp = {
 * @memberOf bijou
 * @param {String} str The string of non-camelCased text.
 * @example
-* consoel
+* conso
 * @returns {String}
 */
   camelCase: (str) => {
