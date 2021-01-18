@@ -12,7 +12,6 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.4
             - run: pwd
-
       - run: sudo npm i -g jsdoc
       - run: rm -r ./docs
       - run: jsdoc -c ./jsdoc.json
