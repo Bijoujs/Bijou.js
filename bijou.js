@@ -471,7 +471,7 @@ let _temp = {
 * @example
 * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
 * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
-* @returns {Object} The new 
+* @returns {Object} The new Object
 */
   mapObjectKeys: (obj, fn) =>
     Array.isArray(obj)
