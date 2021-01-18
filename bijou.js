@@ -867,7 +867,8 @@ let _temp = {
 * Gets a property from the computed style of an element.
 * @function
 * @memberOf bijou.js
-* @param {Element} el The element
+* @param {Element} el The element whose styles to get.
+* @param {String}
 * @example
 *
 * @returns
