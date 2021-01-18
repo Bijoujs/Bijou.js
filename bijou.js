@@ -600,7 +600,7 @@ let _temp = {
     ).join("&");
   },
 /**
-* DESC
+* Con
 * @function
 * @memberOf bijou
 * @param
