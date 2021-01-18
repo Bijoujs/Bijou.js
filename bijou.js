@@ -924,6 +924,15 @@ let _temp = {
       ")"
     );
   },
+/**
+* DESC
+* @function
+* @memberOf bijou.js
+* @param
+* @example
+*
+* @returns
+*/
   querySelector: (elem) => {
     if (isNode) {
       throw new Error("No document element! (You are probably using Node.js)");
