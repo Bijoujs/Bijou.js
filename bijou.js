@@ -290,7 +290,7 @@ let _temp = {
     return el.firstElementChild;
   },
 /**
- * [
+ * Returns the brows
  * @function
  * @memberOf bijou
  * @param
