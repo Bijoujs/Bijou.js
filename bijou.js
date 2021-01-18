@@ -240,7 +240,7 @@ let _temp = {
   /**
   * Only runs the input function at MAX with the delay specified.
   * @function
-* @memberOf bijou
+  * @memberOf bijou
   * @param {Function} fn The function to run.
   * @param {Number} wait The number of milliseconds to wait.
   * @example
