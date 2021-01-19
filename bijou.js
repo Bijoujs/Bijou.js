@@ -2206,7 +2206,7 @@ let _temp = {
 * A set of functions to set and modify cookies.
 * @memberOf bijou
 * @example
-* _$.cookies.se
+* _$.cookies.setItem("")
 * @returns {Function} The function that the user wanted
 */
   cookies: {
