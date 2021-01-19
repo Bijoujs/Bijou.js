@@ -2187,6 +2187,7 @@ let _temp = {
 * @returns {Element[]} The array of sibling elements.
 */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n)
+  
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
