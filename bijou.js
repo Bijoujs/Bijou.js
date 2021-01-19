@@ -2211,7 +2211,7 @@ if (days) {
   expires = "; expires=" + date.toUTCString();
 }
 document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
+},
 getCookie: (name) => {
   var nameEQ = name + "=";
   var ca = document.cookie.split(';');
