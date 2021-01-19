@@ -2202,7 +2202,7 @@ let _temp = {
       images[i].src = preload.arguments[i];
     }
   },
-  cookies: {}
+  cookies: {
   function setCookie(name, value, days) {
     var expires = "";
 if (days) {
