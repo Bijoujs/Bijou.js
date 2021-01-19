@@ -2229,7 +2229,7 @@ let _temp = {
     /**
      * Gets a cookie from its name.
      * @function
-     * @
+     * @param {}
     */
     getItem: (name) => {
       var nameEQ = name + "=";
