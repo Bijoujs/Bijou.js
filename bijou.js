@@ -2188,7 +2188,7 @@ let _temp = {
   */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n),
 /**
-* Preloads all of the 
+* Preloads all of the image urls 
 * @function
 * @memberOf bijou
 * @param {String} str
