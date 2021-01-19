@@ -2172,7 +2172,7 @@ let _temp = {
    * @memberOf bijou
    * @param {String} str
    * @example
-   * console.log(_$.)
+   * console.log(_$.b)
    * @returns {String}
    */
 };
