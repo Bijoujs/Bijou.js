@@ -2194,7 +2194,7 @@ let _temp = {
 * @param {...String} urls The urls of the images to be preloaded. 
 * @example
 * _$.preloadImage("https://")
-* @returns {String}
+* @returns {undefined}
 */
   preloadImage: (urls) => {
     for (var i = 0; i < arguments.length; i++) {
