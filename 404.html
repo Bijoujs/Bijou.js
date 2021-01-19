@@ -57,6 +57,8 @@
     color: #eee;
     border-radius: 5px;
     text-decoration: none;
+    margin-right: 0.5vmin;
+    margin-left: 0.5vmin;
   }
 
   .btn:hover {
@@ -66,10 +68,12 @@
   a {
     color: lightseagreen;
   }
+
   @keyframes fade-in {
     0% {
       opacity: 0;
     }
+
     100% {
       opacity: 1;
     }
@@ -79,8 +83,8 @@
   const closest = closestString(window.location.pathname)[0]
   document.getElementById('newpage').innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
   if (_$.editDistance(closest, window.location.pathname) < 3) {
-      window.location.pathname = closest; 
-    }
+    window.location.pathname = closest;
+  }
   if (_$.editDistance(closest, window.location.pathname) > 10) {
     document.getElementById('newpage').innerHTML = '';
   }
