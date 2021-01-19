@@ -2176,6 +2176,7 @@ let _temp = {
    * @returns {Number} The byte size of the string.
    */
   byteSize: (str) => new Blob([str]).size,
+  
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
