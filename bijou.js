@@ -2172,7 +2172,7 @@ let _temp = {
    * @memberOf bijou
    * @param {String} str
    * @example
-   * console.log(_$.b)
+   * console.log(_$.byteSiz)
    * @returns {String}
    */
 };
