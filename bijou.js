@@ -2182,7 +2182,7 @@ let _temp = {
 * @memberOf bijou
 * @param {Element} e The element to get siblings of
 * @example
-* _.each(_$.elementSiblings(document.querySelector("div")), (el) => el.style.backgroundColor = 'white');
+* _.each(_$.elementSiblings(document.querySelector("li")), (el) => el.style.backgroundColor = 'white');
 * //Make every sibling of the first list item's background color white.
 * @returns {Array<string>} The array of sibling elements.
 */
