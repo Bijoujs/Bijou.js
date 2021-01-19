@@ -25,18 +25,18 @@ Congrats! You discovered Bijou.js! Read more below!
 
 Bijou.js is a library of super helpful JavaScript snippets! It has a bunch of
 useful snippets for all your coding needs! If there's something that's not in
-here currently but you use frequently feel free to submit an issue! I'd be happy
+here currently but you use frequently, feel free to submit an issue! I'd be happy
 to add it! Bijou's goal is to eliminate the need to copy paste the same thing
 from StackOverflow, another project or anywhere else! So if you ever find
 yourself typing the same thing over and over again, copy pasting the same
 snippet as you did a few days ago, use Bijou.js! If the snippet you're using
-isn't in Bijou.js just submit an issue with the code!
+isn't in Bijou.js, just submit an issue with the code!
 
 # Why use Bijou?
 
 Well, a few reasons:
 
-1. <s>I made it.</s>
+1. <s>I made it. :stuck_out_tongue:</s>
 2. It's useful! (If it's not useful just tell me what you want added in the
    issues tab! I'd be happy to add it!)
 3. It's jam packed full of functions that are super useful but hard to think of!
@@ -63,7 +63,7 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 
 <!-- Or minified: -->
 <script src="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou-min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"></script>
 ```
 
 Also, did you know there's Bijou.css? It's also useful! It's all the stuff I
