@@ -10,8 +10,7 @@
 
 <body>
   <h1>404</h1>
-  <p>It looks like you're lost! It's likely that you made a typo in the url or you are visiting this website 5 years
-    after it was made and all the links broke. In which case I'm sorry. <span id="newpage"></span></p>
+  <p>It looks like you're lost! <span id="newpage"></span></p>
   <div class="buttons">
     <a href="https://bijou.js.org" class="btn">Home</a>
     <a href="" class="btn" onclick="history.back()">Back</a>
@@ -83,10 +82,10 @@
 <script>
   const closest = closestString(window.location.pathname)[0]
   document.getElementById('newpage').innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
-  if (_$.editDistance(closest, window.location.pathname) < 3) {
+  if (_$.editDistance(closest, window.location.pathname) < 6) {
     window.location.pathname = closest;
   }
-  if (_$.editDistance(closest, window.location.pathname) > 10) {
+  if (_$.editDistance(closest, window.location.pathname) > 20) {
     document.getElementById('newpage').innerHTML = '';
   }
   function parsePath(path) {
