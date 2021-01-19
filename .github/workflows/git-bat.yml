@@ -10,7 +10,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.4
       - run: sudo npm i -g showdown terser prettier figlet-cli
-      - run: prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- ./
+      - run: prettier --quote-props=consistent --trailing-comma=all --no-semi --write --loglevel=silent -- ./
       - run: terser --compress --mangle -o bijou-min.js -- bijou.js
       - run: showdown makehtml -i README.md -o README.html
       - uses: stefanzweifel/git-auto-commit-action@v4
