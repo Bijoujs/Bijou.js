@@ -2202,6 +2202,15 @@ let _temp = {
       images[i].src = preload.arguments[i];
     }
   },
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param {String} str
+* @example
+* //
+* @returns {String}
+*/
   cookies: {
     setItem: (name, value, days) => {
       var expires = "";
