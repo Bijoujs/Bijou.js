@@ -2180,7 +2180,7 @@ let _temp = {
 * Get the siblings of a DOM element
 * @function
 * @memberOf bijou
-* @param {} str
+* @param {Element} str
 * @example
 * //
 * @returns {String}
