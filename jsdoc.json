@@ -11,7 +11,7 @@
     "cleverLinks": true,
     "monospaceLinks": true
   },
-  // 
+  // Cool
   "opts": {
     "recurse": true,
     "destination": "./docs/",
