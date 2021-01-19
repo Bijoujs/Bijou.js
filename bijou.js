@@ -2166,6 +2166,15 @@ let _temp = {
 
     return matrix[b.length][a.length];
   },
+    /**
+   * DESC
+   * @function
+   * @memberOf bijou
+   * @param {String} str
+   * @example
+   * //
+   * @returns {String}
+   */
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
