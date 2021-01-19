@@ -4,11 +4,16 @@
 /* SPAN elements with the classes below are added by prettyprint. */
 /* plain text */
 .pln {
+<<<<<<< HEAD
   color: #1c1c1b; }
+=======
+  color: #4d4d4c; }
+>>>>>>> 968284b781ff9faa6cf44b4bdd395f0abe09b88b
 
 @media screen {
   /* string content */
   .str {
+<<<<<<< HEAD
     color: #489963; }
 
   /* a keyword */
@@ -50,6 +55,49 @@
   /* a markup attribute value */
   .atv {
     color: #1c9aa0; }
+=======
+    color: #718c00; }
+
+  /* a keyword */
+  .kwd {
+    color: #8959a8; }
+
+  /* a comment */
+  .com {
+    color: #8e908c; }
+
+  /* a type name */
+  .typ {
+    color: #4271ae; }
+
+  /* a literal value */
+  .lit {
+    color: #f5871f; }
+
+  /* punctuation */
+  .pun {
+    color: #4d4d4c; }
+
+  /* lisp open bracket */
+  .opn {
+    color: #4d4d4c; }
+
+  /* lisp close bracket */
+  .clo {
+    color: #4d4d4c; }
+
+  /* a markup tag name */
+  .tag {
+    color: #c82829; }
+
+  /* a markup attribute name */
+  .atn {
+    color: #f5871f; }
+
+  /* a markup attribute value */
+  .atv {
+    color: #3e999f; }
+>>>>>>> 968284b781ff9faa6cf44b4bdd395f0abe09b88b
 
   /* a declaration */
   .dec {
