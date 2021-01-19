@@ -2177,7 +2177,7 @@ let _temp = {
    */
   byteSize: (str) => new Blob([str]).size,
 /**
-* DESC
+* Ge
 * @function
 * @memberOf bijou
 * @param {String} str
