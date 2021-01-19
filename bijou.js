@@ -2183,6 +2183,7 @@ let _temp = {
 * @param {Element} e The element to get siblings of
 * @example
 * _.each(_$.elementSiblings(document.querySelector("div")), (el) => el.style.backgroundColor = 'white');
+
 * @returns {Array<string>} The array of sibling elements.
 */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n)
