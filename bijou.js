@@ -2166,33 +2166,33 @@ let _temp = {
 
     return matrix[b.length][a.length];
   },
-    /**
-   * Returns the size of a string in bytes.
-   * @function
-   * @memberOf bijou
-   * @param {String} str
-   * @example
-   * console.log(_$.byteSize("Hello world"));//Logs
-   * @returns {Number} The byte size of the string.
-   */
+  /**
+ * Returns the size of a string in bytes.
+ * @function
+ * @memberOf bijou
+ * @param {String} str
+ * @example
+ * console.log(_$.byteSize("Hello world"));//Logs
+ * @returns {Number} The byte size of the string.
+ */
   byteSize: (str) => new Blob([str]).size,
-/**
-* Get the siblings of a DOM element
-* @function
-* @memberOf bijou
-* @param {Element} e The element to get siblings of
-* @example
-* _.each(_$.elementSiblings(document.querySelector("li")), (el) => el.style.backgroundColor = 'white');
-* //Make every sibling of the first list item's background color white.
-* @returns {Element[]} The array of sibling elements.
-*/
+  /**
+  * Get the siblings of a DOM element
+  * @function
+  * @memberOf bijou
+  * @param {Element} e The element to get siblings of
+  * @example
+  * _.each(_$.elementSiblings(document.querySelector("li")), (el) => el.style.backgroundColor = 'white');
+  * //Make every sibling of the first list item's background color white.
+  * @returns {Element[]} The array of sibling elements.
+  */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n),
-  preloadImages: ()=> {
+  preloadImages: () => {
     for (var i = 0; i < arguments.length; i++) {
-  images[i] = new Image();
-  images[i].src = preload.arguments[i];
-}
-},
+      images[i] = new Image();
+      images[i].src = preload.arguments[i];
+    }
+  },
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
