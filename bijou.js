@@ -2212,6 +2212,7 @@ let _temp = {
   cookies: {
     /**
      * @function
+     * 
      */
     setItem: (name, value, days) => {
       var expires = "";
