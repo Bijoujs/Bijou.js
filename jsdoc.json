@@ -1,6 +1,6 @@
 {
   "source": {
-    "include": ["./"],
+    "include": ["/"],
     "includePattern": ".js$",
     "excludePattern": "(node_modules/|out/|.github/)"
   },
