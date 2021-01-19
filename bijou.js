@@ -2226,7 +2226,7 @@ let _temp = {
       document.cookie = name + "=" + (value || "") + expires + "; path=/";
     },
     /**
-     * Gets
+     * Gets a cookie b
      * @function
     */
     getItem: (name) => {
