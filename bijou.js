@@ -2203,7 +2203,7 @@ let _temp = {
     }
   },
 /**
-* A set 
+* A set of functions to set and mod
 * @function
 * @memberOf bijou
 * @param {String} str
