@@ -2184,7 +2184,7 @@ let _temp = {
 * @example
 * _.each(_$.elementSiblings(document.querySelector("li")), (el) => el.style.backgroundColor = 'white');
 * //Make every sibling of the first list item's background color white.
-* @returns {Array.<element>} The array of sibling elements.
+* @returns {} The array of sibling elements.
 */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n)
 };
