@@ -36,7 +36,7 @@ isn't in Bijou.js, just submit an issue with the code!
 
 Well, a few reasons:
 
-1. <s>I made it. :stuck_out_tongue:</s>
+1. <s>I made it. 😛</s>
 2. It's useful! (If it's not useful just tell me what you want added in the
    issues tab! I'd be happy to add it!)
 3. It's jam packed full of functions that are super useful but hard to think of!
