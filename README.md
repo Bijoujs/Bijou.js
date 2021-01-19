@@ -112,9 +112,7 @@ _$.uuid(); //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d
 
 ## Who made Bijou.js?
 
-Mostly me! But as always my friend GrahamSH helped a _ton_ with ideas, bug fixes
-and more! Also thanks to people like retronbv for helping brainstorm names for
-this! :)
+Me (@Explosion-Scratch) and my good friend @GrahamSH-LLK with a lot of help from other people such as retron and theColaber!
 
 ## Functions:
 
