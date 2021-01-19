@@ -2203,7 +2203,7 @@ let _temp = {
     }
   },
 /**
-* A set of functions to set and modify cookei
+* A set of functions to set and modify cookies
 * @function
 * @memberOf bijou
 * @param {String} str
