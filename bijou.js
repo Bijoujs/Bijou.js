@@ -2211,7 +2211,7 @@ let _temp = {
 */
   cookies: {
     /**
-     * Sets a cookie
+     * Sets a cookie 
      * @function
      * @param {String} name The name of the cookie to set
      * @param {String} value The value of the cookie
