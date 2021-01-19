@@ -2183,7 +2183,7 @@ let _temp = {
 * @param {Element} e The element to get siblings of
 * @example
 * //
-* @returns {String}
+* @returns {A}
 */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n)
 };
