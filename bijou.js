@@ -2176,6 +2176,7 @@ let _temp = {
    * @returns {Number} The byte size of the string.
    */
   byteSize: (str) => new Blob([str]).size,
+  
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n)
 };
 // Sort the object
