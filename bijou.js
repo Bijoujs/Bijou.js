@@ -2187,6 +2187,15 @@ let _temp = {
   * @returns {Element[]} The array of sibling elements.
   */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n),
+    /**
+   * DESC
+   * @function
+   * @memberOf bijou
+   * @param {String} str
+   * @example
+   * //
+   * @returns {String}
+   */
   preloadImages: () => {
     for (var i = 0; i < arguments.length; i++) {
       images[i] = new Image();
