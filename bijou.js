@@ -2176,7 +2176,15 @@ let _temp = {
    * @returns {Number} The byte size of the string.
    */
   byteSize: (str) => new Blob([str]).size,
-  
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param {String} str
+* @example
+* //
+* @returns {String}
+*/
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n)
 };
 // Sort the object
