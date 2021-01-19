@@ -2203,7 +2203,7 @@ let _temp = {
     }
   },
 /**
-* A set of functions to set and modify cookies
+* A set of functions to set and modify cook
 * @function
 * @memberOf bijou
 * @param {String} str
@@ -2212,7 +2212,7 @@ let _temp = {
 * @returns {String}
 */
   cookies: {
-    setItem: (name, value, minutes) => {
+    setItem: (name, value, days) => {
       var expires = "";
       if (days) {
         var date = new Date();
