@@ -2182,7 +2182,7 @@ let _temp = {
 * @memberOf bijou
 * @param {Element} e The element to get siblings of
 * @example
-* _$.elementS
+* _$.elementSiblings()
 * @returns {Array<string>} The array of sibling elements.
 */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n)
