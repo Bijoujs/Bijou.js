@@ -1,2 +1,4 @@
-.github/workflows/
+.github
 bijou-min.js
+docs/
+node_modules/

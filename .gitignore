@@ -1,4 +1,4 @@
 node_modules/
 .theia/
 jsdoc.json
-/docs/
+docs/
