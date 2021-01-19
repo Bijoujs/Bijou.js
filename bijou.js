@@ -2203,7 +2203,7 @@ let _temp = {
     }
   },
 /**
-* A set of functions to set and mod
+* A set of functions to set and modify cookei
 * @function
 * @memberOf bijou
 * @param {String} str
