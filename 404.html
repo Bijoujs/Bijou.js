@@ -11,7 +11,10 @@
 <body>
   <h1>404</h1>
   <p>It looks like you're lost! <span id="newpage"></span></p>
-  <a href="https://bijou.js.org" class="btn">Home</a>
+  <div class="buttons">
+    <a href="https://bijou.js.org" class="btn">Home</a>
+    <a href="" class="btn" onclick="history.back()">Back</a>
+  </div>
 </body>
 
 </html>
@@ -41,8 +44,12 @@
     font-size: 4vmin;
   }
 
+  .buttons {
+    margin-top: 14px;
+  }
+
   .btn {
-    margin-top: 10px;
+    font-size: 3vmin;
     transition: box-shadow, .3s ease, background-color .3s ease, color .3s ease;
     padding: 8px 12px;
     background: lightseagreen;
@@ -54,6 +61,7 @@
   .btn:hover {
     background-color: rgb(26, 145, 139);
   }
+
   a {
     color: lightseagreen;
   }
