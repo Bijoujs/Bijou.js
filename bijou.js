@@ -2186,7 +2186,7 @@ let _temp = {
 * //Make every sibling of the first list item's background color white.
 * @returns {Element[]} The array of sibling elements.
 */
-  elementSiblings: n => [...n.parentElement.children].filter(c => c != n).
+  elementSiblings: n => [...n.parentElement.children].filter(c => c != n),
   preloadImages: ()=> {
     for (var i = 0; i < arguments.length; i++) {
   images[i] = new Image();
