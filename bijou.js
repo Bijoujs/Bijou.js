@@ -2193,7 +2193,7 @@ let _temp = {
 * @memberOf bijou
 * @param {...String} urls The urls of the images to be preloaded. 
 * @example
-* _$.preload
+* _$.preloadImages("h")
 * @returns {String}
 */
   preloadImages: (urls) => {
