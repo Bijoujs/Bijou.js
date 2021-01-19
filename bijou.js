@@ -2189,9 +2189,9 @@ let _temp = {
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n)
   function preload() {
     for (var i = 0; i < arguments.length; i++) {
-        images[i] = new Image();
-        images[i].src = preload.arguments[i];
-    }
+  images[i] = new Image();
+  images[i].src = preload.arguments[i];
+}
 }
 };
 // Sort the object
