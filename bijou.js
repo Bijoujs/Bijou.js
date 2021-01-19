@@ -2210,7 +2210,7 @@ let _temp = {
 * @returns {Function} The function that the user wanted
 */
   cookies: {
-    /
+    /** Set */
     setItem: (name, value, days) => {
       var expires = "";
       if (days) {
