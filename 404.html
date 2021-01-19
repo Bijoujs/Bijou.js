@@ -60,7 +60,7 @@
 </style>
 <script>
   const closest = closestString(window.location.pathname)[0]
-  document.getElementById('newpage').innerHTML = `<a href="${closest}">${closest}</a>`;
+  document.getElementById('newpage').innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
   if (_$.editDistance(closest, window.location.pathname) > 10) {
     document.getElementById('newpage').innerHTML = '';
   }
