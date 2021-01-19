@@ -2192,7 +2192,7 @@ let _temp = {
   images[i] = new Image();
   images[i].src = preload.arguments[i];
 }
-}
+},
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
