@@ -362,7 +362,7 @@ let _temp = {
    * @param {String} icon The url to the image for the icon of the notification.
    * @example
    * _$.notify("Hello", "Hi there! This is a notification!");//Returns an array of prime numbers up to 100.
-   * @returns undefined
+   * @returns {undefined}
    */
   notify: (text, body, icon) => {
     if (isNode) {
@@ -463,7 +463,7 @@ let _temp = {
    * @param {Function} callback The callback function to run on the array items.
    * @example
    * _$.each(new Array(40), (i) => console.log(i));//Logs the numbers up to 40.
-   * @returns undefined
+   * @returns {undefined}
    */
   each: (array, callback) => {
     for (let i = 0; i < array.length; i++) {
@@ -741,7 +741,7 @@ let _temp = {
    * @example
    * //Times how long it took the user to enter their name.
    * _$.timeFunction(() => prompt("What's your name?"));
-   * @returns undefined
+   * @returns {undefined}
    */
   timeFunction: (fn, name = "_$ function timer") => {
     console.time(name);
@@ -2009,7 +2009,7 @@ let _temp = {
    * @param {Function} callback The function to be run with the JSON code.
    * @example
    * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
-   * @returns undefined
+   * @returns {undefined}
    */
   getJSON: (url, callback) => {
     if (isNode) {
@@ -2028,7 +2028,7 @@ let _temp = {
    * @example
    * //Logs the HTML of wikipedia.org to the console.
    * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
-   * @returns undefined
+   * @returns {undefined}
    */
   getHTML: (url, callback) => {
     if (isNode) {
