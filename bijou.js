@@ -2212,7 +2212,7 @@ if (days) {
 }
 document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
-getCookie: (name) {
+getCookie: (name) => {
   var nameEQ = name + "=";
   var ca = document.cookie.split(';');
   for (var i = 0; i < ca.length; i++) {
