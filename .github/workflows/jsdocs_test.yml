@@ -11,8 +11,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.4
-      - run: pwd
-      - run: sudo npm i -g jsdoc
+      - run: sudo npm i -g jsdoc toast-jsdoc
       - run: rm -r ./docs
       - run: jsdoc -c ./jsdoc.json
       - uses: stefanzweifel/git-auto-commit-action@v4
