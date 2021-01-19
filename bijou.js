@@ -2175,7 +2175,7 @@ let _temp = {
    * console.log(_$.byteSize("Hello world"));//Logs
    * @returns {String}
    */
-  byteSize: (str) => new Blob
+  byteSize: (str) => new Blob([str]).
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
