@@ -13,7 +13,6 @@ jobs:
         uses: actions/setup-node@v2.1.4
       - run: sudo npm install
       - run: sudo npm install -g toast-jsdoc
-      - run: rm -r ./docs
       - run: jsdoc -c ./jsdoc.json
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
