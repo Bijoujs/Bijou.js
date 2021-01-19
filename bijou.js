@@ -2191,7 +2191,7 @@ let _temp = {
 * Preloads all of the image urls given in the arguments
 * @function
 * @memberOf bijou
-* @param {String} str
+* @param {String}
 * @example
 * //
 * @returns {String}
