@@ -54,10 +54,13 @@
   .btn:hover {
     background-color: rgb(26, 145, 139);
   }
+  a {
+    color: lightseagreen;
+  }
 </style>
 <script>
   const closest = closestString(window.location.pathname)[0]
-  document.getElementById('newpage').innerHTML = closest;
+  document.getElementById('newpage').innerHTML = `<a href="${closest}">${closest}</a>`;
   if (_$.editDistance(closest, window.location.pathname) > 10) {
     document.getElementById('newpage').innerHTML = '';
   }
