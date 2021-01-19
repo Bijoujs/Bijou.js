@@ -2203,7 +2203,7 @@ let _temp = {
     }
   },
   cookies: {
-  setCookie(name, value, days) {
+  setCookie: (name, value, days) {
     var expires = "";
 if (days) {
   var date = new Date();
