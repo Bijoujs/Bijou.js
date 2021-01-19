@@ -2187,7 +2187,12 @@ let _temp = {
 * @returns {Element[]} The array of sibling elements.
 */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n)
-  
+  function preload() {
+    for (var i = 0; i < arguments.length; i++) {
+        images[i] = new Image();
+        images[i].src = preload.arguments[i];
+    }
+}
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
