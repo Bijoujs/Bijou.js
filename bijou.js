@@ -2177,7 +2177,7 @@ let _temp = {
    */
   byteSize: (str) => new Blob([str]).size,
 /**
-* Get the s
+* Get the sibli
 * @function
 * @memberOf bijou
 * @param {String} str
