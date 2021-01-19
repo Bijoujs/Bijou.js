@@ -2225,6 +2225,7 @@ let _temp = {
       }
       document.cookie = name + "=" + (value || "") + expires + "; path=/";
     },
+    
     getItem: (name) => {
       var nameEQ = name + "=";
       var ca = document.cookie.split(';');
