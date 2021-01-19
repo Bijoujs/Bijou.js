@@ -2173,7 +2173,7 @@ let _temp = {
    * @param {String} str
    * @example
    * console.log(_$.byteSize("Hello world"));//Logs
-   * @returns {String
+   * @returns {Number} The byte siz
    */
   byteSize: (str) => new Blob([str]).size,
 };
