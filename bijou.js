@@ -2206,7 +2206,6 @@ let _temp = {
 * A set of functions to set and modify cookies.
 * @function
 * @memberOf bijou
-* @param {String} str
 * @example
 * //
 * @returns {String}
