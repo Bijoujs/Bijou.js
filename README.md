@@ -1,8 +1,7 @@
-<div align="center"><a href='http://bijou.js.org/'><img src='https://bijou.js.org/bijou.png' alt='Bijou.js Logo'></a></div>
 <br>
 <br>
 <br>
-<br>
+<div align="center"><a href='http://bijou.js.org/'><img width=500 src='https://bijou.js.org/bijou.png' alt='Bijou.js Logo'></a></div>
 
 <b><h1 align="center">Welcome to Bijou.js!</h1></b>
 
