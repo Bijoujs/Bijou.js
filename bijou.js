@@ -2213,7 +2213,7 @@ let _temp = {
     /**
      * @function
      * @param {String} name The name of the cookie to set
-     * 
+     * @param #
      */
     setItem: (name, value, days) => {
       var expires = "";
