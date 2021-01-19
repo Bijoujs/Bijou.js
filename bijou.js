@@ -2,7 +2,7 @@
  * @file bijou.js
  * @author Explosion-Scratch, Bijou.js contributors
  * @since v1.0.0
- * @copyright &copy; Explosion-Scratch All rights reserved.
+ * @copyright &copy; Explosion-Scratch, All rights reserved.
  */
 
 /* --------------------------------------------------------------------------|
