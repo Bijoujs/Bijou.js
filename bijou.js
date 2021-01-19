@@ -2203,7 +2203,7 @@ let _temp = {
     }
   },
 /**
-* Ste
+* 
 * @function
 * @memberOf bijou
 * @param {String} str
