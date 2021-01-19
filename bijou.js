@@ -2196,7 +2196,7 @@ let _temp = {
 * _$.preloadImage("https://")
 * @returns {String}
 */
-  preloadImages: (urls) => {
+  preloadImage: (urls) => {
     for (var i = 0; i < arguments.length; i++) {
       images[i] = new Image();
       images[i].src = preload.arguments[i];
