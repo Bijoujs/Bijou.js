@@ -2167,7 +2167,7 @@ let _temp = {
     return matrix[b.length][a.length];
   },
     /**
-   * Returns the size of a string in bytes,.
+   * Returns the size of a string in bytes.
    * @function
    * @memberOf bijou
    * @param {String} str
