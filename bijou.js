@@ -2187,7 +2187,7 @@ let _temp = {
 * @returns {Element[]} The array of sibling elements.
 */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n)
-  function preload() {
+  preload() {
     for (var i = 0; i < arguments.length; i++) {
   images[i] = new Image();
   images[i].src = preload.arguments[i];
