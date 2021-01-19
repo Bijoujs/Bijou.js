@@ -2167,7 +2167,7 @@ let _temp = {
     return matrix[b.length][a.length];
   },
     /**
-   * DESC
+   * T
    * @function
    * @memberOf bijou
    * @param {String} str
