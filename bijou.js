@@ -2187,15 +2187,15 @@ let _temp = {
   * @returns {Element[]} The array of sibling elements.
   */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n),
-/**
-* Preloads all of the image urls given in the arguments
-* @function
-* @memberOf bijou
-* @param {...String} urls The urls of the images to be preloaded. 
-* @example
-* _$.preloadImage("https://unsplash.com/some_huge_image.png");//Preloads the unsplash image "some_huge_image.png" :P
-* @returns {undefined}
-*/
+  /**
+  * Preloads all of the image urls given in the arguments
+  * @function
+  * @memberOf bijou
+  * @param {...String} urls The urls of the images to be preloaded. 
+  * @example
+  * _$.preloadImage("https://unsplash.com/some_huge_image.png");//Preloads the unsplash image "some_huge_image.png" :P
+  * @returns {undefined}
+  */
   preloadImage: (urls) => {
     for (var i = 0; i < arguments.length; i++) {
       images[i] = new Image();
@@ -2203,28 +2203,29 @@ let _temp = {
     }
   },
   cookies: {
-  setCookie: (name, value, days)=> {
-    var expires = "";
-if (days) {
-  var date = new Date();
-  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-  expires = "; expires=" + date.toUTCString();
-}
-document.cookie = name + "=" + (value || "") + expires + "; path=/";
-},
-getCookie: (name) => {
-  var nameEQ = name + "=";
-  var ca = document.cookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-  }
-  return null;
-},
-eraseCookie: (name) => {
-  document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}},
+    setCookie: (name, value, days) => {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    },
+    getCookie: (name) => {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    },
+    eraseCookie: (name) => {
+      document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+  },
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
