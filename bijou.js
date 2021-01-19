@@ -1,3 +1,10 @@
+/**
+ * @file bijou.js
+ * @author Explosion-Scratch, Bijou.js contributors
+ * @since v1.0.0
+ * @copyright © Explosion-Scratch and GrahamSH, All rights reserved.
+ */
+
 /* --------------------------------------------------------------------------|
   ____ ___    _  ___  _   _   _     
  | __ )_ _|  | |/ _ \| | | | (_)___ 
@@ -6,7 +13,7 @@
  |____/___\___/ \___/ \___(_)/ |___/
                            |__/     
 ------------------------------------------------------------------------------|
-Bijou.js is copyrighted by Explosion-Scratch of GitHub and released under the MIT license.
+Bijou.js is copyrighted by Explosion-Scratch and GrahamSH-LLK of GitHub and released under the MIT license.
 This software comes with ABSOLUTELY NO WARRANTY and is provided "As is" (with the best intentions of Explosion-Scratch and contributors! =D )
 
 -----------------------------------------------------------------------------|
@@ -73,6 +80,7 @@ if (isNode) {
  * Bijou.js source object. It contains all the functions of Bijou.
  * @type {Object}
  * @namespace bijou
+ * @author Explosion-Scratch, Bijou.js contributors
  */
 
 let _temp = {

@@ -9,10 +9,18 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.4
+<<<<<<< HEAD
       - run: sudo npm install --save
       - run: npm run doc
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
          commit_message: Building docs.
+=======
+      - run: sudo npm install --save 
+      - run: npm run doc
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+         commit_message: Docs Generated
+>>>>>>> 1d12bb777106e6206f0ec01fbd8f0eb1a1c8a0be
 
         
