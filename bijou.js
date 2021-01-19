@@ -2246,7 +2246,7 @@ let _temp = {
     /**
      * Deletes a cookie
      * @param {String} name The name of the cookie to delete.
-     * @returns P
+     * @returns {undefined}
      */
     removeItem: (name) => {
       document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
