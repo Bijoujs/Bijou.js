@@ -2188,7 +2188,7 @@ let _temp = {
   */
   elementSiblings: n => [...n.parentElement.children].filter(c => c != n),
 /**
-* Preloads
+* Preloads all of the 
 * @function
 * @memberOf bijou
 * @param {String} str
