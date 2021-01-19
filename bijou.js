@@ -2204,7 +2204,6 @@ let _temp = {
   },
 /**
 * A set of functions to set and modify cookies.
-* @object
 * @memberOf bijou
 * @example
 * //
