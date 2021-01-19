@@ -2177,7 +2177,7 @@ let _temp = {
    */
   byteSize: (str) => new Blob([str]).size,
 /**
-* Get the siblings of a 
+* Get the siblings of a DOM element
 * @function
 * @memberOf bijou
 * @param {String} str
