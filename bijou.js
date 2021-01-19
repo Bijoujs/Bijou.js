@@ -2207,7 +2207,7 @@ let _temp = {
 * @memberOf bijou
 * @example
 * //
-* @returns {Function} The function that the user
+* @returns {Function} The function that the user wanted
 */
   cookies: {
     setItem: (name, value, days) => {
