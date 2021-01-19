@@ -2217,7 +2217,7 @@ let _temp = {
      * @param {String} value The value of the cookie
      * @param {Number} days The days that the cookie should last.
      */
-    setItem: (name, value, days ) => {
+    setItem: (name, value, days = 1) => {
       var expires = "";
       if (days) {
         var date = new Date();
