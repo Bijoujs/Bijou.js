@@ -87,8 +87,8 @@ let _temp = {
    */
   primesTo: (num) => {
     let arr = Array.from({
-        length: num - 1,
-      }).map((x, i) => i + 2),
+      length: num - 1,
+    }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -312,7 +312,7 @@ let _temp = {
         return p.toString() === "[object SafariRemoteNotification]";
       })(
         !window["safari"] ||
-          (typeof safari !== "undefined" && window["safari"].pushNotification)
+        (typeof safari !== "undefined" && window["safari"].pushNotification)
       );
     var isIE = /*@cc_on!@*/ false || !!document.documentMode;
     var isEdge = !isIE && !!window.StyleMedia;
@@ -421,7 +421,7 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-              !obj[key] ? "" : obj[key]
+            !obj[key] ? "" : obj[key]
             }"`,
           ""
         )
@@ -477,7 +477,7 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-      ? Object.keys(obj).reduce((acc, current) => {
+        ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current);
           const val = obj[current];
           acc[key] =
@@ -486,7 +486,7 @@ let _temp = {
               : val;
           return acc;
         }, {})
-      : obj,
+        : obj,
   /**
    * Converts an array to CSV (Comma separated values) data.
    * @function
@@ -710,14 +710,14 @@ let _temp = {
     }
     for (
       var e,
-        t = (function () {
-          for (var e, t = el, o = [], a = 0; a < t.length; a++)
-            (e = t[a].childNodes[0]),
-              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-          return o;
-        })(),
-        o = 0,
-        a = t.length;
+      t = (function () {
+        for (var e, t = el, o = [], a = 0; a < t.length; a++)
+          (e = t[a].childNodes[0]),
+            t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
+        return o;
+      })(),
+      o = 0,
+      a = t.length;
       o < a;
       o++
     )
@@ -1771,26 +1771,26 @@ let _temp = {
       }
       function getNumPos(txt, func) {
         var arr = [
-            "<br>",
-            " ",
-            ";",
-            "(",
-            "+",
-            ")",
-            "[",
-            "]",
-            ",",
-            "&",
-            ":",
-            "{",
-            "}",
-            "/",
-            "-",
-            "*",
-            "|",
-            "%",
-            "=",
-          ],
+          "<br>",
+          " ",
+          ";",
+          "(",
+          "+",
+          ")",
+          "[",
+          "]",
+          ",",
+          "&",
+          ":",
+          "{",
+          "}",
+          "/",
+          "-",
+          "*",
+          "|",
+          "%",
+          "=",
+        ],
           i,
           j,
           c,
@@ -2114,6 +2114,49 @@ let _temp = {
     const blue = Math.round(mix(blue1, blue2, percent));
 
     return generateHex(red, green, blue);
+  },
+  /**
+   * Gets the edit distance between two strings.
+   * @function
+   * @memberOf bijou
+   * @param {String} a The first string
+   * @param {String} b The seconds string
+   * @example
+   * _$.editDistance("hello", "Hello");//Returns 1
+   * @returns {Number} The edit distance between two strings
+   */
+  editDistance: (a, b) => {
+    if (a.length == 0) return b.length;
+    if (b.length == 0) return a.length;
+
+    var matrix = [];
+
+    // increment along the first column of each row
+    var i;
+    for (i = 0; i <= b.length; i++) {
+      matrix[i] = [i];
+    }
+
+    // increment each column in the first row
+    var j;
+    for (j = 0; j <= a.length; j++) {
+      matrix[0][j] = j;
+    }
+
+    // Fill in the rest of the matrix
+    for (i = 1; i <= b.length; i++) {
+      for (j = 1; j <= a.length; j++) {
+        if (b.charAt(i - 1) == a.charAt(j - 1)) {
+          matrix[i][j] = matrix[i - 1][j - 1];
+        } else {
+          matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, // substitution
+            Math.min(matrix[i][j - 1] + 1, // insertion
+              matrix[i - 1][j] + 1)); // deletion
+        }
+      }
+    }
+
+    return matrix[b.length][a.length];
   },
 };
 // Sort the object

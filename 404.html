@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="bijou.js"></script>
+  <title>404 | Bijou.js</title>
+</head>
+
+<body>
+  <h1>404</h1>
+  <p>It looks like you're lost! <span id="newpage"></span></p>
+  <a href="https://bijou.js.org" class="btn">Home</a>
+</body>
+
+</html>
+<style>
+  * {
+    color: #333;
+  }
+
+  body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 12vmin;
+  }
+
+  .btn {
+    transition: box-shadow, .3s ease, background-color .3s ease, color .3s ease;
+    padding: 8px 12px;
+    background: lightseagreen;
+    color: #eee;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    background-color: rgb(26, 145, 139);
+  }
+</style>
+<script>
+  const closest = closestString(window.location.pathname)[0]
+  document.getElementById('newpage').innerHTML = closest;
+  if (_$.editDistance(closest, window.location.pathname) > 10) {
+    document.getElementById('newpage').innerHTML = '';
+  }
+  function parsePath(path) {
+    return (path).match(/([^\/\.]+)(?:.html)$/)[1]
+  }
+  function closestString(string) {
+    let array = ["index", "try", "docs", "docs/bijou.ease", "docs/bijou.js", "docs/global", "docs/bijou"];
+    return array.sort((item) => _$.editDistance(item, string))
+  }
+</script>
