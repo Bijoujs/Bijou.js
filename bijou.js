@@ -2303,7 +2303,8 @@ let _temp = {
     link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
     /** 
      * Tests for a strong password.
-     * Should have 1 lowercase letter, 1 uppercase letter, 1 number, 1 special character and be at least 8 characters long
+     * Should have:
+     *  1 lowercase letter, 1 uppercase letter, 1 number, 1 special character and be at least 8 characters long
     */
     strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
     /**
