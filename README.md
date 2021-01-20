@@ -61,6 +61,7 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 
 <!-- Or minified: -->
 <script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"></script>
+<script src="https://unpkg.com/bijou.js@latest/bijou.js"></script>
 ```
 
 Also, did you know there's Bijou.css? It's also useful! It's all the stuff I
