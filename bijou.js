@@ -2304,7 +2304,8 @@ let _temp = {
     /** 
      * Tests for a strong password.
      * Should have:
-     *  1 lowercase letter, 1 uppercase letter, 1 number, 1 special character and be at least 8 characters long
+     *  1 lowercase letter
+     *  1 uppercase letter, 1 number, 1 special character and be at least 8 characters long
     */
     strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
     /**
