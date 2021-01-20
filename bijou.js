@@ -2312,7 +2312,7 @@ let _temp = {
      *  1 lowercase letter
      *  1 uppercase letter
      *  1 number 
-     * t least 8 characters long */
+     * At least 8 characters long */
     moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
   },
 };
