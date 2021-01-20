@@ -2250,8 +2250,6 @@ let _temp = {
     },
     /**
      * Deletes a cookie
-     * @memberOf cookies
-     * @memberOf bijou
      * @param {String} name The name of the cookie to delete.
      * @returns {undefined}
      */
