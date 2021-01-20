@@ -2157,9 +2157,13 @@ let _temp = {
         if (b.charAt(i - 1) == a.charAt(j - 1)) {
           matrix[i][j] = matrix[i - 1][j - 1];
         } else {
-          matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, // substitution
-            Math.min(matrix[i][j - 1] + 1, // insertion
-              matrix[i - 1][j] + 1)); // deletion
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j - 1] + 1, // substitution
+            Math.min(
+              matrix[i][j - 1] + 1, // insertion
+              matrix[i - 1][j] + 1
+            )
+          ); // deletion
         }
       }
     }
@@ -2167,35 +2171,35 @@ let _temp = {
     return matrix[b.length][a.length];
   },
   /**
- * Returns the size of a string in bytes.
- * @function
- * @memberOf bijou
- * @param {String} str
- * @example
- * console.log(_$.byteSize("Hello world"));//Logs
- * @returns {Number} The byte size of the string.
- */
+   * Returns the size of a string in bytes.
+   * @function
+   * @memberOf bijou
+   * @param {String} str
+   * @example
+   * console.log(_$.byteSize("Hello world"));//Logs
+   * @returns {Number} The byte size of the string.
+   */
   byteSize: (str) => new Blob([str]).size,
   /**
-  * Get the siblings of a DOM element
-  * @function
-  * @memberOf bijou
-  * @param {Element} e The element to get siblings of
-  * @example
-  * _.each(_$.elementSiblings(document.querySelector("li")), (el) => el.style.backgroundColor = 'white');
-  * //Make every sibling of the first list item's background color white.
-  * @returns {Element[]} The array of sibling elements.
-  */
-  elementSiblings: n => [...n.parentElement.children].filter(c => c != n),
+   * Get the siblings of a DOM element
+   * @function
+   * @memberOf bijou
+   * @param {Element} e The element to get siblings of
+   * @example
+   * _.each(_$.elementSiblings(document.querySelector("li")), (el) => el.style.backgroundColor = 'white');
+   * //Make every sibling of the first list item's background color white.
+   * @returns {Element[]} The array of sibling elements.
+   */
+  elementSiblings: (n) => [...n.parentElement.children].filter((c) => c != n),
   /**
-  * Preloads all of the image urls given in the arguments
-  * @function
-  * @memberOf bijou
-  * @param {...String} urls The urls of the images to be preloaded. 
-  * @example
-  * _$.preloadImage("https://unsplash.com/some_huge_image.png");//Preloads the unsplash image "some_huge_image.png" :P
-  * @returns {undefined}
-  */
+   * Preloads all of the image urls given in the arguments
+   * @function
+   * @memberOf bijou
+   * @param {...String} urls The urls of the images to be preloaded.
+   * @example
+   * _$.preloadImage("https://unsplash.com/some_huge_image.png");//Preloads the unsplash image "some_huge_image.png" :P
+   * @returns {undefined}
+   */
   preloadImage: (urls) => {
     for (var i = 0; i < arguments.length; i++) {
       images[i] = new Image();
@@ -2203,18 +2207,16 @@ let _temp = {
     }
   },
   /**
-  * A set of functions to set and modify cookies.
-  * @memberOf bijou
-  * @example
-  * _$.cookies.setItem("a_cookie", "Hello world!", 1);//Set a_cookie to "Hello world" and have it expire in a day.
-  * @returns {Function} The function that the user wanted
-  * @namespace cookies
-  */
+   * A set of functions to set and modify cookies.
+   * @memberOf bijou
+   * @example
+   * _$.cookies.setItem("a_cookie", "Hello world!", 1);//Set a_cookie to "Hello world" and have it expire in a day.
+   * @returns {Function} The function that the user wanted
+   */
   cookies: {
     /**
      * Sets a cookie to a value
      * @function
-     * @memberOf cookies
      * @memberOf bijou
      * @param {String} name The name of the cookie to set
      * @param {String} value The value of the cookie
@@ -2225,7 +2227,7 @@ let _temp = {
       var expires = "";
       if (days) {
         var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
         expires = "; expires=" + date.toUTCString();
       }
       document.cookie = name + "=" + (value || "") + expires + "; path=/";
@@ -2233,31 +2235,30 @@ let _temp = {
     /**
      * Gets a cookie from its name.
      * @function
-     * @memberOf cookies
      * @memberOf bijou
      * @param {String} name The name of the cookie.
      * @returns {String} The value of the cookie
     */
     getItem: (name) => {
       var nameEQ = name + "=";
-      var ca = document.cookie.split(';');
+      var ca = document.cookie.split(";");
       for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        while (c.charAt(0) == " ") c = c.substring(1, c.length);
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
       }
       return null;
     },
     /**
      * Deletes a cookie
-     * @memberOf cookies
      * @memberOf bijou
      * @param {String} name The name of the cookie to delete.
      * @returns {undefined}
      */
     removeItem: (name) => {
-      document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
+      document.cookie =
+        name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    },
   },
   /**
    * A collection of regular expressions to validate and get common things from a page
@@ -2295,9 +2296,9 @@ let _temp = {
     */
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     /** Validates a link
-    */
-    link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/
-  }
+     */
+    link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
+  },
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
