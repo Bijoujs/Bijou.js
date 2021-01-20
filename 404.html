@@ -81,7 +81,7 @@
 <script>
   const closest = closestString(window.location.pathname)[0];
   document.getElementById(
-    "newPage"
+    "newpage"
   ).innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
   if (_$.editDistance(closest, window.location.pathname) < 4) {
     window.location.pathname = closest;
