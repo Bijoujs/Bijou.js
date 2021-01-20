@@ -2255,7 +2255,8 @@ let _temp = {
   /**
    * A collection of regular expressions to validate and get common things from a page
    * @object
-   * @example 
+   * @example
+   * 
    */
   regex: {
     /**
