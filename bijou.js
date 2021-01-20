@@ -2262,7 +2262,7 @@ let _temp = {
   },
   /**
    * A collection of regular expressions to validate and get common things from a page
-   * @memberof B
+   * @memberof 
    * @Object
    * @example
    * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
