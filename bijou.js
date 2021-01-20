@@ -2319,7 +2319,7 @@ let _temp = {
      * 1 number 
      * At least 8 characters long */
     moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
-    /
+    /**  */
   },
 };
 // Sort the object
