@@ -87,7 +87,7 @@
     window.location.pathname = closest;
   }
   if (_$.editDistance(closest, window.location.pathname) > 20) {
-    document.getElementById("newPage").innerHTML = "";
+    document.getElementById("newpoage").innerHTML = "";
   }
   function parsePath(path) {
     return path.match(/([^\/\.]+)(?:.html)$/)[1];
