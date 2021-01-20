@@ -2334,7 +2334,7 @@ let _temp = {
     zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
     /**Phone */
     phone: /^\+?[\d\s]{3,}$/,
-    /** */
+    /**Credit cards */
   },
 };
 // Sort the object
