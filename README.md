@@ -54,7 +54,6 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 <!-- Any of these (Don't do all of them lol) -->
 
 <!-- jsDelivr -->
-<script src="https://cdn.jsdelivr.net/gh/explosion-scratch/bijou.js@latest/bijou.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"></script>
 
 <!-- UNPKG -->
