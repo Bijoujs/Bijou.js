@@ -70,7 +70,7 @@ use:
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bijou.js/bijou.js@latest/bijou.css"
+  href="https://cdn.jsdelivr.net/npm/bijou.bijou.js@latest/bijou.css"
 />
 ```
 
