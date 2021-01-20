@@ -2337,7 +2337,7 @@ let _temp = {
   /**Credit cards */
     visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
     expressCredit: /^3[47][0–9]{13}$/,
-    ma
+    mastercardC
   },
 };
 // Sort the object
