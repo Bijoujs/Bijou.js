@@ -2257,7 +2257,7 @@ let _temp = {
    * @object
    * @example
    * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
-   * 
+   * @ret
    */
   regex: {
     /**
