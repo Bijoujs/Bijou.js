@@ -2214,7 +2214,7 @@ let _temp = {
     /**
      * Sets a cookie to a value
      * @function
-     * @member
+     * @memberOf
      * @param {String} name The name of the cookie to set
      * @param {String} value The value of the cookie
      * @param {Number} [days=1000] The days that the cookie should last.
