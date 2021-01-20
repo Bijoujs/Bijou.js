@@ -2233,6 +2233,8 @@ let _temp = {
     /**
      * Gets a cookie from its name.
      * @function
+     *      * @memberOf cookies
+     * @memberOf bijou
      * @param {String} name The name of the cookie.
      * @returns {String} The value of the cookie
     */
