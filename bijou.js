@@ -2335,7 +2335,7 @@ let _temp = {
     /**Phone */
     phone: /^\+?[\d\s]{3,}$/,
   /**Credit cards */
-    visaCredit: 
+    visaCredit: ^4[0–9]{12}(?:[0–9]{3})?$
   },
 };
 // Sort the object
