@@ -2310,7 +2310,8 @@ let _temp = {
      * Tests for a moderate password.
      * Should have:
      *  1 lowercase letter
-     *  1 uppercase letter, 1 number, and be at least 8 characters long */
+     *  1 uppercase letter
+     * 1 number, and be at least 8 characters long */
     moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
   },
 };
