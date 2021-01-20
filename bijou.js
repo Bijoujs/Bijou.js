@@ -2202,13 +2202,13 @@ let _temp = {
       images[i].src = preload.arguments[i];
     }
   },
-/**
-* A set of functions to set and modify cookies.
-* @memberOf bijou
-* @example
-* _$.cookies.setItem("a_cookie", "Hello world!", 1);//Set a_cookie to "Hello world" and have it expire in a day.
-* @returns {Function} The function that the user wanted
-*/
+  /**
+  * A set of functions to set and modify cookies.
+  * @memberOf bijou
+  * @example
+  * _$.cookies.setItem("a_cookie", "Hello world!", 1);//Set a_cookie to "Hello world" and have it expire in a day.
+  * @returns {Function} The function that the user wanted
+  */
   cookies: {
     /**
      * Sets a cookie to a value
@@ -2252,6 +2252,43 @@ let _temp = {
       document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
   },
+  /**
+   * A collection of regular expressions to validate and get common things from a page
+   * @object
+   */
+  regex: {
+    /**
+     * Valid formats:
+     * (123) 456-7890
+     * (123)456-7890
+     * 123-456-7890
+     * 123.456.7890
+     * 1234567890
+     * +31636363634
+     * 075-63546725
+     */
+    phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+    /** Validates names, examples:
+     * John Smith
+     * John D'Largy
+     * John Doe-Smith
+     * John Doe Smith
+     * Hector Sausage-Hausen
+     * Mathias d'Arras
+     * Martin Luther King
+     * Ai Wong
+     * Chao Chang
+     * Alzbeta Bara
+     */
+    name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
+    /**
+    Validates email adresses
+    */
+    email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    /** Validates a link
+    */
+    link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/
+  }
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
