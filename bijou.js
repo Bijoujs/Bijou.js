@@ -2256,7 +2256,7 @@ let _temp = {
    * A collection of regular expressions to validate and get common things from a page
    * @object
    * @example
-   * if (_$.regex.email.test("email@gmail")
+   * if (_$.regex.email.test("email@gmail.com")
    */
   regex: {
     /**
