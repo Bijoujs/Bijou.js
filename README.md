@@ -57,7 +57,7 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 <script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"></script>
 
 <!-- UNPKG -->
-<script src="https://unpkg.com/bijou.js@latest/bijou.js"></script>
+<script src="https://unpkg.com/bijou.js/bijou.js"></script>
 
 <!-- Or minified: -->
 <script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"></script>
