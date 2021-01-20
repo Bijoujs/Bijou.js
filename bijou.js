@@ -2208,7 +2208,7 @@ let _temp = {
   * @example
   * _$.cookies.setItem("a_cookie", "Hello world!", 1);//Set a_cookie to "Hello world" and have it expire in a day.
   * @returns {Function} The function that the user wanted
-  * @namespace cook
+  * @namespace cookies
   */
   cookies: {
     /**
