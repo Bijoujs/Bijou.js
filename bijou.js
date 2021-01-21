@@ -2018,7 +2018,7 @@ let _temp = {
     fetch(url)
       .then((res) => res.json())
       .then((json) => callback(json))
-      .catch((error) => throw new Error(error.stack));
+      .catch((error) => {throw new Error(error.stack)});
   },
   /**
    * Gets HTML from a URL and performs a callback with it.
@@ -2038,7 +2038,7 @@ let _temp = {
     fetch(url)
       .then((res) => res.text())
       .then((html) => callback(_$.parseHTML(html)))
-      .catch((error) => throw new Error(error.stack));
+      .catch((error) => {throw new Error(error.stack)});
   },
   /**
    * Shuffles an array
