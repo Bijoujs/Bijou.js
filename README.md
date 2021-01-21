@@ -1,18 +1,9 @@
 <b><h1 align="center">Bijou.js!</h1></b>
-<h6 align=center>The library to superpower your code</h6>
-<div align="center"><a href='http://bijou.js.org/'><img width=500 src='https://bijou.js.org/bijou.png' alt='Bijou.js Logo'></a></div>
+<h6 align=center>Useful JS snippets, in one simple library</h6>
 
 [![NPM Downloads](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
-[![GitHub forks](https://img.shields.io/github/forks/bijou-js/bijou.js?color=lightseagreen&label=Forks&style=for-the-badge)](https://github.com/bijou-js/bijou.js/network)
-[![GitHub issues](https://img.shields.io/github/issues/bijou-js/bijou.js?color=lightseagreen&style=for-the-badge)](https://github.com/bijou-js/bijou.js/issues)
 [![GitHub stars](https://img.shields.io/github/stars/bijou-js/bijou.js?color=lightseagreen&style=for-the-badge)](https://github.com/bijou-js/bijou.js/stargazers)
-![GitHub search hit counter](https://img.shields.io/github/search/bijou-js/bijou.js/bijou?color=lightseagreen&label=Bijou.js%20search%20results&style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/bijou-js/bijou.js?color=lightseagreen&style=for-the-badge)
-![GitHub top language](https://img.shields.io/github/languages/top/bijou-js/bijou.js?style=for-the-badge&color=lightseagreen)
-![GitHub repo size](https://img.shields.io/github/repo-size/bijou-js/bijou.js?color=lightseagreen&style=for-the-badge)
 [![Website](https://img.shields.io/website?down_color=lightseagreen&down_message=Down%20%3A%27%28&label=Website%20status&style=for-the-badge&up_color=lightseagreen&up_message=Online%21&url=https%3A%2F%2Fbijou.js.org)](https://bijou.js.org)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/y/bijou-js/bijou.js?style=for-the-badge&color=lightseagreen)](https://github.com/bijou-js/bijou.js/commits/main)
-[![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/bijou-js/bijou.js/latest?color=lightseagreen&style=for-the-badge)](https://github.com/bijou-js/bijou.js/commits/main)
 [![Discord](https://img.shields.io/discord/789662824678686720?style=for-the-badge&color=lightseagreen)](https://discord.gg/Ec5Wvp78w7)
 
 Bijou.js is a library of super helpful JavaScript snippets! It has a bunch of
