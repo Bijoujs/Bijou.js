@@ -24,19 +24,6 @@ yourself typing the same thing over and over again, copy pasting the same
 snippet as you did a few days ago, use Bijou.js! If the snippet you're using
 isn't in Bijou.js, just submit an issue with the code!
 
-# Why use Bijou?
-
-Well, a few reasons:
-
-1. <s>I made it. 😛</s>
-2. It's useful! (If it's not useful just tell me what you want added in the
-   issues tab! I'd be happy to add it!)
-3. It's jam packed full of functions that are super useful but hard to think of!
-4. 31 other people this month used it, so why shouldn't you?
-
-<small>(You can probably see I'm pretty desperate for people to use
-this.)</small>
-
 # How to use Bijou.js
 
 Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
@@ -66,20 +53,15 @@ use:
   href="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.css"
 />
 ```
-
-it pretty much just uses classes.
-
-## Basic usage:
-
-### Import it
-
-Browser:
+Then you can just use it!
 
 ```js
 // You can use any of these to reference bijou:
 // _ , _$ , explosion
-// Or name it something different:
+//Or name it something different:
 const this_is_bijou = _$;
+
+_$.copy("Bijou is awesome!");//Copies "Bijou is awesome!" to the clipboard!
 ```
 
 NodeJS:
@@ -104,3 +86,16 @@ _$.uuid(); //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d
 ## Who made Bijou.js?
 
 Me (@Explosion-Scratch) and my good friend @GrahamSH-LLK with a lot of help from other people such as retron and theColaber!
+
+# Why use Bijou?
+
+Well, a few reasons:
+
+1. <s>I made it. 😛</s>
+2. It's useful! (If it's not useful just tell me what you want added in the
+   issues tab! I'd be happy to add it!)
+3. It's jam packed full of functions that are super useful but hard to think of!
+4. 31 other people this month used it, so why shouldn't you?
+
+<small>(You can probably see I'm pretty desperate for people to use
+this.)</small>
