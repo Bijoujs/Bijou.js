@@ -1,7 +1,7 @@
 /**
  * @file bijou.js
  * @author Explosion-Scratch, Bijou.js contributors
- * @since v1.0.0
+ * @since v0.0.0
  * @copyright © Explosion-Scratch and GrahamSH, All rights reserved.
  */
 
