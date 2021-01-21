@@ -1,6 +1,7 @@
 <b><h1 align="center">Bijou.js!</h1></b>
 <h6 align=center>The library to superpower your code</h6>
 <div align="center"><a href='http://bijou.js.org/'><img width=500 src='https://bijou.js.org/bijou.png' alt='Bijou.js Logo'></a></div>
+
 [![NPM Downloads](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
 [![GitHub forks](https://img.shields.io/github/forks/bijou-js/bijou.js?color=lightseagreen&label=Forks&style=for-the-badge)](https://github.com/bijou-js/bijou.js/network)
 [![GitHub issues](https://img.shields.io/github/issues/bijou-js/bijou.js?color=lightseagreen&style=for-the-badge)](https://github.com/bijou-js/bijou.js/issues)
