@@ -28,49 +28,23 @@ isn't in Bijou.js, just submit an issue with the code!
 
 Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 
-## Import it:
+## CDN
 
-```html
-<!-- Any of these (Don't do all of them lol) -->
-
-<!-- jsDelivr -->
+jsDelivr:
+```js
 <script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"></script>
+```
 
-<!-- UNPKG -->
+UNPKG
+```js
 <script src="https://unpkg.com/bijou.js@latest/bijou.js"></script>
-
-<!-- Or minified: -->
-<script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"></script>
-<script src="https://unpkg.com/bijou.js@latest/bijou-min.js"></script>
 ```
 
-Also, did you know there's Bijou.css? It's also useful! It's all the stuff I
-use:
-
-```html
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.css"
-/>
-```
-Then you can just use it!
-
+## `require()`
 ```js
-// You can use any of these to reference bijou:
-// _ , _$ , explosion
-//Or name it something different:
-const this_is_bijou = _$;
-
-_$.copy("Bijou is awesome!");//Copies "Bijou is awesome!" to the clipboard!
+const _$ = require("bijou.js");
 ```
-
-NodeJS:
-
-```js
-const _$ = require("bijou.js"); //You can use any name
-console.log(_$.primesTo(300)); //Logs all primes to 300
-```
-
+# Usage
 To use Bijou.js simply call one of the many functions built into it!
 
 ```js
