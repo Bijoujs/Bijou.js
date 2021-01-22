@@ -2369,7 +2369,7 @@ let _temp = {
 * //If the website adress of the current page was "https://example.com/?q=hello&hello=world"
 * console.log(_$.urlQuery("hello"));//Returns "world";
 * //Or on a custom url:
-
+* ?
 * @returns {String}
 */
   urlQuery: (query, url = window.location.href) => {
