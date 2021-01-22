@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * @file bijou.js
  * @author Explosion-Scratch, Bijou.js contributors
