@@ -2363,7 +2363,7 @@ let _temp = {
 * Returns the queries from a given url (Or just the current url)
 * @function
 * @memberOf bijou
-* @param {String} query The 
+* @param {String} query The url query to 
 * @example
 * //
 * @returns {String}
