@@ -2359,6 +2359,7 @@ let _temp = {
     });
     return text;
   },
+  
   urlQuery: (query, url = window.location.href) => {
     query = query.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + query + '(=([^&#]*)|&|#|$)'),
