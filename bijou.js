@@ -2364,7 +2364,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {String} query The url query to get.
-* @param {String} [url=window.location.href] The url to find the query in.
+* @param {String} [url=window.location.href] The url to find the query in. ()
 * @example
 * //
 * @returns {String}
