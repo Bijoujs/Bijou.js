@@ -2360,7 +2360,7 @@ let _temp = {
     return text;
   },
 /**
-* Returns the queries from a given url (Or just the cu)
+* Returns the queries from a given url (Or just the current ur)
 * @function
 * @memberOf bijou
 * @param {String}
