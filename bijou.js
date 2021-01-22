@@ -2370,7 +2370,7 @@ let _temp = {
 * console.log(_$.urlQuery("hello"));//Returns "world";
 * //Or on a custom url:
 * console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
-* @returns {String}
+* @returns {String} Th
 */
   urlQuery: (query, url = window.location.href) => {
     query = query.replace(/[\[\]]/g, '\\$&');
