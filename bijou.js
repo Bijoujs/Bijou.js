@@ -2018,7 +2018,7 @@ let _temp = {
     fetch(url)
       .then((res) => res.json())
       .then((json) => callback(json))
-      .catch((error) => {throw new Error(error.stack)});
+      .catch((error) => { throw new Error(error.stack) });
   },
   /**
    * Gets HTML from a URL and performs a callback with it.
@@ -2038,7 +2038,7 @@ let _temp = {
     fetch(url)
       .then((res) => res.text())
       .then((html) => callback(_$.parseHTML(html)))
-      .catch((error) => {throw new Error(error.stack)});
+      .catch((error) => { throw new Error(error.stack) });
   },
   /**
    * Shuffles an array
@@ -2336,12 +2336,37 @@ let _temp = {
     zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
     /**Phone */
     phone: /^\+?[\d\s]{3,}$/,
-  /**Credit cards */
+    /**Credit cards */
     visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
     expressCredit: /^3[47][0–9]{13}$/,
     mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
     discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
   },
+  /**
+  * Finds and replace multiple values with multiple other values.
+  * @function
+  * @memberOf bijou
+  * @param {String} text The text to operate the replace on.
+  * @param {Object} replace The object with find and replace values.
+  * @example
+  * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
+  * @returns {String} The replaced string
+  */
+  replaceMultiple: (text, replace) => {
+    var re = new RegExp(Object.keys(replace).join("|"), "gi");
+    text = text.replace(re, function (matched) {
+      return mapObj[matched];
+    });
+    return text;
+  },
+  urlQuery: (query, url = window.location.href) => {
+    query = query.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + query + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
