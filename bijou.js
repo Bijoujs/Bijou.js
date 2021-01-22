@@ -2380,7 +2380,7 @@ let _temp = {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   },
-  disabl
+  disable
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
