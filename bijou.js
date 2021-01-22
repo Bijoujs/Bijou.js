@@ -2381,7 +2381,7 @@ let _temp = {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   },
   disableRightClick: (el) => { el.oncontextmenu = false; },
-  addB
+  addBookmark:
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
