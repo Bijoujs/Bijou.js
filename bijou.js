@@ -1,5 +1,4 @@
-/
-  **
+/**
  * @file bijou.js
  * @author Explosion-Scratch, Bijou.js contributors
  * @since v0.0.0
