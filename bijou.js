@@ -2381,7 +2381,7 @@ let _temp = {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   },
 /**
-* DESC
+* Disa
 * @function
 * @memberOf bijou
 * @param {String}
