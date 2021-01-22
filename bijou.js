@@ -2381,17 +2381,24 @@ let _temp = {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   },
   disableRightClick: (el) => { el.oncontextmenu = false; },
-  addBookmark: (url = window.location.href, title = document.title) => {
-    if (window.sidebar) { // Mozilla Firefox Bookmark
-      window.sidebar.addPanel(location.href, document.title, "");
-    } else if (window.external) { // IE Favorite
-      window.external.AddFavorite(location.href, document.title);
-    }
-    else if (window.opera && window.print) { // Opera Hotlist
-      this.title = document.title;
-      return true;
-    }
-  }
+  function bookmark(title, url) {
+    if (window.sidebar) {
+  // Firefox
+  window.sidebar.addPanel(title, url, '');
+} 
+  else if (window.opera && window.print) {
+  // Opera
+  var elem = document.createElement('a');
+  elem.setAttribute('href', url);
+  elem.setAttribute('title', title);
+  elem.setAttribute('rel', 'sidebar');
+  elem.click(); //this.title=document.title;
+}
+else if (document.all) {
+  // ie
+  window.external.AddFavorite(url, title);
+}
+}
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
