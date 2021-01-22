@@ -2380,6 +2380,15 @@ let _temp = {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   },
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param {String}
+* @example
+* //
+* @returns {String}
+*/
   disableRightClick: (el) => { el.oncontextmenu = false; },
 };
 // Sort the object
