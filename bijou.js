@@ -2359,7 +2359,15 @@ let _temp = {
     });
     return text;
   },
-  
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param {String}
+* @example
+* //
+* @returns {String}
+*/
   urlQuery: (query, url = window.location.href) => {
     query = query.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + query + '(=([^&#]*)|&|#|$)'),
