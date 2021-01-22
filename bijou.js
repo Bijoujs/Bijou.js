@@ -2381,7 +2381,7 @@ let _temp = {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   },
   disableRightClick: (el) => { el.oncontextmenu = false; },
-  addBookmark: () => {
+  addBookmark: (url) => {
     if (window.sidebar) { // Mozilla Firefox Bookmark
       window.sidebar.addPanel(location.href, document.title, "");
     } else if (window.external) { // IE Favorite
