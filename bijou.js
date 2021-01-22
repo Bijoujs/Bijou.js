@@ -2366,7 +2366,7 @@ let _temp = {
 * @param {String} query The url query to get.
 * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
 * @example
-* //If the 
+* //If the website a
 * @returns {String}
 */
   urlQuery: (query, url = window.location.href) => {
