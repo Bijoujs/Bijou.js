@@ -2360,7 +2360,7 @@ let _temp = {
     return text;
   },
 /**
-* Returns the queries from a 
+* Returns the queries from a given ur
 * @function
 * @memberOf bijou
 * @param {String}
