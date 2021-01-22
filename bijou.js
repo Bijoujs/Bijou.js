@@ -2381,14 +2381,7 @@ let _temp = {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   },
   disableRightClick: (el) => { el.oncontextmenu = false; },
-  addBookmark: if (window.sidebar) { // Mozilla Firefox Bookmark
-      window.sidebar.addPanel(location.href,document.title,"");
-    } else if(window.external) { // IE Favorite
-      window.external.AddFavorite(location.href,document.title); }
-    else if(window.opera && window.print) { // Opera Hotlist
-      this.title=document.title;
-      return true;
-    }
+  addBookmark: 
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
