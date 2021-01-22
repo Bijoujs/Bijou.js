@@ -2381,7 +2381,7 @@ let _temp = {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   },
   disableRightClick: (el) => { el.oncontextmenu = false; },
-  bookmark: (title, url) {
+  bookmark: (title, url)=> {
     if (window.sidebar) {
   // Firefox
   window.sidebar.addPanel(title, url, '');
