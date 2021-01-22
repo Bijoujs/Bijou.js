@@ -2360,7 +2360,7 @@ let _temp = {
     return text;
   },
 /**
-* DESC
+* 
 * @function
 * @memberOf bijou
 * @param {String}
