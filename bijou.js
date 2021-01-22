@@ -2360,7 +2360,7 @@ let _temp = {
     return text;
   },
 /**
-* 
+* Retu
 * @function
 * @memberOf bijou
 * @param {String}
