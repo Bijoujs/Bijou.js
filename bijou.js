@@ -2359,19 +2359,19 @@ let _temp = {
     });
     return text;
   },
-/**
-* Returns the queries from a given url (Or just the current url)
-* @function
-* @memberOf bijou
-* @param {String} query The url query to get.
-* @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
-* @example
-* //If the website adress of the current page was "https://example.com/?q=hello&hello=world"
-* console.log(_$.urlQuery("hello"));//Returns "world";
-* //Or on a custom url:
-* console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
-* @returns {String} The url query
-*/
+  /**
+  * Returns the queries from a given url (Or just the current url)
+  * @function
+  * @memberOf bijou
+  * @param {String} query The url query to get.
+  * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
+  * @example
+  * //If the website adress of the current page was "https://example.com/?q=hello&hello=world"
+  * console.log(_$.urlQuery("hello"));//Returns "world";
+  * //Or on a custom url:
+  * console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
+  * @returns {String} The url query
+  */
   urlQuery: (query, url = window.location.href) => {
     query = query.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + query + '(=([^&#]*)|&|#|$)'),
@@ -2381,14 +2381,17 @@ let _temp = {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   },
   disableRightClick: (el) => { el.oncontextmenu = false; },
-  addBookmark: () => {if (window.sidebar) { // Mozilla Firefox Bookmark
-      window.sidebar.addPanel(location.href,document.title,"");
-    } else if(window.external) { // IE Favorite
-      window.external.AddFavorite(location.href,document.title); }
-    else if(window.opera && window.print) { // Opera Hotlist
-      this.title=document.title;
+  addBookmark: () => {
+    if (window.sidebar) { // Mozilla Firefox Bookmark
+      window.sidebar.addPanel(location.href, document.title, "");
+    } else if (window.external) { // IE Favorite
+      window.external.AddFavorite(location.href, document.title);
+    }
+    else if (window.opera && window.print) { // Opera Hotlist
+      this.title = document.title;
       return true;
-    }}
+    }
+  }
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
