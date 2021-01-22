@@ -65,5 +65,5 @@ Well, a few reasons:
 <small>(You can probably see I'm pretty desperate for people to use
 this.)</small>
 
-#Installation
+## Installation
 You guessed it...... ```npm i bijou.js``` 
