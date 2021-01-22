@@ -2381,13 +2381,13 @@ let _temp = {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   },
 /**
-* Disa
+* Disables right click on the element spcified.
 * @function
 * @memberOf bijou
-* @param {String}
+* @param {Element} el The element to disable right click on.
 * @example
-* //
-* @returns {String}
+* _$.disableRightClick(document.documentElement)
+* @returns {undefined}
 */
   disableRightClick: (el) => { el.oncontextmenu = false; },
 };
