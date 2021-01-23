@@ -10,14 +10,17 @@
   <!-- Nice theme color on mobile devices! -->
   <meta name="theme-color" content="#00a8a8" />
   <!-- Import bijou.js -->
-  <script src="https://unpkg.com/bijou.js@latest/bijou.js"></script>
-  <!-- Import showdown -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"
-    integrity="sha512-L03kznCrNOfVxOUovR6ESfCz9Gfny7gihUX/huVbQB9zjODtYpxaVtIaAkpetoiyV2eqWbvxMH9fiSv5enX7bw=="
-    crossorigin="anonymous"></script>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js" as="script">
+  <script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"></script>
   <!-- Import iconify (For buttons) -->
   <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-  <!-- Setup title -->
+  <!-- Prefetch -->
+  <link rel="prefetch" href="try.html">
+  <link rel="prefetch" href="/docs/index.html">
+  <link rel="prefetch" href="/docs/bijou.html">
+  <link rel="prefetch" href="/docs/bijou.js.html">
+  <link rel="prefetch" href="/docs/global.html">
+  <!-- Title -->
   <title>Bijou.js</title>
 </head>
 <!-- Use JS to load -->

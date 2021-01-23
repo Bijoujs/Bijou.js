@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/explosionscratch
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://bijou.js.org
+  * I am explosionscratch (https://keybase.io/explosionscratch) on keybase.
+  * I have a public key with fingerprint 1D0E EBC4 C6FD C06F 13C9  6796 C9C1 09EB C616 2A86
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101230538278eddf347226c7d80b3686bddbf202638bd4b30b43f19013509ccc9890a",
+      "fingerprint": "1d0eebc4c6fdc06f13c96796c9c109ebc6162a86",
+      "host": "keybase.io",
+      "key_id": "c9c109ebc6162a86",
+      "kid": "0101230538278eddf347226c7d80b3686bddbf202638bd4b30b43f19013509ccc9890a",
+      "uid": "c435d63b5d658b2ce894a24e5159f619",
+      "username": "explosionscratch"
+    },
+    "service": {
+      "hostname": "bijou.js.org",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1611342893,
+  "expire_in": 157680000,
+  "prev": "474009b4e920bb5005260d27928b79f2bc1c734468411f1a5186388a1e4dc3f5",
+  "seqno": 3,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.13
+Comment: https://keybase.io/crypto
+
+yMIuAnicrVJbbA1BGD5VhCJtKlpEidX2Qc45ZvYyu3NeGk1KQjQhVBuXY2d29nTb
+2j129xyEHkEjEdeH4xIhIvHkFpemQVCXIkpSD4140NQ1Ki51aYLqg1mXN4/mYSYz
+/3f7/0zHuNxQXs6YHjKj9+KPFTn3bxxNhVaNKY1sEIhjrBdiG4RG9utgTQbz/Hij
+ZQgxAUAARQkokiaqGjMMU5JVUURUNTRAJKQhYhjEFIGIJI0YMpEAkSUTYgAlBWBK
+KdYw0IWwYFp2grlJ17J9LgsNwBihMkWmQQEyoUQxUjGimEKAeQVBJOoa4sR6xwsY
+PBzRPRa1HP7GL/Ff8f6B/8+5U799ZEkxkET4pmhEpEzDsi7KTIEKNhHEAdBjrq2v
+ZhzN1iWbHM9ybI+6uk/rheawwKtpi7JgwEFHf5DEanBS0QYv6rgJrpF0Hd+hThOv
+1Pt+0osFTH99MoCuZST+RyROLNvg8+SMNHMDIyEGOZL6VqAKEYSSLGpYCgdRLJfF
+rQChqEgDfAU+LM0lZVUGABOZYREQogCgiAgYoopFjajYFAmFVJVkGWkyhCbUFajx
+cWk6ZLJBJVMRgrbW2I4Q406+nuCSnpWwdT/lMqH55vXlw0M5eaGRI4YF/yyUN7rg
+7+97emdUaOvisH31dHfbhM11Uu+Uiulvu+99n3v2xEOh4mAnuJRdeKvkypXk0cFh
+g+UNXZ/TRcnCM2/f7z5cuuDD9YnlZYN9k5ZeDnd4RQNb8lv6zn25OzPy/Mn88lDP
+2NDkJTM2bbuQP5RZ9GxgZd20zOPOtvG99NS7qgzZceRlbX9X4vWy2++nZbbXdp48
+3vq1Op0nt3cvbBQyi3adPzFUMCv2IPout33Oi414b/2xSHVxSVXx7FeRpq5R/eHE
+x6pnau3J/QeyS7J1+eq1S4eirdlvrXveiC3zPlUXVPbUnC6tXJF5dKO/RWBlXTX7
+ogsW262p/DZlZ87NxmzqS/t5EolumVrzua8Q/gQEKUCR
+=Q6jz
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/explosionscratch
+
+==================================================================

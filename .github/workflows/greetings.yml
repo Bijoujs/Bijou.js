@@ -1,0 +1,17 @@
+name: Greetings
+
+on: [pull_request, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: |
+                'Hi there! Welcome to Bijou.js! We appreciate you contributing to this project! Someone will look over your issue shortly! In the meantime you can take a look at our [website](https://bijou.js.org) to learn more about this project! 
+                <small>This message is automated</small>'
+        pr-message: |
+                Hi there! Welcome to Bijou.js! We appreciate you contributing to this project! Somebody will look this over soon. In the meantime, [take a look at our issues](https://github.com/Bijou-js/Bijou.js/issues?q=is%3Aissue). 
+                <small>This message is automated.</small>

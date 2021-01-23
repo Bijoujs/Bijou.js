@@ -16,6 +16,7 @@
   --fast-transition: 0.3s;
   --monospace-font: "Courier New";
   --main-font: "Poppins", sans-serif;
+  --padding: 10px;
   --large-padding: 20px;
   --margin-top: 10px;
   --margin-bottom: 10px;
@@ -60,6 +61,9 @@
 }
 .padding {
   padding: var(--padding);
+}
+.large-padding {
+  padding: var(--large-padding);
 }
 .margin-top {
   margin-top: var(--margin-top);
