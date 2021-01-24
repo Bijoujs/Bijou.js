@@ -2253,6 +2253,54 @@ let _temp = {
   * @returns {undefined}
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
+    /**
+  * Finds and replace multiple values with multiple other values.
+  * @function
+  * @memberOf bijou
+  * @param {String} text The text to operate the replace on.
+  * @param {Object} replace The object with find and replace values.
+  * @example
+  * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
+  * @returns {String} The replaced string
+  */
+  replaceMultiple: (text, replace) => {
+    var re = new RegExp(Object.keys(replace).join("|"), "gi");
+    text = text.replace(re, function (matched) {
+      return mapObj[matched];
+    });
+    return text;
+  },
+  /**
+  * Returns the queries from a given url (Or just the current url)
+  * @function
+  * @memberOf bijou
+  * @param {String} query The url query to get.
+  * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
+  * @example
+  * //If the website adress of the current page was "https://example.com/?q=hello&hello=world"
+  * console.log(_$.urlQuery("hello"));//Returns "world";
+  * //Or on a custom url:
+  * console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
+  * @returns {String} The url query
+  */
+  urlQuery: (query, url = window.location.href) => {
+    query = query.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + query + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  },
+  /**
+  * Disables right click on the element spcified.
+  * @function
+  * @memberOf bijou
+  * @param {Element} el The element to disable right click on.
+  * @example
+  * _$.disableRightClick(document.documentElement)
+  * @returns {undefined}
+  */
+  disableRightClick: (el) => { return el.oncontextmenu = false; },
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
