@@ -2254,7 +2254,7 @@ let _temp = {
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
   sanitizeHTML: (input) => {
-    var tags = ["A","B", "BODY", "DIV", "BLOCKQUOTE", "IMG", "EM", "HR", "I", "H1", "H2", "H3", "H4", "H5", "H6", "BR", "ASIDE", "MAIN", "SPAN", "SMALL", "STRONG", "UL", "LI", "TABLE", "TH", "TR", "TD", "OL", "P", "S"];
+    var tags = ["A", "B", "BODY", "DIV", "BLOCKQUOTE", "IMG", "EM", "HR", "I", "H1", "H2", "H3", "H4", "H5", "H6", "BR", "ASIDE", "MAIN", "SPAN", "SMALL", "STRONG", "UL", "LI", "TABLE", "TH", "TR", "TD", "OL", "P", "S"];
 
     var attributes = ["href", "src"];
 
@@ -2293,13 +2293,13 @@ let _temp = {
     return resultElement.innerHTML;
   },
   inlineCSS: (el) => {
-      s = getComputedStyle(el);
+    s = getComputedStyle(el);
 
-      for (let key in s) {
-        let prop = key.replace(/\-([a-z])/g, v => v[1].toUpperCase());
-        el.style[prop] = s[key];
+    for (let key in s) {
+      let prop = key.replace(/\-([a-z])/g, v => v[1].toUpperCase());
+      el.style[prop] = s[key];
     }
-}
+  }
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
