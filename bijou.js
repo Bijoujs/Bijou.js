@@ -2304,7 +2304,7 @@ let _temp = {
     return resultElement.innerHTML;
   },
 /**
-* Converts all of the sty
+* Converts all of the styles for an element to inline
 * @function
 * @memberOf bijou
 * @param {String}
