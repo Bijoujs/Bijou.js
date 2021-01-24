@@ -2312,7 +2312,7 @@ a.click();
 window.URL.revokeObjectURL(url);
 };
 
-saveBlob(file, 'test.zip');
+saveBlob(file, 'test.zip
   clone: (object) => JSON.parse(JSON.stringify(object)),
   /**
    * A set of functions to set and modify cookies.
