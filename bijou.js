@@ -2300,7 +2300,7 @@ let _temp = {
       el.style[prop] = s[key];
     }
   },
-  clone: (object) => JSON.parse(JSON.stringi)
+  clone: (object) => JSON.parse(JSON.stringify)
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
