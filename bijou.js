@@ -2325,7 +2325,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Blob} blob The blob to save as a file.
-* @param {String} [fileName=output.txt] The outpu
+* @param {String} [fileName=output.txt] The name of the output file 
 * @example
 * //
 * @returns {undefined}
