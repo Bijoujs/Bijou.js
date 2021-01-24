@@ -2304,7 +2304,7 @@ let _temp = {
     return resultElement.innerHTML;
   },
 /**
-* Converts all of the 
+* Converts all of the sty
 * @function
 * @memberOf bijou
 * @param {String}
