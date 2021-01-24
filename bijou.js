@@ -2308,7 +2308,7 @@ function makeSanitizedCopy(node) {
 var resultElement = makeSanitizedCopy(iframe.contentDocument.body);
 document.body.removeChild(iframe);
 return resultElement.innerHTML;
-};
+},
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
