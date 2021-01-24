@@ -2299,7 +2299,8 @@ let _temp = {
       let prop = key.replace(/\-([a-z])/g, v => v[1].toUpperCase());
       el.style[prop] = s[key];
     }
-  }
+  },
+  
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
