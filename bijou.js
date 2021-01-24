@@ -2276,7 +2276,7 @@ let _temp = {
 
     var iframe = document.createElement('iframe');
     if (iframe['sandbox'] === undefined) {
-      throw new E
+      throw new Error("N")
     }
     iframe['sandbox'] = 'allow-same-origin';
     iframe.style.display = 'none';
