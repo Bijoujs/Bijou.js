@@ -2303,6 +2303,15 @@ let _temp = {
     document.body.removeChild(iframe);
     return resultElement.innerHTML;
   },
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param {String}
+* @example
+* //
+* @returns {undefined}
+*/
   inlineCSS: (el) => {
     s = getComputedStyle(el);
 
