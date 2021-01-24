@@ -2292,7 +2292,7 @@ let _temp = {
     document.body.removeChild(iframe);
     return resultElement.innerHTML;
   },
-  inlineCSS: (el)
+  inlineCSS: (el) 
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
