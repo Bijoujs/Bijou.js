@@ -2276,7 +2276,7 @@ let _temp = {
 
     var iframe = document.createElement('iframe');
     if (iframe['sandbox'] === undefined) {
-      throw new Error("Browser does not support sandbox")
+      throw new Error("Browser does not support sandboxe")
     }
     iframe['sandbox'] = 'allow-same-origin';
     iframe.style.display = 'none';
