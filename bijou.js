@@ -2254,7 +2254,7 @@ let _temp = {
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
   sanitizeHTML: (input) => {
-    var tagWhitelist_ = {
+    var tags = {
       'A': true,
       'B': true,
       'BODY': true,
