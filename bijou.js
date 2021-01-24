@@ -2254,7 +2254,7 @@ let _temp = {
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
   sanitizeHTML: (input) => {
-    var tags = ["A","B", "BODY", "DIV", "BLOCKQUOTE", "IMG", "EM", "HR", "I", "H1", "H2", "H3", "H4", "H5", "H6", "BR", "ASIDE", "MAIN", "SPAN", "SMALL", "STRONG", "UL", "LI", "TABLE", "TH", "TR", "TD", "OOL"];
+    var tags = ["A","B", "BODY", "DIV", "BLOCKQUOTE", "IMG", "EM", "HR", "I", "H1", "H2", "H3", "H4", "H5", "H6", "BR", "ASIDE", "MAIN", "SPAN", "SMALL", "STRONG", "UL", "LI", "TABLE", "TH", "TR", "TD", "OL"];
 
     var attributes = ["href", "src", ""];
 
