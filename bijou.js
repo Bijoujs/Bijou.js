@@ -164,9 +164,7 @@ let _temp = {
    * @returns {Object} the assigned object.
    */
   addStyles: (el, styles) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     return Object.assign(el.style, styles);
   },
   /**
@@ -180,9 +178,7 @@ let _temp = {
    * @returns {Function} the function that was called.
    */
   onOutsideClick: (element, callback) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     document.addEventListener("click", (e) => {
       if (!element.contains(e.target)) callback();
     });
@@ -199,9 +195,7 @@ let _temp = {
    */
   onScrollStop: (callback) => {
     let isScrolling;
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     window.addEventListener(
       "scroll",
       (e) => {
@@ -223,9 +217,7 @@ let _temp = {
    * @returns {String} The string copied.
    */
   copy: (str) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     const el = document.createElement("textarea");
     el.value = str;
     el.setAttribute("readonly", "");
@@ -287,9 +279,7 @@ let _temp = {
    * @returns {Element} The created element.
    */
   createElement: (str) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     const el = document.createElement("div");
     el.innerHTML = str;
     return el.firstElementChild;
@@ -303,9 +293,7 @@ let _temp = {
    * @returns {String} A string of the browser name that the user is using.
    */
   browser: () => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     var isOpera =
       (!!window.opr && !!opr.addons) ||
       !!window.opera ||
@@ -362,9 +350,7 @@ let _temp = {
    * @returns {undefined}
    */
   notify: (text, body, icon) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     if (!window.Notification) {
       console.log("Browser does not support notifications.");
     } else {
@@ -536,9 +522,7 @@ let _temp = {
    * @returns {Boolean} Whether the element is completely in view.
    */
   inView: (el) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     var top = el.offsetTop;
     var left = el.offsetLeft;
     var width = el.offsetWidth;
@@ -568,9 +552,7 @@ let _temp = {
    * @returns {Boolean} Whether the DOM element is partially in view.
    */
   inPartialView: (el) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     var top = el.offsetTop;
     var left = el.offsetLeft;
     var width = el.offsetWidth;
@@ -597,9 +579,7 @@ let _temp = {
    * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
    */
   serializeForm: (form) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     return Array.from(new FormData(form), (field) =>
       field.map(encodeURIComponent).join("=")
     ).join("&");
@@ -614,9 +594,7 @@ let _temp = {
    * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
    */
   formToObject: (form) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     return Array.from(new FormData(form)).reduce((acc, [key, value]) => ({
       ...acc,
       [key]: value,
@@ -693,9 +671,7 @@ let _temp = {
    * @returns {String} The url of the previous page the user visited.
    */
   previousPage: () => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     return document.referrer || window.location.href;
   },
   /**
@@ -710,9 +686,7 @@ let _temp = {
    * @returns {String} The element who's text was replaced.
    */
   replaceText: (el, callback) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     for (
       var e,
       t = (function () {
@@ -883,9 +857,7 @@ let _temp = {
    * @returns {String} The computed style property for the element specified.
    */
   compStyle: (el, prop) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     var computedStyles = window.getComputedStyle(el);
     return computedStyles.getPropertyValue(prop);
   },
@@ -940,9 +912,7 @@ let _temp = {
    * @returns {String} The generated querySelector.
    */
   querySelector: (elem) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     var element = elem;
     var str = "";
 
@@ -1178,9 +1148,7 @@ let _temp = {
    * @returns {String} The highlighted string of code as HTML code.
    */
   syntaxHighlight: (string, mode = "html", colors = {}) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     let el = document.createElement("DIV");
     el.innerText = string;
     let highlightel = (elmnt, mode, colors = {}) => {
@@ -1857,9 +1825,7 @@ let _temp = {
    * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
    */
   mobileOrDesktop: () => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     )
@@ -1923,9 +1889,7 @@ let _temp = {
    * @returns {Element} The element.
    */
   drag: (el) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     var initX, initY, mousePressX, mousePressY;
     el.addEventListener(
       "mousedown",
@@ -2009,9 +1973,7 @@ let _temp = {
    * @returns {undefined}
    */
   getJSON: (url, callback) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     fetch(url)
       .then((res) => res.json())
       .then((json) => callback(json))
@@ -2029,9 +1991,7 @@ let _temp = {
    * @returns {undefined}
    */
   getHTML: (url, callback) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node()
     fetch(url)
       .then((res) => res.text())
       .then((html) => callback(_$.parseHTML(html)))
