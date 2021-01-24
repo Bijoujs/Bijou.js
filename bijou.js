@@ -2309,7 +2309,7 @@ let _temp = {
 * @memberOf bijou
 * @param {Element} el The element to convert.
 * @example
-* _$.inlineCSS(document.document)
+* _$.inlineCSS(document.documentElement);//
 * @returns {undefined}
 */
   inlineCSS: (el) => {
