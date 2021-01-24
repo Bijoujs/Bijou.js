@@ -2311,7 +2311,7 @@ let _temp = {
   * @param {Object} object The object to clone.
   * @returns {Object} The output cloned object.
   */
-  clone: (object) => {}node(); JSON.parse(JSON.stringify(object)),
+  clone: (object) => {node(); JSON.parse(JSON.stringify(object)),
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
