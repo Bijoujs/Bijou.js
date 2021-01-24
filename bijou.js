@@ -2259,7 +2259,7 @@ let _temp = {
 * @memberOf bijou
 * @param {String} input The input string to sanitize.
 * @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
-* @param {Array} [attributes=undefined] The array of attributes to allow, currently only 
+* @param {Array} [attributes=undefined] The array of attributes to allow. By 
 * @example
 * //
 * @returns {undefined}
