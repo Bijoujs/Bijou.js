@@ -2254,20 +2254,7 @@ let _temp = {
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
   sanitizeHTML: (input) => {
-    var tags = {
-      'A': true,
-      'B': true,
-      'BODY': true,
-      'BR': true,
-      'DIV': true,
-      'EM': true,
-      'HR': true,
-      'I': true,
-      'IMG': true,
-      'P': true,
-      'SPAN': true,
-      'STRONG': true
-    };
+    var tags = [];
 
     var attributes = {
       'href': true,
