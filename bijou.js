@@ -2304,7 +2304,7 @@ let _temp = {
     return resultElement.innerHTML;
   },
 /**
-* DESC
+* Conver
 * @function
 * @memberOf bijou
 * @param {String}
