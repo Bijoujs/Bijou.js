@@ -2341,17 +2341,7 @@ let _temp = {
     a.click();
     window.URL.revokeObjectURL(url);
   },
-  saveBlob: (blob, fileName = "output.txt") => {
-    var a = document.createElement("a");
-    document.body.appendChild(a);
-    a.style = "display: none";
-
-    var url = window.URL.createObjectURL(blob);
-    a.href = url;
-    a.download = fileName;
-    a.click();
-    window.URL.revokeObjectURL(url);
-  },
+  
   clone: (object) => JSON.parse(JSON.stringify(object)),
   /**
    * A set of functions to set and modify cookies.
