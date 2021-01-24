@@ -2292,7 +2292,15 @@ let _temp = {
     document.body.removeChild(iframe);
     return resultElement.innerHTML;
   },
-  inlineCSS: (el) => {}
+  inlineCSS: (el) => {function applyStyle(el) {
+    s = getComputedStyle(el);
+
+    for (let key in s) {
+        let prop = key.replace(/\-([a-z])/g, v => v[1].toUpperCase());
+        el.style[prop] = s[key];
+    }
+}
+}
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
