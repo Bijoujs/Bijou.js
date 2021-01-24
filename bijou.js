@@ -2256,7 +2256,7 @@ let _temp = {
   sanitizeHTML: (input) => {
     var tags = ["A","B", "BODY", "DIV", "BLOCKQUOTE", "IMG", "EM", "HR", "I", "H1", "H2", "H3", "H4", "H5", "H6", "BR", "ASIDE", "MAIN", "SPAN", "SMALL", "STRONG"];
 
-    var attributes = []"HREF";
+    var attributes = ["HREF";
 
     var iframe = document.createElement('iframe');
     if (iframe['sandbox'] === undefined) {
