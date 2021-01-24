@@ -2386,7 +2386,7 @@ let _temp = {
 * _$.disableRightClick(document.documentElement)
 * @returns {undefined}
 */
-  disableRightClick: (el) => { el.oncontextmenu = false; },
+  disableRightClick: (el) => { return el.oncontextmenu = false; },
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
