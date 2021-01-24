@@ -2261,7 +2261,7 @@ let _temp = {
 * @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
 * @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
 * @example
-* _$.sanitizeHTML("<script>alert('hello')></script><b>");//
+* _$.sanitizeHTML("<script>alert('hello')></script><b>A n");//
 * @returns {String} The sanitized HTML string.
 */
   sanitizeHTML: (input, tags = undefined, attributes = undefined) => {
