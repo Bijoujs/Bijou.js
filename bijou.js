@@ -2300,7 +2300,7 @@ let _temp = {
       el.style[prop] = s[key];
     }
   },
-  
+  deep
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
