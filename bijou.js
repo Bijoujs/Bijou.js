@@ -2269,7 +2269,7 @@ let _temp = {
       'STRONG': true
     };
 
-    var attr = {
+    var attributes = {
       'href': true,
       'src': true
     };
