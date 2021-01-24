@@ -2348,6 +2348,8 @@ let _temp = {
      * @returns {String} The value of the cookie
     */
     getItem: (name) => {
+      node();
+
       var nameEQ = name + "=";
       var ca = document.cookie.split(";");
       for (var i = 0; i < ca.length; i++) {
