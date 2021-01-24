@@ -2342,7 +2342,7 @@ let _temp = {
     window.URL.revokeObjectURL(url);
   },
 /**
-* DESC
+* D
 * @function
 * @memberOf bijou
 * @param {String}
