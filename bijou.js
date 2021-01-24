@@ -2345,7 +2345,7 @@ let _temp = {
 * Deep clones an object
 * @function
 * @memberOf bijou
-* @param {Object} object TH
+* @param {Object} object The o
 * @example
 * //
 * @returns {undefined}
