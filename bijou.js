@@ -2293,7 +2293,6 @@ let _temp = {
     return resultElement.innerHTML;
   },
   inlineCSS: (el) => {
-    function applyStyle(el) {
       s = getComputedStyle(el);
 
       for (let key in s) {
