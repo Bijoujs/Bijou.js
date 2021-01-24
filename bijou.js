@@ -2377,15 +2377,15 @@ let _temp = {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   },
-/**
-* Disables right click on the element spcified.
-* @function
-* @memberOf bijou
-* @param {Element} el The element to disable right click on.
-* @example
-* _$.disableRightClick(document.documentElement)
-* @returns {undefined}
-*/
+  /**
+  * Disables right click on the element spcified.
+  * @function
+  * @memberOf bijou
+  * @param {Element} el The element to disable right click on.
+  * @example
+  * _$.disableRightClick(document.documentElement)
+  * @returns {undefined}
+  */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
 };
 // Sort the object
