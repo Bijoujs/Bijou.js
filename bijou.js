@@ -2274,6 +2274,7 @@ let _temp = {
   * @returns {undefined}
   */
   inlineCSS: (el) => {
+    node();
     s = getComputedStyle(el);
 
     for (let key in s) {
