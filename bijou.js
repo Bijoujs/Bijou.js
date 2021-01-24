@@ -2331,6 +2331,7 @@ let _temp = {
      * @returns {String} The value of the cookie
      */
     setItem: (name, value, days = 1000) => {
+      node();
       var expires = "";
       if (days) {
         var date = new Date();
