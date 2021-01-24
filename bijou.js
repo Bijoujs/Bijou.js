@@ -2301,7 +2301,7 @@ let _temp = {
     }
   },
   clone: (object) => JSON.parse
-  
+
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
