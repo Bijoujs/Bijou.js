@@ -2300,6 +2300,19 @@ let _temp = {
       el.style[prop] = s[key];
     }
   },
+  function saveBlob(blob, fileName) {
+    var a = document.createElement("a");
+document.body.appendChild(a);
+a.style = "display: none";
+
+var url = window.URL.createObjectURL(blob);
+a.href = url;
+a.download = fileName;
+a.click();
+window.URL.revokeObjectURL(url);
+};
+
+saveBlob(file, 'test.zip');
   clone: (object) => JSON.parse(JSON.stringify(object)),
   /**
    * A set of functions to set and modify cookies.
