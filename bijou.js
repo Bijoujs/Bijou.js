@@ -2269,7 +2269,7 @@ let _temp = {
       'STRONG': true
     };
 
-    var attributeWhitelist_ = {
+    var attr = {
       'href': true,
       'src': true
     };
