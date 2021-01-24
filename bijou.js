@@ -2254,7 +2254,7 @@ let _temp = {
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
   sanitizeHTML: (input) => {
-    var tags = ["a",];
+    var tags = ["B",];
 
     var attributes = {
       'href': true,
