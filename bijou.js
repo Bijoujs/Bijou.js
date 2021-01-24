@@ -2390,7 +2390,6 @@ let _temp = {
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
-// Descriptions:
 
 // Imports and exports
 const _$ = _temp;
