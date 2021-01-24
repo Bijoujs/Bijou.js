@@ -2254,7 +2254,7 @@ let _temp = {
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
 /**
-* Sanitizes an HTML string. It is 
+* Sanitizes an HTML string. It is quite possibvl
 * @function
 * @memberOf bijou
 * @param {String} input The input string to sanitize.
