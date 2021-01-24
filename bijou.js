@@ -2212,7 +2212,7 @@ let _temp = {
   * _$.disableRightClick(document.documentElement)
   * @returns {undefined}
   */
-  disableRightClick: (el) => { return el.oncontextmenu = false; },
+  disableRightClick: (el) => {node() return el.oncontextmenu = false; },
   /**
   * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
   * @function
