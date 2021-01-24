@@ -2347,7 +2347,7 @@ let _temp = {
 * @memberOf bijou
 * @param {Object} object The object to clone.
 * @example
-* //
+* 
 * @returns {undefined}
 */
   clone: (object) => JSON.parse(JSON.stringify(object)),
