@@ -2307,7 +2307,7 @@ let _temp = {
 * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
 * @function
 * @memberOf bijou
-* @param {Element}
+* @param {Element} el The element to 
 * @example
 * //
 * @returns {undefined}
