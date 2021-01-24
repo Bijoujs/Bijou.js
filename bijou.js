@@ -2304,7 +2304,7 @@ let _temp = {
     return resultElement.innerHTML;
   },
 /**
-* Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Beca)
+* Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses com)
 * @function
 * @memberOf bijou
 * @param {String}
