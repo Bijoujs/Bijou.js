@@ -2286,7 +2286,7 @@ let _temp = {
     function makeSanitizedCopy(node) {
       if (node.nodeType == Node.TEXT_NODE) {
         var newNode = node.cloneNode(true);
-      } else if (node.nodeType == Node.ELEMENT_NODE && tags.[node.tagName]) {
+      } else if (node.nodeType == Node.ELEMENT_NODE && tags.include[node.tagName]) {
         newNode = iframe.contentDocument.createElement(node.tagName);
         for (var i = 0; i < node.attributes.length; i++) {
           var attr = node.attributes[i];
