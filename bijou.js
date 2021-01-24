@@ -2257,7 +2257,7 @@ let _temp = {
 * Sanitizes an HTML string.
 * @function
 * @memberOf bijou
-* @param {String}
+* @param {String} input The in
 * @example
 * //
 * @returns {undefined}
