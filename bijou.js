@@ -2329,7 +2329,7 @@ let _temp = {
 * //
 * @returns {undefined}
 */
-  saveBlob: (blob, fileName) => {
+  saveBlob: (blob, fileName = "") => {
     var a = document.createElement("a");
     document.body.appendChild(a);
     a.style = "display: none";
