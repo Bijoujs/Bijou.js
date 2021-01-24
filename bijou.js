@@ -2342,7 +2342,7 @@ let _temp = {
     window.URL.revokeObjectURL(url);
   },
 /**
-* Deep clones an obe
+* Deep clones an object
 * @function
 * @memberOf bijou
 * @param {String}
