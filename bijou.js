@@ -2290,7 +2290,7 @@ let _temp = {
         newNode = iframe.contentDocument.createElement(node.tagName);
         for (var i = 0; i < node.attributes.length; i++) {
           var attr = node.attributes[i];
-          if (attributeWhitelist_[attr.name]) {
+          if (attributes.in[attr.name]) {
             newNode.setAttribute(attr.name, attr.value);
           }
         }
