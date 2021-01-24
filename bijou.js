@@ -2262,7 +2262,7 @@ let _temp = {
 * @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
 * @example
 * //
-* @returns {String} The sanitized HTML 
+* @returns {String} The sanitized HTML string.
 */
   sanitizeHTML: (input, tags = undefined, attributes = undefined) => {
     var tags = tags || ["A", "B", "BODY", "DIV", "BLOCKQUOTE", "IMG", "EM", "HR", "I", "H1", "H2", "H3", "H4", "H5", "H6", "BR", "ASIDE", "MAIN", "SPAN", "SMALL", "STRONG", "UL", "LI", "TABLE", "TH", "TR", "TD", "OL", "P", "S"];
