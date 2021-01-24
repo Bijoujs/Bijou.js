@@ -2253,17 +2253,17 @@ let _temp = {
   * @returns {undefined}
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
-/**
-* Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
-* @function
-* @memberOf bijou
-* @param {String} input The input string to sanitize.
-* @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
-* @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
-* @example
-* _$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>");//Returns "<b>A normal tag</b>"
-* @returns {String} The sanitized HTML string.
-*/
+  /**
+  * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
+  * @function
+  * @memberOf bijou
+  * @param {String} input The input string to sanitize.
+  * @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
+  * @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
+  * @example
+  * _$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>");//Returns "<b>A normal tag</b>"
+  * @returns {String} The sanitized HTML string.
+  */
   sanitizeHTML: (input, tags = undefined, attributes = undefined) => {
     var tags = tags || ["A", "B", "BODY", "DIV", "BLOCKQUOTE", "IMG", "EM", "HR", "I", "H1", "H2", "H3", "H4", "H5", "H6", "BR", "ASIDE", "MAIN", "SPAN", "SMALL", "STRONG", "UL", "LI", "TABLE", "TH", "TR", "TD", "OL", "P", "S"];
 
@@ -2303,15 +2303,15 @@ let _temp = {
     document.body.removeChild(iframe);
     return resultElement.innerHTML;
   },
-/**
-* Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
-* @function
-* @memberOf bijou
-* @param {Element} el The element to convert.
-* @example
-* _$.inlineCSS(document.querySelector("h1"));//Converts the styles for the <h1> element to inline using the style="___" attribute
-* @returns {undefined}
-*/
+  /**
+  * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
+  * @function
+  * @memberOf bijou
+  * @param {Element} el The element to convert.
+  * @example
+  * _$.inlineCSS(document.querySelector("h1"));//Converts the styles for the <h1> element to inline using the style="___" attribute
+  * @returns {undefined}
+  */
   inlineCSS: (el) => {
     s = getComputedStyle(el);
 
@@ -2320,16 +2320,16 @@ let _temp = {
       el.style[prop] = s[key];
     }
   },
-/**
-* Saves a blob as a file!
-* @function
-* @memberOf bijou
-* @param {Blob} blob The blob to save as a file.
-* @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
-* @example
-* _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
-* @returns {undefined}
-*/
+  /**
+  * Saves a blob as a file!
+  * @function
+  * @memberOf bijou
+  * @param {Blob} blob The blob to save as a file.
+  * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
+  * @example
+  * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
+  * @returns {undefined}
+  */
   saveBlob: (blob, fileName = "output.txt") => {
     var a = document.createElement("a");
     document.body.appendChild(a);
@@ -2341,13 +2341,13 @@ let _temp = {
     a.click();
     window.URL.revokeObjectURL(url);
   },
-/**
-* Deep clones an object
-* @function
-* @memberOf bijou
-* @param {Object} object The object to clone.
-* @returns {Object} The output cloned object.
-*/
+  /**
+  * Deep clones an object
+  * @function
+  * @memberOf bijou
+  * @param {Object} object The object to clone.
+  * @returns {Object} The output cloned object.
+  */
   clone: (object) => JSON.parse(JSON.stringify(object)),
   /**
    * A set of functions to set and modify cookies.
