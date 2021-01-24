@@ -2253,7 +2253,7 @@ let _temp = {
   * @returns {undefined}
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
-  sanitizwe
+  sanitiz
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
