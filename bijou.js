@@ -2258,7 +2258,7 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {String} input The input string to sanitize.
-* @param {Object} 
+* @param {Object} tags The
 * @example
 * //
 * @returns {undefined}
