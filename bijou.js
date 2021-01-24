@@ -2254,7 +2254,27 @@ let _temp = {
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
   sanitizeHTML: 
-  function sanitizeHtml(input) {
+    function sanitizeHtml(input) {
+      var tagWhitelist_ = {
+        'A': true,
+        'B': true,
+        'BODY': true,
+        'BR': true,
+        'DIV': true,
+        'EM': true,
+        'HR': true,
+        'I': true,
+        'IMG': true,
+        'P': true,
+        'SPAN': true,
+        'STRONG': true
+      };
+
+      var attributeWhitelist_ = {
+        'href': true,
+        'src': true
+      };
+
     var iframe = document.createElement('iframe');
 if (iframe['sandbox'] === undefined) {
   alert('Your browser does not support sandboxed iframes. Please upgrade to a modern browser.');
