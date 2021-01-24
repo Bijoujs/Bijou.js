@@ -2346,7 +2346,6 @@ let _temp = {
 * @function
 * @memberOf bijou
 * @param {Object} object The object to clone.
-* @example
 * 
 * @returns {undefined}
 */
