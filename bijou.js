@@ -2276,8 +2276,7 @@ let _temp = {
 
     var iframe = document.createElement('iframe');
     if (iframe['sandbox'] === undefined) {
-      alert('Your browser does not support sandboxed iframes. Please upgrade to a modern browser.');
-      return '';
+      throw new E
     }
     iframe['sandbox'] = 'allow-same-origin';
     iframe.style.display = 'none';
