@@ -2341,7 +2341,15 @@ let _temp = {
     a.click();
     window.URL.revokeObjectURL(url);
   },
-  
+/**
+* DESC
+* @function
+* @memberOf bijou
+* @param {String}
+* @example
+* //
+* @returns {undefined}
+*/
   clone: (object) => JSON.parse(JSON.stringify(object)),
   /**
    * A set of functions to set and modify cookies.
