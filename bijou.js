@@ -2253,26 +2253,7 @@ let _temp = {
   * @returns {undefined}
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
-  sanitizeHTML: var tagWhitelist_ = {
-    'A': true,
-    'B': true,
-    'BODY': true,
-    'BR': true,
-    'DIV': true,
-    'EM': true,
-    'HR': true,
-    'I': true,
-    'IMG': true,
-    'P': true,
-    'SPAN': true,
-    'STRONG': true
-  };
-
-  var attributeWhitelist_ = {
-    'href': true,
-    'src': true
-  };
-
+  sanitizeHTML: 
   function sanitizeHtml(input) {
     var iframe = document.createElement('iframe');
 if (iframe['sandbox'] === undefined) {
