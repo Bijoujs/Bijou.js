@@ -2327,7 +2327,7 @@ let _temp = {
 * @param {Blob} blob The blob to save as a file.
 * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
 * @example
-* _$.saveBlob(new)
+* _$.saveBlob(new )
 * @returns {undefined}
 */
   saveBlob: (blob, fileName = "output.txt") => {
