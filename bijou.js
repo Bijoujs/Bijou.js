@@ -2324,7 +2324,7 @@ let _temp = {
 * Saves a blob as a file!
 * @function
 * @memberOf bijou
-* @param {blob}
+* @param {Blob}
 * @example
 * //
 * @returns {undefined}
