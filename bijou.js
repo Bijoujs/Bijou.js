@@ -2298,7 +2298,6 @@ let _temp = {
       for (let key in s) {
         let prop = key.replace(/\-([a-z])/g, v => v[1].toUpperCase());
         el.style[prop] = s[key];
-      }
     }
 }
   /**
