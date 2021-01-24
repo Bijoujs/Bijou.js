@@ -2309,7 +2309,7 @@ let _temp = {
 * @memberOf bijou
 * @param {Element} el The element to convert.
 * @example
-* _$.inlineCSS(document.documentElement);//Converts the styles for the <h1> element to inline us
+* _$.inlineCSS(document.documentElement);//Converts the styles for the <h1> element to inline using the 
 * @returns {undefined}
 */
   inlineCSS: (el) => {
