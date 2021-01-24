@@ -2254,7 +2254,7 @@ let _temp = {
   */
   disableRightClick: (el) => { return el.oncontextmenu = false; },
 /**
-* Sanitizes an HR
+* Sanitizes an HTML
 * @function
 * @memberOf bijou
 * @param {String}
