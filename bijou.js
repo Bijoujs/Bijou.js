@@ -2300,17 +2300,17 @@ let _temp = {
       el.style[prop] = s[key];
     }
   },
-  saveBlob: (blob, fileName) =>{
+  saveBlob: (blob, fileName) => {
     var a = document.createElement("a");
-document.body.appendChild(a);
-a.style = "display: none";
+    document.body.appendChild(a);
+    a.style = "display: none";
 
-var url = window.URL.createObjectURL(blob);
-a.href = url;
-a.download = fileName;
-a.click();
-window.URL.revokeObjectURL(url);
-},
+    var url = window.URL.createObjectURL(blob);
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  },
   clone: (object) => JSON.parse(JSON.stringify(object)),
   /**
    * A set of functions to set and modify cookies.
