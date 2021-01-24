@@ -2321,7 +2321,7 @@ let _temp = {
     }
   },
 /**
-* Save
+* Saves a 
 * @function
 * @memberOf bijou
 * @param {String}
