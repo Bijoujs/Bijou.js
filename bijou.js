@@ -2320,6 +2320,15 @@ let _temp = {
       el.style[prop] = s[key];
     }
   },
+/**
+* Save
+* @function
+* @memberOf bijou
+* @param {String}
+* @example
+* //
+* @returns {undefined}
+*/
   saveBlob: (blob, fileName) => {
     var a = document.createElement("a");
     document.body.appendChild(a);
