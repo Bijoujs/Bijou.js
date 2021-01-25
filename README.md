@@ -22,20 +22,25 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 ## CDN
 
 jsDelivr:
+
 ```js
 <script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"></script>
 ```
 
 UNPKG
+
 ```js
 <script src="https://unpkg.com/bijou.js@latest/bijou.js"></script>
 ```
 
 ## `require()`
+
 ```js
 const _$ = require("bijou.js");
 ```
+
 # Usage
+
 To use Bijou.js simply call one of the many functions built into it!
 
 ```js
@@ -66,4 +71,5 @@ Well, a few reasons:
 this.)</small>
 
 ## Installation
-You guessed it...... ```npm i bijou.js``` 
+
+Bijou.js is availible in node.js, just run `npm i bijou.js`!

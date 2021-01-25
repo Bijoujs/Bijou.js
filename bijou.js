@@ -95,8 +95,8 @@ let _temp = {
    */
   primesTo: (num) => {
     let arr = Array.from({
-      length: num - 1,
-    }).map((x, i) => i + 2),
+        length: num - 1,
+      }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -238,16 +238,16 @@ let _temp = {
     return str;
   },
   /**
-  * Only runs the input function at MAX with the delay specified.
-  * @function
-  * @memberOf bijou
-  * @param {Function} fn The function to run.
-  * @param {Number} wait The number of milliseconds to wait.
-  * @example
-  * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
-  * setInterval(alert_function, 1)
-  * @returns {Function} The throttled function
-  */
+   * Only runs the input function at MAX with the delay specified.
+   * @function
+   * @memberOf bijou
+   * @param {Function} fn The function to run.
+   * @param {Number} wait The number of milliseconds to wait.
+   * @example
+   * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
+   * setInterval(alert_function, 1)
+   * @returns {Function} The throttled function
+   */
   throttle: (fn, wait) => {
     let inThrottle, lastFn, lastTime;
     return function () {
@@ -305,7 +305,7 @@ let _temp = {
         return p.toString() === "[object SafariRemoteNotification]";
       })(
         !window["safari"] ||
-        (typeof safari !== "undefined" && window["safari"].pushNotification)
+          (typeof safari !== "undefined" && window["safari"].pushNotification)
       );
     var isIE = /*@cc_on!@*/ false || !!document.documentMode;
     var isEdge = !isIE && !!window.StyleMedia;
@@ -412,7 +412,7 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-            !obj[key] ? "" : obj[key]
+              !obj[key] ? "" : obj[key]
             }"`,
           ""
         )
@@ -468,7 +468,7 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-        ? Object.keys(obj).reduce((acc, current) => {
+      ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current);
           const val = obj[current];
           acc[key] =
@@ -477,7 +477,7 @@ let _temp = {
               : val;
           return acc;
         }, {})
-        : obj,
+      : obj,
   /**
    * Converts an array to CSV (Comma separated values) data.
    * @function
@@ -689,14 +689,14 @@ let _temp = {
     node();
     for (
       var e,
-      t = (function () {
-        for (var e, t = el, o = [], a = 0; a < t.length; a++)
-          (e = t[a].childNodes[0]),
-            t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-        return o;
-      })(),
-      o = 0,
-      a = t.length;
+        t = (function () {
+          for (var e, t = el, o = [], a = 0; a < t.length; a++)
+            (e = t[a].childNodes[0]),
+              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
+          return o;
+        })(),
+        o = 0,
+        a = t.length;
       o < a;
       o++
     )
@@ -1744,26 +1744,26 @@ let _temp = {
       }
       function getNumPos(txt, func) {
         var arr = [
-          "<br>",
-          " ",
-          ";",
-          "(",
-          "+",
-          ")",
-          "[",
-          "]",
-          ",",
-          "&",
-          ":",
-          "{",
-          "}",
-          "/",
-          "-",
-          "*",
-          "|",
-          "%",
-          "=",
-        ],
+            "<br>",
+            " ",
+            ";",
+            "(",
+            "+",
+            ")",
+            "[",
+            "]",
+            ",",
+            "&",
+            ":",
+            "{",
+            "}",
+            "/",
+            "-",
+            "*",
+            "|",
+            "%",
+            "=",
+          ],
           i,
           j,
           c,
@@ -1977,7 +1977,9 @@ let _temp = {
     fetch(url)
       .then((res) => res.json())
       .then((json) => callback(json))
-      .catch((error) => { throw new Error(error.stack) });
+      .catch((error) => {
+        throw new Error(error.stack);
+      });
   },
   /**
    * Gets HTML from a URL and performs a callback with it.
@@ -1995,7 +1997,9 @@ let _temp = {
     fetch(url)
       .then((res) => res.text())
       .then((html) => callback(_$.parseHTML(html)))
-      .catch((error) => { throw new Error(error.stack) });
+      .catch((error) => {
+        throw new Error(error.stack);
+      });
   },
   /**
    * Shuffles an array
@@ -2346,7 +2350,7 @@ let _temp = {
      * @memberOf bijou
      * @param {String} name The name of the cookie.
      * @returns {String} The value of the cookie
-    */
+     */
     getItem: (name) => {
       node();
 
@@ -2412,22 +2416,22 @@ let _temp = {
     /** Validates a link
      */
     link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
-    /** 
+    /**
      * Tests for a strong password.
      * Should have:
      * 1 lowercase letter
      * 1 uppercase letter
      * 1 number
-     * 1 special character 
+     * 1 special character
      * At least 8 characters long
-    */
+     */
     strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
     /**
      * Tests for a moderate password.
      * Should have:
      * 1 lowercase letter
      * 1 uppercase letter
-     * 1 number 
+     * 1 number
      * At least 8 characters long */
     moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
     /** Ip adresses */
@@ -2451,6 +2455,59 @@ let _temp = {
     mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
     discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
   },
+
+  /**
+   * Finds and replace multiple values with multiple other values.
+   * @function
+   * @memberOf bijou
+   * @param {String} text The text to operate the replace on.
+   * @param {Object} replace The object with find and replace values.
+   * @example
+   * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
+   * @returns {String} The replaced string
+   */
+  replaceMultiple: (text, replace) => {
+    var re = new RegExp(Object.keys(replace).join("|"), "gi");
+    text = text.replace(re, function (matched) {
+      return mapObj[matched];
+    });
+    return text;
+  },
+  /**
+   * Returns the queries from a given url (Or just the current url)
+   * @function
+   * @memberOf bijou
+   * @param {String} query The url query to get.
+   * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
+   * @example
+   * //If the website adress of the current page was "https://example.com/?q=hello&hello=world"
+   * console.log(_$.urlQuery("hello"));//Returns "world";
+   * //Or on a custom url:
+   * console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
+   * @returns {String} The url query
+   */
+  urlQuery: (query, url = window.location.href) => {
+    query = query.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + query + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return "";
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  },
+  /**
+   * Disables right click on the element spcified.
+   * @function
+   * @memberOf bijou
+   * @param {Element} el The element to disable right click on.
+   * @example
+   * _$.disableRightClick(document.documentElement)
+   * @returns {undefined}
+   */
+  disableRightClick: (el) => {
+    el.oncontextmenu = false;
+  },
+=======
+
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
