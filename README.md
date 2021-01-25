@@ -66,6 +66,7 @@ Well, a few reasons:
    issues tab! I'd be happy to add it!)
 3. It's jam packed full of functions that are super useful but hard to think of!
 4. 31 other people this month used it, so why shouldn't you?
+5. It's very easy to use, and your suggestions can be added!
 
 <small>(You can probably see I'm pretty desperate for people to use
 this.)</small>
