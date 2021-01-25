@@ -164,9 +164,7 @@ let _temp = {
    * @returns {Object} the assigned object.
    */
   addStyles: (el, styles) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     return Object.assign(el.style, styles);
   },
   /**
@@ -180,9 +178,7 @@ let _temp = {
    * @returns {Function} the function that was called.
    */
   onOutsideClick: (element, callback) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     document.addEventListener("click", (e) => {
       if (!element.contains(e.target)) callback();
     });
@@ -199,9 +195,7 @@ let _temp = {
    */
   onScrollStop: (callback) => {
     let isScrolling;
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     window.addEventListener(
       "scroll",
       (e) => {
@@ -223,9 +217,7 @@ let _temp = {
    * @returns {String} The string copied.
    */
   copy: (str) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     const el = document.createElement("textarea");
     el.value = str;
     el.setAttribute("readonly", "");
@@ -287,9 +279,7 @@ let _temp = {
    * @returns {Element} The created element.
    */
   createElement: (str) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     const el = document.createElement("div");
     el.innerHTML = str;
     return el.firstElementChild;
@@ -303,9 +293,7 @@ let _temp = {
    * @returns {String} A string of the browser name that the user is using.
    */
   browser: () => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     var isOpera =
       (!!window.opr && !!opr.addons) ||
       !!window.opera ||
@@ -362,9 +350,7 @@ let _temp = {
    * @returns {undefined}
    */
   notify: (text, body, icon) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     if (!window.Notification) {
       console.log("Browser does not support notifications.");
     } else {
@@ -536,9 +522,7 @@ let _temp = {
    * @returns {Boolean} Whether the element is completely in view.
    */
   inView: (el) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     var top = el.offsetTop;
     var left = el.offsetLeft;
     var width = el.offsetWidth;
@@ -568,9 +552,7 @@ let _temp = {
    * @returns {Boolean} Whether the DOM element is partially in view.
    */
   inPartialView: (el) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     var top = el.offsetTop;
     var left = el.offsetLeft;
     var width = el.offsetWidth;
@@ -597,9 +579,7 @@ let _temp = {
    * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
    */
   serializeForm: (form) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     return Array.from(new FormData(form), (field) =>
       field.map(encodeURIComponent).join("=")
     ).join("&");
@@ -614,9 +594,7 @@ let _temp = {
    * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
    */
   formToObject: (form) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     return Array.from(new FormData(form)).reduce((acc, [key, value]) => ({
       ...acc,
       [key]: value,
@@ -693,9 +671,7 @@ let _temp = {
    * @returns {String} The url of the previous page the user visited.
    */
   previousPage: () => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     return document.referrer || window.location.href;
   },
   /**
@@ -710,9 +686,7 @@ let _temp = {
    * @returns {String} The element who's text was replaced.
    */
   replaceText: (el, callback) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     for (
       var e,
         t = (function () {
@@ -883,9 +857,7 @@ let _temp = {
    * @returns {String} The computed style property for the element specified.
    */
   compStyle: (el, prop) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     var computedStyles = window.getComputedStyle(el);
     return computedStyles.getPropertyValue(prop);
   },
@@ -940,9 +912,7 @@ let _temp = {
    * @returns {String} The generated querySelector.
    */
   querySelector: (elem) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     var element = elem;
     var str = "";
 
@@ -1178,9 +1148,7 @@ let _temp = {
    * @returns {String} The highlighted string of code as HTML code.
    */
   syntaxHighlight: (string, mode = "html", colors = {}) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     let el = document.createElement("DIV");
     el.innerText = string;
     let highlightel = (elmnt, mode, colors = {}) => {
@@ -1857,9 +1825,7 @@ let _temp = {
    * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
    */
   mobileOrDesktop: () => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     )
@@ -1923,9 +1889,7 @@ let _temp = {
    * @returns {Element} The element.
    */
   drag: (el) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     var initX, initY, mousePressX, mousePressY;
     el.addEventListener(
       "mousedown",
@@ -2009,9 +1973,7 @@ let _temp = {
    * @returns {undefined}
    */
   getJSON: (url, callback) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     fetch(url)
       .then((res) => res.json())
       .then((json) => callback(json))
@@ -2031,9 +1993,7 @@ let _temp = {
    * @returns {undefined}
    */
   getHTML: (url, callback) => {
-    if (isNode) {
-      throw new Error("No document element! (You are probably using Node.js)");
-    }
+    node();
     fetch(url)
       .then((res) => res.text())
       .then((html) => callback(_$.parseHTML(html)))
@@ -2210,6 +2170,153 @@ let _temp = {
     }
   },
   /**
+* Finds and replace multiple values with multiple other values.
+* @function
+* @memberOf bijou
+* @param {String} text The text to operate the replace on.
+* @param {Object} replace The object with find and replace values.
+* @example
+* _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
+* @returns {String} The replaced string
+*/
+  replaceMultiple: (text, replace) => {
+    var re = new RegExp(Object.keys(replace).join("|"), "gi");
+    text = text.replace(re, function (matched) {
+      return mapObj[matched];
+    });
+    return text;
+  },
+  /**
+  * Returns the queries from a given url (Or just the current url)
+  * @function
+  * @memberOf bijou
+  * @param {String} query The url query to get.
+  * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
+  * @example
+  * //If the website adress of the current page was "https://example.com/?q=hello&hello=world"
+  * console.log(_$.urlQuery("hello"));//Returns "world";
+  * //Or on a custom url:
+  * console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
+  * @returns {String} The url query
+  */
+  urlQuery: (query, url = window.location.href) => {
+    query = query.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + query + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  },
+  /**
+  * Disables right click on the element spcified.
+  * @function
+  * @memberOf bijou
+  * @param {Element} el The element to disable right click on.
+  * @example
+  * _$.disableRightClick(document.documentElement)
+  * @returns {undefined}
+  */
+  disableRightClick: (el) => { node(); return el.oncontextmenu = false; },
+  /**
+  * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
+  * @function
+  * @memberOf bijou
+  * @param {String} input The input string to sanitize.
+  * @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
+  * @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
+  * @example
+  * _$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>");//Returns "<b>A normal tag</b>"
+  * @returns {String} The sanitized HTML string.
+  */
+  sanitizeHTML: (input, tags = undefined, attributes = undefined) => {
+    node();
+    var tags = tags || ["A", "B", "BODY", "DIV", "BLOCKQUOTE", "IMG", "EM", "HR", "I", "H1", "H2", "H3", "H4", "H5", "H6", "BR", "ASIDE", "MAIN", "SPAN", "SMALL", "STRONG", "UL", "LI", "TABLE", "TH", "TR", "TD", "OL", "P", "S"];
+
+    var attributes = attributes || ["href", "src"];
+
+    var iframe = document.createElement('iframe');
+    if (iframe['sandbox'] === undefined) {
+      throw new Error("Browser does not support sandboxed iframes.")
+    }
+    iframe['sandbox'] = 'allow-same-origin';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe); // necessary so the iframe contains a document
+    iframe.contentDocument.body.innerHTML = input;
+
+    function makeSanitizedCopy(node) {
+      if (node.nodeType == Node.TEXT_NODE) {
+        var newNode = node.cloneNode(true);
+      } else if (node.nodeType == Node.ELEMENT_NODE && tags.includes(node.tagName)) {
+        newNode = iframe.contentDocument.createElement(node.tagName);
+        for (var i = 0; i < node.attributes.length; i++) {
+          var attr = node.attributes[i];
+          if (attributes.includes(attr.name)) {
+            newNode.setAttribute(attr.name, attr.value);
+          }
+        }
+        for (i = 0; i < node.childNodes.length; i++) {
+          var subCopy = makeSanitizedCopy(node.childNodes[i]);
+          newNode.appendChild(subCopy, false);
+        }
+      } else {
+        newNode = document.createDocumentFragment();
+      }
+      return newNode;
+    };
+
+    var resultElement = makeSanitizedCopy(iframe.contentDocument.body);
+    document.body.removeChild(iframe);
+    return resultElement.innerHTML;
+  },
+  /**
+  * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
+  * @function
+  * @memberOf bijou
+  * @param {Element} el The element to convert.
+  * @example
+  * _$.inlineCSS(document.querySelector("h1"));//Converts the styles for the <h1> element to inline using the style="___" attribute
+  * @returns {undefined}
+  */
+  inlineCSS: (el) => {
+    node();
+    s = getComputedStyle(el);
+
+    for (let key in s) {
+      let prop = key.replace(/\-([a-z])/g, v => v[1].toUpperCase());
+      el.style[prop] = s[key];
+    }
+  },
+  /**
+  * Saves a blob as a file!
+  * @function
+  * @memberOf bijou
+  * @param {Blob} blob The blob to save as a file.
+  * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
+  * @example
+  * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
+  * @returns {undefined}
+  */
+  saveBlob: (blob, fileName = "output.txt") => {
+    node();
+    var a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display: none";
+
+    var url = window.URL.createObjectURL(blob);
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  },
+  /**
+  * Deep clones an object
+  * @function
+  * @memberOf bijou
+  * @param {Object} object The object to clone.
+  * @returns {Object} The output cloned object.
+  */
+  clone: (object) => { node(); return JSON.parse(JSON.stringify(object)) },
+  /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
    * @Object
@@ -2228,6 +2335,7 @@ let _temp = {
      * @returns {String} The value of the cookie
      */
     setItem: (name, value, days = 1000) => {
+      node();
       var expires = "";
       if (days) {
         var date = new Date();
@@ -2244,6 +2352,8 @@ let _temp = {
      * @returns {String} The value of the cookie
      */
     getItem: (name) => {
+      node();
+
       var nameEQ = name + "=";
       var ca = document.cookie.split(";");
       for (var i = 0; i < ca.length; i++) {
@@ -2260,6 +2370,8 @@ let _temp = {
      * @returns {undefined}
      */
     removeItem: (name) => {
+      node();
+
       document.cookie =
         name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     },
@@ -2343,6 +2455,7 @@ let _temp = {
     mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
     discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
   },
+
   /**
    * Finds and replace multiple values with multiple other values.
    * @function
@@ -2393,113 +2506,11 @@ let _temp = {
   disableRightClick: (el) => {
     el.oncontextmenu = false;
   },
+=======
+
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
-// Descriptions:
-let desc = {
-  addStyles:
-    "Add the styles in an object to a specified element:\n\n \t_$.addStyles(element, {background: 'red'});\n\n(Changes the background color of the element to red!)",
-  arrayToCSV: `Returns a comma separated list from the specified array. \n\n\t_$.arrayToCSV([['a', 'b'], ['c', 'd']]);//'"a","b"\n"c","d"'\n\nNote that this also escapes characters such as quotes.`,
-  averageBy:
-    "This returns the average of an array based on the given function, for example:\n\n\t_$.averageBy([1,2,3,4], (val) => val / 2);//Returns the average of each element after each element has been divided by 2.",
-  async:
-    "Runs the given function in a web worker, returning a promise with the return value. This is useful to prevent the main thread from becoming clogged while trying to compute something.",
-  browser:
-    "Returns the current browser without sniffing the user-agent string. e.g. 'Chrome'",
-  compStyle:
-    "Returns an element of the computed style, e.g. \n\n\t_$.compStyle(document.querySelector('h1'), 'background-color'); //Returns the background-color of the first <h1>",
-  copy:
-    "Copies the text specified to the clipboard, e.g. \n\n\t_$.copy('Hello world');",
-  createElement:
-    "Returns a DOM element who's outerHTML is the string provided: \n\n\t_$.createElement('<div id=`fun`>Hello</div>);//Returns a DOM element whose id is 'fun' and whose innerText is 'Hello'",
-  dayName: "Returns the day of the week from a Date object.",
-  each:
-    "Runs a function with each element of an array: \n\n\t_$.each([1,2,3], (num) => alert(num * 3));//Alerts each number in the array times 3",
-  escapeHTML:
-    "Returns an escaped version of the HTML string provided: \n\n\t_$.escapeHTML('<script>');//'&lt;script&gt;'",
-  formToObject:
-    "Converts a form to a javascript object using each element's 'name' attribute as the key and the 'value' attribute as the value.",
-  formatMilliseconds:
-    "Formats a number of milliseconds into a human-readable duration of time, e.g. \n\n\t_$.formatMilliseconds(600000);//Returns '10 minutes'",
-  hexToRGB: "Converts a hex value into an RGB color.",
-  inPartialView:
-    "Returns whether the specified element is visible at all in the viewport. Usefull for lazy loading images!",
-  inView:
-    "Returns whether the specified element is completely visible in the viewport.",
-  jsonToCsv: "Converts a JSON object to CSV.",
-  lightOrDark:
-    "Returns an object, the key 'lightordark' returns either 'light' or 'dark' and the key 'hsp' returns the value of the color from 0 (completely dark) to 255 (completely bright).",
-  lightenColor:
-    "Lightens or darkens a hex color by a certain amount, on a scale rom 0 (completely dark) to 255 (completely bright): \n\n\t_$.lightenColor('#ffffff', -20);//Returns '#ebebeb'.",
-  mapObjectKeys:
-    "Maps an object's keys recursively: \n\n\t_$.mapObjectKeys({\r\n    key: 'value',\r\n    another: {\r\n        deep: 'thing',\r\n        map: 'another'\r\n    }\r\n}, (key) => key.toUpperCase()); // Transforms every key of the object to uppercase.",
-  notify:
-    "Notifies the user through a desktop notification. Takes 3 arguments: text, body, icon. Text is the title of the notification, body is the message of it, and icon is the icon displayed next to the notification.",
-  onOutsideClick:
-    'Returns the callback when a click is called outside the specified element:\r\n\r\n    _$.onoutsideclick(document.querySelector("h1"), () => {alert("You clicked outside the header")}); // Alerts when the user clicks anywhere that is NOT the h1 in question.',
-  onScrollStop: "Returns the callback when a user stops scrolling the window. ",
-  previousPage: "Returns the url of the previous page that the user visited.",
-  primesTo: "Returns an array of all the prime numbers up to the number given.",
-  querySelector: "Generates a unique querySelector for the given element.",
-  random:
-    "Returns a random number between two numbers:\n\n\t_$.random(-10,10,false);//Return a random number between -10 and 10 and DO NOT round it. (True as the last value would round it.)",
-  randomColor: "Returns a random hex color.",
-  removeComments: "Removes comments from the HTML element specified.",
-  replaceText:
-    'Replaces the text of the specified element by passing the old value through a function:\r\n\r\n    _$.replaceText(document, (oldtext) => oldtext.replace(" ", "-"));//Replace all spaces in the document with a hyphen.',
-  rgbToHex: "Returns the hex code of a given RGB string.",
-  seedRandom: "Gives a random number based on a whole number seed.",
-  serializeForm: "Convert a form to url queries",
-  sortObj: "Returns an alphabetized copy of the object by keys.",
-  throttle:
-    "Runs the function specified, the second input controls at MAX how much wait there is between the next time it runs:\n\n\t_$.throttle(() => alert('hello'), 10000);\n\nRunning this like any other function will simply just run the function, however if you try to run the throttled function in a setInterval loop or before its timeout ends it will not run.",
-  timeFunction:
-    "Use console.time to how long the function inputted takes to execute.",
-  unescapeHTML: "Unescapes the string of HTML specified.",
-  unionArrays:
-    "Merges two arrays using union, meaning that any duplicates between the two arrays will be removed.",
-  uuid:
-    "Generates a unique id, like the uuid npm package. Also can take a seed as the argument, this can either be a string or a number between 0 and 1. \n\n\tFor example:\n8dfe52e3-7beb-48eb-8282-209ff1c5250f",
-  widows:
-    "Replaces the last space character between words with '&nbsp;', preventing a single word on a newline.",
-  flatten:
-    "This takes a 2d array (an array of arrays) and flattens in into a 1d array (a list of items).",
-  uniqueArray: "Removes duplicates from an array",
-  formatNumber: "Adds commas to large numbers in the right place.",
-  spliceArrayBuffer:
-    "Splices a number as if it's 8 bits long and converts it to a single number:\n\n\t_$.spliceArrayBuffer([5, 8, 255], 0, 2, true);//16713733",
-  unCamelCase:
-    "Un-camelCases a string. Camel case is when a string's case looks like this: camelCase, where the normal version would be Camel Case.",
-  parseHTML:
-    "Parses HTML and returns a document object representing the parsed HTML.",
-  syntaxHighlight:
-    "Highlight a string of code! \n\n\t_$.syntaxHighlight('alert(\"Hello\")', 'js');//Returns html of the syntax highlighted version. \n\nAlso supports CSS and HTML. Note: This needs <br> tags instead of normal line breaks.",
-  composeFunction:
-    "Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj",
-  curryFunction:
-    "Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb",
-  removeTags: "Returns an html string stripped of tags.",
-  desktopOrMobile:
-    "Returns whether the user is using a desktop or mobile device. (Uses user-agent sniffing which can be spoofed)",
-  camelCase:
-    "Takes a string as an input and returns the camelCased version of it.",
-  scrambleString: "Scrambles a string's characters and returns the output.",
-  drag: "Allows the element provided to be dragged. (Drag and drop.)",
-  ease:
-    "The only non-function in Bijou.js. This has a variety of easing functions, all of which take a number between 0 and 1, and return a corresponding value for the easing function. For example this code: \n\n\t_$.ease.easeInOutQuad(.3);\n\nWould return the eased value for a point about a third of the way through the animation.",
-  getJSON:
-    "Runs the callback with the JSON (as an object) from the url specified in the first argument.",
-  getHTML:
-    "Runs the callback with the HTML (as a parsed html object) from the url specified in the first argument.",
-  shuffleArray: "Returns the input array shuffled",
-  hashString:
-    "Returns the hashed version of a string. This is a very fast method! (So says stackoverflow :P)",
-};
-desc = _temp.sortObj(desc);
-_temp.info = (prop) => {
-  return desc[prop];
-};
 
 // Imports and exports
 const _$ = _temp;
