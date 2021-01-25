@@ -66,4 +66,4 @@ Well, a few reasons:
 this.)</small>
 
 ## Installation
-You guessed it...... ```npm i bijou.js``` 
+Bijou.js is availible in node.js, just run ```npm i bijou.js```! 
