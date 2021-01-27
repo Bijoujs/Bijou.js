@@ -2217,7 +2217,7 @@ let _temp = {
   * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
   * @function
   * @memberOf bijou
-  * @param {String} input The input string to sanitize.
+  * @param {String} html The input string to sanitize.
   * @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
   * @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
   * @example
@@ -2539,7 +2539,11 @@ let _temp = {
     discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
   },
   /**
-   * Cno
+   * Converts markdown to HTML. 
+   * @param {String} src The markdown to convert to HTML.
+   * @memberOf bijou
+   * @function
+   * @returns {String} The string of HTML converted from the markdown input.
    */
   markdownToHTML: (src) => {
 
