@@ -2539,7 +2539,7 @@ let _temp = {
     discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
   },
   /**
-   * 
+   * Cno
    */
   markdownToHTML: (src) => {
 
