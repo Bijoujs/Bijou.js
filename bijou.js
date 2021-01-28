@@ -2400,6 +2400,175 @@ let _temp = {
   */
   clone: (object) => { node(); return JSON.parse(JSON.stringify(object)) },
   /**
+ * Converts markdown to HTML. 
+ * @param {String} src The markdown to convert to HTML.
+ * @memberOf bijou
+ * @function
+ * @example
+ * _$.markdownToHTML("_Italic text_, **bold text**");//Returns "<em>Italic text</em>, <b>bold text</b>"
+ * @returns {String} The string of HTML converted from the markdown input.
+ */
+  markdownToHTML: (src) => {
+
+    var rx_lt = /</g;
+    var rx_gt = />/g;
+    var rx_space = /\t|\r|\uf8ff/g;
+    var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
+    var rx_hr = /^([*\-=_] *){3,}$/gm;
+    var rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g;
+    var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
+    var rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g;
+    var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
+    var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|((    .*?\n)+))/g;
+    var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
+    var rx_table = /\n(( *\|.*?\| *\n)+)/g;
+    var rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
+    var rx_row = /.*\n/g;
+    var rx_cell = /\||(.*?[^\\])\|/g;
+    var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
+    var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
+    var rx_stash = /-\d+\uf8ff/g;
+
+    function replace(rex, fn) {
+      src = src.replace(rex, fn);
+    }
+
+    function element(tag, content) {
+      return '<' + tag + '>' + content + '</' + tag + '>';
+    }
+
+    function blockquote(src) {
+      return src.replace(rx_blockquote, function (all, content) {
+        return element('blockquote', blockquote(highlight(content.replace(/^ *&gt; */gm, ''))));
+      });
+    }
+
+    function list(src) {
+      return src.replace(rx_list, function (all, ind, ol, num, low, content) {
+        var entry = element('li', highlight(content.split(
+          RegExp('\n ?' + ind + '(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +', 'g')).map(list).join('</li><li>')));
+
+        return '\n' + (ol
+          ? '<ol start="' + (num
+            ? ol + '">'
+            : parseInt(ol, 36) - 9 + '" style="list-style-type:' + (low ? 'low' : 'upp') + 'er-alpha">') + entry + '</ol>'
+          : element('ul', entry));
+      });
+    }
+
+    function highlight(src) {
+      return src.replace(rx_highlight, function (all, _, p1, emp, sub, sup, small, big, p2, content) {
+        return _ + element(
+          emp ? (p2 ? 'strong' : 'em')
+            : sub ? (p2 ? 's' : 'sub')
+              : sup ? 'sup'
+                : small ? 'small'
+                  : big ? 'big'
+                    : 'code',
+          highlight(content));
+      });
+    }
+
+    function unesc(str) {
+      return str.replace(rx_escape, '$1');
+    }
+
+    var stash = [];
+    var si = 0;
+
+    src = '\n' + src + '\n';
+
+    replace(rx_lt, '&lt;');
+    replace(rx_gt, '&gt;');
+    replace(rx_space, '  ');
+
+    // blockquote
+    src = blockquote(src);
+
+    // horizontal rule
+    replace(rx_hr, '<hr/>');
+
+    // list
+    src = list(src);
+    replace(rx_listjoin, '');
+
+    // code
+    replace(rx_code, function (all, p1, p2, p3, p4) {
+      stash[--si] = element('pre', element('code', p3 || p4.replace(/^    /gm, '')));
+      return si + '\uf8ff';
+    });
+
+    // link or image
+    replace(rx_link, function (all, p1, p2, p3, p4, p5, p6) {
+      stash[--si] = p6 ? p6 : p2
+        ? p4
+          ? '<img src="' + p4 + '" alt="' + p3 + '"/>'
+          : p1
+        : '<a href="' + p4 + '">' + unesc(highlight(p3)) + '</a>';
+      return si + '\uf8ff';
+    });
+
+    // table
+    replace(rx_table, function (all, table) {
+      var sep = table.match(rx_thead)[1];
+      return '\n' + element('table',
+        table.replace(rx_row, function (row, ri) {
+          return row == sep ? '' : element('tr', row.replace(rx_cell, function (all, cell, ci) {
+            return ci ? element(sep && !ri ? 'th' : 'td', unesc(highlight(cell || ''))) : ''
+          }))
+        })
+      )
+    });
+
+    // heading
+    replace(rx_heading, function (all, _, p1, p2) { return _ + element('h' + p1.length, unesc(highlight(p2))) });
+
+    // paragraph
+    replace(rx_para, function (all, content) { return element('p', unesc(highlight(content))) });
+
+    // stash
+    replace(rx_stash, function (all) { return stash[parseInt(all)] });
+
+    return src.trim();
+  },
+  /**
+   * Animates a number from one value to another.
+   * @function
+   * @memberOf bijou
+   * @param {Number} start The initial value of the number in the animation
+   * @param {Number} end The final value of the number in the animation
+   * @param {Number} duration The duration of the animation in milliseconds
+   * @param {Function} callback The callback function to run with the number and the percentage (Between 0 and 1) of the animation.
+   * @param {Number} [interval=20] The amount of time to wait between frames in milliseconds.
+   * @param {Function} num The function to run to manipulate the timing of the animation, for example setting this to (current_number) => current_number **2 would make a simple ease in function. (The value recieved by this is also between 0 and 1, feel free to use some stuff from _$.ease.FUNCTION_HERE(current_number) to incorporate easy easing!)
+   * @example
+   * Animates from 50 to 100 over the course of 3 seconds, updating every half second, and writing the current value to the document body.
+   * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
+   */
+  animate: (
+    start,
+    end,
+    duration,
+    callback,
+    interval = 20,
+    num = (num) => num,
+  ) => {
+    var value = start;
+    var steps = duration / interval;
+    var step = 0;
+    var start_time = Date.now();
+    var percentage = 0;
+    let update = setInterval(() => {
+      value = num((Date.now() - start_time) / duration) * (end - start) + start;
+      callback(value, num((Date.now() - start_time) / duration));
+    }, interval);
+    setTimeout(() => {
+      clearInterval(update);
+      callback(end, 1);
+      return;
+    }, duration);
+  },
+  /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
    * @Object
@@ -2537,137 +2706,7 @@ let _temp = {
     expressCredit: /^3[47][0–9]{13}$/,
     mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
     discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
-  },
-  /**
-   * Converts markdown to HTML. 
-   * @param {String} src The markdown to convert to HTML.
-   * @memberOf bijou
-   * @function
-   * @returns {String} The string of HTML converted from the markdown input.
-   */
-  markdownToHTML: (src) => {
-
-    var rx_lt = /</g;
-    var rx_gt = />/g;
-    var rx_space = /\t|\r|\uf8ff/g;
-    var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
-    var rx_hr = /^([*\-=_] *){3,}$/gm;
-    var rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g;
-    var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
-    var rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g;
-    var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
-    var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|((    .*?\n)+))/g;
-    var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
-    var rx_table = /\n(( *\|.*?\| *\n)+)/g;
-    var rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
-    var rx_row = /.*\n/g;
-    var rx_cell = /\||(.*?[^\\])\|/g;
-    var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
-    var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
-    var rx_stash = /-\d+\uf8ff/g;
-
-    function replace(rex, fn) {
-      src = src.replace(rex, fn);
-    }
-
-    function element(tag, content) {
-      return '<' + tag + '>' + content + '</' + tag + '>';
-    }
-
-    function blockquote(src) {
-      return src.replace(rx_blockquote, function (all, content) {
-        return element('blockquote', blockquote(highlight(content.replace(/^ *&gt; */gm, ''))));
-      });
-    }
-
-    function list(src) {
-      return src.replace(rx_list, function (all, ind, ol, num, low, content) {
-        var entry = element('li', highlight(content.split(
-          RegExp('\n ?' + ind + '(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +', 'g')).map(list).join('</li><li>')));
-
-        return '\n' + (ol
-          ? '<ol start="' + (num
-            ? ol + '">'
-            : parseInt(ol, 36) - 9 + '" style="list-style-type:' + (low ? 'low' : 'upp') + 'er-alpha">') + entry + '</ol>'
-          : element('ul', entry));
-      });
-    }
-
-    function highlight(src) {
-      return src.replace(rx_highlight, function (all, _, p1, emp, sub, sup, small, big, p2, content) {
-        return _ + element(
-          emp ? (p2 ? 'strong' : 'em')
-            : sub ? (p2 ? 's' : 'sub')
-              : sup ? 'sup'
-                : small ? 'small'
-                  : big ? 'big'
-                    : 'code',
-          highlight(content));
-      });
-    }
-
-    function unesc(str) {
-      return str.replace(rx_escape, '$1');
-    }
-
-    var stash = [];
-    var si = 0;
-
-    src = '\n' + src + '\n';
-
-    replace(rx_lt, '&lt;');
-    replace(rx_gt, '&gt;');
-    replace(rx_space, '  ');
-
-    // blockquote
-    src = blockquote(src);
-
-    // horizontal rule
-    replace(rx_hr, '<hr/>');
-
-    // list
-    src = list(src);
-    replace(rx_listjoin, '');
-
-    // code
-    replace(rx_code, function (all, p1, p2, p3, p4) {
-      stash[--si] = element('pre', element('code', p3 || p4.replace(/^    /gm, '')));
-      return si + '\uf8ff';
-    });
-
-    // link or image
-    replace(rx_link, function (all, p1, p2, p3, p4, p5, p6) {
-      stash[--si] = p6 ? p6 : p2
-        ? p4
-          ? '<img src="' + p4 + '" alt="' + p3 + '"/>'
-          : p1
-        : '<a href="' + p4 + '">' + unesc(highlight(p3)) + '</a>';
-      return si + '\uf8ff';
-    });
-
-    // table
-    replace(rx_table, function (all, table) {
-      var sep = table.match(rx_thead)[1];
-      return '\n' + element('table',
-        table.replace(rx_row, function (row, ri) {
-          return row == sep ? '' : element('tr', row.replace(rx_cell, function (all, cell, ci) {
-            return ci ? element(sep && !ri ? 'th' : 'td', unesc(highlight(cell || ''))) : ''
-          }))
-        })
-      )
-    });
-
-    // heading
-    replace(rx_heading, function (all, _, p1, p2) { return _ + element('h' + p1.length, unesc(highlight(p2))) });
-
-    // paragraph
-    replace(rx_para, function (all, content) { return element('p', unesc(highlight(content))) });
-
-    // stash
-    replace(rx_stash, function (all) { return stash[parseInt(all)] });
-
-    return src.trim();
-  },
+  }
 };
 // Sort the object
 _temp = _temp.sortObj(_temp);
