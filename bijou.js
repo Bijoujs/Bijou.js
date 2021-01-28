@@ -2543,6 +2543,8 @@ let _temp = {
    * @param {String} src The markdown to convert to HTML.
    * @memberOf bijou
    * @function
+   * @example
+   * _$.markdownToHTML("_Italic text_, **BOLD**");//Returns "<em>Italic</em>, <b>BOLD</b>"
    * @returns {String} The string of HTML converted from the markdown input.
    */
   markdownToHTML: (src) => {
