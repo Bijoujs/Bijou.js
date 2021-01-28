@@ -76,6 +76,9 @@ if (isNode) {
     "There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element."
   );
 }
+function node(){
+  console.error("This function will not work in Node.JS, sorry! If you think that it should work in Node.js and could be able to please submit an issue in the GitHub repo for this project: https://github.com/bijou-js/bijou.js");
+}
 /**
  * Bijou.js source object. It contains all the functions of Bijou.
  * @type {Object}
