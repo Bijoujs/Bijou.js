@@ -56,7 +56,8 @@ Contributors to Bijou.js:
 ║ YOYITsM3M8        ║ Suggested a lot of         ║
 ║ (AKA retronbv)    ║ features and bug fixes.    ║
 ║═══════════════════║════════════════════════════║
-║ thecoder876       ║ Made some improvements.     ║
+║ thecoder876       ║ Made some improvements     ║
+║                   ║ to the website and library.║
 ╚═══════════════════╩════════════════════════════╝
 
 
