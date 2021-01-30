@@ -2623,7 +2623,7 @@ let _temp = {
     return output;
   },
 /**
- * Loads a script 
+ * Loads a script from a
  */
   loadScript: (url, callback) => {
     var script = document.createElement("script")
