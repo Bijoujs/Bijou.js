@@ -2575,7 +2575,7 @@ let _temp = {
   },
   /**
    * 
-   * @param {Function} fn The function to run 
+   * @param {Function} fn The function to run repeate
    * @param {*} delay 
    */
   requestInterval: function (fn, delay) {
