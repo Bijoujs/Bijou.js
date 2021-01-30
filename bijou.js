@@ -2609,7 +2609,7 @@ let _temp = {
           value: att.nodeValue
         });
       }
-    }
+    
   }
   /**
    * A set of functions to set and modify cookies.
