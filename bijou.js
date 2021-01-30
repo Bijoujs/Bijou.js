@@ -2601,10 +2601,10 @@ let _temp = {
     handle.value = requestAnimFrame(loop);
     return handle;
   },
-  /**
-   * 
-   * @param {Element} el The HTML element to get attributes of.
-   */
+/**
+ * 
+ * @param {*} el 
+ */
   attributes(el) {
     node();
     var output = [];
