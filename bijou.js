@@ -2601,7 +2601,16 @@ let _temp = {
     return handle;
   },
   attributes(el) {
-    
+    function attributes(el) {
+      var output = [];
+      for (var att, i = 0, atts = el.attributes, n = atts.length; i < n; i++) {
+        att = atts[i];
+        output.push({
+          name: att.nodeName,
+          value: att.nodeValue
+        });
+      }
+    }
   }
   /**
    * A set of functions to set and modify cookies.
