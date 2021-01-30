@@ -2606,7 +2606,7 @@ let _temp = {
    * Returns an array of objects representing the attributes of a passed element. 
    * @param {Element} el The HMTL element to get attributes from.
    * @example
-   * _$.attributes(document.documentE)
+   * _$.attributes(document.documentElement);
    */
   attributes(el) {
     node();
