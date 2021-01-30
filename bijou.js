@@ -2601,7 +2601,6 @@ let _temp = {
     return handle;
   },
   attributes(el) {
-    function attributes(el) {
       var output = [];
       for (var att, i = 0, atts = el.attributes, n = atts.length; i < n; i++) {
         att = atts[i];
