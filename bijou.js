@@ -2603,7 +2603,7 @@ let _temp = {
   },
 /**
  * 
- * @param {*} el 
+ * @param {Element} el T
  */
   attributes(el) {
     node();
