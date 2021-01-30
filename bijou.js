@@ -2606,7 +2606,7 @@ let _temp = {
    * Returns an array of objects representing the attributes of a passed element. 
    * @param {Element} el The HMTL element to get attributes from.
    * @example
-   * //Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "backgroun"
+   * //Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "sty"
    * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
    */
   attributes(el) {
