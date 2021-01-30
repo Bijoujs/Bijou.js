@@ -2624,7 +2624,7 @@ let _temp = {
   },
   /**
    * Loads a script from a url (Can be to a local file or to a url) then funs a callback once it's loaded.
-   * @param {String} url The url to loadth
+   * @param {String} url The url to load the scrip
    */
   loadScript: (url, callback) => {
     node();
