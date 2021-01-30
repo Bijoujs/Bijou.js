@@ -169,7 +169,7 @@ let _temp = {
    * @returns {Object} the assigned object.
    */
   addStyles: (el, styles) => {
-    throw node();
+    node();
     return Object.assign(el.style, styles);
   },
   /**
@@ -183,7 +183,7 @@ let _temp = {
    * @returns {Function} the function that was called.
    */
   onOutsideClick: (element, callback) => {
-    throw node();
+    node();
     document.addEventListener("click", (e) => {
       if (!element.contains(e.target)) callback();
     });
@@ -200,7 +200,7 @@ let _temp = {
    */
   onScrollStop: (callback) => {
     let isScrolling;
-    throw node();
+    node();
     window.addEventListener(
       "scroll",
       (e) => {
@@ -222,7 +222,7 @@ let _temp = {
    * @returns {String} The string copied.
    */
   copy: (str) => {
-    throw node();
+    node();
     const el = document.createElement("textarea");
     el.value = str;
     el.setAttribute("readonly", "");
@@ -284,7 +284,7 @@ let _temp = {
    * @returns {Element} The created element.
    */
   createElement: (str) => {
-    throw node();
+    node();
     const el = document.createElement("div");
     el.innerHTML = str;
     return el.firstElementChild;
@@ -298,7 +298,7 @@ let _temp = {
    * @returns {String} A string of the browser name that the user is using.
    */
   browser: () => {
-    throw node();
+    node();
     var isOpera =
       (!!window.opr && !!opr.addons) ||
       !!window.opera ||
@@ -355,7 +355,7 @@ let _temp = {
    * @returns {undefined}
    */
   notify: (text, body, icon) => {
-    throw node();
+    node();
     if (!window.Notification) {
       console.log("Browser does not support notifications.");
     } else {
@@ -527,7 +527,7 @@ let _temp = {
    * @returns {Boolean} Whether the element is completely in view.
    */
   inView: (el) => {
-    throw node();
+    node();
     var top = el.offsetTop;
     var left = el.offsetLeft;
     var width = el.offsetWidth;
@@ -557,7 +557,7 @@ let _temp = {
    * @returns {Boolean} Whether the DOM element is partially in view.
    */
   inPartialView: (el) => {
-    throw node();
+    node();
     var top = el.offsetTop;
     var left = el.offsetLeft;
     var width = el.offsetWidth;
@@ -584,7 +584,7 @@ let _temp = {
    * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
    */
   serializeForm: (form) => {
-    throw node();
+    node();
     return Array.from(new FormData(form), (field) =>
       field.map(encodeURIComponent).join("=")
     ).join("&");
@@ -599,7 +599,7 @@ let _temp = {
    * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
    */
   formToObject: (form) => {
-    throw node();
+    node();
     return Array.from(new FormData(form)).reduce((acc, [key, value]) => ({
       ...acc,
       [key]: value,
@@ -676,7 +676,7 @@ let _temp = {
    * @returns {String} The url of the previous page the user visited.
    */
   previousPage: () => {
-    throw node();
+    node();
     return document.referrer || window.location.href;
   },
   /**
@@ -691,7 +691,7 @@ let _temp = {
    * @returns {String} The element who's text was replaced.
    */
   replaceText: (el, callback) => {
-    throw node();
+    node();
     for (
       var e,
       t = (function () {
@@ -862,7 +862,7 @@ let _temp = {
    * @returns {String} The computed style property for the element specified.
    */
   compStyle: (el, prop) => {
-    throw node();
+    node();
     var computedStyles = window.getComputedStyle(el);
     return computedStyles.getPropertyValue(prop);
   },
@@ -917,7 +917,7 @@ let _temp = {
    * @returns {String} The generated querySelector.
    */
   querySelector: (elem) => {
-    throw node();
+    node();
     var element = elem;
     var str = "";
 
@@ -1153,7 +1153,7 @@ let _temp = {
    * @returns {String} The highlighted string of code as HTML code.
    */
   syntaxHighlight: (string, mode = "html", colors = {}) => {
-    throw node();
+    node();
     let el = document.createElement("DIV");
     el.innerText = string;
     let highlightel = (elmnt, mode, colors = {}) => {
@@ -1830,7 +1830,7 @@ let _temp = {
    * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
    */
   mobileOrDesktop: () => {
-    throw node();
+    node();
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     )
@@ -1894,7 +1894,7 @@ let _temp = {
    * @returns {Element} The element.
    */
   drag: (el) => {
-    throw node();
+    node();
     var initX, initY, mousePressX, mousePressY;
     el.addEventListener(
       "mousedown",
@@ -1978,7 +1978,7 @@ let _temp = {
    * @returns {undefined}
    */
   getJSON: (url, callback) => {
-    throw node();
+    node();
     fetch(url)
       .then((res) => res.json())
       .then((json) => callback(json))
@@ -1996,7 +1996,7 @@ let _temp = {
    * @returns {undefined}
    */
   getHTML: (url, callback) => {
-    throw node();
+    node();
     fetch(url)
       .then((res) => res.text())
       .then((html) => callback(_$.parseHTML(html)))
@@ -2217,7 +2217,7 @@ let _temp = {
   * _$.disableRightClick(document.documentElement)
   * @returns {undefined}
   */
-  disableRightClick: (el) => { throw node(); return el.oncontextmenu = false; },
+  disableRightClick: (el) => { node(); return el.oncontextmenu = false; },
   /**
   * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
   * @function
@@ -2230,7 +2230,7 @@ let _temp = {
   * @returns {String} The sanitized HTML string.
   */
   sanitize: (html, tags = undefined, attributes = undefined) => {
-    throw node();
+    node();
     var attributes = attributes || [
       { attribute: "src", tags: "*", regex: /^(?:https|http|\/\/):/ },
       { attribute: "href", tags: "*", regex: /^(?!javascript:).+/ },
@@ -2366,7 +2366,7 @@ let _temp = {
   * @returns {undefined}
   */
   inlineCSS: (el) => {
-    throw node();
+    node();
     s = getComputedStyle(el);
 
     for (let key in s) {
@@ -2385,7 +2385,7 @@ let _temp = {
   * @returns {undefined}
   */
   saveBlob: (blob, fileName = "output.txt") => {
-    throw node();
+    node();
     var a = document.createElement("a");
     document.body.appendChild(a);
     a.style = "display: none";
@@ -2403,7 +2403,7 @@ let _temp = {
   * @param {Object} object The object to clone.
   * @returns {Object} The output cloned object.
   */
-  clone: (object) => { throw node(); return JSON.parse(JSON.stringify(object)) },
+  clone: (object) => { node(); return JSON.parse(JSON.stringify(object)) },
   /**
  * Converts markdown to HTML. 
  * @param {String} src The markdown to convert to HTML.
@@ -2619,7 +2619,7 @@ let _temp = {
      * @returns {String} The value of the cookie
      */
     setItem: (name, value, days = 1000) => {
-      throw node();
+      node();
       var expires = "";
       if (days) {
         var date = new Date();
@@ -2636,7 +2636,7 @@ let _temp = {
      * @returns {String} The value of the cookie
     */
     getItem: (name) => {
-      throw node();
+      node();
 
       var nameEQ = name + "=";
       var ca = document.cookie.split(";");
@@ -2654,7 +2654,7 @@ let _temp = {
      * @returns {undefined}
      */
     removeItem: (name) => {
-      throw node();
+      node();
 
       document.cookie =
         name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
