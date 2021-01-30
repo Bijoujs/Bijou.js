@@ -2573,7 +2573,11 @@ let _temp = {
       return;
     }, duration);
   },
-  /** */
+  /**
+   * 
+   * @param {*} fn 
+   * @param {*} delay 
+   */
   requestInterval: function (fn, delay) {
     var requestAnimFrame = (function () {
       return window.requestAnimationFrame || function (callback, element) {
