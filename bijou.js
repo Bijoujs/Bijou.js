@@ -2573,7 +2573,7 @@ let _temp = {
       return;
     }, duration);
   },
-  requestInterval = function (fn, delay) {
+  requestInterval: function (fn, delay) {
     var requestAnimFrame = (function () {
       return window.requestAnimationFrame || function (callback, element) {
         window.setTimeout(callback, 1000 / 60);
