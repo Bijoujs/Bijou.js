@@ -2579,7 +2579,7 @@ let _temp = {
    * @function
    * @param {Function} fn The function to run repeatedly every delay seconds.
    * @param {Number} delay The delay time to run the function.
-   * 
+   * @returns {Obe}
    */
   requestInterval: function (fn, delay) {
     node();
