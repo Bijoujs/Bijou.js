@@ -2629,7 +2629,7 @@ let _temp = {
    * @param {String} url The url to load the script from.
    * @param {Function} callback The callback to run when the script is loaded.
    * @example
-   * _$.loadScript("")
+   * _$.loadScript("script.js")
    * @returns {undefined}
    */
   loadScript: (url, callback) => {
