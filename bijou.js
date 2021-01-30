@@ -2624,7 +2624,7 @@ let _temp = {
   },
   /**
    * Loads a script from a url (Can be to a local file or to a url) then funs a callback once it's loaded.
-   * @
+   * @memberOf bijou
    * @param {String} url The url to load the script from.
    * @param {Function} callback The callback to run when the script is loaded.
    * @example
