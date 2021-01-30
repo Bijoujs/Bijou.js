@@ -2605,6 +2605,7 @@ let _temp = {
    * @param {Element} el The HTML element to get attributes of.
    */
   attributes(el) {
+    node();
     var output = [];
     for (var att, i = 0, atts = el.attributes, n = atts.length; i < n; i++) {
       att = atts[i];
