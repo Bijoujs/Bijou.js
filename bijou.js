@@ -2573,6 +2573,7 @@ let _temp = {
       return;
     }, duration);
   },
+  
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
