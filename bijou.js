@@ -2602,7 +2602,7 @@ let _temp = {
     return handle;
   },
 /**
- * Returns an array of objects representing the attribute
+ * Returns an array of objects representing the attributes of a passed elel
  * @param {Element} el The HMTL element to get attributes from
  */
   attributes(el) {
