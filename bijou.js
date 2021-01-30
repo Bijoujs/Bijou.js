@@ -2626,6 +2626,7 @@ let _temp = {
  * Loads a script from a url (Can be to a local file or to a url) then funs a callback once it's loaded.
  */
   loadScript: (url, callback) => {
+    node
     var script = document.createElement("script")
     script.type = "text/javascript";
     if (script.readyState) {  // only required for IE <9
