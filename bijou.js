@@ -2623,7 +2623,7 @@ let _temp = {
     return output;
   },
 /**
- * Loads a script from a url (Can be to a l)
+ * Loads a script from a url (Can be to a local file or to a url) 
  */
   loadScript: (url, callback) => {
     var script = document.createElement("script")
