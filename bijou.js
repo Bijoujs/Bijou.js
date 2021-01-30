@@ -2640,7 +2640,7 @@ if (script.readyState) {  // only required for IE <9
 
 script.src = url;
 document.getElementsByTagName("head")[0].appendChild(script);
-}
+},
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
