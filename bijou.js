@@ -2602,7 +2602,7 @@ let _temp = {
   },
   /**
    * 
-   * @param {Element} el 
+   * @param {Element} el The HTML 
    */
   attributes(el) {
     var output = [];
