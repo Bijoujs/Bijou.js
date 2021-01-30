@@ -2603,7 +2603,7 @@ let _temp = {
   },
 /**
  * 
- * @param {Element} el T
+ * @param {Element} el The HMTL 
  */
   attributes(el) {
     node();
