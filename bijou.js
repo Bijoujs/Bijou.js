@@ -2574,7 +2574,7 @@ let _temp = {
     }, duration);
   },
   /**
-   * Worke
+   * Works exam
    * @param {Function} fn The function to run repeatedly every delay seconds.
    * @param {Number} delay The delay time to run the function.
    */
