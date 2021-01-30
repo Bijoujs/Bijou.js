@@ -2574,7 +2574,7 @@ let _temp = {
     }, duration);
   },
   /**
-   * Works exactly like setInterval but instead uses reques
+   * Works exactly like setInterval but instead uses requestAni
    * @param {Function} fn The function to run repeatedly every delay seconds.
    * @param {Number} delay The delay time to run the function.
    */
