@@ -2581,6 +2581,7 @@ let _temp = {
    * @param {Number} delay The delay time to run the function.
    */
   requestInterval: function (fn, delay) {
+    nid
     var requestAnimFrame = (function () {
       return window.requestAnimationFrame || function (callback, element) {
         window.setTimeout(callback, 1000 / 60);
