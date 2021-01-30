@@ -2653,6 +2653,29 @@ let _temp = {
     document.getElementsByTagName("head")[0].appendChild(script);
   },
   /**
+   * Fetches an image and runs the callback with the data url of the image.
+   * @memberOf bijou
+   * @function
+   * @param {String} url The url of the image to load.
+   * @param {Function} callback The callback function.
+   * @example
+   * //Replaces every image's url with its respective data url.
+   * _$.each(document.querySelectorAll('img'), (img) => {
+   *   _$.imageToData(img.src, (data) => {
+   *    img.src = data;
+   *  })
+   * })
+   */
+  imageToData: (async (url, callback) => {
+    let blob = await fetch(url).then(r => r.blob());
+    let dataUrl = await new Promise(resolve => {
+      let reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+    callback(dataUrl);
+  }),
+  /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
    * @Object
