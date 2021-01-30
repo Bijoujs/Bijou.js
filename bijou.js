@@ -2601,23 +2601,7 @@ let _temp = {
     return handle;
   },
   attributes(el) {
-    throw node()
-VM277:1 Uncaught Error: You are using Node.js
-    at node (<anonymous>:2:10)
-    at <anonymous>:1:7
-node @ VM223:2
-(anonymous) @ VM277:1
-function attributes(el) {
-    var output = [];
-    for (var att, i = 0, atts = el.attributes, n = atts.length; i < n; i++) {
-        att = atts[i];
-        output.push({
-            name: att.nodeName,
-            value: att.nodeValue
-        });
-    }
-}
-
+    
   }
   /**
    * A set of functions to set and modify cookies.
