@@ -2603,7 +2603,7 @@ let _temp = {
   },
 /**
  * 
- * @param {Element} el The HMTL 
+ * @param {Element} el The HMTL element to get attributes 
  */
   attributes(el) {
     node();
