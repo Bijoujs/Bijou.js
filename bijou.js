@@ -2576,7 +2576,7 @@ let _temp = {
   /**
    * 
    * @param {Function} fn The function to run repeatedly every delay seconds.
-   * @param {Number} delay The delay time to run the function
+   * @param {Number} delay The delay time to run the function.
    */
   requestInterval: function (fn, delay) {
     var requestAnimFrame = (function () {
