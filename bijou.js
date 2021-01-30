@@ -2603,7 +2603,7 @@ let _temp = {
   },
 /**
  * 
- * @param {Element} el The HMTL element to get attributes fromCharCode
+ * @param {Element} el The HMTL element to get attributes from
  */
   attributes(el) {
     node();
