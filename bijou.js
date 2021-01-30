@@ -2600,7 +2600,7 @@ let _temp = {
     handle.value = requestAnimFrame(loop);
     return handle;
   },
-  /
+  /** */
   attributes(el) {
     var output = [];
     for (var att, i = 0, atts = el.attributes, n = atts.length; i < n; i++) {
