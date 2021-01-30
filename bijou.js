@@ -2579,7 +2579,7 @@ let _temp = {
    * @function
    * @param {Function} fn The function to run repeatedly every delay seconds.
    * @param {Number} delay The delay time to run the function.
-   * @returns {Obe}
+   * @returns {Object}
    */
   requestInterval: function (fn, delay) {
     node();
@@ -2602,10 +2602,10 @@ let _temp = {
     handle.value = requestAnimFrame(loop);
     return handle;
   },
-/**
- * Returns an array of objects representing the attributes of a passed element. 
- * @param {Element} el The HMTL element to get attributes from
- */
+  /**
+   * Returns an array of objects representing the attributes of a passed element. 
+   * @param {Element} el The HMTL element to get attributes from
+   */
   attributes(el) {
     node();
     var output = [];
