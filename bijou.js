@@ -66,7 +66,7 @@ Contributors to Bijou.js:
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
  */
-let node = () => 
+let node = () => {}
 let isNode = false;
 if (typeof window === "undefined" || typeof document === "undefined") {
   isNode = true;
