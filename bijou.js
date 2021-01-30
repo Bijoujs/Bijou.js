@@ -2602,7 +2602,7 @@ let _temp = {
   },
   /**
    * 
-   * @param {Element} el The HTML 
+   * @param {Element} el The HTML element to get a
    */
   attributes(el) {
     var output = [];
