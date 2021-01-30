@@ -2592,7 +2592,7 @@ let _temp = {
     }
     handle.value = requestAnimFrame(loop);
     return handle;
-  }
+  },
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
