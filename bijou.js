@@ -2608,7 +2608,7 @@ let _temp = {
    * @example
    * //Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "style," to the console.
    * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
-   * @return {Array>}
+   * @return {Array.>>}
    */
   attributes(el) {
     node();
