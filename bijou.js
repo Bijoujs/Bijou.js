@@ -2573,6 +2573,21 @@ let _temp = {
       return;
     }, duration);
   },
+/**
+ * Animates a number from one value to another.
+ * @function
+ * @memberOf bijou
+ * @param {Number} start The initial value of the number in the animation
+ * @param {Number} end The final value of the number in the animation
+ * @param {Number} duration The duration of the animation in milliseconds
+ * @param {Function} callback The callback function to run with the number and the percentage (Between 0 and 1) of the animation.
+ * @param {Number} [interval=20] The amount of time to wait between frames in milliseconds.
+ * @param {Function} num The function to run to manipulate the timing of the animation, for example setting this to (current_number) => current_number **2 would make a simple ease in function. (The value recieved by this is also between 0 and 1, feel free to use some stuff from _$.ease.FUNCTION_HERE(current_number) to incorporate easy easing!)
+ * @example
+ * Animates from 50 to 100 over the course of 3 seconds, updating every half second, and writing the current value to the document body.
+ * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
+ */
+
   requestInterval: function (fn, delay) {
     var requestAnimFrame = (function () {
       return window.requestAnimationFrame || function (callback, element) {
