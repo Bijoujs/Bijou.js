@@ -2575,6 +2575,7 @@ let _temp = {
   },
   /**
    * Works exactly like setInterval but instead uses requestAnimationFrame.
+   * @
    * @param {Function} fn The function to run repeatedly every delay seconds.
    * @param {Number} delay The delay time to run the function.
    */
