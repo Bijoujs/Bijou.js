@@ -2710,7 +2710,8 @@ let _temp = {
    * @returns {Object} The object with the emit, on and off functions in it. 
    * @example
    * let thing = _$.hub();
-   * thing.on("data", (data) => console.log(data))
+   * thing.on("data", (data) => console.log(data));
+   * 
    */
   hub: () => ({
     hub: Object.create(null),
