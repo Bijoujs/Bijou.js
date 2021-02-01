@@ -2731,7 +2731,7 @@ let _temp = {
       if (this.hub[event].length === 0) delete this.hub[event]
     }
   }),
-  isAsyncFunction = val =>
+  isAsyncFunction val =>
     Object.prototype.toString.call(val) === '[object AsyncFunction]';
   /**
    * Fetches an image and runs the callback with the data url of the image.
