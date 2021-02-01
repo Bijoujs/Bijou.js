@@ -2731,9 +2731,20 @@ let _temp = {
       if (this.hub[event].length === 0) delete this.hub[event]
     }
   }),
-  /**
-   * 
-   */
+/**
+  * Fetches an image and runs the callback with the data url of the image.
+  * @memberOf bijou
+  * @function
+  * @param {String} url The url of the image to load.
+  * @param {Function} callback The callback function.
+  * @example
+  * //Replaces every image's url with its respective data url.
+  * _$.each(document.querySelectorAll('img'), (img) => {
+  *   _$.imageToData(img.src, (data) => {
+  *    img.src = data;
+  *  })
+  * })
+  */
   isAsync: val =>
     Object.prototype.toString.call(val) === '[object AsyncFunction]',
   /**
