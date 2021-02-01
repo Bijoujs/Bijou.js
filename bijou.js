@@ -2653,6 +2653,26 @@ let _temp = {
     document.getElementsByTagName("head")[0].appendChild(script);
   },
   /**
+  * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
+  * @function
+  * @memberOf bijou
+  * @param {Function} fn The function to memoize.
+  * @example
+  * let uuid = _$.memoize(() => uuid());
+  * console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)
+  * @returns {undefined}
+  */
+  memoize: fn => {
+    const cache = new Map();
+    const cached = function (val) {
+      return cache.has(val)
+        ? cache.get(val)
+        : cache.set(val, fn.call(this, val)) && cache.get(val);
+    };
+    cached.cache = cache;
+    return cached;
+  },
+  /**
    * Fetches an image and runs the callback with the data url of the image.
    * @memberOf bijou
    * @function
