@@ -2713,7 +2713,7 @@ let _temp = {
    * //Log any new data to the console
    * thing.on("data", (data) => console.log(data));
    * setTimeout(() => {
-   *   thing.emit("data", "Yay! Some data!!");//Logs "Yay! Some data!!"
+   *   thing.emit("data", "Yay! Some data!!");//Logs "Yay! Some data!!" 
    * }, 2000)
    */
   hub: () => ({
