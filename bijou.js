@@ -2735,7 +2735,7 @@ let _temp = {
   * Returns if the given function is async or not.
   * @memberOf bijou
   * @function
-  * @param {Function} url The url of the image to load.
+  * @param {Function}  The url of the image to load.
   * @example
   * //Replaces every image's url with its respective data url.
   * _$.each(document.querySelectorAll('img'), (img) => {
