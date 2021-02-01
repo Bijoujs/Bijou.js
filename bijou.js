@@ -2672,7 +2672,7 @@ let _temp = {
     cached.cache = cache;
     return cached;
   },
-  const observeMutations = (element, callback, options) => {
+  observeMutations = (element, callback, options) => {
     const observer = new MutationObserver(mutations =>
       mutations.forEach(m => callback(m))
     );
