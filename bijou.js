@@ -2704,7 +2704,7 @@ let _temp = {
     return observer;
   },
   /**
-   * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer s)
+   * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and re)
    * @memberOf bijou
    * @function
    * @returns {Object} The object with the emit, on and off functions in it. 
