@@ -2712,7 +2712,7 @@ let _temp = {
    * let thing = _$.hub();
    * //Log any new data to the console
    * thing.on("data", (data) => console.log(data));
-   * setTimeout()
+   * setTimeout(, 2)
    */
   hub: () => ({
     hub: Object.create(null),
