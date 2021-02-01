@@ -2704,7 +2704,7 @@ let _temp = {
     return observer;
   },
   /**
-   * A lot like socket.io, this 
+   * A lot like socket.io, this allows 
    * @memberOf bijou
    * @function
    * @returns {Object} The object with the emit, on and off functions in it. 
