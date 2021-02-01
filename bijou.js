@@ -2706,7 +2706,7 @@ let _temp = {
   /**
    * @memberOf bijou
    * @function
-   * @returns {Object} The ob
+   * @returns {Object} The object wi
    */
   hub: () => ({
     hub: Object.create(null),
