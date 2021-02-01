@@ -2732,7 +2732,7 @@ let _temp = {
     }
   }),
   isAsyncFunction: val =>
-    Object.prototype.toString.call(val) === '[object AsyncFunction]';
+    Object.prototype.toString.call(val) === '[object AsyncFunction]',
   /**
    * Fetches an image and runs the callback with the data url of the image.
    * @memberOf bijou
