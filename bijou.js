@@ -2703,7 +2703,9 @@ let _temp = {
     );
     return observer;
   },
-  /** */
+  /**
+   * 
+   */
   hub: () => ({
     hub: Object.create(null),
     emit(event, data) {
