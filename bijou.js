@@ -2673,7 +2673,7 @@ let _temp = {
     return cached;
   },
   /**
-   * Observes the mutations of the object 
+   * Observes the mutations of the object specf
    * @memberOf bijou
    * @function
    */
