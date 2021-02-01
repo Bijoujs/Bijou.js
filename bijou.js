@@ -2673,7 +2673,7 @@ let _temp = {
     return cached;
   },
   /**
-   * Observes
+   * Observes the 
    * @memberOf bijou
    * @function
    */
