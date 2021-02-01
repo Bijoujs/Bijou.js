@@ -2707,6 +2707,7 @@ let _temp = {
    * @memberOf bijou
    * @function
    * @returns {Object} The object with the emit, on and off functions in it. 
+   * @
    */
   hub: () => ({
     hub: Object.create(null),
