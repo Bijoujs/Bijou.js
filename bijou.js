@@ -2672,7 +2672,26 @@ let _temp = {
     cached.cache = cache;
     return cached;
   },
-
+  const observeMutations = (element, callback, options) => {
+    const observer = new MutationObserver(mutations =>
+      mutations.forEach(m => callback(m))
+    );
+    observer.observe(
+      element,
+      Object.assign(
+        {
+          childList: true,
+          attributes: true,
+          attributeOldValue: true,
+          characterData: true,
+          characterDataOldValue: true,
+          subtree: true,
+        },
+        options
+      )
+    );
+    return observer;
+  };
   /**
    * Fetches an image and runs the callback with the data url of the image.
    * @memberOf bijou
