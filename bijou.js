@@ -2703,7 +2703,7 @@ let _temp = {
     );
     return observer;
   },
-  let socket_clone = () => ({
+  socket_clone = () => ({
     hub: Object.create(null),
     emit(event, data) {
       (this.hub[event] || []).forEach(handler => handler(data));
