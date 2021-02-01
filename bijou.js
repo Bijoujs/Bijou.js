@@ -2736,13 +2736,7 @@ let _temp = {
   * @memberOf bijou
   * @function
   * @param {Function} val The function to test.
-  * @example
-  * //Replaces every image's url with its respective data url.
-  * _$.each(document.querySelectorAll('img'), (img) => {
-  *   _$.imageToData(img.src, (data) => {
-  *    img.src = data;
-  *  })
-  * })
+
   */
   isAsync: val =>
     Object.prototype.toString.call(val) === '[object AsyncFunction]',
