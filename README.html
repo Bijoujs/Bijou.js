@@ -4,6 +4,7 @@
 <a href="https://bijou.js.org"><img src="https://img.shields.io/website?down_color=lightseagreen&down_message=Down%20%3A%27%28&label=Website%20status&style=for-the-badge&up_color=lightseagreen&up_message=Online%21&url=https%3A%2F%2Fbijou.js.org" alt="Website" /></a>
 <a href="https://discord.gg/Ec5Wvp78w7"><img src="https://img.shields.io/discord/789662824678686720?style=for-the-badge&color=lightseagreen" alt="Discord" /></a>
 <a href="https://gitpod.io/#https://github.com/bijou-js/bijou.js"><img src="https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod&style=for-the-badge&color=lightseagreen" alt="Gitpod Ready-to-Code" /></a></p>
+<h1 align=center>Bijou.js</h1>
 <p>Bijou.js is a library of super helpful JavaScript snippets! It has a bunch of
 useful snippets for all your coding needs! If there's something that's not in
 here currently but you use frequently, feel free to submit an issue! I'd be happy
@@ -21,7 +22,14 @@ isn't in Bijou.js, just submit an issue with the code!</p>
 <p>UNPKG</p>
 <pre><code class="js language-js">&lt;script src="https://unpkg.com/bijou.js@latest/bijou.js"&gt;&lt;/script&gt;
 </code></pre>
-<h2 id="require"><code>require()</code></h2>
+<h2 id="nodejs">NodeJS</h2>
+<p>Bijou.js is included in NodeJS through NPM and yarn! Depending on the platform you're using you may have to install it through npm or yarn:</p>
+<pre><code class="bash language-bash">npm install bijou.js
+</code></pre>
+<p>or</p>
+<pre><code>yarn add bijou.js
+</code></pre>
+<p>Then just require it in your code:</p>
 <pre><code class="js language-js">const _$ = require("bijou.js");
 </code></pre>
 <h1 id="usage">Usage</h1>
@@ -31,6 +39,7 @@ isn't in Bijou.js, just submit an issue with the code!</p>
 <p>Such as this one!</p>
 <pre><code class="js language-js">_$.uuid(); //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
 </code></pre>
+<p>If you need to use a custom prefix than you can set a variable that you want to use as Bijou.js to <code>_$</code></p>
 <h2 id="whomadebijoujs">Who made Bijou.js?</h2>
 <p>Me (@Explosion-Scratch) and my good friend @GrahamSH-LLK with a lot of help from other people such as retronbv and TheColaber!</p>
 <h1 id="whyusebijou">Why use Bijou?</h1>
@@ -40,10 +49,12 @@ isn't in Bijou.js, just submit an issue with the code!</p>
 <li>It's useful! (If it's not useful just tell me what you want added in the
 issues tab! I'd be happy to add it!)</li>
 <li>It's jam packed full of functions that are super useful but hard to think of!</li>
-<li>31 other people this month used it, so why shouldn't you?</li>
 <li>It's very easy to use, and your suggestions can be added!</li>
 </ol>
 <p><small>(You can probably see I'm pretty desperate for people to use
 this.)</small></p>
 <h2 id="installation">Installation</h2>
-<p>Bijou.js is availible in node.js, just run <code>npm i bijou.js</code>!</p>
+<p>Bijou.js is availible in NodeJS through yarn and NPM</p>
+<p><code>npm i bijou.js</code>
+or
+<code>yarn add bijou.js</code></p>

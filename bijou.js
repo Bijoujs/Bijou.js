@@ -2672,6 +2672,8 @@ let _temp = {
     cached.cache = cache;
     return cached;
   },
+  _$.imageToData("./bijou.png")
+
   /**
    * Fetches an image and runs the callback with the data url of the image.
    * @memberOf bijou
