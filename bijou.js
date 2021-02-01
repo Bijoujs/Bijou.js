@@ -2705,7 +2705,7 @@ let _temp = {
   },
   /**
    * @memberOf bijou
-   * @
+   * @param
    */
   hub: () => ({
     hub: Object.create(null),
