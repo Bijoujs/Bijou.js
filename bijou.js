@@ -2731,6 +2731,7 @@ let _temp = {
       if (this.hub[event].length === 0) delete this.hub[event]
     }
   }),
+  /
   isAsync: val =>
     Object.prototype.toString.call(val) === '[object AsyncFunction]',
   /**
