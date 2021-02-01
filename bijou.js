@@ -2732,7 +2732,7 @@ let _temp = {
     }
   }),
 /**
-  * Returns
+  * Returns i
   * @memberOf bijou
   * @function
   * @param {String} url The url of the image to load.
