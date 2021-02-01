@@ -2732,7 +2732,7 @@ let _temp = {
     }
   }),
 /**
-  * Returns if the given function is as
+  * Returns if the given function is asyn
   * @memberOf bijou
   * @function
   * @param {String} url The url of the image to load.
