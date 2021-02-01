@@ -2677,7 +2677,7 @@ let _temp = {
    * @memberOf bijou
    * @function
    * @param {Object} element The element to observe
-   * @param {Function} callback The call
+   * @param {Function} callback The callback 
    */
   observeMutations: (element, callback, options) => {
     const observer = new MutationObserver(mutations =>
