@@ -2736,7 +2736,6 @@ let _temp = {
   * @memberOf bijou
   * @function
   * @param {String} url The url of the image to load.
-  * @param {Function} callback The callback function.
   * @example
   * //Replaces every image's url with its respective data url.
   * _$.each(document.querySelectorAll('img'), (img) => {
