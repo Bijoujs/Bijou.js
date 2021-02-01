@@ -2736,7 +2736,7 @@ let _temp = {
   * @memberOf bijou
   * @function
   * @param {Function} val The function to test.
-* @returns {Boolean} True if the function is async and false if nto
+* @returns {Boolean} True if the function is async and false if not.
   */
   isAsync: val =>
     Object.prototype.toString.call(val) === '[object AsyncFunction]',
