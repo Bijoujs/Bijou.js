@@ -2703,6 +2703,7 @@ let _temp = {
     );
     return observer;
   },
+  
   /**
    * Fetches an image and runs the callback with the data url of the image.
    * @memberOf bijou
