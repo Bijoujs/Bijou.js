@@ -2732,7 +2732,7 @@ let _temp = {
     }
   }),
 /**
-  * Fetches an image and runs the callback with the data url of the image.
+  * Returns
   * @memberOf bijou
   * @function
   * @param {String} url The url of the image to load.
