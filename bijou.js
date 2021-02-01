@@ -2680,7 +2680,7 @@ let _temp = {
    * @param {Function} callback The callback function to run when a mutation happens.
    * @param {*} options The options to use. 
    * @example 
-   * _$.obs
+   * _$.observe
    * @returns {undefined}
    */
   observeMutations: (element, callback, options) => {
