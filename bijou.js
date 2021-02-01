@@ -2731,6 +2731,7 @@ let _temp = {
       if (this.hub[event].length === 0) delete this.hub[event]
     }
   }),
+  
   /**
    * Fetches an image and runs the callback with the data url of the image.
    * @memberOf bijou
