@@ -2673,7 +2673,7 @@ let _temp = {
     return cached;
   },
   /**
-   * 
+   * @
    */
   observeMutations: (element, callback, options) => {
     const observer = new MutationObserver(mutations =>
