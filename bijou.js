@@ -2672,7 +2672,6 @@ let _temp = {
     cached.cache = cache;
     return cached;
   },
-  const obs = observeMutations(document, console.log);
 
   /**
    * Fetches an image and runs the callback with the data url of the image.
