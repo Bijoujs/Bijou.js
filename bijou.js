@@ -2731,13 +2731,13 @@ let _temp = {
       if (this.hub[event].length === 0) delete this.hub[event]
     }
   }),
-/**
-  * Returns if the given function is async or not.
-  * @memberOf bijou
-  * @function
-  * @param {Function} val The function to test.
-* @returns {Boolean} True if the function is async and false if not.
-  */
+  /**
+    * Returns if the given function is async or not.
+    * @memberOf bijou
+    * @function
+    * @param {Function} val The function to test.
+  * @returns {Boolean} True if the function is async and false if not.
+    */
   isAsync: val =>
     Object.prototype.toString.call(val) === '[object AsyncFunction]',
   /**
