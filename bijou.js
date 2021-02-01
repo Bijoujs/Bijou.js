@@ -2705,7 +2705,7 @@ let _temp = {
   },
   /**
    * @memberOf bijou
-   * @f
+   * @function
    * @param
    */
   hub: () => ({
