@@ -2732,7 +2732,7 @@ let _temp = {
     }
   }),
 /**
-  * Returns if the 
+  * Returns if the given fun
   * @memberOf bijou
   * @function
   * @param {String} url The url of the image to load.
