@@ -2704,7 +2704,8 @@ let _temp = {
     return observer;
   },
   /**
-   * @memberOf bij
+   * @memberOf bijou
+   * @
    */
   hub: () => ({
     hub: Object.create(null),
