@@ -2709,7 +2709,7 @@ let _temp = {
    * @function
    * @returns {Object} The object with the emit, on and off functions in it. 
    * @example
-   * let thing = _$.
+   * let thing = _$.hub
    */
   hub: () => ({
     hub: Object.create(null),
