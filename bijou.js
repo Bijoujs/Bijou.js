@@ -2839,7 +2839,7 @@ let _temp = {
 		});
 		callback(dataUrl);
 	},
-	context()=> {
+	context:()=> {
 		var menu = document.createElement("UL");
 		menu.id = "contextMenu";
 		document.body.appendChild(menu);
