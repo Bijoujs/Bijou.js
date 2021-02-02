@@ -2844,7 +2844,7 @@ let _temp = {
    * @example
    * HTML:
    * ```
-   * <h
+   * <h1 contextmenu="menu"
    * @returns {undefined};
    */
 	context:()=> {
