@@ -1,5 +1,7 @@
 npm i -g eslint jsdoc prettier showdown terser toast-jsdoc
-
+function remove {
+  rm -f .git/index.lock
+}
 function commit {
   COMMIT=$(git status --porcelain)
   if [[ ${#COMMIT} -ge 1 ]] ; then

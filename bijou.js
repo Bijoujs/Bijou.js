@@ -313,7 +313,7 @@ let _temp = {
       	return p.toString() === "[object SafariRemoteNotification]";
       })(
       	!window["safari"] ||
-          (typeof safari !== "undefined" && window["safari"].pushNotification),
+        (typeof safari !== "undefined" && window["safari"].pushNotification),
       );
 		var isIE = /*@cc_on!@*/ false || !!document.documentMode;
 		var isEdge = !isIE && !!window.StyleMedia;
@@ -2474,15 +2474,15 @@ let _temp = {
 					"\n" +
           (ol
           	? "<ol start=\"" +
-              (num
-              	? ol + "\">"
-              	: parseInt(ol, 36) -
-                  9 +
-                  "\" style=\"list-style-type:" +
-                  (low ? "low" : "upp") +
-                  "er-alpha\">") +
-              entry +
-              "</ol>"
+            (num
+            	? ol + "\">"
+            	: parseInt(ol, 36) -
+              9 +
+              "\" style=\"list-style-type:" +
+              (low ? "low" : "upp") +
+              "er-alpha\">") +
+            entry +
+            "</ol>"
           	: element("ul", entry))
 				);
 			});
@@ -2654,9 +2654,9 @@ let _temp = {
 		var requestAnimFrame = (function () {
 				return (
 					window.requestAnimationFrame ||
-          function (callback, element) {
-          	window.setTimeout(callback, 1000 / 60);
-          }
+        function (callback, element) {
+        	window.setTimeout(callback, 1000 / 60);
+        }
 				);
 			})(),
 			start = new Date().getTime(),
@@ -2846,11 +2846,12 @@ let _temp = {
    * ```
    * <h1 contextmenu="menu">Corner click me</h1>
    * <menu>
-   *  <menuitem>
+   *  <menuitem label="An item!">
+   * <menuitem label="Another item!">
    * </menu>
    * @returns {undefined};
    */
-	context:()=> {
+	context: () => {
 		var menu = document.createElement("UL");
 		menu.id = "contextMenu";
 		document.body.appendChild(menu);
