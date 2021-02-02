@@ -5,6 +5,7 @@
 [![Website](https://img.shields.io/website?down_color=lightseagreen&down_message=Down%20%3A%27%28&label=Website%20status&style=for-the-badge&up_color=lightseagreen&up_message=Online%21&url=https%3A%2F%2Fbijou.js.org)](https://bijou.js.org)
 [![Discord](https://img.shields.io/discord/789662824678686720?style=for-the-badge&color=lightseagreen)](https://discord.gg/Ec5Wvp78w7)
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod&style=for-the-badge&color=lightseagreen)](https://gitpod.io/#https://github.com/bijou-js/bijou.js)
+
 <h1 align=center>Bijou.js</h1>
 Bijou.js is a library of super helpful JavaScript snippets! It has a bunch of
 useful snippets for all your coding needs! If there's something that's not in
@@ -34,18 +35,23 @@ UNPKG
 ```
 
 ## NodeJS
+
 Bijou.js is included in NodeJS through NPM and yarn! Depending on the platform you're using you may have to install it through npm or yarn:
+
 ```bash
 npm install bijou.js
 ```
+
 or
+
 ```
 yarn add bijou.js
 ```
+
 Then just require it in your code:
 
 ```js
-const _$ = require("bijou.js");
+const _$ = require("bijou.js")
 ```
 
 # Usage
@@ -53,15 +59,17 @@ const _$ = require("bijou.js");
 To use Bijou.js simply call one of the many functions built into it!
 
 ```js
-_$.anyFunction(); //If you're using node you can name bijou anything.
+_$.anyFunction() //If you're using node you can name bijou anything.
 ```
 
 Such as this one!
 
 ```js
-_$.uuid(); //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
+_$.uuid() //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
 ```
+
 If you need to use a custom prefix than you can set a variable that you want to use as Bijou.js to `_$`
+
 ## Who made Bijou.js?
 
 Me (@Explosion-Scratch) and my good friend @GrahamSH-LLK with a lot of help from other people such as retronbv and TheColaber!
@@ -83,6 +91,6 @@ this.)</small>
 
 Bijou.js is availible in NodeJS through yarn and NPM
 
-```npm i bijou.js```
+`npm i bijou.js`
 or
-```yarn add bijou.js```
+`yarn add bijou.js`

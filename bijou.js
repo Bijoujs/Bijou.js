@@ -63,23 +63,26 @@ Contributors to Bijou.js:
 (c) 2021 Explosion-Scratch, all rights reserved.
 
  */
+"use strict"
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
  */
 let node = () => {
-  if (isNode) { throw new Error("You are using Node.js"); }
-};
-let isNode = false;
+  if (isNode) {
+    throw new Error("You are using Node.js")
+  }
+}
+let isNode = false
 if (typeof window === "undefined" || typeof document === "undefined") {
-  isNode = true;
+  isNode = true
 } else {
-  isNode = false;
+  isNode = false
 }
 
 if (isNode) {
   console.warn(
-    "There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element."
-  );
+    "There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.",
+  )
 }
 /**
  * Bijou.js source object. It contains all the functions of Bijou.
@@ -100,16 +103,16 @@ let _temp = {
    */
   primesTo: (num) => {
     let arr = Array.from({
-      length: num - 1,
-    }).map((x, i) => i + 2),
+        length: num - 1,
+      }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
-      }).map((x, i) => i + 2);
+      }).map((x, i) => i + 2)
     numsTillSqroot.forEach(
-      (x) => (arr = arr.filter((y) => y % x !== 0 || y === x))
-    );
-    return arr;
+      (x) => (arr = arr.filter((y) => y % x !== 0 || y === x)),
+    )
+    return arr
   },
   /**
    * Runs a function asynchronously in a web worker.
@@ -124,16 +127,16 @@ let _temp = {
     const worker = new Worker(
       URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
         type: "application/javascript; charset=utf-8",
-      })
-    );
+      }),
+    )
     return new Promise((res, rej) => {
       worker.onmessage = ({ data }) => {
-        res(data), worker.terminate();
-      };
+        res(data), worker.terminate()
+      }
       worker.onerror = (err) => {
-        rej(err), worker.terminate();
-      };
-    });
+        rej(err), worker.terminate()
+      }
+    })
   },
   /**
    * Formats a number of milliseconds
@@ -145,18 +148,18 @@ let _temp = {
    * @returns {Array}
    */
   formatMilliseconds: (ms) => {
-    if (ms < 0) ms = -ms;
+    if (ms < 0) ms = -ms
     const time = {
       day: Math.floor(ms / 86400000),
       hour: Math.floor(ms / 3600000) % 24,
       minute: Math.floor(ms / 60000) % 60,
       second: Math.floor(ms / 1000) % 60,
       millisecond: Math.floor(ms) % 1000,
-    };
+    }
     return Object.entries(time)
       .filter((val) => val[1] !== 0)
       .map(([key, val]) => `${val} ${key}${val !== 1 ? "s" : ""}`)
-      .join(", ");
+      .join(", ")
   },
   /**
    * Adds the specified styles to the element specified.
@@ -169,8 +172,8 @@ let _temp = {
    * @returns {Object} the assigned object.
    */
   addStyles: (el, styles) => {
-    node();
-    return Object.assign(el.style, styles);
+    node()
+    return Object.assign(el.style, styles)
   },
   /**
    * Returns the callback when a a click is registered outside the selected element
@@ -183,11 +186,11 @@ let _temp = {
    * @returns {Function} the function that was called.
    */
   onOutsideClick: (element, callback) => {
-    node();
+    node()
     document.addEventListener("click", (e) => {
-      if (!element.contains(e.target)) callback();
-    });
-    return callback;
+      if (!element.contains(e.target)) callback()
+    })
+    return callback
   },
   /**
    * Returns the callback when the user stops scrolling.
@@ -199,18 +202,18 @@ let _temp = {
    * @returns {undefined} Returns undefined.
    */
   onScrollStop: (callback) => {
-    let isScrolling;
-    node();
+    let isScrolling
+    node()
     window.addEventListener(
       "scroll",
       (e) => {
-        clearTimeout(isScrolling);
+        clearTimeout(isScrolling)
         isScrolling = setTimeout(() => {
-          callback(e);
-        }, 150);
+          callback(e)
+        }, 150)
       },
-      false
-    );
+      false,
+    )
   },
   /**
    * Copies the string inputted the clipboard.
@@ -222,56 +225,56 @@ let _temp = {
    * @returns {String} The string copied.
    */
   copy: (str) => {
-    node();
-    const el = document.createElement("textarea");
-    el.value = str;
-    el.setAttribute("readonly", "");
-    el.style.position = "absolute";
-    el.style.left = "-9999px";
-    document.body.appendChild(el);
+    node()
+    const el = document.createElement("textarea")
+    el.value = str
+    el.setAttribute("readonly", "")
+    el.style.position = "absolute"
+    el.style.left = "-9999px"
+    document.body.appendChild(el)
     const selected =
       document.getSelection().rangeCount > 0
         ? document.getSelection().getRangeAt(0)
-        : false;
-    el.select();
-    document.execCommand("copy");
-    document.body.removeChild(el);
+        : false
+    el.select()
+    document.execCommand("copy")
+    document.body.removeChild(el)
     if (selected) {
-      document.getSelection().removeAllRanges();
-      document.getSelection().addRange(selected);
+      document.getSelection().removeAllRanges()
+      document.getSelection().addRange(selected)
     }
-    return str;
+    return str
   },
   /**
-  * Only runs the input function at MAX with the delay specified.
-  * @function
-  * @memberOf bijou
-  * @param {Function} fn The function to run.
-  * @param {Number} wait The number of milliseconds to wait.
-  * @example
-  * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
-  * setInterval(alert_function, 1)
-  * @returns {Function} The throttled function
-  */
+   * Only runs the input function at MAX with the delay specified.
+   * @function
+   * @memberOf bijou
+   * @param {Function} fn The function to run.
+   * @param {Number} wait The number of milliseconds to wait.
+   * @example
+   * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
+   * setInterval(alert_function, 1)
+   * @returns {Function} The throttled function
+   */
   throttle: (fn, wait) => {
-    let inThrottle, lastFn, lastTime;
+    let inThrottle, lastFn, lastTime
     return function () {
       const context = this,
-        args = arguments;
+        args = arguments
       if (!inThrottle) {
-        fn.apply(context, args);
-        lastTime = Date.now();
-        inThrottle = true;
+        fn.apply(context, args)
+        lastTime = Date.now()
+        inThrottle = true
       } else {
-        clearTimeout(lastFn);
+        clearTimeout(lastFn)
         lastFn = setTimeout(function () {
           if (Date.now() - lastTime >= wait) {
-            fn.apply(context, args);
-            lastTime = Date.now();
+            fn.apply(context, args)
+            lastTime = Date.now()
           }
-        }, Math.max(wait - (Date.now() - lastTime), 0));
+        }, Math.max(wait - (Date.now() - lastTime), 0))
       }
-    };
+    }
   },
   /**
    * Creates an HTML element from the specified string.
@@ -284,10 +287,10 @@ let _temp = {
    * @returns {Element} The created element.
    */
   createElement: (str) => {
-    node();
-    const el = document.createElement("div");
-    el.innerHTML = str;
-    return el.firstElementChild;
+    node()
+    const el = document.createElement("div")
+    el.innerHTML = str
+    return el.firstElementChild
   },
   /**
    * Returns the browser that the user is using.
@@ -298,49 +301,49 @@ let _temp = {
    * @returns {String} A string of the browser name that the user is using.
    */
   browser: () => {
-    node();
+    node()
     var isOpera =
       (!!window.opr && !!opr.addons) ||
       !!window.opera ||
-      navigator.userAgent.indexOf(" OPR/") >= 0;
-    var isFirefox = typeof InstallTrigger !== "undefined";
+      navigator.userAgent.indexOf(" OPR/") >= 0
+    var isFirefox = typeof InstallTrigger !== "undefined"
     var isSafari =
       /constructor/i.test(window.HTMLElement) ||
       (function (p) {
-        return p.toString() === "[object SafariRemoteNotification]";
+        return p.toString() === "[object SafariRemoteNotification]"
       })(
         !window["safari"] ||
-        (typeof safari !== "undefined" && window["safari"].pushNotification)
-      );
-    var isIE = /*@cc_on!@*/ false || !!document.documentMode;
-    var isEdge = !isIE && !!window.StyleMedia;
+          (typeof safari !== "undefined" && window["safari"].pushNotification),
+      )
+    var isIE = /*@cc_on!@*/ false || !!document.documentMode
+    var isEdge = !isIE && !!window.StyleMedia
     var isChrome =
-      !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
-    var isEdgeChromium = isChrome && navigator.userAgent.indexOf("Edg") != -1;
-    var isBlink = (isChrome || isOpera) && !!window.CSS;
+      !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)
+    var isEdgeChromium = isChrome && navigator.userAgent.indexOf("Edg") != -1
+    var isBlink = (isChrome || isOpera) && !!window.CSS
     if (isOpera) {
-      return "Opera";
+      return "Opera"
     }
     if (isFirefox) {
-      return "Firefox";
+      return "Firefox"
     }
     if (isSafari) {
-      return "Safari";
+      return "Safari"
     }
     if (isEdge) {
-      return "Edge";
+      return "Edge"
     }
     if (isIE) {
-      return "Internet Explorer";
+      return "Internet Explorer"
     }
     if (isChrome) {
-      return "Chrome";
+      return "Chrome"
     }
     if (isEdgeChromium) {
-      return "Edge Chromium";
+      return "Edge Chromium"
     }
     if (isBlink) {
-      return "Blink";
+      return "Blink"
     }
   },
   /**
@@ -355,15 +358,15 @@ let _temp = {
    * @returns {undefined}
    */
   notify: (text, body, icon) => {
-    node();
+    node()
     if (!window.Notification) {
-      console.log("Browser does not support notifications.");
+      console.log("Browser does not support notifications.")
     } else {
       if (Notification.permission === "granted") {
         var notify = new Notification(text, {
           body: body,
           icon: icon,
-        });
+        })
       } else {
         Notification.requestPermission()
           .then(function (p) {
@@ -371,14 +374,14 @@ let _temp = {
               var notify = new Notification(text, {
                 body: body,
                 icon: icon,
-              });
+              })
             } else {
-              console.log("User blocked notifications.");
+              console.log("User blocked notifications.")
             }
           })
           .catch(function (err) {
-            console.error(err);
-          });
+            console.error(err)
+          })
       }
     }
   },
@@ -417,10 +420,10 @@ let _temp = {
         columns.reduce(
           (acc, key) =>
             `${acc}${!acc.length ? "" : delimiter}"${
-            !obj[key] ? "" : obj[key]
+              !obj[key] ? "" : obj[key]
             }"`,
-          ""
-        )
+          "",
+        ),
       ),
     ].join("\n"),
   /**
@@ -434,14 +437,14 @@ let _temp = {
    * @returns {Array} The joined array from the two other arrays.
    */
   unionArrays: (x, y) => {
-    var obj = {};
-    for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
-    for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
-    var res = [];
+    var obj = {}
+    for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i]
+    for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i]
+    var res = []
     for (var k in obj) {
-      if (obj.hasOwnProperty(k)) res.push(obj[k]);
+      if (obj.hasOwnProperty(k)) res.push(obj[k])
     }
-    return res;
+    return res
   },
   /**
    * For each item in an array, run a callback with it.
@@ -455,7 +458,7 @@ let _temp = {
    */
   each: (array, callback) => {
     for (let i = 0; i < array.length; i++) {
-      callback(array[i], i, array);
+      callback(array[i], i, array)
     }
   },
   /**
@@ -473,16 +476,16 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === "object"
-        ? Object.keys(obj).reduce((acc, current) => {
-          const key = fn(current);
-          const val = obj[current];
+      ? Object.keys(obj).reduce((acc, current) => {
+          const key = fn(current)
+          const val = obj[current]
           acc[key] =
             val !== null && typeof val === "object"
               ? _$.mapObjectKeys(val, fn)
-              : val;
-          return acc;
+              : val
+          return acc
         }, {})
-        : obj,
+      : obj,
   /**
    * Converts an array to CSV (Comma separated values) data.
    * @function
@@ -498,7 +501,7 @@ let _temp = {
       .map((v) =>
         v
           .map((x) => (isNaN(x) ? `"${x.replace(/"/g, '""')}"` : x))
-          .join(delimiter)
+          .join(delimiter),
       )
       .join("\n"),
   /**
@@ -527,16 +530,16 @@ let _temp = {
    * @returns {Boolean} Whether the element is completely in view.
    */
   inView: (el) => {
-    node();
-    var top = el.offsetTop;
-    var left = el.offsetLeft;
-    var width = el.offsetWidth;
-    var height = el.offsetHeight;
+    node()
+    var top = el.offsetTop
+    var left = el.offsetLeft
+    var width = el.offsetWidth
+    var height = el.offsetHeight
 
     while (el.offsetParent) {
-      el = el.offsetParent;
-      top += el.offsetTop;
-      left += el.offsetLeft;
+      el = el.offsetParent
+      top += el.offsetTop
+      left += el.offsetLeft
     }
 
     return (
@@ -544,7 +547,7 @@ let _temp = {
       left >= window.pageXOffset &&
       top + height <= window.pageYOffset + window.innerHeight &&
       left + width <= window.pageXOffset + window.innerWidth
-    );
+    )
   },
   /**
    * Tests if the given DOM element is partially (or fully) in view.
@@ -557,16 +560,16 @@ let _temp = {
    * @returns {Boolean} Whether the DOM element is partially in view.
    */
   inPartialView: (el) => {
-    node();
-    var top = el.offsetTop;
-    var left = el.offsetLeft;
-    var width = el.offsetWidth;
-    var height = el.offsetHeight;
+    node()
+    var top = el.offsetTop
+    var left = el.offsetLeft
+    var width = el.offsetWidth
+    var height = el.offsetHeight
 
     while (el.offsetParent) {
-      el = el.offsetParent;
-      top += el.offsetTop;
-      left += el.offsetLeft;
+      el = el.offsetParent
+      top += el.offsetTop
+      left += el.offsetLeft
     }
 
     return (
@@ -574,7 +577,7 @@ let _temp = {
       left < window.pageXOffset + window.innerWidth &&
       top + height > window.pageYOffset &&
       left + width > window.pageXOffset
-    );
+    )
   },
   /**
    * Converts a form to URL queries using the name attribute.
@@ -584,10 +587,10 @@ let _temp = {
    * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
    */
   serializeForm: (form) => {
-    node();
+    node()
     return Array.from(new FormData(form), (field) =>
-      field.map(encodeURIComponent).join("=")
-    ).join("&");
+      field.map(encodeURIComponent).join("="),
+    ).join("&")
   },
   /**
    * Converts a form to an Object.
@@ -599,11 +602,11 @@ let _temp = {
    * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
    */
   formToObject: (form) => {
-    node();
+    node()
     return Array.from(new FormData(form)).reduce((acc, [key, value]) => ({
       ...acc,
       [key]: value,
-    }));
+    }))
   },
   /**
    * Generates a unique ID from a seed
@@ -617,13 +620,13 @@ let _temp = {
   uuid: (seed = Math.random()) => {
     if (typeof seed === "string") {
       // Convert string to a number between 0 and 1
-      seed = _temp.hashString(seed) / 10000000000000000;
+      seed = _temp.hashString(seed) / 10000000000000000
     }
     function _p8(s) {
-      var p = (seed.toString(16) + "000000000").substr(2, 8);
-      return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
+      var p = (seed.toString(16) + "000000000").substr(2, 8)
+      return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p
     }
-    return _p8() + _p8(true) + _p8(true) + _p8();
+    return _p8() + _p8(true) + _p8(true) + _p8()
   },
   /**
    * Escapes a string of HTML
@@ -644,7 +647,7 @@ let _temp = {
           ">": "&gt;",
           "'": "&#39;",
           '"': "&quot;",
-        }[tag] || tag)
+        }[tag] || tag),
     ),
   /**
    * Unescapes a string of HTML
@@ -665,7 +668,7 @@ let _temp = {
           "&gt;": ">",
           "&#39;": "'",
           "&quot;": '"',
-        }[tag] || tag)
+        }[tag] || tag),
     ),
   /**
    * Returns the previous page that the user visited.
@@ -676,8 +679,8 @@ let _temp = {
    * @returns {String} The url of the previous page the user visited.
    */
   previousPage: () => {
-    node();
-    return document.referrer || window.location.href;
+    node()
+    return document.referrer || window.location.href
   },
   /**
    * Replaces the text in an element by running it through a callback.
@@ -691,22 +694,22 @@ let _temp = {
    * @returns {String} The element who's text was replaced.
    */
   replaceText: (el, callback) => {
-    node();
+    node()
     for (
       var e,
-      t = (function () {
-        for (var e, t = el, o = [], a = 0; a < t.length; a++)
-          (e = t[a].childNodes[0]),
-            t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-        return o;
-      })(),
-      o = 0,
-      a = t.length;
+        t = (function () {
+          for (var e, t = el, o = [], a = 0; a < t.length; a++)
+            (e = t[a].childNodes[0]),
+              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e)
+          return o
+        })(),
+        o = 0,
+        a = t.length;
       o < a;
       o++
     )
-      (e = t[o].nodeValue), (t[o].nodeValue = callback(e));
-    return el;
+      (e = t[o].nodeValue), (t[o].nodeValue = callback(e))
+    return el
   },
   /**
    * Times the function passed.
@@ -720,9 +723,9 @@ let _temp = {
    * @returns {undefined}
    */
   timeFunction: (fn, name = "_$ function timer") => {
-    console.time(name);
-    fn();
-    console.timeEnd(name);
+    console.time(name)
+    fn()
+    console.timeEnd(name)
   },
   /**
    * Sorts an object alphabetically by its keys.
@@ -738,9 +741,9 @@ let _temp = {
     return Object.keys(obj)
       .sort()
       .reduce(function (result, key) {
-        result[key] = obj[key];
-        return result;
-      }, {});
+        result[key] = obj[key]
+        return result
+      }, {})
   },
   /**
    * Returns the last space in the string given replaced with "&nbsp;"
@@ -753,17 +756,17 @@ let _temp = {
    * @returns {String} The replaced string.
    */
   widows: (text) => {
-    var wordArray = text.split(" ");
-    var finalTitle = "";
+    var wordArray = text.split(" ")
+    var finalTitle = ""
     for (var i = 0; i <= wordArray.length - 1; i++) {
-      finalTitle += wordArray[i];
+      finalTitle += wordArray[i]
       if (i == wordArray.length - 2) {
-        finalTitle += "&nbsp;";
+        finalTitle += "&nbsp;"
       } else {
-        finalTitle += " ";
+        finalTitle += " "
       }
     }
-    return finalTitle;
+    return finalTitle
   },
   /**
    * Generates a random hex color.
@@ -785,31 +788,31 @@ let _temp = {
    * @returns {String} The color lightened.
    */
   lightenColor: (col, amt) => {
-    var usePound = false;
+    var usePound = false
 
     if (col[0] == "#") {
-      col = col.slice(1);
-      usePound = true;
+      col = col.slice(1)
+      usePound = true
     }
 
-    var num = parseInt(col, 16);
+    var num = parseInt(col, 16)
 
-    var r = (num >> 16) + amt;
+    var r = (num >> 16) + amt
 
-    if (r > 255) r = 255;
-    else if (r < 0) r = 0;
+    if (r > 255) r = 255
+    else if (r < 0) r = 0
 
-    var b = ((num >> 8) & 0x00ff) + amt;
+    var b = ((num >> 8) & 0x00ff) + amt
 
-    if (b > 255) b = 255;
-    else if (b < 0) b = 0;
+    if (b > 255) b = 255
+    else if (b < 0) b = 0
 
-    var g = (num & 0x0000ff) + amt;
+    var g = (num & 0x0000ff) + amt
 
-    if (g > 255) g = 255;
-    else if (g < 0) g = 0;
+    if (g > 255) g = 255
+    else if (g < 0) g = 0
 
-    return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
+    return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16)
   },
   /**
   * Tests if a color is light or dark and returns an object representation.
@@ -825,30 +828,28 @@ let _temp = {
   * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
   */
   lightOrDark: (color) => {
-    var r, g, b, hsp;
+    var r, g, b, hsp
     if (color.match(/^rgb/)) {
       color = color.match(
-        /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/
-      );
+        /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
+      )
 
-      r = color[1];
-      g = color[2];
-      b = color[3];
+      r = color[1]
+      g = color[2]
+      b = color[3]
     } else {
-      color = +(
-        "0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&")
-      );
+      color = +("0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&"))
 
-      r = color >> 16;
-      g = (color >> 8) & 255;
-      b = color & 255;
+      r = color >> 16
+      g = (color >> 8) & 255
+      b = color & 255
     }
 
-    hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
+    hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b))
     if (hsp > 127.5) {
-      return { lightOrDark: "light", hsp: hsp };
+      return { lightOrDark: "light", hsp: hsp }
     } else {
-      return { lightOrDark: "dark", hsp: hsp };
+      return { lightOrDark: "dark", hsp: hsp }
     }
   },
   /**
@@ -862,23 +863,23 @@ let _temp = {
    * @returns {String} The computed style property for the element specified.
    */
   compStyle: (el, prop) => {
-    node();
-    var computedStyles = window.getComputedStyle(el);
-    return computedStyles.getPropertyValue(prop);
+    node()
+    var computedStyles = window.getComputedStyle(el)
+    return computedStyles.getPropertyValue(prop)
   },
   rgbToHex: (rgb) => {
-    let sep = rgb.indexOf(",") > -1 ? "," : " ";
-    rgb = rgb.substr(4).split(")")[0].split(sep);
+    let sep = rgb.indexOf(",") > -1 ? "," : " "
+    rgb = rgb.substr(4).split(")")[0].split(sep)
 
     let r = (+rgb[0]).toString(16),
       g = (+rgb[1]).toString(16),
-      b = (+rgb[2]).toString(16);
+      b = (+rgb[2]).toString(16)
 
-    if (r.length == 1) r = "0" + r;
-    if (g.length == 1) g = "0" + g;
-    if (b.length == 1) b = "0" + b;
+    if (r.length == 1) r = "0" + r
+    if (g.length == 1) g = "0" + g
+    if (b.length == 1) b = "0" + b
 
-    return "#" + r + g + b;
+    return "#" + r + g + b
   },
   /**
    * Converts a hex code to a RGB color.
@@ -889,10 +890,10 @@ let _temp = {
    */
   hexToRGB: (hex) => {
     let alpha = false,
-      h = hex.slice(hex.startsWith("#") ? 1 : 0);
-    if (h.length === 3) h = [...h].map((x) => x + x).join("");
-    else if (h.length === 8) alpha = true;
-    h = parseInt(h, 16);
+      h = hex.slice(hex.startsWith("#") ? 1 : 0)
+    if (h.length === 3) h = [...h].map((x) => x + x).join("")
+    else if (h.length === 8) alpha = true
+    h = parseInt(h, 16)
     return (
       "rgb" +
       (alpha ? "a" : "") +
@@ -904,7 +905,7 @@ let _temp = {
       ((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
       (alpha ? `, ${h & 0x000000ff}` : "") +
       ")"
-    );
+    )
   },
   /**
    * Generates a querySelector for an element passed in.
@@ -917,101 +918,101 @@ let _temp = {
    * @returns {String} The generated querySelector.
    */
   querySelector: (elem) => {
-    node();
-    var element = elem;
-    var str = "";
+    node()
+    var element = elem
+    var str = ""
 
     function loop(element) {
       if (
         element.getAttribute("id") &&
         document.querySelectorAll(`#${element.getAttribute("id")}`).length === 1
       ) {
-        str = str.replace(/^/, " #" + element.getAttribute("id"));
-        str = str.replace(/\s/, "");
-        str = str.replace(/\s/g, " > ");
-        return str;
+        str = str.replace(/^/, " #" + element.getAttribute("id"))
+        str = str.replace(/\s/, "")
+        str = str.replace(/\s/g, " > ")
+        return str
       }
       if (document.body === element) {
-        str = str.replace(/^/, " body");
-        str = str.replace(/\s/, "");
-        str = str.replace(/\s/g, " > ");
-        return str;
+        str = str.replace(/^/, " body")
+        str = str.replace(/\s/, "")
+        str = str.replace(/\s/g, " > ")
+        return str
       }
       if (element.getAttribute("class")) {
-        var elemClasses = ".";
-        elemClasses += element.getAttribute("class");
-        elemClasses = elemClasses.replace(/\s/g, ".");
-        elemClasses = elemClasses.replace(/^/g, " ");
-        var classNth = "";
-        var childrens = element.parentNode.children;
+        var elemClasses = "."
+        elemClasses += element.getAttribute("class")
+        elemClasses = elemClasses.replace(/\s/g, ".")
+        elemClasses = elemClasses.replace(/^/g, " ")
+        var classNth = ""
+        var childrens = element.parentNode.children
 
         if (childrens.length < 2) {
-          return;
+          return
         }
 
-        var similarClasses = [];
+        var similarClasses = []
 
         for (var i = 0; i < childrens.length; i++) {
           if (
             element.getAttribute("class") == childrens[i].getAttribute("class")
           ) {
-            similarClasses.push(childrens[i]);
+            similarClasses.push(childrens[i])
           }
         }
 
         if (similarClasses.length > 1) {
           for (var j = 0; j < similarClasses.length; j++) {
             if (element === similarClasses[j]) {
-              j++;
-              classNth = ":nth-of-type(" + j + ")";
-              break;
+              j++
+              classNth = ":nth-of-type(" + j + ")"
+              break
             }
           }
         }
 
-        str = str.replace(/^/, elemClasses + classNth);
+        str = str.replace(/^/, elemClasses + classNth)
       } else {
-        var name = element.nodeName;
-        name = name.toLowerCase();
-        var nodeNth = "";
+        var name = element.nodeName
+        name = name.toLowerCase()
+        var nodeNth = ""
 
-        var childrens = element.parentNode.children;
+        var childrens = element.parentNode.children
 
         if (childrens.length > 2) {
-          var similarNodes = [];
+          var similarNodes = []
 
           for (var i = 0; i < childrens.length; i++) {
             if (element.nodeName == childrens[i].nodeName) {
-              similarNodes.push(childrens[i]);
+              similarNodes.push(childrens[i])
             }
           }
 
           if (similarNodes.length > 1) {
             for (var j = 0; j < similarNodes.length; j++) {
               if (element === similarNodes[j]) {
-                j++;
-                nodeNth = ":nth-of-type(" + j + ")";
-                break;
+                j++
+                nodeNth = ":nth-of-type(" + j + ")"
+                break
               }
             }
           }
         }
 
-        str = str.replace(/^/, " " + name + nodeNth);
+        str = str.replace(/^/, " " + name + nodeNth)
       }
 
       if (element.parentNode) {
-        loop(element.parentNode);
+        loop(element.parentNode)
       } else {
-        str = str.replace(/\s/g, " > ");
-        str = str.replace(/\s/, "");
-        return str;
+        str = str.replace(/\s/g, " > ")
+        str = str.replace(/\s/, "")
+        return str
       }
     }
 
-    loop(element);
+    loop(element)
 
-    return str;
+    return str
   },
   /**
    * Removes comments from the element or string of code specified.
@@ -1025,20 +1026,18 @@ let _temp = {
   removeComments: (el) => {
     if (typeof el === "element") {
       if (isNode) {
-        throw new Error(
-          "No document element! (You are probably using Node.js)"
-        );
+        throw new Error("No document element! (You are probably using Node.js)")
       }
       el.innerHTML = el.innerHTML.replace(
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-        ""
-      );
-      return el;
+        "",
+      )
+      return el
     } else if (typeof el === "string") {
       return string.replace(
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-        ""
-      );
+        "",
+      )
     }
   },
   /**
@@ -1053,9 +1052,9 @@ let _temp = {
    */
   random: (min, max, round = true, seed = Math.random()) => {
     if (round) {
-      return Math.floor(seed * (max - min + 1) + min);
+      return Math.floor(seed * (max - min + 1) + min)
     } else {
-      return Math.random() * (max - min + 1) + min;
+      return Math.random() * (max - min + 1) + min
     }
   },
   /**
@@ -1068,10 +1067,10 @@ let _temp = {
    * @returns {Number} The random number from the seed.
    */
   seedRandom: (seed) => {
-    var t = (seed += 0x6d2b79f5);
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    var t = (seed += 0x6d2b79f5)
+    t = Math.imul(t ^ (t >>> 15), t | 1)
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
   },
   /**
   * Removes duplicates from an array
@@ -1101,14 +1100,14 @@ let _temp = {
    * @memberOf bijou
    */
   spliceArrayBuffer: (arr, start, end, endian) => {
-    endian = endian || false;
-    var direction = endian ? -1 : 1;
-    if (endian) [start, end] = [end, start];
-    start = Math.floor(start);
-    end = Math.floor(end) + direction;
+    endian = endian || false
+    var direction = endian ? -1 : 1
+    if (endian) [start, end] = [end, start]
+    start = Math.floor(start)
+    end = Math.floor(end) + direction
     for (var i = start, value = 0; i != end; i += direction)
-      value = 256 * value + arr[i];
-    return value;
+      value = 256 * value + arr[i]
+    return value
   },
   /**
    * Undoes camelCase.
@@ -1124,8 +1123,8 @@ let _temp = {
       .replace(/([a-z])([A-Z])/g, "$1 $2")
       .replace(/\b([A-Z]+)([A-Z])([a-z])/, "$1 $2$3")
       .replace(/^./, function (s) {
-        return s.toUpperCase();
-      });
+        return s.toUpperCase()
+      })
   },
   /**
    * Parses the string of HTML specified and returns an HTML element of it.
@@ -1139,8 +1138,8 @@ let _temp = {
    * @returns {Element} The HTML document element of the HTML string specified.
    */
   parseHTML: (string, mimeType = "text/html") => {
-    const domparser = new DOMParser();
-    return domparser.parseFromString(string, mimeType);
+    const domparser = new DOMParser()
+    return domparser.parseFromString(string, mimeType)
   },
   /**
    * Syntax highlights a string of code.
@@ -1153,72 +1152,70 @@ let _temp = {
    * @returns {String} The highlighted string of code as HTML code.
    */
   syntaxHighlight: (string, mode = "html", colors = {}) => {
-    node();
-    let el = document.createElement("DIV");
-    el.innerText = string;
+    node()
+    let el = document.createElement("DIV")
+    el.innerText = string
     let highlightel = (elmnt, mode, colors = {}) => {
       if (isNode) {
-        throw new Error(
-          "No document element! (You are probably using Node.js)"
-        );
+        throw new Error("No document element! (You are probably using Node.js)")
       }
       // Credit to w3schools for this
-      var lang = mode || "html";
-      var elmntObj = document.getElementById(elmnt) || elmnt;
-      var elmntTxt = elmntObj.innerHTML;
-      var tagcolor = colors.tagColor || "mediumblue";
-      var tagnamecolor = colors.tagNameColor || "brown";
-      var attributecolor = colors.attributeColor || "red";
-      var attributevaluecolor = colors.attributeValueColor || "mediumblue";
-      var commentcolor = colors.commentColor || "green";
-      var cssselectorcolor = colors.cssSelectorColor || "brown";
-      var csspropertycolor = colors.cssPropertyColor || "red";
-      var csspropertyvaluecolor = colors.cssPropertyValueColor || "mediumblue";
-      var cssdelimitercolor = colors.cssLimiterColor || "black";
-      var cssimportantcolor = colors.cssImportantColor || "red";
-      var jscolor = colors.jsColor || "black";
-      var jskeywordcolor = colors.jsKeywordColor || "mediumblue";
-      var jsstringcolor = colors.jsStringColor || "brown";
-      var jsnumbercolor = colors.jsNumberColor || "red";
-      var jspropertycolor = colors.jsPropertyColor || "black";
+      var lang = mode || "html"
+      var elmntObj = document.getElementById(elmnt) || elmnt
+      var elmntTxt = elmntObj.innerHTML
+      var tagcolor = colors.tagColor || "mediumblue"
+      var tagnamecolor = colors.tagNameColor || "brown"
+      var attributecolor = colors.attributeColor || "red"
+      var attributevaluecolor = colors.attributeValueColor || "mediumblue"
+      var commentcolor = colors.commentColor || "green"
+      var cssselectorcolor = colors.cssSelectorColor || "brown"
+      var csspropertycolor = colors.cssPropertyColor || "red"
+      var csspropertyvaluecolor = colors.cssPropertyValueColor || "mediumblue"
+      var cssdelimitercolor = colors.cssLimiterColor || "black"
+      var cssimportantcolor = colors.cssImportantColor || "red"
+      var jscolor = colors.jsColor || "black"
+      var jskeywordcolor = colors.jsKeywordColor || "mediumblue"
+      var jsstringcolor = colors.jsStringColor || "brown"
+      var jsnumbercolor = colors.jsNumberColor || "red"
+      var jspropertycolor = colors.jsPropertyColor || "black"
       elmntObj.style.fontFamily =
-        colors.fontFamily || "Consolas,'Courier New', monospace";
+        colors.fontFamily || "Consolas,'Courier New', monospace"
       if (!lang) {
-        lang = "html";
+        lang = "html"
       }
       if (lang == "html") {
-        elmntTxt = htmlMode(elmntTxt);
+        elmntTxt = htmlMode(elmntTxt)
       }
       if (lang == "css") {
-        elmntTxt = cssMode(elmntTxt);
+        elmntTxt = cssMode(elmntTxt)
       }
       if (lang == "js") {
-        elmntTxt = jsMode(elmntTxt);
+        elmntTxt = jsMode(elmntTxt)
       }
-      elmntObj.innerHTML = elmntTxt;
+      elmntObj.innerHTML = elmntTxt
 
       function extract(str, start, end, func, repl) {
         var s,
           e,
           d = "",
-          a = [];
+          a = []
         while (str.search(start) > -1) {
-          s = str.search(start);
-          e = str.indexOf(end, s);
+          s = str.search(start)
+          e = str.indexOf(end, s)
           if (e == -1) {
-            e = str.length;
+            e = str.length
           }
           if (repl) {
-            a.push(func(str.substring(s, e + end.length)));
-            str = str.substring(0, s) + repl + str.substr(e + end.length);
+            a.push(func(str.substring(s, e + end.length)))
+            str = str.substring(0, s) + repl + str.substr(e + end.length)
           } else {
-            d += str.substring(0, s);
-            d += func(str.substring(s, e + end.length));
-            str = str.substr(e + end.length);
+            d += str.substring(0, s)
+            d += func(str.substring(s, e + end.length))
+            str = str.substr(e + end.length)
           }
         }
-        this.rest = d + str;
-        this.arr = a;
+        this.rest = d + str
+        this.arr = a
       }
       function htmlMode(txt) {
         var rest = txt,
@@ -1229,82 +1226,79 @@ let _temp = {
           startpos,
           endpos,
           note,
-          i;
+          i
         comment = new extract(
           rest,
           "&lt;!--",
           "--&gt;",
           commentMode,
-          "W3HTMLCOMMENTPOS"
-        );
-        rest = comment.rest;
+          "W3HTMLCOMMENTPOS",
+        )
+        rest = comment.rest
         while (rest.indexOf("&lt;") > -1) {
-          note = "";
-          startpos = rest.indexOf("&lt;");
+          note = ""
+          startpos = rest.indexOf("&lt;")
           if (rest.substr(startpos, 9).toUpperCase() == "&LT;STYLE") {
-            note = "css";
+            note = "css"
           }
           if (rest.substr(startpos, 10).toUpperCase() == "&LT;SCRIPT") {
-            note = "javascript";
+            note = "javascript"
           }
-          endpos = rest.indexOf("&gt;", startpos);
+          endpos = rest.indexOf("&gt;", startpos)
           if (endpos == -1) {
-            endpos = rest.length;
+            endpos = rest.length
           }
-          done += rest.substring(0, startpos);
-          done += tagMode(rest.substring(startpos, endpos + 4));
-          rest = rest.substr(endpos + 4);
+          done += rest.substring(0, startpos)
+          done += tagMode(rest.substring(startpos, endpos + 4))
+          rest = rest.substr(endpos + 4)
           if (note == "css") {
-            endpos = rest.indexOf("&lt;/style&gt;");
+            endpos = rest.indexOf("&lt;/style&gt;")
             if (endpos > -1) {
-              done += cssMode(rest.substring(0, endpos));
-              rest = rest.substr(endpos);
+              done += cssMode(rest.substring(0, endpos))
+              rest = rest.substr(endpos)
             }
           }
           if (note == "javascript") {
-            endpos = rest.indexOf("&lt;/script&gt;");
+            endpos = rest.indexOf("&lt;/script&gt;")
             if (endpos > -1) {
-              done += jsMode(rest.substring(0, endpos));
-              rest = rest.substr(endpos);
+              done += jsMode(rest.substring(0, endpos))
+              rest = rest.substr(endpos)
             }
           }
         }
-        rest = done + rest;
+        rest = done + rest
         for (i = 0; i < comment.arr.length; i++) {
-          rest = rest.replace("W3HTMLCOMMENTPOS", comment.arr[i]);
+          rest = rest.replace("W3HTMLCOMMENTPOS", comment.arr[i])
         }
-        return rest;
+        return rest
       }
       function tagMode(txt) {
         var rest = txt,
           done = "",
           startpos,
           endpos,
-          result;
+          result
         while (rest.search(/(\s|<br>)/) > -1) {
-          startpos = rest.search(/(\s|<br>)/);
-          endpos = rest.indexOf("&gt;");
+          startpos = rest.search(/(\s|<br>)/)
+          endpos = rest.indexOf("&gt;")
           if (endpos == -1) {
-            endpos = rest.length;
+            endpos = rest.length
           }
-          done += rest.substring(0, startpos);
-          done += attributeMode(rest.substring(startpos, endpos));
-          rest = rest.substr(endpos);
+          done += rest.substring(0, startpos)
+          done += attributeMode(rest.substring(startpos, endpos))
+          rest = rest.substr(endpos)
         }
-        result = done + rest;
+        result = done + rest
         result =
-          "<span style=color:" +
-          tagcolor +
-          ">&lt;</span>" +
-          result.substring(4);
+          "<span style=color:" + tagcolor + ">&lt;</span>" + result.substring(4)
         if (result.substr(result.length - 4, 4) == "&gt;") {
           result =
             result.substring(0, result.length - 4) +
             "<span style=color:" +
             tagcolor +
-            ">&gt;</span>";
+            ">&gt;</span>"
         }
-        return "<span style=color:" + tagnamecolor + ">" + result + "</span>";
+        return "<span style=color:" + tagnamecolor + ">" + result + "</span>"
       }
       function attributeMode(txt) {
         var rest = txt,
@@ -1313,50 +1307,50 @@ let _temp = {
           endpos,
           singlefnuttpos,
           doublefnuttpos,
-          spacepos;
+          spacepos
         while (rest.indexOf("=") > -1) {
-          endpos = -1;
-          startpos = rest.indexOf("=");
-          singlefnuttpos = rest.indexOf("'", startpos);
-          doublefnuttpos = rest.indexOf('"', startpos);
-          spacepos = rest.indexOf(" ", startpos + 2);
+          endpos = -1
+          startpos = rest.indexOf("=")
+          singlefnuttpos = rest.indexOf("'", startpos)
+          doublefnuttpos = rest.indexOf('"', startpos)
+          spacepos = rest.indexOf(" ", startpos + 2)
           if (
             spacepos > -1 &&
             (spacepos < singlefnuttpos || singlefnuttpos == -1) &&
             (spacepos < doublefnuttpos || doublefnuttpos == -1)
           ) {
-            endpos = rest.indexOf(" ", startpos);
+            endpos = rest.indexOf(" ", startpos)
           } else if (
             doublefnuttpos > -1 &&
             (doublefnuttpos < singlefnuttpos || singlefnuttpos == -1) &&
             (doublefnuttpos < spacepos || spacepos == -1)
           ) {
-            endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1);
+            endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1)
           } else if (
             singlefnuttpos > -1 &&
             (singlefnuttpos < doublefnuttpos || doublefnuttpos == -1) &&
             (singlefnuttpos < spacepos || spacepos == -1)
           ) {
-            endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1);
+            endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1)
           }
           if (!endpos || endpos == -1 || endpos < startpos) {
-            endpos = rest.length;
+            endpos = rest.length
           }
-          done += rest.substring(0, startpos);
-          done += attributeValueMode(rest.substring(startpos, endpos + 1));
-          rest = rest.substr(endpos + 1);
+          done += rest.substring(0, startpos)
+          done += attributeValueMode(rest.substring(startpos, endpos + 1))
+          rest = rest.substr(endpos + 1)
         }
         return (
           "<span style=color:" + attributecolor + ">" + done + rest + "</span>"
-        );
+        )
       }
       function attributeValueMode(txt) {
         return (
           "<span style=color:" + attributevaluecolor + ">" + txt + "</span>"
-        );
+        )
       }
       function commentMode(txt) {
-        return "<span style=color:" + commentcolor + ">" + txt + "</span>";
+        return "<span style=color:" + commentcolor + ">" + txt + "</span>"
       }
       function cssMode(txt) {
         var rest = txt,
@@ -1367,59 +1361,59 @@ let _temp = {
           i,
           midz,
           c,
-          cc;
+          cc
         comment = new extract(
           rest,
           /\/\*/,
           "*/",
           commentMode,
-          "W3CSSCOMMENTPOS"
-        );
-        rest = comment.rest;
+          "W3CSSCOMMENTPOS",
+        )
+        rest = comment.rest
         while (rest.search("{") > -1) {
-          s = rest.search("{");
-          midz = rest.substr(s + 1);
-          cc = 1;
-          c = 0;
+          s = rest.search("{")
+          midz = rest.substr(s + 1)
+          cc = 1
+          c = 0
           for (i = 0; i < midz.length; i++) {
             if (midz.substr(i, 1) == "{") {
-              cc++;
-              c++;
+              cc++
+              c++
             }
             if (midz.substr(i, 1) == "}") {
-              cc--;
+              cc--
             }
             if (cc == 0) {
-              break;
+              break
             }
           }
           if (cc != 0) {
-            c = 0;
+            c = 0
           }
-          e = s;
+          e = s
           for (i = 0; i <= c; i++) {
-            e = rest.indexOf("}", e + 1);
+            e = rest.indexOf("}", e + 1)
           }
           if (e == -1) {
-            e = rest.length;
+            e = rest.length
           }
-          done += rest.substring(0, s + 1);
-          done += cssPropertyMode(rest.substring(s + 1, e));
-          rest = rest.substr(e);
+          done += rest.substring(0, s + 1)
+          done += cssPropertyMode(rest.substring(s + 1, e))
+          rest = rest.substr(e)
         }
-        rest = done + rest;
+        rest = done + rest
         rest = rest.replace(
           /{/g,
-          "<span style=color:" + cssdelimitercolor + ">{</span>"
-        );
+          "<span style=color:" + cssdelimitercolor + ">{</span>",
+        )
         rest = rest.replace(
           /}/g,
-          "<span style=color:" + cssdelimitercolor + ">}</span>"
-        );
+          "<span style=color:" + cssdelimitercolor + ">}</span>",
+        )
         for (i = 0; i < comment.arr.length; i++) {
-          rest = rest.replace("W3CSSCOMMENTPOS", comment.arr[i]);
+          rest = rest.replace("W3CSSCOMMENTPOS", comment.arr[i])
         }
-        return "<span style=color:" + cssselectorcolor + ">" + rest + "</span>";
+        return "<span style=color:" + cssselectorcolor + ">" + rest + "</span>"
       }
       function cssPropertyMode(txt) {
         var rest = txt,
@@ -1427,28 +1421,28 @@ let _temp = {
           s,
           e,
           n,
-          loop;
+          loop
         if (rest.indexOf("{") > -1) {
-          return cssMode(rest);
+          return cssMode(rest)
         }
         while (rest.search(":") > -1) {
-          s = rest.search(":");
-          loop = true;
-          n = s;
+          s = rest.search(":")
+          loop = true
+          n = s
           while (loop == true) {
-            loop = false;
-            e = rest.indexOf(";", n);
+            loop = false
+            e = rest.indexOf(";", n)
             if (rest.substring(e - 5, e + 1) == "&nbsp;") {
-              loop = true;
-              n = e + 1;
+              loop = true
+              n = e + 1
             }
           }
           if (e == -1) {
-            e = rest.length;
+            e = rest.length
           }
-          done += rest.substring(0, s);
-          done += cssPropertyValueMode(rest.substring(s, e + 1));
-          rest = rest.substr(e + 1);
+          done += rest.substring(0, s)
+          done += cssPropertyValueMode(rest.substring(s, e + 1))
+          rest = rest.substr(e + 1)
         }
         return (
           "<span style=color:" +
@@ -1457,24 +1451,24 @@ let _temp = {
           done +
           rest +
           "</span>"
-        );
+        )
       }
       function cssPropertyValueMode(txt) {
         var rest = txt,
           done = "",
-          s;
+          s
         rest =
           "<span style=color:" +
           cssdelimitercolor +
           ">:</span>" +
-          rest.substring(1);
+          rest.substring(1)
         while (rest.search(/!important/i) > -1) {
-          s = rest.search(/!important/i);
-          done += rest.substring(0, s);
-          done += cssImportantMode(rest.substring(s, s + 10));
-          rest = rest.substr(s + 10);
+          s = rest.search(/!important/i)
+          done += rest.substring(0, s)
+          done += cssImportantMode(rest.substring(s, s + 10))
+          rest = rest.substr(s + 10)
         }
-        result = done + rest;
+        result = done + rest
         if (
           result.substr(result.length - 1, 1) == ";" &&
           result.substr(result.length - 6, 6) != "&nbsp;" &&
@@ -1486,7 +1480,7 @@ let _temp = {
             result.substring(0, result.length - 1) +
             "<span style=color:" +
             cssdelimitercolor +
-            ">;</span>";
+            ">;</span>"
         }
         return (
           "<span style=color:" +
@@ -1494,7 +1488,7 @@ let _temp = {
           ">" +
           result +
           "</span>"
-        );
+        )
       }
       function cssImportantMode(txt) {
         return (
@@ -1503,7 +1497,7 @@ let _temp = {
           ";font-weight:bold;>" +
           txt +
           "</span>"
-        );
+        )
       }
       function jsMode(txt) {
         var rest = txt,
@@ -1520,26 +1514,26 @@ let _temp = {
           numpos,
           mypos,
           dotpos,
-          y;
+          y
         for (i = 0; i < rest.length; i++) {
-          cc = rest.substr(i, 1);
+          cc = rest.substr(i, 1)
           if (cc == "\\") {
-            esc.push(rest.substr(i, 2));
-            cc = "W3JSESCAPE";
-            i++;
+            esc.push(rest.substr(i, 2))
+            cc = "W3JSESCAPE"
+            i++
           }
-          tt += cc;
+          tt += cc
         }
-        rest = tt;
-        y = 1;
+        rest = tt
+        y = 1
         while (y == 1) {
-          sfnuttpos = getPos(rest, "'", "'", jsStringMode);
-          dfnuttpos = getPos(rest, '"', '"', jsStringMode);
-          compos = getPos(rest, /\/\*/, "*/", commentMode);
-          comlinepos = getPos(rest, /\/\//, "<br>", commentMode);
-          numpos = getNumPos(rest, jsNumberMode);
-          keywordpos = getKeywordPos("js", rest, jsKeywordMode);
-          dotpos = getDotPos(rest, jsPropertyMode);
+          sfnuttpos = getPos(rest, "'", "'", jsStringMode)
+          dfnuttpos = getPos(rest, '"', '"', jsStringMode)
+          compos = getPos(rest, /\/\*/, "*/", commentMode)
+          comlinepos = getPos(rest, /\/\//, "<br>", commentMode)
+          numpos = getNumPos(rest, jsNumberMode)
+          keywordpos = getKeywordPos("js", rest, jsKeywordMode)
+          dotpos = getDotPos(rest, jsPropertyMode)
           if (
             Math.max(
               numpos[0],
@@ -1548,10 +1542,10 @@ let _temp = {
               compos[0],
               comlinepos[0],
               keywordpos[0],
-              dotpos[0]
+              dotpos[0],
             ) == -1
           ) {
-            break;
+            break
           }
           mypos = getMinPos(
             numpos,
@@ -1560,34 +1554,34 @@ let _temp = {
             compos,
             comlinepos,
             keywordpos,
-            dotpos
-          );
+            dotpos,
+          )
           if (mypos[0] == -1) {
-            break;
+            break
           }
           if (mypos[0] > -1) {
-            done += rest.substring(0, mypos[0]);
-            done += mypos[2](rest.substring(mypos[0], mypos[1]));
-            rest = rest.substr(mypos[1]);
+            done += rest.substring(0, mypos[0])
+            done += mypos[2](rest.substring(mypos[0], mypos[1]))
+            rest = rest.substr(mypos[1])
           }
         }
-        rest = done + rest;
+        rest = done + rest
         for (i = 0; i < esc.length; i++) {
-          rest = rest.replace("W3JSESCAPE", esc[i]);
+          rest = rest.replace("W3JSESCAPE", esc[i])
         }
-        return "<span style=color:" + jscolor + ">" + rest + "</span>";
+        return "<span style=color:" + jscolor + ">" + rest + "</span>"
       }
       function jsStringMode(txt) {
-        return "<span style=color:" + jsstringcolor + ">" + txt + "</span>";
+        return "<span style=color:" + jsstringcolor + ">" + txt + "</span>"
       }
       function jsKeywordMode(txt) {
-        return "<span style=color:" + jskeywordcolor + ">" + txt + "</span>";
+        return "<span style=color:" + jskeywordcolor + ">" + txt + "</span>"
       }
       function jsNumberMode(txt) {
-        return "<span style=color:" + jsnumbercolor + ">" + txt + "</span>";
+        return "<span style=color:" + jsnumbercolor + ">" + txt + "</span>"
       }
       function jsPropertyMode(txt) {
-        return "<span style=color:" + jspropertycolor + ">" + txt + "</span>";
+        return "<span style=color:" + jspropertycolor + ">" + txt + "</span>"
       }
       function getDotPos(txt, func) {
         var x,
@@ -1615,36 +1609,36 @@ let _temp = {
             "*",
             "|",
             "%",
-          ];
-        s = txt.indexOf(".");
+          ]
+        s = txt.indexOf(".")
         if (s > -1) {
-          x = txt.substr(s + 1);
+          x = txt.substr(s + 1)
           for (j = 0; j < x.length; j++) {
-            cc = x[j];
+            cc = x[j]
             for (i = 0; i < arr.length; i++) {
               if (cc.indexOf(arr[i]) > -1) {
-                e = j;
-                return [s + 1, e + s + 1, func];
+                e = j
+                return [s + 1, e + s + 1, func]
               }
             }
           }
         }
-        return [-1, -1, func];
+        return [-1, -1, func]
       }
       function getMinPos() {
         var i,
-          arr = [];
+          arr = []
         for (i = 0; i < arguments.length; i++) {
           if (arguments[i][0] > -1) {
             if (arr.length == 0 || arguments[i][0] < arr[0]) {
-              arr = arguments[i];
+              arr = arguments[i]
             }
           }
         }
         if (arr.length == 0) {
-          arr = arguments[i];
+          arr = arguments[i]
         }
-        return arr;
+        return arr
       }
       function getKeywordPos(typ, txt, func) {
         var words,
@@ -1652,7 +1646,7 @@ let _temp = {
           pos,
           rpos = -1,
           rpos2 = -1,
-          patt;
+          patt
         if (typ == "js") {
           words = [
             "abstract",
@@ -1719,91 +1713,91 @@ let _temp = {
             "while",
             "with",
             "yield",
-          ];
+          ]
         }
         for (i = 0; i < words.length; i++) {
-          pos = txt.indexOf(words[i]);
+          pos = txt.indexOf(words[i])
           if (pos > -1) {
-            patt = /\W/g;
+            patt = /\W/g
             if (
               txt.substr(pos + words[i].length, 1).match(patt) &&
               txt.substr(pos - 1, 1).match(patt)
             ) {
               if (pos > -1 && (rpos == -1 || pos < rpos)) {
-                rpos = pos;
-                rpos2 = rpos + words[i].length;
+                rpos = pos
+                rpos2 = rpos + words[i].length
               }
             }
           }
         }
-        return [rpos, rpos2, func];
+        return [rpos, rpos2, func]
       }
       function getPos(txt, start, end, func) {
-        var s, e;
-        s = txt.search(start);
-        e = txt.indexOf(end, s + end.length);
+        var s, e
+        s = txt.search(start)
+        e = txt.indexOf(end, s + end.length)
         if (e == -1) {
-          e = txt.length;
+          e = txt.length
         }
-        return [s, e + end.length, func];
+        return [s, e + end.length, func]
       }
       function getNumPos(txt, func) {
         var arr = [
-          "<br>",
-          " ",
-          ";",
-          "(",
-          "+",
-          ")",
-          "[",
-          "]",
-          ",",
-          "&",
-          ":",
-          "{",
-          "}",
-          "/",
-          "-",
-          "*",
-          "|",
-          "%",
-          "=",
-        ],
+            "<br>",
+            " ",
+            ";",
+            "(",
+            "+",
+            ")",
+            "[",
+            "]",
+            ",",
+            "&",
+            ":",
+            "{",
+            "}",
+            "/",
+            "-",
+            "*",
+            "|",
+            "%",
+            "=",
+          ],
           i,
           j,
           c,
           startpos = 0,
           endpos,
-          word;
+          word
         for (i = 0; i < txt.length; i++) {
           for (j = 0; j < arr.length; j++) {
-            c = txt.substr(i, arr[j].length);
+            c = txt.substr(i, arr[j].length)
             if (c == arr[j]) {
               if (
                 c == "-" &&
                 (txt.substr(i - 1, 1) == "e" || txt.substr(i - 1, 1) == "E")
               ) {
-                continue;
+                continue
               }
-              endpos = i;
+              endpos = i
               if (startpos < endpos) {
-                word = txt.substring(startpos, endpos);
+                word = txt.substring(startpos, endpos)
                 if (!isNaN(word)) {
-                  return [startpos, endpos, func];
+                  return [startpos, endpos, func]
                 }
               }
-              i += arr[j].length;
-              startpos = i;
-              i -= 1;
-              break;
+              i += arr[j].length
+              startpos = i
+              i -= 1
+              break
             }
           }
         }
-        return [-1, -1, func];
+        return [-1, -1, func]
       }
-    };
-    highlightel(el, mode, colors);
-    return el.innerHTML;
+    }
+    highlightel(el, mode, colors)
+    return el.innerHTML
   },
   /**
    * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
@@ -1830,12 +1824,12 @@ let _temp = {
    * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
    */
   mobileOrDesktop: () => {
-    node();
+    node()
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
+      navigator.userAgent,
     )
       ? "mobile"
-      : "desktop";
+      : "desktop"
   },
   /**
    * Removes tags from the HTML string specified.
@@ -1859,9 +1853,9 @@ let _temp = {
   camelCase: (str) => {
     return str
       .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-        return index === 0 ? word.toLowerCase() : word.toUpperCase();
+        return index === 0 ? word.toLowerCase() : word.toUpperCase()
       })
-      .replace(/\s+/g, "");
+      .replace(/\s+/g, "")
   },
   /**
    * Scrambles the order of characters in a string. Thanks to @\Touchcreator for the suggestion for this.
@@ -1874,15 +1868,15 @@ let _temp = {
    */
   scrambleString: (str) => {
     var a = str.split(""),
-      n = a.length;
+      n = a.length
 
     for (var i = n - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = a[i];
-      a[i] = a[j];
-      a[j] = tmp;
+      var j = Math.floor(Math.random() * (i + 1))
+      var tmp = a[i]
+      a[i] = a[j]
+      a[j] = tmp
     }
-    return a.join("");
+    return a.join("")
   },
   /**
    * Allows an element to be dragged and dropped.
@@ -1894,39 +1888,39 @@ let _temp = {
    * @returns {Element} The element.
    */
   drag: (el) => {
-    node();
-    var initX, initY, mousePressX, mousePressY;
+    node()
+    var initX, initY, mousePressX, mousePressY
     el.addEventListener(
       "mousedown",
       function (event) {
-        var style = window.getComputedStyle(el);
-        el.style.top = style.getPropertyValue("top");
-        el.style.left = style.getPropertyValue("left");
-        el.style.right = style.getPropertyValue("right");
-        el.style.bottom = style.getPropertyValue("bottom");
-        this.style.position = "absolute";
-        initX = this.offsetLeft;
-        initY = this.offsetTop;
-        mousePressX = event.clientX;
-        mousePressY = event.clientY;
-        this.addEventListener("mousemove", repositionElement, false);
+        var style = window.getComputedStyle(el)
+        el.style.top = style.getPropertyValue("top")
+        el.style.left = style.getPropertyValue("left")
+        el.style.right = style.getPropertyValue("right")
+        el.style.bottom = style.getPropertyValue("bottom")
+        this.style.position = "absolute"
+        initX = this.offsetLeft
+        initY = this.offsetTop
+        mousePressX = event.clientX
+        mousePressY = event.clientY
+        this.addEventListener("mousemove", repositionElement, false)
 
         window.addEventListener(
           "mouseup",
           function () {
-            el.removeEventListener("mousemove", repositionElement, false);
+            el.removeEventListener("mousemove", repositionElement, false)
           },
-          false
-        );
+          false,
+        )
       },
-      false
-    );
+      false,
+    )
 
     function repositionElement(event) {
-      this.style.left = initX + event.clientX - mousePressX + "px";
-      this.style.top = initY + event.clientY - mousePressY + "px";
+      this.style.left = initX + event.clientX - mousePressX + "px"
+      this.style.top = initY + event.clientY - mousePressY + "px"
     }
-    return el;
+    return el
   },
   /**
    * Easing functions
@@ -1978,11 +1972,13 @@ let _temp = {
    * @returns {undefined}
    */
   getJSON: (url, callback) => {
-    node();
+    node()
     fetch(url)
       .then((res) => res.json())
       .then((json) => callback(json))
-      .catch((error) => { throw new Error(error.stack) });
+      .catch((error) => {
+        throw new Error(error.stack)
+      })
   },
   /**
    * Gets HTML from a URL and performs a callback with it.
@@ -1996,11 +1992,13 @@ let _temp = {
    * @returns {undefined}
    */
   getHTML: (url, callback) => {
-    node();
+    node()
     fetch(url)
       .then((res) => res.text())
       .then((html) => callback(_$.parseHTML(html)))
-      .catch((error) => { throw new Error(error.stack) });
+      .catch((error) => {
+        throw new Error(error.stack)
+      })
   },
   /**
    * Shuffles an array
@@ -2026,19 +2024,19 @@ let _temp = {
    */
   hashString: (str, seed = 0) => {
     let h1 = 0xdeadbeef ^ seed,
-      h2 = 0x41c6ce57 ^ seed;
+      h2 = 0x41c6ce57 ^ seed
     for (let i = 0, ch; i < str.length; i++) {
-      ch = str.charCodeAt(i);
-      h1 = Math.imul(h1 ^ ch, 2654435761);
-      h2 = Math.imul(h2 ^ ch, 1597334677);
+      ch = str.charCodeAt(i)
+      h1 = Math.imul(h1 ^ ch, 2654435761)
+      h2 = Math.imul(h2 ^ ch, 1597334677)
     }
     h1 =
       Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
-      Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+      Math.imul(h2 ^ (h2 >>> 13), 3266489909)
     h2 =
       Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
-      Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-    return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+      Math.imul(h1 ^ (h1 >>> 13), 3266489909)
+    return 4294967296 * (2097151 & h2) + (h1 >>> 0)
   },
   /**
    * Blends two colors through additive blending by a percentage.
@@ -2053,39 +2051,38 @@ let _temp = {
    */
   blendColors: (color1, color2, percent = 50) => {
     const generateHex = (r, g, b) => {
-      let R = r.toString(16);
-      let G = g.toString(16);
-      let B = b.toString(16);
+      let R = r.toString(16)
+      let G = g.toString(16)
+      let B = b.toString(16)
 
       while (R.length < 2) {
-        R = `0${R}`;
+        R = `0${R}`
       }
       while (G.length < 2) {
-        G = `0${G}`;
+        G = `0${G}`
       }
       while (B.length < 2) {
-        B = `0${B}`;
+        B = `0${B}`
       }
 
-      return `#${R}${G}${B}`;
-    };
+      return `#${R}${G}${B}`
+    }
 
-    const mix = (start, end, percent) =>
-      start + (percent / 100) * (end - start);
+    const mix = (start, end, percent) => start + (percent / 100) * (end - start)
 
-    const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
-    const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
-    const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16);
+    const red1 = parseInt(`${color1[1]}${color1[2]}`, 16)
+    const green1 = parseInt(`${color1[3]}${color1[4]}`, 16)
+    const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16)
 
-    const red2 = parseInt(`${color2[1]}${color2[2]}`, 16);
-    const green2 = parseInt(`${color2[3]}${color2[4]}`, 16);
-    const blue2 = parseInt(`${color2[5]}${color2[6]}`, 16);
+    const red2 = parseInt(`${color2[1]}${color2[2]}`, 16)
+    const green2 = parseInt(`${color2[3]}${color2[4]}`, 16)
+    const blue2 = parseInt(`${color2[5]}${color2[6]}`, 16)
 
-    const red = Math.round(mix(red1, red2, percent));
-    const green = Math.round(mix(green1, green2, percent));
-    const blue = Math.round(mix(blue1, blue2, percent));
+    const red = Math.round(mix(red1, red2, percent))
+    const green = Math.round(mix(green1, green2, percent))
+    const blue = Math.round(mix(blue1, blue2, percent))
 
-    return generateHex(red, green, blue);
+    return generateHex(red, green, blue)
   },
   /**
    * Gets the edit distance between two strings.
@@ -2098,41 +2095,41 @@ let _temp = {
    * @returns {Number} The edit distance between two strings
    */
   editDistance: (a, b) => {
-    if (a.length == 0) return b.length;
-    if (b.length == 0) return a.length;
+    if (a.length == 0) return b.length
+    if (b.length == 0) return a.length
 
-    var matrix = [];
+    var matrix = []
 
     // increment along the first column of each row
-    var i;
+    var i
     for (i = 0; i <= b.length; i++) {
-      matrix[i] = [i];
+      matrix[i] = [i]
     }
 
     // increment each column in the first row
-    var j;
+    var j
     for (j = 0; j <= a.length; j++) {
-      matrix[0][j] = j;
+      matrix[0][j] = j
     }
 
     // Fill in the rest of the matrix
     for (i = 1; i <= b.length; i++) {
       for (j = 1; j <= a.length; j++) {
         if (b.charAt(i - 1) == a.charAt(j - 1)) {
-          matrix[i][j] = matrix[i - 1][j - 1];
+          matrix[i][j] = matrix[i - 1][j - 1]
         } else {
           matrix[i][j] = Math.min(
             matrix[i - 1][j - 1] + 1, // substitution
             Math.min(
               matrix[i][j - 1] + 1, // insertion
-              matrix[i - 1][j] + 1
-            )
-          ); // deletion
+              matrix[i - 1][j] + 1,
+            ),
+          ) // deletion
         }
       }
     }
 
-    return matrix[b.length][a.length];
+    return matrix[b.length][a.length]
   },
   /**
    * Returns the size of a string in bytes.
@@ -2166,71 +2163,74 @@ let _temp = {
    */
   preloadImage: (urls) => {
     for (var i = 0; i < arguments.length; i++) {
-      images[i] = new Image();
-      images[i].src = preload.arguments[i];
+      images[i] = new Image()
+      images[i].src = preload.arguments[i]
     }
   },
   /**
-* Finds and replace multiple values with multiple other values.
-* @function
-* @memberOf bijou
-* @param {String} text The text to operate the replace on.
-* @param {Object} replace The object with find and replace values.
-* @example
-* _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
-* @returns {String} The replaced string
-*/
+   * Finds and replace multiple values with multiple other values.
+   * @function
+   * @memberOf bijou
+   * @param {String} text The text to operate the replace on.
+   * @param {Object} replace The object with find and replace values.
+   * @example
+   * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
+   * @returns {String} The replaced string
+   */
   replaceMultiple: (text, replace) => {
-    var re = new RegExp(Object.keys(replace).join("|"), "gi");
+    var re = new RegExp(Object.keys(replace).join("|"), "gi")
     text = text.replace(re, function (matched) {
-      return mapObj[matched];
-    });
-    return text;
+      return mapObj[matched]
+    })
+    return text
   },
   /**
-  * Returns the queries from a given url (Or just the current url)
-  * @function
-  * @memberOf bijou
-  * @param {String} query The url query to get.
-  * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
-  * @example
-  * //If the website adress of the current page was "https://example.com/?q=hello&hello=world"
-  * console.log(_$.urlQuery("hello"));//Returns "world";
-  * //Or on a custom url:
-  * console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
-  * @returns {String} The url query
-  */
+   * Returns the queries from a given url (Or just the current url)
+   * @function
+   * @memberOf bijou
+   * @param {String} query The url query to get.
+   * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
+   * @example
+   * //If the website adress of the current page was "https://example.com/?q=hello&hello=world"
+   * console.log(_$.urlQuery("hello"));//Returns "world";
+   * //Or on a custom url:
+   * console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
+   * @returns {String} The url query
+   */
   urlQuery: (query, url = window.location.href) => {
-    query = query.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + query + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    query = query.replace(/[\[\]]/g, "\\$&")
+    var regex = new RegExp("[?&]" + query + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url)
+    if (!results) return null
+    if (!results[2]) return ""
+    return decodeURIComponent(results[2].replace(/\+/g, " "))
   },
   /**
-  * Disables right click on the element spcified.
-  * @function
-  * @memberOf bijou
-  * @param {Element} el The element to disable right click on.
-  * @example
-  * _$.disableRightClick(document.documentElement)
-  * @returns {undefined}
-  */
-  disableRightClick: (el) => { node(); return el.oncontextmenu = false; },
+   * Disables right click on the element spcified.
+   * @function
+   * @memberOf bijou
+   * @param {Element} el The element to disable right click on.
+   * @example
+   * _$.disableRightClick(document.documentElement)
+   * @returns {undefined}
+   */
+  disableRightClick: (el) => {
+    node()
+    return (el.oncontextmenu = false)
+  },
   /**
-  * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
-  * @function
-  * @memberOf bijou
-  * @param {String} html The input string to sanitize.
-  * @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
-  * @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
-  * @example
-  * _$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>");//Returns "<b>A normal tag</b>"
-  * @returns {String} The sanitized HTML string.
-  */
+   * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
+   * @function
+   * @memberOf bijou
+   * @param {String} html The input string to sanitize.
+   * @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
+   * @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
+   * @example
+   * _$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>");//Returns "<b>A normal tag</b>"
+   * @returns {String} The sanitized HTML string.
+   */
   sanitize: (html, tags = undefined, attributes = undefined) => {
-    node();
+    node()
     var attributes = attributes || [
       { attribute: "src", tags: "*", regex: /^(?:https|http|\/\/):/ },
       { attribute: "href", tags: "*", regex: /^(?!javascript:).+/ },
@@ -2253,7 +2253,7 @@ let _temp = {
       },
       { attribute: "autofocus", tags: ["INPUT"], regex: /^(?:true|false)+$/ },
       { attribute: "for", tags: ["LABEL", "OUTPUT"], regex: /^[a-zA-Z0-9]+$/ },
-    ];
+    ]
     var tags = tags || [
       "I",
       "P",
@@ -2303,47 +2303,47 @@ let _temp = {
       "ABBR",
       "BDI",
       "BDO",
-    ];
+    ]
 
     attributes = attributes.map((el) => {
       if (typeof el === "string") {
-        return { attribute: el, tags: "*", regex: /^.+$/ };
+        return { attribute: el, tags: "*", regex: /^.+$/ }
       }
-      let output = el;
+      let output = el
       if (!el.hasOwnProperty("tags")) {
-        output.tags = "*";
+        output.tags = "*"
       }
       if (!el.hasOwnProperty("regex")) {
-        output.regex = /^.+$/;
+        output.regex = /^.+$/
       }
-      return output;
-    });
-    var el = new DOMParser().parseFromString(html, "text/html");
-    var elements = el.querySelectorAll("*");
+      return output
+    })
+    var el = new DOMParser().parseFromString(html, "text/html")
+    var elements = el.querySelectorAll("*")
     for (let i = 0; i < elements.length; i++) {
-      const current = elements[i];
-      let attr_list = get_attributes(current);
+      const current = elements[i]
+      let attr_list = get_attributes(current)
       for (let j = 0; j < attr_list.length; j++) {
-        const attribute = attr_list[j];
+        const attribute = attr_list[j]
         if (!attribute_matches(current, attribute)) {
-          current.removeAttribute(attr_list[j]);
+          current.removeAttribute(attr_list[j])
         }
       }
       if (!tags.includes(current.tagName)) {
-        current.remove();
+        current.remove()
       }
     }
-    return el.documentElement.innerHTML;
+    return el.documentElement.innerHTML
     function attribute_matches(element, attribute) {
       let output = attributes.filter((attr) => {
         let returnval =
           attr.attribute === attribute &&
           (attr.tags === "*" || attr.tags.includes(element.tagName)) &&
-          attr.regex.test(element.getAttribute(attribute));
-        return returnval;
-      });
+          attr.regex.test(element.getAttribute(attribute))
+        return returnval
+      })
 
-      return output.length > 0;
+      return output.length > 0
     }
     function get_attributes(element) {
       for (
@@ -2351,190 +2351,258 @@ let _temp = {
         i < n;
         i++
       ) {
-        arr.push(atts[i].nodeName);
+        arr.push(atts[i].nodeName)
       }
-      return arr;
+      return arr
     }
   },
   /**
-  * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
-  * @function
-  * @memberOf bijou
-  * @param {Element} el The element to convert.
-  * @example
-  * _$.inlineCSS(document.querySelector("h1"));//Converts the styles for the <h1> element to inline using the style="___" attribute
-  * @returns {undefined}
-  */
+   * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
+   * @function
+   * @memberOf bijou
+   * @param {Element} el The element to convert.
+   * @example
+   * _$.inlineCSS(document.querySelector("h1"));//Converts the styles for the <h1> element to inline using the style="___" attribute
+   * @returns {undefined}
+   */
   inlineCSS: (el) => {
-    node();
-    s = getComputedStyle(el);
+    node()
+    s = getComputedStyle(el)
 
     for (let key in s) {
-      let prop = key.replace(/\-([a-z])/g, v => v[1].toUpperCase());
-      el.style[prop] = s[key];
+      let prop = key.replace(/\-([a-z])/g, (v) => v[1].toUpperCase())
+      el.style[prop] = s[key]
     }
   },
   /**
-  * Saves a blob as a file!
-  * @function
-  * @memberOf bijou
-  * @param {Blob} blob The blob to save as a file.
-  * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
-  * @example
-  * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
-  * @returns {undefined}
-  */
+   * Saves a blob as a file!
+   * @function
+   * @memberOf bijou
+   * @param {Blob} blob The blob to save as a file.
+   * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
+   * @example
+   * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
+   * @returns {undefined}
+   */
   saveBlob: (blob, fileName = "output.txt") => {
-    node();
-    var a = document.createElement("a");
-    document.body.appendChild(a);
-    a.style = "display: none";
+    node()
+    var a = document.createElement("a")
+    document.body.appendChild(a)
+    a.style = "display: none"
 
-    var url = window.URL.createObjectURL(blob);
-    a.href = url;
-    a.download = fileName;
-    a.click();
-    window.URL.revokeObjectURL(url);
+    var url = window.URL.createObjectURL(blob)
+    a.href = url
+    a.download = fileName
+    a.click()
+    window.URL.revokeObjectURL(url)
   },
   /**
-  * Deep clones an object
-  * @function
-  * @memberOf bijou
-  * @param {Object} object The object to clone.
-  * @returns {Object} The output cloned object.
-  */
-  clone: (object) => { node(); return JSON.parse(JSON.stringify(object)) },
+   * Deep clones an object
+   * @function
+   * @memberOf bijou
+   * @param {Object} object The object to clone.
+   * @returns {Object} The output cloned object.
+   */
+  clone: (object) => {
+    node()
+    return JSON.parse(JSON.stringify(object))
+  },
   /**
- * Converts markdown to HTML. 
- * @param {String} src The markdown to convert to HTML.
- * @memberOf bijou
- * @function
- * @example
- * _$.markdownToHTML("_Italic text_, **bold text**");//Returns "<em>Italic text</em>, <b>bold text</b>"
- * @returns {String} The string of HTML converted from the markdown input.
- */
+   * Converts markdown to HTML.
+   * @param {String} src The markdown to convert to HTML.
+   * @memberOf bijou
+   * @function
+   * @example
+   * _$.markdownToHTML("_Italic text_, **bold text**");//Returns "<em>Italic text</em>, <b>bold text</b>"
+   * @returns {String} The string of HTML converted from the markdown input.
+   */
   markdownToHTML: (src) => {
-
-    var rx_lt = /</g;
-    var rx_gt = />/g;
-    var rx_space = /\t|\r|\uf8ff/g;
-    var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
-    var rx_hr = /^([*\-=_] *){3,}$/gm;
-    var rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g;
-    var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
-    var rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g;
-    var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
-    var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|((    .*?\n)+))/g;
-    var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
-    var rx_table = /\n(( *\|.*?\| *\n)+)/g;
-    var rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
-    var rx_row = /.*\n/g;
-    var rx_cell = /\||(.*?[^\\])\|/g;
-    var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
-    var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
-    var rx_stash = /-\d+\uf8ff/g;
+    var rx_lt = /</g
+    var rx_gt = />/g
+    var rx_space = /\t|\r|\uf8ff/g
+    var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g
+    var rx_hr = /^([*\-=_] *){3,}$/gm
+    var rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g
+    var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g
+    var rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g
+    var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g
+    var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|(( {4}.*?\n)+))/g
+    var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g
+    var rx_table = /\n(( *\|.*?\| *\n)+)/g
+    var rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/
+    var rx_row = /.*\n/g
+    var rx_cell = /\||(.*?[^\\])\|/g
+    var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g
+    var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g
+    var rx_stash = /-\d+\uf8ff/g
 
     function replace(rex, fn) {
-      src = src.replace(rex, fn);
+      src = src.replace(rex, fn)
     }
 
     function element(tag, content) {
-      return '<' + tag + '>' + content + '</' + tag + '>';
+      return "<" + tag + ">" + content + "</" + tag + ">"
     }
 
     function blockquote(src) {
       return src.replace(rx_blockquote, function (all, content) {
-        return element('blockquote', blockquote(highlight(content.replace(/^ *&gt; */gm, ''))));
-      });
+        return element(
+          "blockquote",
+          blockquote(highlight(content.replace(/^ *&gt; */gm, ""))),
+        )
+      })
     }
 
     function list(src) {
       return src.replace(rx_list, function (all, ind, ol, num, low, content) {
-        var entry = element('li', highlight(content.split(
-          RegExp('\n ?' + ind + '(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +', 'g')).map(list).join('</li><li>')));
+        var entry = element(
+          "li",
+          highlight(
+            content
+              .split(
+                RegExp(
+                  "\n ?" + ind + "(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +",
+                  "g",
+                ),
+              )
+              .map(list)
+              .join("</li><li>"),
+          ),
+        )
 
-        return '\n' + (ol
-          ? '<ol start="' + (num
-            ? ol + '">'
-            : parseInt(ol, 36) - 9 + '" style="list-style-type:' + (low ? 'low' : 'upp') + 'er-alpha">') + entry + '</ol>'
-          : element('ul', entry));
-      });
+        return (
+          "\n" +
+          (ol
+            ? '<ol start="' +
+              (num
+                ? ol + '">'
+                : parseInt(ol, 36) -
+                  9 +
+                  '" style="list-style-type:' +
+                  (low ? "low" : "upp") +
+                  'er-alpha">') +
+              entry +
+              "</ol>"
+            : element("ul", entry))
+        )
+      })
     }
 
     function highlight(src) {
-      return src.replace(rx_highlight, function (all, _, p1, emp, sub, sup, small, big, p2, content) {
-        return _ + element(
-          emp ? (p2 ? 'strong' : 'em')
-            : sub ? (p2 ? 's' : 'sub')
-              : sup ? 'sup'
-                : small ? 'small'
-                  : big ? 'big'
-                    : 'code',
-          highlight(content));
-      });
+      return src.replace(
+        rx_highlight,
+        function (all, _, p1, emp, sub, sup, small, big, p2, content) {
+          return (
+            _ +
+            element(
+              emp
+                ? p2
+                  ? "strong"
+                  : "em"
+                : sub
+                ? p2
+                  ? "s"
+                  : "sub"
+                : sup
+                ? "sup"
+                : small
+                ? "small"
+                : big
+                ? "big"
+                : "code",
+              highlight(content),
+            )
+          )
+        },
+      )
     }
 
     function unesc(str) {
-      return str.replace(rx_escape, '$1');
+      return str.replace(rx_escape, "$1")
     }
 
-    var stash = [];
-    var si = 0;
+    var stash = []
+    var si = 0
 
-    src = '\n' + src + '\n';
+    src = "\n" + src + "\n"
 
-    replace(rx_lt, '&lt;');
-    replace(rx_gt, '&gt;');
-    replace(rx_space, '  ');
+    replace(rx_lt, "&lt;")
+    replace(rx_gt, "&gt;")
+    replace(rx_space, "  ")
 
     // blockquote
-    src = blockquote(src);
+    src = blockquote(src)
 
     // horizontal rule
-    replace(rx_hr, '<hr/>');
+    replace(rx_hr, "<hr/>")
 
     // list
-    src = list(src);
-    replace(rx_listjoin, '');
+    src = list(src)
+    replace(rx_listjoin, "")
 
     // code
     replace(rx_code, function (all, p1, p2, p3, p4) {
-      stash[--si] = element('pre', element('code', p3 || p4.replace(/^    /gm, '')));
-      return si + '\uf8ff';
-    });
+      stash[--si] = element(
+        "pre",
+        element("code", p3 || p4.replace(/^ {4}/gm, "")),
+      )
+      return si + "\uf8ff"
+    })
 
     // link or image
     replace(rx_link, function (all, p1, p2, p3, p4, p5, p6) {
-      stash[--si] = p6 ? p6 : p2
+      stash[--si] = p6
+        ? p6
+        : p2
         ? p4
           ? '<img src="' + p4 + '" alt="' + p3 + '"/>'
           : p1
-        : '<a href="' + p4 + '">' + unesc(highlight(p3)) + '</a>';
-      return si + '\uf8ff';
-    });
+        : '<a href="' + p4 + '">' + unesc(highlight(p3)) + "</a>"
+      return si + "\uf8ff"
+    })
 
     // table
     replace(rx_table, function (all, table) {
-      var sep = table.match(rx_thead)[1];
-      return '\n' + element('table',
-        table.replace(rx_row, function (row, ri) {
-          return row == sep ? '' : element('tr', row.replace(rx_cell, function (all, cell, ci) {
-            return ci ? element(sep && !ri ? 'th' : 'td', unesc(highlight(cell || ''))) : ''
-          }))
-        })
+      var sep = table.match(rx_thead)[1]
+      return (
+        "\n" +
+        element(
+          "table",
+          table.replace(rx_row, function (row, ri) {
+            return row == sep
+              ? ""
+              : element(
+                  "tr",
+                  row.replace(rx_cell, function (all, cell, ci) {
+                    return ci
+                      ? element(
+                          sep && !ri ? "th" : "td",
+                          unesc(highlight(cell || "")),
+                        )
+                      : ""
+                  }),
+                )
+          }),
+        )
       )
-    });
+    })
 
     // heading
-    replace(rx_heading, function (all, _, p1, p2) { return _ + element('h' + p1.length, unesc(highlight(p2))) });
+    replace(rx_heading, function (all, _, p1, p2) {
+      return _ + element("h" + p1.length, unesc(highlight(p2)))
+    })
 
     // paragraph
-    replace(rx_para, function (all, content) { return element('p', unesc(highlight(content))) });
+    replace(rx_para, function (all, content) {
+      return element("p", unesc(highlight(content)))
+    })
 
     // stash
-    replace(rx_stash, function (all) { return stash[parseInt(all)] });
+    replace(rx_stash, function (all) {
+      return stash[parseInt(all)]
+    })
 
-    return src.trim();
+    return src.trim()
   },
   /**
    * Animates a number from one value to another.
@@ -2558,20 +2626,20 @@ let _temp = {
     interval = 20,
     num = (num) => num,
   ) => {
-    var value = start;
-    var steps = duration / interval;
-    var step = 0;
-    var start_time = Date.now();
-    var percentage = 0;
+    var value = start
+    var steps = duration / interval
+    var step = 0
+    var start_time = Date.now()
+    var percentage = 0
     let update = setInterval(() => {
-      value = num((Date.now() - start_time) / duration) * (end - start) + start;
-      callback(value, num((Date.now() - start_time) / duration));
-    }, interval);
+      value = num((Date.now() - start_time) / duration) * (end - start) + start
+      callback(value, num((Date.now() - start_time) / duration))
+    }, interval)
     setTimeout(() => {
-      clearInterval(update);
-      callback(end, 1);
-      return;
-    }, duration);
+      clearInterval(update)
+      callback(end, 1)
+      return
+    }, duration)
   },
   /**
    * Works exactly like setInterval but instead uses requestAnimationFrame.
@@ -2582,28 +2650,31 @@ let _temp = {
    * @returns {Object}
    */
   requestInterval: function (fn, delay) {
-    node();
+    node()
     var requestAnimFrame = (function () {
-      return window.requestAnimationFrame || function (callback, element) {
-        window.setTimeout(callback, 1000 / 60);
-      };
-    })(),
+        return (
+          window.requestAnimationFrame ||
+          function (callback, element) {
+            window.setTimeout(callback, 1000 / 60)
+          }
+        )
+      })(),
       start = new Date().getTime(),
-      handle = {};
+      handle = {}
     function loop() {
-      handle.value = requestAnimFrame(loop);
+      handle.value = requestAnimFrame(loop)
       var current = new Date().getTime(),
-        delta = current - start;
+        delta = current - start
       if (delta >= delay) {
-        fn.call();
-        start = new Date().getTime();
+        fn.call()
+        start = new Date().getTime()
       }
     }
-    handle.value = requestAnimFrame(loop);
-    return handle;
+    handle.value = requestAnimFrame(loop)
+    return handle
   },
   /**
-   * Returns an array of objects representing the attributes of a passed element. 
+   * Returns an array of objects representing the attributes of a passed element.
    * @param {Element} el The HMTL element to get attributes from.
    * @example
    * //Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "style," to the console.
@@ -2611,16 +2682,16 @@ let _temp = {
    * @return {Array.<object>} The array of objects representing the attributes
    */
   attributes(el) {
-    node();
-    var output = [];
+    node()
+    var output = []
     for (var att, i = 0, atts = el.attributes, n = atts.length; i < n; i++) {
-      att = atts[i];
+      att = atts[i]
       output.push({
         name: att.nodeName,
-        value: att.nodeValue
-      });
+        value: att.nodeValue,
+      })
     }
-    return output;
+    return output
   },
   /**
    * Loads a script from a url (Can be to a local file or to a url) then funs a callback once it's loaded.
@@ -2633,44 +2704,49 @@ let _temp = {
    * @returns {undefined}
    */
   loadScript: (url, callback) => {
-    node();
+    node()
     var script = document.createElement("script")
-    script.type = "text/javascript";
-    if (script.readyState) {  // only required for IE <9
+    script.type = "text/javascript"
+    if (script.readyState) {
+      // only required for IE <9
       script.onreadystatechange = function () {
-        if (script.readyState === "loaded" || script.readyState === "complete") {
-          script.onreadystatechange = null;
-          callback();
+        if (
+          script.readyState === "loaded" ||
+          script.readyState === "complete"
+        ) {
+          script.onreadystatechange = null
+          callback()
         }
-      };
-    } else {  //Others
+      }
+    } else {
+      //Others
       script.onload = function () {
-        callback();
-      };
+        callback()
+      }
     }
 
-    script.src = url;
-    document.getElementsByTagName("head")[0].appendChild(script);
+    script.src = url
+    document.getElementsByTagName("head")[0].appendChild(script)
   },
   /**
-  * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
-  * @function
-  * @memberOf bijou
-  * @param {Function} fn The function to memoize.
-  * @example
-  * let uuid = _$.memoize(() => uuid());
-  * console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)
-  * @returns {undefined}
-  */
-  memoize: fn => {
-    const cache = new Map();
+   * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
+   * @function
+   * @memberOf bijou
+   * @param {Function} fn The function to memoize.
+   * @example
+   * let uuid = _$.memoize(() => uuid());
+   * console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)
+   * @returns {undefined}
+   */
+  memoize: (fn) => {
+    const cache = new Map()
     const cached = function (val) {
       return cache.has(val)
         ? cache.get(val)
-        : cache.set(val, fn.call(this, val)) && cache.get(val);
-    };
-    cached.cache = cache;
-    return cached;
+        : cache.set(val, fn.call(this, val)) && cache.get(val)
+    }
+    cached.cache = cache
+    return cached
   },
   /**
    * Observes the mutations of the object specified.
@@ -2678,15 +2754,15 @@ let _temp = {
    * @function
    * @param {Object} element The element to observe
    * @param {Function} callback The callback function to run when a mutation happens.
-   * @param {*} options The options to use. 
-   * @example 
+   * @param {*} options The options to use.
+   * @example
    * _$.observeMutations(document, console.log);//Logs all the mutations that happen to the console.
    * @returns {undefined}
    */
   observeMutations: (element, callback, options) => {
-    const observer = new MutationObserver(mutations =>
-      mutations.forEach(m => callback(m))
-    );
+    const observer = new MutationObserver((mutations) =>
+      mutations.forEach((m) => callback(m)),
+    )
     observer.observe(
       element,
       Object.assign(
@@ -2698,16 +2774,16 @@ let _temp = {
           characterDataOldValue: true,
           subtree: true,
         },
-        options
-      )
-    );
-    return observer;
+        options,
+      ),
+    )
+    return observer
   },
   /**
    * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
    * @memberOf bijou
    * @function
-   * @returns {Object} The object with the emit, on and off functions in it. 
+   * @returns {Object} The object with the emit, on and off functions in it.
    * @example
    * let thing = _$.hub();
    * //Log any new data to the console
@@ -2719,27 +2795,27 @@ let _temp = {
   hub: () => ({
     hub: Object.create(null),
     emit(event, data) {
-      (this.hub[event] || []).forEach(handler => handler(data));
+      ;(this.hub[event] || []).forEach((handler) => handler(data))
     },
     on(event, handler) {
-      if (!this.hub[event]) this.hub[event] = [];
-      this.hub[event].push(handler);
+      if (!this.hub[event]) this.hub[event] = []
+      this.hub[event].push(handler)
     },
     off(event, handler) {
-      const i = (this.hub[event] || []).findIndex(h => h === handler);
-      if (i > -1) this.hub[event].splice(i, 1);
+      const i = (this.hub[event] || []).findIndex((h) => h === handler)
+      if (i > -1) this.hub[event].splice(i, 1)
       if (this.hub[event].length === 0) delete this.hub[event]
-    }
+    },
   }),
   /**
-    * Returns if the given function is async or not.
-    * @memberOf bijou
-    * @function
-    * @param {Function} val The function to test.
-    * @returns {Boolean} True if the function is async and false if not.
-    */
-  isAsync: val =>
-    Object.prototype.toString.call(val) === '[object AsyncFunction]',
+   * Returns if the given function is async or not.
+   * @memberOf bijou
+   * @function
+   * @param {Function} val The function to test.
+   * @returns {Boolean} True if the function is async and false if not.
+   */
+  isAsync: (val) =>
+    Object.prototype.toString.call(val) === "[object AsyncFunction]",
   /**
    * Fetches an image and runs the callback with the data url of the image.
    * @memberOf bijou
@@ -2754,15 +2830,15 @@ let _temp = {
    *  })
    * })
    */
-  imageToData: (async (url, callback) => {
-    let blob = await fetch(url).then(r => r.blob());
-    let dataUrl = await new Promise(resolve => {
-      let reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.readAsDataURL(blob);
-    });
-    callback(dataUrl);
-  }),
+  imageToData: async (url, callback) => {
+    let blob = await fetch(url).then((r) => r.blob())
+    let dataUrl = await new Promise((resolve) => {
+      let reader = new FileReader()
+      reader.onload = () => resolve(reader.result)
+      reader.readAsDataURL(blob)
+    })
+    callback(dataUrl)
+  },
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
@@ -2782,14 +2858,14 @@ let _temp = {
      * @returns {String} The value of the cookie
      */
     setItem: (name, value, days = 1000) => {
-      node();
-      var expires = "";
+      node()
+      var expires = ""
       if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-        expires = "; expires=" + date.toUTCString();
+        var date = new Date()
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+        expires = "; expires=" + date.toUTCString()
       }
-      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      document.cookie = name + "=" + (value || "") + expires + "; path=/"
     },
     /**
      * Gets a cookie from its name.
@@ -2797,18 +2873,18 @@ let _temp = {
      * @memberOf bijou
      * @param {String} name The name of the cookie.
      * @returns {String} The value of the cookie
-    */
+     */
     getItem: (name) => {
-      node();
+      node()
 
-      var nameEQ = name + "=";
-      var ca = document.cookie.split(";");
+      var nameEQ = name + "="
+      var ca = document.cookie.split(";")
       for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == " ") c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        var c = ca[i]
+        while (c.charAt(0) == " ") c = c.substring(1, c.length)
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length)
       }
-      return null;
+      return null
     },
     /**
      * Deletes a cookie
@@ -2817,10 +2893,10 @@ let _temp = {
      * @returns {undefined}
      */
     removeItem: (name) => {
-      node();
+      node()
 
       document.cookie =
-        name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;"
     },
   },
   /**
@@ -2863,22 +2939,22 @@ let _temp = {
     /** Validates a link
      */
     link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
-    /** 
+    /**
      * Tests for a strong password.
      * Should have:
      * 1 lowercase letter
      * 1 uppercase letter
      * 1 number
-     * 1 special character 
+     * 1 special character
      * At least 8 characters long
-    */
+     */
     strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
     /**
      * Tests for a moderate password.
      * Should have:
      * 1 lowercase letter
      * 1 uppercase letter
-     * 1 number 
+     * 1 number
      * At least 8 characters long */
     moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
     /** Ip adresses */
@@ -2901,15 +2977,15 @@ let _temp = {
     expressCredit: /^3[47][0–9]{13}$/,
     mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
     discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
-  }
-};
+  },
+}
 // Sort the object
-_temp = _temp.sortObj(_temp);
+_temp = _temp.sortObj(_temp)
 
 // Imports and exports
-const _$ = _temp;
-const _ = _temp;
-const explosion = _temp;
+const _$ = _temp
+const _ = _temp
+const explosion = _temp
 if (isNode) {
-  module.exports = _temp;
+  module.exports = _temp
 }
