@@ -2838,7 +2838,76 @@ let _temp = {
 			reader.readAsDataURL(blob);
 		});
 		callback(dataUrl);
-	},
+  },
+  function context() {
+    var menu = document.createElement("UL");
+menu.id = "contextMenu";
+document.body.appendChild(menu);
+let styles = document.createElement("STYLE");
+styles.innerHTML = `#contextMenu {
+	     pointer-events: none;
+	     padding: 0;
+	     opacity: 0;
+	     transition: opacity .3s ease;
+	     position: fixed;
+	     padding-top: 3px;
+	     padding-bottom: 3px;
+	     max-height: 200px;
+	     overflow-y: scroll;
+	     overflow-x: hidden;
+	     list-style: none;
+	     z-index: 10000;
+	     background: white;
+	     color: #333;
+	     font-family: sans-serif;
+	     border-radius: 5px;
+	     box-shadow: 2px 2px 5px #0004;
+	     width: fit-content;
+			 min-width: 50px;
+			 max-width: 150px;
+	   }
+	   #contextMenu li {
+	     transition: background-color .3s ease;
+	     display: block;
+	     min-width: 150px;
+	     margin: 0;
+	     padding: 10px;
+	   }
+	   #contextMenu li:hover {
+	     background-color: #ddd;
+	     cursor: pointer;
+	   }
+	   `;
+document.body.appendChild(styles);
+var elements = document.querySelectorAll("[contextmenu]");
+for (let i = 0; i < elements.length; i++) {
+  const el = elements[i];
+  window.addEventListener("contextmenu", (e) => {
+    var windowClick = document.addEventListener("click", (e) => {
+      if (!menu.contains(event.target)) {
+        menu.style.opacity = 0;
+        menu.style.pointerEvents = "none";
+      }
+    });
+    menu.style.pointerEvents = "auto";
+    e.preventDefault();
+    let items = document.querySelectorAll(
+      `#${e.target.closest("[contextmenu]").getAttribute("contextmenu")} menuitem`,
+    );
+    menu.innerHTML = "";
+    for (let j = 0; j < items.length; j++) {
+      const contextMenu = items[j];
+      menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
+        "onclick",
+      )}">${contextMenu.getAttribute("label")}</li>`;
+    }
+    console.log(menu.innerHTML);
+    menu.style.top = `${e.clientY}px`;
+    menu.style.left = `${e.clientX}px`;
+    menu.style.opacity = 1;
+  });
+}
+},
 	/**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
