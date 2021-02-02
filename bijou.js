@@ -2840,7 +2840,7 @@ let _temp = {
 		callback(dataUrl);
 	},
 	/**
-   * Re-enablers the use of <menu> and <m
+   * Re-enablers the use of <menu> and <menuitem> tags for corner
    */
 	context:()=> {
 		var menu = document.createElement("UL");
