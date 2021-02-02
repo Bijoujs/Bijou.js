@@ -2852,7 +2852,7 @@ let _temp = {
    * ```
    * //JS
    * _$.context();
-   * //Now the user can corner click the items that have parents with a "contextmenu" attribute
+   * //Now the user can corner click the items that have parents with a "contextmenu" attribute! Y
    * @returns {undefined};
    */
 	context: () => {
