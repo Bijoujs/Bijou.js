@@ -2840,7 +2840,7 @@ let _temp = {
 		callback(dataUrl);
 	},
 	/**
-   * Re-enablers the
+   * Re-enablers the use of <menu> and <m
    */
 	context:()=> {
 		var menu = document.createElement("UL");
