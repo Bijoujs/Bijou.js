@@ -1,471 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Import stuff -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="bijou-min.js"></script>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad()
+    </script>
+    <title>Bijou image</title>
+  </head>
 
-<head>
-  <!-- Setup meta tags -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <!-- Nice theme color on mobile devices! -->
-  <meta name="theme-color" content="#00a8a8" />
-  <!-- Import bijou.js -->
-  <!-- <link
-      rel="preload"
-      href="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"
-      as="script"
-    /> -->
-  <script src="bijou.js"></script>
-  <!-- Import iconify (For buttons) -->
-  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-  <!-- Prefetch -->
-  <link rel="prefetch" href="try.html" />
-  <link rel="prefetch" href="/docs/index.html" />
-  <link rel="prefetch" href="/docs/bijou.html" />
-  <link rel="prefetch" href="/docs/bijou.js.html" />
-  <link rel="prefetch" href="/docs/global.html" />
-  <!-- Title -->
-  <title>Bijou.js</title>
-</head>
-<!-- Use JS to load -->
-
-<body style="visibility: hidden" onload="js_Load()">
-  <!-- Top section -->
-  <section>
-    <p>
-      <!-- Header -->
-      <span id="header">Bijou</span><span id="small-text"><i><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> Small and
-          elegant</i></span>
-    </p>
-    <!-- Buttons (Using iconify)-->
-    <div class="btn">
-      <a class="btn" href="https://github.com/explosion-scratch/Bijou.js"><span class="iconify"
-          data-icon="icomoon-free:github"></span></a><a href="mailto:explosionscratch@gmail.com" class="btn"><span
-          class="iconify" data-icon="eva:email-outline"></span></a>
-      <a href="try" class="btn"><span class="iconify" data-icon="fluent:play-24-filled"></span></a>
-	<a href="docs" class="btn"><span class="iconify" data-icon="simple-line-icons:docs"></span></a>
-
+  <body class="flex">
+    <h1>Bijou.js</h1>
+    <h6>Useful JS snippets, in one simple library</h6>
+    <div class="flex flex-row">
+      <div class="one-side">
+        <h3>
+          <span class="iconify" data-icon="bx:bx-code-curly"></span>Easy to use
+        </h3>
+        <p>
+          Bijou.js is made to be easy to use for both JS beginners and experts
+          alike!
+        </p>
+        <pre><code class="js">_$.copy("Hello world!");</code></pre>
+        <h3>
+          <span class="iconify" data-icon="carbon:function"></span>Full of
+          functions
+        </h3>
+        <p>
+          Bijou.js is constantly expanding and is chock-full of useful stuff!
+        </p>
+        <pre><code class="js">window.location.hash = _$.uuid();</code></pre>
+      </div>
+      <div class="another-side">
+        <h3>
+          <span class="iconify" data-icon="whh:plug"></span>Seamless integration
+        </h3>
+        <p>Bijou.js is easy to use both in the browser and in NodeJS!</p>
+        <pre><code class="js">const _$ = require("bijou.js")</code></pre>
+        <h3>
+          <span class="iconify" data-icon="dashicons:update"></span>Constantly
+          updated
+        </h3>
+        <p>
+          Bijou.js is updated almost every day! We welcome new feature
+          suggestions and any bugs you find!
+        </p>
+      </div>
     </div>
-    
-  </section>
-  <!-- Scroll down arrow -->
-  <button onclick='document.querySelector("#readme h1").scrollIntoView();' id="scroll-down-button">
-    <span class="iconify" data-icon="fluent:caret-down-20-filled" id="scroll-down-arrow"></span>
-  </button>
-  <!-- Readme section (Filled in with JS fetch) -->
-  <section id="readme"></section>
-</body>
+  </body>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+    * {
+      font-family: "Poppins", sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 10vmin;
+    }
+
+    h2 {
+      font-size: 7vmin;
+    }
+
+    h3 {
+      font-size: 5vmin;
+    }
+
+    h6 {
+      font-size: 3vmin;
+    }
+
+    .flex {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .flex-row {
+      flex-direction: row;
+    }
+    h1 {
+      margin-top: 50px;
+    }
+    pre * {
+      font-family: "Source code pro", monospace;
+    }
+
+    pre {
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      margin-top: 10px;
+    }
+
+    .iconify {
+      margin-right: 4px;
+    }
+
+    .one-side,
+    .another-side {
+      padding: 50px;
+    }
+    html {
+      background: #efefef;
+    }
+    body {
+      width: 887px !important;
+      height: 552px !important;
+      box-shadow: 3px 3px 5px 0px #0002, 0 0 20px 0px #0001;
+      margin: 20px;
+      background: #fff;
+    }
+  </style>
 </html>
-<style>
-  /* Import Titillium Web (One of my favorite fonts) */
-  @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
-
-  /* Initial styles */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Titillium Web", sans-serif;
-  }
-
-  /* Outline on focus */
-  *:focus {
-    outline: none;
-  }
-
-  /* Headers */
-  h1,
-  h2 {
-    padding: 4px;
-    margin: 4px;
-    filter: url(#turbulence-2);
-  }
-
-  /* Body styling */
-  body {
-    background: #101010;
-    width: 100vw;
-    height: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  /* Sections */
-  section {
-    font-size: 20px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px 40px;
-    width: 80vw;
-    min-height: 100vh;
-    height: fit-content;
-    background: #0009;
-    color: white;
-    backdrop-filter: blur(10px);
-    max-width: 600px;
-  }
-
-  /* README styling */
-  p * {
-    text-align: center;
-    display: block;
-  }
-
-  /* Gradient <hr>'s */
-  hr {
-    display: block;
-    width: 100%;
-    height: 2px;
-    border: none;
-    outline: none;
-    background: linear-gradient(to right,
-        transparent,
-        lightseagreen,
-        transparent);
-  }
-
-  /* Top banner section header  */
-  p span#header {
-    font-weight: 900;
-    font-size: 20vmin;
-    color: white;
-    filter: url(#turbulence);
-  }
-
-  p span#header::selection {
-    background: transparent !important;
-  }
-
-  /* Small text subtitle */
-  #small-text i {
-    font-size: 15px;
-  }
-
-  /* Pronunciation */
-  #small-text i span {
-    font-style: none;
-    font-size: 14px;
-  }
-
-  /* Paragraphs which are not headers (For the readme) */
-  p span:not(#header) {
-    font-size: 5vmin;
-    color: white;
-  }
-
-  /* Details tags */
-  details {
-    width: 100%;
-    display: block;
-  }
-
-  /* Open */
-  details[open] {
-    padding: 10px 0px;
-  }
-
-  details[open] summary {
-    text-align: center;
-    font-size: 4vmin;
-    font-weight: 500;
-  }
-
-  /* Blobs (Most of the movement is done with JS) */
-  .blob {
-    will-change: height, width, top, left;
-    transition: all 3s ease;
-    z-index: -100;
-    border-radius: 50%;
-    position: fixed;
-  }
-
-  /* The container for the blobs */
-  .blobs {
-    top: 0;
-    left: 0;
-    filter: url(#goo);
-    position: fixed;
-    z-index: -100;
-  }
-
-  /* The first section */
-  section:first-of-type {
-    backdrop-filter: none;
-    background: transparent;
-  }
-
-  ul {
-    width: 100%;
-  }
-
-  /* Button links */
-  a.btn {
-    transition: filter 0.3s ease;
-    display: inline-block;
-    padding: 5px;
-    background: transparent;
-    text-decoration: none;
-    color: white;
-    border-radius: 20px;
-    margin: 8px;
-  }
-
-  /* More link stuff */
-  a .iconify:hover {
-    filter: drop-shadow(0 0 5px #fff);
-  }
-
-  /* Pre code */
-  pre {
-    font-family: monospace;
-    white-space: pre;
-    padding: 8px;
-    margin: 10px;
-    overflow: scroll;
-    display: block;
-    border-radius: 4px;
-    background: #fff3;
-    width: 100%;
-    height: fit-content;
-  }
-
-  /* Inline code */
-  pre * {
-    font-family: monospace;
-  }
-
-  /* Hide the open sandbox button */
-  iframe {
-    visibility: hidden !important;
-    display: none !important;
-  }
-
-  /* Hide the extra <br>'s that showdown puts in */
-  section br {
-    display: none;
-  }
-
-  /* Icons */
-
-  .iconify {
-    transition: filter 0.3s ease;
-    font-size: 30px;
-  }
-
-  /* Scroll down arrow */
-  #scroll-down-button {
-    transition: opacity 0.3s ease;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: block;
-    width: fit-content;
-    animation: pulse 1s ease infinite;
-    color: white;
-    background: transparent;
-    border: none;
-  }
-
-  /* Hidden button */
-  #scroll-down-button.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  /* Pause animation on hover */
-  #scroll-down-button:hover {
-    cursor: pointer;
-    animation-play-state: paused;
-  }
-
-  /* Pulsing arrow keyframes */
-  @keyframes pulse {
-    0% {
-      bottom: 20px;
-    }
-
-    50% {
-      bottom: 40px;
-    }
-
-    100% {
-      bottom: 20px;
-    }
-  }
-
-  /* Code keyframes */
-  code {
-    display: inline-block;
-    font-family: "Courier New", monospace;
-    font-size: 13px;
-    border-radius: 3px;
-  }
-
-  /* Pause animation on hover */
-  #scroll-down-arrow:hover {
-    animation: none;
-  }
-
-  #scroll-down-arrow>a {
-    color: white;
-  }
-
-  /* Selection color */
-  ::selection,
-  ::-moz-selection,
-  ::-webkit-selection,
-  ::-ms-selection,
-  ::-o-selection {
-    background: #0bb4;
-    color: currentColor;
-  }
-</style>
-<script>
-  function js_Load() {
-    document.body.style.visibility = "visible";
-    _$.each(document.querySelectorAll("h1, h2, h3"), (e) => {
-      e.innerHTML = _$.widows(e.innerHTML);
-    });
-    init();
-  }
-  let mouse = {
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2,
-  };
-  window.onmousemove = (e) => {
-    mouse = {
-      x: e.clientX,
-      y: e.clientY,
-    };
-  };
-  window.onscroll = (e) => {
-    if (window.scrollY > 5) {
-      document.getElementById("scroll-down-button").classList.add("hidden");
-    } else {
-      document.getElementById("scroll-down-button").classList.remove("hidden");
-    }
-  };
-  function init() {
-    fetch("README.html")
-      .then((res) => res.text())
-      .then((text) => {
-        html = _$.parseHTML(text);
-        html.querySelector("img").remove();
-        _$.each(html.querySelectorAll("br"), (br) => br.remove());
-        _$.each(html.querySelectorAll("img"), (br) => br.remove());
-        document.getElementById("readme").innerHTML +=
-          html.documentElement.innerHTML;
-      });
-    document.body.innerHTML += `
-	<svg style="display: none;">
-		<filter id="turbulence-2">
-			<feTurbulence
-				id="turbulence-filter-2"
-				type="turbulence"
-				baseFrequency="0.05"
-				numOctaves="2"
-				result="turbulence-2"
-			/>
-			<feDisplacementMap
-				in2="turbulence-2"
-				in="SourceGraphic"
-				scale="2"
-				xChannelSelector="R"
-				yChannelSelector="G"
-			/>
-			<animate
-				xlink:href="#turbulence-filter-2"
-				attributeName="baseFrequency"
-				dur="10s"
-				keyTimes="0;0.5;1"
-				values="0.02 0.06;0.04 0.08;0.02 0.06"
-				repeatCount="indefinite"
-			/>
-		</filter>
-	</svg>
-	<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">
-		<defs>
-			<filter id="goo">
-				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-				<feColorMatrix
-					in="blur"
-					mode="matrix"
-					values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
-					result="goo"
-				/>
-				<feBlend in="SourceGraphic" in2="goo" />
-			</filter>
-		</defs>
-	</svg>
-		<svg style="display: none;">
-		<filter id="turbulence">
-			<feTurbulence
-				id="turbulence-filter"
-				type="turbulence"
-				baseFrequency="0.05"
-				numOctaves="2"
-				result="turbulence"
-			/>
-			<feDisplacementMap
-				in2="turbulence"
-				in="SourceGraphic"
-				scale="5"
-				xChannelSelector="R"
-				yChannelSelector="G"
-			/>
-			<animate
-				xlink:href="#turbulence-filter"
-				attributeName="baseFrequency"
-				dur="10s"
-				keyTimes="0;0.5;1"
-				values="0.02 0.06;0.04 0.08;0.02 0.06"
-				repeatCount="indefinite"
-			/>
-		</filter>
-	</svg>
-	<div class="blobs"></div>`;
-    _$.each(new Array(40), () => {
-      document
-        .querySelector(".blobs")
-        .appendChild(_$.createElement("<div class='blob'></div>"));
-    });
-
-    _$.each(document.querySelectorAll(".blob"), (blob) => {
-      blob.style.opacity = 0;
-      blob.style.top = `${window.innerHeight / 2}px`;
-      blob.style.left = `${window.innerWidth / 2}px`;
-      blob.style.background = `#0559`;
-      let random = _$.random(30, 150);
-      blob.style.width = `${random}px`;
-      blob.style.height = `${random}px`;
-      let randomTime = _$.random(1000, 2000);
-      _$.requestInterval(() => {
-        blob.style.opacity = 1;
-        let random = _$.random(30, 100);
-        blob.style.width = `${random}px`;
-        blob.style.height = `${random}px`;
-        blob.style.top = `${_$.random(mouse.y - 150, mouse.y + 150)}px`;
-        blob.style.left = `${_$.random(mouse.x - 150, mouse.x + 150)}px`;
-        blob.style.transitionDuration = randomTime + "ms";
-      }, randomTime);
-    });
-  }
-  function generateHTML() {
-    var output = "";
-    var converter = new showdown.Converter();
-    _$.each(Object.keys(_$), (key) => {
-      output += `"<details><summary>${_$.info(
-        key
-      )}</summary>${converter.makeHtml(_$.info(key))}"</details>`;
-    });
-    return output;
-  }
-</script>
-<!-- End of doc -->
