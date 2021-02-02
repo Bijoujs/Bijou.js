@@ -2838,7 +2838,8 @@ let _temp = {
 			reader.readAsDataURL(blob);
 		});
 		callback(dataUrl);
-	},
+  },
+  /** */
 	context:()=> {
 		var menu = document.createElement("UL");
 		menu.id = "contextMenu";
