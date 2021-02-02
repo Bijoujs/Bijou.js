@@ -2842,7 +2842,7 @@ let _temp = {
 	/**
    * Re-enables the use of <menu> and <menuitem> tags for corner clicking.
    * @example
-   * ..HTML:
+   * //HTML:
    * ```
    * <h1 contextmenu="menu">Corner click me</h1>
    * <menu>
@@ -2851,6 +2851,7 @@ let _temp = {
    * </menu>
    * ```
    * //JS
+   * 
    * @returns {undefined};
    */
 	context: () => {
