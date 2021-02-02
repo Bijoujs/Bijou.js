@@ -2852,7 +2852,7 @@ let _temp = {
    * ```
    * //JS
    * _$.context();
-   * //Now the user can corner click the items 
+   * //Now the user can corner click the items that have parents with a 
    * @returns {undefined};
    */
 	context: () => {
