@@ -168,7 +168,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bijou.js.html">bijou.js</a>, <a href="bijou.js.html#line2935">line 2935</a>
+        <a href="bijou.js.html">bijou.js</a>, <a href="bijou.js.html#line2937">line 2937</a>
     </li></ul></dd>
     
 
@@ -306,7 +306,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bijou.js.html">bijou.js</a>, <a href="bijou.js.html#line2995">line 2995</a>
+        <a href="bijou.js.html">bijou.js</a>, <a href="bijou.js.html#line2997">line 2997</a>
     </li></ul></dd>
     
 
@@ -844,7 +844,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>Animates from 50 to 100 over the course of 3 seconds, updating every half second, and writing the current value to the document body._$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));</code></pre>
+    <pre class="prettyprint"><code>Animates from 50 to 100 over the course of 3 seconds, updating every half second, and writing the current value to the document body.
+_$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));</code></pre>
 
 
 
@@ -1402,7 +1403,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>//Averages the array 1,2,3,4 after squaring each number._$.averageBy([1,2,3,4], (v) => v ** 2);</code></pre>
+    <pre class="prettyprint"><code>//Averages the array 1,2,3,4 after squaring each number.
+_$.averageBy([1,2,3,4], (v) => v ** 2);</code></pre>
 
 
 
@@ -2803,7 +2805,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>//Returns a div with an id of "id_here" and innerText of "Testing!"_$.createElement("&lt;div id='id_here'>Testing!&lt;/div>");</code></pre>
+    <pre class="prettyprint"><code>//Returns a div with an id of "id_here" and innerText of "Testing!"
+_$.createElement("&lt;div id='id_here'>Testing!&lt;/div>");</code></pre>
 
 
 
@@ -4002,7 +4005,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>_$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.backgroundColor = 'white');//Make every sibling of the first list item's background color white.</code></pre>
+    <pre class="prettyprint"><code>_$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.backgroundColor = 'white');
+//Make every sibling of the first list item's background color white.</code></pre>
 
 
 
@@ -4817,7 +4821,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>//Logs the HTML of wikipedia.org to the console._$.getHTML("https://wikipedia.org", (html) => console.log(html));</code></pre>
+    <pre class="prettyprint"><code>//Logs the HTML of wikipedia.org to the console.
+_$.getHTML("https://wikipedia.org", (html) => console.log(html));</code></pre>
 
 
 
@@ -4928,7 +4933,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bijou.js.html">bijou.js</a>, <a href="bijou.js.html#line2962">line 2962</a>
+        <a href="bijou.js.html">bijou.js</a>, <a href="bijou.js.html#line2964">line 2964</a>
     </li></ul></dd>
     
 
@@ -5632,7 +5637,12 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>let thing = _$.hub();//Log any new data to the consolething.on("data", (data) => console.log(data));setTimeout(() => {  thing.emit("data", "Yay! Some data!!");//Logs "Yay! Some data!!" to the console after 2 seconds.}, 2000)</code></pre>
+    <pre class="prettyprint"><code>let thing = _$.hub();
+//Log any new data to the console
+thing.on("data", (data) => console.log(data));
+setTimeout(() => {
+  thing.emit("data", "Yay! Some data!!");//Logs "Yay! Some data!!" to the console after 2 seconds.
+}, 2000)</code></pre>
 
 
 
@@ -5793,7 +5803,12 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>//Replaces every image's url with its respective data url._$.each(document.querySelectorAll('img'), (img) => {  _$.imageToData(img.src, (data) => {   img.src = data; })})</code></pre>
+    <pre class="prettyprint"><code>//Replaces every image's url with its respective data url.
+_$.each(document.querySelectorAll('img'), (img) => {
+  _$.imageToData(img.src, (data) => {
+   img.src = data;
+ })
+})</code></pre>
 
 
 
@@ -6109,7 +6124,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>//Alerts "In view!" if the first &lt;div> in the document is partially or fully view.if (_$.inPartialView(document.querySelector("div"))) alert("In view!");</code></pre>
+    <pre class="prettyprint"><code>//Alerts "In view!" if the first &lt;div> in the document is partially or fully view.
+if (_$.inPartialView(document.querySelector("div"))) alert("In view!");</code></pre>
 
 
 
@@ -6269,7 +6285,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>//Alerts "In view!" if the first &lt;div> in the document is in view.if (_$.inView(document.querySelector("div"))) alert("In view!");</code></pre>
+    <pre class="prettyprint"><code>//Alerts "In view!" if the first &lt;div> in the document is in view.
+if (_$.inView(document.querySelector("div"))) alert("In view!");</code></pre>
 
 
 
@@ -7377,7 +7394,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>_$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());//Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}</code></pre>
+    <pre class="prettyprint"><code>_$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
+//Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}</code></pre>
 
 
 
@@ -7693,7 +7711,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>let uuid = _$.memoize(() => uuid());console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)</code></pre>
+    <pre class="prettyprint"><code>let uuid = _$.memoize(() => uuid());
+console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)</code></pre>
 
 
 
@@ -8801,7 +8820,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>let html = _$.parseHTML("&lt;div id='hello'>&lt;textarea>&lt;/textarea>&lt;/div>");html.querySelector("textarea");//Returns the textarea!</code></pre>
+    <pre class="prettyprint"><code>let html = _$.parseHTML("&lt;div id='hello'>&lt;textarea>&lt;/textarea>&lt;/div>");
+html.querySelector("textarea");//Returns the textarea!</code></pre>
 
 
 
@@ -9400,7 +9420,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const textarea = document.getElementById('textarea');console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.</code></pre>
+    <pre class="prettyprint"><code>const textarea = document.getElementById('textarea');
+console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.</code></pre>
 
 
 
@@ -10072,7 +10093,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bijou.js.html">bijou.js</a>, <a href="bijou.js.html#line2980">line 2980</a>
+        <a href="bijou.js.html">bijou.js</a>, <a href="bijou.js.html#line2982">line 2982</a>
     </li></ul></dd>
     
 
@@ -10638,7 +10659,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>_$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());//Converts the text of the first &lt;div> element to upperCase.</code></pre>
+    <pre class="prettyprint"><code>_$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
+//Converts the text of the first &lt;div> element to upperCase.</code></pre>
 
 
 
@@ -11935,7 +11957,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="bijou.js.html">bijou.js</a>, <a href="bijou.js.html#line2945">line 2945</a>
+        <a href="bijou.js.html">bijou.js</a>, <a href="bijou.js.html#line2947">line 2947</a>
     </li></ul></dd>
     
 
@@ -12139,7 +12161,9 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>let array = [1,2,3,4,5];array = _$.shuffleArray(array);//array is now something like this: [2,4,1,5,3].</code></pre>
+    <pre class="prettyprint"><code>let array = [1,2,3,4,5];
+array = _$.shuffleArray(array);
+//array is now something like this: [2,4,1,5,3].</code></pre>
 
 
 
@@ -12299,7 +12323,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});// The object is now {anotherThing: "Another value!", testing: "A value"}</code></pre>
+    <pre class="prettyprint"><code>let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
+// The object is now {anotherThing: "Another value!", testing: "A value"}</code></pre>
 
 
 
@@ -12781,7 +12806,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const alert_function = _$.throttle(() => {alert("hello")}, 5000)setInterval(alert_function, 1)</code></pre>
+    <pre class="prettyprint"><code>const alert_function = _$.throttle(() => {alert("hello")}, 5000)
+setInterval(alert_function, 1)</code></pre>
 
 
 
@@ -12992,7 +13018,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>//Times how long it took the user to enter their name._$.timeFunction(() => prompt("What's your name?"));</code></pre>
+    <pre class="prettyprint"><code>//Times how long it took the user to enter their name.
+_$.timeFunction(() => prompt("What's your name?"));</code></pre>
 
 
 
@@ -13872,7 +13899,10 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>//If the website adress of the current page was "https://example.com/?q=hello&amp;hello=world"console.log(_$.urlQuery("hello"));//Returns "world";//Or on a custom url:console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"</code></pre>
+    <pre class="prettyprint"><code>//If the website adress of the current page was "https://example.com/?q=hello&amp;hello=world"
+console.log(_$.urlQuery("hello"));//Returns "world";
+//Or on a custom url:
+console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"</code></pre>
 
 
 
@@ -14215,7 +14245,8 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);//Replaces the last space in the &lt;h1>'s innerText with "&amp;nbsp;"</code></pre>
+    <pre class="prettyprint"><code>document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
+//Replaces the last space in the &lt;h1>'s innerText with "&amp;nbsp;"</code></pre>
 
 
 
@@ -14238,7 +14269,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Tue Feb 02 2021 12:45:27 GMT+0000 (Coordinated Universal Time) using the Toast theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Tue Feb 02 2021 20:32:53 GMT+0000 (Coordinated Universal Time) using the Toast theme.
 </footer>
 
 <script>prettyPrint();</script>
