@@ -2842,7 +2842,8 @@ let _temp = {
 	/**
    * Re-enables the use of <menu> and <menuitem> tags for corner clicking.
    * @example
-   * 
+   * //
+   * @returns {}
    */
 	context:()=> {
 		var menu = document.createElement("UL");
