@@ -2838,13 +2838,13 @@ let _temp = {
 			reader.readAsDataURL(blob);
 		});
 		callback(dataUrl);
-  },
-  function context() {
-    var menu = document.createElement("UL");
-menu.id = "contextMenu";
-document.body.appendChild(menu);
-let styles = document.createElement("STYLE");
-styles.innerHTML = `#contextMenu {
+	},
+	context(: ) {
+		var menu = document.createElement("UL");
+		menu.id = "contextMenu";
+		document.body.appendChild(menu);
+		let styles = document.createElement("STYLE");
+		styles.innerHTML = `#contextMenu {
 	     pointer-events: none;
 	     padding: 0;
 	     opacity: 0;
@@ -2878,36 +2878,36 @@ styles.innerHTML = `#contextMenu {
 	     cursor: pointer;
 	   }
 	   `;
-document.body.appendChild(styles);
-var elements = document.querySelectorAll("[contextmenu]");
-for (let i = 0; i < elements.length; i++) {
-  const el = elements[i];
-  window.addEventListener("contextmenu", (e) => {
-    var windowClick = document.addEventListener("click", (e) => {
-      if (!menu.contains(event.target)) {
-        menu.style.opacity = 0;
-        menu.style.pointerEvents = "none";
-      }
-    });
-    menu.style.pointerEvents = "auto";
-    e.preventDefault();
-    let items = document.querySelectorAll(
-      `#${e.target.closest("[contextmenu]").getAttribute("contextmenu")} menuitem`,
-    );
-    menu.innerHTML = "";
-    for (let j = 0; j < items.length; j++) {
-      const contextMenu = items[j];
-      menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
-        "onclick",
-      )}">${contextMenu.getAttribute("label")}</li>`;
-    }
-    console.log(menu.innerHTML);
-    menu.style.top = `${e.clientY}px`;
-    menu.style.left = `${e.clientX}px`;
-    menu.style.opacity = 1;
-  });
-}
-},
+		document.body.appendChild(styles);
+		var elements = document.querySelectorAll("[contextmenu]");
+		for (let i = 0; i < elements.length; i++) {
+			const el = elements[i];
+			window.addEventListener("contextmenu", (e) => {
+				var windowClick = document.addEventListener("click", (e) => {
+					if (!menu.contains(event.target)) {
+						menu.style.opacity = 0;
+						menu.style.pointerEvents = "none";
+					}
+				});
+				menu.style.pointerEvents = "auto";
+				e.preventDefault();
+				let items = document.querySelectorAll(
+					`#${e.target.closest("[contextmenu]").getAttribute("contextmenu")} menuitem`,
+				);
+				menu.innerHTML = "";
+				for (let j = 0; j < items.length; j++) {
+					const contextMenu = items[j];
+					menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
+						"onclick",
+					)}">${contextMenu.getAttribute("label")}</li>`;
+				}
+				console.log(menu.innerHTML);
+				menu.style.top = `${e.clientY}px`;
+				menu.style.left = `${e.clientX}px`;
+				menu.style.opacity = 1;
+			});
+		}
+	},
 	/**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
