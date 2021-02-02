@@ -2838,8 +2838,10 @@ let _temp = {
 			reader.readAsDataURL(blob);
 		});
 		callback(dataUrl);
-  },
-  /** */
+	},
+	/**
+   * Re-enablers the
+   */
 	context:()=> {
 		var menu = document.createElement("UL");
 		menu.id = "contextMenu";
