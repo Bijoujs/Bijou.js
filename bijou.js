@@ -2852,7 +2852,7 @@ let _temp = {
    * ```
    * //JS
    * _$.context();
-   * //
+   * //Now the user can 
    * @returns {undefined};
    */
 	context: () => {
