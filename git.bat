@@ -6,6 +6,7 @@ function commit {
     cd /workspace/Bijou.js
     eslint --fix ./
     prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- ./
+    jsdoc -c jsdoc.json
     showdown makehtml -i README.md -o README.html
     terser --compress --mangle -o bijou-min.js -- bijou.js
     COMMIT_FILE=$(git diff --name-only)
