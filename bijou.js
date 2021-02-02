@@ -2851,7 +2851,8 @@ let _temp = {
    * </menu>
    * ```
    * //JS
-   * 
+   * _$.context();
+   * //
    * @returns {undefined};
    */
 	context: () => {
