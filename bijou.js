@@ -2844,7 +2844,7 @@ let _temp = {
    * @example
    * HTML:
    * ```
-   * <h1 contextmenu="menu">Cornder</h1>
+   * <h1 contextmenu="menu">Corner click me</h1>
    * @returns {undefined};
    */
 	context:()=> {
