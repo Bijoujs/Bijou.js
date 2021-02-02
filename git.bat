@@ -1,4 +1,4 @@
-npm i -g showdown terser prettier figlet-cli
+npm i -g showdown terser prettier figlet-cli eslint
 
 function commit {
   COMMIT=$(git status --porcelain)
