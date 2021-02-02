@@ -51,7 +51,7 @@ yarn add bijou.js
 Then just require it in your code:
 
 ```js
-const _$ = require("bijou.js")
+const _$ = require("bijou.js");
 ```
 
 # Usage
@@ -59,13 +59,13 @@ const _$ = require("bijou.js")
 To use Bijou.js simply call one of the many functions built into it!
 
 ```js
-_$.anyFunction() //If you're using node you can name bijou anything.
+_$.anyFunction(); //If you're using node you can name bijou anything.
 ```
 
 Such as this one!
 
 ```js
-_$.uuid() //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
+_$.uuid(); //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
 ```
 
 If you need to use a custom prefix than you can set a variable that you want to use as Bijou.js to `_$`

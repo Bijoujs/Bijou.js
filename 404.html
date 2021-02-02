@@ -81,18 +81,18 @@
   }
 </style>
 <script>
-  const closest = closestString(window.location.pathname)[0]
+  const closest = closestString(window.location.pathname)[0];
   document.getElementById(
-    "newpage",
-  ).innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`
+    "newpage"
+  ).innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
   if (_$.editDistance(closest, window.location.pathname) < 4) {
-    window.location.pathname = closest
+    window.location.pathname = closest;
   }
   if (_$.editDistance(closest, window.location.pathname) > 20) {
-    document.getElementById("newpage").innerHTML = ""
+    document.getElementById("newpage").innerHTML = "";
   }
   function parsePath(path) {
-    return path.match(/([^\/\.]+)(?:.html)$/)[1]
+    return path.match(/([^\/\.]+)(?:.html)$/)[1];
   }
   function closestString(string) {
     let array = [
@@ -103,7 +103,7 @@
       "docs/bijou.js",
       "docs/global",
       "docs/bijou",
-    ]
-    return array.sort((item) => _$.editDistance(item, string))
+    ];
+    return array.sort((item) => _$.editDistance(item, string));
   }
 </script>

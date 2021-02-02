@@ -81,7 +81,7 @@ if (typeof window === "undefined" || typeof document === "undefined") {
 
 if (isNode) {
 	console.warn(
-		"There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.",
+		"There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element."
 	);
 }
 /**
@@ -110,7 +110,7 @@ let _temp = {
 				length: sqroot - 1,
 			}).map((x, i) => i + 2);
 		numsTillSqroot.forEach(
-			(x) => (arr = arr.filter((y) => y % x !== 0 || y === x)),
+			(x) => (arr = arr.filter((y) => y % x !== 0 || y === x))
 		);
 		return arr;
 	},
@@ -127,7 +127,7 @@ let _temp = {
 		const worker = new Worker(
 			URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
 				type: "application/javascript; charset=utf-8",
-			}),
+			})
 		);
 		return new Promise((res, rej) => {
 			worker.onmessage = ({ data }) => {
@@ -212,7 +212,7 @@ let _temp = {
 					callback(e);
 				}, 150);
 			},
-			false,
+			false
 		);
 	},
 	/**
@@ -313,7 +313,7 @@ let _temp = {
       	return p.toString() === "[object SafariRemoteNotification]";
       })(
       	!window["safari"] ||
-        (typeof safari !== "undefined" && window["safari"].pushNotification),
+          (typeof safari !== "undefined" && window["safari"].pushNotification)
       );
 		var isIE = /*@cc_on!@*/ false || !!document.documentMode;
 		var isEdge = !isIE && !!window.StyleMedia;
@@ -422,8 +422,8 @@ let _temp = {
 						`${acc}${!acc.length ? "" : delimiter}"${
 							!obj[key] ? "" : obj[key]
 						}"`,
-					"",
-				),
+					""
+				)
 			),
 		].join("\n"),
 	/**
@@ -501,7 +501,7 @@ let _temp = {
 			.map((v) =>
 				v
 					.map((x) => (isNaN(x) ? `"${x.replace(/"/g, "\"\"")}"` : x))
-					.join(delimiter),
+					.join(delimiter)
 			)
 			.join("\n"),
 	/**
@@ -589,7 +589,7 @@ let _temp = {
 	serializeForm: (form) => {
 		node();
 		return Array.from(new FormData(form), (field) =>
-			field.map(encodeURIComponent).join("="),
+			field.map(encodeURIComponent).join("=")
 		).join("&");
 	},
 	/**
@@ -647,7 +647,7 @@ let _temp = {
 					">": "&gt;",
 					"'": "&#39;",
 					"\"": "&quot;",
-				}[tag] || tag),
+				}[tag] || tag)
 		),
 	/**
    * Unescapes a string of HTML
@@ -668,7 +668,7 @@ let _temp = {
 					"&gt;": ">",
 					"&#39;": "'",
 					"&quot;": "\"",
-				}[tag] || tag),
+				}[tag] || tag)
 		),
 	/**
    * Returns the previous page that the user visited.
@@ -831,14 +831,16 @@ let _temp = {
 		var r, g, b, hsp;
 		if (color.match(/^rgb/)) {
 			color = color.match(
-				/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
+				/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/
 			);
 
 			r = color[1];
 			g = color[2];
 			b = color[3];
 		} else {
-			color = +("0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&"));
+			color = +(
+				"0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&")
+			);
 
 			r = color >> 16;
 			g = (color >> 8) & 255;
@@ -1026,17 +1028,19 @@ let _temp = {
 	removeComments: (el) => {
 		if (typeof el === "element") {
 			if (isNode) {
-				throw new Error("No document element! (You are probably using Node.js)");
+				throw new Error(
+					"No document element! (You are probably using Node.js)"
+				);
 			}
 			el.innerHTML = el.innerHTML.replace(
 				/<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-				"",
+				""
 			);
 			return el;
 		} else if (typeof el === "string") {
 			return string.replace(
 				/<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-				"",
+				""
 			);
 		}
 	},
@@ -1157,7 +1161,9 @@ let _temp = {
 		el.innerText = string;
 		let highlightel = (elmnt, mode, colors = {}) => {
 			if (isNode) {
-				throw new Error("No document element! (You are probably using Node.js)");
+				throw new Error(
+					"No document element! (You are probably using Node.js)"
+				);
 			}
 			// Credit to w3schools for this
 			var lang = mode || "html";
@@ -1232,7 +1238,7 @@ let _temp = {
 					"&lt;!--",
 					"--&gt;",
 					commentMode,
-					"W3HTMLCOMMENTPOS",
+					"W3HTMLCOMMENTPOS"
 				);
 				rest = comment.rest;
 				while (rest.indexOf("&lt;") > -1) {
@@ -1290,7 +1296,10 @@ let _temp = {
 				}
 				result = done + rest;
 				result =
-          "<span style=color:" + tagcolor + ">&lt;</span>" + result.substring(4);
+          "<span style=color:" +
+          tagcolor +
+          ">&lt;</span>" +
+          result.substring(4);
 				if (result.substr(result.length - 4, 4) == "&gt;") {
 					result =
             result.substring(0, result.length - 4) +
@@ -1367,7 +1376,7 @@ let _temp = {
 					/\/\*/,
 					"*/",
 					commentMode,
-					"W3CSSCOMMENTPOS",
+					"W3CSSCOMMENTPOS"
 				);
 				rest = comment.rest;
 				while (rest.search("{") > -1) {
@@ -1404,11 +1413,11 @@ let _temp = {
 				rest = done + rest;
 				rest = rest.replace(
 					/{/g,
-					"<span style=color:" + cssdelimitercolor + ">{</span>",
+					"<span style=color:" + cssdelimitercolor + ">{</span>"
 				);
 				rest = rest.replace(
 					/}/g,
-					"<span style=color:" + cssdelimitercolor + ">}</span>",
+					"<span style=color:" + cssdelimitercolor + ">}</span>"
 				);
 				for (i = 0; i < comment.arr.length; i++) {
 					rest = rest.replace("W3CSSCOMMENTPOS", comment.arr[i]);
@@ -1542,7 +1551,7 @@ let _temp = {
 							compos[0],
 							comlinepos[0],
 							keywordpos[0],
-							dotpos[0],
+							dotpos[0]
 						) == -1
 					) {
 						break;
@@ -1554,7 +1563,7 @@ let _temp = {
 						compos,
 						comlinepos,
 						keywordpos,
-						dotpos,
+						dotpos
 					);
 					if (mypos[0] == -1) {
 						break;
@@ -1826,7 +1835,7 @@ let _temp = {
 	mobileOrDesktop: () => {
 		node();
 		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-			navigator.userAgent,
+			navigator.userAgent
 		)
 			? "mobile"
 			: "desktop";
@@ -1910,10 +1919,10 @@ let _temp = {
 					function () {
 						el.removeEventListener("mousemove", repositionElement, false);
 					},
-					false,
+					false
 				);
 			},
-			false,
+			false
 		);
 
 		function repositionElement(event) {
@@ -2068,7 +2077,8 @@ let _temp = {
 			return `#${R}${G}${B}`;
 		};
 
-		const mix = (start, end, percent) => start + (percent / 100) * (end - start);
+		const mix = (start, end, percent) =>
+			start + (percent / 100) * (end - start);
 
 		const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
 		const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
@@ -2122,8 +2132,8 @@ let _temp = {
 						matrix[i - 1][j - 1] + 1, // substitution
 						Math.min(
 							matrix[i][j - 1] + 1, // insertion
-							matrix[i - 1][j] + 1,
-						),
+							matrix[i - 1][j] + 1
+						)
 					); // deletion
 				}
 			}
@@ -2448,7 +2458,7 @@ let _temp = {
 			return src.replace(rx_blockquote, function (all, content) {
 				return element(
 					"blockquote",
-					blockquote(highlight(content.replace(/^ *&gt; */gm, ""))),
+					blockquote(highlight(content.replace(/^ *&gt; */gm, "")))
 				);
 			});
 		}
@@ -2462,27 +2472,27 @@ let _temp = {
 							.split(
 								RegExp(
 									"\n ?" + ind + "(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +",
-									"g",
-								),
+									"g"
+								)
 							)
 							.map(list)
-							.join("</li><li>"),
-					),
+							.join("</li><li>")
+					)
 				);
 
 				return (
 					"\n" +
           (ol
           	? "<ol start=\"" +
-            (num
-            	? ol + "\">"
-            	: parseInt(ol, 36) -
-              9 +
-              "\" style=\"list-style-type:" +
-              (low ? "low" : "upp") +
-              "er-alpha\">") +
-            entry +
-            "</ol>"
+              (num
+              	? ol + "\">"
+              	: parseInt(ol, 36) -
+                  9 +
+                  "\" style=\"list-style-type:" +
+                  (low ? "low" : "upp") +
+                  "er-alpha\">") +
+              entry +
+              "</ol>"
           	: element("ul", entry))
 				);
 			});
@@ -2510,10 +2520,10 @@ let _temp = {
             					: big
             						? "big"
             						: "code",
-            	highlight(content),
+            	highlight(content)
             )
 					);
-				},
+				}
 			);
 		}
 
@@ -2544,7 +2554,7 @@ let _temp = {
 		replace(rx_code, function (all, p1, p2, p3, p4) {
 			stash[--si] = element(
 				"pre",
-				element("code", p3 || p4.replace(/^ {4}/gm, "")),
+				element("code", p3 || p4.replace(/^ {4}/gm, ""))
 			);
 			return si + "\uf8ff";
 		});
@@ -2577,12 +2587,12 @@ let _temp = {
         					return ci
         						? element(
         							sep && !ri ? "th" : "td",
-        							unesc(highlight(cell || "")),
+        							unesc(highlight(cell || ""))
         						)
         						: "";
-        				}),
+        				})
         			);
-        	}),
+        	})
         )
 			);
 		});
@@ -2624,7 +2634,7 @@ let _temp = {
 		duration,
 		callback,
 		interval = 20,
-		num = (num) => num,
+		num = (num) => num
 	) => {
 		var value = start;
 		var steps = duration / interval;
@@ -2654,9 +2664,9 @@ let _temp = {
 		var requestAnimFrame = (function () {
 				return (
 					window.requestAnimationFrame ||
-        function (callback, element) {
-        	window.setTimeout(callback, 1000 / 60);
-        }
+          function (callback, element) {
+          	window.setTimeout(callback, 1000 / 60);
+          }
 				);
 			})(),
 			start = new Date().getTime(),
@@ -2761,7 +2771,7 @@ let _temp = {
    */
 	observeMutations: (element, callback, options) => {
 		const observer = new MutationObserver((mutations) =>
-			mutations.forEach((m) => callback(m)),
+			mutations.forEach((m) => callback(m))
 		);
 		observer.observe(
 			element,
@@ -2774,8 +2784,8 @@ let _temp = {
 					characterDataOldValue: true,
 					subtree: true,
 				},
-				options,
-			),
+				options
+			)
 		);
 		return observer;
 	},
@@ -2908,13 +2918,15 @@ let _temp = {
 				menu.style.pointerEvents = "auto";
 				e.preventDefault();
 				let items = document.querySelectorAll(
-					`#${e.target.closest("[contextmenu]").getAttribute("contextmenu")} menuitem`,
+					`#${e.target
+						.closest("[contextmenu]")
+						.getAttribute("contextmenu")} menuitem`
 				);
 				menu.innerHTML = "";
 				for (let j = 0; j < items.length; j++) {
 					const contextMenu = items[j];
 					menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
-						"onclick",
+						"onclick"
 					)}">${contextMenu.getAttribute("label")}</li>`;
 				}
 				console.log(menu.innerHTML);
