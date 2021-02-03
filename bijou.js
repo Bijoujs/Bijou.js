@@ -2618,29 +2618,30 @@ let _temp = {
    * Animates from 50 to 100 over the course of 3 seconds, updating every half second, and writing the current value to the document body.
    * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
    */
+  // prettier-ignore
   animate: (
-    start,
-    end,
-    duration,
-    callback,
-    interval = 20,
-    num = (num) => num,
-  ) => {
-    var value = start
-    var steps = duration / interval
-    var step = 0
-    var start_time = Date.now()
-    var percentage = 0
-    let update = setInterval(() => {
-      value = num((Date.now() - start_time) / duration) * (end - start) + start
-      callback(value, num((Date.now() - start_time) / duration))
-    }, interval)
-    setTimeout(() => {
-      clearInterval(update)
-      callback(end, 1)
-      return
-    }, duration)
-  },
+		start,
+		end,
+		duration,
+		callback,
+		interval = 20,
+		num = (num) => num,
+	) => {
+		var value = start;
+		var steps = duration / interval;
+		var step = 0;
+		var start_time = Date.now();
+		var percentage = 0;
+		let update = setInterval(() => {
+			value = num((Date.now() - start_time) / duration) * (end - start) + start;
+			callback(value, num((Date.now() - start_time) / duration));
+		}, interval);
+		setTimeout(() => {
+			clearInterval(update);
+			callback(end, 1);
+			return;
+		}, duration);
+	},
   /**
    * Works exactly like setInterval but instead uses requestAnimationFrame.
    * @memberOf bijou
