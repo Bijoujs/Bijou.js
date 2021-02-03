@@ -1157,9 +1157,6 @@ let _temp = {
     let el = document.createElement("DIV")
     el.innerText = string
     let highlightel = (elmnt, mode, colors = {}) => {
-      if (isNode) {
-        throw new Error("No document element! (You are probably using Node.js)")
-      }
       // Credit to w3schools for this
       var lang = mode || "html"
       var elmntObj = document.getElementById(elmnt) || elmnt
