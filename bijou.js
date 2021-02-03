@@ -618,6 +618,7 @@ let _temp = {
    * @returns {String} The UUID
    */
   uuid: (seed = Math.random()) => {
+    //Ma
     if (typeof seed === "string") {
       // Convert string to a number between 0 and 1
       seed = _temp.hashString(seed) / 10000000000000000
