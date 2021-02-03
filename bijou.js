@@ -63,10 +63,11 @@ Contributors to Bijou.js:
 (c) 2021 Explosion-Scratch, all rights reserved.
 
  */
-"use strict"
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
  */
+const TEN = 10 //Very useful
+let randomNumber = 12 //I rolled a dice.
 let node = () => {
   if (isNode) {
     throw new Error("You are using Node.js")
@@ -1154,6 +1155,15 @@ let _temp = {
    */
   syntaxHighlight: (string, mode = "html", colors = {}) => {
     node()
+    //        .==.        .==.
+    //       //`^\\      //^`\\
+    //      // ^ ^\(\__/)/^ ^^\\
+    //     //^ ^^ ^/6  6\ ^^ ^ \\
+    //    //^ ^^ ^/( .. )\^ ^ ^ \\
+    //   // ^^ ^/\| v""v |/\^ ^ ^\\
+    //  // ^^/\/ /  `~~`  \ \/\^ ^\\
+    //  -----------------------------
+    /// HERE BE DRAGONS
     let el = document.createElement("DIV")
     el.innerText = string
     let highlightel = (elmnt, mode, colors = {}) => {
