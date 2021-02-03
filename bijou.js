@@ -618,7 +618,7 @@ let _temp = {
    * @returns {String} The UUID
    */
   uuid: (seed = Math.random()) => {
-    //Ma
+    //Magic. Do not touch.
     if (typeof seed === "string") {
       // Convert string to a number between 0 and 1
       seed = _temp.hashString(seed) / 10000000000000000
@@ -2620,7 +2620,7 @@ let _temp = {
    * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
    */
   // prettier-ignore
-  animate: (start,end,duration,callback,interval = 20,num = (num) => num,
+  animate: (start, end, duration, callback, interval = 20, num = (num) => num,
 	) => {
 		var value = start;
 		var steps = duration / interval;
