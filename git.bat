@@ -1,3 +1,4 @@
+npm install;
 npm i -g eslint jsdoc prettier showdown terser toast-jsdoc figlet
 function remove {
   rm -f .git/index.lock
