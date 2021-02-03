@@ -66,8 +66,7 @@ Contributors to Bijou.js:
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
  */
-const TEN = 10 //Very useful
-let randomNumber = 12 //I rolled a dice.
+
 let node = () => {
   if (isNode) {
     throw new Error("You are using Node.js")
@@ -2627,8 +2626,7 @@ let _temp = {
    * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
    */
   // prettier-ignore
-  animate: (start, end, duration, callback, interval = 20, num = (num) => num,
-	) => {
+  animate: (start, end, duration, callback, interval = 20, num = (num) => num) => {
 		var value = start;
 		var steps = duration / interval;
 		var step = 0;
