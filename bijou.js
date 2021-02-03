@@ -3059,7 +3059,7 @@ let _temp = {
     /** Zip code */
     zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
     /**Phone */
-    phone: /^\+?[\d\s]{3,}$/,
+    simplePhone: /^\+?[\d\s]{3,}$/,
     /**Credit cards */
     visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
     expressCredit: /^3[47][0–9]{13}$/,
