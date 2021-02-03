@@ -2619,13 +2619,7 @@ let _temp = {
    * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
    */
   // prettier-ignore
-  animate: (
-		start,
-		end,
-		duration,
-		callback,
-		interval = 20,
-		num = (num) => num,
+  animate: (start,end,duration,callback,interval = 20,num = (num) => num,
 	) => {
 		var value = start;
 		var steps = duration / interval;
