@@ -2862,39 +2862,39 @@ let _temp = {
     document.body.appendChild(menu)
     let styles = document.createElement("STYLE")
     styles.innerHTML = `#contextMenu {
-	     pointer-events: none;
-	     padding: 0;
-	     opacity: 0;
-	     transition: opacity .3s ease;
-	     position: fixed;
-	     padding-top: 3px;
-	     padding-bottom: 3px;
-	     max-height: 200px;
-	     overflow-y: scroll;
-	     overflow-x: hidden;
-	     list-style: none;
-	     z-index: 10000;
-	     background: white;
-	     color: #333;
-	     font-family: sans-serif;
-	     border-radius: 5px;
-	     box-shadow: 2px 2px 5px #0004;
-	     width: fit-content;
-			 min-width: 50px;
-			 max-width: 150px;
-	   }
-	   #contextMenu li {
-	     transition: background-color .3s ease;
-	     display: block;
-	     min-width: 150px;
-	     margin: 0;
-	     padding: 10px;
-	   }
-	   #contextMenu li:hover {
-	     background-color: #ddd;
-	     cursor: pointer;
-	   }
-	   `
+       pointer-events: none;
+       padding: 0;
+       opacity: 0;
+       transition: opacity .3s ease;
+       position: fixed;
+       padding-top: 3px;
+       padding-bottom: 3px;
+       max-height: 200px;
+       overflow-y: scroll;
+       overflow-x: hidden;
+       list-style: none;
+       z-index: 10000;
+       background: white;
+       color: #333;
+       font-family: sans-serif;
+       border-radius: 5px;
+       box-shadow: 2px 2px 5px #0004;
+       width: fit-content;
+       min-width: 50px;
+       max-width: 150px;
+     }
+     #contextMenu li {
+       transition: background-color .3s ease;
+       display: block;
+       min-width: 150px;
+       margin: 0;
+       padding: 10px;
+     }
+     #contextMenu li:hover {
+       background-color: #ddd;
+       cursor: pointer;
+     }
+     `
     document.body.appendChild(styles)
     var elements = document.querySelectorAll("[contextmenu]")
     for (let i = 0; i < elements.length; i++) {
