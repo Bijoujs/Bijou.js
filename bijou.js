@@ -104,8 +104,8 @@ let _temp = {
    */
 	primesTo: (num) => {
 		let arr = Array.from({
-				length: num - 1,
-			}).map((x, i) => i + 2),
+			length: num - 1,
+		}).map((x, i) => i + 2),
 			sqroot = Math.floor(Math.sqrt(num)),
 			numsTillSqroot = Array.from({
 				length: sqroot - 1,
@@ -234,9 +234,9 @@ let _temp = {
 		el.style.left = "-9999px";
 		document.body.appendChild(el);
 		const selected =
-      document.getSelection().rangeCount > 0
-      	? document.getSelection().getRangeAt(0)
-      	: false;
+			document.getSelection().rangeCount > 0
+				? document.getSelection().getRangeAt(0)
+				: false;
 		el.select();
 		document.execCommand("copy");
 		document.body.removeChild(el);
@@ -304,22 +304,22 @@ let _temp = {
 	browser: () => {
 		node();
 		var isOpera =
-      (!!window.opr && !!opr.addons) ||
-      !!window.opera ||
-      navigator.userAgent.indexOf(" OPR/") >= 0;
+			(!!window.opr && !!opr.addons) ||
+			!!window.opera ||
+			navigator.userAgent.indexOf(" OPR/") >= 0;
 		var isFirefox = typeof InstallTrigger !== "undefined";
 		var isSafari =
-      /constructor/i.test(window.HTMLElement) ||
-      (function (p) {
-      	return p.toString() === "[object SafariRemoteNotification]";
-      })(
-      	!window["safari"] ||
-          (typeof safari !== "undefined" && window["safari"].pushNotification),
-      );
+			/constructor/i.test(window.HTMLElement) ||
+			(function (p) {
+				return p.toString() === "[object SafariRemoteNotification]";
+			})(
+				!window["safari"] ||
+				(typeof safari !== "undefined" && window["safari"].pushNotification),
+			);
 		var isIE = /*@cc_on!@*/ false || !!document.documentMode;
 		var isEdge = !isIE && !!window.StyleMedia;
 		var isChrome =
-      !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+			!!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
 		var isEdgeChromium = isChrome && navigator.userAgent.indexOf("Edg") != -1;
 		var isBlink = (isChrome || isOpera) && !!window.CSS;
 		if (isOpera) {
@@ -421,7 +421,7 @@ let _temp = {
 				columns.reduce(
 					(acc, key) =>
 						`${acc}${!acc.length ? "" : delimiter}"${
-							!obj[key] ? "" : obj[key]
+						!obj[key] ? "" : obj[key]
 						}"`,
 					"",
 				),
@@ -481,9 +481,9 @@ let _temp = {
 					const key = fn(current);
 					const val = obj[current];
 					acc[key] =
-            val !== null && typeof val === "object"
-            	? _$.mapObjectKeys(val, fn)
-            	: val;
+						val !== null && typeof val === "object"
+							? _$.mapObjectKeys(val, fn)
+							: val;
 					return acc;
 				}, {})
 				: obj,
@@ -545,9 +545,9 @@ let _temp = {
 
 		return (
 			top >= window.pageYOffset &&
-      left >= window.pageXOffset &&
-      top + height <= window.pageYOffset + window.innerHeight &&
-      left + width <= window.pageXOffset + window.innerWidth
+			left >= window.pageXOffset &&
+			top + height <= window.pageYOffset + window.innerHeight &&
+			left + width <= window.pageXOffset + window.innerWidth
 		);
 	},
 	/**
@@ -575,9 +575,9 @@ let _temp = {
 
 		return (
 			top < window.pageYOffset + window.innerHeight &&
-      left < window.pageXOffset + window.innerWidth &&
-      top + height > window.pageYOffset &&
-      left + width > window.pageXOffset
+			left < window.pageXOffset + window.innerWidth &&
+			top + height > window.pageYOffset &&
+			left + width > window.pageXOffset
 		);
 	},
 	/**
@@ -699,14 +699,14 @@ let _temp = {
 		node();
 		for (
 			var e,
-				t = (function () {
-					for (var e, t = el, o = [], a = 0; a < t.length; a++)
-						(e = t[a].childNodes[0]),
+			t = (function () {
+				for (var e, t = el, o = [], a = 0; a < t.length; a++)
+					(e = t[a].childNodes[0]),
 						t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-					return o;
-				})(),
-				o = 0,
-				a = t.length;
+				return o;
+			})(),
+			o = 0,
+			a = t.length;
 			o < a;
 			o++
 		)
@@ -898,15 +898,15 @@ let _temp = {
 		h = parseInt(h, 16);
 		return (
 			"rgb" +
-      (alpha ? "a" : "") +
-      "(" +
-      (h >>> (alpha ? 24 : 16)) +
-      ", " +
-      ((h & (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
-      ", " +
-      ((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
-      (alpha ? `, ${h & 0x000000ff}` : "") +
-      ")"
+			(alpha ? "a" : "") +
+			"(" +
+			(h >>> (alpha ? 24 : 16)) +
+			", " +
+			((h & (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
+			", " +
+			((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
+			(alpha ? `, ${h & 0x000000ff}` : "") +
+			")"
 		);
 	},
 	/**
@@ -927,7 +927,7 @@ let _temp = {
 		function loop(element) {
 			if (
 				element.getAttribute("id") &&
-        document.querySelectorAll(`#${element.getAttribute("id")}`).length === 1
+				document.querySelectorAll(`#${element.getAttribute("id")}`).length === 1
 			) {
 				str = str.replace(/^/, " #" + element.getAttribute("id"));
 				str = str.replace(/\s/, "");
@@ -1187,7 +1187,7 @@ let _temp = {
 			var jsnumbercolor = colors.jsNumberColor || "red";
 			var jspropertycolor = colors.jsPropertyColor || "black";
 			elmntObj.style.fontFamily =
-        colors.fontFamily || "Consolas,'Courier New', monospace";
+				colors.fontFamily || "Consolas,'Courier New', monospace";
 			if (!lang) {
 				lang = "html";
 			}
@@ -1298,13 +1298,13 @@ let _temp = {
 				}
 				result = done + rest;
 				result =
-          "<span style=color:" + tagcolor + ">&lt;</span>" + result.substring(4);
+					"<span style=color:" + tagcolor + ">&lt;</span>" + result.substring(4);
 				if (result.substr(result.length - 4, 4) == "&gt;") {
 					result =
-            result.substring(0, result.length - 4) +
-            "<span style=color:" +
-            tagcolor +
-            ">&gt;</span>";
+						result.substring(0, result.length - 4) +
+						"<span style=color:" +
+						tagcolor +
+						">&gt;</span>";
 				}
 				return "<span style=color:" + tagnamecolor + ">" + result + "</span>";
 			}
@@ -1324,20 +1324,20 @@ let _temp = {
 					spacepos = rest.indexOf(" ", startpos + 2);
 					if (
 						spacepos > -1 &&
-            (spacepos < singlefnuttpos || singlefnuttpos == -1) &&
-            (spacepos < doublefnuttpos || doublefnuttpos == -1)
+						(spacepos < singlefnuttpos || singlefnuttpos == -1) &&
+						(spacepos < doublefnuttpos || doublefnuttpos == -1)
 					) {
 						endpos = rest.indexOf(" ", startpos);
 					} else if (
 						doublefnuttpos > -1 &&
-            (doublefnuttpos < singlefnuttpos || singlefnuttpos == -1) &&
-            (doublefnuttpos < spacepos || spacepos == -1)
+						(doublefnuttpos < singlefnuttpos || singlefnuttpos == -1) &&
+						(doublefnuttpos < spacepos || spacepos == -1)
 					) {
 						endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1);
 					} else if (
 						singlefnuttpos > -1 &&
-            (singlefnuttpos < doublefnuttpos || doublefnuttpos == -1) &&
-            (singlefnuttpos < spacepos || spacepos == -1)
+						(singlefnuttpos < doublefnuttpos || doublefnuttpos == -1) &&
+						(singlefnuttpos < spacepos || spacepos == -1)
 					) {
 						endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1);
 					}
@@ -1454,11 +1454,11 @@ let _temp = {
 				}
 				return (
 					"<span style=color:" +
-          csspropertycolor +
-          ">" +
-          done +
-          rest +
-          "</span>"
+					csspropertycolor +
+					">" +
+					done +
+					rest +
+					"</span>"
 				);
 			}
 			function cssPropertyValueMode(txt) {
@@ -1466,10 +1466,10 @@ let _temp = {
 					done = "",
 					s;
 				rest =
-          "<span style=color:" +
-          cssdelimitercolor +
-          ">:</span>" +
-          rest.substring(1);
+					"<span style=color:" +
+					cssdelimitercolor +
+					">:</span>" +
+					rest.substring(1);
 				while (rest.search(/!important/i) > -1) {
 					s = rest.search(/!important/i);
 					done += rest.substring(0, s);
@@ -1479,32 +1479,32 @@ let _temp = {
 				result = done + rest;
 				if (
 					result.substr(result.length - 1, 1) == ";" &&
-          result.substr(result.length - 6, 6) != "&nbsp;" &&
-          result.substr(result.length - 4, 4) != "&lt;" &&
-          result.substr(result.length - 4, 4) != "&gt;" &&
-          result.substr(result.length - 5, 5) != "&amp;"
+					result.substr(result.length - 6, 6) != "&nbsp;" &&
+					result.substr(result.length - 4, 4) != "&lt;" &&
+					result.substr(result.length - 4, 4) != "&gt;" &&
+					result.substr(result.length - 5, 5) != "&amp;"
 				) {
 					result =
-            result.substring(0, result.length - 1) +
-            "<span style=color:" +
-            cssdelimitercolor +
-            ">;</span>";
+						result.substring(0, result.length - 1) +
+						"<span style=color:" +
+						cssdelimitercolor +
+						">;</span>";
 				}
 				return (
 					"<span style=color:" +
-          csspropertyvaluecolor +
-          ">" +
-          result +
-          "</span>"
+					csspropertyvaluecolor +
+					">" +
+					result +
+					"</span>"
 				);
 			}
 			function cssImportantMode(txt) {
 				return (
 					"<span style=color:" +
-          cssimportantcolor +
-          ";font-weight:bold;>" +
-          txt +
-          "</span>"
+					cssimportantcolor +
+					";font-weight:bold;>" +
+					txt +
+					"</span>"
 				);
 			}
 			function jsMode(txt) {
@@ -1729,7 +1729,7 @@ let _temp = {
 						patt = /\W/g;
 						if (
 							txt.substr(pos + words[i].length, 1).match(patt) &&
-              txt.substr(pos - 1, 1).match(patt)
+							txt.substr(pos - 1, 1).match(patt)
 						) {
 							if (pos > -1 && (rpos == -1 || pos < rpos)) {
 								rpos = pos;
@@ -1751,26 +1751,26 @@ let _temp = {
 			}
 			function getNumPos(txt, func) {
 				var arr = [
-						"<br>",
-						" ",
-						";",
-						"(",
-						"+",
-						")",
-						"[",
-						"]",
-						",",
-						"&",
-						":",
-						"{",
-						"}",
-						"/",
-						"-",
-						"*",
-						"|",
-						"%",
-						"=",
-					],
+					"<br>",
+					" ",
+					";",
+					"(",
+					"+",
+					")",
+					"[",
+					"]",
+					",",
+					"&",
+					":",
+					"{",
+					"}",
+					"/",
+					"-",
+					"*",
+					"|",
+					"%",
+					"=",
+				],
 					i,
 					j,
 					c,
@@ -1783,7 +1783,7 @@ let _temp = {
 						if (c == arr[j]) {
 							if (
 								c == "-" &&
-                (txt.substr(i - 1, 1) == "e" || txt.substr(i - 1, 1) == "E")
+								(txt.substr(i - 1, 1) == "e" || txt.substr(i - 1, 1) == "E")
 							) {
 								continue;
 							}
@@ -2039,11 +2039,11 @@ let _temp = {
 			h2 = Math.imul(h2 ^ ch, 1597334677);
 		}
 		h1 =
-      Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
-      Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+			Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
+			Math.imul(h2 ^ (h2 >>> 13), 3266489909);
 		h2 =
-      Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
-      Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+			Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
+			Math.imul(h1 ^ (h1 >>> 13), 3266489909);
 		return 4294967296 * (2097151 & h2) + (h1 >>> 0);
 	},
 	/**
@@ -2345,9 +2345,9 @@ let _temp = {
 		function attribute_matches(element, attribute) {
 			let output = attributes.filter((attr) => {
 				let returnval =
-          attr.attribute === attribute &&
-          (attr.tags === "*" || attr.tags.includes(element.tagName)) &&
-          attr.regex.test(element.getAttribute(attribute));
+					attr.attribute === attribute &&
+					(attr.tags === "*" || attr.tags.includes(element.tagName)) &&
+					attr.regex.test(element.getAttribute(attribute));
 				return returnval;
 			});
 
@@ -2480,18 +2480,18 @@ let _temp = {
 
 				return (
 					"\n" +
-          (ol
-          	? '<ol start="' +
-              (num
-              	? ol + '">'
-              	: parseInt(ol, 36) -
-                  9 +
-                  '" style="list-style-type:' +
-                  (low ? "low" : "upp") +
-                  'er-alpha">') +
-              entry +
-              "</ol>"
-          	: element("ul", entry))
+					(ol
+						? '<ol start="' +
+						(num
+							? ol + '">'
+							: parseInt(ol, 36) -
+							9 +
+							'" style="list-style-type:' +
+							(low ? "low" : "upp") +
+							'er-alpha">') +
+						entry +
+						"</ol>"
+						: element("ul", entry))
 				);
 			});
 		}
@@ -2502,24 +2502,24 @@ let _temp = {
 				function (all, _, p1, emp, sub, sup, small, big, p2, content) {
 					return (
 						_ +
-            element(
-            	emp
-            		? p2
-            			? "strong"
-            			: "em"
-            		: sub
-            			? p2
-            				? "s"
-            				: "sub"
-            			: sup
-            				? "sup"
-            				: small
-            					? "small"
-            					: big
-            						? "big"
-            						: "code",
-            	highlight(content),
-            )
+						element(
+							emp
+								? p2
+									? "strong"
+									: "em"
+								: sub
+									? p2
+										? "s"
+										: "sub"
+									: sup
+										? "sup"
+										: small
+											? "small"
+											: big
+												? "big"
+												: "code",
+							highlight(content),
+						)
 					);
 				},
 			);
@@ -2574,24 +2574,24 @@ let _temp = {
 			var sep = table.match(rx_thead)[1];
 			return (
 				"\n" +
-        element(
-        	"table",
-        	table.replace(rx_row, function (row, ri) {
-        		return row == sep
-        			? ""
-        			: element(
-        				"tr",
-        				row.replace(rx_cell, function (all, cell, ci) {
-        					return ci
-        						? element(
-        							sep && !ri ? "th" : "td",
-        							unesc(highlight(cell || "")),
-        						)
-        						: "";
-        				}),
-        			);
-        	}),
-        )
+				element(
+					"table",
+					table.replace(rx_row, function (row, ri) {
+						return row == sep
+							? ""
+							: element(
+								"tr",
+								row.replace(rx_cell, function (all, cell, ci) {
+									return ci
+										? element(
+											sep && !ri ? "th" : "td",
+											unesc(highlight(cell || "")),
+										)
+										: "";
+								}),
+							);
+					}),
+				)
 			);
 		});
 
@@ -2654,13 +2654,13 @@ let _temp = {
 	requestInterval: function (fn, delay) {
 		node();
 		var requestAnimFrame = (function () {
-				return (
-					window.requestAnimationFrame ||
-          function (callback, element) {
-          	window.setTimeout(callback, 1000 / 60);
-          }
-				);
-			})(),
+			return (
+				window.requestAnimationFrame ||
+				function (callback, element) {
+					window.setTimeout(callback, 1000 / 60);
+				}
+			);
+		})(),
 			start = new Date().getTime(),
 			handle = {};
 		function loop() {
@@ -2714,7 +2714,7 @@ let _temp = {
 			script.onreadystatechange = function () {
 				if (
 					script.readyState === "loaded" ||
-          script.readyState === "complete"
+					script.readyState === "complete"
 				) {
 					script.onreadystatechange = null;
 					callback();
@@ -2797,7 +2797,7 @@ let _temp = {
 	hub: () => ({
 		hub: Object.create(null),
 		emit(event, data) {
-			;(this.hub[event] || []).forEach((handler) => handler(data));
+			; (this.hub[event] || []).forEach((handler) => handler(data));
 		},
 		on(event, handler) {
 			if (!this.hub[event]) this.hub[event] = [];
@@ -2985,7 +2985,7 @@ let _temp = {
 			node();
 
 			document.cookie =
-        name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+				name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 		},
 	},
 	/**
