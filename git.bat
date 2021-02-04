@@ -25,6 +25,6 @@ function commit {
   fi
 }
 
-while true; do 
-  commit
-  done
+remove
+commit
+git push
