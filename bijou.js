@@ -977,7 +977,7 @@ let _temp = {
         name = name.toLowerCase()
         var nodeNth = ""
 
-        var childrens = element.parentNode.children
+        childrens = element.parentNode.children
 
         if (childrens.length > 2) {
           var similarNodes = []
@@ -1035,7 +1035,7 @@ let _temp = {
       )
       return el
     } else if (typeof el === "string") {
-      return string.replace(
+      return el.replace(
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
         "",
       )
