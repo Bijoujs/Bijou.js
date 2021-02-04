@@ -1025,7 +1025,7 @@ let _temp = {
    * @returns {String|Element} The string removed of comments or the element removed of comments.
    */
   removeComments: (el) => {
-    if (typeof el === "element") {
+    if (typeof el === "object") {
       if (isNode) {
         throw new Error("No document element! (You are probably using Node.js)")
       }
