@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable linebreak-style */
 /**
  * @file bijou.js
@@ -82,7 +84,7 @@ if (typeof window === "undefined" || typeof document === "undefined") {
 
 if (isNode) {
 	console.warn(
-		"There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.",
+		"There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element."
 	);
 }
 /**
@@ -104,14 +106,14 @@ let _temp = {
    */
 	primesTo: (num) => {
 		let arr = Array.from({
-			length: num - 1,
-		}).map((x, i) => i + 2),
+				length: num - 1,
+			}).map((x, i) => i + 2),
 			sqroot = Math.floor(Math.sqrt(num)),
 			numsTillSqroot = Array.from({
 				length: sqroot - 1,
 			}).map((x, i) => i + 2);
 		numsTillSqroot.forEach(
-			(x) => (arr = arr.filter((y) => y % x !== 0 || y === x)),
+			(x) => (arr = arr.filter((y) => y % x !== 0 || y === x))
 		);
 		return arr;
 	},
@@ -128,7 +130,7 @@ let _temp = {
 		const worker = new Worker(
 			URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
 				type: "application/javascript; charset=utf-8",
-			}),
+			})
 		);
 		return new Promise((res, rej) => {
 			worker.onmessage = ({ data }) => {
@@ -213,7 +215,7 @@ let _temp = {
 					callback(e);
 				}, 150);
 			},
-			false,
+			false
 		);
 	},
 	/**
@@ -234,9 +236,9 @@ let _temp = {
 		el.style.left = "-9999px";
 		document.body.appendChild(el);
 		const selected =
-			document.getSelection().rangeCount > 0
-				? document.getSelection().getRangeAt(0)
-				: false;
+      document.getSelection().rangeCount > 0
+      	? document.getSelection().getRangeAt(0)
+      	: false;
 		el.select();
 		document.execCommand("copy");
 		document.body.removeChild(el);
@@ -304,22 +306,22 @@ let _temp = {
 	browser: () => {
 		node();
 		var isOpera =
-			(!!window.opr && !!opr.addons) ||
-			!!window.opera ||
-			navigator.userAgent.indexOf(" OPR/") >= 0;
+      (!!window.opr && !!opr.addons) ||
+      !!window.opera ||
+      navigator.userAgent.indexOf(" OPR/") >= 0;
 		var isFirefox = typeof InstallTrigger !== "undefined";
 		var isSafari =
-			/constructor/i.test(window.HTMLElement) ||
-			(function (p) {
-				return p.toString() === "[object SafariRemoteNotification]";
-			})(
-				!window["safari"] ||
-				(typeof safari !== "undefined" && window["safari"].pushNotification),
-			);
+      /constructor/i.test(window.HTMLElement) ||
+      (function (p) {
+      	return p.toString() === "[object SafariRemoteNotification]";
+      })(
+      	!window["safari"] ||
+          (typeof safari !== "undefined" && window["safari"].pushNotification)
+      );
 		var isIE = /*@cc_on!@*/ false || !!document.documentMode;
 		var isEdge = !isIE && !!window.StyleMedia;
 		var isChrome =
-			!!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+      !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
 		var isEdgeChromium = isChrome && navigator.userAgent.indexOf("Edg") != -1;
 		var isBlink = (isChrome || isOpera) && !!window.CSS;
 		if (isOpera) {
@@ -364,18 +366,10 @@ let _temp = {
 			console.log("Browser does not support notifications.");
 		} else {
 			if (Notification.permission === "granted") {
-				var notify = new Notification(text, {
-					body: body,
-					icon: icon,
-				});
 			} else {
 				Notification.requestPermission()
 					.then(function (p) {
 						if (p === "granted") {
-							var notify = new Notification(text, {
-								body: body,
-								icon: icon,
-							});
 						} else {
 							console.log("User blocked notifications.");
 						}
@@ -421,10 +415,10 @@ let _temp = {
 				columns.reduce(
 					(acc, key) =>
 						`${acc}${!acc.length ? "" : delimiter}"${
-						!obj[key] ? "" : obj[key]
+							!obj[key] ? "" : obj[key]
 						}"`,
-					"",
-				),
+					""
+				)
 			),
 		].join("\n"),
 	/**
@@ -481,9 +475,9 @@ let _temp = {
 					const key = fn(current);
 					const val = obj[current];
 					acc[key] =
-						val !== null && typeof val === "object"
-							? _$.mapObjectKeys(val, fn)
-							: val;
+            val !== null && typeof val === "object"
+            	? _$.mapObjectKeys(val, fn)
+            	: val;
 					return acc;
 				}, {})
 				: obj,
@@ -501,8 +495,8 @@ let _temp = {
 		arr
 			.map((v) =>
 				v
-					.map((x) => (isNaN(x) ? `"${x.replace(/"/g, '""')}"` : x))
-					.join(delimiter),
+					.map((x) => (isNaN(x) ? `"${x.replace(/"/g, "\"\"")}"` : x))
+					.join(delimiter)
 			)
 			.join("\n"),
 	/**
@@ -545,9 +539,9 @@ let _temp = {
 
 		return (
 			top >= window.pageYOffset &&
-			left >= window.pageXOffset &&
-			top + height <= window.pageYOffset + window.innerHeight &&
-			left + width <= window.pageXOffset + window.innerWidth
+      left >= window.pageXOffset &&
+      top + height <= window.pageYOffset + window.innerHeight &&
+      left + width <= window.pageXOffset + window.innerWidth
 		);
 	},
 	/**
@@ -575,9 +569,9 @@ let _temp = {
 
 		return (
 			top < window.pageYOffset + window.innerHeight &&
-			left < window.pageXOffset + window.innerWidth &&
-			top + height > window.pageYOffset &&
-			left + width > window.pageXOffset
+      left < window.pageXOffset + window.innerWidth &&
+      top + height > window.pageYOffset &&
+      left + width > window.pageXOffset
 		);
 	},
 	/**
@@ -590,7 +584,7 @@ let _temp = {
 	serializeForm: (form) => {
 		node();
 		return Array.from(new FormData(form), (field) =>
-			field.map(encodeURIComponent).join("="),
+			field.map(encodeURIComponent).join("=")
 		).join("&");
 	},
 	/**
@@ -648,8 +642,8 @@ let _temp = {
 					"<": "&lt;",
 					">": "&gt;",
 					"'": "&#39;",
-					'"': "&quot;",
-				}[tag] || tag),
+					"\"": "&quot;",
+				}[tag] || tag)
 		),
 	/**
    * Unescapes a string of HTML
@@ -669,8 +663,8 @@ let _temp = {
 					"&lt;": "<",
 					"&gt;": ">",
 					"&#39;": "'",
-					"&quot;": '"',
-				}[tag] || tag),
+					"&quot;": "\"",
+				}[tag] || tag)
 		),
 	/**
    * Returns the previous page that the user visited.
@@ -699,14 +693,14 @@ let _temp = {
 		node();
 		for (
 			var e,
-			t = (function () {
-				for (var e, t = el, o = [], a = 0; a < t.length; a++)
-					(e = t[a].childNodes[0]),
+				t = (function () {
+					for (var e, t = el, o = [], a = 0; a < t.length; a++)
+						(e = t[a].childNodes[0]),
 						t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-				return o;
-			})(),
-			o = 0,
-			a = t.length;
+					return o;
+				})(),
+				o = 0,
+				a = t.length;
 			o < a;
 			o++
 		)
@@ -833,14 +827,16 @@ let _temp = {
 		var r, g, b, hsp;
 		if (color.match(/^rgb/)) {
 			color = color.match(
-				/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
+				/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/
 			);
 
 			r = color[1];
 			g = color[2];
 			b = color[3];
 		} else {
-			color = +("0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&"));
+			color = +(
+				"0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&")
+			);
 
 			r = color >> 16;
 			g = (color >> 8) & 255;
@@ -898,15 +894,15 @@ let _temp = {
 		h = parseInt(h, 16);
 		return (
 			"rgb" +
-			(alpha ? "a" : "") +
-			"(" +
-			(h >>> (alpha ? 24 : 16)) +
-			", " +
-			((h & (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
-			", " +
-			((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
-			(alpha ? `, ${h & 0x000000ff}` : "") +
-			")"
+      (alpha ? "a" : "") +
+      "(" +
+      (h >>> (alpha ? 24 : 16)) +
+      ", " +
+      ((h & (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
+      ", " +
+      ((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
+      (alpha ? `, ${h & 0x000000ff}` : "") +
+      ")"
 		);
 	},
 	/**
@@ -927,7 +923,7 @@ let _temp = {
 		function loop(element) {
 			if (
 				element.getAttribute("id") &&
-				document.querySelectorAll(`#${element.getAttribute("id")}`).length === 1
+        document.querySelectorAll(`#${element.getAttribute("id")}`).length === 1
 			) {
 				str = str.replace(/^/, " #" + element.getAttribute("id"));
 				str = str.replace(/\s/, "");
@@ -1028,17 +1024,19 @@ let _temp = {
 	removeComments: (el) => {
 		if (typeof el === "object") {
 			if (isNode) {
-				throw new Error("No document element! (You are probably using Node.js)");
+				throw new Error(
+					"No document element! (You are probably using Node.js)"
+				);
 			}
 			el.innerHTML = el.innerHTML.replace(
 				/<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-				"",
+				""
 			);
 			return el;
 		} else if (typeof el === "string") {
 			return el.replace(
 				/<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-				"",
+				""
 			);
 		}
 	},
@@ -1187,7 +1185,7 @@ let _temp = {
 			var jsnumbercolor = colors.jsNumberColor || "red";
 			var jspropertycolor = colors.jsPropertyColor || "black";
 			elmntObj.style.fontFamily =
-				colors.fontFamily || "Consolas,'Courier New', monospace";
+        colors.fontFamily || "Consolas,'Courier New', monospace";
 			if (!lang) {
 				lang = "html";
 			}
@@ -1228,9 +1226,7 @@ let _temp = {
 			function htmlMode(txt) {
 				var rest = txt,
 					done = "",
-					php,
 					comment,
-					angular,
 					startpos,
 					endpos,
 					note,
@@ -1240,7 +1236,7 @@ let _temp = {
 					"&lt;!--",
 					"--&gt;",
 					commentMode,
-					"W3HTMLCOMMENTPOS",
+					"W3HTMLCOMMENTPOS"
 				);
 				rest = comment.rest;
 				while (rest.indexOf("&lt;") > -1) {
@@ -1298,13 +1294,16 @@ let _temp = {
 				}
 				result = done + rest;
 				result =
-					"<span style=color:" + tagcolor + ">&lt;</span>" + result.substring(4);
+          "<span style=color:" +
+          tagcolor +
+          ">&lt;</span>" +
+          result.substring(4);
 				if (result.substr(result.length - 4, 4) == "&gt;") {
 					result =
-						result.substring(0, result.length - 4) +
-						"<span style=color:" +
-						tagcolor +
-						">&gt;</span>";
+            result.substring(0, result.length - 4) +
+            "<span style=color:" +
+            tagcolor +
+            ">&gt;</span>";
 				}
 				return "<span style=color:" + tagnamecolor + ">" + result + "</span>";
 			}
@@ -1320,24 +1319,24 @@ let _temp = {
 					endpos = -1;
 					startpos = rest.indexOf("=");
 					singlefnuttpos = rest.indexOf("'", startpos);
-					doublefnuttpos = rest.indexOf('"', startpos);
+					doublefnuttpos = rest.indexOf("\"", startpos);
 					spacepos = rest.indexOf(" ", startpos + 2);
 					if (
 						spacepos > -1 &&
-						(spacepos < singlefnuttpos || singlefnuttpos == -1) &&
-						(spacepos < doublefnuttpos || doublefnuttpos == -1)
+            (spacepos < singlefnuttpos || singlefnuttpos == -1) &&
+            (spacepos < doublefnuttpos || doublefnuttpos == -1)
 					) {
 						endpos = rest.indexOf(" ", startpos);
 					} else if (
 						doublefnuttpos > -1 &&
-						(doublefnuttpos < singlefnuttpos || singlefnuttpos == -1) &&
-						(doublefnuttpos < spacepos || spacepos == -1)
+            (doublefnuttpos < singlefnuttpos || singlefnuttpos == -1) &&
+            (doublefnuttpos < spacepos || spacepos == -1)
 					) {
-						endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1);
+						endpos = rest.indexOf("\"", rest.indexOf("\"", startpos) + 1);
 					} else if (
 						singlefnuttpos > -1 &&
-						(singlefnuttpos < doublefnuttpos || doublefnuttpos == -1) &&
-						(singlefnuttpos < spacepos || spacepos == -1)
+            (singlefnuttpos < doublefnuttpos || doublefnuttpos == -1) &&
+            (singlefnuttpos < spacepos || spacepos == -1)
 					) {
 						endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1);
 					}
@@ -1375,7 +1374,7 @@ let _temp = {
 					/\/\*/,
 					"*/",
 					commentMode,
-					"W3CSSCOMMENTPOS",
+					"W3CSSCOMMENTPOS"
 				);
 				rest = comment.rest;
 				while (rest.search("{") > -1) {
@@ -1412,11 +1411,11 @@ let _temp = {
 				rest = done + rest;
 				rest = rest.replace(
 					/{/g,
-					"<span style=color:" + cssdelimitercolor + ">{</span>",
+					"<span style=color:" + cssdelimitercolor + ">{</span>"
 				);
 				rest = rest.replace(
 					/}/g,
-					"<span style=color:" + cssdelimitercolor + ">}</span>",
+					"<span style=color:" + cssdelimitercolor + ">}</span>"
 				);
 				for (i = 0; i < comment.arr.length; i++) {
 					rest = rest.replace("W3CSSCOMMENTPOS", comment.arr[i]);
@@ -1454,11 +1453,11 @@ let _temp = {
 				}
 				return (
 					"<span style=color:" +
-					csspropertycolor +
-					">" +
-					done +
-					rest +
-					"</span>"
+          csspropertycolor +
+          ">" +
+          done +
+          rest +
+          "</span>"
 				);
 			}
 			function cssPropertyValueMode(txt) {
@@ -1466,10 +1465,10 @@ let _temp = {
 					done = "",
 					s;
 				rest =
-					"<span style=color:" +
-					cssdelimitercolor +
-					">:</span>" +
-					rest.substring(1);
+          "<span style=color:" +
+          cssdelimitercolor +
+          ">:</span>" +
+          rest.substring(1);
 				while (rest.search(/!important/i) > -1) {
 					s = rest.search(/!important/i);
 					done += rest.substring(0, s);
@@ -1479,32 +1478,32 @@ let _temp = {
 				result = done + rest;
 				if (
 					result.substr(result.length - 1, 1) == ";" &&
-					result.substr(result.length - 6, 6) != "&nbsp;" &&
-					result.substr(result.length - 4, 4) != "&lt;" &&
-					result.substr(result.length - 4, 4) != "&gt;" &&
-					result.substr(result.length - 5, 5) != "&amp;"
+          result.substr(result.length - 6, 6) != "&nbsp;" &&
+          result.substr(result.length - 4, 4) != "&lt;" &&
+          result.substr(result.length - 4, 4) != "&gt;" &&
+          result.substr(result.length - 5, 5) != "&amp;"
 				) {
 					result =
-						result.substring(0, result.length - 1) +
-						"<span style=color:" +
-						cssdelimitercolor +
-						">;</span>";
+            result.substring(0, result.length - 1) +
+            "<span style=color:" +
+            cssdelimitercolor +
+            ">;</span>";
 				}
 				return (
 					"<span style=color:" +
-					csspropertyvaluecolor +
-					">" +
-					result +
-					"</span>"
+          csspropertyvaluecolor +
+          ">" +
+          result +
+          "</span>"
 				);
 			}
 			function cssImportantMode(txt) {
 				return (
 					"<span style=color:" +
-					cssimportantcolor +
-					";font-weight:bold;>" +
-					txt +
-					"</span>"
+          cssimportantcolor +
+          ";font-weight:bold;>" +
+          txt +
+          "</span>"
 				);
 			}
 			function jsMode(txt) {
@@ -1536,7 +1535,7 @@ let _temp = {
 				y = 1;
 				while (y == 1) {
 					sfnuttpos = getPos(rest, "'", "'", jsStringMode);
-					dfnuttpos = getPos(rest, '"', '"', jsStringMode);
+					dfnuttpos = getPos(rest, "\"", "\"", jsStringMode);
 					compos = getPos(rest, /\/\*/, "*/", commentMode);
 					comlinepos = getPos(rest, /\/\//, "<br>", commentMode);
 					numpos = getNumPos(rest, jsNumberMode);
@@ -1550,7 +1549,7 @@ let _temp = {
 							compos[0],
 							comlinepos[0],
 							keywordpos[0],
-							dotpos[0],
+							dotpos[0]
 						) == -1
 					) {
 						break;
@@ -1562,7 +1561,7 @@ let _temp = {
 						compos,
 						comlinepos,
 						keywordpos,
-						dotpos,
+						dotpos
 					);
 					if (mypos[0] == -1) {
 						break;
@@ -1729,7 +1728,7 @@ let _temp = {
 						patt = /\W/g;
 						if (
 							txt.substr(pos + words[i].length, 1).match(patt) &&
-							txt.substr(pos - 1, 1).match(patt)
+              txt.substr(pos - 1, 1).match(patt)
 						) {
 							if (pos > -1 && (rpos == -1 || pos < rpos)) {
 								rpos = pos;
@@ -1751,26 +1750,26 @@ let _temp = {
 			}
 			function getNumPos(txt, func) {
 				var arr = [
-					"<br>",
-					" ",
-					";",
-					"(",
-					"+",
-					")",
-					"[",
-					"]",
-					",",
-					"&",
-					":",
-					"{",
-					"}",
-					"/",
-					"-",
-					"*",
-					"|",
-					"%",
-					"=",
-				],
+						"<br>",
+						" ",
+						";",
+						"(",
+						"+",
+						")",
+						"[",
+						"]",
+						",",
+						"&",
+						":",
+						"{",
+						"}",
+						"/",
+						"-",
+						"*",
+						"|",
+						"%",
+						"=",
+					],
 					i,
 					j,
 					c,
@@ -1783,7 +1782,7 @@ let _temp = {
 						if (c == arr[j]) {
 							if (
 								c == "-" &&
-								(txt.substr(i - 1, 1) == "e" || txt.substr(i - 1, 1) == "E")
+                (txt.substr(i - 1, 1) == "e" || txt.substr(i - 1, 1) == "E")
 							) {
 								continue;
 							}
@@ -1834,7 +1833,7 @@ let _temp = {
 	mobileOrDesktop: () => {
 		node();
 		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-			navigator.userAgent,
+			navigator.userAgent
 		)
 			? "mobile"
 			: "desktop";
@@ -1918,10 +1917,10 @@ let _temp = {
 					function () {
 						el.removeEventListener("mousemove", repositionElement, false);
 					},
-					false,
+					false
 				);
 			},
-			false,
+			false
 		);
 
 		function repositionElement(event) {
@@ -2039,11 +2038,11 @@ let _temp = {
 			h2 = Math.imul(h2 ^ ch, 1597334677);
 		}
 		h1 =
-			Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
-			Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+      Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
+      Math.imul(h2 ^ (h2 >>> 13), 3266489909);
 		h2 =
-			Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
-			Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+      Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
+      Math.imul(h1 ^ (h1 >>> 13), 3266489909);
 		return 4294967296 * (2097151 & h2) + (h1 >>> 0);
 	},
 	/**
@@ -2076,7 +2075,8 @@ let _temp = {
 			return `#${R}${G}${B}`;
 		};
 
-		const mix = (start, end, percent) => start + (percent / 100) * (end - start);
+		const mix = (start, end, percent) =>
+			start + (percent / 100) * (end - start);
 
 		const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
 		const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
@@ -2130,8 +2130,8 @@ let _temp = {
 						matrix[i - 1][j - 1] + 1, // substitution
 						Math.min(
 							matrix[i][j - 1] + 1, // insertion
-							matrix[i - 1][j] + 1,
-						),
+							matrix[i - 1][j] + 1
+						)
 					); // deletion
 				}
 			}
@@ -2169,7 +2169,7 @@ let _temp = {
    * _$.preloadImage("https://unsplash.com/some_huge_image.png");//Preloads the unsplash image "some_huge_image.png" :P
    * @returns {undefined}
    */
-	preloadImage: (urls) => {
+	preloadImage: () => {
 		for (var i = 0; i < arguments.length; i++) {
 			images[i] = new Image();
 			images[i].src = preload.arguments[i];
@@ -2345,9 +2345,9 @@ let _temp = {
 		function attribute_matches(element, attribute) {
 			let output = attributes.filter((attr) => {
 				let returnval =
-					attr.attribute === attribute &&
-					(attr.tags === "*" || attr.tags.includes(element.tagName)) &&
-					attr.regex.test(element.getAttribute(attribute));
+          attr.attribute === attribute &&
+          (attr.tags === "*" || attr.tags.includes(element.tagName)) &&
+          attr.regex.test(element.getAttribute(attribute));
 				return returnval;
 			});
 
@@ -2456,7 +2456,7 @@ let _temp = {
 			return src.replace(rx_blockquote, function (all, content) {
 				return element(
 					"blockquote",
-					blockquote(highlight(content.replace(/^ *&gt; */gm, ""))),
+					blockquote(highlight(content.replace(/^ *&gt; */gm, "")))
 				);
 			});
 		}
@@ -2470,28 +2470,28 @@ let _temp = {
 							.split(
 								RegExp(
 									"\n ?" + ind + "(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +",
-									"g",
-								),
+									"g"
+								)
 							)
 							.map(list)
-							.join("</li><li>"),
-					),
+							.join("</li><li>")
+					)
 				);
 
 				return (
 					"\n" +
-					(ol
-						? '<ol start="' +
-						(num
-							? ol + '">'
-							: parseInt(ol, 36) -
-							9 +
-							'" style="list-style-type:' +
-							(low ? "low" : "upp") +
-							'er-alpha">') +
-						entry +
-						"</ol>"
-						: element("ul", entry))
+          (ol
+          	? "<ol start=\"" +
+              (num
+              	? ol + "\">"
+              	: parseInt(ol, 36) -
+                  9 +
+                  "\" style=\"list-style-type:" +
+                  (low ? "low" : "upp") +
+                  "er-alpha\">") +
+              entry +
+              "</ol>"
+          	: element("ul", entry))
 				);
 			});
 		}
@@ -2502,26 +2502,26 @@ let _temp = {
 				function (all, _, p1, emp, sub, sup, small, big, p2, content) {
 					return (
 						_ +
-						element(
-							emp
-								? p2
-									? "strong"
-									: "em"
-								: sub
-									? p2
-										? "s"
-										: "sub"
-									: sup
-										? "sup"
-										: small
-											? "small"
-											: big
-												? "big"
-												: "code",
-							highlight(content),
-						)
+            element(
+            	emp
+            		? p2
+            			? "strong"
+            			: "em"
+            		: sub
+            			? p2
+            				? "s"
+            				: "sub"
+            			: sup
+            				? "sup"
+            				: small
+            					? "small"
+            					: big
+            						? "big"
+            						: "code",
+            	highlight(content)
+            )
 					);
-				},
+				}
 			);
 		}
 
@@ -2552,7 +2552,7 @@ let _temp = {
 		replace(rx_code, function (all, p1, p2, p3, p4) {
 			stash[--si] = element(
 				"pre",
-				element("code", p3 || p4.replace(/^ {4}/gm, "")),
+				element("code", p3 || p4.replace(/^ {4}/gm, ""))
 			);
 			return si + "\uf8ff";
 		});
@@ -2563,9 +2563,9 @@ let _temp = {
 				? p6
 				: p2
 					? p4
-						? '<img src="' + p4 + '" alt="' + p3 + '"/>'
+						? "<img src=\"" + p4 + "\" alt=\"" + p3 + "\"/>"
 						: p1
-					: '<a href="' + p4 + '">' + unesc(highlight(p3)) + "</a>";
+					: "<a href=\"" + p4 + "\">" + unesc(highlight(p3)) + "</a>";
 			return si + "\uf8ff";
 		});
 
@@ -2574,24 +2574,24 @@ let _temp = {
 			var sep = table.match(rx_thead)[1];
 			return (
 				"\n" +
-				element(
-					"table",
-					table.replace(rx_row, function (row, ri) {
-						return row == sep
-							? ""
-							: element(
-								"tr",
-								row.replace(rx_cell, function (all, cell, ci) {
-									return ci
-										? element(
-											sep && !ri ? "th" : "td",
-											unesc(highlight(cell || "")),
-										)
-										: "";
-								}),
-							);
-					}),
-				)
+        element(
+        	"table",
+        	table.replace(rx_row, function (row, ri) {
+        		return row == sep
+        			? ""
+        			: element(
+        				"tr",
+        				row.replace(rx_cell, function (all, cell, ci) {
+        					return ci
+        						? element(
+        							sep && !ri ? "th" : "td",
+        							unesc(highlight(cell || ""))
+        						)
+        						: "";
+        				})
+        			);
+        	})
+        )
 			);
 		});
 
@@ -2629,10 +2629,7 @@ let _temp = {
 	// prettier-ignore
 	animate: (start, end, duration, callback, interval = 20, num = (num) => num) => {
 		var value = start;
-		var steps = duration / interval;
-		var step = 0;
 		var start_time = Date.now();
-		var percentage = 0;
 		let update = setInterval(() => {
 			value = num((Date.now() - start_time) / duration) * (end - start) + start;
 			callback(value, num((Date.now() - start_time) / duration));
@@ -2654,13 +2651,13 @@ let _temp = {
 	requestInterval: function (fn, delay) {
 		node();
 		var requestAnimFrame = (function () {
-			return (
-				window.requestAnimationFrame ||
-				function (callback, element) {
-					window.setTimeout(callback, 1000 / 60);
-				}
-			);
-		})(),
+				return (
+					window.requestAnimationFrame ||
+          function (callback) {
+          	window.setTimeout(callback, 1000 / 60);
+          }
+				);
+			})(),
 			start = new Date().getTime(),
 			handle = {};
 		function loop() {
@@ -2714,7 +2711,7 @@ let _temp = {
 			script.onreadystatechange = function () {
 				if (
 					script.readyState === "loaded" ||
-					script.readyState === "complete"
+          script.readyState === "complete"
 				) {
 					script.onreadystatechange = null;
 					callback();
@@ -2763,7 +2760,7 @@ let _temp = {
    */
 	observeMutations: (element, callback, options) => {
 		const observer = new MutationObserver((mutations) =>
-			mutations.forEach((m) => callback(m)),
+			mutations.forEach((m) => callback(m))
 		);
 		observer.observe(
 			element,
@@ -2776,8 +2773,8 @@ let _temp = {
 					characterDataOldValue: true,
 					subtree: true,
 				},
-				options,
-			),
+				options
+			)
 		);
 		return observer;
 	},
@@ -2797,7 +2794,7 @@ let _temp = {
 	hub: () => ({
 		hub: Object.create(null),
 		emit(event, data) {
-			; (this.hub[event] || []).forEach((handler) => handler(data));
+			(this.hub[event] || []).forEach((handler) => handler(data));
 		},
 		on(event, handler) {
 			if (!this.hub[event]) this.hub[event] = [];
@@ -2899,26 +2896,19 @@ let _temp = {
 		document.body.appendChild(styles);
 		var elements = document.querySelectorAll("[contextmenu]");
 		for (let i = 0; i < elements.length; i++) {
-			const el = elements[i];
 			window.addEventListener("contextmenu", (e) => {
-				var windowClick = document.addEventListener("click", (e) => {
-					if (!menu.contains(event.target)) {
-						menu.style.opacity = 0;
-						menu.style.pointerEvents = "none";
-					}
-				});
 				menu.style.pointerEvents = "auto";
 				e.preventDefault();
 				let items = document.querySelectorAll(
 					`#${e.target
 						.closest("[contextmenu]")
-						.getAttribute("contextmenu")} menuitem`,
+						.getAttribute("contextmenu")} menuitem`
 				);
 				menu.innerHTML = "";
 				for (let j = 0; j < items.length; j++) {
 					const contextMenu = items[j];
 					menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
-						"onclick",
+						"onclick"
 					)}">${contextMenu.getAttribute("label")}</li>`;
 				}
 				console.log(menu.innerHTML);
@@ -2985,7 +2975,7 @@ let _temp = {
 			node();
 
 			document.cookie =
-				name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 		},
 	},
 	/**
@@ -3073,8 +3063,6 @@ _temp = _temp.sortObj(_temp);
 
 // Imports and exports
 const _$ = _temp;
-const _ = _temp;
-const explosion = _temp;
 if (isNode) {
 	module.exports = _temp;
 }
