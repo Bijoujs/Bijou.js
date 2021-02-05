@@ -3058,12 +3058,18 @@ let _temp = {
    * }
    */
   tilt: (el, x, y, perspective = 500, amount = 30) => {
-    const xVal = x
+    //Old code
+    /*  const xVal = x
     const yVal = y
     const yRotation = amount * ((xVal - width / 2) / width)
     const xRotation = amount * -1 * ((yVal - height / 2) / height)
     const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
-    el.style.transform = string
+    el.style.transform = string */
+
+    //One liner
+    el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
+      amount * -1 * ((y - height / 2) / height)
+    }deg) rotateY(${amount * ((x - width / 2) / width)}deg)`
   },
   /**
    * A set of functions to set and modify cookies.
