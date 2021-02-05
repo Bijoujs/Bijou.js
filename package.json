@@ -12,7 +12,7 @@
   },
   "scripts": {
     "doc": "jsdoc -c jsdoc.json",
-    "build": "npm install"
+    "build": "npm install; ./git.bat; ./node_modules/.bin/babel ./ --out-dir lib"
   },
   "keywords": [
     "tiny",
@@ -27,11 +27,15 @@
   },
   "homepage": "https://bijou.js.org",
   "devDependencies": {
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
     "eslint": "^7.19.0",
     "jsdoc": "~3.6.6",
     "prettier": "2.2.1",
     "showdown": "^1.9.1",
     "terser": "^5.5.1",
     "toast-jsdoc": "^1.0.2"
-  }
+  },
+  "dependencies": {}
 }
