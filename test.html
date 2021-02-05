@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"></script>
+    <title>Testing!</title>
+  </head>
+  <body>
+    <img
+      src="https://i.loli.net/2018/08/12/5b6fb8f378e8b.jpg"
+      alt="Something"
+    />
+  </body>
+</html>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  img {
+    transform-origin: center;
+    display: block;
+    width: 300px;
+    transform-style: preserve-3d;
+  }
+  img:hover {
+    transition: transform 0.3s ease;
+  }
+</style>
+<script>
+  let el = document.querySelector("img")
+
+  const height = el.clientHeight
+  const width = el.clientWidth
+
+  document.addEventListener("mousemove", (e) =>
+    handleMove(
+      el,
+      e.clientX - window.innerWidth / 2,
+      e.clientY - window.innerHeight / 2,
+    ),
+  )
+
+  function handleMove(el, x, y, perspective = 500, amount = 30) {
+    const xVal = x
+    const yVal = y
+    const yRotation = amount * ((xVal - width / 2) / width)
+    const xRotation = amount * -1 * ((yVal - height / 2) / height)
+    const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
+    el.style.transform = string
+  }
+</script>
