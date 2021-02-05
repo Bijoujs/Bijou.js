@@ -53,5 +53,5 @@
     element: document.getElementById("code"),
     source:
       '\/\/Require Bijou.js! \r\nconst _$ = require("bijou.js");\r\n\r\n\/\/Let\'s get some unique id\'s!\r\nconsole.log(_$.uuid("Cool seed!"));\r\n\r\n\/\/Now let\'s log a bunch of primes!\r\nconsole.log(_$.primesTo(300));\/\/The prime numbers up to 300!\r\n\r\n\/\/Let\'s convert the keys for this object to uppercase!\r\nconsole.log(_$.mapObjectKeys({"test": "A value", "anotherThing": "Another!"}, (key) => key.toUpperCase()))\r\n\r\n\/\/Let\'s lighten this color by 100:\r\nconsole.log(_$.lightenColor("#00bbbb", 100))',
-  })
+  });
 </script>
