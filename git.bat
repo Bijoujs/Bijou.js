@@ -1,5 +1,5 @@
 npm install;
-npm i -g eslint jsdoc prettier showdown terser toast-jsdoc figlet-cli figlet @babel/plugin-transform-arrow-functions @babel/cli @babel/preset-env babel
+npm i -g --force -- eslint jsdoc prettier showdown terser toast-jsdoc figlet-cli figlet @babel/plugin-transform-arrow-functions @babel/cli @babel/preset-env babel
 function remove {
   rm -f .git/index.lock
 }
