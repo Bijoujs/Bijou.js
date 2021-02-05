@@ -12,6 +12,7 @@
         "useBuiltIns": "usage",
         "corejs": "3.6.5"
       }
-    ]
+    ],
+    "@babel/plugin-transform-arrow-functions"
   ]
 }
