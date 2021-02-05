@@ -1,7 +1,10 @@
-npm install;
-npm i -g --force -- eslint jsdoc prettier showdown terser toast-jsdoc figlet-cli figlet @babel/plugin-transform-arrow-functions @babel/cli @babel/preset-env babel
 function remove {
   rm -f .git/index.lock
+  rm -r node_modules
+  rm -r /workspace/Bijou.js/lib
+  npm uninstall *
+  npm install
+  npm i -g --force -- eslint jsdoc prettier showdown terser toast-jsdoc figlet-cli figlet @babel/plugin-transform-arrow-functions @babel/cli @babel/preset-env babel
 }
 function commit {
   COMMIT=$(git status --porcelain)
