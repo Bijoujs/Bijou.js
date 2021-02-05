@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"></script>
     <title>Testing!</title>
   </head>
@@ -31,12 +34,12 @@
   }
 </style>
 <script>
-  let el = document.querySelector("img")
+  let el = document.querySelector('img')
 
   const height = el.clientHeight
   const width = el.clientWidth
 
-  document.addEventListener("mousemove", (e) =>
+  document.addEventListener('mousemove', (e) =>
     handleMove(
       el,
       e.clientX - window.innerWidth / 2,

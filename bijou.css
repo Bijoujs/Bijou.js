@@ -14,8 +14,8 @@
   --slow-transition: 3s;
   --medium-transition: 0.5s;
   --fast-transition: 0.3s;
-  --monospace-font: "Courier New";
-  --main-font: "Poppins", sans-serif;
+  --monospace-font: 'Courier New';
+  --main-font: 'Poppins', sans-serif;
   --padding: 10px;
   --large-padding: 20px;
   --margin-top: 10px;

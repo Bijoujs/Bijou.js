@@ -69,11 +69,14 @@ Contributors to Bijou.js:
 
 let node = () => {
   if (isNode) {
-    throw new Error("You are using Node.js")
+    throw new Error('You are using Node.js')
   }
 }
 let isNode = false
-if (typeof window === "undefined" || typeof document === "undefined") {
+if (
+  typeof window === 'undefined' ||
+  typeof document === 'undefined'
+) {
   isNode = true
 } else {
   isNode = false
@@ -81,7 +84,7 @@ if (typeof window === "undefined" || typeof document === "undefined") {
 
 if (isNode) {
   console.warn(
-    "There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.",
+    'There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.',
   )
 }
 /**
@@ -126,7 +129,7 @@ let _temp = {
   async: (fn) => {
     const worker = new Worker(
       URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
-        type: "application/javascript; charset=utf-8",
+        type: 'application/javascript; charset=utf-8',
       }),
     )
     return new Promise((res, rej) => {
@@ -158,8 +161,8 @@ let _temp = {
     }
     return Object.entries(time)
       .filter((val) => val[1] !== 0)
-      .map(([key, val]) => `${val} ${key}${val !== 1 ? "s" : ""}`)
-      .join(", ")
+      .map(([key, val]) => `${val} ${key}${val !== 1 ? 's' : ''}`)
+      .join(', ')
   },
   /**
    * Adds the specified styles to the element specified.
@@ -187,7 +190,7 @@ let _temp = {
    */
   onOutsideClick: (element, callback) => {
     node()
-    document.addEventListener("click", (e) => {
+    document.addEventListener('click', (e) => {
       if (!element.contains(e.target)) callback()
     })
     return callback
@@ -205,7 +208,7 @@ let _temp = {
     let isScrolling
     node()
     window.addEventListener(
-      "scroll",
+      'scroll',
       (e) => {
         clearTimeout(isScrolling)
         isScrolling = setTimeout(() => {
@@ -226,18 +229,18 @@ let _temp = {
    */
   copy: (str) => {
     node()
-    const el = document.createElement("textarea")
+    const el = document.createElement('textarea')
     el.value = str
-    el.setAttribute("readonly", "")
-    el.style.position = "absolute"
-    el.style.left = "-9999px"
+    el.setAttribute('readonly', '')
+    el.style.position = 'absolute'
+    el.style.left = '-9999px'
     document.body.appendChild(el)
     const selected =
       document.getSelection().rangeCount > 0
         ? document.getSelection().getRangeAt(0)
         : false
     el.select()
-    document.execCommand("copy")
+    document.execCommand('copy')
     document.body.removeChild(el)
     if (selected) {
       document.getSelection().removeAllRanges()
@@ -288,7 +291,7 @@ let _temp = {
    */
   createElement: (str) => {
     node()
-    const el = document.createElement("div")
+    const el = document.createElement('div')
     el.innerHTML = str
     return el.firstElementChild
   },
@@ -305,45 +308,48 @@ let _temp = {
     var isOpera =
       (!!window.opr && !!opr.addons) ||
       !!window.opera ||
-      navigator.userAgent.indexOf(" OPR/") >= 0
-    var isFirefox = typeof InstallTrigger !== "undefined"
+      navigator.userAgent.indexOf(' OPR/') >= 0
+    var isFirefox = typeof InstallTrigger !== 'undefined'
     var isSafari =
       /constructor/i.test(window.HTMLElement) ||
       (function (p) {
-        return p.toString() === "[object SafariRemoteNotification]"
+        return p.toString() === '[object SafariRemoteNotification]'
       })(
-        !window["safari"] ||
-          (typeof safari !== "undefined" && window["safari"].pushNotification),
+        !window['safari'] ||
+          (typeof safari !== 'undefined' &&
+            window['safari'].pushNotification),
       )
     var isIE = /*@cc_on!@*/ false || !!document.documentMode
     var isEdge = !isIE && !!window.StyleMedia
     var isChrome =
-      !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)
-    var isEdgeChromium = isChrome && navigator.userAgent.indexOf("Edg") != -1
+      !!window.chrome &&
+      (!!window.chrome.webstore || !!window.chrome.runtime)
+    var isEdgeChromium =
+      isChrome && navigator.userAgent.indexOf('Edg') != -1
     var isBlink = (isChrome || isOpera) && !!window.CSS
     if (isOpera) {
-      return "Opera"
+      return 'Opera'
     }
     if (isFirefox) {
-      return "Firefox"
+      return 'Firefox'
     }
     if (isSafari) {
-      return "Safari"
+      return 'Safari'
     }
     if (isEdge) {
-      return "Edge"
+      return 'Edge'
     }
     if (isIE) {
-      return "Internet Explorer"
+      return 'Internet Explorer'
     }
     if (isChrome) {
-      return "Chrome"
+      return 'Chrome'
     }
     if (isEdgeChromium) {
-      return "Edge Chromium"
+      return 'Edge Chromium'
     }
     if (isBlink) {
-      return "Blink"
+      return 'Blink'
     }
   },
   /**
@@ -360,15 +366,15 @@ let _temp = {
   notify: (text, body, icon) => {
     node()
     if (!window.Notification) {
-      console.log("Browser does not support notifications.")
+      console.log('Browser does not support notifications.')
     } else {
-      if (Notification.permission === "granted") {
+      if (Notification.permission === 'granted') {
       } else {
         Notification.requestPermission()
           .then(function (p) {
-            if (p === "granted") {
+            if (p === 'granted') {
             } else {
-              console.log("User blocked notifications.")
+              console.log('User blocked notifications.')
             }
           })
           .catch(function (err) {
@@ -388,9 +394,9 @@ let _temp = {
    * _$.primesTo(100);//Returns an array of prime numbers up to 100.
    * @returns {String} The day name from the date.
    */
-  dayName: (date, locale = "en-US") =>
+  dayName: (date, locale = 'en-US') =>
     date.toLocaleDateString(locale, {
-      weekday: "long",
+      weekday: 'long',
     }),
   /**
    * Converts JSON to a CSV string
@@ -406,19 +412,19 @@ let _temp = {
   ); // 'a,b\n"1","2"\n"3","4"\n"6",""\n"","7"'
    * @returns {String} The string of comma separated values (CSV) created from the JSON.
    */
-  jsonToCsv: (arr, columns, delimiter = ",") =>
+  jsonToCsv: (arr, columns, delimiter = ',') =>
     [
       columns.join(delimiter),
       ...arr.map((obj) =>
         columns.reduce(
           (acc, key) =>
-            `${acc}${!acc.length ? "" : delimiter}"${
-              !obj[key] ? "" : obj[key]
+            `${acc}${!acc.length ? '' : delimiter}"${
+              !obj[key] ? '' : obj[key]
             }"`,
-          "",
+          '',
         ),
       ),
-    ].join("\n"),
+    ].join('\n'),
   /**
    * Joins two arrays together and removes duplicates.
    * @function
@@ -468,12 +474,12 @@ let _temp = {
   mapObjectKeys: (obj, fn) =>
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
-      : typeof obj === "object"
+      : typeof obj === 'object'
       ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current)
           const val = obj[current]
           acc[key] =
-            val !== null && typeof val === "object"
+            val !== null && typeof val === 'object'
               ? _$.mapObjectKeys(val, fn)
               : val
           return acc
@@ -489,14 +495,14 @@ let _temp = {
    * _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
    * @returns {String} The comma separated array.
    */
-  arrayToCSV: (arr, delimiter = ",") =>
+  arrayToCSV: (arr, delimiter = ',') =>
     arr
       .map((v) =>
         v
           .map((x) => (isNaN(x) ? `"${x.replace(/"/g, '""')}"` : x))
           .join(delimiter),
       )
-      .join("\n"),
+      .join('\n'),
   /**
    * averageBy
    * @function
@@ -510,7 +516,7 @@ let _temp = {
    */
   averageBy: (arr, fn) =>
     arr
-      .map(typeof fn === "function" ? fn : (val) => val[fn])
+      .map(typeof fn === 'function' ? fn : (val) => val[fn])
       .reduce((acc, val) => acc + val, 0) / arr.length,
   /**
    * Tests whether the specified element is fully in view.
@@ -582,8 +588,8 @@ let _temp = {
   serializeForm: (form) => {
     node()
     return Array.from(new FormData(form), (field) =>
-      field.map(encodeURIComponent).join("="),
-    ).join("&")
+      field.map(encodeURIComponent).join('='),
+    ).join('&')
   },
   /**
    * Converts a form to an Object.
@@ -596,10 +602,12 @@ let _temp = {
    */
   formToObject: (form) => {
     node()
-    return Array.from(new FormData(form)).reduce((acc, [key, value]) => ({
-      ...acc,
-      [key]: value,
-    }))
+    return Array.from(new FormData(form)).reduce(
+      (acc, [key, value]) => ({
+        ...acc,
+        [key]: value,
+      }),
+    )
   },
   /**
    * Generates a unique ID from a seed
@@ -612,13 +620,13 @@ let _temp = {
    */
   uuid: (seed = Math.random()) => {
     //Magic. Do not touch.
-    if (typeof seed === "string") {
+    if (typeof seed === 'string') {
       // Convert string to a number between 0 and 1
       seed = _temp.hashString(seed) / 10000000000000000
     }
     function _p8(s) {
-      var p = (seed.toString(16) + "000000000").substr(2, 8)
-      return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p
+      var p = (seed.toString(16) + '000000000').substr(2, 8)
+      return s ? '-' + p.substr(0, 4) + '-' + p.substr(4, 4) : p
     }
     return _p8() + _p8(true) + _p8(true) + _p8()
   },
@@ -636,11 +644,11 @@ let _temp = {
       /[&<>'"]/g,
       (tag) =>
         ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          "'": "&#39;",
-          '"': "&quot;",
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;',
         }[tag] || tag),
     ),
   /**
@@ -657,11 +665,11 @@ let _temp = {
       /&amp;|&lt;|&gt;|&#39;|&quot;/g,
       (tag) =>
         ({
-          "&amp;": "&",
-          "&lt;": "<",
-          "&gt;": ">",
-          "&#39;": "'",
-          "&quot;": '"',
+          '&amp;': '&',
+          '&lt;': '<',
+          '&gt;': '>',
+          '&#39;': "'",
+          '&quot;': '"',
         }[tag] || tag),
     ),
   /**
@@ -716,7 +724,7 @@ let _temp = {
    * _$.timeFunction(() => prompt("What's your name?"));
    * @returns {undefined}
    */
-  timeFunction: (fn, name = "_$ function timer") => {
+  timeFunction: (fn, name = '_$ function timer') => {
     console.time(name)
     fn()
     console.timeEnd(name)
@@ -750,14 +758,14 @@ let _temp = {
    * @returns {String} The replaced string.
    */
   widows: (text) => {
-    var wordArray = text.split(" ")
-    var finalTitle = ""
+    var wordArray = text.split(' ')
+    var finalTitle = ''
     for (var i = 0; i <= wordArray.length - 1; i++) {
       finalTitle += wordArray[i]
       if (i == wordArray.length - 2) {
-        finalTitle += "&nbsp;"
+        finalTitle += '&nbsp;'
       } else {
-        finalTitle += " "
+        finalTitle += ' '
       }
     }
     return finalTitle
@@ -770,7 +778,8 @@ let _temp = {
    * document.querySelector("div").style.backgroundColor = _$.randomColor()
    * @returns {String} A random Hex color
    */
-  randomColor: () => "#" + Math.floor(Math.random() * 16777215).toString(16),
+  randomColor: () =>
+    '#' + Math.floor(Math.random() * 16777215).toString(16),
   /**
    * Lighten or darken a color by a certain amount
    * @function
@@ -784,7 +793,7 @@ let _temp = {
   lightenColor: (col, amt) => {
     var usePound = false
 
-    if (col[0] == "#") {
+    if (col[0] == '#') {
       col = col.slice(1)
       usePound = true
     }
@@ -806,7 +815,9 @@ let _temp = {
     if (g > 255) g = 255
     else if (g < 0) g = 0
 
-    return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16)
+    return (
+      (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16)
+    )
   },
   /**
   * Tests if a color is light or dark and returns an object representation.
@@ -832,18 +843,23 @@ let _temp = {
       g = color[2]
       b = color[3]
     } else {
-      color = +("0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&"))
+      color = +(
+        '0x' +
+        color.slice(1).replace(color.length < 5 && /./g, '$&$&')
+      )
 
       r = color >> 16
       g = (color >> 8) & 255
       b = color & 255
     }
 
-    hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b))
+    hsp = Math.sqrt(
+      0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b),
+    )
     if (hsp > 127.5) {
-      return { lightOrDark: "light", hsp: hsp }
+      return { lightOrDark: 'light', hsp: hsp }
     } else {
-      return { lightOrDark: "dark", hsp: hsp }
+      return { lightOrDark: 'dark', hsp: hsp }
     }
   },
   /**
@@ -862,18 +878,18 @@ let _temp = {
     return computedStyles.getPropertyValue(prop)
   },
   rgbToHex: (rgb) => {
-    let sep = rgb.indexOf(",") > -1 ? "," : " "
-    rgb = rgb.substr(4).split(")")[0].split(sep)
+    let sep = rgb.indexOf(',') > -1 ? ',' : ' '
+    rgb = rgb.substr(4).split(')')[0].split(sep)
 
     let r = (+rgb[0]).toString(16),
       g = (+rgb[1]).toString(16),
       b = (+rgb[2]).toString(16)
 
-    if (r.length == 1) r = "0" + r
-    if (g.length == 1) g = "0" + g
-    if (b.length == 1) b = "0" + b
+    if (r.length == 1) r = '0' + r
+    if (g.length == 1) g = '0' + g
+    if (b.length == 1) b = '0' + b
 
-    return "#" + r + g + b
+    return '#' + r + g + b
   },
   /**
    * Converts a hex code to a RGB color.
@@ -884,21 +900,21 @@ let _temp = {
    */
   hexToRGB: (hex) => {
     let alpha = false,
-      h = hex.slice(hex.startsWith("#") ? 1 : 0)
-    if (h.length === 3) h = [...h].map((x) => x + x).join("")
+      h = hex.slice(hex.startsWith('#') ? 1 : 0)
+    if (h.length === 3) h = [...h].map((x) => x + x).join('')
     else if (h.length === 8) alpha = true
     h = parseInt(h, 16)
     return (
-      "rgb" +
-      (alpha ? "a" : "") +
-      "(" +
+      'rgb' +
+      (alpha ? 'a' : '') +
+      '(' +
       (h >>> (alpha ? 24 : 16)) +
-      ", " +
+      ', ' +
       ((h & (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
-      ", " +
+      ', ' +
       ((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
-      (alpha ? `, ${h & 0x000000ff}` : "") +
-      ")"
+      (alpha ? `, ${h & 0x000000ff}` : '') +
+      ')'
     )
   },
   /**
@@ -914,30 +930,31 @@ let _temp = {
   querySelector: (elem) => {
     node()
     var element = elem
-    var str = ""
+    var str = ''
 
     function loop(element) {
       if (
-        element.getAttribute("id") &&
-        document.querySelectorAll(`#${element.getAttribute("id")}`).length === 1
+        element.getAttribute('id') &&
+        document.querySelectorAll(`#${element.getAttribute('id')}`)
+          .length === 1
       ) {
-        str = str.replace(/^/, " #" + element.getAttribute("id"))
-        str = str.replace(/\s/, "")
-        str = str.replace(/\s/g, " > ")
+        str = str.replace(/^/, ' #' + element.getAttribute('id'))
+        str = str.replace(/\s/, '')
+        str = str.replace(/\s/g, ' > ')
         return str
       }
       if (document.body === element) {
-        str = str.replace(/^/, " body")
-        str = str.replace(/\s/, "")
-        str = str.replace(/\s/g, " > ")
+        str = str.replace(/^/, ' body')
+        str = str.replace(/\s/, '')
+        str = str.replace(/\s/g, ' > ')
         return str
       }
-      if (element.getAttribute("class")) {
-        var elemClasses = "."
-        elemClasses += element.getAttribute("class")
-        elemClasses = elemClasses.replace(/\s/g, ".")
-        elemClasses = elemClasses.replace(/^/g, " ")
-        var classNth = ""
+      if (element.getAttribute('class')) {
+        var elemClasses = '.'
+        elemClasses += element.getAttribute('class')
+        elemClasses = elemClasses.replace(/\s/g, '.')
+        elemClasses = elemClasses.replace(/^/g, ' ')
+        var classNth = ''
         var childrens = element.parentNode.children
 
         if (childrens.length < 2) {
@@ -948,7 +965,8 @@ let _temp = {
 
         for (var i = 0; i < childrens.length; i++) {
           if (
-            element.getAttribute("class") == childrens[i].getAttribute("class")
+            element.getAttribute('class') ==
+            childrens[i].getAttribute('class')
           ) {
             similarClasses.push(childrens[i])
           }
@@ -958,7 +976,7 @@ let _temp = {
           for (var j = 0; j < similarClasses.length; j++) {
             if (element === similarClasses[j]) {
               j++
-              classNth = ":nth-of-type(" + j + ")"
+              classNth = ':nth-of-type(' + j + ')'
               break
             }
           }
@@ -968,7 +986,7 @@ let _temp = {
       } else {
         var name = element.nodeName
         name = name.toLowerCase()
-        var nodeNth = ""
+        var nodeNth = ''
 
         childrens = element.parentNode.children
 
@@ -985,21 +1003,21 @@ let _temp = {
             for (var j = 0; j < similarNodes.length; j++) {
               if (element === similarNodes[j]) {
                 j++
-                nodeNth = ":nth-of-type(" + j + ")"
+                nodeNth = ':nth-of-type(' + j + ')'
                 break
               }
             }
           }
         }
 
-        str = str.replace(/^/, " " + name + nodeNth)
+        str = str.replace(/^/, ' ' + name + nodeNth)
       }
 
       if (element.parentNode) {
         loop(element.parentNode)
       } else {
-        str = str.replace(/\s/g, " > ")
-        str = str.replace(/\s/, "")
+        str = str.replace(/\s/g, ' > ')
+        str = str.replace(/\s/, '')
         return str
       }
     }
@@ -1018,19 +1036,21 @@ let _temp = {
    * @returns {String|Element} The string removed of comments or the element removed of comments.
    */
   removeComments: (el) => {
-    if (typeof el === "object") {
+    if (typeof el === 'object') {
       if (isNode) {
-        throw new Error("No document element! (You are probably using Node.js)")
+        throw new Error(
+          'No document element! (You are probably using Node.js)',
+        )
       }
       el.innerHTML = el.innerHTML.replace(
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-        "",
+        '',
       )
       return el
-    } else if (typeof el === "string") {
+    } else if (typeof el === 'string') {
       return el.replace(
         /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-        "",
+        '',
       )
     }
   },
@@ -1087,7 +1107,8 @@ let _temp = {
    * console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
    * @returns {String} The formatted string representation of the number.
    */
-  formatNumber: (n) => n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"),
+  formatNumber: (n) =>
+    n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,'),
   /**
    * Splices an array buffer
    * @function
@@ -1114,8 +1135,8 @@ let _temp = {
    */
   unCamelCase: function (str) {
     return str
-      .replace(/([a-z])([A-Z])/g, "$1 $2")
-      .replace(/\b([A-Z]+)([A-Z])([a-z])/, "$1 $2$3")
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/\b([A-Z]+)([A-Z])([a-z])/, '$1 $2$3')
       .replace(/^./, function (s) {
         return s.toUpperCase()
       })
@@ -1131,7 +1152,7 @@ let _temp = {
    * html.querySelector("textarea");//Returns the textarea!
    * @returns {Element} The HTML document element of the HTML string specified.
    */
-  parseHTML: (string, mimeType = "text/html") => {
+  parseHTML: (string, mimeType = 'text/html') => {
     const domparser = new DOMParser()
     return domparser.parseFromString(string, mimeType)
   },
@@ -1145,7 +1166,7 @@ let _temp = {
    * _$.syntaxHighlight('alert(\"Hello\")', 'js');//Returns html of the syntax highlighted version.
    * @returns {String} The highlighted string of code as HTML code.
    */
-  syntaxHighlight: (string, mode = "html", colors = {}) => {
+  syntaxHighlight: (string, mode = 'html', colors = {}) => {
     node()
     //        .==.        .==.
     //       //`^\\      //^`\\
@@ -1156,40 +1177,42 @@ let _temp = {
     //  // ^^/\/ /  `~~`  \ \/\^ ^\\
     //  -----------------------------
     /// HERE BE DRAGONS
-    let el = document.createElement("DIV")
+    let el = document.createElement('DIV')
     el.innerText = string
     let highlightel = (elmnt, mode, colors = {}) => {
       // Credit to w3schools for this
-      var lang = mode || "html"
+      var lang = mode || 'html'
       var elmntObj = document.getElementById(elmnt) || elmnt
       var elmntTxt = elmntObj.innerHTML
-      var tagcolor = colors.tagColor || "mediumblue"
-      var tagnamecolor = colors.tagNameColor || "brown"
-      var attributecolor = colors.attributeColor || "red"
-      var attributevaluecolor = colors.attributeValueColor || "mediumblue"
-      var commentcolor = colors.commentColor || "green"
-      var cssselectorcolor = colors.cssSelectorColor || "brown"
-      var csspropertycolor = colors.cssPropertyColor || "red"
-      var csspropertyvaluecolor = colors.cssPropertyValueColor || "mediumblue"
-      var cssdelimitercolor = colors.cssLimiterColor || "black"
-      var cssimportantcolor = colors.cssImportantColor || "red"
-      var jscolor = colors.jsColor || "black"
-      var jskeywordcolor = colors.jsKeywordColor || "mediumblue"
-      var jsstringcolor = colors.jsStringColor || "brown"
-      var jsnumbercolor = colors.jsNumberColor || "red"
-      var jspropertycolor = colors.jsPropertyColor || "black"
+      var tagcolor = colors.tagColor || 'mediumblue'
+      var tagnamecolor = colors.tagNameColor || 'brown'
+      var attributecolor = colors.attributeColor || 'red'
+      var attributevaluecolor =
+        colors.attributeValueColor || 'mediumblue'
+      var commentcolor = colors.commentColor || 'green'
+      var cssselectorcolor = colors.cssSelectorColor || 'brown'
+      var csspropertycolor = colors.cssPropertyColor || 'red'
+      var csspropertyvaluecolor =
+        colors.cssPropertyValueColor || 'mediumblue'
+      var cssdelimitercolor = colors.cssLimiterColor || 'black'
+      var cssimportantcolor = colors.cssImportantColor || 'red'
+      var jscolor = colors.jsColor || 'black'
+      var jskeywordcolor = colors.jsKeywordColor || 'mediumblue'
+      var jsstringcolor = colors.jsStringColor || 'brown'
+      var jsnumbercolor = colors.jsNumberColor || 'red'
+      var jspropertycolor = colors.jsPropertyColor || 'black'
       elmntObj.style.fontFamily =
         colors.fontFamily || "Consolas,'Courier New', monospace"
       if (!lang) {
-        lang = "html"
+        lang = 'html'
       }
-      if (lang == "html") {
+      if (lang == 'html') {
         elmntTxt = htmlMode(elmntTxt)
       }
-      if (lang == "css") {
+      if (lang == 'css') {
         elmntTxt = cssMode(elmntTxt)
       }
-      if (lang == "js") {
+      if (lang == 'js') {
         elmntTxt = jsMode(elmntTxt)
       }
       elmntObj.innerHTML = elmntTxt
@@ -1197,7 +1220,7 @@ let _temp = {
       function extract(str, start, end, func, repl) {
         var s,
           e,
-          d = "",
+          d = '',
           a = []
         while (str.search(start) > -1) {
           s = str.search(start)
@@ -1207,7 +1230,8 @@ let _temp = {
           }
           if (repl) {
             a.push(func(str.substring(s, e + end.length)))
-            str = str.substring(0, s) + repl + str.substr(e + end.length)
+            str =
+              str.substring(0, s) + repl + str.substr(e + end.length)
           } else {
             d += str.substring(0, s)
             d += func(str.substring(s, e + end.length))
@@ -1219,7 +1243,7 @@ let _temp = {
       }
       function htmlMode(txt) {
         var rest = txt,
-          done = "",
+          done = '',
           comment,
           startpos,
           endpos,
@@ -1227,37 +1251,39 @@ let _temp = {
           i
         comment = new extract(
           rest,
-          "&lt;!--",
-          "--&gt;",
+          '&lt;!--',
+          '--&gt;',
           commentMode,
-          "W3HTMLCOMMENTPOS",
+          'W3HTMLCOMMENTPOS',
         )
         rest = comment.rest
-        while (rest.indexOf("&lt;") > -1) {
-          note = ""
-          startpos = rest.indexOf("&lt;")
-          if (rest.substr(startpos, 9).toUpperCase() == "&LT;STYLE") {
-            note = "css"
+        while (rest.indexOf('&lt;') > -1) {
+          note = ''
+          startpos = rest.indexOf('&lt;')
+          if (rest.substr(startpos, 9).toUpperCase() == '&LT;STYLE') {
+            note = 'css'
           }
-          if (rest.substr(startpos, 10).toUpperCase() == "&LT;SCRIPT") {
-            note = "javascript"
+          if (
+            rest.substr(startpos, 10).toUpperCase() == '&LT;SCRIPT'
+          ) {
+            note = 'javascript'
           }
-          endpos = rest.indexOf("&gt;", startpos)
+          endpos = rest.indexOf('&gt;', startpos)
           if (endpos == -1) {
             endpos = rest.length
           }
           done += rest.substring(0, startpos)
           done += tagMode(rest.substring(startpos, endpos + 4))
           rest = rest.substr(endpos + 4)
-          if (note == "css") {
-            endpos = rest.indexOf("&lt;/style&gt;")
+          if (note == 'css') {
+            endpos = rest.indexOf('&lt;/style&gt;')
             if (endpos > -1) {
               done += cssMode(rest.substring(0, endpos))
               rest = rest.substr(endpos)
             }
           }
-          if (note == "javascript") {
-            endpos = rest.indexOf("&lt;/script&gt;")
+          if (note == 'javascript') {
+            endpos = rest.indexOf('&lt;/script&gt;')
             if (endpos > -1) {
               done += jsMode(rest.substring(0, endpos))
               rest = rest.substr(endpos)
@@ -1266,19 +1292,19 @@ let _temp = {
         }
         rest = done + rest
         for (i = 0; i < comment.arr.length; i++) {
-          rest = rest.replace("W3HTMLCOMMENTPOS", comment.arr[i])
+          rest = rest.replace('W3HTMLCOMMENTPOS', comment.arr[i])
         }
         return rest
       }
       function tagMode(txt) {
         var rest = txt,
-          done = "",
+          done = '',
           startpos,
           endpos,
           result
         while (rest.search(/(\s|<br>)/) > -1) {
           startpos = rest.search(/(\s|<br>)/)
-          endpos = rest.indexOf("&gt;")
+          endpos = rest.indexOf('&gt;')
           if (endpos == -1) {
             endpos = rest.length
           }
@@ -1288,71 +1314,101 @@ let _temp = {
         }
         result = done + rest
         result =
-          "<span style=color:" + tagcolor + ">&lt;</span>" + result.substring(4)
-        if (result.substr(result.length - 4, 4) == "&gt;") {
+          '<span style=color:' +
+          tagcolor +
+          '>&lt;</span>' +
+          result.substring(4)
+        if (result.substr(result.length - 4, 4) == '&gt;') {
           result =
             result.substring(0, result.length - 4) +
-            "<span style=color:" +
+            '<span style=color:' +
             tagcolor +
-            ">&gt;</span>"
+            '>&gt;</span>'
         }
-        return "<span style=color:" + tagnamecolor + ">" + result + "</span>"
+        return (
+          '<span style=color:' +
+          tagnamecolor +
+          '>' +
+          result +
+          '</span>'
+        )
       }
       function attributeMode(txt) {
         var rest = txt,
-          done = "",
+          done = '',
           startpos,
           endpos,
           singlefnuttpos,
           doublefnuttpos,
           spacepos
-        while (rest.indexOf("=") > -1) {
+        while (rest.indexOf('=') > -1) {
           endpos = -1
-          startpos = rest.indexOf("=")
+          startpos = rest.indexOf('=')
           singlefnuttpos = rest.indexOf("'", startpos)
           doublefnuttpos = rest.indexOf('"', startpos)
-          spacepos = rest.indexOf(" ", startpos + 2)
+          spacepos = rest.indexOf(' ', startpos + 2)
           if (
             spacepos > -1 &&
             (spacepos < singlefnuttpos || singlefnuttpos == -1) &&
             (spacepos < doublefnuttpos || doublefnuttpos == -1)
           ) {
-            endpos = rest.indexOf(" ", startpos)
+            endpos = rest.indexOf(' ', startpos)
           } else if (
             doublefnuttpos > -1 &&
-            (doublefnuttpos < singlefnuttpos || singlefnuttpos == -1) &&
+            (doublefnuttpos < singlefnuttpos ||
+              singlefnuttpos == -1) &&
             (doublefnuttpos < spacepos || spacepos == -1)
           ) {
-            endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1)
+            endpos = rest.indexOf(
+              '"',
+              rest.indexOf('"', startpos) + 1,
+            )
           } else if (
             singlefnuttpos > -1 &&
-            (singlefnuttpos < doublefnuttpos || doublefnuttpos == -1) &&
+            (singlefnuttpos < doublefnuttpos ||
+              doublefnuttpos == -1) &&
             (singlefnuttpos < spacepos || spacepos == -1)
           ) {
-            endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1)
+            endpos = rest.indexOf(
+              "'",
+              rest.indexOf("'", startpos) + 1,
+            )
           }
           if (!endpos || endpos == -1 || endpos < startpos) {
             endpos = rest.length
           }
           done += rest.substring(0, startpos)
-          done += attributeValueMode(rest.substring(startpos, endpos + 1))
+          done += attributeValueMode(
+            rest.substring(startpos, endpos + 1),
+          )
           rest = rest.substr(endpos + 1)
         }
         return (
-          "<span style=color:" + attributecolor + ">" + done + rest + "</span>"
+          '<span style=color:' +
+          attributecolor +
+          '>' +
+          done +
+          rest +
+          '</span>'
         )
       }
       function attributeValueMode(txt) {
         return (
-          "<span style=color:" + attributevaluecolor + ">" + txt + "</span>"
+          '<span style=color:' +
+          attributevaluecolor +
+          '>' +
+          txt +
+          '</span>'
         )
       }
       function commentMode(txt) {
-        return "<span style=color:" + commentcolor + ">" + txt + "</span>"
+        return (
+          '<span style=color:' + commentcolor + '>' + txt + '</span>'
+        )
       }
       function cssMode(txt) {
         var rest = txt,
-          done = "",
+          done = '',
           s,
           e,
           comment,
@@ -1363,22 +1419,22 @@ let _temp = {
         comment = new extract(
           rest,
           /\/\*/,
-          "*/",
+          '*/',
           commentMode,
-          "W3CSSCOMMENTPOS",
+          'W3CSSCOMMENTPOS',
         )
         rest = comment.rest
-        while (rest.search("{") > -1) {
-          s = rest.search("{")
+        while (rest.search('{') > -1) {
+          s = rest.search('{')
           midz = rest.substr(s + 1)
           cc = 1
           c = 0
           for (i = 0; i < midz.length; i++) {
-            if (midz.substr(i, 1) == "{") {
+            if (midz.substr(i, 1) == '{') {
               cc++
               c++
             }
-            if (midz.substr(i, 1) == "}") {
+            if (midz.substr(i, 1) == '}') {
               cc--
             }
             if (cc == 0) {
@@ -1390,7 +1446,7 @@ let _temp = {
           }
           e = s
           for (i = 0; i <= c; i++) {
-            e = rest.indexOf("}", e + 1)
+            e = rest.indexOf('}', e + 1)
           }
           if (e == -1) {
             e = rest.length
@@ -1402,35 +1458,41 @@ let _temp = {
         rest = done + rest
         rest = rest.replace(
           /{/g,
-          "<span style=color:" + cssdelimitercolor + ">{</span>",
+          '<span style=color:' + cssdelimitercolor + '>{</span>',
         )
         rest = rest.replace(
           /}/g,
-          "<span style=color:" + cssdelimitercolor + ">}</span>",
+          '<span style=color:' + cssdelimitercolor + '>}</span>',
         )
         for (i = 0; i < comment.arr.length; i++) {
-          rest = rest.replace("W3CSSCOMMENTPOS", comment.arr[i])
+          rest = rest.replace('W3CSSCOMMENTPOS', comment.arr[i])
         }
-        return "<span style=color:" + cssselectorcolor + ">" + rest + "</span>"
+        return (
+          '<span style=color:' +
+          cssselectorcolor +
+          '>' +
+          rest +
+          '</span>'
+        )
       }
       function cssPropertyMode(txt) {
         var rest = txt,
-          done = "",
+          done = '',
           s,
           e,
           n,
           loop
-        if (rest.indexOf("{") > -1) {
+        if (rest.indexOf('{') > -1) {
           return cssMode(rest)
         }
-        while (rest.search(":") > -1) {
-          s = rest.search(":")
+        while (rest.search(':') > -1) {
+          s = rest.search(':')
           loop = true
           n = s
           while (loop == true) {
             loop = false
-            e = rest.indexOf(";", n)
-            if (rest.substring(e - 5, e + 1) == "&nbsp;") {
+            e = rest.indexOf(';', n)
+            if (rest.substring(e - 5, e + 1) == '&nbsp;') {
               loop = true
               n = e + 1
             }
@@ -1443,22 +1505,22 @@ let _temp = {
           rest = rest.substr(e + 1)
         }
         return (
-          "<span style=color:" +
+          '<span style=color:' +
           csspropertycolor +
-          ">" +
+          '>' +
           done +
           rest +
-          "</span>"
+          '</span>'
         )
       }
       function cssPropertyValueMode(txt) {
         var rest = txt,
-          done = "",
+          done = '',
           s
         rest =
-          "<span style=color:" +
+          '<span style=color:' +
           cssdelimitercolor +
-          ">:</span>" +
+          '>:</span>' +
           rest.substring(1)
         while (rest.search(/!important/i) > -1) {
           s = rest.search(/!important/i)
@@ -1468,42 +1530,42 @@ let _temp = {
         }
         result = done + rest
         if (
-          result.substr(result.length - 1, 1) == ";" &&
-          result.substr(result.length - 6, 6) != "&nbsp;" &&
-          result.substr(result.length - 4, 4) != "&lt;" &&
-          result.substr(result.length - 4, 4) != "&gt;" &&
-          result.substr(result.length - 5, 5) != "&amp;"
+          result.substr(result.length - 1, 1) == ';' &&
+          result.substr(result.length - 6, 6) != '&nbsp;' &&
+          result.substr(result.length - 4, 4) != '&lt;' &&
+          result.substr(result.length - 4, 4) != '&gt;' &&
+          result.substr(result.length - 5, 5) != '&amp;'
         ) {
           result =
             result.substring(0, result.length - 1) +
-            "<span style=color:" +
+            '<span style=color:' +
             cssdelimitercolor +
-            ">;</span>"
+            '>;</span>'
         }
         return (
-          "<span style=color:" +
+          '<span style=color:' +
           csspropertyvaluecolor +
-          ">" +
+          '>' +
           result +
-          "</span>"
+          '</span>'
         )
       }
       function cssImportantMode(txt) {
         return (
-          "<span style=color:" +
+          '<span style=color:' +
           cssimportantcolor +
-          ";font-weight:bold;>" +
+          ';font-weight:bold;>' +
           txt +
-          "</span>"
+          '</span>'
         )
       }
       function jsMode(txt) {
         var rest = txt,
-          done = "",
+          done = '',
           esc = [],
           i,
           cc,
-          tt = "",
+          tt = '',
           sfnuttpos,
           dfnuttpos,
           compos,
@@ -1515,9 +1577,9 @@ let _temp = {
           y
         for (i = 0; i < rest.length; i++) {
           cc = rest.substr(i, 1)
-          if (cc == "\\") {
+          if (cc == '\\') {
             esc.push(rest.substr(i, 2))
-            cc = "W3JSESCAPE"
+            cc = 'W3JSESCAPE'
             i++
           }
           tt += cc
@@ -1527,10 +1589,10 @@ let _temp = {
         while (y == 1) {
           sfnuttpos = getPos(rest, "'", "'", jsStringMode)
           dfnuttpos = getPos(rest, '"', '"', jsStringMode)
-          compos = getPos(rest, /\/\*/, "*/", commentMode)
-          comlinepos = getPos(rest, /\/\//, "<br>", commentMode)
+          compos = getPos(rest, /\/\*/, '*/', commentMode)
+          comlinepos = getPos(rest, /\/\//, '<br>', commentMode)
           numpos = getNumPos(rest, jsNumberMode)
-          keywordpos = getKeywordPos("js", rest, jsKeywordMode)
+          keywordpos = getKeywordPos('js', rest, jsKeywordMode)
           dotpos = getDotPos(rest, jsPropertyMode)
           if (
             Math.max(
@@ -1565,21 +1627,37 @@ let _temp = {
         }
         rest = done + rest
         for (i = 0; i < esc.length; i++) {
-          rest = rest.replace("W3JSESCAPE", esc[i])
+          rest = rest.replace('W3JSESCAPE', esc[i])
         }
-        return "<span style=color:" + jscolor + ">" + rest + "</span>"
+        return '<span style=color:' + jscolor + '>' + rest + '</span>'
       }
       function jsStringMode(txt) {
-        return "<span style=color:" + jsstringcolor + ">" + txt + "</span>"
+        return (
+          '<span style=color:' + jsstringcolor + '>' + txt + '</span>'
+        )
       }
       function jsKeywordMode(txt) {
-        return "<span style=color:" + jskeywordcolor + ">" + txt + "</span>"
+        return (
+          '<span style=color:' +
+          jskeywordcolor +
+          '>' +
+          txt +
+          '</span>'
+        )
       }
       function jsNumberMode(txt) {
-        return "<span style=color:" + jsnumbercolor + ">" + txt + "</span>"
+        return (
+          '<span style=color:' + jsnumbercolor + '>' + txt + '</span>'
+        )
       }
       function jsPropertyMode(txt) {
-        return "<span style=color:" + jspropertycolor + ">" + txt + "</span>"
+        return (
+          '<span style=color:' +
+          jspropertycolor +
+          '>' +
+          txt +
+          '</span>'
+        )
       }
       function getDotPos(txt, func) {
         var x,
@@ -1588,27 +1666,27 @@ let _temp = {
           s,
           e,
           arr = [
-            ".",
-            "<",
-            " ",
-            ";",
-            "(",
-            "+",
-            ")",
-            "[",
-            "]",
-            ",",
-            "&",
-            ":",
-            "{",
-            "}",
-            "/",
-            "-",
-            "*",
-            "|",
-            "%",
+            '.',
+            '<',
+            ' ',
+            ';',
+            '(',
+            '+',
+            ')',
+            '[',
+            ']',
+            ',',
+            '&',
+            ':',
+            '{',
+            '}',
+            '/',
+            '-',
+            '*',
+            '|',
+            '%',
           ]
-        s = txt.indexOf(".")
+        s = txt.indexOf('.')
         if (s > -1) {
           x = txt.substr(s + 1)
           for (j = 0; j < x.length; j++) {
@@ -1645,72 +1723,72 @@ let _temp = {
           rpos = -1,
           rpos2 = -1,
           patt
-        if (typ == "js") {
+        if (typ == 'js') {
           words = [
-            "abstract",
-            "arguments",
-            "boolean",
-            "break",
-            "byte",
-            "case",
-            "catch",
-            "char",
-            "class",
-            "const",
-            "continue",
-            "debugger",
-            "default",
-            "delete",
-            "do",
-            "double",
-            "else",
-            "enum",
-            "eval",
-            "export",
-            "extends",
-            "false",
-            "final",
-            "finally",
-            "float",
-            "for",
-            "function",
-            "goto",
-            "if",
-            "implements",
-            "import",
-            "in",
-            "instanceof",
-            "int",
-            "interface",
-            "let",
-            "long",
-            "NaN",
-            "native",
-            "new",
-            "null",
-            "package",
-            "private",
-            "protected",
-            "public",
-            "return",
-            "short",
-            "static",
-            "super",
-            "switch",
-            "synchronized",
-            "this",
-            "throw",
-            "throws",
-            "transient",
-            "true",
-            "try",
-            "typeof",
-            "var",
-            "void",
-            "volatile",
-            "while",
-            "with",
-            "yield",
+            'abstract',
+            'arguments',
+            'boolean',
+            'break',
+            'byte',
+            'case',
+            'catch',
+            'char',
+            'class',
+            'const',
+            'continue',
+            'debugger',
+            'default',
+            'delete',
+            'do',
+            'double',
+            'else',
+            'enum',
+            'eval',
+            'export',
+            'extends',
+            'false',
+            'final',
+            'finally',
+            'float',
+            'for',
+            'function',
+            'goto',
+            'if',
+            'implements',
+            'import',
+            'in',
+            'instanceof',
+            'int',
+            'interface',
+            'let',
+            'long',
+            'NaN',
+            'native',
+            'new',
+            'null',
+            'package',
+            'private',
+            'protected',
+            'public',
+            'return',
+            'short',
+            'static',
+            'super',
+            'switch',
+            'synchronized',
+            'this',
+            'throw',
+            'throws',
+            'transient',
+            'true',
+            'try',
+            'typeof',
+            'var',
+            'void',
+            'volatile',
+            'while',
+            'with',
+            'yield',
           ]
         }
         for (i = 0; i < words.length; i++) {
@@ -1741,25 +1819,25 @@ let _temp = {
       }
       function getNumPos(txt, func) {
         var arr = [
-            "<br>",
-            " ",
-            ";",
-            "(",
-            "+",
-            ")",
-            "[",
-            "]",
-            ",",
-            "&",
-            ":",
-            "{",
-            "}",
-            "/",
-            "-",
-            "*",
-            "|",
-            "%",
-            "=",
+            '<br>',
+            ' ',
+            ';',
+            '(',
+            '+',
+            ')',
+            '[',
+            ']',
+            ',',
+            '&',
+            ':',
+            '{',
+            '}',
+            '/',
+            '-',
+            '*',
+            '|',
+            '%',
+            '=',
           ],
           i,
           j,
@@ -1772,8 +1850,9 @@ let _temp = {
             c = txt.substr(i, arr[j].length)
             if (c == arr[j]) {
               if (
-                c == "-" &&
-                (txt.substr(i - 1, 1) == "e" || txt.substr(i - 1, 1) == "E")
+                c == '-' &&
+                (txt.substr(i - 1, 1) == 'e' ||
+                  txt.substr(i - 1, 1) == 'E')
               ) {
                 continue
               }
@@ -1813,7 +1892,9 @@ let _temp = {
    * @returns {Function} The curried version of the function.
    */
   curryFunction: (fn, arity = fn.length, ...args) =>
-    arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args),
+    arity <= args.length
+      ? fn(...args)
+      : curry.bind(null, fn, arity, ...args),
   /**
    * Returns either "mobile" or "desktop" depending on which type of device the user is using.
    * @function
@@ -1826,8 +1907,8 @@ let _temp = {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent,
     )
-      ? "mobile"
-      : "desktop"
+      ? 'mobile'
+      : 'desktop'
   },
   /**
    * Removes tags from the HTML string specified.
@@ -1838,7 +1919,7 @@ let _temp = {
    * console.log(_$.removeTags("<div>Hello</div>"));//Logs "Hello" to the console.
    * @returns {String} THe string of HTML without the tags.
    */
-  removeTags: (html) => html.replace(/<[^>]*>/g, ""),
+  removeTags: (html) => html.replace(/<[^>]*>/g, ''),
   /**
    * camelCases a string.
    * @function
@@ -1853,7 +1934,7 @@ let _temp = {
       .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
         return index === 0 ? word.toLowerCase() : word.toUpperCase()
       })
-      .replace(/\s+/g, "")
+      .replace(/\s+/g, '')
   },
   /**
    * Scrambles the order of characters in a string. Thanks to @\Touchcreator for the suggestion for this.
@@ -1865,7 +1946,7 @@ let _temp = {
    * @returns {String} The scrambled text.
    */
   scrambleString: (str) => {
-    var a = str.split(""),
+    var a = str.split(''),
       n = a.length
 
     for (var i = n - 1; i > 0; i--) {
@@ -1874,7 +1955,7 @@ let _temp = {
       a[i] = a[j]
       a[j] = tmp
     }
-    return a.join("")
+    return a.join('')
   },
   /**
    * Allows an element to be dragged and dropped.
@@ -1889,24 +1970,28 @@ let _temp = {
     node()
     var initX, initY, mousePressX, mousePressY
     el.addEventListener(
-      "mousedown",
+      'mousedown',
       function (event) {
         var style = window.getComputedStyle(el)
-        el.style.top = style.getPropertyValue("top")
-        el.style.left = style.getPropertyValue("left")
-        el.style.right = style.getPropertyValue("right")
-        el.style.bottom = style.getPropertyValue("bottom")
-        this.style.position = "absolute"
+        el.style.top = style.getPropertyValue('top')
+        el.style.left = style.getPropertyValue('left')
+        el.style.right = style.getPropertyValue('right')
+        el.style.bottom = style.getPropertyValue('bottom')
+        this.style.position = 'absolute'
         initX = this.offsetLeft
         initY = this.offsetTop
         mousePressX = event.clientX
         mousePressY = event.clientY
-        this.addEventListener("mousemove", repositionElement, false)
+        this.addEventListener('mousemove', repositionElement, false)
 
         window.addEventListener(
-          "mouseup",
+          'mouseup',
           function () {
-            el.removeEventListener("mousemove", repositionElement, false)
+            el.removeEventListener(
+              'mousemove',
+              repositionElement,
+              false,
+            )
           },
           false,
         )
@@ -1915,8 +2000,8 @@ let _temp = {
     )
 
     function repositionElement(event) {
-      this.style.left = initX + event.clientX - mousePressX + "px"
-      this.style.top = initY + event.clientY - mousePressY + "px"
+      this.style.left = initX + event.clientX - mousePressX + 'px'
+      this.style.top = initY + event.clientY - mousePressY + 'px'
     }
     return el
   },
@@ -1936,14 +2021,17 @@ let _temp = {
     // decelerating to zero velocity
     easeOutQuad: (t) => t * (2 - t),
     // acceleration until halfway, then deceleration
-    easeInOutQuad: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
+    easeInOutQuad: (t) =>
+      t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
     // accelerating from zero velocity
     easeInCubic: (t) => t * t * t,
     // decelerating to zero velocity
     easeOutCubic: (t) => --t * t * t + 1,
     // acceleration until halfway, then deceleration
     easeInOutCubic: (t) =>
-      t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
+      t < 0.5
+        ? 4 * t * t * t
+        : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
     // accelerating from zero velocity
     easeInQuart: (t) => t * t * t * t,
     // decelerating to zero velocity
@@ -2066,7 +2154,8 @@ let _temp = {
       return `#${R}${G}${B}`
     }
 
-    const mix = (start, end, percent) => start + (percent / 100) * (end - start)
+    const mix = (start, end, percent) =>
+      start + (percent / 100) * (end - start)
 
     const red1 = parseInt(`${color1[1]}${color1[2]}`, 16)
     const green1 = parseInt(`${color1[3]}${color1[4]}`, 16)
@@ -2149,7 +2238,8 @@ let _temp = {
    * //Make every sibling of the first list item's background color white.
    * @returns {Element[]} The array of sibling elements.
    */
-  elementSiblings: (n) => [...n.parentElement.children].filter((c) => c != n),
+  elementSiblings: (n) =>
+    [...n.parentElement.children].filter((c) => c != n),
   /**
    * Preloads all of the image urls given in the arguments
    * @function
@@ -2176,7 +2266,7 @@ let _temp = {
    * @returns {String} The replaced string
    */
   replaceMultiple: (text, replace) => {
-    var re = new RegExp(Object.keys(replace).join("|"), "gi")
+    var re = new RegExp(Object.keys(replace).join('|'), 'gi')
     text = text.replace(re, function (matched) {
       return mapObj[matched]
     })
@@ -2196,12 +2286,12 @@ let _temp = {
    * @returns {String} The url query
    */
   urlQuery: (query, url = window.location.href) => {
-    query = query.replace(/[\[\]]/g, "\\$&")
-    var regex = new RegExp("[?&]" + query + "(=([^&#]*)|&|#|$)"),
+    query = query.replace(/[\[\]]/g, '\\$&')
+    var regex = new RegExp('[?&]' + query + '(=([^&#]*)|&|#|$)'),
       results = regex.exec(url)
     if (!results) return null
-    if (!results[2]) return ""
-    return decodeURIComponent(results[2].replace(/\+/g, " "))
+    if (!results[2]) return ''
+    return decodeURIComponent(results[2].replace(/\+/g, ' '))
   },
   /**
    * Disables right click on the element spcified.
@@ -2230,94 +2320,110 @@ let _temp = {
   sanitize: (html, tags = undefined, attributes = undefined) => {
     node()
     var attributes = attributes || [
-      { attribute: "src", tags: "*", regex: /^(?:https|http|\/\/):/ },
-      { attribute: "href", tags: "*", regex: /^(?!javascript:).+/ },
-      { attribute: "width", tags: "*", regex: /^[0-9]+$/ },
-      { attribute: "height", tags: "*", regex: /^[0-9]+$/ },
-      { attribute: "id", tags: "*", regex: /^[a-zA-Z]+$/ },
-      { attribute: "class", tags: "*", regex: /^[a-zA-Z ]+$/ },
-      { attribute: "value", tags: ["INPUT", "TEXTAREA"], regex: /^.+$/ },
-      { attribute: "checked", tags: ["INPUT"], regex: /^(?:true|false)+$/ },
+      { attribute: 'src', tags: '*', regex: /^(?:https|http|\/\/):/ },
+      { attribute: 'href', tags: '*', regex: /^(?!javascript:).+/ },
+      { attribute: 'width', tags: '*', regex: /^[0-9]+$/ },
+      { attribute: 'height', tags: '*', regex: /^[0-9]+$/ },
+      { attribute: 'id', tags: '*', regex: /^[a-zA-Z]+$/ },
+      { attribute: 'class', tags: '*', regex: /^[a-zA-Z ]+$/ },
       {
-        attribute: "placeholder",
-        tags: ["INPUT", "TEXTAREA"],
+        attribute: 'value',
+        tags: ['INPUT', 'TEXTAREA'],
         regex: /^.+$/,
       },
       {
-        attribute: "alt",
-        tags: ["IMG", "AREA", "INPUT"],
+        attribute: 'checked',
+        tags: ['INPUT'],
+        regex: /^(?:true|false)+$/,
+      },
+      {
+        attribute: 'placeholder',
+        tags: ['INPUT', 'TEXTAREA'],
+        regex: /^.+$/,
+      },
+      {
+        attribute: 'alt',
+        tags: ['IMG', 'AREA', 'INPUT'],
         //"^" and "$" match beggining and end
         regex: /^[0-9a-zA-Z]+$/,
       },
-      { attribute: "autofocus", tags: ["INPUT"], regex: /^(?:true|false)+$/ },
-      { attribute: "for", tags: ["LABEL", "OUTPUT"], regex: /^[a-zA-Z0-9]+$/ },
+      {
+        attribute: 'autofocus',
+        tags: ['INPUT'],
+        regex: /^(?:true|false)+$/,
+      },
+      {
+        attribute: 'for',
+        tags: ['LABEL', 'OUTPUT'],
+        regex: /^[a-zA-Z0-9]+$/,
+      },
     ]
     var tags = tags || [
-      "I",
-      "P",
-      "B",
-      "BODY",
-      "HTML",
-      "DEL",
-      "INS",
-      "STRONG",
-      "SMALL",
-      "A",
-      "IMG",
-      "CITE",
-      "FIGCAPTION",
-      "ASIDE",
-      "ARTICLE",
-      "SUMMARY",
-      "DETAILS",
-      "NAV",
-      "TD",
-      "TH",
-      "TABLE",
-      "THEAD",
-      "TBODY",
-      "NAV",
-      "SPAN",
-      "BR",
-      "CODE",
-      "PRE",
-      "BLOCKQUOTE",
-      "EM",
-      "HR",
-      "H1",
-      "H2",
-      "H3",
-      "H4",
-      "H5",
-      "H6",
-      "DIV",
-      "MAIN",
-      "HEADER",
-      "FOOTER",
-      "SELECT",
-      "COL",
-      "AREA",
-      "ADDRESS",
-      "ABBR",
-      "BDI",
-      "BDO",
+      'I',
+      'P',
+      'B',
+      'BODY',
+      'HTML',
+      'DEL',
+      'INS',
+      'STRONG',
+      'SMALL',
+      'A',
+      'IMG',
+      'CITE',
+      'FIGCAPTION',
+      'ASIDE',
+      'ARTICLE',
+      'SUMMARY',
+      'DETAILS',
+      'NAV',
+      'TD',
+      'TH',
+      'TABLE',
+      'THEAD',
+      'TBODY',
+      'NAV',
+      'SPAN',
+      'BR',
+      'CODE',
+      'PRE',
+      'BLOCKQUOTE',
+      'EM',
+      'HR',
+      'H1',
+      'H2',
+      'H3',
+      'H4',
+      'H5',
+      'H6',
+      'DIV',
+      'MAIN',
+      'HEADER',
+      'FOOTER',
+      'SELECT',
+      'COL',
+      'AREA',
+      'ADDRESS',
+      'ABBR',
+      'BDI',
+      'BDO',
     ]
 
     attributes = attributes.map((el) => {
-      if (typeof el === "string") {
-        return { attribute: el, tags: "*", regex: /^.+$/ }
+      if (typeof el === 'string') {
+        return { attribute: el, tags: '*', regex: /^.+$/ }
       }
       let output = el
-      if (!el.hasOwnProperty("tags")) {
-        output.tags = "*"
+      if (!el.hasOwnProperty('tags')) {
+        output.tags = '*'
       }
-      if (!el.hasOwnProperty("regex")) {
+      if (!el.hasOwnProperty('regex')) {
         output.regex = /^.+$/
       }
       return output
     })
-    var el = new DOMParser().parseFromString(html, "text/html")
-    var elements = el.querySelectorAll("*")
+    var el = new DOMParser().parseFromString(html, 'text/html')
+    var elements = el.querySelectorAll('*')
     for (let i = 0; i < elements.length; i++) {
       const current = elements[i]
       let attr_list = get_attributes(current)
@@ -2336,7 +2442,8 @@ let _temp = {
       let output = attributes.filter((attr) => {
         let returnval =
           attr.attribute === attribute &&
-          (attr.tags === "*" || attr.tags.includes(element.tagName)) &&
+          (attr.tags === '*' ||
+            attr.tags.includes(element.tagName)) &&
           attr.regex.test(element.getAttribute(attribute))
         return returnval
       })
@@ -2345,7 +2452,10 @@ let _temp = {
     }
     function get_attributes(element) {
       for (
-        var i = 0, atts = element.attributes, n = atts.length, arr = [];
+        var i = 0,
+          atts = element.attributes,
+          n = atts.length,
+          arr = [];
         i < n;
         i++
       ) {
@@ -2382,11 +2492,11 @@ let _temp = {
    * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
    * @returns {undefined}
    */
-  saveBlob: (blob, fileName = "output.txt") => {
+  saveBlob: (blob, fileName = 'output.txt') => {
     node()
-    var a = document.createElement("a")
+    var a = document.createElement('a')
     document.body.appendChild(a)
-    a.style = "display: none"
+    a.style = 'display: none'
 
     var url = window.URL.createObjectURL(blob)
     a.href = url
@@ -2439,75 +2549,91 @@ let _temp = {
     }
 
     function element(tag, content) {
-      return "<" + tag + ">" + content + "</" + tag + ">"
+      return '<' + tag + '>' + content + '</' + tag + '>'
     }
 
     function blockquote(src) {
       return src.replace(rx_blockquote, function (all, content) {
         return element(
-          "blockquote",
-          blockquote(highlight(content.replace(/^ *&gt; */gm, ""))),
+          'blockquote',
+          blockquote(highlight(content.replace(/^ *&gt; */gm, ''))),
         )
       })
     }
 
     function list(src) {
-      return src.replace(rx_list, function (all, ind, ol, num, low, content) {
-        var entry = element(
-          "li",
-          highlight(
-            content
-              .split(
-                RegExp(
-                  "\n ?" + ind + "(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +",
-                  "g",
-                ),
-              )
-              .map(list)
-              .join("</li><li>"),
-          ),
-        )
+      return src.replace(
+        rx_list,
+        function (all, ind, ol, num, low, content) {
+          var entry = element(
+            'li',
+            highlight(
+              content
+                .split(
+                  RegExp(
+                    '\n ?' +
+                      ind +
+                      '(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +',
+                    'g',
+                  ),
+                )
+                .map(list)
+                .join('</li><li>'),
+            ),
+          )
 
-        return (
-          "\n" +
-          (ol
-            ? '<ol start="' +
-              (num
-                ? ol + '">'
-                : parseInt(ol, 36) -
-                  9 +
-                  '" style="list-style-type:' +
-                  (low ? "low" : "upp") +
-                  'er-alpha">') +
-              entry +
-              "</ol>"
-            : element("ul", entry))
-        )
-      })
+          return (
+            '\n' +
+            (ol
+              ? '<ol start="' +
+                (num
+                  ? ol + '">'
+                  : parseInt(ol, 36) -
+                    9 +
+                    '" style="list-style-type:' +
+                    (low ? 'low' : 'upp') +
+                    'er-alpha">') +
+                entry +
+                '</ol>'
+              : element('ul', entry))
+          )
+        },
+      )
     }
 
     function highlight(src) {
       return src.replace(
         rx_highlight,
-        function (all, _, p1, emp, sub, sup, small, big, p2, content) {
+        function (
+          all,
+          _,
+          p1,
+          emp,
+          sub,
+          sup,
+          small,
+          big,
+          p2,
+          content,
+        ) {
           return (
             _ +
             element(
               emp
                 ? p2
-                  ? "strong"
-                  : "em"
+                  ? 'strong'
+                  : 'em'
                 : sub
                 ? p2
-                  ? "s"
-                  : "sub"
+                  ? 's'
+                  : 'sub'
                 : sup
-                ? "sup"
+                ? 'sup'
                 : small
-                ? "small"
+                ? 'small'
                 : big
-                ? "big"
-                : "code",
+                ? 'big'
+                : 'code',
               highlight(content),
             )
           )
@@ -2516,35 +2642,35 @@ let _temp = {
     }
 
     function unesc(str) {
-      return str.replace(rx_escape, "$1")
+      return str.replace(rx_escape, '$1')
     }
 
     var stash = []
     var si = 0
 
-    src = "\n" + src + "\n"
+    src = '\n' + src + '\n'
 
-    replace(rx_lt, "&lt;")
-    replace(rx_gt, "&gt;")
-    replace(rx_space, "  ")
+    replace(rx_lt, '&lt;')
+    replace(rx_gt, '&gt;')
+    replace(rx_space, '  ')
 
     // blockquote
     src = blockquote(src)
 
     // horizontal rule
-    replace(rx_hr, "<hr/>")
+    replace(rx_hr, '<hr/>')
 
     // list
     src = list(src)
-    replace(rx_listjoin, "")
+    replace(rx_listjoin, '')
 
     // code
     replace(rx_code, function (all, p1, p2, p3, p4) {
       stash[--si] = element(
-        "pre",
-        element("code", p3 || p4.replace(/^ {4}/gm, "")),
+        'pre',
+        element('code', p3 || p4.replace(/^ {4}/gm, '')),
       )
-      return si + "\uf8ff"
+      return si + '\uf8ff'
     })
 
     // link or image
@@ -2555,29 +2681,29 @@ let _temp = {
         ? p4
           ? '<img src="' + p4 + '" alt="' + p3 + '"/>'
           : p1
-        : '<a href="' + p4 + '">' + unesc(highlight(p3)) + "</a>"
-      return si + "\uf8ff"
+        : '<a href="' + p4 + '">' + unesc(highlight(p3)) + '</a>'
+      return si + '\uf8ff'
     })
 
     // table
     replace(rx_table, function (all, table) {
       var sep = table.match(rx_thead)[1]
       return (
-        "\n" +
+        '\n' +
         element(
-          "table",
+          'table',
           table.replace(rx_row, function (row, ri) {
             return row == sep
-              ? ""
+              ? ''
               : element(
-                  "tr",
+                  'tr',
                   row.replace(rx_cell, function (all, cell, ci) {
                     return ci
                       ? element(
-                          sep && !ri ? "th" : "td",
-                          unesc(highlight(cell || "")),
+                          sep && !ri ? 'th' : 'td',
+                          unesc(highlight(cell || '')),
                         )
-                      : ""
+                      : ''
                   }),
                 )
           }),
@@ -2587,12 +2713,12 @@ let _temp = {
 
     // heading
     replace(rx_heading, function (all, _, p1, p2) {
-      return _ + element("h" + p1.length, unesc(highlight(p2)))
+      return _ + element('h' + p1.length, unesc(highlight(p2)))
     })
 
     // paragraph
     replace(rx_para, function (all, content) {
-      return element("p", unesc(highlight(content)))
+      return element('p', unesc(highlight(content)))
     })
 
     // stash
@@ -2673,7 +2799,11 @@ let _temp = {
   attributes(el) {
     node()
     var output = []
-    for (var att, i = 0, atts = el.attributes, n = atts.length; i < n; i++) {
+    for (
+      var att, i = 0, atts = el.attributes, n = atts.length;
+      i < n;
+      i++
+    ) {
       att = atts[i]
       output.push({
         name: att.nodeName,
@@ -2694,14 +2824,14 @@ let _temp = {
    */
   loadScript: (url, callback) => {
     node()
-    var script = document.createElement("script")
-    script.type = "text/javascript"
+    var script = document.createElement('script')
+    script.type = 'text/javascript'
     if (script.readyState) {
       // only required for IE <9
       script.onreadystatechange = function () {
         if (
-          script.readyState === "loaded" ||
-          script.readyState === "complete"
+          script.readyState === 'loaded' ||
+          script.readyState === 'complete'
         ) {
           script.onreadystatechange = null
           callback()
@@ -2715,7 +2845,7 @@ let _temp = {
     }
 
     script.src = url
-    document.getElementsByTagName("head")[0].appendChild(script)
+    document.getElementsByTagName('head')[0].appendChild(script)
   },
   /**
    * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
@@ -2791,7 +2921,9 @@ let _temp = {
       this.hub[event].push(handler)
     },
     off(event, handler) {
-      const i = (this.hub[event] || []).findIndex((h) => h === handler)
+      const i = (this.hub[event] || []).findIndex(
+        (h) => h === handler,
+      )
       if (i > -1) this.hub[event].splice(i, 1)
       if (this.hub[event].length === 0) delete this.hub[event]
     },
@@ -2804,7 +2936,7 @@ let _temp = {
    * @returns {Boolean} True if the function is async and false if not.
    */
   isAsync: (val) =>
-    Object.prototype.toString.call(val) === "[object AsyncFunction]",
+    Object.prototype.toString.call(val) === '[object AsyncFunction]',
   /**
    * Fetches an image and runs the callback with the data url of the image.
    * @memberOf bijou
@@ -2845,10 +2977,10 @@ let _temp = {
    * @returns {undefined};
    */
   context: () => {
-    var menu = document.createElement("UL")
-    menu.id = "contextMenu"
+    var menu = document.createElement('UL')
+    menu.id = 'contextMenu'
     document.body.appendChild(menu)
-    let styles = document.createElement("STYLE")
+    let styles = document.createElement('STYLE')
     styles.innerHTML = `#contextMenu {
        pointer-events: none;
        padding: 0;
@@ -2884,22 +3016,22 @@ let _temp = {
      }
      `
     document.body.appendChild(styles)
-    var elements = document.querySelectorAll("[contextmenu]")
+    var elements = document.querySelectorAll('[contextmenu]')
     for (let i = 0; i < elements.length; i++) {
-      window.addEventListener("contextmenu", (e) => {
-        menu.style.pointerEvents = "auto"
+      window.addEventListener('contextmenu', (e) => {
+        menu.style.pointerEvents = 'auto'
         e.preventDefault()
         let items = document.querySelectorAll(
           `#${e.target
-            .closest("[contextmenu]")
-            .getAttribute("contextmenu")} menuitem`,
+            .closest('[contextmenu]')
+            .getAttribute('contextmenu')} menuitem`,
         )
-        menu.innerHTML = ""
+        menu.innerHTML = ''
         for (let j = 0; j < items.length; j++) {
           const contextMenu = items[j]
           menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
-            "onclick",
-          )}">${contextMenu.getAttribute("label")}</li>`
+            'onclick',
+          )}">${contextMenu.getAttribute('label')}</li>`
         }
         console.log(menu.innerHTML)
         menu.style.top = `${e.clientY}px`
@@ -2953,13 +3085,14 @@ let _temp = {
      */
     setItem: (name, value, days = 1000) => {
       node()
-      var expires = ""
+      var expires = ''
       if (days) {
         var date = new Date()
         date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
-        expires = "; expires=" + date.toUTCString()
+        expires = '; expires=' + date.toUTCString()
       }
-      document.cookie = name + "=" + (value || "") + expires + "; path=/"
+      document.cookie =
+        name + '=' + (value || '') + expires + '; path=/'
     },
     /**
      * Gets a cookie from its name.
@@ -2971,12 +3104,13 @@ let _temp = {
     getItem: (name) => {
       node()
 
-      var nameEQ = name + "="
-      var ca = document.cookie.split(";")
+      var nameEQ = name + '='
+      var ca = document.cookie.split(';')
       for (var i = 0; i < ca.length; i++) {
         var c = ca[i]
-        while (c.charAt(0) == " ") c = c.substring(1, c.length)
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length)
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length)
+        if (c.indexOf(nameEQ) == 0)
+          return c.substring(nameEQ.length, c.length)
       }
       return null
     },
@@ -2990,7 +3124,7 @@ let _temp = {
       node()
 
       document.cookie =
-        name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;"
+        name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
     },
   },
   /**

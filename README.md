@@ -51,7 +51,7 @@ yarn add bijou.js
 Then just require it in your code:
 
 ```js
-const _$ = require("bijou.js")
+const _$ = require('bijou.js')
 ```
 
 # Usage
