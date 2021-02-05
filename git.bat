@@ -10,7 +10,7 @@ function commit {
     eslint --fix ./
     prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- /workspace/Bijou.js
     jsdoc -c jsdoc.json
-    babel ./ --out-dir lib
+    ./node_modules/.bin/babel ./ --out-dir lib --plugins=@babel/plugin-transform-arrow-functions
     showdown makehtml -i README.md -o README.html
     terser --compress --mangle -o bijou-min.js -- bijou.js
     COMMIT_FILE=$(git diff --name-only)
