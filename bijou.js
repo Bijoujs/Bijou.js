@@ -1,6 +1,3 @@
-/* eslint-disable no-useless-escape */
-/* eslint-disable no-mixed-spaces-and-tabs */
-/* eslint-disable linebreak-style */
 /**
  * @file bijou.js
  * @author Explosion-Scratch, Bijou.js contributors
