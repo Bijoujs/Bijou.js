@@ -7,11 +7,11 @@ function commit {
   COMMIT=$(git status --porcelain)
   if [[ ${#COMMIT} -ge 1 ]] ; then
     cd /workspace/Bijou.js
-    eslint --fix ./
-    prettier --write -- .
     jsdoc -c jsdoc.json
     showdown makehtml -i README.md -o README.html
     terser --compress --mangle -o bijou-min.js -- bijou.js
+    eslint --fix ./
+    prettier --write -- .
     COMMIT_FILE=$(git diff --name-only)
     git stage .
     DATE=$(date +"%F %H:%M:%S")
