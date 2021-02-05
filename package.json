@@ -23,6 +23,8 @@
     "url": "https://github.com/bijou-js/bijou.js/issues"
   },
   "homepage": "https://bijou.js.org",
+  "jsdelivr": "bijou.js",
+  "unpkg": "bijou.js",
   "devDependencies": {
     "eslint": "^7.19.0",
     "jsdoc": "~3.6.6",
