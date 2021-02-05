@@ -1,5 +1,5 @@
 npm install;
-npm i -g eslint jsdoc prettier showdown terser toast-jsdoc figlet-cli figlet
+npm i -g eslint jsdoc prettier showdown terser toast-jsdoc figlet-cli figlet @babel/plugin-transform-arrow-functions @babel/core @babel/cli @babel/preset-env
 function remove {
   rm -f .git/index.lock
 }
@@ -10,6 +10,7 @@ function commit {
     eslint --fix ./
     prettier --quote-props=consistent --trailing-comma=all --no-semi --write -- /workspace/Bijou.js
     jsdoc -c jsdoc.json
+    babel ./ --out-dir lib
     showdown makehtml -i README.md -o README.html
     terser --compress --mangle -o bijou-min.js -- bijou.js
     COMMIT_FILE=$(git diff --name-only)
