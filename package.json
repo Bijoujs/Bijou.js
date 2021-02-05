@@ -28,6 +28,8 @@
   "homepage": "https://bijou.js.org",
   "devDependencies": {
     "eslint": "^7.19.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "jsdoc": "~3.6.6",
     "prettier": "2.2.1",
     "showdown": "^1.9.1",
