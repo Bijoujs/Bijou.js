@@ -34,10 +34,10 @@
   }
 </style>
 <script>
-  let el = document.querySelector('img')
+  let el = document.querySelector('img');
 
-  const height = el.clientHeight
-  const width = el.clientWidth
+  const height = el.clientHeight;
+  const width = el.clientWidth;
 
   document.addEventListener('mousemove', (e) =>
     handleMove(
@@ -45,14 +45,14 @@
       e.clientX - window.innerWidth / 2,
       e.clientY - window.innerHeight / 2,
     ),
-  )
+  );
 
   function handleMove(el, x, y, perspective = 500, amount = 30) {
-    const xVal = x
-    const yVal = y
-    const yRotation = amount * ((xVal - width / 2) / width)
-    const xRotation = amount * -1 * ((yVal - height / 2) / height)
-    const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
-    el.style.transform = string
+    const xVal = x;
+    const yVal = y;
+    const yRotation = amount * ((xVal - width / 2) / width);
+    const xRotation = amount * -1 * ((yVal - height / 2) / height);
+    const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+    el.style.transform = string;
   }
 </script>
