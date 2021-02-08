@@ -2147,7 +2147,7 @@ let _temp = {
    * @param {String} color2 The hex code of the second color to be blended.
    * @param {Number} percent A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
    * @example
-   * _$.blendColors("#ffffff", "#000000", 80); Blends white and black together, ending up in a color that is 80% white and 20% black.
+   * _$.blendColors("#ffffff", "#000000", 80); //Blends white and black together, ending up in a color that is 80% white and 20% black.
    * @returns {String} The blended color (A hex code).
    */
   blendColors: (color1, color2, percent = 50) => {
