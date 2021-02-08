@@ -252,31 +252,43 @@ let _temp = {
    * Only runs the input function at MAX with the delay specified.
    * @function
    * @memberOf bijou
-   * @param {Function} fn The function to run.
+   * @param {Function} func The function to run.
+   * @param {Object} options The options.
    * @param {Number} wait The number of milliseconds to wait.
    * @example
    * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
    * setInterval(alert_function, 1)
    * @returns {Function} The throttled function
    */
-  throttle: (fn, wait) => {
-    let inThrottle, lastFn, lastTime;
+  throttle: (func, wait, options) => {
+    var context, args, result;
+    var timeout = null;
+    var previous = 0;
+    if (!options) options = {};
+    var later = function () {
+      previous = options.leading === false ? 0 : Date.now();
+      timeout = null;
+      result = func.apply(context, args);
+      if (!timeout) context = args = null;
+    };
     return function () {
-      const context = this,
-        args = arguments;
-      if (!inThrottle) {
-        fn.apply(context, args);
-        lastTime = Date.now();
-        inThrottle = true;
-      } else {
-        clearTimeout(lastFn);
-        lastFn = setTimeout(function () {
-          if (Date.now() - lastTime >= wait) {
-            fn.apply(context, args);
-            lastTime = Date.now();
-          }
-        }, Math.max(wait - (Date.now() - lastTime), 0));
+      var now = Date.now();
+      if (!previous && options.leading === false) previous = now;
+      var remaining = wait - (now - previous);
+      context = this;
+      args = arguments;
+      if (remaining <= 0 || remaining > wait) {
+        if (timeout) {
+          clearTimeout(timeout);
+          timeout = null;
+        }
+        previous = now;
+        result = func.apply(context, args);
+        if (!timeout) context = args = null;
+      } else if (!timeout && options.trailing !== false) {
+        timeout = setTimeout(later, remaining);
       }
+      return result;
     };
   },
   /**
