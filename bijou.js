@@ -93,7 +93,6 @@ if (isNode) {
  * @namespace bijou
  * @author Explosion-Scratch, Bijou.js contributors
  */
-
 let _temp = {
   /**
    * Gives an array of prime numbers up to a certain one.
@@ -724,6 +723,20 @@ let _temp = {
     )
       (e = t[o].nodeValue), (t[o].nodeValue = callback(e));
     return el;
+  },
+  /**
+   * @memberOf bijou
+   * @function
+   * @param {El} el The element to get the text nodes of.
+   * @returns {Array} The text nodes.
+   */
+  textNodes: (el) => {
+    return [...el.childNodes].filter((node) => {
+      return (
+        node.nodeType === Node.TEXT_NODE &&
+        node.nodeValue.trim() !== ''
+      );
+    });
   },
   /**
    * Times the function passed.
