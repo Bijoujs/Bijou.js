@@ -2239,7 +2239,7 @@ let _temp = {
    * @memberOf bijou
    * @param {String} str
    * @example
-   * console.log(_$.byteSize("Hello world"));//Logs
+   * console.log(_$.byteSize("Hello world"));//Logs "11" to the console.
    * @returns {Number} The byte size of the string.
    */
   byteSize: (str) => new Blob([str]).size,
