@@ -708,21 +708,9 @@ let _temp = {
    */
   replaceText: (el, callback) => {
     node();
-    for (
-      var e,
-        t = (function () {
-          for (var e, t = el, o = [], a = 0; a < t.length; a++)
-            (e = t[a].childNodes[0]),
-              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
-          return o;
-        })(),
-        o = 0,
-        a = t.length;
-      o < a;
-      o++
-    )
-      (e = t[o].nodeValue), (t[o].nodeValue = callback(e));
-    return el;
+    _$.each(textNodes(el), (node) => {
+      node.textContent = callback(node.textContent);
+    });
   },
   /**
    * @memberOf bijou
@@ -804,7 +792,7 @@ let _temp = {
    * @returns {String} A random Hex color
    */
   randomColor: () =>
-    '#' + Math.floor(Math.random() * 16777215).toString(16),
+    `#${Math.floor(Math.random() * 16777215).toString(16)}`,
   /**
    * Lighten or darken a color by a certain amount
    * @function
@@ -2314,7 +2302,7 @@ let _temp = {
    */
   urlQuery: (query, url = window.location.href) => {
     query = query.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + query + '(=([^&#]*)|&|#|$)'),
+    var regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`),
       results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
