@@ -3316,7 +3316,11 @@ _temp = _temp.sortObj(_temp);
 
 // Imports and exports
 const _$ = _temp;
+
 if (isNode) {
-  module.exports = _temp;
+  try {
+    module.exports = _temp;
+  } catch (err) {
+    console.error(err);
+  }
 }
-export default _$;
