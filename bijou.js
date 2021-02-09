@@ -912,6 +912,21 @@ let _temp = {
    * @returns {String} The RGB color converted from the hex code.
    */
   hexToRGB: (hex) => {
+    if (
+      ((hex.length - 1 === 6 ||
+        hex.length - 1 === 8 ||
+        hex.length - 1 === 4 ||
+        hex.length - 1 === 3) &&
+        hex.startsWith('#')) ||
+      ((hex.length === 6 ||
+        hex.length === 8 ||
+        hex.length === 4 ||
+        hex.length === 3) &&
+        !hex.startsWith('#'))
+    ) {
+    } else {
+      throw new Error('Invalid hex');
+    }
     let alpha = false,
       h = hex.slice(hex.startsWith('#') ? 1 : 0);
     if (h.length === 3) h = [...h].map((x) => x + x).join('');
