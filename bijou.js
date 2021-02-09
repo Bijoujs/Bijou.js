@@ -2873,14 +2873,17 @@ let _temp = {
    * @returns {undefined}
    */
   memoize: (fn) => {
-    const cache = new Map();
-    const cached = function (val) {
-      return cache.has(val)
-        ? cache.get(val)
-        : cache.set(val, fn.call(this, val)) && cache.get(val);
+    let cache = {};
+    return function () {
+      let args = JSON.stringify(Array.from(arguments));
+      let arg_array = Array.from(arguments);
+      if (cache[args]) {
+        return cache[args];
+      } else {
+        cache[args] = fn(...arg_array);
+        return cache[args];
+      }
     };
-    cached.cache = cache;
-    return cached;
   },
   /**
    * Observes the mutations of the object specified.
