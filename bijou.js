@@ -402,13 +402,13 @@ let _temp = {
    * Returns the name of the weekday from the Date object specified.
    * @function
    * @memberOf bijou
-   * @param {Date} date The date object to use.
+   * @param {Date} [date=new Date()] The date object to use.
    * @param {String} [locale=en-US] The locale to use.
    * @example
    * _$.primesTo(100);//Returns an array of prime numbers up to 100.
    * @returns {String} The day name from the date.
    */
-  dayName: (date, locale = 'en-US') =>
+  dayName: (date = new Date(), locale = 'en-US') =>
     date.toLocaleDateString(locale, {
       weekday: 'long',
     }),
