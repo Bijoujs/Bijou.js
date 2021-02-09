@@ -505,9 +505,17 @@ let _temp = {
           return acc;
         }, {})
       : obj,
+  /**
+   * Maps an objects values.
+   * @memberOf bijou
+   * @function
+   * @param {Object} obj The object to map the values of.
+   * @param {Function} fn The callback function to use.
+   * @returns {Object} The mapped object.
+   */
   mapObjectValues: (obj, fn) => {
     Object.keys(obj).map(function (key, index) {
-      obj[key] = fn(key, index);
+      obj[key] = fn(obj[key], index);
     });
     return obj;
   },
@@ -2049,6 +2057,49 @@ let _temp = {
     return el;
   },
   /**
+   * Adds multiple event listeners with one callback to the element specified.
+   * @memberOf bijou
+   * @function
+   * @param {Element} element The element to add the event listeners to.
+   * @param {Array} events The array of events to listen for.
+   * @param {Function} handler The function to run when the events happen.
+   * @param {Boolean} [useCapture=false] Wether to use capture.
+   * @param {*} [args=false] The arguments to use in the handler function.
+   * @example
+   * //Reset a timer every user interaction.
+   * let timer = 0;
+   * setInterval(() => timer++, 1);
+   * _$.addMultiplelisteners(
+   *  document,
+   *  ["mousemove", "click", "scroll", "keypress"],
+   *  () => timer = 0,
+   * );
+   * @returns {undefined}
+   */
+  addMultipleListeners: (
+    element,
+    events,
+    handler = {},
+    useCapture = false,
+    args = false,
+  ) => {
+    if (!(events instanceof Array)) {
+      throw (
+        'addMultipleListeners: ' +
+        'please supply an array of eventstrings ' +
+        '(like ["click","mouseover"])'
+      );
+    }
+    //create a wrapper to be able to use additional arguments
+    var handlerFn = function (e) {
+      handler.apply(this, args && args instanceof Array ? args : []);
+    };
+    for (var i = 0; i < events.length; i += 1) {
+      element.addEventListener(events[i], handlerFn, useCapture);
+    }
+  },
+
+  /**
    * Easing functions
    * @Object
    * @memberOf bijou
@@ -2786,18 +2837,18 @@ let _temp = {
    */
   // prettier-ignore
   animate: (start, end, duration, callback, interval = 20, num = (num) => num) => {
-		var value = start;
-		var start_time = Date.now();
-		let update = setInterval(() => {
-			value = num((Date.now() - start_time) / duration) * (end - start) + start;
-			callback(value, num((Date.now() - start_time) / duration));
-		}, interval);
-		setTimeout(() => {
-			clearInterval(update);
-			callback(end, 1);
-			return;
-		}, duration);
-	},
+    var value = start;
+    var start_time = Date.now();
+    let update = setInterval(() => {
+      value = num((Date.now() - start_time) / duration) * (end - start) + start;
+      callback(value, num((Date.now() - start_time) / duration));
+    }, interval);
+    setTimeout(() => {
+      clearInterval(update);
+      callback(end, 1);
+      return;
+    }, duration);
+  },
   /**
    * Works exactly like setInterval but instead uses requestAnimationFrame.
    * @memberOf bijou
