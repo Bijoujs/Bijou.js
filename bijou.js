@@ -2504,12 +2504,11 @@ let _temp = {
    * @returns {undefined}
    */
   inlineCSS: (el) => {
-    node();
-    s = getComputedStyle(el);
-
-    for (let key in s) {
-      let prop = key.replace(/\-([a-z])/g, (v) => v[1].toUpperCase());
-      el.style[prop] = s[key];
+    var cs = getComputedStyle(el, null);
+    var i;
+    for (i = 0; i < cs.length; i++) {
+      var s = cs[i] + '';
+      el.style[s] = cs[s];
     }
   },
   /**
