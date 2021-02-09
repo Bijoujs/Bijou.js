@@ -708,7 +708,7 @@ let _temp = {
    */
   replaceText: (el, callback) => {
     node();
-    _$.each(textNodes(el), (node) => {
+    _$.each(_$.textNodes(el), (node) => {
       node.textContent = callback(node.textContent);
     });
   },
@@ -3083,8 +3083,10 @@ let _temp = {
 
     //One liner
     el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
-      amount * -1 * ((y - height / 2) / height)
-    }deg) rotateY(${amount * ((x - width / 2) / width)}deg)`;
+      amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
+    }deg) rotateY(${
+      amount * ((x - el.clientWidth / 2) / el.clientWidth)
+    }deg)`;
   },
   /**
    * A set of functions to set and modify cookies.
