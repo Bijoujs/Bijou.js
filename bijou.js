@@ -2069,14 +2069,14 @@ let _temp = {
    * //Reset a timer every user interaction.
    * let timer = 0;
    * setInterval(() => timer++, 1);
-   * _$.addMultipleListeners(
+   * _$.addEventListeners(
    *  document,
    *  ["mousemove", "click", "scroll", "keypress"],
    *  () => timer = 0,
    * );
    * @returns {undefined}
    */
-  addMultipleListeners: (
+  addEventListeners: (
     element,
     events,
     handler = {},
