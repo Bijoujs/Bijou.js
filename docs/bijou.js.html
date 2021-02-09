@@ -144,8 +144,8 @@ let _temp = {
    */
   primesTo: (num) => {
     let arr = Array.from({
-      length: num - 1,
-    }).map((x, i) => i + 2),
+        length: num - 1,
+      }).map((x, i) => i + 2),
       sqroot = Math.floor(Math.sqrt(num)),
       numsTillSqroot = Array.from({
         length: sqroot - 1,
@@ -369,8 +369,8 @@ let _temp = {
         return p.toString() === '[object SafariRemoteNotification]';
       })(
         !window['safari'] ||
-        (typeof safari !== 'undefined' &amp;&amp;
-          window['safari'].pushNotification),
+          (typeof safari !== 'undefined' &amp;&amp;
+            window['safari'].pushNotification),
       );
     var isIE = /*@cc_on!@*/ false || !!document.documentMode;
     var isEdge = !isIE &amp;&amp; !!window.StyleMedia;
@@ -477,7 +477,8 @@ let _temp = {
       ...arr.map((obj) =>
         columns.reduce(
           (acc, key) =>
-            `${acc}${!acc.length ? '' : delimiter}"${!obj[key] ? '' : obj[key]
+            `${acc}${!acc.length ? '' : delimiter}"${
+              !obj[key] ? '' : obj[key]
             }"`,
           '',
         ),
@@ -533,7 +534,7 @@ let _temp = {
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === 'object'
-        ? Object.keys(obj).reduce((acc, current) => {
+      ? Object.keys(obj).reduce((acc, current) => {
           const key = fn(current);
           const val = obj[current];
           acc[key] =
@@ -542,7 +543,7 @@ let _temp = {
               : val;
           return acc;
         }, {})
-        : obj,
+      : obj,
   /**
    * Maps an objects values.
    * @memberOf bijou
@@ -713,13 +714,13 @@ let _temp = {
     str.replace(
       /[&amp;&lt;>'"]/g,
       (tag) =>
-      ({
-        '&amp;': '&amp;amp;',
-        '&lt;': '&amp;lt;',
-        '>': '&amp;gt;',
-        "'": '&amp;#39;',
-        '"': '&amp;quot;',
-      }[tag] || tag),
+        ({
+          '&amp;': '&amp;amp;',
+          '&lt;': '&amp;lt;',
+          '>': '&amp;gt;',
+          "'": '&amp;#39;',
+          '"': '&amp;quot;',
+        }[tag] || tag),
     ),
   /**
    * Unescapes a string of HTML
@@ -734,13 +735,13 @@ let _temp = {
     str.replace(
       /&amp;amp;|&amp;lt;|&amp;gt;|&amp;#39;|&amp;quot;/g,
       (tag) =>
-      ({
-        '&amp;amp;': '&amp;',
-        '&amp;lt;': '&lt;',
-        '&amp;gt;': '>',
-        '&amp;#39;': "'",
-        '&amp;quot;': '"',
-      }[tag] || tag),
+        ({
+          '&amp;amp;': '&amp;',
+          '&amp;lt;': '&lt;',
+          '&amp;gt;': '>',
+          '&amp;#39;': "'",
+          '&amp;quot;': '"',
+        }[tag] || tag),
     ),
   /**
    * Returns the previous page that the user visited.
@@ -1908,26 +1909,26 @@ let _temp = {
       }
       function getNumPos(txt, func) {
         var arr = [
-          '&lt;br>',
-          ' ',
-          ';',
-          '(',
-          '+',
-          ')',
-          '[',
-          ']',
-          ',',
-          '&amp;',
-          ':',
-          '{',
-          '}',
-          '/',
-          '-',
-          '*',
-          '|',
-          '%',
-          '=',
-        ],
+            '&lt;br>',
+            ' ',
+            ';',
+            '(',
+            '+',
+            ')',
+            '[',
+            ']',
+            ',',
+            '&amp;',
+            ':',
+            '{',
+            '}',
+            '/',
+            '-',
+            '*',
+            '|',
+            '%',
+            '=',
+          ],
           i,
           j,
           c,
@@ -2107,23 +2108,31 @@ let _temp = {
    * //Reset a timer every user interaction.
    * let timer = 0;
    * setInterval(() => timer++, 1);
-   * _$.addMultiplelisteners(
-   *  document, 
+   * _$.addMultipleListeners(
+   *  document,
    *  ["mousemove", "click", "scroll", "keypress"],
    *  () => timer = 0,
-   * ); 
+   * );
    * @returns {undefined}
    */
-  addMultipleListeners: (element, events, handler = {}, useCapture = false, args = false) => {
+  addMultipleListeners: (
+    element,
+    events,
+    handler = {},
+    useCapture = false,
+    args = false,
+  ) => {
     if (!(events instanceof Array)) {
-      throw 'addMultipleListeners: ' +
-      'please supply an array of eventstrings ' +
-      '(like ["click","mouseover"])';
+      throw (
+        'addMultipleListeners: ' +
+        'please supply an array of eventstrings ' +
+        '(like ["click","mouseover"])'
+      );
     }
     //create a wrapper to be able to use additional arguments
     var handlerFn = function (e) {
       handler.apply(this, args &amp;&amp; args instanceof Array ? args : []);
-    }
+    };
     for (var i = 0; i &lt; events.length; i += 1) {
       element.addEventListener(events[i], handlerFn, useCapture);
     }
@@ -2577,9 +2586,9 @@ let _temp = {
     function get_attributes(element) {
       for (
         var i = 0,
-        atts = element.attributes,
-        n = atts.length,
-        arr = [];
+          atts = element.attributes,
+          n = atts.length,
+          arr = [];
         i &lt; n;
         i++
       ) {
@@ -2695,8 +2704,8 @@ let _temp = {
                 .split(
                   RegExp(
                     '\n ?' +
-                    ind +
-                    '(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +',
+                      ind +
+                      '(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +',
                     'g',
                   ),
                 )
@@ -2709,15 +2718,15 @@ let _temp = {
             '\n' +
             (ol
               ? '&lt;ol start="' +
-              (num
-                ? ol + '">'
-                : parseInt(ol, 36) -
-                9 +
-                '" style="list-style-type:' +
-                (low ? 'low' : 'upp') +
-                'er-alpha">') +
-              entry +
-              '&lt;/ol>'
+                (num
+                  ? ol + '">'
+                  : parseInt(ol, 36) -
+                    9 +
+                    '" style="list-style-type:' +
+                    (low ? 'low' : 'upp') +
+                    'er-alpha">') +
+                entry +
+                '&lt;/ol>'
               : element('ul', entry))
           );
         },
@@ -2747,16 +2756,16 @@ let _temp = {
                   ? 'strong'
                   : 'em'
                 : sub
-                  ? p2
-                    ? 's'
-                    : 'sub'
-                  : sup
-                    ? 'sup'
-                    : small
-                      ? 'small'
-                      : big
-                        ? 'big'
-                        : 'code',
+                ? p2
+                  ? 's'
+                  : 'sub'
+                : sup
+                ? 'sup'
+                : small
+                ? 'small'
+                : big
+                ? 'big'
+                : 'code',
               highlight(content),
             )
           );
@@ -2801,10 +2810,10 @@ let _temp = {
       stash[--si] = p6
         ? p6
         : p2
-          ? p4
-            ? '&lt;img src="' + p4 + '" alt="' + p3 + '"/>'
-            : p1
-          : '&lt;a href="' + p4 + '">' + unesc(highlight(p3)) + '&lt;/a>';
+        ? p4
+          ? '&lt;img src="' + p4 + '" alt="' + p3 + '"/>'
+          : p1
+        : '&lt;a href="' + p4 + '">' + unesc(highlight(p3)) + '&lt;/a>';
       return si + '\uf8ff';
     });
 
@@ -2819,16 +2828,16 @@ let _temp = {
             return row == sep
               ? ''
               : element(
-                'tr',
-                row.replace(rx_cell, function (all, cell, ci) {
-                  return ci
-                    ? element(
-                      sep &amp;&amp; !ri ? 'th' : 'td',
-                      unesc(highlight(cell || '')),
-                    )
-                    : '';
-                }),
-              );
+                  'tr',
+                  row.replace(rx_cell, function (all, cell, ci) {
+                    return ci
+                      ? element(
+                          sep &amp;&amp; !ri ? 'th' : 'td',
+                          unesc(highlight(cell || '')),
+                        )
+                      : '';
+                  }),
+                );
           }),
         )
       );
@@ -2890,13 +2899,13 @@ let _temp = {
   requestInterval: function (fn, delay) {
     node();
     var requestAnimFrame = (function () {
-      return (
-        window.requestAnimationFrame ||
-        function (callback) {
-          window.setTimeout(callback, 1000 / 60);
-        }
-      );
-    })(),
+        return (
+          window.requestAnimationFrame ||
+          function (callback) {
+            window.setTimeout(callback, 1000 / 60);
+          }
+        );
+      })(),
       start = new Date().getTime(),
       handle = {};
     function loop() {
@@ -3193,9 +3202,11 @@ let _temp = {
     el.style.transform = string */
 
     //One liner
-    el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
-      }deg) rotateY(${amount * ((x - el.clientWidth / 2) / el.clientWidth)
-      }deg)`;
+    el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
+      amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
+    }deg) rotateY(${
+      amount * ((x - el.clientWidth / 2) / el.clientWidth)
+    }deg)`;
   },
   /**
    * A set of functions to set and modify cookies.
@@ -3359,7 +3370,7 @@ if (isNode) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Tue Feb 09 2021 15:34:50 GMT+0000 (Coordinated Universal Time) using the Toast theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Tue Feb 09 2021 15:36:15 GMT+0000 (Coordinated Universal Time) using the Toast theme.
 </footer>
 
 <script>prettyPrint();</script>
