@@ -496,6 +496,12 @@ let _temp = {
           return acc;
         }, {})
       : obj,
+  mapObjectValues: (obj, fn) => {
+    Object.keys(obj).map(function (key, index) {
+      obj[key] = fn(key, index);
+    });
+    return obj;
+  },
   /**
    * Converts an array to CSV (Comma separated values) data.
    * @function
