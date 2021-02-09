@@ -152,7 +152,9 @@ let _temp = {
   formatMilliseconds: (ms) => {
     if (ms < 0) ms = -ms;
     const time = {
-      day: Math.floor(ms / 86400000),
+      century: Math.floor(ms / 1144800000000),
+      year: Math.floor(ms / 22896000000) % 50,
+      day: Math.floor(ms / 86400000) % 365,
       hour: Math.floor(ms / 3600000) % 24,
       minute: Math.floor(ms / 60000) % 60,
       second: Math.floor(ms / 1000) % 60,
