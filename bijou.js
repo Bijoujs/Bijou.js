@@ -1073,7 +1073,7 @@ let _temp = {
    * @memberOf bijou
    * @param {Number} min The lowest number that the random value generated can be.
    * @param {Number} max The highest number that the random value generated can be.
-   * @param {Number} [round=true] Weather to round the generated number
+   * @param {Boolean} [round=true] Weather to round the generated number
    * @param {Number} [seed=Math.random()] The seed for the generated number (Between 0 and 1).
    * @returns {Number} The random numebr generated.
    */
