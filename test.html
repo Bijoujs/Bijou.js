@@ -11,11 +11,15 @@
   </head>
   <body>
     <img
+      contextmenu="menu"
       src="https://image.flaticon.com/icons/png/512/2395/2395608.png"
       alt="Something"
     />
   </body>
 </html>
+<menu id='menu'>
+  <menuitem label="FASTER!" onclick="document.querySelector('img').style.transitionDuration = `${prompt('Transition in MS')}ms`">
+</menu>
 <style>
   body {
     display: flex;
@@ -33,11 +37,8 @@
     transition: transform 0.3s ease;
   }
 </style>
-<script type="module">
-  import a from './bijou.js';
-  alert(Object.keys(a));
-</script>
 <script>
+  _$.context();
   let mouse = { x: 0, y: 0 };
   window.onmousemove = (e) =>
     (mouse = {

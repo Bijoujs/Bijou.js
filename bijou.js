@@ -3135,6 +3135,27 @@ let _temp = {
         menu.style.opacity = 1;
       });
     }
+    var contextTimer = 0;
+    _$.requestInterval(() => {
+      contextTimer += 100;
+      if (contextTimer > 3000) {
+        menu.style.opacity = 0;
+        menu.style.pointerEvents = 'none';
+        contextTimer = 0;
+        return;
+      }
+    }, 100);
+    _$.addEventListeners(
+      menu,
+      ['mousemove', 'click', 'scroll'],
+      () => {
+        contextTimer = 0;
+      },
+    );
+    _$.onOutsideClick(menu, () => {
+      menu.style.opacity = 0;
+      menu.style.pointerEvents = 'none';
+    });
   },
   /**
    * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
