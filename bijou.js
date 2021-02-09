@@ -147,9 +147,10 @@ let _temp = {
    * @param {Number} ms The number of milliseconds to format to a string.
    * @example
    * _$.formatMilliseconds(4000);//Returns "4 seconds"
-   * @returns {Array}
+   * @returns {String} The string of formatted milliseconds.
    */
   formatMilliseconds: (ms) => {
+    ms = typeof ms === 'string' ? +ms : ms;
     if (ms < 0) ms = -ms;
     const time = {
       century: Math.floor(ms / 1144800000000),
