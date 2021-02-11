@@ -2914,7 +2914,7 @@ let _temp = {
    * @param {String} url The url to load the script from.
    * @param {Function} callback The callback to run when the script is loaded.
    * @example
-   * _$.loadScript("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
+   * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
    * @returns {undefined}
    */
   loadScript: (url, callback) => {
@@ -3191,6 +3191,35 @@ let _temp = {
     }deg) rotateY(${
       amount * ((x - el.clientWidth / 2) / el.clientWidth)
     }deg)`;
+  },
+  /**
+   * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
+   * @memberOf bijou
+   * @function
+   * @param {String} html The string of HTML to format.
+   * @returns {String} The formatted string of HTML.
+   */
+  formatHTML: (html) => {
+    var tab = '\t';
+    var result = '';
+    var indent = '';
+
+    html.split(/>\s*</).forEach(function (element) {
+      if (element.match(/^\/\w/)) {
+        indent = indent.substring(tab.length);
+      }
+
+      result += indent + '<' + element + '>\r\n';
+
+      if (
+        element.match(/^<?\w[^>]*[^\/]$/) &&
+        !element.startsWith('input')
+      ) {
+        indent += tab;
+      }
+    });
+
+    return result.substring(1, result.length - 3);
   },
   /**
    * A set of functions to set and modify cookies.
