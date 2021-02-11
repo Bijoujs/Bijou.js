@@ -66,11 +66,12 @@ Contributors to Bijou.js:
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
  */
-let nodeErrorMsg =
-  'You are using Node.js, this function does not work in Node.js! Sorry!';
+
 let node = () => {
   if (isNode) {
-    throw new Error(nodeErrorMsg);
+    throw new Error(
+      'You are using Node.js, this function does not work in Node.js! Sorry!',
+    );
   }
 };
 let isNode = false;
