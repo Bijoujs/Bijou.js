@@ -7,6 +7,7 @@
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod&style=for-the-badge&color=lightseagreen)](https://gitpod.io/#https://github.com/bijou-js/bijou.js)
 
 <h1 align=center>Bijou.js</h1>
+
 Bijou.js is a library of super helpful JavaScript snippets! It has a bunch of
 useful snippets for all your coding needs! If there's something that's not in
 here currently but you use frequently, feel free to submit an issue! I'd be happy
@@ -15,6 +16,14 @@ from StackOverflow, another project or anywhere else! So if you ever find
 yourself typing the same thing over and over again, copy pasting the same
 snippet as you did a few days ago, use Bijou.js! If the snippet you're using
 isn't in Bijou.js, just submit an issue with the code!
+
+- [How to use Bijou.js](#how-to-use-bijoujs)
+  - [CDN](#cdn)
+  - [NodeJS](#nodejs)
+- [Usage](#usage)
+  - [Who made Bijou.js?](#who-made-bijoujs)
+- [Why use Bijou?](#why-use-bijou)
+  - [Installation](#installation)
 
 # How to use Bijou.js
 
