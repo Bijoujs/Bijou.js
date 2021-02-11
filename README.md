@@ -21,7 +21,7 @@ isn't in Bijou.js, just submit an issue with the code!
   - [CDN](#cdn)
   - [NodeJS](#nodejs)
 - [Usage](#usage)
-  - [Who made Bijou.js?](#who-made-bijoujs)
+- [Who made Bijou.js?](#who-made-bijoujs)
 - [Why use Bijou?](#why-use-bijou)
   - [Installation](#installation)
 
@@ -79,7 +79,7 @@ _$.uuid(); //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d
 
 If you need to use a custom prefix than you can set a variable that you want to use as Bijou.js to `_$`
 
-## Who made Bijou.js?
+# Who made Bijou.js?
 
 Me (@Explosion-Scratch) and my good friend @GrahamSH-LLK with a lot of help from other people such as retronbv and TheColaber!
 
@@ -98,7 +98,7 @@ this.)</small>
 
 ## Installation
 
-Bijou.js is availible in NodeJS through yarn and NPM
+Bijou.js is available in NodeJS through yarn and NPM
 
 `npm i bijou.js`
 or
