@@ -3222,6 +3222,21 @@ let _temp = {
     return result.substring(1, result.length - 3);
   },
   /**
+   * Enters fullscreen on an element.
+   * @memberOf bijou
+   * @function
+   * @param {Element} element The element to enter full screen with.
+   * @returns {undefined}
+   * @example
+   * _$.fullScreen(document.documentElement);//Make the window fullscreen
+   */
+  fullScreen: (element) =>
+    element.requestFullScreen ||
+    element.mozRequestFullScreen ||
+    element.webkitRequestFullScreen() ||
+    new Error('Fullscreen failed'),
+
+  /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
    * @Object
