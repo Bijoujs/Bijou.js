@@ -481,7 +481,7 @@ let _temp = {
     typeof array === 'string'
       ? (array = array.split(''))
       : typeof array === 'number'
-      ? (array = new Array(array))
+      ? (array = _$.range(1, array))
       : (() => {
           if (typeof array === 'object') {
             let keys = Object.keys(array);
@@ -497,6 +497,18 @@ let _temp = {
         callback(array[i], i, array);
       }
     }
+  },
+  /**
+   * Returns an array of the whole numbers (inclusive) between the numbers specified.
+   * @memberOf bijou
+   * @function
+   * @param {Number} start The start value of the array.
+   * @param {Number} end The end value of the array.
+   */
+  range: (start, end) => {
+    return Array(end - start + 1)
+      .fill()
+      .map((_, idx) => start + idx);
   },
   /**
    * Maps the keys of an object.
