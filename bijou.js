@@ -3237,6 +3237,31 @@ let _temp = {
     new Error('Fullscreen failed'),
 
   /**
+   * Counts the syllables in the word given.
+   * @memberOf bijou
+   * @function
+   * @param {String} word The word to count syllables of
+   * @example
+   * _$.syllables("Hello")//Returns 2.
+   */
+  syllables: (word) => {
+    word = word.toLowerCase();
+    var t_some = 0;
+    if (word.length > 3) {
+      if (word.substring(0, 4) == 'some') {
+        word = word.replace('some', '');
+        t_some++;
+      }
+    }
+    word = word.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/, '');
+    word = word.replace(/^y/, '');
+    var syl = word.match(/[aeiouy]{1,2}/g);
+    console.log(syl);
+    if (syl) {
+      return syl.length + t_some;
+    }
+  },
+  /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
    * @Object
