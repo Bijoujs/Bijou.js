@@ -474,12 +474,28 @@ let _temp = {
    * @param {Array} array The array of items to run the callback with.
    * @param {Function} callback The callback function to run on the array items.
    * @example
-   * _$.each(new Array(40), (i) => console.log(i));//Logs the numbers up to 40.
+   * _$.each(new Array(40), (array_item, i) => console.log(i));//Logs the numbers up to 40.
    * @returns {undefined}
    */
   each: (array, callback) => {
-    for (let i = 0; i < array.length; i++) {
-      callback(array[i], i, array);
+    typeof array === 'string'
+      ? (array = array.split(''))
+      : typeof array === 'number'
+      ? (array = new Array(array))
+      : (() => {
+          if (typeof array === 'object') {
+            let keys = Object.keys(array);
+            for (let i = 0; i < keys.length; i++) {
+              callback(keys[i], i, array);
+            }
+            return;
+          }
+          throw new Error('Type not supported');
+        })();
+    if (!(typeof array === 'object')) {
+      for (let i = 0; i < array.length; i++) {
+        callback(array[i], i, array);
+      }
     }
   },
   /**
