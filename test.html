@@ -6,7 +6,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <script src="./import_bijou.js" type="module"></script>
     <title>Testing!</title>
   </head>
   <body>
@@ -38,6 +37,7 @@
   }
 </style>
 <script type="module">
+  import * as _$ from "./bijou.js"
   _$.context();
   let mouse = { x: 0, y: 0 };
   window.onmousemove = (e) =>

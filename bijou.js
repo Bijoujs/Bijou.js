@@ -116,7 +116,7 @@ export let primesTo = (num) => {
       (x) => (arr = arr.filter((y) => y % x !== 0 || y === x)),
     );
     return arr;
-  },
+  }
   /**
    * Runs a function asynchronously in a web worker.
    * @function
@@ -126,7 +126,7 @@ export let primesTo = (num) => {
    * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
    * @returns {Promise} A promise that resolves into the return value of the function.
    */
-export let async = (fn) => {
+export let runAsync = (fn) => {
     const worker = new Worker(
       URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
         type: 'application/javascript; charset=utf-8',
@@ -140,7 +140,7 @@ export let async = (fn) => {
         rej(err), worker.terminate();
       };
     });
-  };
+  }
   /**
    * Formats a number of milliseconds
    * @function
@@ -166,7 +166,7 @@ export let formatMilliseconds = (ms) => {
       .filter((val) => val[1] !== 0)
       .map(([key, val]) => `${val} ${key}${val !== 1 ? 's' : ''}`)
       .join(', ');
-  },
+  }
   /**
    * Adds the specified styles to the element specified.
    * @function
@@ -180,7 +180,7 @@ export let formatMilliseconds = (ms) => {
 export let addStyles = (el, styles) => {
     node();
     return Object.assign(el.style, styles);
-  },
+  }
   /**
    * Returns the callback when a a click is registered outside the selected element
    * @function
@@ -197,7 +197,7 @@ export let onOutsideClick = (element, callback) => {
       if (!element.contains(e.target)) callback();
     });
     return callback;
-  },
+  }
   /**
    * Returns the callback when the user stops scrolling.
    * @function
@@ -220,7 +220,7 @@ export let onScrollStop = (callback) => {
       },
       false,
     );
-  },
+  }
   /**
    * Copies the string inputted the clipboard.
    * @function
@@ -250,7 +250,7 @@ export let copy = (str) => {
       document.getSelection().addRange(selected);
     }
     return str;
-  },
+  }
   /**
    * Only runs the input function at MAX with the delay specified.
    * @function
@@ -293,7 +293,7 @@ export let throttle = (func, wait, options) => {
       }
       return result;
     };
-  },
+  }
   /**
    * Creates an HTML element from the specified string.
    * @function
@@ -309,7 +309,7 @@ export let createElement = (str) => {
     const el = document.createElement('div');
     el.innerHTML = str;
     return el.firstElementChild;
-  },
+  }
   /**
    * Returns the browser that the user is using.
    * @function
@@ -366,7 +366,7 @@ export let browser = () => {
     if (isBlink) {
       return 'Blink';
     }
-  },
+  }
   /**
    * Displays a desktop notification with the specified text.
    * @function
@@ -398,7 +398,7 @@ export let notify = (text, body, icon) => {
           });
       }
     }
-  },
+  }
   /**
    * Returns the name of the weekday from the Date object specified.
    * @function
@@ -412,7 +412,7 @@ export let notify = (text, body, icon) => {
 export let dayName = (date = new Date(), locale = 'en-US') =>
     date.toLocaleDateString(locale, {
       weekday: 'long',
-    }),
+    })
   /**
    * Converts JSON to a CSV string
    * @function
@@ -445,7 +445,7 @@ export let jsonToCsv = (arr, columns, delimiter = ',') =>
           '',
         ),
       ),
-    ].join('\n'),
+    ].join('\n')
   /**
    * Joins two arrays together and removes duplicates.
    * @function
@@ -465,7 +465,7 @@ export let unionArrays = (x, y) => {
       if (obj.hasOwnProperty(k)) res.push(obj[k]);
     }
     return res;
-  },
+  }
   /**
    * For each item in an array, run a callback with it.
    * @function
@@ -480,7 +480,7 @@ export let each = (array, callback) => {
     for (let i = 0; i < array.length; i++) {
       callback(array[i], i, array);
     }
-  },
+  }
   /**
    * Returns an array of the whole numbers (inclusive) between the numbers specified.
    * @memberOf bijou
@@ -492,7 +492,7 @@ export let range = (start, end) => {
     return Array(end - start + 1)
       .fill()
       .map((_, idx) => start + idx);
-  },
+  }
   /**
    * Maps the keys of an object.
    * @function
@@ -517,7 +517,7 @@ export let mapObjectKeys = (obj, fn) =>
               : val;
           return acc;
         }, {})
-      : obj,
+      : obj
   /**
    * Maps an objects values.
    * @memberOf bijou
@@ -531,7 +531,7 @@ export let mapObjectValues = (obj, fn) => {
       obj[key] = fn(obj[key], index);
     });
     return obj;
-  },
+  }
   /**
    * Converts an array to CSV (Comma separated values) data.
    * @function
@@ -549,7 +549,7 @@ export let arrayToCSV = (arr, delimiter = ',') =>
           .map((x) => (isNaN(x) ? `"${x.replace(/"/g, '""')}"` : x))
           .join(delimiter),
       )
-      .join('\n'),
+      .join('\n')
   /**
    * averageBy
    * @function
@@ -564,7 +564,7 @@ export let arrayToCSV = (arr, delimiter = ',') =>
 export let averageBy = (arr, fn) =>
     arr
       .map(typeof fn === 'function' ? fn : (val) => val[fn])
-      .reduce((acc, val) => acc + val, 0) / arr.length,
+      .reduce((acc, val) => acc + val, 0) / arr.length
   /**
    * Tests whether the specified element is fully in view.
    * @function
@@ -594,7 +594,7 @@ export let inView = (el) => {
       top + height <= window.pageYOffset + window.innerHeight &&
       left + width <= window.pageXOffset + window.innerWidth
     );
-  },
+  }
   /**
    * Tests if the given DOM element is partially (or fully) in view.
    * @function
@@ -624,7 +624,7 @@ export let inPartialView = (el) => {
       top + height > window.pageYOffset &&
       left + width > window.pageXOffset
     );
-  },
+  }
   /**
    * Converts a form to URL queries using the name attribute.
    * @function
@@ -637,7 +637,7 @@ export let serializeForm = (form) => {
     return Array.from(new FormData(form), (field) =>
       field.map(encodeURIComponent).join('='),
     ).join('&');
-  },
+  }
   /**
    * Converts a form to an Object.
    * @function
@@ -653,7 +653,7 @@ export let formToObject = (form) => {
         [key]: value,
       }),
     );
-  },
+  }
   /**
    * Generates a unique ID from a seed
    * @function
@@ -674,7 +674,7 @@ export let uuid = (seed = Math.random()) => {
       return s ? '-' + p.substr(0, 4) + '-' + p.substr(4, 4) : p;
     }
     return _p8() + _p8(true) + _p8(true) + _p8();
-  },
+  }
   /**
    * Escapes a string of HTML
    * @function
@@ -695,7 +695,7 @@ export let escapeHTML = (str) =>
           "'": '&#39;',
           '"': '&quot;',
         }[tag] || tag),
-    ),
+    )
   /**
    * Unescapes a string of HTML
    * @function
@@ -716,7 +716,7 @@ export let unescapeHTML = (str) =>
           '&#39;': "'",
           '&quot;': '"',
         }[tag] || tag),
-    ),
+    )
   /**
    * Returns the previous page that the user visited.
    * @function
@@ -728,7 +728,7 @@ export let unescapeHTML = (str) =>
 export let previousPage = () => {
     node();
     return document.referrer || window.location.href;
-  },
+  }
   /**
    * Replaces the text in an element by running it through a callback.
    * @function
@@ -745,7 +745,7 @@ export let replaceText = (el, callback) => {
     _$.each(_$.textNodes(el), (node) => {
       node.textContent = callback(node.textContent);
     });
-  },
+  }
   /**
    * @memberOf bijou
    * @function
@@ -759,7 +759,7 @@ export let textNodes = (el) => {
         node.nodeValue.trim() !== ''
       );
     });
-  },
+  }
   /**
    * Times the function passed.
    * @function
@@ -775,7 +775,7 @@ export let timeFunction = (fn, name = '_$ function timer') => {
     console.time(name);
     fn();
     console.timeEnd(name);
-  },
+  }
   /**
    * Sorts an object alphabetically by its keys.
    * @function
@@ -793,7 +793,7 @@ export let sortObj = (obj) => {
         result[key] = obj[key];
         return result;
       }, {});
-  },
+  }
   /**
    * Returns the last space in the string given replaced with "&nbsp;"
    * @function
@@ -816,7 +816,7 @@ export let widows = (text) => {
       }
     }
     return finalTitle;
-  },
+  }
   /**
    * Generates a random hex color.
    * @function
@@ -826,7 +826,7 @@ export let widows = (text) => {
    * @returns {String} A random Hex color
    */
 export let randomColor = () =>
-    `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+    `#${Math.floor(Math.random() * 16777215).toString(16)}`
   /**
    * Lighten or darken a color by a certain amount
    * @function
@@ -865,7 +865,7 @@ export let lightenColor = (col, amt) => {
     return (
       (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16)
     );
-  },
+  }
   /**
   * Tests if a color is light or dark and returns an object representation.
   * @function
@@ -908,7 +908,7 @@ export let lightOrDark = (color) => {
     } else {
       return { lightOrDark: 'dark', hsp: hsp };
     }
-  },
+  }
   /**
    * Gets a property from the computed style of an element.
    * @function
@@ -923,7 +923,7 @@ export let compStyle = (el, prop) => {
     node();
     var computedStyles = window.getComputedStyle(el);
     return computedStyles.getPropertyValue(prop);
-  },
+  }
   export let rgbToHex= (rgb) => {
     let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
     rgb = rgb.substr(4).split(')')[0].split(sep);
@@ -937,7 +937,7 @@ export let compStyle = (el, prop) => {
     if (b.length == 1) b = '0' + b;
 
     return '#' + r + g + b;
-  },
+  }
   /**
    * Converts a hex code to a RGB color.
    * @function
@@ -978,7 +978,7 @@ export let hexToRGB = (hex) => {
       (alpha ? `, ${h & 0x000000ff}` : '') +
       ')'
     );
-  },
+  }
   /**
    * Generates a querySelector for an element passed in.
    * @function
@@ -1087,7 +1087,7 @@ export let querySelector = (elem) => {
     loop(element);
 
     return str;
-  },
+  }
   /**
    * Removes comments from the element or string of code specified.
    * @function
@@ -1115,7 +1115,7 @@ export let removeComments = (el) => {
         '',
       );
     }
-  },
+  }
   /**
    * Generates a random number between a minimum and maximum number
    * @function
@@ -1132,7 +1132,7 @@ export let random = (min, max, round = true, seed = Math.random()) => {
     } else {
       return Math.random() * (max - min + 1) + min;
     }
-  },
+  }
   /**
    * Get a random number from a seed.
    * @function
@@ -1147,7 +1147,7 @@ export let seedRandom = (seed) => {
     t = Math.imul(t ^ (t >>> 15), t | 1);
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  },
+  }
   /**
   * Removes duplicates from an array
   * @function
@@ -1159,7 +1159,7 @@ export let seedRandom = (seed) => {
   //Now an_array is [1,2,3,4,5,6]
   * @returns {Array} The array with no duplicates.
   */
-export let uniqueArray = (array) => [...new Set(array)],
+export let uniqueArray = (array) => [...new Set(array)]
   /**
    * Formats a number by adding commas to it.
    * @function
@@ -1170,7 +1170,7 @@ export let uniqueArray = (array) => [...new Set(array)],
    * @returns {String} The formatted string representation of the number.
    */
 export let formatNumber = (n) =>
-    n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,'),
+    n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,')
   /**
    * Splices an array buffer
    * @function
@@ -1185,7 +1185,7 @@ export let spliceArrayBuffer = (arr, start, end, endian) => {
     for (var i = start, value = 0; i != end; i += direction)
       value = 256 * value + arr[i];
     return value;
-  },
+  }
   /**
    * Undoes camelCase.
    * @function
@@ -1202,7 +1202,7 @@ export let unCamelCase = function (str) {
       .replace(/^./, function (s) {
         return s.toUpperCase();
       });
-  },
+  }
   /**
    * Parses the string of HTML specified and returns an HTML element of it.
    * @function
@@ -1217,7 +1217,7 @@ export let unCamelCase = function (str) {
 export let parseHTML = (string, mimeType = 'text/html') => {
     const domparser = new DOMParser();
     return domparser.parseFromString(string, mimeType);
-  },
+  }
   /**
    * Syntax highlights a string of code.
    * @function
@@ -1939,7 +1939,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     };
     highlightel(el, mode, colors);
     return el.innerHTML;
-  },
+  }
   /**
    * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
    * @function
@@ -1947,7 +1947,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
    * @returns {Function} The composed function.
    */
 export let composeFunction = (...functions) => (args) =>
-    functions.reduceRight((arg, fn) => fn(arg), args),
+    functions.reduceRight((arg, fn) => fn(arg), args)
   /**
    * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
    * @function
@@ -1958,7 +1958,7 @@ export let composeFunction = (...functions) => (args) =>
 export let curryFunction = (fn, arity = fn.length, ...args) =>
     arity <= args.length
       ? fn(...args)
-      : curry.bind(null, fn, arity, ...args),
+      : curry.bind(null, fn, arity, ...args)
   /**
    * Returns either "mobile" or "desktop" depending on which type of device the user is using.
    * @function
@@ -1973,7 +1973,7 @@ export let mobileOrDesktop = () => {
     )
       ? 'mobile'
       : 'desktop';
-  },
+  }
   /**
    * Removes tags from the HTML string specified.
    * @function
@@ -1983,7 +1983,7 @@ export let mobileOrDesktop = () => {
    * console.log(_$.removeTags("<div>Hello</div>"));//Logs "Hello" to the console.
    * @returns {String} THe string of HTML without the tags.
    */
-export let removeTags = (html) => html.replace(/<[^>]*>/g, ''),
+export let removeTags = (html) => html.replace(/<[^>]*>/g, '')
   /**
    * camelCases a string.
    * @function
@@ -1999,7 +1999,7 @@ export let camelCase = (str) => {
         return index === 0 ? word.toLowerCase() : word.toUpperCase();
       })
       .replace(/\s+/g, '');
-  },
+  }
   /**
    * Scrambles the order of characters in a string. Thanks to @\Touchcreator for the suggestion for this.
    * @function
@@ -2020,7 +2020,7 @@ export let scrambleString = (str) => {
       a[j] = tmp;
     }
     return a.join('');
-  },
+  }
   /**
    * Allows an element to be dragged and dropped.
    * @function
@@ -2068,7 +2068,7 @@ export let drag = (el) => {
       this.style.top = initY + event.clientY - mousePressY + 'px';
     }
     return el;
-  },
+  }
   /**
    * Adds multiple event listeners with one callback to the element specified.
    * @memberOf bijou
@@ -2110,7 +2110,7 @@ export let addEventListeners = (
     for (var i = 0; i < events.length; i += 1) {
       element.addEventListener(events[i], handlerFn, useCapture);
     }
-  },
+  }
 
   /**
    * Easing functions
@@ -2153,7 +2153,7 @@ export let ease = {
     // acceleration until halfway, then deceleration
     easeInOutQuint: (t) =>
       t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
-  },
+  }
   /**
    * Gets JSON from a URL and performs a callback with it.
    * @function
@@ -2172,7 +2172,7 @@ export let getJSON = (url, callback) => {
       .catch((error) => {
         throw new Error(error.stack);
       });
-  },
+  }
   /**
    * Gets HTML from a URL and performs a callback with it.
    * @function
@@ -2192,7 +2192,7 @@ export let getHTML = (url, callback) => {
       .catch((error) => {
         throw new Error(error.stack);
       });
-  },
+  }
   /**
    * Shuffles an array
    * @function
@@ -2204,7 +2204,7 @@ export let getHTML = (url, callback) => {
    * //array is now something like this: [2,4,1,5,3].
    * @returns {Array} The shuffled array.
    */
-export let shuffleArray = (array) => array.sort(() => Math.random() - 0.5),
+export let shuffleArray = (array) => array.sort(() => Math.random() - 0.5)
   /**
    * Hashes a string to a unique integer (This cannot be decrypted easily).
    * @function
@@ -2230,7 +2230,7 @@ export let hashString = (str, seed = 0) => {
       Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
       Math.imul(h1 ^ (h1 >>> 13), 3266489909);
     return 4294967296 * (2097151 & h2) + (h1 >>> 0);
-  },
+  }
   /**
    * Blends two colors through additive blending by a percentage.
    * @function
@@ -2277,7 +2277,7 @@ export let blendColors = (color1, color2, percent = 50) => {
     const blue = Math.round(mix(blue1, blue2, percent));
 
     return generateHex(red, green, blue);
-  },
+  }
   /**
    * Gets the edit distance between two strings.
    * @function
@@ -2324,7 +2324,7 @@ export let editDistance = (a, b) => {
     }
 
     return matrix[b.length][a.length];
-  },
+  }
   /**
    * Returns the size of a string in bytes.
    * @function
@@ -2334,7 +2334,7 @@ export let editDistance = (a, b) => {
    * console.log(_$.byteSize("Hello world"));//Logs "11" to the console.
    * @returns {Number} The byte size of the string.
    */
-export let byteSize = (str) => new Blob([str]).size,
+export let byteSize = (str) => new Blob([str]).size
   /**
    * Get the siblings of a DOM element
    * @function
@@ -2346,7 +2346,7 @@ export let byteSize = (str) => new Blob([str]).size,
    * @returns {Element[]} The array of sibling elements.
    */
 export let elementSiblings = (n) =>
-    [...n.parentElement.children].filter((c) => c != n),
+    [...n.parentElement.children].filter((c) => c != n)
   /**
    * Preloads all of the image urls given in the arguments
    * @function
@@ -2361,7 +2361,7 @@ export let preloadImage = () => {
       images[i] = new Image();
       images[i].src = preload.arguments[i];
     }
-  },
+  }
   /**
    * Finds and replace multiple values with multiple other values.
    * @function
@@ -2378,7 +2378,7 @@ export let replaceMultiple = (text, replace) => {
       return mapObj[matched];
     });
     return text;
-  },
+  }
   /**
    * Returns the queries from a given url (Or just the current url)
    * @function
@@ -2399,7 +2399,7 @@ export let urlQuery = (query, url = window.location.href) => {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-  },
+  }
   /**
    * Disables right click on the element spcified.
    * @function
@@ -2412,7 +2412,7 @@ export let urlQuery = (query, url = window.location.href) => {
 export let disableRightClick = (el) => {
     node();
     return (el.oncontextmenu = false);
-  },
+  }
   /**
    * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
    * @function
@@ -2570,7 +2570,7 @@ export let sanitize = (html, tags = undefined, attributes = undefined) => {
       }
       return arr;
     }
-  },
+  }
   /**
    * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
    * @function
@@ -2587,7 +2587,7 @@ export let inlineCSS = (el) => {
       var s = cs[i] + '';
       el.style[s] = cs[s];
     }
-  },
+  }
   /**
    * Saves a blob as a file!
    * @function
@@ -2609,7 +2609,7 @@ export let saveBlob = (blob, fileName = 'output.txt') => {
     a.download = fileName;
     a.click();
     window.URL.revokeObjectURL(url);
-  },
+  }
   /**
    * Deep clones an object
    * @function
@@ -2620,7 +2620,7 @@ export let saveBlob = (blob, fileName = 'output.txt') => {
 export let clone = (object) => {
     node();
     return JSON.parse(JSON.stringify(object));
-  },
+  }
   /**
    * Converts markdown to HTML.
    * @param {String} src The markdown to convert to HTML.
@@ -2833,7 +2833,7 @@ export let markdownToHTML = (src) => {
     });
 
     return src.trim();
-  },
+  }
   /**
    * Animates a number from one value to another.
    * @function
@@ -2861,7 +2861,7 @@ export let markdownToHTML = (src) => {
       callback(end, 1);
       return;
     }, duration);
-  },
+  }
   /**
    * Works exactly like setInterval but instead uses requestAnimationFrame.
    * @memberOf bijou
@@ -2893,7 +2893,7 @@ export let requestInterval = function (fn, delay) {
     }
     handle.value = requestAnimFrame(loop);
     return handle;
-  },
+  }
   /**
    * Returns an array of objects representing the attributes of a passed element.
    * @param {Element} el The HMTL element to get attributes from.
@@ -2917,7 +2917,7 @@ export let requestInterval = function (fn, delay) {
       });
     }
     return output;
-  },
+  }
   /**
    * Loads a script from a url (Can be to a local file or to a url) then funs a callback once it's loaded.
    * @memberOf bijou
@@ -2952,7 +2952,7 @@ export let loadScript = (url, callback) => {
 
     script.src = url;
     document.getElementsByTagName('head')[0].appendChild(script);
-  },
+  }
   /**
    * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
    * @function
@@ -2975,7 +2975,7 @@ export let memoize = (fn) => {
         return cache[args];
       }
     };
-  },
+  }
   /**
    * Observes the mutations of the object specified.
    * @memberOf bijou
@@ -3006,7 +3006,7 @@ export let observeMutations = (element, callback, options) => {
       ),
     );
     return observer;
-  },
+  }
   /**
    * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
    * @memberOf bijou
@@ -3068,7 +3068,7 @@ export let imageToData = async (url, callback) => {
       reader.readAsDataURL(blob);
     });
     callback(dataUrl);
-  },
+  }
   /**
    * Re-enables the use of <menu> and <menuitem> tags for corner clicking.
    * @example
@@ -3169,7 +3169,7 @@ export let context = () => {
       menu.style.opacity = 0;
       menu.style.pointerEvents = 'none';
     });
-  },
+  }
   /**
    * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
    * @param {Element} el The element to tilt.
@@ -3202,7 +3202,7 @@ export let tilt = (el, x, y, perspective = 500, amount = 30) => {
     }deg) rotateY(${
       amount * ((x - el.clientWidth / 2) / el.clientWidth)
     }deg)`;
-  },
+  }
   /**
    * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
    * @memberOf bijou
@@ -3231,7 +3231,7 @@ export let formatHTML = (html) => {
     });
 
     return result.substring(1, result.length - 3);
-  },
+  }
   /**
    * Enters fullscreen on an element.
    * @memberOf bijou
@@ -3271,7 +3271,7 @@ export let syllables = (word) => {
     if (syl) {
       return syl.length + t_some;
     }
-  },
+}
   /**
    * A set of functions to set and modify cookies.
    * @memberOf bijou
