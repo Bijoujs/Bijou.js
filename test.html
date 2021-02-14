@@ -37,7 +37,7 @@
   }
 </style>
 <script type="module">
-  import _$ from "./bijou.js"
+  import {_$, context, requestInterval, tilt} from "./bijou.js"
   console.log(Object.keys(_$).map(e => `${e}: ${e}`).join(", "))
   context();
   let mouse = { x: 0, y: 0 };

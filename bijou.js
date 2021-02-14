@@ -3464,10 +3464,12 @@ let _temp = {
   uniqueArray: uniqueArray,
   urlQuery: urlQuery,
   uuid: uuid,
-  widows: widows
-};// Imports and exports
+  widows: widows,
+}; // Imports and exports
 export default _temp;
-window._$ = _temp
+window._$ = _temp;
+//So that we can use bijou in the source code.
+export const _$ = _temp;
 if (isNode) {
   try {
     module.exports = _temp;
