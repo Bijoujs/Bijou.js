@@ -2599,12 +2599,23 @@ export let saveBlob = (blob, fileName = 'output.txt') => {
  * Deep clones an object
  * @function
  * @memberOf bijou
- * @param {Object} object The object to clone.
+ * @param {Object} obj The object to clone.
  * @returns {Object} The output cloned object.
  */
-export let clone = (object) => {
-  node();
-  return JSON.parse(JSON.stringify(object));
+export let clone = (obj) => {
+  if (null == obj || 'object' != typeof obj) return obj;
+  var copy = obj.constructor();
+  for (var attr in obj) {
+    if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+  }
+  return copy;
+};
+export let splice = (array, index, item, remove = 0) => {
+  return typeof array === 'string'
+    ? array.slice(0, index) +
+        item +
+        array.slice(index + Math.abs(remove))
+    : array.splice(index, remove, item);
 };
 /**
  * Converts markdown to HTML.
