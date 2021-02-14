@@ -2863,6 +2863,8 @@ export let requestInterval = function (fn, delay) {
 /**
  * Returns an array of objects representing the attributes of a passed element.
  * @param {Element} el The HMTL element to get attributes from.
+ * @function
+ * @memberOf bijou
  * @example
  * //Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "style," to the console.
  * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
@@ -3035,6 +3037,8 @@ export let imageToData = async (url, callback) => {
 };
 /**
  * Re-enables the use of <menu> and <menuitem> tags for corner clicking.
+ * @memberOf bijou
+ * @function
  * @example
  * //HTML:
  * ```
@@ -3132,6 +3136,8 @@ export let context = () => {
 };
 /**
  * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
+ * @memberOf bijou
+ * @function
  * @param {Element} el The element to tilt.
  * @param {Number} x The x value of the mouse
  * @param {Number} y The y value of the mouse
