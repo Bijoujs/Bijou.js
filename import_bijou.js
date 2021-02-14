@@ -1,1 +1,1 @@
-import _$ from './bijou.js';
+import * as _$ from './bijou.js';
