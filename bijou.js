@@ -3361,6 +3361,19 @@ export let remove = (array, item) =>
  */
 export let contains = (array, item) => array.includes(item);
 /**
+ * Capitalizes the first letter of the string
+ * @memberOf bijou
+ * @function
+ * @param {String} str The string to capitalize.
+ * @example
+ * _$.capitalize("hello world");//Returns "Hello world"
+ * @returns {String} The capitalized string.
+ */
+export let capitalize = (str) =>
+  String.fromCodePoint(str.codePointAt(0)).toUpperCase() +
+  str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
+
+/**
  * A set of functions to set and modify cookies.
  * @memberOf bijou
  * @Object
