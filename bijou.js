@@ -140,7 +140,7 @@ export let async = (fn) => {
         rej(err), worker.terminate();
       };
     });
-  },
+  };
   /**
    * Formats a number of milliseconds
    * @function
@@ -924,7 +924,7 @@ export let compStyle = (el, prop) => {
     var computedStyles = window.getComputedStyle(el);
     return computedStyles.getPropertyValue(prop);
   },
-  rgbToHex: (rgb) => {
+  export let rgbToHex= (rgb) => {
     let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
     rgb = rgb.substr(4).split(')')[0].split(sep);
 
@@ -2849,7 +2849,7 @@ export let markdownToHTML = (src) => {
    * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
    */
   // prettier-ignore
-  animate: (start, end, duration, callback, interval = 20, num = (num) => num) => {
+  export let animate = (start, end, duration, callback, interval = 20, num = (num) => num) => {
     var value = start;
     var start_time = Date.now();
     let update = setInterval(() => {
@@ -2902,7 +2902,7 @@ export let requestInterval = function (fn, delay) {
    * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
    * @return {Array.<object>} The array of objects representing the attributes
    */
-  attributes(el) {
+  export let attributes = (el) =>{
     node();
     var output = [];
     for (
@@ -3290,7 +3290,7 @@ export let cookies = {
      * @param {Number} [days=1000] The days that the cookie should last.
      * @returns {String} The value of the cookie
      */
-export let setItem = (name, value, days = 1000) => {
+setItem: (name, value, days = 1000) => {
       node();
       var expires = '';
       if (days) {
@@ -3308,7 +3308,7 @@ export let setItem = (name, value, days = 1000) => {
      * @param {String} name The name of the cookie.
      * @returns {String} The value of the cookie
      */
-export let getItem = (name) => {
+getItem: (name) => {
       node();
 
       var nameEQ = name + '=';
@@ -3327,7 +3327,7 @@ export let getItem = (name) => {
      * @param {String} name The name of the cookie to delete.
      * @returns {undefined}
      */
-export let removeItem = (name) => {
+removeItem: (name) => {
       node();
 
       document.cookie =
