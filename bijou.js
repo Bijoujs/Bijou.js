@@ -478,24 +478,8 @@ let _temp = {
    * @returns {undefined}
    */
   each: (array, callback) => {
-    typeof array === 'string'
-      ? (array = array.split(''))
-      : typeof array === 'number'
-      ? (array = _$.range(1, array))
-      : (() => {
-          if (typeof array === 'object') {
-            let keys = Object.keys(array);
-            for (let i = 0; i < keys.length; i++) {
-              callback(keys[i], i, array);
-            }
-            return;
-          }
-          throw new Error('Type not supported');
-        })();
-    if (!(typeof array === 'object')) {
-      for (let i = 0; i < array.length; i++) {
-        callback(array[i], i, array);
-      }
+    for (let i = 0; i < array.length; i++) {
+      callback(array[i], i, array);
     }
   },
   /**

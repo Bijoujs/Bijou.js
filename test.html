@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <script src="./bijou.js"></script>
+    <script src="./import_bijou.js" type="module"></script>
     <title>Testing!</title>
   </head>
   <body>
@@ -37,7 +37,7 @@
     transition: transform 0.3s ease;
   }
 </style>
-<script>
+<script type="module">
   _$.context();
   let mouse = { x: 0, y: 0 };
   window.onmousemove = (e) =>

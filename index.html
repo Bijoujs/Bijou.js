@@ -18,7 +18,6 @@
       href="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"
       as="script"
     /> -->
-    <script src="bijou.js"></script>
     <!-- Import iconify (For buttons) -->
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <!-- Prefetch -->
@@ -233,7 +232,9 @@
   ul {
     width: 100%;
   }
-
+  a {
+    color: lightblue;
+  }
   /* Button links */
   a.btn {
     transition: filter 0.3s ease;
@@ -357,7 +358,12 @@
     color: currentColor;
   }
 </style>
-<script>
+
+<script type="module">
+  import { default as _$ } from './bijou.js';
+  console.log(_$.parseHTML);
+  window.onload = js_Load;
+
   function js_Load() {
     document.body.style.visibility = 'visible';
     _$.each(document.querySelectorAll('h1, h2, h3'), (e) => {
@@ -390,7 +396,7 @@
     fetch('README.html')
       .then((res) => res.text())
       .then((text) => {
-        html = _$.parseHTML(text);
+        let html = _$.parseHTML(text);
         html.querySelector('img').remove();
         _$.each(html.querySelectorAll('br'), (br) => br.remove());
         _$.each(html.querySelectorAll('img'), (br) => br.remove());
