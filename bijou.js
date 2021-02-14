@@ -2998,7 +2998,7 @@ export let observeMutations = (element, callback, options) => {
  * @memberOf bijou
  * @function
  * @param {Object} obj The object to listen to.
- * @param {Function} callback The callback function to run with the arguments, target, key, and value. Target is the object, key is the key changed, and value is the new value of the key.
+ * @param {Function} callback The callback function to run with the arguments, key, and value. Key is the key changed, and value is the new value of the key.
  * @example
  * let obj = {something: "This is part of the object", anotherThing: "This is another!"};
  * obj = _$.listen(obj, () => console.log("Set!"), () => console.log("Gotten"));
@@ -3009,12 +3009,12 @@ export let observeMutations = (element, callback, options) => {
 export let listen = (obj, setCallback, getCallback) => {
   return new Proxy(obj, {
     set: function (target, key, value) {
-      setCallback(...arguments);
+      setCallback(key, value);
       target[key] = value;
-      return true;
+      return target[key];
     },
     get: function (target, key, value) {
-      getCallback(...arguments);
+      getCallback(key, value);
       return obj[key];
     },
   });
