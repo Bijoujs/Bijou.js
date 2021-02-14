@@ -37,8 +37,13 @@
   }
 </style>
 <script type="module">
-  import {_$, context, requestInterval, tilt} from "./bijou.js"
-  console.log(Object.keys(_$).map(e => `${e}: ${e}`).join(", "))
+  import {_$, context, requestInterval, tilt, formatHTML as beautify, copy, memoize} from "./bijou.js"
+  console.log(Object.keys(_$).map(e => `${e}: ${e}`).join(", "));
+  let b = memoize(beautify);
+  let code = prompt("Code");
+  code = beautify(code);
+  code = copy(code);
+  alert(code); 
   context();
   let mouse = { x: 0, y: 0 };
   window.onmousemove = (e) =>

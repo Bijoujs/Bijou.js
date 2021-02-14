@@ -477,6 +477,12 @@ export let unionArrays = (x, y) => {
  * @returns {undefined}
  */
 export let each = (array, callback) => {
+  array =
+    typeof array === 'number'
+      ? _$.range(1, array)
+      : typeof array === 'string'
+      ? array.split('')
+      : array;
   for (let i = 0; i < array.length; i++) {
     callback(array[i], i, array);
   }
@@ -3169,11 +3175,37 @@ export let tilt = (el, x, y, perspective = 500, amount = 30) => {
     amount * ((x - el.clientWidth / 2) / el.clientWidth)
   }deg)`;
 };
-export let flatten = (array, level) => {
+/**
+ * Flattens an array level times.
+ * @memberOf bijou
+ * @function
+ * @returns {Array} The flattened array.
+ * @example
+ * _$.flatten(['a', 'b', ['c', 'd']]);//Returns ['a', 'b', 'c', 'd'];
+ * @param {Array} array The array to flatten.
+ * @param {Number} [level=1] The number of iterations to flatten it.
+ */
+export let flatten = (array, level = 1) => {
   var output = array;
   _$.each(level, () => {
-  output = [].concat.apply([], array)
+    output = [].concat.apply([], array);
   });
+  return output;
+};
+
+/**
+ * Flattens an array recursively.
+ * @function
+ * @memberOf bijou
+ * @param {Array} arr The array to flatten.
+ * @returns {Array} The flattened array.
+ */
+export let nFlatten = (arr) => {
+  return arr.reduce(function (flat, toFlatten) {
+    return flat.concat(
+      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
+    );
+  }, []);
 };
 /**
  * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
@@ -3213,12 +3245,58 @@ export let formatHTML = (html) => {
  * @example
  * _$.fullScreen(document.documentElement);//Make the window fullscreen
  */
-export let fullScreen = (element) =>
-  element.requestFullScreen ||
-  element.mozRequestFullScreen ||
-  element.webkitRequestFullScreen() ||
-  new Error('Fullscreen failed');
+export let fullScreen = (element) => {
+  return (
+    element.requestFullScreen ||
+    element.mozRequestFullScreen ||
+    element.webkitRequestFullScreen() ||
+    new Error('Fullscreen failed')
+  );
+};
 
+/**
+ * Returns the difference between two arrays or strings.
+ * @memberOf bijou
+ * @function
+ * @returns {Array|String} The difference between two arrays or strings.
+ * @example
+ * _$.arrayDiff([['a', 'b'], ['a', 'b', 'c', 'd']]);//Returns ["c", "d"];
+ * @param {Array} a1 The first array or string
+ * @param {Array} a2 The 2nd array or string.
+ */
+export let arrayDiff = (a1, a2) => {
+  var a = [],
+    diff = [];
+  for (var i = 0; i < a1.length; i++) {
+    a[a1[i]] = true;
+  }
+  for (var i = 0; i < a2.length; i++) {
+    if (a[a2[i]]) {
+      delete a[a2[i]];
+    } else {
+      a[a2[i]] = true;
+    }
+  }
+  for (var k in a) {
+    diff.push(k);
+  }
+  return diff;
+};
+/**
+ * @memberOf bijou
+ * @function
+ * @returns {undefined}
+ * @param {String} js The string of JavaScript to beautify.
+ * @param {Function} callback The callback function to run with the beautified code.
+ */
+export let beautifyJS = (js, callback) => {
+  _$.loadScript(
+    'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.5/beautify.min.js',
+    () => {
+      callback(js_beautify(js));
+    },
+  );
+};
 /**
  * Counts the syllables in the word given.
  * @memberOf bijou
@@ -3389,9 +3467,11 @@ let _temp = {
   addEventListeners: addEventListeners,
   addStyles: addStyles,
   animate: animate,
+  arrayDiff: arrayDiff,
   arrayToCSV: arrayToCSV,
   attributes: attributes,
   averageBy: averageBy,
+  beautifyJS: beautifyJS,
   blendColors: blendColors,
   browser: browser,
   byteSize: byteSize,
@@ -3412,6 +3492,7 @@ let _temp = {
   editDistance: editDistance,
   elementSiblings: elementSiblings,
   escapeHTML: escapeHTML,
+  flatten: flatten,
   formToObject: formToObject,
   formatHTML: formatHTML,
   formatMilliseconds: formatMilliseconds,
@@ -3436,6 +3517,7 @@ let _temp = {
   markdownToHTML: markdownToHTML,
   memoize: memoize,
   mobileOrDesktop: mobileOrDesktop,
+  nFlatten: nFlatten,
   notify: notify,
   observeMutations: observeMutations,
   onOutsideClick: onOutsideClick,
