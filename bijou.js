@@ -125,7 +125,7 @@ export let primesTo = (num) => {
  * @memberOf bijou
  * @param {Function} fn The function to run
  * @example
- * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
+ * _$.runAsync(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
  * @returns {Promise} A promise that resolves into the return value of the function.
  */
 export let runAsync = (fn) => {
@@ -3324,6 +3324,31 @@ export let syllables = (word) => {
     return syl.length + t_some;
   }
 };
+/**
+ * Removes an item from the array specified.
+ * @memberOf bijou
+ * @function
+ * @param {Array|String} array The array or string to remove the item or string from.
+ * @param {*} item The item to remove.
+ * @example
+ * _$.remove([1,2,3,4,5], 1);//Returns [2,3,4,5].
+ */
+export let remove = (array, item) =>
+  array.indexOf(item) > -1
+    ? array.splice(array.indexOf(item), 1)
+    : array;
+
+/**
+ * Returns whether the specified array or string contains the item given.
+ * @memberOf bijou
+ * @function
+ * @param {Array} array The array to test with.
+ * @param {String} item The item to see if the array contains.
+ * @example
+ * _$.contains([1,2,3,4,5], 3);//Returns true. The array does include 5.
+ * @returns {Boolean} True or false depending on if the array contains that item.
+ */
+export let contains = (array, item) => array.includes(item);
 /**
  * A set of functions to set and modify cookies.
  * @memberOf bijou
