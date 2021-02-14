@@ -95,7 +95,6 @@ if (isNode) {
  * @namespace bijou
  * @author Explosion-Scratch, Bijou.js contributors
  */
-let _temp = {
   /**
    * Gives an array of prime numbers up to a certain one.
    * @function
@@ -105,7 +104,7 @@ let _temp = {
    * _$.primesTo(100);//Returns an array of prime numbers up to 100.
    * @returns {Array} Returns an array of prime numbers up to the given number.
    */
-  primesTo: (num) => {
+export let primesTo = (num) => {
     let arr = Array.from({
         length: num - 1,
       }).map((x, i) => i + 2),
@@ -127,7 +126,7 @@ let _temp = {
    * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
    * @returns {Promise} A promise that resolves into the return value of the function.
    */
-  async: (fn) => {
+export let async = (fn) => {
     const worker = new Worker(
       URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
         type: 'application/javascript; charset=utf-8',
@@ -151,7 +150,7 @@ let _temp = {
    * _$.formatMilliseconds(4000);//Returns "4 seconds"
    * @returns {String} The string of formatted milliseconds.
    */
-  formatMilliseconds: (ms) => {
+export let formatMilliseconds = (ms) => {
     ms = typeof ms === 'string' ? +ms : ms;
     if (ms < 0) ms = -ms;
     const time = {
@@ -178,7 +177,7 @@ let _temp = {
    * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
    * @returns {Object} the assigned object.
    */
-  addStyles: (el, styles) => {
+export let addStyles = (el, styles) => {
     node();
     return Object.assign(el.style, styles);
   },
@@ -192,7 +191,7 @@ let _temp = {
    * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
    * @returns {Function} the function that was called.
    */
-  onOutsideClick: (element, callback) => {
+export let onOutsideClick = (element, callback) => {
     node();
     document.addEventListener('click', (e) => {
       if (!element.contains(e.target)) callback();
@@ -208,7 +207,7 @@ let _temp = {
    * _$.onScrollStop(() => {alert("You stopped scrolling!")})
    * @returns {undefined} Returns undefined.
    */
-  onScrollStop: (callback) => {
+export let onScrollStop = (callback) => {
     let isScrolling;
     node();
     window.addEventListener(
@@ -231,7 +230,7 @@ let _temp = {
    * _$.copy("Hello world")
    * @returns {String} The string copied.
    */
-  copy: (str) => {
+export let copy = (str) => {
     node();
     const el = document.createElement('textarea');
     el.value = str;
@@ -264,7 +263,7 @@ let _temp = {
    * setInterval(alert_function, 1)
    * @returns {Function} The throttled function
    */
-  throttle: (func, wait, options) => {
+export let throttle = (func, wait, options) => {
     var context, args, result;
     var timeout = null;
     var previous = 0;
@@ -305,7 +304,7 @@ let _temp = {
    * _$.createElement("<div id='id_here'>Testing!</div>");
    * @returns {Element} The created element.
    */
-  createElement: (str) => {
+export let createElement = (str) => {
     node();
     const el = document.createElement('div');
     el.innerHTML = str;
@@ -319,7 +318,7 @@ let _temp = {
    * _$.browser();//For me this (correctly) returns "Chrome"
    * @returns {String} A string of the browser name that the user is using.
    */
-  browser: () => {
+export let browser = () => {
     node();
     var isOpera =
       (!!window.opr && !!opr.addons) ||
@@ -379,7 +378,7 @@ let _temp = {
    * _$.notify("Hello", "Hi there! This is a notification!");//Returns an array of prime numbers up to 100.
    * @returns {undefined}
    */
-  notify: (text, body, icon) => {
+export let notify = (text, body, icon) => {
     node();
     if (!window.Notification) {
       console.log('Browser does not support notifications.');
@@ -410,7 +409,7 @@ let _temp = {
    * _$.primesTo(100);//Returns an array of prime numbers up to 100.
    * @returns {String} The day name from the date.
    */
-  dayName: (date = new Date(), locale = 'en-US') =>
+export let dayName = (date = new Date(), locale = 'en-US') =>
     date.toLocaleDateString(locale, {
       weekday: 'long',
     }),
@@ -434,7 +433,7 @@ let _temp = {
   "","7"
    * @returns {String} The string of comma separated values (CSV) created from the JSON.
    */
-  jsonToCsv: (arr, columns, delimiter = ',') =>
+export let jsonToCsv = (arr, columns, delimiter = ',') =>
     [
       columns.join(delimiter),
       ...arr.map((obj) =>
@@ -457,7 +456,7 @@ let _temp = {
    * _$.unionArrays([1,2,3], [4,5,6]);//Returns [1,2,3,4,5,6]
    * @returns {Array} The joined array from the two other arrays.
    */
-  unionArrays: (x, y) => {
+export let unionArrays = (x, y) => {
     var obj = {};
     for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
     for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
@@ -477,7 +476,7 @@ let _temp = {
    * _$.each(new Array(40), (array_item, i) => console.log(i));//Logs the numbers up to 40.
    * @returns {undefined}
    */
-  each: (array, callback) => {
+export let each = (array, callback) => {
     for (let i = 0; i < array.length; i++) {
       callback(array[i], i, array);
     }
@@ -489,7 +488,7 @@ let _temp = {
    * @param {Number} start The start value of the array.
    * @param {Number} end The end value of the array.
    */
-  range: (start, end) => {
+export let range = (start, end) => {
     return Array(end - start + 1)
       .fill()
       .map((_, idx) => start + idx);
@@ -505,7 +504,7 @@ let _temp = {
    * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
    * @returns {Object} The new Object.
    */
-  mapObjectKeys: (obj, fn) =>
+export let mapObjectKeys = (obj, fn) =>
     Array.isArray(obj)
       ? obj.map((val) => _$.mapObjectKeys(val, fn))
       : typeof obj === 'object'
@@ -527,7 +526,7 @@ let _temp = {
    * @param {Function} fn The callback function to use.
    * @returns {Object} The mapped object.
    */
-  mapObjectValues: (obj, fn) => {
+export let mapObjectValues = (obj, fn) => {
     Object.keys(obj).map(function (key, index) {
       obj[key] = fn(obj[key], index);
     });
@@ -543,7 +542,7 @@ let _temp = {
    * _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
    * @returns {String} The comma separated array.
    */
-  arrayToCSV: (arr, delimiter = ',') =>
+export let arrayToCSV = (arr, delimiter = ',') =>
     arr
       .map((v) =>
         v
@@ -562,7 +561,7 @@ let _temp = {
    * _$.averageBy([1,2,3,4], (v) => v ** 2);
    * @returns {Number} The average of the array.
    */
-  averageBy: (arr, fn) =>
+export let averageBy = (arr, fn) =>
     arr
       .map(typeof fn === 'function' ? fn : (val) => val[fn])
       .reduce((acc, val) => acc + val, 0) / arr.length,
@@ -576,7 +575,7 @@ let _temp = {
    * if (_$.inView(document.querySelector("div"))) alert("In view!");
    * @returns {Boolean} Whether the element is completely in view.
    */
-  inView: (el) => {
+export let inView = (el) => {
     node();
     var top = el.offsetTop;
     var left = el.offsetLeft;
@@ -606,7 +605,7 @@ let _temp = {
    * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
    * @returns {Boolean} Whether the DOM element is partially in view.
    */
-  inPartialView: (el) => {
+export let inPartialView = (el) => {
     node();
     var top = el.offsetTop;
     var left = el.offsetLeft;
@@ -633,7 +632,7 @@ let _temp = {
    * @param {Element} form The form element.
    * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
    */
-  serializeForm: (form) => {
+export let serializeForm = (form) => {
     node();
     return Array.from(new FormData(form), (field) =>
       field.map(encodeURIComponent).join('='),
@@ -646,7 +645,7 @@ let _temp = {
    * @param {Element} form The form element.
    * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
    */
-  formToObject: (form) => {
+export let formToObject = (form) => {
     node();
     return Array.from(new FormData(form)).reduce(
       (acc, [key, value]) => ({
@@ -664,7 +663,7 @@ let _temp = {
    * _$.uuid();//Returns a uuid!
    * @returns {String} The UUID
    */
-  uuid: (seed = Math.random()) => {
+export let uuid = (seed = Math.random()) => {
     //Magic. Do not touch.
     if (typeof seed === 'string') {
       // Convert string to a number between 0 and 1
@@ -685,7 +684,7 @@ let _temp = {
    * _$.escapeHTML("<div>"); Returns the escaped HTML: "&lt;div&gt;"
    * @returns {String} The escaped HTML.
    */
-  escapeHTML: (str) =>
+export let escapeHTML = (str) =>
     str.replace(
       /[&<>'"]/g,
       (tag) =>
@@ -706,7 +705,7 @@ let _temp = {
    * _$.unescapeHTML("&lt;div&gt;");//Returns "<div>"
    * @returns {String} The unescaped HTML.
    */
-  unescapeHTML: (str) =>
+export let unescapeHTML = (str) =>
     str.replace(
       /&amp;|&lt;|&gt;|&#39;|&quot;/g,
       (tag) =>
@@ -726,7 +725,7 @@ let _temp = {
    * _$.previousPage()
    * @returns {String} The url of the previous page the user visited.
    */
-  previousPage: () => {
+export let previousPage = () => {
     node();
     return document.referrer || window.location.href;
   },
@@ -741,7 +740,7 @@ let _temp = {
    * //Converts the text of the first <div> element to upperCase.
    * @returns {String} The element who's text was replaced.
    */
-  replaceText: (el, callback) => {
+export let replaceText = (el, callback) => {
     node();
     _$.each(_$.textNodes(el), (node) => {
       node.textContent = callback(node.textContent);
@@ -753,7 +752,7 @@ let _temp = {
    * @param {El} el The element to get the text nodes of.
    * @returns {Array} The text nodes.
    */
-  textNodes: (el) => {
+export let textNodes = (el) => {
     return [...el.childNodes].filter((node) => {
       return (
         node.nodeType === Node.TEXT_NODE &&
@@ -772,7 +771,7 @@ let _temp = {
    * _$.timeFunction(() => prompt("What's your name?"));
    * @returns {undefined}
    */
-  timeFunction: (fn, name = '_$ function timer') => {
+export let timeFunction = (fn, name = '_$ function timer') => {
     console.time(name);
     fn();
     console.timeEnd(name);
@@ -787,7 +786,7 @@ let _temp = {
    * // The object is now {anotherThing: "Another value!", testing: "A value"}
    * @returns {Object} The sorted object.
    */
-  sortObj: (obj) => {
+export let sortObj = (obj) => {
     return Object.keys(obj)
       .sort()
       .reduce(function (result, key) {
@@ -805,7 +804,7 @@ let _temp = {
    * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
    * @returns {String} The replaced string.
    */
-  widows: (text) => {
+export let widows = (text) => {
     var wordArray = text.split(' ');
     var finalTitle = '';
     for (var i = 0; i <= wordArray.length - 1; i++) {
@@ -826,7 +825,7 @@ let _temp = {
    * document.querySelector("div").style.backgroundColor = _$.randomColor()
    * @returns {String} A random Hex color
    */
-  randomColor: () =>
+export let randomColor = () =>
     `#${Math.floor(Math.random() * 16777215).toString(16)}`,
   /**
    * Lighten or darken a color by a certain amount
@@ -838,7 +837,7 @@ let _temp = {
    * _$.lightenColor("#000000", 50);//Lightens black by 50 (Out of 255)
    * @returns {String} The color lightened.
    */
-  lightenColor: (col, amt) => {
+export let lightenColor = (col, amt) => {
     var usePound = false;
 
     if (col[0] == '#') {
@@ -880,7 +879,7 @@ let _temp = {
   }
   * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
   */
-  lightOrDark: (color) => {
+export let lightOrDark = (color) => {
     var r, g, b, hsp;
     if (color.match(/^rgb/)) {
       color = color.match(
@@ -920,7 +919,7 @@ let _temp = {
    * console.log(_$.compStyle(document.documentElement, "background-color"));
    * @returns {String} The computed style property for the element specified.
    */
-  compStyle: (el, prop) => {
+export let compStyle = (el, prop) => {
     node();
     var computedStyles = window.getComputedStyle(el);
     return computedStyles.getPropertyValue(prop);
@@ -946,7 +945,7 @@ let _temp = {
    * @param {String} hex The hex code to convert.
    * @returns {String} The RGB color converted from the hex code.
    */
-  hexToRGB: (hex) => {
+export let hexToRGB = (hex) => {
     if (
       ((hex.length - 1 === 6 ||
         hex.length - 1 === 8 ||
@@ -990,7 +989,7 @@ let _temp = {
    * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
    * @returns {String} The generated querySelector.
    */
-  querySelector: (elem) => {
+export let querySelector = (elem) => {
     node();
     var element = elem;
     var str = '';
@@ -1098,7 +1097,7 @@ let _temp = {
    * _$.removeComments(document.documentElement);//Removes the comments from the document element.
    * @returns {String|Element} The string removed of comments or the element removed of comments.
    */
-  removeComments: (el) => {
+export let removeComments = (el) => {
     if (typeof el === 'object') {
       if (isNode) {
         throw new Error(
@@ -1127,7 +1126,7 @@ let _temp = {
    * @param {Number} [seed=Math.random()] The seed for the generated number (Between 0 and 1).
    * @returns {Number} The random numebr generated.
    */
-  random: (min, max, round = true, seed = Math.random()) => {
+export let random = (min, max, round = true, seed = Math.random()) => {
     if (round) {
       return Math.floor(seed * (max - min + 1) + min);
     } else {
@@ -1143,7 +1142,7 @@ let _temp = {
    * console.log(_$.seedRandom(13));
    * @returns {Number} The random number from the seed.
    */
-  seedRandom: (seed) => {
+export let seedRandom = (seed) => {
     var t = (seed += 0x6d2b79f5);
     t = Math.imul(t ^ (t >>> 15), t | 1);
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
@@ -1160,7 +1159,7 @@ let _temp = {
   //Now an_array is [1,2,3,4,5,6]
   * @returns {Array} The array with no duplicates.
   */
-  uniqueArray: (array) => [...new Set(array)],
+export let uniqueArray = (array) => [...new Set(array)],
   /**
    * Formats a number by adding commas to it.
    * @function
@@ -1170,14 +1169,14 @@ let _temp = {
    * console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
    * @returns {String} The formatted string representation of the number.
    */
-  formatNumber: (n) =>
+export let formatNumber = (n) =>
     n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,'),
   /**
    * Splices an array buffer
    * @function
    * @memberOf bijou
    */
-  spliceArrayBuffer: (arr, start, end, endian) => {
+export let spliceArrayBuffer = (arr, start, end, endian) => {
     endian = endian || false;
     var direction = endian ? -1 : 1;
     if (endian) [start, end] = [end, start];
@@ -1196,7 +1195,7 @@ let _temp = {
    * console.log(_$.unCamelCase("helloWorld"));//Logs "Hello World" to the console.
    * @returns {String} The string of unCamelCased code.
    */
-  unCamelCase: function (str) {
+export let unCamelCase = function (str) {
     return str
       .replace(/([a-z])([A-Z])/g, '$1 $2')
       .replace(/\b([A-Z]+)([A-Z])([a-z])/, '$1 $2$3')
@@ -1215,7 +1214,7 @@ let _temp = {
    * html.querySelector("textarea");//Returns the textarea!
    * @returns {Element} The HTML document element of the HTML string specified.
    */
-  parseHTML: (string, mimeType = 'text/html') => {
+export let parseHTML = (string, mimeType = 'text/html') => {
     const domparser = new DOMParser();
     return domparser.parseFromString(string, mimeType);
   },
@@ -1229,7 +1228,7 @@ let _temp = {
    * _$.syntaxHighlight('alert(\"Hello\")', 'js');//Returns html of the syntax highlighted version.
    * @returns {String} The highlighted string of code as HTML code.
    */
-  syntaxHighlight: (string, mode = 'html', colors = {}) => {
+export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     node();
     //        .==.        .==.
     //       //`^\\      //^`\\
@@ -1947,7 +1946,7 @@ let _temp = {
    * @memberOf bijou
    * @returns {Function} The composed function.
    */
-  composeFunction: (...functions) => (args) =>
+export let composeFunction = (...functions) => (args) =>
     functions.reduceRight((arg, fn) => fn(arg), args),
   /**
    * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
@@ -1956,7 +1955,7 @@ let _temp = {
    * @param
    * @returns {Function} The curried version of the function.
    */
-  curryFunction: (fn, arity = fn.length, ...args) =>
+export let curryFunction = (fn, arity = fn.length, ...args) =>
     arity <= args.length
       ? fn(...args)
       : curry.bind(null, fn, arity, ...args),
@@ -1967,7 +1966,7 @@ let _temp = {
    * @param
    * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
    */
-  mobileOrDesktop: () => {
+export let mobileOrDesktop = () => {
     node();
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent,
@@ -1984,7 +1983,7 @@ let _temp = {
    * console.log(_$.removeTags("<div>Hello</div>"));//Logs "Hello" to the console.
    * @returns {String} THe string of HTML without the tags.
    */
-  removeTags: (html) => html.replace(/<[^>]*>/g, ''),
+export let removeTags = (html) => html.replace(/<[^>]*>/g, ''),
   /**
    * camelCases a string.
    * @function
@@ -1994,7 +1993,7 @@ let _temp = {
    * console.log(_$.camelCase("Hello world"));//Logs "helloWorld" to the console.
    * @returns {String} The camelCased string.
    */
-  camelCase: (str) => {
+export let camelCase = (str) => {
     return str
       .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
         return index === 0 ? word.toLowerCase() : word.toUpperCase();
@@ -2010,7 +2009,7 @@ let _temp = {
    * console.log(_$.scrambleString("Hello world"));//Logs "owllH rdloe" to the console
    * @returns {String} The scrambled text.
    */
-  scrambleString: (str) => {
+export let scrambleString = (str) => {
     var a = str.split(''),
       n = a.length;
 
@@ -2031,7 +2030,7 @@ let _temp = {
    * _$.drag(document.querySelector('div'));//Allows the first <div> on the page to be dragged.
    * @returns {Element} The element.
    */
-  drag: (el) => {
+export let drag = (el) => {
     node();
     var initX, initY, mousePressX, mousePressY;
     el.addEventListener(
@@ -2090,7 +2089,7 @@ let _temp = {
    * );
    * @returns {undefined}
    */
-  addEventListeners: (
+export let addEventListeners = (
     element,
     events,
     handler = {},
@@ -2121,7 +2120,7 @@ let _temp = {
    * _$.ease.easeInOutQuad(.3);//Returns the eased point of about 1/3 along the animation.
    * @returns {Function} The easing function.
    */
-  ease: {
+export let ease = {
     // no easing, no acceleration
     linear: (t) => t,
     // accelerating from zero velocity
@@ -2165,7 +2164,7 @@ let _temp = {
    * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
    * @returns {undefined}
    */
-  getJSON: (url, callback) => {
+export let getJSON = (url, callback) => {
     node();
     fetch(url)
       .then((res) => res.json())
@@ -2185,7 +2184,7 @@ let _temp = {
    * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
    * @returns {undefined}
    */
-  getHTML: (url, callback) => {
+export let getHTML = (url, callback) => {
     node();
     fetch(url)
       .then((res) => res.text())
@@ -2205,7 +2204,7 @@ let _temp = {
    * //array is now something like this: [2,4,1,5,3].
    * @returns {Array} The shuffled array.
    */
-  shuffleArray: (array) => array.sort(() => Math.random() - 0.5),
+export let shuffleArray = (array) => array.sort(() => Math.random() - 0.5),
   /**
    * Hashes a string to a unique integer (This cannot be decrypted easily).
    * @function
@@ -2216,7 +2215,7 @@ let _temp = {
    * console.log(_$.hashString("Hello world"));//Logs 3494146707865688 to the console.
    * @returns {Number} The hashed string.
    */
-  hashString: (str, seed = 0) => {
+export let hashString = (str, seed = 0) => {
     let h1 = 0xdeadbeef ^ seed,
       h2 = 0x41c6ce57 ^ seed;
     for (let i = 0, ch; i < str.length; i++) {
@@ -2243,7 +2242,7 @@ let _temp = {
    * _$.blendColors("#ffffff", "#000000", 80); //Blends white and black together, ending up in a color that is 80% white and 20% black.
    * @returns {String} The blended color (A hex code).
    */
-  blendColors: (color1, color2, percent = 50) => {
+export let blendColors = (color1, color2, percent = 50) => {
     const generateHex = (r, g, b) => {
       let R = r.toString(16);
       let G = g.toString(16);
@@ -2289,7 +2288,7 @@ let _temp = {
    * _$.editDistance("hello", "Hello");//Returns 1
    * @returns {Number} The edit distance between two strings
    */
-  editDistance: (a, b) => {
+export let editDistance = (a, b) => {
     if (a.length == 0) return b.length;
     if (b.length == 0) return a.length;
 
@@ -2335,7 +2334,7 @@ let _temp = {
    * console.log(_$.byteSize("Hello world"));//Logs "11" to the console.
    * @returns {Number} The byte size of the string.
    */
-  byteSize: (str) => new Blob([str]).size,
+export let byteSize = (str) => new Blob([str]).size,
   /**
    * Get the siblings of a DOM element
    * @function
@@ -2346,7 +2345,7 @@ let _temp = {
    * //Make every sibling of the first list item's background color white.
    * @returns {Element[]} The array of sibling elements.
    */
-  elementSiblings: (n) =>
+export let elementSiblings = (n) =>
     [...n.parentElement.children].filter((c) => c != n),
   /**
    * Preloads all of the image urls given in the arguments
@@ -2357,7 +2356,7 @@ let _temp = {
    * _$.preloadImage("https://unsplash.com/some_huge_image.png");//Preloads the unsplash image "some_huge_image.png" :P
    * @returns {undefined}
    */
-  preloadImage: () => {
+export let preloadImage = () => {
     for (var i = 0; i < arguments.length; i++) {
       images[i] = new Image();
       images[i].src = preload.arguments[i];
@@ -2373,7 +2372,7 @@ let _temp = {
    * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
    * @returns {String} The replaced string
    */
-  replaceMultiple: (text, replace) => {
+export let replaceMultiple = (text, replace) => {
     var re = new RegExp(Object.keys(replace).join('|'), 'gi');
     text = text.replace(re, function (matched) {
       return mapObj[matched];
@@ -2393,7 +2392,7 @@ let _temp = {
    * console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
    * @returns {String} The url query
    */
-  urlQuery: (query, url = window.location.href) => {
+export let urlQuery = (query, url = window.location.href) => {
     query = query.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`),
       results = regex.exec(url);
@@ -2410,7 +2409,7 @@ let _temp = {
    * _$.disableRightClick(document.documentElement)
    * @returns {undefined}
    */
-  disableRightClick: (el) => {
+export let disableRightClick = (el) => {
     node();
     return (el.oncontextmenu = false);
   },
@@ -2425,7 +2424,7 @@ let _temp = {
    * _$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>");//Returns "<b>A normal tag</b>"
    * @returns {String} The sanitized HTML string.
    */
-  sanitize: (html, tags = undefined, attributes = undefined) => {
+export let sanitize = (html, tags = undefined, attributes = undefined) => {
     node();
     var attributes = attributes || [
       { attribute: 'src', tags: '*', regex: /^(?:https|http|\/\/):/ },
@@ -2581,7 +2580,7 @@ let _temp = {
    * _$.inlineCSS(document.querySelector("h1"));//Converts the styles for the <h1> element to inline using the style="___" attribute
    * @returns {undefined}
    */
-  inlineCSS: (el) => {
+export let inlineCSS = (el) => {
     var cs = getComputedStyle(el, null);
     var i;
     for (i = 0; i < cs.length; i++) {
@@ -2599,7 +2598,7 @@ let _temp = {
    * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
    * @returns {undefined}
    */
-  saveBlob: (blob, fileName = 'output.txt') => {
+export let saveBlob = (blob, fileName = 'output.txt') => {
     node();
     var a = document.createElement('a');
     document.body.appendChild(a);
@@ -2618,7 +2617,7 @@ let _temp = {
    * @param {Object} object The object to clone.
    * @returns {Object} The output cloned object.
    */
-  clone: (object) => {
+export let clone = (object) => {
     node();
     return JSON.parse(JSON.stringify(object));
   },
@@ -2631,7 +2630,7 @@ let _temp = {
    * _$.markdownToHTML("_Italic text_, **bold text**");//Returns "<em>Italic text</em>, <b>bold text</b>"
    * @returns {String} The string of HTML converted from the markdown input.
    */
-  markdownToHTML: (src) => {
+export let markdownToHTML = (src) => {
     var rx_lt = /</g;
     var rx_gt = />/g;
     var rx_space = /\t|\r|\uf8ff/g;
@@ -2871,7 +2870,7 @@ let _temp = {
    * @param {Number} delay The delay time to run the function.
    * @returns {Object}
    */
-  requestInterval: function (fn, delay) {
+export let requestInterval = function (fn, delay) {
     node();
     var requestAnimFrame = (function () {
         return (
@@ -2929,7 +2928,7 @@ let _temp = {
    * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
    * @returns {undefined}
    */
-  loadScript: (url, callback) => {
+export let loadScript = (url, callback) => {
     node();
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -2964,7 +2963,7 @@ let _temp = {
    * console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)
    * @returns {undefined}
    */
-  memoize: (fn) => {
+export let memoize = (fn) => {
     let cache = {};
     return function () {
       let args = JSON.stringify(Array.from(arguments));
@@ -2988,7 +2987,7 @@ let _temp = {
    * _$.observeMutations(document, console.log);//Logs all the mutations that happen to the console.
    * @returns {undefined}
    */
-  observeMutations: (element, callback, options) => {
+export let observeMutations = (element, callback, options) => {
     const observer = new MutationObserver((mutations) =>
       mutations.forEach((m) => callback(m)),
     );
@@ -3021,7 +3020,7 @@ let _temp = {
    *   thing.emit("data", "Yay! Some data!!");//Logs "Yay! Some data!!" to the console after 2 seconds.
    * }, 2000)
    */
-  hub: () => ({
+export let hub = () => ({
     hub: Object.create(null),
     emit(event, data) {
       (this.hub[event] || []).forEach((handler) => handler(data));
@@ -3045,7 +3044,7 @@ let _temp = {
    * @param {Function} val The function to test.
    * @returns {Boolean} True if the function is async and false if not.
    */
-  isAsync: (val) =>
+export let isAsync = (val) =>
     Object.prototype.toString.call(val) === '[object AsyncFunction]',
   /**
    * Fetches an image and runs the callback with the data url of the image.
@@ -3061,7 +3060,7 @@ let _temp = {
    *  })
    * })
    */
-  imageToData: async (url, callback) => {
+export let imageToData = async (url, callback) => {
     let blob = await fetch(url).then((r) => r.blob());
     let dataUrl = await new Promise((resolve) => {
       let reader = new FileReader();
@@ -3086,7 +3085,7 @@ let _temp = {
    * //Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
    * @returns {undefined};
    */
-  context: () => {
+export let context = () => {
     var menu = document.createElement('UL');
     menu.id = 'contextMenu';
     document.body.appendChild(menu);
@@ -3188,7 +3187,7 @@ let _temp = {
    *  _$.tilt(el, x, y);
    * }
    */
-  tilt: (el, x, y, perspective = 500, amount = 30) => {
+export let tilt = (el, x, y, perspective = 500, amount = 30) => {
     //Old code
     /*  const xVal = x
     const yVal = y
@@ -3211,7 +3210,7 @@ let _temp = {
    * @param {String} html The string of HTML to format.
    * @returns {String} The formatted string of HTML.
    */
-  formatHTML: (html) => {
+export let formatHTML = (html) => {
     var tab = '\t';
     var result = '';
     var indent = '';
@@ -3242,7 +3241,7 @@ let _temp = {
    * @example
    * _$.fullScreen(document.documentElement);//Make the window fullscreen
    */
-  fullScreen: (element) =>
+export let fullScreen = (element) =>
     element.requestFullScreen ||
     element.mozRequestFullScreen ||
     element.webkitRequestFullScreen() ||
@@ -3256,7 +3255,7 @@ let _temp = {
    * @example
    * _$.syllables("Hello")//Returns 2.
    */
-  syllables: (word) => {
+export let syllables = (word) => {
     word = word.toLowerCase();
     var t_some = 0;
     if (word.length > 3) {
@@ -3281,7 +3280,7 @@ let _temp = {
    * _$.cookies.setItem("a_cookie", "Hello world!", 1);//Set a_cookie to "Hello world" and have it expire in a day.
    * @returns {Function} The function that the user wanted
    */
-  cookies: {
+export let cookies = {
     /**
      * Sets a cookie to a value
      * @function
@@ -3291,7 +3290,7 @@ let _temp = {
      * @param {Number} [days=1000] The days that the cookie should last.
      * @returns {String} The value of the cookie
      */
-    setItem: (name, value, days = 1000) => {
+export let setItem = (name, value, days = 1000) => {
       node();
       var expires = '';
       if (days) {
@@ -3309,7 +3308,7 @@ let _temp = {
      * @param {String} name The name of the cookie.
      * @returns {String} The value of the cookie
      */
-    getItem: (name) => {
+export let getItem = (name) => {
       node();
 
       var nameEQ = name + '=';
@@ -3328,7 +3327,7 @@ let _temp = {
      * @param {String} name The name of the cookie to delete.
      * @returns {undefined}
      */
-    removeItem: (name) => {
+export let removeItem = (name) => {
       node();
 
       document.cookie =
@@ -3343,7 +3342,7 @@ let _temp = {
    * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
    * @returns {Regexp} A regex
    */
-  regex: {
+export let regex = {
     /**
      * Valid formats:
      * (123) 456-7890
@@ -3354,7 +3353,7 @@ let _temp = {
      * +31636363634
      * 075-63546725
      */
-    phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
     /** Validates names, examples:
      * John Smith
      * John D'Largy
@@ -3367,14 +3366,14 @@ let _temp = {
      * Chao Chang
      * Alzbeta Bara
      */
-    name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
+name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
     /**
     Validates email adresses
     */
-    email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     /** Validates a link
      */
-    link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
+link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
     /**
      * Tests for a strong password.
      * Should have:
@@ -3384,7 +3383,7 @@ let _temp = {
      * 1 special character
      * At least 8 characters long
      */
-    strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
+strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
     /**
      * Tests for a moderate password.
      * Should have:
@@ -3392,34 +3391,32 @@ let _temp = {
      * 1 uppercase letter
      * 1 number
      * At least 8 characters long */
-    moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
+moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
     /** Ip adresses */
     /* Match IPv4 address */
     ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
     /* Match IPv6 address */
     ipv6: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/,
     /**Both ipv4 and ipv6 */
-    ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
+ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
     /**Social security number */
-    socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
+socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
     /**Hex color */
-    hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
+hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
     /** Zip code */
-    zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
+zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
     /**Phone */
-    simplePhone: /^\+?[\d\s]{3,}$/,
+simplePhone: /^\+?[\d\s]{3,}$/,
     /**Credit cards */
-    visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
+visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
     expressCredit: /^3[47][0–9]{13}$/,
     mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
     discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
   },
-};
+
 // Sort the object
-_temp = _temp.sortObj(_temp);
 
 // Imports and exports
-const _$ = _temp;
 
 if (isNode) {
   try {
