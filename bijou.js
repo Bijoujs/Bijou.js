@@ -2964,10 +2964,10 @@ export let memoize = (fn) => {
   };
 };
 /**
- * Observes the mutations of the object specified.
+ * Observes the mutations of the html element specified.
  * @memberOf bijou
  * @function
- * @param {Object} element The element to observe
+ * @param {HTMLElement} element The element to observe
  * @param {Function} callback The callback function to run when a mutation happens.
  * @param {*} options The options to use.
  * @example
@@ -2993,6 +2993,26 @@ export let observeMutations = (element, callback, options) => {
     ),
   );
   return observer;
+};
+/**
+ * @memberOf bijou
+ * @function
+ * @param {Object} obj The object to listen to.
+ * @param {Function} callback The callback function to run with the arguments, target, key, and value. Target is the object, key is the key changed, and value is the new value of the key.
+ * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
+ */
+export let listen = (obj, setCallback, getCallback) => {
+  return new Proxy(obj, {
+    set: function (target, key, value) {
+      callback(...arguments);
+      target[key] = value;
+      return true;
+    },
+    get: function (target, key, value) {
+      callback(...arguments);
+      return true;
+    },
+  });
 };
 /**
  * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
@@ -3116,12 +3136,17 @@ export let context = () => {
   for (let i = 0; i < elements.length; i++) {
     window.addEventListener('contextmenu', (e) => {
       menu.style.pointerEvents = 'auto';
-      e.preventDefault();
-      let items = document.querySelectorAll(
-        `#${e.target
-          .closest('[contextmenu]')
-          .getAttribute('contextmenu')} menuitem`,
-      );
+      let items;
+      try {
+        items = document.querySelectorAll(
+          `#${e.target
+            .closest('[contextmenu]')
+            .getAttribute('contextmenu')} menuitem`,
+        );
+        e.preventDefault();
+      } catch (e) {
+        return true;
+      }
       menu.innerHTML = '';
       for (let j = 0; j < items.length; j++) {
         const contextMenu = items[j];
@@ -3565,6 +3590,7 @@ let _temp = {
   jsonToCsv: jsonToCsv,
   lightOrDark: lightOrDark,
   lightenColor: lightenColor,
+  listen: listen,
   loadScript: loadScript,
   mapObjectKeys: mapObjectKeys,
   mapObjectValues: mapObjectValues,

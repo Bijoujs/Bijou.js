@@ -37,8 +37,11 @@
   }
 </style>
 <script type="module">
+  import * as _$ from "./bijou.js";
+  console.log(_$.remove(Object.keys(_$), "default").map(e => `${e}: ${e}`).join(", "));
+</script>
+<script type="module">
   import {context, requestInterval, tilt, copy, memoize} from "./bijou.js"
-  console.log(Object.keys(_$).map(e => `${e}: ${e}`).join(", "));
   context();
   let mouse = { x: 0, y: 0 };
   window.onmousemove = (e) =>
