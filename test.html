@@ -37,7 +37,7 @@
   }
 </style>
 <script type="module">
-  import {_$, context, requestInterval, tilt, formatHTML as beautify, copy, memoize} from "./bijou.js"
+  import * as _$ from "./bijou.js"
   console.log(Object.keys(_$).map(e => `${e}: ${e}`).join(", "));
   let b = memoize(beautify);
   let code = prompt("Code");

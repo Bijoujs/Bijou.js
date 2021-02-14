@@ -3528,9 +3528,11 @@ let _temp = {
   browser: browser,
   byteSize: byteSize,
   camelCase: camelCase,
+  capitalize: capitalize,
   clone: clone,
   compStyle: compStyle,
   composeFunction: composeFunction,
+  contains: contains,
   context: context,
   cookies: cookies,
   copy: copy,
@@ -3583,6 +3585,7 @@ let _temp = {
   randomColor: randomColor,
   range: range,
   regex: regex,
+  remove: remove,
   removeComments: removeComments,
   removeTags: removeTags,
   replaceMultiple: replaceMultiple,
@@ -3597,6 +3600,7 @@ let _temp = {
   serializeForm: serializeForm,
   shuffleArray: shuffleArray,
   sortObj: sortObj,
+  splice: splice,
   spliceArrayBuffer: spliceArrayBuffer,
   syllables: syllables,
   syntaxHighlight: syntaxHighlight,
@@ -3611,8 +3615,7 @@ let _temp = {
   urlQuery: urlQuery,
   uuid: uuid,
   widows: widows,
-}; // Imports and exports
-export default _temp;
+}; // Imports and exportsexport default _temp;
 window._$ = _temp;
 //So that we can use bijou in the source code.
 export const _$ = _temp;
