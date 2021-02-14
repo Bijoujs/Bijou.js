@@ -43,6 +43,7 @@
 <ul>
   <li><a href="#how-to-use-bijoujs">How to use Bijou.js</a></li>
   <li><a href="#cdn">CDN</a></li>
+  <li><a href="#imports">Imports</a></li>
   <li><a href="#nodejs">NodeJS</a></li>
   <li><a href="#usage">Usage</a></li>
   <li><a href="#who-made-bijoujs">Who made Bijou.js?</a></li>
@@ -56,67 +57,84 @@
 </p>
 <h2 id="cdn">CDN</h2>
 <p>jsDelivr:</p>
-<pre><code class="js language-js">&lt;script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"&gt;&lt;/script&gt;
+<pre><code class="js language-js">&lt;script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js" type="module"&gt;&lt;/script&gt;
 </code></pre>
 <p>UNPKG</p>
-<pre><code class="js language-js">&lt;script src="https://unpkg.com/bijou.js@latest/bijou.js"&gt;&lt;/script&gt;
+<pre><code class="js language-js">&lt;script src="https://unpkg.com/bijou.js@latest/bijou.js" type="module"&gt;&lt;/script&gt;
 </code></pre>
-<h2 id="nodejs">NodeJS</h2>
+<h2 id="imports">Imports</h2>
 <p>
-  Bijou.js is included in NodeJS through NPM and yarn! Depending on
-  the platform you're using you may have to install it through npm or
-  yarn:
+  You can also import parts of bijou, for example only the uuid()
+  function: ```html
 </p>
-<pre><code class="bash language-bash">npm install bijou.js
+<script type="module">
+  import { uuid } from 'https://unpkg.com/bijou.js';
+  console.log(uuid()); //Same as _$.uuid() when importing the whole library.
+</script>
+<pre><code>or you can import the whole thing:
 </code></pre>
-<p>or</p>
-<pre><code>yarn add bijou.js
+<p>html</p>
+<script type="module">
+  import * as _$ from 'https://unpkg.com/bijou.js';
+  console.log(_$.uuid());
+</script>
+<pre><code>## NodeJS
+
+Bijou.js is included in NodeJS through NPM and yarn! Depending on the platform you're using you may have to install it through npm or yarn:
 </code></pre>
-<p>Then just require it in your code:</p>
-<pre><code class="js language-js">const _$ = require('bijou.js');
+<p>bash npm install bijou.js</p>
+<pre><code>or
 </code></pre>
-<h1 id="usage">Usage</h1>
+<p>yarn add bijou.js</p>
+<pre><code>Then just require it in your code:
+</code></pre>
 <p>
-  To use Bijou.js simply call one of the many functions built into it!
+  js const <em>$ = require('bijou.js'); console.log(</em>$.uuid())
 </p>
-<pre><code class="js language-js">_$.anyFunction(); //If you're using node you can name bijou anything.
+<pre><code># Usage
+
+To use Bijou.js simply call one of the many functions built into it!
 </code></pre>
-<p>Such as this one!</p>
-<pre><code class="js language-js">_$.uuid(); //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
+<p>
+  js _$.anyFunction(); //You can name bijou anything when using
+  imports, or when using node you can name it using require();
+</p>
+<pre><code>Such as this one!
 </code></pre>
 <p>
-  If you need to use a custom prefix than you can set a variable that
-  you want to use as Bijou.js to <code>_$</code>
+  js _$.uuid(); //Results in something like this:
+  c3435c88-0a20-491f-9391-3afde9c4a2d1
 </p>
-<h1 id="whomadebijoujs">Who made Bijou.js?</h1>
+<pre><code>If you need to use a custom prefix than you can set a variable that you want to use as Bijou.js to `_$`
+
+# Who made Bijou.js?
+
+Me (@Explosion-Scratch) and my good friend @GrahamSH-LLK with a lot of help from other people such as retronbv and TheColaber!
+
+# Why use Bijou?
+
+Well, a few reasons:
+
+1. &lt;s&gt;I made it. 😛&lt;/s&gt;
+2. It's useful! (If it's not useful just tell me what you want added in the
+   issues tab! I'd be happy to add it!)
+3. It's jam packed full of functions that are super useful but hard to think of!
+4. It's very easy to use, and I'm happy to add anything you think of!
+
+&lt;small&gt;(You can probably see I'm pretty desperate for people to use
+this.)&lt;/small&gt;
+
+## Installation
+
+Bijou.js is available in NodeJS through yarn and NPM
+
+`npm i bijou.js`
+or
+`yarn add bijou.js`
+
+Or through a CDN:
+</code></pre>
 <p>
-  Me (@Explosion-Scratch) and my good friend @GrahamSH-LLK with a lot
-  of help from other people such as retronbv and TheColaber!
-</p>
-<h1 id="whyusebijou">Why use Bijou?</h1>
-<p>Well, a few reasons:</p>
-<ol>
-  <li><s>I made it. 😛</s></li>
-  <li>
-    It's useful! (If it's not useful just tell me what you want added
-    in the issues tab! I'd be happy to add it!)
-  </li>
-  <li>
-    It's jam packed full of functions that are super useful but hard
-    to think of!
-  </li>
-  <li>It's very easy to use, and your suggestions can be added!</li>
-</ol>
-<p>
-  <small
-    >(You can probably see I'm pretty desperate for people to use
-    this.)</small
-  >
-</p>
-<h2 id="installation">Installation</h2>
-<p>Bijou.js is available in NodeJS through yarn and NPM</p>
-<p>
-  <code>npm i bijou.js</code>
-  or
-  <code>yarn add bijou.js</code>
+  https://unpkg.com/bijou.js https://cdn.jsdelivr.net/npm/bijou.js
+  https://cdn.jsdelivr.net/gh/Bijou-js/bijou.js@latest/bijou.js ```
 </p>

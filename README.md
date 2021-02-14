@@ -19,6 +19,7 @@ isn't in Bijou.js, just submit an issue with the code!
 
 - [How to use Bijou.js](#how-to-use-bijoujs)
   - [CDN](#cdn)
+  - [Imports](#imports)
   - [NodeJS](#nodejs)
 - [Usage](#usage)
 - [Who made Bijou.js?](#who-made-bijoujs)
@@ -34,13 +35,39 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 jsDelivr:
 
 ```js
-<script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"
+  type="module"
+></script>
 ```
 
 UNPKG
 
 ```js
-<script src="https://unpkg.com/bijou.js@latest/bijou.js"></script>
+<script
+  src="https://unpkg.com/bijou.js@latest/bijou.js"
+  type="module"
+></script>
+```
+
+## Imports
+
+You can also import parts of bijou, for example only the uuid() function:
+
+```html
+<script type="module">
+  import { uuid } from 'https://unpkg.com/bijou.js';
+  console.log(uuid()); //Same as _$.uuid() when importing the whole library.
+</script>
+```
+
+or you can import the whole thing:
+
+```html
+<script type="module">
+  import * as _$ from 'https://unpkg.com/bijou.js';
+  console.log(_$.uuid());
+</script>
 ```
 
 ## NodeJS
@@ -61,6 +88,7 @@ Then just require it in your code:
 
 ```js
 const _$ = require('bijou.js');
+console.log(_$.uuid());
 ```
 
 # Usage
@@ -68,7 +96,7 @@ const _$ = require('bijou.js');
 To use Bijou.js simply call one of the many functions built into it!
 
 ```js
-_$.anyFunction(); //If you're using node you can name bijou anything.
+_$.anyFunction(); //You can name bijou anything when using imports, or when using node you can name it using require();
 ```
 
 Such as this one!
@@ -91,7 +119,7 @@ Well, a few reasons:
 2. It's useful! (If it's not useful just tell me what you want added in the
    issues tab! I'd be happy to add it!)
 3. It's jam packed full of functions that are super useful but hard to think of!
-4. It's very easy to use, and your suggestions can be added!
+4. It's very easy to use, and I'm happy to add anything you think of!
 
 <small>(You can probably see I'm pretty desperate for people to use
 this.)</small>
@@ -103,3 +131,11 @@ Bijou.js is available in NodeJS through yarn and NPM
 `npm i bijou.js`
 or
 `yarn add bijou.js`
+
+Or through a CDN:
+
+```
+https://unpkg.com/bijou.js
+https://cdn.jsdelivr.net/npm/bijou.js
+https://cdn.jsdelivr.net/gh/Bijou-js/bijou.js@latest/bijou.js
+```

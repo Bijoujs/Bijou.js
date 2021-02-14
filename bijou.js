@@ -3169,6 +3169,12 @@ export let tilt = (el, x, y, perspective = 500, amount = 30) => {
     amount * ((x - el.clientWidth / 2) / el.clientWidth)
   }deg)`;
 };
+export let flatten = (array, level) => {
+  var output = array;
+  _$.each(level, () => {
+  output = [].concat.apply([], array)
+  });
+};
 /**
  * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
  * @memberOf bijou
