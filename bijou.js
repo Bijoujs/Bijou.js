@@ -95,6 +95,8 @@ if (isNode) {
  * @namespace bijou
  * @author Explosion-Scratch, Bijou.js contributors
  */
+
+//#region Bijou
 /**
  * Gives an array of prime numbers up to a certain one.
  * @function
@@ -3463,6 +3465,7 @@ export let regex = {
   mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
   discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
 };
+//#endregion Bijou
 let _temp = {
   addEventListeners: addEventListeners,
   addStyles: addStyles,
