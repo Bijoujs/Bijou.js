@@ -2999,18 +2999,23 @@ export let observeMutations = (element, callback, options) => {
  * @function
  * @param {Object} obj The object to listen to.
  * @param {Function} callback The callback function to run with the arguments, target, key, and value. Target is the object, key is the key changed, and value is the new value of the key.
+ * @example
+ * let obj = {something: "This is part of the object", anotherThing: "This is another!"};
+ * obj = _$.listen(obj, () => console.log("Set!"), () => console.log("Gotten"));
+ * obj.something; //Logs "Gotten" to the console!
+ * obj.anotherThing = "Setting a key!";//Logs "Set!" to the console!
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
 export let listen = (obj, setCallback, getCallback) => {
   return new Proxy(obj, {
     set: function (target, key, value) {
-      callback(...arguments);
+      setCallback(...arguments);
       target[key] = value;
       return true;
     },
     get: function (target, key, value) {
-      callback(...arguments);
-      return true;
+      getCallback(...arguments);
+      return obj[key];
     },
   });
 };
