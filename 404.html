@@ -6,7 +6,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"
+      type="module"
+      onload="run()"
+    ></script>
     <link rel="prefetch" href="index.html" />
     <link rel="prerender" href="index.html" />
     <title>404 | Bijou.js</title>
@@ -84,29 +88,35 @@
   }
 </style>
 <script>
-  const closest = closestString(window.location.pathname)[0];
-  document.getElementById(
-    'newpage',
-  ).innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
-  if (_$.editDistance(closest, window.location.pathname) < 4) {
-    window.location.pathname = closest;
-  }
-  if (_$.editDistance(closest, window.location.pathname) > 20) {
-    document.getElementById('newpage').innerHTML = '';
-  }
-  function parsePath(path) {
-    return path.match(/([^\/\.]+)(?:.html)$/)[1];
-  }
-  function closestString(string) {
-    let array = [
-      'index',
-      'try',
-      'docs',
-      'docs/bijou.ease',
-      'docs/bijou.js',
-      'docs/global',
-      'docs/bijou',
-    ];
-    return array.sort((item) => _$.editDistance(item, string));
+  function run() {
+    const closest = closestString(window.location.pathname)[0];
+    document.getElementById(
+      'newpage',
+    ).innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
+    if (_$.editDistance(closest, window.location.pathname) < 4) {
+      window.location.pathname = closest;
+    }
+    if (_$.editDistance(closest, window.location.pathname) > 20) {
+      document.getElementById('newpage').innerHTML = '';
+    }
+    function parsePath(path) {
+      return path.match(/([^\/\.]+)(?:.html)$/)[1];
+    }
+    function closestString(string) {
+      let array = [
+        'index',
+        'try',
+        'docs',
+        'docs/bijou.ease',
+        'docs/bijou.js',
+        'docs/global',
+        'docs/bijou',
+      ];
+      return array.reduce((one, two) =>
+        _$.editDistance(string, one) > _$.editDistance(string, two)
+          ? two
+          : one,
+      );
+    }
   }
 </script>
