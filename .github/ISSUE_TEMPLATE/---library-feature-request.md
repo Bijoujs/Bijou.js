@@ -1,6 +1,6 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: "\U0001F4D9 Library feature request"
+about: A new idea for Bijou.js? Great! Suggest it below! =)
 title: "[Feature request]"
 labels: enhancement
 assignees: Explosion-Scratch
