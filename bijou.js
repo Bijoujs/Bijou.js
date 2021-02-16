@@ -3538,6 +3538,20 @@ export let capitalize = (str) =>
   str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
 
 /**
+ * Replaces between two indexes of a string.
+ * @memberOf bijou
+ * @function
+ * @example
+ * _$.replaceBetween("Hello world", 6, 11, "earthlings");//Returns "Hello earthlings"
+ * @param {String} string The string to operate on.
+ * @param {Number} start The start index
+ * @param {Number} end The end index
+ * @param {String} what What to replace with.
+ */
+export let replaceBetween = (string, start, end, what) =>
+  string.substring(0, start) + what + string.substring(end);
+
+/**
  * A set of functions to set and modify cookies.
  * @memberOf bijou
  * @Object
@@ -3753,6 +3767,7 @@ let _temp = {
   remove: remove,
   removeComments: removeComments,
   removeTags: removeTags,
+  replaceBetween: replaceBetween,
   replaceMultiple: replaceMultiple,
   replaceText: replaceText,
   requestInterval: requestInterval,
