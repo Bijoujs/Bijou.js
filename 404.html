@@ -89,7 +89,7 @@
 </style>
 <script>
   function run() {
-    const closest = closestString(window.location.pathname)[0];
+    const closest = closestString(window.location.pathname);
     document.getElementById(
       'newpage',
     ).innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
@@ -111,6 +111,7 @@
         'docs/bijou.js',
         'docs/global',
         'docs/bijou',
+        '404',
       ];
       return array.reduce((one, two) =>
         _$.editDistance(string, one) > _$.editDistance(string, two)
