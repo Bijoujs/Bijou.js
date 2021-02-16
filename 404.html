@@ -9,7 +9,6 @@
     <script
       src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"
       type="module"
-      onload="run()"
     ></script>
     <link rel="prefetch" href="index.html" />
     <link rel="prerender" href="index.html" />
@@ -88,15 +87,17 @@
   }
 </style>
 <script>
+  let path = window.location.pathname;
+  path = path.replace(/^\//, '');
   function run() {
-    const closest = closestString(window.location.pathname);
+    const closest = closestString(path);
     document.getElementById(
       'newpage',
     ).innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
-    if (_$.editDistance(closest, window.location.pathname) < 4) {
-      window.location.pathname = closest;
+    if (_$.editDistance(closest, path) < 4) {
+      path = closest;
     }
-    if (_$.editDistance(closest, window.location.pathname) > 20) {
+    if (_$.editDistance(closest, path) > 20) {
       document.getElementById('newpage').innerHTML = '';
     }
     function parsePath(path) {
