@@ -6,10 +6,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"
-      type="module"
-    ></script>
     <link rel="prefetch" href="index.html" />
     <link rel="prerender" href="index.html" />
     <title>404 | Bijou.js</title>
@@ -86,39 +82,37 @@
     }
   }
 </style>
-<script>
+<script defer type="module">
+  import { editDistance as e_dist } from 'https://unpkg.com/bijou.js@v6.1.0';
   let path = window.location.pathname;
   path = path.replace(/^\//, '');
-  function run() {
-    const closest = closestString(path);
-    document.getElementById(
-      'newpage',
-    ).innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
-    if (_$.editDistance(closest, path) < 4) {
-      path = closest;
-    }
-    if (_$.editDistance(closest, path) > 20) {
-      document.getElementById('newpage').innerHTML = '';
-    }
-    function parsePath(path) {
-      return path.match(/([^\/\.]+)(?:.html)$/)[1];
-    }
-    function closestString(string) {
-      let array = [
-        'index',
-        'try',
-        'docs',
-        'docs/bijou.ease',
-        'docs/bijou.js',
-        'docs/global',
-        'docs/bijou',
-        '404',
-      ];
-      return array.reduce((one, two) =>
-        _$.editDistance(string, one) > _$.editDistance(string, two)
-          ? two
-          : one,
-      );
-    }
+  let distance;
+  const closest = closestString(path);
+  document.getElementById(
+    'newpage',
+  ).innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
+  if (e_dist(closest, path) < 4) {
+    path = closest;
+  }
+  if (e_dist(closest, path) > 20) {
+    document.getElementById('newpage').innerHTML = '';
+  }
+  function parsePath(path) {
+    return path.match(/([^\/\.]+)(?:.html)$/)[1];
+  }
+  function closestString(string) {
+    let array = [
+      'index',
+      'try',
+      'docs',
+      'docs/bijou.ease',
+      'docs/bijou.js',
+      'docs/global',
+      'docs/bijou',
+      '404',
+    ];
+    return array.reduce((one, two) =>
+      e_dist(string, one) > e_dist(string, two) ? two : one,
+    );
   }
 </script>
