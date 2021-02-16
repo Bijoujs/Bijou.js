@@ -6,50 +6,47 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <title>Testing!</title>
+    <script src="./bijou.js" type="module"></script>
+    <title>Thing</title>
   </head>
   <body>
-    <img
-      contextmenu="menu"
-      src="https://image.flaticon.com/icons/png/512/2395/2395608.png"
-      alt="Something"
-    />
+    <table>
+      <tr>
+        <th onclick="_$.sortTableBy(this, this.asc = !this.asc)">
+          Country
+        </th>
+        <th onclick="_$.sortTableBy(this, this.asc = !this.asc)">
+          Date
+        </th>
+        <th onclick="_$.sortTableBy(this, this.asc = !this.asc)">
+          Size
+        </th>
+      </tr>
+      <tr>
+        <td>France</td>
+        <td>2001-01-01</td>
+        <td><i>25</i></td>
+      </tr>
+      <tr>
+        <td><a href="#">spain</a></td>
+        <td><i>2005-05-05</i></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><b>Lebanon</b></td>
+        <td><a href="#">2002-02-02</a></td>
+        <td><b>-17</b></td>
+      </tr>
+      <tr>
+        <td><i>Argentina</i></td>
+        <td>2005-04-04</td>
+        <td><a href="#">100</a></td>
+      </tr>
+      <tr>
+        <td>USA</td>
+        <td></td>
+        <td>-6</td>
+      </tr>
+    </table>
   </body>
 </html>
-<menu id='menu'>
-  <menuitem label="FASTER!" onclick="document.querySelector('img').style.transitionDuration = `${prompt('Transition in MS')}ms`">
-</menu>
-<style>
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  img {
-    transform-origin: center;
-    display: block;
-    width: 300px;
-    transform-style: preserve-3d;
-  }
-  img {
-    transition: transform 0.3s ease;
-  }
-</style>
-<script type="module">
-  import * as _$ from "./bijou.js";
-  console.log(_$.remove(Object.keys(_$), "default").map(e => `${e}: ${e}`).join(", "));
-</script>
-<script type="module">
-  import {context, requestInterval, tilt, copy, memoize} from "./bijou.js"
-  context();
-  let mouse = { x: 0, y: 0 };
-  window.onmousemove = (e) =>
-    (mouse = {
-      x: e.clientX - window.innerWidth / 2,
-      y: e.clientY - window.innerHeight / 2,
-    });
-  requestInterval(() => {
-    tilt(document.querySelector('img'), mouse.x, mouse.y, 300, 30);
-  }, 1);
-</script>
