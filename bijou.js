@@ -2083,23 +2083,20 @@ export let addEventListeners = (
   useCapture = false,
   args = false,
 ) => {
-  element = typeof element !== 'array' ? [element] : element;
-  _$.each(element, (el) => {
-    if (!(events instanceof Array)) {
-      throw (
-        'addMultipleListeners: ' +
-        'please supply an array of eventstrings ' +
-        '(like ["click","mouseover"])'
-      );
-    }
-    //create a wrapper to be able to use additional arguments
-    var handlerFn = function (e) {
-      handler.apply(this, args && args instanceof Array ? args : []);
-    };
-    for (var i = 0; i < events.length; i += 1) {
-      el.addEventListener(events[i], handlerFn, useCapture);
-    }
-  });
+  if (!(events instanceof Array)) {
+    throw (
+      'addMultipleListeners: ' +
+      'please supply an array of eventstrings ' +
+      '(like ["click","mouseover"])'
+    );
+  }
+  //create a wrapper to be able to use additional arguments
+  var handlerFn = function (e) {
+    handler.apply(this, args && args instanceof Array ? args : []);
+  };
+  for (var i = 0; i < events.length; i += 1) {
+    element.addEventListener(events[i], handlerFn, useCapture);
+  }
 };
 /**
  * @memberOf bijou
