@@ -73,3 +73,4 @@ this.)</small>
 ## Installation
 
 Bijou.js is availible in node.js, just run `npm i bijou.js`!
+or you can use yarn, by running `yarn intsall bijou.js`
