@@ -3404,6 +3404,43 @@ export let capitalize = (str) =>
   str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
 
 /**
+ * Speaks the text given.
+ * @memberOf bijou
+ * @function
+ * @param {String} text The text to split
+ * @param {String} [lang=en-US] The language to speak with.
+ * @param {Number} [volume=1] The volume
+ * @param {String|Number} [voice=1] The voice to use.
+ * @param {Number} [pitch=1] The pitch
+ * @param {Number} [volume=1] The volume
+ * @param {Number} [rate=1] The speed.
+ * @returns {undefined}
+ */
+export let speak = (
+  text,
+  lang = 'en',
+  volume = 1,
+  voice = 1,
+  pitch = 1,
+  rate = 1,
+) => {
+  var msg = new SpeechSynthesisUtterance();
+  var voices = window.speechSynthesis.getVoices();
+  let def = voices.filter((c) => c.default);
+  msg.voice = voice
+    ? typeof voice === 'number'
+      ? voices[voice]
+      : voice
+    : def;
+  msg.volume = volume; // From 0 to 1
+  msg.rate = rate; // From 0.1 to 10
+  msg.pitch = pitch; // From 0 to 2
+  msg.text = text;
+  msg.lang = lang;
+  speechSynthesis.speak(msg);
+};
+
+/**
  * A set of functions to set and modify cookies.
  * @memberOf bijou
  * @Object
