@@ -2099,7 +2099,10 @@ export let addEventListeners = (
   }
 };
 /**
- * Sorts a table usin JavaScript. This appends click listeners to every TH in the table.
+ * @memberOf bijou
+ * @function
+ * @returns {undefined}
+ * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
  * @param {HTMLElement} element The table to sort
  */
 export let sortTable = (element) => {
@@ -2143,6 +2146,22 @@ export let sortTable = (element) => {
       });
     });
 };
+/**
+ * Sorts a table by a <th> element.
+ * @memberOf bijou
+ * @function
+ * @returns {undefined}
+ * @example
+ * //Note that this example pretty much recreates the _$ sortTable function, which is much more cross browser and good than this recreation. If sorting a whole table please use that.
+ * _$.each(document.querySelectorAll("#table th"), (th) => {
+ *  th.addEventListener("click", () => {
+ *    //Add event listeners to each of them.
+ *    _$.sortTableBy(th, th.asc = !th.asc);//Toggle the "asc" attribute on the th.
+ *  });
+ * })
+ * @param {HTMLElement} th The table header (<th> element) to sort with.
+ * @param {Boolean} acending Whether to sort the table ascending or descending.
+ */
 export let sortTableBy = (th, acending) => {
   var getCellValue = function (tr, idx) {
     return tr.children[idx].innerText || tr.children[idx].textContent;
@@ -2161,24 +2180,22 @@ export let sortTableBy = (th, acending) => {
     };
   };
 
-  th.addEventListener('click', function () {
-    var table = th.parentNode;
-    while (table.tagName.toUpperCase() != 'TABLE')
-      table = table.parentNode;
-    Array.prototype.slice
-      .call(table.querySelectorAll('tr:nth-child(n+2)'))
-      .sort(
-        comparer(
-          Array.prototype.slice
-            .call(th.parentNode.children)
-            .indexOf(th),
-          acending,
-        ),
-      )
-      .forEach(function (tr) {
-        table.appendChild(tr);
-      });
-  });
+  var table = th.parentNode;
+  while (table.tagName.toUpperCase() != 'TABLE')
+    table = table.parentNode;
+  Array.prototype.slice
+    .call(table.querySelectorAll('tr:nth-child(n+2)'))
+    .sort(
+      comparer(
+        Array.prototype.slice
+          .call(th.parentNode.children)
+          .indexOf(th),
+        acending,
+      ),
+    )
+    .forEach(function (tr) {
+      table.appendChild(tr);
+    });
 };
 /**
  * Easing functions
