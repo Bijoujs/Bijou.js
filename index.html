@@ -5,17 +5,32 @@
   <head>
     <!-- Setup meta tags -->
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- Nice theme color on mobile devices! -->
     <meta name="theme-color" content="#00a8a8" />
     <!-- Import bijou.js -->
+
     <link
       rel="preload"
       href="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"
       as="script"
     />
     <script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"></script>
+
+    <!-- <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"
+      as="script"
+    /> -->
+
     <!-- Import iconify (For buttons) -->
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <!-- Prefetch -->
@@ -36,11 +51,18 @@
         <!-- Header -->
         <span id="header">Bijou</span
         ><span id="small-text"
+
           ><i><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> Small and elegant</i></span
+
+          ><i
+            ><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> Small and elegant</i
+          ></span
+
         >
       </p>
       <!-- Buttons (Using iconify)-->
       <div class="btn">
+
         <a class="btn" href="https://github.com/explosion-scratch/Bijou.js"
           ><span class="iconify" data-icon="icomoon-free:github"></span></a
         ><a href="mailto:explosionscratch@gmail.com" class="btn"
@@ -51,6 +73,31 @@
         ></a>
       </div>
       <!-- TODO: Add try link -->
+
+        <a
+          class="btn"
+          href="https://github.com/explosion-scratch/Bijou.js"
+          ><span
+            class="iconify"
+            data-icon="icomoon-free:github"
+          ></span></a
+        ><a href="mailto:explosionscratch@gmail.com" class="btn"
+          ><span class="iconify" data-icon="eva:email-outline"></span
+        ></a>
+        <a href="try" class="btn"
+          ><span
+            class="iconify"
+            data-icon="fluent:play-24-filled"
+          ></span
+        ></a>
+        <a href="docs" class="btn"
+          ><span
+            class="iconify"
+            data-icon="simple-line-icons:docs"
+          ></span
+        ></a>
+      </div>
+
     </section>
     <!-- Scroll down arrow -->
     <button
@@ -69,14 +116,14 @@
 </html>
 <style>
   /* Import Titillium Web (One of my favorite fonts) */
-  @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
+  @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
   /* Initial styles */
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Titillium Web", sans-serif;
+    font-family: 'Titillium Web', sans-serif;
   }
 
   /* Outline on focus */
@@ -215,7 +262,9 @@
   ul {
     width: 100%;
   }
-
+  a {
+    color: lightblue;
+  }
   /* Button links */
   a.btn {
     transition: filter 0.3s ease;
@@ -315,7 +364,7 @@
   /* Code keyframes */
   code {
     display: inline-block;
-    font-family: "Courier New", monospace;
+    font-family: 'Courier New', monospace;
     font-size: 13px;
     border-radius: 3px;
   }
@@ -339,10 +388,15 @@
     color: currentColor;
   }
 </style>
-<script>
+
+<script type="module">
+  import * as _$ from './bijou.js';
+  console.log(_$.parseHTML);
+  window.onload = js_Load;
+
   function js_Load() {
-    document.body.style.visibility = "visible";
-    _$.each(document.querySelectorAll("h1, h2, h3"), (e) => {
+    document.body.style.visibility = 'visible';
+    _$.each(document.querySelectorAll('h1, h2, h3'), (e) => {
       e.innerHTML = _$.widows(e.innerHTML);
     });
     init();
@@ -359,20 +413,24 @@
   };
   window.onscroll = (e) => {
     if (window.scrollY > 5) {
-      document.getElementById("scroll-down-button").classList.add("hidden");
+      document
+        .getElementById('scroll-down-button')
+        .classList.add('hidden');
     } else {
-      document.getElementById("scroll-down-button").classList.remove("hidden");
+      document
+        .getElementById('scroll-down-button')
+        .classList.remove('hidden');
     }
   };
   function init() {
-    fetch("README.html")
+    fetch('README.html')
       .then((res) => res.text())
       .then((text) => {
-        html = _$.parseHTML(text);
-        html.querySelector("img").remove();
-        _$.each(html.querySelectorAll("br"), (br) => br.remove());
-        _$.each(html.querySelectorAll("img"), (br) => br.remove());
-        document.getElementById("readme").innerHTML +=
+        let html = _$.parseHTML(text);
+        html.querySelector('img').remove();
+        _$.each(html.querySelectorAll('br'), (br) => br.remove());
+        _$.each(html.querySelectorAll('img'), (br) => br.remove());
+        document.getElementById('readme').innerHTML +=
           html.documentElement.innerHTML;
       });
     document.body.innerHTML += `
@@ -445,11 +503,11 @@
 	<div class="blobs"></div>`;
     _$.each(new Array(40), () => {
       document
-        .querySelector(".blobs")
+        .querySelector('.blobs')
         .appendChild(_$.createElement("<div class='blob'></div>"));
     });
 
-    _$.each(document.querySelectorAll(".blob"), (blob) => {
+    _$.each(document.querySelectorAll('.blob'), (blob) => {
       blob.style.opacity = 0;
       blob.style.top = `${window.innerHeight / 2}px`;
       blob.style.left = `${window.innerWidth / 2}px`;
@@ -458,23 +516,29 @@
       blob.style.width = `${random}px`;
       blob.style.height = `${random}px`;
       let randomTime = _$.random(1000, 2000);
-      setInterval(() => {
+      _$.requestInterval(() => {
         blob.style.opacity = 1;
         let random = _$.random(30, 100);
         blob.style.width = `${random}px`;
         blob.style.height = `${random}px`;
-        blob.style.top = `${_$.random(mouse.y - 150, mouse.y + 150)}px`;
-        blob.style.left = `${_$.random(mouse.x - 150, mouse.x + 150)}px`;
-        blob.style.transitionDuration = randomTime + "ms";
+        blob.style.top = `${_$.random(
+          mouse.y - 150,
+          mouse.y + 150,
+        )}px`;
+        blob.style.left = `${_$.random(
+          mouse.x - 150,
+          mouse.x + 150,
+        )}px`;
+        blob.style.transitionDuration = randomTime + 'ms';
       }, randomTime);
     });
   }
   function generateHTML() {
-    var output = "";
+    var output = '';
     var converter = new showdown.Converter();
     _$.each(Object.keys(_$), (key) => {
       output += `"<details><summary>${_$.info(
-        key
+        key,
       )}</summary>${converter.makeHtml(_$.info(key))}"</details>`;
     });
     return output;

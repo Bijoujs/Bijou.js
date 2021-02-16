@@ -1,2 +1,3 @@
 .theia/
 node_modules/
+.vscode/
