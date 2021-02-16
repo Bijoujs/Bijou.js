@@ -3481,6 +3481,38 @@ export let beautifyJS = (js, callback) => {
     },
   );
 };
+
+/**
+ * Replaces the selected text in a contentEditable div with the HTML given.
+ * @memberOf bijou
+ * @function
+ * @returns {undefined}
+ * @example
+ * //Add a simple contenteditable div to the page.
+ * document.appendChild(_$.createElement("<div contenteditable id='text'></div>"));
+ * _$.replaceSelection("<b>BOLD TEXT</b> <small>Bijou is awesome</small><h1>You need to use it</h1>");
+ * //Replaces the selection! =)
+ * @param {String} replacementText The replacement HTML to replace with.
+ */
+export let replaceSelection = (replacementText) => {
+  var sel, range;
+  if (window.getSelection) {
+    sel = window.getSelection();
+    if (sel.rangeCount) {
+      range = sel.getRangeAt(0);
+      range.deleteContents();
+      let n = document.createElement('span');
+      n.insertAdjacentHTML('beforeend', replacementText);
+      range.insertNode(n);
+    }
+  } else if (document.selection && document.selection.createRange) {
+    console.warn(
+      'You are using IE < 9, you are evil. Falling back to text not HTML.',
+    );
+    range = document.selection.createRange();
+    range.text = replacementText.replace(/<[^>]*>/g, '');
+  }
+};
 /**
  * Counts the syllables in the word given.
  * @memberOf bijou
@@ -3812,6 +3844,7 @@ let _temp = {
   removeTags: removeTags,
   replaceBetween: replaceBetween,
   replaceMultiple: replaceMultiple,
+  replaceSelection: replaceSelection,
   replaceText: replaceText,
   requestInterval: requestInterval,
   rgbToHex: rgbToHex,
@@ -3841,7 +3874,11 @@ let _temp = {
   urlQuery: urlQuery,
   uuid: uuid,
   widows: widows,
-}; // Imports and exportsexport default _temp;
+};
+
+// Imports and exports
+export default _temp;
+//Export so that when people do <script src="bijou" type="module"></script>
 window._$ = _temp;
 //So that we can use bijou in the source code.
 export const _$ = _temp;
