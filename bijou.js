@@ -3574,6 +3574,7 @@ export let speak = (
   msg.lang = lang;
   speechSynthesis.speak(msg);
 };
+export let merge;
 /**
  * Removes an item from the array specified.
  * @memberOf bijou
