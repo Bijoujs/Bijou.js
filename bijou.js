@@ -3652,8 +3652,8 @@ export let capitalize = (str) =>
  */
 export let dispatch = (type, args, target = window) => {
   let e = new Event(type);
-  for (i in args) {
-    e[i] = args[i];
+  for (let o in args) {
+    e[o] = args[o];
   }
   target.dispatchEvent(e);
 };
