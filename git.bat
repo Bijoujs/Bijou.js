@@ -12,8 +12,8 @@ function commit {
     terser --compress --mangle -o bijou-min.js -- bijou.js
     eslint --fix ./
     prettier --write -- .
-    @REM echo "Commit message?   "
-    @REM read COMMIT_CUSTOM_MSG
+    echo "Commit message?   "
+    read COMMIT_CUSTOM_MSG
     COMMIT_FILE=$(git diff --name-only)
     git stage .
     DATE=$(date +"%F %H:%M:%S")
@@ -24,12 +24,9 @@ function commit {
     BR=$'\n'
     COMMIT_MSG=$"${FIGLET_REPO}${BR}Files changed: ${BR}${BR}${COMMIT}${BR}${BR}Date: ${DATE}${BR}User: ${USER}${BR}Email: ${EMAIL}"
     git commit -m "${COMMIT_CUSTOM_MSG} ${COMMIT_FILE}" -m "${COMMIT_MSG}"
-    sleep 2
   fi
 }
 
-
-while true; do
-  remove
-  commit
-  done
+remove
+commit
+git push
