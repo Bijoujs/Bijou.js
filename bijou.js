@@ -3640,6 +3640,24 @@ export let capitalize = (str) =>
   str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
 
 /**
+ * Dispatches an event of the type specified with custom arguments.
+ * @memberOf bijou
+ * @function
+ * @example
+ * //Dispatch a custom mouse move event to the window.
+ * _$.dispatch("mousemove", {clientX: 100, clientY: 150, target: document.documentElement}, window);
+ * @param {String} type The type of event to dispatch (E.g. "mousemove")
+ * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
+ * @param {HTMLElement} target What to dispatch the event to.
+ */
+export let dispatch = (type, args, target = window) => {
+  let e = new Event(type);
+  for (i in args) {
+    e[i] = args[i];
+  }
+  target.dispatchEvent(e);
+};
+/**
  * Replaces between two indexes of a string.
  * @memberOf bijou
  * @function
