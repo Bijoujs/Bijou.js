@@ -3574,7 +3574,33 @@ export let speak = (
   msg.lang = lang;
   speechSynthesis.speak(msg);
 };
-export let merge;
+/**
+ * Merges two objects into one. Note that object 1 properties will overwrite those of object 2.
+ * @memberOf bijou
+ * @function
+ * @param {Object} obj1 The 1st object to merge
+ * @param {Object} obj2 The 2nd object to merge.
+ * @returns {Object} The merged object.
+ * @example
+ * _$.merge({hello: "Hello!!"}, {world: " World"});//Returns {hello: "Hello!!", world: " World"}
+ */
+export let merge = function MergeRecursive(obj1, obj2) {
+  for (var p in obj2) {
+    try {
+      // Property in destination object set; update its value.
+      if (obj2[p].constructor == Object) {
+        obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+      } else {
+        obj1[p] = obj2[p];
+      }
+    } catch (e) {
+      // Property in destination object not set; create it and set its value.
+      obj1[p] = obj2[p];
+    }
+  }
+  return obj1;
+};
+
 /**
  * Removes an item from the array specified.
  * @memberOf bijou
