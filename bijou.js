@@ -3813,6 +3813,7 @@ export let regex = {
   discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
 };
 //#endregion Bijou
+
 let _temp = {
   addEventListeners: addEventListeners,
   addStyles: addStyles,
@@ -3837,7 +3838,9 @@ let _temp = {
   createElement: createElement,
   curryFunction: curryFunction,
   dayName: dayName,
+  diff: diff,
   disableRightClick: disableRightClick,
+  dispatch: dispatch,
   drag: drag,
   each: each,
   ease: ease,
@@ -3869,6 +3872,7 @@ let _temp = {
   mapObjectValues: mapObjectValues,
   markdownToHTML: markdownToHTML,
   memoize: memoize,
+  merge: merge,
   mobileOrDesktop: mobileOrDesktop,
   nFlatten: nFlatten,
   notify: notify,
@@ -3920,7 +3924,6 @@ let _temp = {
   uuid: uuid,
   widows: widows,
 };
-
 // Imports and exports
 export default _temp;
 //Export so that when people do <script src="bijou" type="module"></script>
