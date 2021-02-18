@@ -1807,40 +1807,6 @@ export let previousPage = () => {
 };
 //#endregion String
 //#region Array
-//#region Function
-
-/**
- * Flattens an array level times.
- * @memberOf bijou
- * @function
- * @returns {Array} The flattened array.
- * @example
- * _$.flatten(['a', 'b', ['c', 'd']]);//Returns ['a', 'b', 'c', 'd'];
- * @param {Array} array The array to flatten.
- * @param {Number} [level=1] The number of iterations to flatten it.
- */
-export let flatten = (array, level = 1) => {
-  var output = array;
-  _$.each(level, () => {
-    output = [].concat.apply([], array);
-  });
-  return output;
-};
-
-/**
- * Flattens an array recursively.
- * @function
- * @memberOf bijou
- * @param {Array} arr The array to flatten.
- * @returns {Array} The flattened array.
- */
-export let nFlatten = (arr) => {
-  return arr.reduce(function (flat, toFlatten) {
-    return flat.concat(
-      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
-    );
-  }, []);
-};
 
 /**
  * Returns the difference between two arrays or strings.
@@ -1929,18 +1895,6 @@ export let remove = (array, item) =>
     : array;
 
 /**
- * Returns whether the specified array or string contains the item given.
- * @memberOf bijou
- * @function
- * @param {Array} array The array to test with.
- * @param {String} item The item to see if the array contains.
- * @example
- * _$.contains([1,2,3,4,5], 3);//Returns true. The array does include 5.
- * @returns {Boolean} True or false depending on if the array contains that item.
- */
-export let contains = (array, item) => array.includes(item);
-
-/**
  * Splices an array buffer
  * @function
  * @memberOf bijou
@@ -1955,6 +1909,53 @@ export let spliceArrayBuffer = (arr, start, end, endian) => {
     value = 256 * value + arr[i];
   return value;
 };
+
+/**
+ * Flattens an array level times.
+ * @memberOf bijou
+ * @function
+ * @returns {Array} The flattened array.
+ * @example
+ * _$.flatten(['a', 'b', ['c', 'd']]);//Returns ['a', 'b', 'c', 'd'];
+ * @param {Array} array The array to flatten.
+ * @param {Number} [level=1] The number of iterations to flatten it.
+ */
+export let flatten = (array, level = 1) => {
+  var output = array;
+  _$.each(level, () => {
+    output = [].concat.apply([], array);
+  });
+  return output;
+};
+
+/**
+ * Flattens an array recursively.
+ * @function
+ * @memberOf bijou
+ * @param {Array} arr The array to flatten.
+ * @returns {Array} The flattened array.
+ */
+export let nFlatten = (arr) => {
+  return arr.reduce(function (flat, toFlatten) {
+    return flat.concat(
+      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
+    );
+  }, []);
+};
+
+
+/**
+ * Returns whether the specified array or string contains the item given.
+ * @memberOf bijou
+ * @function
+ * @param {Array} array The array to test with.
+ * @param {String} item The item to see if the array contains.
+ * @example
+ * _$.contains([1,2,3,4,5], 3);//Returns true. The array does include 5.
+ * @returns {Boolean} True or false depending on if the array contains that item.
+ */
+export let contains = (array, item) => array.includes(item);
+
 /**
  * Shuffles an array
  * @function
@@ -2055,6 +2056,126 @@ export let each = (array, callback) => {
   }
 };
 //#endregion Array
+//#region Function
+/**
+ * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
+ * @function
+ * @memberOf bijou
+ * @param {Function} fn The function to memoize.
+ * @example
+ * let uuid = _$.memoize(() => uuid());
+ * console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)
+ * @returns {undefined}
+ */
+export let memoize = (fn) => {
+  let cache = {};
+  return function () {
+    let args = JSON.stringify(Array.from(arguments));
+    let arg_array = Array.from(arguments);
+    if (cache[args]) {
+      return cache[args];
+    } else {
+      cache[args] = fn(...arg_array);
+      return cache[args];
+    }
+  };
+};
+/**
+ * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
+ * @function
+ * @memberOf bijou
+ * @returns {Function} The composed function.
+ */
+export let composeFunction = (...functions) => (args) =>
+  functions.reduceRight((arg, fn) => fn(arg), args);
+/**
+ * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
+ * @function
+ * @memberOf bijou
+ * @param
+ * @returns {Function} The curried version of the function.
+ */
+export let curryFunction = (fn, arity = fn.length, ...args) =>
+  arity &lt;= args.length
+    ? fn(...args)
+    : curry.bind(null, fn, arity, ...args);
+/**
+ * Returns if the given function is async or not.
+ * @memberOf bijou
+ * @function
+ * @param {Function} val The function to test.
+ * @returns {Boolean} True if the function is async and false if not.
+ */
+export let isAsync = (val) =>
+  Object.prototype.toString.call(val) === '[object AsyncFunction]';
+/**
+ * Only runs the input function at MAX with the delay specified.
+ * @function
+ * @memberOf bijou
+ * @param {Function} func The function to run.
+ * @param {Object} options The options.
+ * @param {Number} wait The number of milliseconds to wait.
+ * @example
+ * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
+ * setInterval(alert_function, 1)
+ * @returns {Function} The throttled function
+ */
+export let throttle = (func, wait, options) => {
+  var context, args, result;
+  var timeout = null;
+  var previous = 0;
+  if (!options) options = {};
+  var later = function () {
+    previous = options.leading === false ? 0 : Date.now();
+    timeout = null;
+    result = func.apply(context, args);
+    if (!timeout) context = args = null;
+  };
+  return function () {
+    var now = Date.now();
+    if (!previous &amp;&amp; options.leading === false) previous = now;
+    var remaining = wait - (now - previous);
+    context = this;
+    args = arguments;
+    if (remaining &lt;= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      previous = now;
+      result = func.apply(context, args);
+      if (!timeout) context = args = null;
+    } else if (!timeout &amp;&amp; options.trailing !== false) {
+      timeout = setTimeout(later, remaining);
+    }
+    return result;
+  };
+};
+/**
+ * Runs a function asynchronously in a web worker.
+ * @function
+ * @memberOf bijou
+ * @param {Function} fn The function to run
+ * @example
+ * _$.runAsync(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
+ * @returns {Promise} A promise that resolves into the return value of the function.
+ */
+export let runAsync = (fn) => {
+  const worker = new Worker(
+    URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
+      type: 'application/javascript; charset=utf-8',
+    }),
+  );
+  return new Promise((res, rej) => {
+    worker.onmessage = ({ data }) => {
+      res(data), worker.terminate();
+    };
+    worker.onerror = (err) => {
+      rej(err), worker.terminate();
+    };
+  });
+};
+//#endregion Function
 //#region Object
 /**
  * Deep clones an object
@@ -2196,103 +2317,6 @@ export let sortObj = (obj) => {
     }, {});
 };
 //#endregion Object
-
-/**
- * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
- * @function
- * @memberOf bijou
- * @returns {Function} The composed function.
- */
-export let composeFunction = (...functions) => (args) =>
-  functions.reduceRight((arg, fn) => fn(arg), args);
-/**
- * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
- * @function
- * @memberOf bijou
- * @param
- * @returns {Function} The curried version of the function.
- */
-export let curryFunction = (fn, arity = fn.length, ...args) =>
-  arity &lt;= args.length
-    ? fn(...args)
-    : curry.bind(null, fn, arity, ...args);
-/**
- * Returns if the given function is async or not.
- * @memberOf bijou
- * @function
- * @param {Function} val The function to test.
- * @returns {Boolean} True if the function is async and false if not.
- */
-export let isAsync = (val) =>
-  Object.prototype.toString.call(val) === '[object AsyncFunction]';
-/**
- * Only runs the input function at MAX with the delay specified.
- * @function
- * @memberOf bijou
- * @param {Function} func The function to run.
- * @param {Object} options The options.
- * @param {Number} wait The number of milliseconds to wait.
- * @example
- * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
- * setInterval(alert_function, 1)
- * @returns {Function} The throttled function
- */
-export let throttle = (func, wait, options) => {
-  var context, args, result;
-  var timeout = null;
-  var previous = 0;
-  if (!options) options = {};
-  var later = function () {
-    previous = options.leading === false ? 0 : Date.now();
-    timeout = null;
-    result = func.apply(context, args);
-    if (!timeout) context = args = null;
-  };
-  return function () {
-    var now = Date.now();
-    if (!previous &amp;&amp; options.leading === false) previous = now;
-    var remaining = wait - (now - previous);
-    context = this;
-    args = arguments;
-    if (remaining &lt;= 0 || remaining > wait) {
-      if (timeout) {
-        clearTimeout(timeout);
-        timeout = null;
-      }
-      previous = now;
-      result = func.apply(context, args);
-      if (!timeout) context = args = null;
-    } else if (!timeout &amp;&amp; options.trailing !== false) {
-      timeout = setTimeout(later, remaining);
-    }
-    return result;
-  };
-};
-/**
- * Runs a function asynchronously in a web worker.
- * @function
- * @memberOf bijou
- * @param {Function} fn The function to run
- * @example
- * _$.runAsync(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
- * @returns {Promise} A promise that resolves into the return value of the function.
- */
-export let runAsync = (fn) => {
-  const worker = new Worker(
-    URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
-      type: 'application/javascript; charset=utf-8',
-    }),
-  );
-  return new Promise((res, rej) => {
-    worker.onmessage = ({ data }) => {
-      res(data), worker.terminate();
-    };
-    worker.onerror = (err) => {
-      rej(err), worker.terminate();
-    };
-  });
-};
-//#endregion Function
 //#region Element
 /**
  * Tests whether the specified element is fully in view.
@@ -3745,30 +3769,6 @@ export let lightOrDark = (color) => {
 //#endregion Color
 
 /**
- * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
- * @function
- * @memberOf bijou
- * @param {Function} fn The function to memoize.
- * @example
- * let uuid = _$.memoize(() => uuid());
- * console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)
- * @returns {undefined}
- */
-export let memoize = (fn) => {
-  let cache = {};
-  return function () {
-    let args = JSON.stringify(Array.from(arguments));
-    let arg_array = Array.from(arguments);
-    if (cache[args]) {
-      return cache[args];
-    } else {
-      cache[args] = fn(...arg_array);
-      return cache[args];
-    }
-  };
-};
-
-/**
  * Re-enables the use of &lt;menu> and &lt;menuitem> tags for corner clicking.
  * @memberOf bijou
  * @function
@@ -4059,7 +4059,7 @@ if (isNode) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Thu Feb 18 2021 15:58:07 GMT+0000 (Coordinated Universal Time) using the Toast theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Thu Feb 18 2021 16:12:25 GMT+0000 (Coordinated Universal Time) using the Toast theme.
 </footer>
 
 <script>prettyPrint();</script>

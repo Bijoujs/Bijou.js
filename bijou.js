@@ -1856,18 +1856,6 @@ export let remove = (array, item) =>
     : array;
 
 /**
- * Returns whether the specified array or string contains the item given.
- * @memberOf bijou
- * @function
- * @param {Array} array The array to test with.
- * @param {String} item The item to see if the array contains.
- * @example
- * _$.contains([1,2,3,4,5], 3);//Returns true. The array does include 5.
- * @returns {Boolean} True or false depending on if the array contains that item.
- */
-export let contains = (array, item) => array.includes(item);
-
-/**
  * Splices an array buffer
  * @function
  * @memberOf bijou
@@ -1882,105 +1870,7 @@ export let spliceArrayBuffer = (arr, start, end, endian) => {
     value = 256 * value + arr[i];
   return value;
 };
-/**
- * Shuffles an array
- * @function
- * @memberOf bijou
- * @param {Array} array The array to shuffle.
- * @example
- * let array = [1,2,3,4,5];
- * array = _$.shuffleArray(array);
- * //array is now something like this: [2,4,1,5,3].
- * @returns {Array} The shuffled array.
- */
-export let shuffleArray = (array) =>
-  array.sort(() => Math.random() - 0.5);
 
-/**
- * Splice but also for strings
- * @memberOf bijou
- * @function
- * @param {String|Array} array The array of string to operate on
- * @param {Number} index The index to splice
- * @param {*} item The item
- * @param {Number} remove How many to remove.
- */
-export let splice = (array, index, item, remove = 0) => {
-  return typeof array === 'string'
-    ? array.slice(0, index) +
-        item +
-        array.slice(index + Math.abs(remove))
-    : array.splice(index, remove, item);
-};
-/**
- * Joins two arrays together and removes duplicates.
- * @function
- * @memberOf bijou
- * @param {Array} x The first array to join.
- * @param {Array} y The second array to join.
- * @example
- * _$.unionArrays([1,2,3], [4,5,6]);//Returns [1,2,3,4,5,6]
- * @returns {Array} The joined array from the two other arrays.
- */
-export let unionArrays = (x, y) => {
-  var obj = {};
-  for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
-  for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
-  var res = [];
-  for (var k in obj) {
-    if (obj.hasOwnProperty(k)) res.push(obj[k]);
-  }
-  return res;
-};
-/**
- * averageBy
- * @function
- * @memberOf bijou
- * @param {Array.<number>} arr The array to average
- * @param {Function} fn The function to apply to each item of the array.
- * @example
- * //Averages the array 1,2,3,4 after squaring each number.
- * _$.averageBy([1,2,3,4], (v) => v ** 2);
- * @returns {Number} The average of the array.
- */
-export let averageBy = (arr, fn) =>
-  arr
-    .map(typeof fn === 'function' ? fn : (val) => val[fn])
-    .reduce((acc, val) => acc + val, 0) / arr.length;
-
-/**
-  * Removes duplicates from an array
-  * @function
-  * @memberOf bijou
-  * @param {Array} array The array to remove duplicates from.
-  * @example
-  * let an_array = [1,1,2,3,4,5,5,6]
-  an_array = _$.uniqueArray(an_array);
-  //Now an_array is [1,2,3,4,5,6]
-  * @returns {Array} The array with no duplicates.
-  */
-export let uniqueArray = (array) => [...new Set(array)];
-/**
- * For each item in an array, run a callback with it.
- * @function
- * @memberOf bijou
- * @param {Array} array The array of items to run the callback with.
- * @param {Function} callback The callback function to run on the array items.
- * @example
- * _$.each(new Array(40), (array_item, i) => console.log(i));//Logs the numbers up to 40.
- * @returns {undefined}
- */
-export let each = (array, callback) => {
-  array =
-    typeof array === 'number'
-      ? _$.range(1, array)
-      : typeof array === 'string'
-      ? array.split('')
-      : array;
-  for (let i = 0; i < array.length; i++) {
-    callback(array[i], i, array);
-  }
-};
 /**
  * Flattens an array level times.
  * @memberOf bijou
@@ -2014,21 +1904,6 @@ export let nFlatten = (arr) => {
   }, []);
 };
 
-
-/**
- * Removes an item from the array specified.
- * @memberOf bijou
- * @function
- * @param {Array|String} array The array or string to remove the item or string from.
- * @param {*} item The item to remove.
- * @example
- * _$.remove([1,2,3,4,5], 1);//Returns [2,3,4,5].
- */
-export let remove = (array, item) =>
-  array.indexOf(item) > -1
-    ? array.splice(array.indexOf(item), 1)
-    : array;
-
 /**
  * Returns whether the specified array or string contains the item given.
  * @memberOf bijou
@@ -2041,21 +1916,6 @@ export let remove = (array, item) =>
  */
 export let contains = (array, item) => array.includes(item);
 
-/**
- * Splices an array buffer
- * @function
- * @memberOf bijou
- */
-export let spliceArrayBuffer = (arr, start, end, endian) => {
-  endian = endian || false;
-  var direction = endian ? -1 : 1;
-  if (endian) [start, end] = [end, start];
-  start = Math.floor(start);
-  end = Math.floor(end) + direction;
-  for (var i = start, value = 0; i != end; i += direction)
-    value = 256 * value + arr[i];
-  return value;
-};
 /**
  * Shuffles an array
  * @function
