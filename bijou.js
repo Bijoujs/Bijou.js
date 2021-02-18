@@ -89,6 +89,14 @@ if (isNode) {
     'There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.',
   );
 }
+
+/*
+  ____   ___  _   _ ____   ____ _____ 
+ / ___| / _ \| | | |  _ \ / ___| ____|
+ \___ \| | | | | | | |_) | |   |  _|  
+  ___) | |_| | |_| |  _ <| |___| |___ 
+ |____/ \___/ \___/|_| \_\\____|_____|
+*.
 /**
  * Bijou.js source object. It contains all the functions of Bijou.
  * @type {Object}
@@ -4159,6 +4167,38 @@ export let beautifyJS = (js, callback) => {
     },
   );
 };
+
+/**
+ * Replaces the selected text in a contentEditable div with the HTML given.
+ * @memberOf bijou
+ * @function
+ * @returns {undefined}
+ * @example
+ * //Add a simple contenteditable div to the page.
+ * document.appendChild(_$.createElement("<div contenteditable id='text'></div>"));
+ * _$.replaceSelection("<b>BOLD TEXT</b> <small>Bijou is awesome</small><h1>You need to use it</h1>");
+ * //Replaces the selection! =)
+ * @param {String} replacementText The replacement HTML to replace with.
+ */
+export let replaceSelection = (replacementText) => {
+  var sel, range;
+  if (window.getSelection) {
+    sel = window.getSelection();
+    if (sel.rangeCount) {
+      range = sel.getRangeAt(0);
+      range.deleteContents();
+      let n = document.createElement('span');
+      n.insertAdjacentHTML('beforeend', replacementText);
+      range.insertNode(n);
+    }
+  } else if (document.selection && document.selection.createRange) {
+    console.warn(
+      'You are using IE < 9, you are evil. Falling back to text not HTML.',
+    );
+    range = document.selection.createRange();
+    range.text = replacementText.replace(/<[^>]*>/g, '');
+  }
+};
 /**
  * Counts the syllables in the word given.
  * @memberOf bijou
@@ -4221,6 +4261,33 @@ export let speak = (
   speechSynthesis.speak(msg);
 };
 /**
+ * Merges two objects into one. Note that object 1 properties will overwrite those of object 2.
+ * @memberOf bijou
+ * @function
+ * @param {Object} obj1 The 1st object to merge
+ * @param {Object} obj2 The 2nd object to merge.
+ * @returns {Object} The merged object.
+ * @example
+ * _$.merge({hello: "Hello!!"}, {world: " World"});//Returns {hello: "Hello!!", world: " World"}
+ */
+export let merge = function MergeRecursive(obj1, obj2) {
+  for (var p in obj2) {
+    try {
+      // Property in destination object set; update its value.
+      if (obj2[p].constructor == Object) {
+        obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+      } else {
+        obj1[p] = obj2[p];
+      }
+    } catch (e) {
+      // Property in destination object not set; create it and set its value.
+      obj1[p] = obj2[p];
+    }
+  }
+  return obj1;
+};
+
+/**
  * Removes an item from the array specified.
  * @memberOf bijou
  * @function
@@ -4258,6 +4325,24 @@ export let capitalize = (str) =>
   String.fromCodePoint(str.codePointAt(0)).toUpperCase() +
   str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
 
+/**
+ * Dispatches an event of the type specified with custom arguments.
+ * @memberOf bijou
+ * @function
+ * @example
+ * //Dispatch a custom mouse move event to the window.
+ * _$.dispatch("mousemove", {clientX: 100, clientY: 150, target: document.documentElement}, window);
+ * @param {String} type The type of event to dispatch (E.g. "mousemove")
+ * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
+ * @param {HTMLElement} target What to dispatch the event to.
+ */
+export let dispatch = (type, args, target = window) => {
+  let e = new Event(type);
+  for (let o in args) {
+    e[o] = args[o];
+  }
+  target.dispatchEvent(e);
+};
 /**
  * Replaces between two indexes of a string.
  * @memberOf bijou
@@ -4575,6 +4660,7 @@ export let regex = {
 
 };
 //#endregion Bijou
+
 let _temp = {
   addEventListeners: addEventListeners,
   addStyles: addStyles,
@@ -4599,7 +4685,9 @@ let _temp = {
   createElement: createElement,
   curryFunction: curryFunction,
   dayName: dayName,
+  diff: diff,
   disableRightClick: disableRightClick,
+  dispatch: dispatch,
   drag: drag,
   each: each,
   ease: ease,
@@ -4631,6 +4719,7 @@ let _temp = {
   mapObjectValues: mapObjectValues,
   markdownToHTML: markdownToHTML,
   memoize: memoize,
+  merge: merge,
   mobileOrDesktop: mobileOrDesktop,
   nFlatten: nFlatten,
   notify: notify,
@@ -4651,6 +4740,7 @@ let _temp = {
   removeTags: removeTags,
   replaceBetween: replaceBetween,
   replaceMultiple: replaceMultiple,
+  replaceSelection: replaceSelection,
   replaceText: replaceText,
   requestInterval: requestInterval,
   rgbToHex: rgbToHex,
@@ -4680,7 +4770,10 @@ let _temp = {
   urlQuery: urlQuery,
   uuid: uuid,
   widows: widows,
-}; // Imports and exportsexport default _temp;
+};
+// Imports and exports
+export default _temp;
+//Export so that when people do <script src="bijou" type="module"></script>
 window._$ = _temp;
 //So that we can use bijou in the source code.
 export const _$ = _temp;
