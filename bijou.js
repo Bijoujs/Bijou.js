@@ -107,6 +107,34 @@ if (isNode) {
 //#region Bijou
 //#region Math
 /**
+ * Animates a number from one value to another.
+ * @function
+ * @memberOf bijou
+ * @param {Number} start The initial value of the number in the animation
+ * @param {Number} end The final value of the number in the animation
+ * @param {Number} duration The duration of the animation in milliseconds
+ * @param {Function} callback The callback function to run with the number and the percentage (Between 0 and 1) of the animation.
+ * @param {Number} [interval=20] The amount of time to wait between frames in milliseconds.
+ * @param {Function} num The function to run to manipulate the timing of the animation, for example setting this to (current_number) => current_number **2 would make a simple ease in function. (The value recieved by this is also between 0 and 1, feel free to use some stuff from _$.ease.FUNCTION_HERE(current_number) to incorporate easy easing!)
+ * @example
+ * Animates from 50 to 100 over the course of 3 seconds, updating every half second, and writing the current value to the document body.
+ * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
+ */
+// prettier-ignore
+export let animate = (start, end, duration, callback, interval = 20, num = (num) => num) => {
+  var value = start;
+  var start_time = Date.now();
+  let update = setInterval(() => {
+    value = num((Date.now() - start_time) / duration) * (end - start) + start;
+    callback(value, num((Date.now() - start_time) / duration));
+  }, interval);
+  setTimeout(() => {
+    clearInterval(update);
+    callback(end, 1);
+    return;
+  }, duration);
+}
+/**
  * Returns an array of the whole numbers (inclusive) between the numbers specified.
  * @memberOf bijou
  * @function
@@ -295,6 +323,69 @@ export let formatMilliseconds = (ms) => {
 };
 //#endregion Date
 //#region String
+
+/**
+ * Returns either "mobile" or "desktop" depending on which type of device the user is using.
+ * @function
+ * @memberOf bijou
+ * @param
+ * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
+ */
+export let mobileOrDesktop = () => {
+  node();
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent,
+  )
+    ? 'mobile'
+    : 'desktop';
+};
+/**
+ * Removes tags from the HTML string specified.
+ * @function
+ * @memberOf bijou
+ * @param {String} html The string of HTML to remove tags from.
+ * @example
+ * console.log(_$.removeTags("<div>Hello</div>"));//Logs "Hello" to the console.
+ * @returns {String} THe string of HTML without the tags.
+ */
+export let removeTags = (html) => html.replace(/<[^>]*>/g, '');
+
+/**
+ * Speaks the text given.
+ * @memberOf bijou
+ * @function
+ * @param {String} text The text to split
+ * @param {String} [lang=en-US] The language to speak with.
+ * @param {Number} [volume=1] The volume
+ * @param {String|Number} [voice=1] The voice to use.
+ * @param {Number} [pitch=1] The pitch
+ * @param {Number} [volume=1] The volume
+ * @param {Number} [rate=1] The speed.
+ * @returns {undefined}
+ */
+export let speak = (
+  text,
+  lang = 'en',
+  volume = 1,
+  voice = 1,
+  pitch = 1,
+  rate = 1,
+) => {
+  var msg = new SpeechSynthesisUtterance();
+  var voices = window.speechSynthesis.getVoices();
+  let def = voices.filter((c) => c.default);
+  msg.voice = voice
+    ? typeof voice === 'number'
+      ? voices[voice]
+      : voice
+    : def;
+  msg.volume = volume; // From 0 to 1
+  msg.rate = rate; // From 0.1 to 10
+  msg.pitch = pitch; // From 0 to 2
+  msg.text = text;
+  msg.lang = lang;
+  speechSynthesis.speak(msg);
+};
 /**
  * Returns the last space in the string given replaced with "&nbsp;"
  * @function
@@ -1677,6 +1768,139 @@ export let previousPage = () => {
 };
 //#endregion String
 //#region Array
+//#region Function
+
+/**
+ * Flattens an array level times.
+ * @memberOf bijou
+ * @function
+ * @returns {Array} The flattened array.
+ * @example
+ * _$.flatten(['a', 'b', ['c', 'd']]);//Returns ['a', 'b', 'c', 'd'];
+ * @param {Array} array The array to flatten.
+ * @param {Number} [level=1] The number of iterations to flatten it.
+ */
+export let flatten = (array, level = 1) => {
+  var output = array;
+  _$.each(level, () => {
+    output = [].concat.apply([], array);
+  });
+  return output;
+};
+
+/**
+ * Flattens an array recursively.
+ * @function
+ * @memberOf bijou
+ * @param {Array} arr The array to flatten.
+ * @returns {Array} The flattened array.
+ */
+export let nFlatten = (arr) => {
+  return arr.reduce(function (flat, toFlatten) {
+    return flat.concat(
+      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
+    );
+  }, []);
+};
+
+/**
+ * Returns the difference between two arrays or strings.
+ * @memberOf bijou
+ * @function
+ * @returns {Array|String} The difference between two arrays or strings.
+ * @example
+ * _$.arrayDiff([['a', 'b'], ['a', 'b', 'c', 'd']]);//Returns ["c", "d"];
+ * @param {Array} a1 The first array or string
+ * @param {Array} a2 The 2nd array or string.
+ */
+export let arrayDiff = (a1, a2) => {
+  var a = [],
+    diff = [];
+  for (var i = 0; i < a1.length; i++) {
+    a[a1[i]] = true;
+  }
+  for (var i = 0; i < a2.length; i++) {
+    if (a[a2[i]]) {
+      delete a[a2[i]];
+    } else {
+      a[a2[i]] = true;
+    }
+  }
+  for (var k in a) {
+    diff.push(k);
+  }
+  return diff;
+};
+
+/**
+ * Gets the difference between two strings.
+ * @memberOf bijou
+ * @function
+ * @param {String} text1 The 1st text to compare
+ * @param {String} text2 The 2nd text to compare with the 1st one.
+ * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
+ */
+export let diff = function (text1, text2) {
+  //Takes in two strings
+  //Returns an array of the span of the differences
+  //So if given:
+  // text1: "that is number 124"
+  // text2: "this is number 123"
+  //It will return:
+  // [[2,4],[17,18]]
+  //If the strings are of different lengths, it will check up to the end of text1
+  //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
+  var diffRange = [];
+  var currentRange = undefined;
+  for (var i = 0; i < text1.length; i++) {
+    if (text1[i] != text2[i]) {
+      //Found a diff!
+      if (currentRange == undefined) {
+        //Start a new range
+        currentRange = [i];
+      }
+    }
+    if (currentRange != undefined && text1[i] == text2[i]) {
+      //End of range!
+      currentRange.push(i);
+      diffRange.push(currentRange);
+      currentRange = undefined;
+    }
+  }
+  //Push any last range if there's still one at the end
+  if (currentRange != undefined) {
+    currentRange.push(i);
+    diffRange.push(currentRange);
+  }
+  return diffRange;
+};
+
+/**
+ * Removes an item from the array specified.
+ * @memberOf bijou
+ * @function
+ * @param {Array|String} array The array or string to remove the item or string from.
+ * @param {*} item The item to remove.
+ * @example
+ * _$.remove([1,2,3,4,5], 1);//Returns [2,3,4,5].
+ */
+export let remove = (array, item) =>
+  array.indexOf(item) > -1
+    ? array.splice(array.indexOf(item), 1)
+    : array;
+
+/**
+ * Returns whether the specified array or string contains the item given.
+ * @memberOf bijou
+ * @function
+ * @param {Array} array The array to test with.
+ * @param {String} item The item to see if the array contains.
+ * @example
+ * _$.contains([1,2,3,4,5], 3);//Returns true. The array does include 5.
+ * @returns {Boolean} True or false depending on if the array contains that item.
+ */
+export let contains = (array, item) => array.includes(item);
+
 /**
  * Splices an array buffer
  * @function
@@ -1794,6 +2018,72 @@ export let each = (array, callback) => {
 //#endregion Array
 //#region Object
 /**
+ * Deep clones an object
+ * @function
+ * @memberOf bijou
+ * @param {Object} obj The object to clone.
+ * @returns {Object} The output cloned object.
+ */
+export let clone = (obj) => {
+  if (null == obj || 'object' != typeof obj) return obj;
+  var copy = obj.constructor();
+  for (var attr in obj) {
+    if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+  }
+  return copy;
+};
+/**
+ * @memberOf bijou
+ * @function
+ * @param {Object} obj The object to listen to.
+ * @param {Function} callback The callback function to run with the arguments, key, and value. Key is the key changed, and value is the new value of the key.
+ * @example
+ * let obj = {something: "This is part of the object", anotherThing: "This is another!"};
+ * obj = _$.listen(obj, () => console.log("Set!"), () => console.log("Gotten"));
+ * obj.something; //Logs "Gotten" to the console!
+ * obj.anotherThing = "Setting a key!";//Logs "Set!" to the console!
+ * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
+ */
+export let listen = (obj, setCallback, getCallback) => {
+  return new Proxy(obj, {
+    set: function (target, key, value) {
+      setCallback(key, value);
+      target[key] = value;
+      return target[key];
+    },
+    get: function (target, key, value) {
+      getCallback(key, value);
+      return obj[key];
+    },
+  });
+};
+/**
+ * Merges two objects into one. Note that object 1 properties will overwrite those of object 2.
+ * @memberOf bijou
+ * @function
+ * @param {Object} obj1 The 1st object to merge
+ * @param {Object} obj2 The 2nd object to merge.
+ * @returns {Object} The merged object.
+ * @example
+ * _$.merge({hello: "Hello!!"}, {world: " World"});//Returns {hello: "Hello!!", world: " World"}
+ */
+export let merge = function MergeRecursive(obj1, obj2) {
+  for (var p in obj2) {
+    try {
+      // Property in destination object set; update its value.
+      if (obj2[p].constructor == Object) {
+        obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+      } else {
+        obj1[p] = obj2[p];
+      }
+    } catch (e) {
+      // Property in destination object not set; create it and set its value.
+      obj1[p] = obj2[p];
+    }
+  }
+  return obj1;
+};
+/**
  * Maps the keys of an object.
  * @function
  * @memberOf bijou
@@ -1867,8 +2157,35 @@ export let sortObj = (obj) => {
     }, {});
 };
 //#endregion Object
-//#region Function
 
+/**
+ * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
+ * @function
+ * @memberOf bijou
+ * @returns {Function} The composed function.
+ */
+export let composeFunction = (...functions) => (args) =>
+  functions.reduceRight((arg, fn) => fn(arg), args);
+/**
+ * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
+ * @function
+ * @memberOf bijou
+ * @param
+ * @returns {Function} The curried version of the function.
+ */
+export let curryFunction = (fn, arity = fn.length, ...args) =>
+  arity <= args.length
+    ? fn(...args)
+    : curry.bind(null, fn, arity, ...args);
+/**
+ * Returns if the given function is async or not.
+ * @memberOf bijou
+ * @function
+ * @param {Function} val The function to test.
+ * @returns {Boolean} True if the function is async and false if not.
+ */
+export let isAsync = (val) =>
+  Object.prototype.toString.call(val) === '[object AsyncFunction]';
 /**
  * Only runs the input function at MAX with the delay specified.
  * @function
@@ -2656,6 +2973,347 @@ export let onScrollStop = (callback) => {
 };
 //#endregion Event
 //#region Utility
+
+/**
+ * Gets JSON from a URL and performs a callback with it.
+ * @function
+ * @memberOf bijou
+ * @param {String} url The url of the JSON to be fetched.
+ * @param {Function} callback The function to be run with the JSON code.
+ * @example
+ * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
+ * @returns {undefined}
+ */
+export let getJSON = (url, callback) => {
+  node();
+  fetch(url)
+    .then((res) => res.json())
+    .then((json) => callback(json))
+    .catch((error) => {
+      throw new Error(error.stack);
+    });
+};
+/**
+ * Gets HTML from a URL and performs a callback with it.
+ * @function
+ * @memberOf bijou
+ * @param {String} url The url of the HTML to be fetched.
+ * @param {Function} callback The function to be run with the HTML code.
+ * @example
+ * //Logs the HTML of wikipedia.org to the console.
+ * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
+ * @returns {undefined}
+ */
+export let getHTML = (url, callback) => {
+  node();
+  fetch(url)
+    .then((res) => res.text())
+    .then((html) => callback(_$.parseHTML(html)))
+    .catch((error) => {
+      throw new Error(error.stack);
+    });
+};
+
+/**
+ * Preloads all of the image urls given in the arguments
+ * @function
+ * @memberOf bijou
+ * @param {...String} urls The urls of the images to be preloaded.
+ * @example
+ * _$.preloadImage("https://unsplash.com/some_huge_image.png");//Preloads the unsplash image "some_huge_image.png" :P
+ * @returns {undefined}
+ */
+export let preloadImage = () => {
+  for (var i = 0; i < arguments.length; i++) {
+    images[i] = new Image();
+    images[i].src = preload.arguments[i];
+  }
+};
+
+/**
+ * Saves a blob as a file!
+ * @function
+ * @memberOf bijou
+ * @param {Blob} blob The blob to save as a file.
+ * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
+ * @example
+ * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
+ * @returns {undefined}
+ */
+export let saveBlob = (blob, fileName = 'output.txt') => {
+  node();
+  var a = document.createElement('a');
+  document.body.appendChild(a);
+  a.style = 'display: none';
+
+  var url = window.URL.createObjectURL(blob);
+  a.href = url;
+  a.download = fileName;
+  a.click();
+  window.URL.revokeObjectURL(url);
+};
+
+/**
+ * Works exactly like setInterval but instead uses requestAnimationFrame.
+ * @memberOf bijou
+ * @function
+ * @param {Function} fn The function to run repeatedly every delay seconds.
+ * @param {Number} delay The delay time to run the function.
+ * @returns {Object}
+ */
+export let requestInterval = function (fn, delay) {
+  node();
+  var requestAnimFrame = (function () {
+      return (
+        window.requestAnimationFrame ||
+        function (callback) {
+          window.setTimeout(callback, 1000 / 60);
+        }
+      );
+    })(),
+    start = new Date().getTime(),
+    handle = {};
+  function loop() {
+    handle.value = requestAnimFrame(loop);
+    var current = new Date().getTime(),
+      delta = current - start;
+    if (delta >= delay) {
+      fn.call();
+      start = new Date().getTime();
+    }
+  }
+  handle.value = requestAnimFrame(loop);
+  return handle;
+};
+
+/**
+ * Loads a script from a url (Can be to a local file or to a url) then funs a callback once it's loaded.
+ * @memberOf bijou
+ * @function
+ * @param {String} url The url to load the script from.
+ * @param {Function} callback The callback to run when the script is loaded.
+ * @example
+ * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
+ * @returns {undefined}
+ */
+export let loadScript = (url, callback) => {
+  node();
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  if (script.readyState) {
+    // only required for IE <9
+    script.onreadystatechange = function () {
+      if (
+        script.readyState === 'loaded' ||
+        script.readyState === 'complete'
+      ) {
+        script.onreadystatechange = null;
+        callback();
+      }
+    };
+  } else {
+    //Others
+    script.onload = function () {
+      callback();
+    };
+  }
+
+  script.src = url;
+  document.getElementsByTagName('head')[0].appendChild(script);
+};
+
+/**
+ * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
+ * @memberOf bijou
+ * @function
+ * @returns {Object} The object with the emit, on and off functions in it.
+ * @example
+ * let thing = _$.hub();
+ * //Log any new data to the console
+ * thing.on("data", (data) => console.log(data));
+ * setTimeout(() => {
+ *   thing.emit("data", "Yay! Some data!!");//Logs "Yay! Some data!!" to the console after 2 seconds.
+ * }, 2000)
+ */
+export let hub = () => ({
+  hub: Object.create(null),
+  emit(event, data) {
+    (this.hub[event] || []).forEach((handler) => handler(data));
+  },
+  on(event, handler) {
+    if (!this.hub[event]) this.hub[event] = [];
+    this.hub[event].push(handler);
+  },
+  off(event, handler) {
+    const i = (this.hub[event] || []).findIndex((h) => h === handler);
+    if (i > -1) this.hub[event].splice(i, 1);
+    if (this.hub[event].length === 0) delete this.hub[event];
+  },
+});
+/**
+ * Fetches an image and runs the callback with the data url of the image.
+ * @memberOf bijou
+ * @function
+ * @param {String} url The url of the image to load.
+ * @param {Function} callback The callback function.
+ * @example
+ * //Replaces every image's url with its respective data url.
+ * _$.each(document.querySelectorAll('img'), (img) => {
+ *   _$.imageToData(img.src, (data) => {
+ *    img.src = data;
+ *  })
+ * })
+ */
+export let imageToData = async (url, callback) => {
+  let blob = await fetch(url).then((r) => r.blob());
+  let dataUrl = await new Promise((resolve) => {
+    let reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
+  callback(dataUrl);
+};
+/**
+ * A set of functions to set and modify cookies.
+ * @memberOf bijou
+ * @Object
+ * @example
+ * _$.cookies.setItem("a_cookie", "Hello world!", 1);//Set a_cookie to "Hello world" and have it expire in a day.
+ * @returns {Function} The function that the user wanted
+ */
+export let cookies = {
+  /**
+   * Sets a cookie to a value
+   * @function
+   * @memberOf bijou
+   * @param {String} name The name of the cookie to set
+   * @param {String} value The value of the cookie
+   * @param {Number} [days=1000] The days that the cookie should last.
+   * @returns {String} The value of the cookie
+   */
+  setItem: (name, value, days = 1000) => {
+    node();
+    var expires = '';
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+      expires = '; expires=' + date.toUTCString();
+    }
+    document.cookie =
+      name + '=' + (value || '') + expires + '; path=/';
+  },
+  /**
+   * Gets a cookie from its name.
+   * @function
+   * @memberOf bijou
+   * @param {String} name The name of the cookie.
+   * @returns {String} The value of the cookie
+   */
+  getItem: (name) => {
+    node();
+
+    var nameEQ = name + '=';
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0)
+        return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  },
+  /**
+   * Deletes a cookie
+   * @memberOf bijou
+   * @param {String} name The name of the cookie to delete.
+   * @returns {undefined}
+   */
+  removeItem: (name) => {
+    node();
+
+    document.cookie =
+      name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  },
+};
+/**
+ * A collection of regular expressions to validate and get common things from a page
+ * @memberOf bijou
+ * @Object
+ * @example
+ * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
+ * @returns {Regexp} A regex
+ */
+export let regex = {
+  /**
+   * Valid formats:
+   * (123) 456-7890
+   * (123)456-7890
+   * 123-456-7890
+   * 123.456.7890
+   * 1234567890
+   * +31636363634
+   * 075-63546725
+   */
+  phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+  /** Validates names, examples:
+   * John Smith
+   * John D'Largy
+   * John Doe-Smith
+   * John Doe Smith
+   * Hector Sausage-Hausen
+   * Mathias d'Arras
+   * Martin Luther King
+   * Ai Wong
+   * Chao Chang
+   * Alzbeta Bara
+   */
+  name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
+  /**
+    Validates email adresses
+    */
+  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+  /** Validates a link
+   */
+  link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
+  /**
+   * Tests for a strong password.
+   * Should have:
+   * 1 lowercase letter
+   * 1 uppercase letter
+   * 1 number
+   * 1 special character
+   * At least 8 characters long
+   */
+  strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
+  /**
+   * Tests for a moderate password.
+   * Should have:
+   * 1 lowercase letter
+   * 1 uppercase letter
+   * 1 number
+   * At least 8 characters long */
+  moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
+  /** Ip adresses */
+  /* Match IPv4 address */
+  ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
+  /* Match IPv6 address */
+  ipv6: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/,
+  /**Both ipv4 and ipv6 */
+  ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
+  /**Social security number */
+  socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
+  /**Hex color */
+  hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
+  /** Zip code */
+  zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
+  /**Phone */
+  simplePhone: /^\+?[\d\s]{3,}$/,
+  /**Credit cards */
+  visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
+  expressCredit: /^3[47][0–9]{13}$/,
+  mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
+  discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
+};
 /**
    * Converts JSON to a CSV string
    * @function
@@ -3048,241 +3706,6 @@ export let lightOrDark = (color) => {
 //#endregion Color
 
 /**
- * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
- * @function
- * @memberOf bijou
- * @returns {Function} The composed function.
- */
-export let composeFunction = (...functions) => (args) =>
-  functions.reduceRight((arg, fn) => fn(arg), args);
-/**
- * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
- * @function
- * @memberOf bijou
- * @param
- * @returns {Function} The curried version of the function.
- */
-export let curryFunction = (fn, arity = fn.length, ...args) =>
-  arity <= args.length
-    ? fn(...args)
-    : curry.bind(null, fn, arity, ...args);
-/**
- * Returns either "mobile" or "desktop" depending on which type of device the user is using.
- * @function
- * @memberOf bijou
- * @param
- * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
- */
-export let mobileOrDesktop = () => {
-  node();
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent,
-  )
-    ? 'mobile'
-    : 'desktop';
-};
-/**
- * Removes tags from the HTML string specified.
- * @function
- * @memberOf bijou
- * @param {String} html The string of HTML to remove tags from.
- * @example
- * console.log(_$.removeTags("<div>Hello</div>"));//Logs "Hello" to the console.
- * @returns {String} THe string of HTML without the tags.
- */
-export let removeTags = (html) => html.replace(/<[^>]*>/g, '');
-
-/**
- * Gets JSON from a URL and performs a callback with it.
- * @function
- * @memberOf bijou
- * @param {String} url The url of the JSON to be fetched.
- * @param {Function} callback The function to be run with the JSON code.
- * @example
- * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
- * @returns {undefined}
- */
-export let getJSON = (url, callback) => {
-  node();
-  fetch(url)
-    .then((res) => res.json())
-    .then((json) => callback(json))
-    .catch((error) => {
-      throw new Error(error.stack);
-    });
-};
-/**
- * Gets HTML from a URL and performs a callback with it.
- * @function
- * @memberOf bijou
- * @param {String} url The url of the HTML to be fetched.
- * @param {Function} callback The function to be run with the HTML code.
- * @example
- * //Logs the HTML of wikipedia.org to the console.
- * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
- * @returns {undefined}
- */
-export let getHTML = (url, callback) => {
-  node();
-  fetch(url)
-    .then((res) => res.text())
-    .then((html) => callback(_$.parseHTML(html)))
-    .catch((error) => {
-      throw new Error(error.stack);
-    });
-};
-
-/**
- * Preloads all of the image urls given in the arguments
- * @function
- * @memberOf bijou
- * @param {...String} urls The urls of the images to be preloaded.
- * @example
- * _$.preloadImage("https://unsplash.com/some_huge_image.png");//Preloads the unsplash image "some_huge_image.png" :P
- * @returns {undefined}
- */
-export let preloadImage = () => {
-  for (var i = 0; i < arguments.length; i++) {
-    images[i] = new Image();
-    images[i].src = preload.arguments[i];
-  }
-};
-
-/**
- * Saves a blob as a file!
- * @function
- * @memberOf bijou
- * @param {Blob} blob The blob to save as a file.
- * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
- * @example
- * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
- * @returns {undefined}
- */
-export let saveBlob = (blob, fileName = 'output.txt') => {
-  node();
-  var a = document.createElement('a');
-  document.body.appendChild(a);
-  a.style = 'display: none';
-
-  var url = window.URL.createObjectURL(blob);
-  a.href = url;
-  a.download = fileName;
-  a.click();
-  window.URL.revokeObjectURL(url);
-};
-/**
- * Deep clones an object
- * @function
- * @memberOf bijou
- * @param {Object} obj The object to clone.
- * @returns {Object} The output cloned object.
- */
-export let clone = (obj) => {
-  if (null == obj || 'object' != typeof obj) return obj;
-  var copy = obj.constructor();
-  for (var attr in obj) {
-    if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
-  }
-  return copy;
-};
-
-/**
- * Animates a number from one value to another.
- * @function
- * @memberOf bijou
- * @param {Number} start The initial value of the number in the animation
- * @param {Number} end The final value of the number in the animation
- * @param {Number} duration The duration of the animation in milliseconds
- * @param {Function} callback The callback function to run with the number and the percentage (Between 0 and 1) of the animation.
- * @param {Number} [interval=20] The amount of time to wait between frames in milliseconds.
- * @param {Function} num The function to run to manipulate the timing of the animation, for example setting this to (current_number) => current_number **2 would make a simple ease in function. (The value recieved by this is also between 0 and 1, feel free to use some stuff from _$.ease.FUNCTION_HERE(current_number) to incorporate easy easing!)
- * @example
- * Animates from 50 to 100 over the course of 3 seconds, updating every half second, and writing the current value to the document body.
- * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
- */
-// prettier-ignore
-export let animate = (start, end, duration, callback, interval = 20, num = (num) => num) => {
-    var value = start;
-    var start_time = Date.now();
-    let update = setInterval(() => {
-      value = num((Date.now() - start_time) / duration) * (end - start) + start;
-      callback(value, num((Date.now() - start_time) / duration));
-    }, interval);
-    setTimeout(() => {
-      clearInterval(update);
-      callback(end, 1);
-      return;
-    }, duration);
-  }
-/**
- * Works exactly like setInterval but instead uses requestAnimationFrame.
- * @memberOf bijou
- * @function
- * @param {Function} fn The function to run repeatedly every delay seconds.
- * @param {Number} delay The delay time to run the function.
- * @returns {Object}
- */
-export let requestInterval = function (fn, delay) {
-  node();
-  var requestAnimFrame = (function () {
-      return (
-        window.requestAnimationFrame ||
-        function (callback) {
-          window.setTimeout(callback, 1000 / 60);
-        }
-      );
-    })(),
-    start = new Date().getTime(),
-    handle = {};
-  function loop() {
-    handle.value = requestAnimFrame(loop);
-    var current = new Date().getTime(),
-      delta = current - start;
-    if (delta >= delay) {
-      fn.call();
-      start = new Date().getTime();
-    }
-  }
-  handle.value = requestAnimFrame(loop);
-  return handle;
-};
-
-/**
- * Loads a script from a url (Can be to a local file or to a url) then funs a callback once it's loaded.
- * @memberOf bijou
- * @function
- * @param {String} url The url to load the script from.
- * @param {Function} callback The callback to run when the script is loaded.
- * @example
- * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
- * @returns {undefined}
- */
-export let loadScript = (url, callback) => {
-  node();
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  if (script.readyState) {
-    // only required for IE <9
-    script.onreadystatechange = function () {
-      if (
-        script.readyState === 'loaded' ||
-        script.readyState === 'complete'
-      ) {
-        script.onreadystatechange = null;
-        callback();
-      }
-    };
-  } else {
-    //Others
-    script.onload = function () {
-      callback();
-    };
-  }
-
-  script.src = url;
-  document.getElementsByTagName('head')[0].appendChild(script);
-};
-/**
  * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
  * @function
  * @memberOf bijou
@@ -3306,91 +3729,6 @@ export let memoize = (fn) => {
   };
 };
 
-/**
- * @memberOf bijou
- * @function
- * @param {Object} obj The object to listen to.
- * @param {Function} callback The callback function to run with the arguments, key, and value. Key is the key changed, and value is the new value of the key.
- * @example
- * let obj = {something: "This is part of the object", anotherThing: "This is another!"};
- * obj = _$.listen(obj, () => console.log("Set!"), () => console.log("Gotten"));
- * obj.something; //Logs "Gotten" to the console!
- * obj.anotherThing = "Setting a key!";//Logs "Set!" to the console!
- * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
- */
-export let listen = (obj, setCallback, getCallback) => {
-  return new Proxy(obj, {
-    set: function (target, key, value) {
-      setCallback(key, value);
-      target[key] = value;
-      return target[key];
-    },
-    get: function (target, key, value) {
-      getCallback(key, value);
-      return obj[key];
-    },
-  });
-};
-/**
- * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
- * @memberOf bijou
- * @function
- * @returns {Object} The object with the emit, on and off functions in it.
- * @example
- * let thing = _$.hub();
- * //Log any new data to the console
- * thing.on("data", (data) => console.log(data));
- * setTimeout(() => {
- *   thing.emit("data", "Yay! Some data!!");//Logs "Yay! Some data!!" to the console after 2 seconds.
- * }, 2000)
- */
-export let hub = () => ({
-  hub: Object.create(null),
-  emit(event, data) {
-    (this.hub[event] || []).forEach((handler) => handler(data));
-  },
-  on(event, handler) {
-    if (!this.hub[event]) this.hub[event] = [];
-    this.hub[event].push(handler);
-  },
-  off(event, handler) {
-    const i = (this.hub[event] || []).findIndex((h) => h === handler);
-    if (i > -1) this.hub[event].splice(i, 1);
-    if (this.hub[event].length === 0) delete this.hub[event];
-  },
-});
-/**
- * Returns if the given function is async or not.
- * @memberOf bijou
- * @function
- * @param {Function} val The function to test.
- * @returns {Boolean} True if the function is async and false if not.
- */
-export let isAsync = (val) =>
-  Object.prototype.toString.call(val) === '[object AsyncFunction]';
-/**
- * Fetches an image and runs the callback with the data url of the image.
- * @memberOf bijou
- * @function
- * @param {String} url The url of the image to load.
- * @param {Function} callback The callback function.
- * @example
- * //Replaces every image's url with its respective data url.
- * _$.each(document.querySelectorAll('img'), (img) => {
- *   _$.imageToData(img.src, (data) => {
- *    img.src = data;
- *  })
- * })
- */
-export let imageToData = async (url, callback) => {
-  let blob = await fetch(url).then((r) => r.blob());
-  let dataUrl = await new Promise((resolve) => {
-    let reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.readAsDataURL(blob);
-  });
-  callback(dataUrl);
-};
 /**
  * Re-enables the use of <menu> and <menuitem> tags for corner clicking.
  * @memberOf bijou
@@ -3497,38 +3835,6 @@ export let context = () => {
 };
 
 /**
- * Flattens an array level times.
- * @memberOf bijou
- * @function
- * @returns {Array} The flattened array.
- * @example
- * _$.flatten(['a', 'b', ['c', 'd']]);//Returns ['a', 'b', 'c', 'd'];
- * @param {Array} array The array to flatten.
- * @param {Number} [level=1] The number of iterations to flatten it.
- */
-export let flatten = (array, level = 1) => {
-  var output = array;
-  _$.each(level, () => {
-    output = [].concat.apply([], array);
-  });
-  return output;
-};
-
-/**
- * Flattens an array recursively.
- * @function
- * @memberOf bijou
- * @param {Array} arr The array to flatten.
- * @returns {Array} The flattened array.
- */
-export let nFlatten = (arr) => {
-  return arr.reduce(function (flat, toFlatten) {
-    return flat.concat(
-      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
-    );
-  }, []);
-};
-/**
  * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
  * @memberOf bijou
  * @function
@@ -3559,167 +3865,6 @@ export let formatHTML = (html) => {
 };
 
 /**
- * Returns the difference between two arrays or strings.
- * @memberOf bijou
- * @function
- * @returns {Array|String} The difference between two arrays or strings.
- * @example
- * _$.arrayDiff([['a', 'b'], ['a', 'b', 'c', 'd']]);//Returns ["c", "d"];
- * @param {Array} a1 The first array or string
- * @param {Array} a2 The 2nd array or string.
- */
-export let arrayDiff = (a1, a2) => {
-  var a = [],
-    diff = [];
-  for (var i = 0; i < a1.length; i++) {
-    a[a1[i]] = true;
-  }
-  for (var i = 0; i < a2.length; i++) {
-    if (a[a2[i]]) {
-      delete a[a2[i]];
-    } else {
-      a[a2[i]] = true;
-    }
-  }
-  for (var k in a) {
-    diff.push(k);
-  }
-  return diff;
-};
-
-/**
- * Gets the difference between two strings.
- * @memberOf bijou
- * @function
- * @param {String} text1 The 1st text to compare
- * @param {String} text2 The 2nd text to compare with the 1st one.
- * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
- */
-export let diff = function (text1, text2) {
-  //Takes in two strings
-  //Returns an array of the span of the differences
-  //So if given:
-  // text1: "that is number 124"
-  // text2: "this is number 123"
-  //It will return:
-  // [[2,4],[17,18]]
-  //If the strings are of different lengths, it will check up to the end of text1
-  //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
-  var diffRange = [];
-  var currentRange = undefined;
-  for (var i = 0; i < text1.length; i++) {
-    if (text1[i] != text2[i]) {
-      //Found a diff!
-      if (currentRange == undefined) {
-        //Start a new range
-        currentRange = [i];
-      }
-    }
-    if (currentRange != undefined && text1[i] == text2[i]) {
-      //End of range!
-      currentRange.push(i);
-      diffRange.push(currentRange);
-      currentRange = undefined;
-    }
-  }
-  //Push any last range if there's still one at the end
-  if (currentRange != undefined) {
-    currentRange.push(i);
-    diffRange.push(currentRange);
-  }
-  return diffRange;
-};
-
-/**
- * Speaks the text given.
- * @memberOf bijou
- * @function
- * @param {String} text The text to split
- * @param {String} [lang=en-US] The language to speak with.
- * @param {Number} [volume=1] The volume
- * @param {String|Number} [voice=1] The voice to use.
- * @param {Number} [pitch=1] The pitch
- * @param {Number} [volume=1] The volume
- * @param {Number} [rate=1] The speed.
- * @returns {undefined}
- */
-export let speak = (
-  text,
-  lang = 'en',
-  volume = 1,
-  voice = 1,
-  pitch = 1,
-  rate = 1,
-) => {
-  var msg = new SpeechSynthesisUtterance();
-  var voices = window.speechSynthesis.getVoices();
-  let def = voices.filter((c) => c.default);
-  msg.voice = voice
-    ? typeof voice === 'number'
-      ? voices[voice]
-      : voice
-    : def;
-  msg.volume = volume; // From 0 to 1
-  msg.rate = rate; // From 0.1 to 10
-  msg.pitch = pitch; // From 0 to 2
-  msg.text = text;
-  msg.lang = lang;
-  speechSynthesis.speak(msg);
-};
-/**
- * Merges two objects into one. Note that object 1 properties will overwrite those of object 2.
- * @memberOf bijou
- * @function
- * @param {Object} obj1 The 1st object to merge
- * @param {Object} obj2 The 2nd object to merge.
- * @returns {Object} The merged object.
- * @example
- * _$.merge({hello: "Hello!!"}, {world: " World"});//Returns {hello: "Hello!!", world: " World"}
- */
-export let merge = function MergeRecursive(obj1, obj2) {
-  for (var p in obj2) {
-    try {
-      // Property in destination object set; update its value.
-      if (obj2[p].constructor == Object) {
-        obj1[p] = MergeRecursive(obj1[p], obj2[p]);
-      } else {
-        obj1[p] = obj2[p];
-      }
-    } catch (e) {
-      // Property in destination object not set; create it and set its value.
-      obj1[p] = obj2[p];
-    }
-  }
-  return obj1;
-};
-
-/**
- * Removes an item from the array specified.
- * @memberOf bijou
- * @function
- * @param {Array|String} array The array or string to remove the item or string from.
- * @param {*} item The item to remove.
- * @example
- * _$.remove([1,2,3,4,5], 1);//Returns [2,3,4,5].
- */
-export let remove = (array, item) =>
-  array.indexOf(item) > -1
-    ? array.splice(array.indexOf(item), 1)
-    : array;
-
-/**
- * Returns whether the specified array or string contains the item given.
- * @memberOf bijou
- * @function
- * @param {Array} array The array to test with.
- * @param {String} item The item to see if the array contains.
- * @example
- * _$.contains([1,2,3,4,5], 3);//Returns true. The array does include 5.
- * @returns {Boolean} True or false depending on if the array contains that item.
- */
-export let contains = (array, item) => array.includes(item);
-
-/**
  * Dispatches an event of the type specified with custom arguments.
  * @memberOf bijou
  * @function
@@ -3738,147 +3883,6 @@ export let dispatch = (type, args, target = window) => {
   target.dispatchEvent(e);
 };
 
-/**
- * A set of functions to set and modify cookies.
- * @memberOf bijou
- * @Object
- * @example
- * _$.cookies.setItem("a_cookie", "Hello world!", 1);//Set a_cookie to "Hello world" and have it expire in a day.
- * @returns {Function} The function that the user wanted
- */
-export let cookies = {
-  /**
-   * Sets a cookie to a value
-   * @function
-   * @memberOf bijou
-   * @param {String} name The name of the cookie to set
-   * @param {String} value The value of the cookie
-   * @param {Number} [days=1000] The days that the cookie should last.
-   * @returns {String} The value of the cookie
-   */
-  setItem: (name, value, days = 1000) => {
-    node();
-    var expires = '';
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-      expires = '; expires=' + date.toUTCString();
-    }
-    document.cookie =
-      name + '=' + (value || '') + expires + '; path=/';
-  },
-  /**
-   * Gets a cookie from its name.
-   * @function
-   * @memberOf bijou
-   * @param {String} name The name of the cookie.
-   * @returns {String} The value of the cookie
-   */
-  getItem: (name) => {
-    node();
-
-    var nameEQ = name + '=';
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) == 0)
-        return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  },
-  /**
-   * Deletes a cookie
-   * @memberOf bijou
-   * @param {String} name The name of the cookie to delete.
-   * @returns {undefined}
-   */
-  removeItem: (name) => {
-    node();
-
-    document.cookie =
-      name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  },
-};
-/**
- * A collection of regular expressions to validate and get common things from a page
- * @memberOf bijou
- * @Object
- * @example
- * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
- * @returns {Regexp} A regex
- */
-export let regex = {
-  /**
-   * Valid formats:
-   * (123) 456-7890
-   * (123)456-7890
-   * 123-456-7890
-   * 123.456.7890
-   * 1234567890
-   * +31636363634
-   * 075-63546725
-   */
-  phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-  /** Validates names, examples:
-   * John Smith
-   * John D'Largy
-   * John Doe-Smith
-   * John Doe Smith
-   * Hector Sausage-Hausen
-   * Mathias d'Arras
-   * Martin Luther King
-   * Ai Wong
-   * Chao Chang
-   * Alzbeta Bara
-   */
-  name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
-  /**
-    Validates email adresses
-    */
-  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-  /** Validates a link
-   */
-  link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
-  /**
-   * Tests for a strong password.
-   * Should have:
-   * 1 lowercase letter
-   * 1 uppercase letter
-   * 1 number
-   * 1 special character
-   * At least 8 characters long
-   */
-  strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
-  /**
-   * Tests for a moderate password.
-   * Should have:
-   * 1 lowercase letter
-   * 1 uppercase letter
-   * 1 number
-   * At least 8 characters long */
-  moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
-  /** Ip adresses */
-  /* Match IPv4 address */
-  ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
-  /* Match IPv6 address */
-  ipv6: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/,
-  /**Both ipv4 and ipv6 */
-  ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
-  /**Social security number */
-  socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
-  /**Hex color */
-  hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
-  /** Zip code */
-  zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
-  /**Phone */
-  simplePhone: /^\+?[\d\s]{3,}$/,
-  /**Credit cards */
-  visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
-  expressCredit: /^3[47][0–9]{13}$/,
-  mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
-  discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
-};
 //#endregion Bijou
 
 let _temp = {
