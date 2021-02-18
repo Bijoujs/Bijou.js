@@ -200,6 +200,95 @@ export let primesTo = (num) => {
   );
   return arr;
 };
+/**
+ * Generates a random number between a minimum and maximum number
+ * @function
+ * @memberOf bijou
+ * @param {Number} min The lowest number that the random value generated can be.
+ * @param {Number} max The highest number that the random value generated can be.
+ * @param {Boolean} [round=true] Weather to round the generated number
+ * @param {Number} [seed=Math.random()] The seed for the generated number (Between 0 and 1).
+ * @returns {Number} The random numebr generated.
+ */
+export let random = (
+  min,
+  max,
+  round = true,
+  seed = Math.random(),
+) => {
+  if (round) {
+    return Math.floor(seed * (max - min + 1) + min);
+  } else {
+    return Math.random() * (max - min + 1) + min;
+  }
+};
+/**
+ * Get a random number from a seed.
+ * @function
+ * @memberOf bijou
+ * @param {Number} seed The seed to use to generate random numbers.
+ * @example
+ * console.log(_$.seedRandom(13));
+ * @returns {Number} The random number from the seed.
+ */
+export let seedRandom = (seed) => {
+  var t = (seed += 0x6d2b79f5);
+  t = Math.imul(t ^ (t >>> 15), t | 1);
+  t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+
+/**
+ * Formats a number by adding commas to it.
+ * @function
+ * @memberOf bijou
+ * @param {Number} n The number to format.
+ * @example
+ * console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
+ * @returns {String} The formatted string representation of the number.
+ */
+export let formatNumber = (n) =>
+  n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+/**
+ * Easing functions
+ * @Object
+ * @memberOf bijou
+ * @example
+ * _$.ease.easeInOutQuad(.3);//Returns the eased point of about 1/3 along the animation.
+ * @returns {Function} The easing function.
+ */
+export let ease = {
+  // no easing, no acceleration
+  linear: (t) => t,
+  // accelerating from zero velocity
+  easeInQuad: (t) => t * t,
+  // decelerating to zero velocity
+  easeOutQuad: (t) => t * (2 - t),
+  // acceleration until halfway, then deceleration
+  easeInOutQuad: (t) => (t &lt; 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
+  // accelerating from zero velocity
+  easeInCubic: (t) => t * t * t,
+  // decelerating to zero velocity
+  easeOutCubic: (t) => --t * t * t + 1,
+  // acceleration until halfway, then deceleration
+  easeInOutCubic: (t) =>
+    t &lt; 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
+  // accelerating from zero velocity
+  easeInQuart: (t) => t * t * t * t,
+  // decelerating to zero velocity
+  easeOutQuart: (t) => 1 - --t * t * t * t,
+  // acceleration until halfway, then deceleration
+  easeInOutQuart: (t) =>
+    t &lt; 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
+  // accelerating from zero velocity
+  easeInQuint: (t) => t * t * t * t * t,
+  // decelerating to zero velocity
+  easeOutQuint: (t) => 1 + --t * t * t * t * t,
+  // acceleration until halfway, then deceleration
+  easeInOutQuint: (t) =>
+    t &lt; 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
+};
+
 //#endregion Math
 //#region Date
 /**
@@ -993,6 +1082,204 @@ export let createElement = (str) => {
   el.innerHTML = str;
   return el.firstElementChild;
 };
+/**
+ * Gets a property from the computed style of an element.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element whose styles to get.
+ * @param {String} prop The css-property value to get of the styles.
+ * @example
+ * console.log(_$.compStyle(document.documentElement, "background-color"));
+ * @returns {String} The computed style property for the element specified.
+ */
+export let compStyle = (el, prop) => {
+  node();
+  var computedStyles = window.getComputedStyle(el);
+  return computedStyles.getPropertyValue(prop);
+};
+
+/**
+ * Get the siblings of a DOM element
+ * @function
+ * @memberOf bijou
+ * @param {Element} n The element to get siblings of
+ * @example
+ * _$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.backgroundColor = 'white');
+ * //Make every sibling of the first list item's background color white.
+ * @returns {Element[]} The array of sibling elements.
+ */
+export let elementSiblings = (n) =>
+  [...n.parentElement.children].filter((c) => c != n);
+/**
+ * Disables right click on the element spcified.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element to disable right click on.
+ * @example
+ * _$.disableRightClick(document.documentElement)
+ * @returns {undefined}
+ */
+export let disableRightClick = (el) => {
+  node();
+  return (el.oncontextmenu = false);
+};
+/**
+ * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element to convert.
+ * @example
+ * _$.inlineCSS(document.querySelector("h1"));//Converts the styles for the &lt;h1> element to inline using the style="___" attribute
+ * @returns {undefined}
+ */
+export let inlineCSS = (el) => {
+  var cs = getComputedStyle(el, null);
+  var i;
+  for (i = 0; i &lt; cs.length; i++) {
+    var s = cs[i] + '';
+    el.style[s] = cs[s];
+  }
+};
+/**
+ * Returns an array of objects representing the attributes of a passed element.
+ * @param {Element} el The HMTL element to get attributes from.
+ * @function
+ * @memberOf bijou
+ * @example
+ * //Say the &lt;html> tag of the document was "&lt;html style='background-color: #101010;'>", then the function below would log "style," to the console.
+ * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
+ * @return {Array.&lt;object>} The array of objects representing the attributes
+ */
+export let attributes = (el) => {
+  node();
+  var output = [];
+  for (
+    var att, i = 0, atts = el.attributes, n = atts.length;
+    i &lt; n;
+    i++
+  ) {
+    att = atts[i];
+    output.push({
+      name: att.nodeName,
+      value: att.nodeValue,
+    });
+  }
+  return output;
+};
+/**
+ * Observes the mutations of the html element specified.
+ * @memberOf bijou
+ * @function
+ * @param {HTMLElement} element The element to observe
+ * @param {Function} callback The callback function to run when a mutation happens.
+ * @param {*} options The options to use.
+ * @example
+ * _$.observeMutations(document, console.log);//Logs all the mutations that happen to the console.
+ * @returns {undefined}
+ */
+export let observeMutations = (element, callback, options) => {
+  const observer = new MutationObserver((mutations) =>
+    mutations.forEach((m) => callback(m)),
+  );
+  observer.observe(
+    element,
+    Object.assign(
+      {
+        childList: true,
+        attributes: true,
+        attributeOldValue: true,
+        characterData: true,
+        characterDataOldValue: true,
+        subtree: true,
+      },
+      options,
+    ),
+  );
+  return observer;
+};
+/**
+ * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
+ * @memberOf bijou
+ * @function
+ * @param {Element} el The element to tilt.
+ * @param {Number} x The x value of the mouse
+ * @param {Number} y The y value of the mouse
+ * @param {Number} perspective The perspective
+ * @param {Number} amount The amount to tilt.
+ * @returns {undefined}
+ * @example
+ * //Tilt the first image in the document whenever the mouse moves.
+ * let el = document.querySelector("img");
+ * el.onmousemove = (e) => {
+ *  let x = e.layerX;
+ *  let y = e.layerY
+ *  _$.tilt(el, x, y);
+ * }
+ */
+export let tilt = (el, x, y, perspective = 500, amount = 30) => {
+  //Old code
+  /*  const xVal = x
+    const yVal = y
+    const yRotation = amount * ((xVal - width / 2) / width)
+    const xRotation = amount * -1 * ((yVal - height / 2) / height)
+    const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
+    el.style.transform = string */
+
+  //One liner
+  el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
+    amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
+  }deg) rotateY(${
+    amount * ((x - el.clientWidth / 2) / el.clientWidth)
+  }deg)`;
+};
+/**
+ * Enters fullscreen on an element.
+ * @memberOf bijou
+ * @function
+ * @param {Element} element The element to enter full screen with.
+ * @returns {undefined}
+ * @example
+ * _$.fullScreen(document.documentElement);//Make the window fullscreen
+ */
+export let fullScreen = (element) => {
+  return (
+    element.requestFullScreen ||
+    element.mozRequestFullScreen ||
+    element.webkitRequestFullScreen() ||
+    new Error('Fullscreen failed')
+  );
+};
+/**
+ * Replaces the selected text in a contentEditable div with the HTML given.
+ * @memberOf bijou
+ * @function
+ * @returns {undefined}
+ * @example
+ * //Add a simple contenteditable div to the page.
+ * document.appendChild(_$.createElement("&lt;div contenteditable id='text'>&lt;/div>"));
+ * _$.replaceSelection("&lt;b>BOLD TEXT&lt;/b> &lt;small>Bijou is awesome&lt;/small>&lt;h1>You need to use it&lt;/h1>");
+ * //Replaces the selection! =)
+ * @param {String} replacementText The replacement HTML to replace with.
+ */
+export let replaceSelection = (replacementText) => {
+  var sel, range;
+  if (window.getSelection) {
+    sel = window.getSelection();
+    if (sel.rangeCount) {
+      range = sel.getRangeAt(0);
+      range.deleteContents();
+      let n = document.createElement('span');
+      n.insertAdjacentHTML('beforeend', replacementText);
+      range.insertNode(n);
+    }
+  } else if (document.selection &amp;&amp; document.selection.createRange) {
+    console.warn(
+      'You are using IE &lt; 9, you are evil. Falling back to text not HTML.',
+    );
+    range = document.selection.createRange();
+    range.text = replacementText.replace(/&lt;[^>]*>/g, '');
+  }
+};
 //#endregion Element
 //#region Event
 /**
@@ -1226,6 +1513,116 @@ export let browser = () => {
 //#endregion Utility
 //#region Color
 /**
+ * Converts a rgb(a) color to hex.
+ * @memberOf bijou
+ * @function
+ * @example
+ * _$.rgbToHex("rgb(255,255,255)");//Returns "#ffffff"
+ * @param {String} rgb The string of RGB colors.
+ */
+export let rgbToHex = (rgb) => {
+  let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
+  rgb = rgb.substr(4).split(')')[0].split(sep);
+
+  let r = (+rgb[0]).toString(16),
+    g = (+rgb[1]).toString(16),
+    b = (+rgb[2]).toString(16);
+
+  if (r.length == 1) r = '0' + r;
+  if (g.length == 1) g = '0' + g;
+  if (b.length == 1) b = '0' + b;
+
+  return '#' + r + g + b;
+};
+/**
+ * Converts a hex code to a RGB color.
+ * @function
+ * @memberOf bijou
+ * @param {String} hex The hex code to convert.
+ * @returns {String} The RGB color converted from the hex code.
+ */
+export let hexToRGB = (hex) => {
+  if (
+    ((hex.length - 1 === 6 ||
+      hex.length - 1 === 8 ||
+      hex.length - 1 === 4 ||
+      hex.length - 1 === 3) &amp;&amp;
+      hex.startsWith('#')) ||
+    ((hex.length === 6 ||
+      hex.length === 8 ||
+      hex.length === 4 ||
+      hex.length === 3) &amp;&amp;
+      !hex.startsWith('#'))
+  ) {
+  } else {
+    throw new Error('Invalid hex');
+  }
+  let alpha = false,
+    h = hex.slice(hex.startsWith('#') ? 1 : 0);
+  if (h.length === 3) h = [...h].map((x) => x + x).join('');
+  else if (h.length === 8) alpha = true;
+  h = parseInt(h, 16);
+  return (
+    'rgb' +
+    (alpha ? 'a' : '') +
+    '(' +
+    (h >>> (alpha ? 24 : 16)) +
+    ', ' +
+    ((h &amp; (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
+    ', ' +
+    ((h &amp; (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
+    (alpha ? `, ${h &amp; 0x000000ff}` : '') +
+    ')'
+  );
+};
+/**
+ * Blends two colors through additive blending by a percentage.
+ * @function
+ * @memberOf bijou
+ * @param {String} color1 The hex code of the first color to be blended
+ * @param {String} color2 The hex code of the second color to be blended.
+ * @param {Number} percent A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
+ * @example
+ * _$.blendColors("#ffffff", "#000000", 80); //Blends white and black together, ending up in a color that is 80% white and 20% black.
+ * @returns {String} The blended color (A hex code).
+ */
+export let blendColors = (color1, color2, percent = 50) => {
+  const generateHex = (r, g, b) => {
+    let R = r.toString(16);
+    let G = g.toString(16);
+    let B = b.toString(16);
+
+    while (R.length &lt; 2) {
+      R = `0${R}`;
+    }
+    while (G.length &lt; 2) {
+      G = `0${G}`;
+    }
+    while (B.length &lt; 2) {
+      B = `0${B}`;
+    }
+
+    return `#${R}${G}${B}`;
+  };
+
+  const mix = (start, end, percent) =>
+    start + (percent / 100) * (end - start);
+
+  const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
+  const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
+  const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16);
+
+  const red2 = parseInt(`${color2[1]}${color2[2]}`, 16);
+  const green2 = parseInt(`${color2[3]}${color2[4]}`, 16);
+  const blue2 = parseInt(`${color2[5]}${color2[6]}`, 16);
+
+  const red = Math.round(mix(red1, red2, percent));
+  const green = Math.round(mix(green1, green2, percent));
+  const blue = Math.round(mix(blue1, blue2, percent));
+
+  return generateHex(red, green, blue);
+};
+/**
  * Generates a random hex color.
  * @function
  * @memberOf bijou
@@ -1318,8 +1715,6 @@ export let lightOrDark = (color) => {
 };
 //#endregion Color
 
-
-
 /**
  * Returns the last space in the string given replaced with "&amp;nbsp;"
  * @function
@@ -1344,135 +1739,10 @@ export let widows = (text) => {
   return finalTitle;
 };
 
-/**
- * Gets a property from the computed style of an element.
- * @function
- * @memberOf bijou
- * @param {Element} el The element whose styles to get.
- * @param {String} prop The css-property value to get of the styles.
- * @example
- * console.log(_$.compStyle(document.documentElement, "background-color"));
- * @returns {String} The computed style property for the element specified.
- */
-export let compStyle = (el, prop) => {
-  node();
-  var computedStyles = window.getComputedStyle(el);
-  return computedStyles.getPropertyValue(prop);
-};
-/**
- * Converts a rgb(a) color to hex.
- * @memberOf bijou
- * @function
- * @example
- * _$.rgbToHex("rgb(255,255,255)");//Returns "#ffffff"
- * @param {String} rgb The string of RGB colors.
- */
-export let rgbToHex = (rgb) => {
-  let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
-  rgb = rgb.substr(4).split(')')[0].split(sep);
-
-  let r = (+rgb[0]).toString(16),
-    g = (+rgb[1]).toString(16),
-    b = (+rgb[2]).toString(16);
-
-  if (r.length == 1) r = '0' + r;
-  if (g.length == 1) g = '0' + g;
-  if (b.length == 1) b = '0' + b;
-
-  return '#' + r + g + b;
-};
-/**
- * Converts a hex code to a RGB color.
- * @function
- * @memberOf bijou
- * @param {String} hex The hex code to convert.
- * @returns {String} The RGB color converted from the hex code.
- */
-export let hexToRGB = (hex) => {
-  if (
-    ((hex.length - 1 === 6 ||
-      hex.length - 1 === 8 ||
-      hex.length - 1 === 4 ||
-      hex.length - 1 === 3) &amp;&amp;
-      hex.startsWith('#')) ||
-    ((hex.length === 6 ||
-      hex.length === 8 ||
-      hex.length === 4 ||
-      hex.length === 3) &amp;&amp;
-      !hex.startsWith('#'))
-  ) {
-  } else {
-    throw new Error('Invalid hex');
-  }
-  let alpha = false,
-    h = hex.slice(hex.startsWith('#') ? 1 : 0);
-  if (h.length === 3) h = [...h].map((x) => x + x).join('');
-  else if (h.length === 8) alpha = true;
-  h = parseInt(h, 16);
-  return (
-    'rgb' +
-    (alpha ? 'a' : '') +
-    '(' +
-    (h >>> (alpha ? 24 : 16)) +
-    ', ' +
-    ((h &amp; (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
-    ', ' +
-    ((h &amp; (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
-    (alpha ? `, ${h &amp; 0x000000ff}` : '') +
-    ')'
-  );
-};
 
 
-/**
- * Generates a random number between a minimum and maximum number
- * @function
- * @memberOf bijou
- * @param {Number} min The lowest number that the random value generated can be.
- * @param {Number} max The highest number that the random value generated can be.
- * @param {Boolean} [round=true] Weather to round the generated number
- * @param {Number} [seed=Math.random()] The seed for the generated number (Between 0 and 1).
- * @returns {Number} The random numebr generated.
- */
-export let random = (
-  min,
-  max,
-  round = true,
-  seed = Math.random(),
-) => {
-  if (round) {
-    return Math.floor(seed * (max - min + 1) + min);
-  } else {
-    return Math.random() * (max - min + 1) + min;
-  }
-};
-/**
- * Get a random number from a seed.
- * @function
- * @memberOf bijou
- * @param {Number} seed The seed to use to generate random numbers.
- * @example
- * console.log(_$.seedRandom(13));
- * @returns {Number} The random number from the seed.
- */
-export let seedRandom = (seed) => {
-  var t = (seed += 0x6d2b79f5);
-  t = Math.imul(t ^ (t >>> 15), t | 1);
-  t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-};
 
-/**
- * Formats a number by adding commas to it.
- * @function
- * @memberOf bijou
- * @param {Number} n The number to format.
- * @example
- * console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
- * @returns {String} The formatted string representation of the number.
- */
-export let formatNumber = (n) =>
-  n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+
 /**
  * Splices an array buffer
  * @function
@@ -2287,46 +2557,6 @@ export let scrambleString = (str) => {
 };
 
 
-
-/**
- * Easing functions
- * @Object
- * @memberOf bijou
- * @example
- * _$.ease.easeInOutQuad(.3);//Returns the eased point of about 1/3 along the animation.
- * @returns {Function} The easing function.
- */
-export let ease = {
-  // no easing, no acceleration
-  linear: (t) => t,
-  // accelerating from zero velocity
-  easeInQuad: (t) => t * t,
-  // decelerating to zero velocity
-  easeOutQuad: (t) => t * (2 - t),
-  // acceleration until halfway, then deceleration
-  easeInOutQuad: (t) => (t &lt; 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
-  // accelerating from zero velocity
-  easeInCubic: (t) => t * t * t,
-  // decelerating to zero velocity
-  easeOutCubic: (t) => --t * t * t + 1,
-  // acceleration until halfway, then deceleration
-  easeInOutCubic: (t) =>
-    t &lt; 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
-  // accelerating from zero velocity
-  easeInQuart: (t) => t * t * t * t,
-  // decelerating to zero velocity
-  easeOutQuart: (t) => 1 - --t * t * t * t,
-  // acceleration until halfway, then deceleration
-  easeInOutQuart: (t) =>
-    t &lt; 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
-  // accelerating from zero velocity
-  easeInQuint: (t) => t * t * t * t * t,
-  // decelerating to zero velocity
-  easeOutQuint: (t) => 1 + --t * t * t * t * t,
-  // acceleration until halfway, then deceleration
-  easeInOutQuint: (t) =>
-    t &lt; 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
-};
 /**
  * Gets JSON from a URL and performs a callback with it.
  * @function
@@ -2405,53 +2635,7 @@ export let hashString = (str, seed = 0) => {
     Math.imul(h1 ^ (h1 >>> 13), 3266489909);
   return 4294967296 * (2097151 &amp; h2) + (h1 >>> 0);
 };
-/**
- * Blends two colors through additive blending by a percentage.
- * @function
- * @memberOf bijou
- * @param {String} color1 The hex code of the first color to be blended
- * @param {String} color2 The hex code of the second color to be blended.
- * @param {Number} percent A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
- * @example
- * _$.blendColors("#ffffff", "#000000", 80); //Blends white and black together, ending up in a color that is 80% white and 20% black.
- * @returns {String} The blended color (A hex code).
- */
-export let blendColors = (color1, color2, percent = 50) => {
-  const generateHex = (r, g, b) => {
-    let R = r.toString(16);
-    let G = g.toString(16);
-    let B = b.toString(16);
 
-    while (R.length &lt; 2) {
-      R = `0${R}`;
-    }
-    while (G.length &lt; 2) {
-      G = `0${G}`;
-    }
-    while (B.length &lt; 2) {
-      B = `0${B}`;
-    }
-
-    return `#${R}${G}${B}`;
-  };
-
-  const mix = (start, end, percent) =>
-    start + (percent / 100) * (end - start);
-
-  const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
-  const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
-  const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16);
-
-  const red2 = parseInt(`${color2[1]}${color2[2]}`, 16);
-  const green2 = parseInt(`${color2[3]}${color2[4]}`, 16);
-  const blue2 = parseInt(`${color2[5]}${color2[6]}`, 16);
-
-  const red = Math.round(mix(red1, red2, percent));
-  const green = Math.round(mix(green1, green2, percent));
-  const blue = Math.round(mix(blue1, blue2, percent));
-
-  return generateHex(red, green, blue);
-};
 /**
  * Gets the edit distance between two strings.
  * @function
@@ -2509,18 +2693,7 @@ export let editDistance = (a, b) => {
  * @returns {Number} The byte size of the string.
  */
 export let byteSize = (str) => new Blob([str]).size;
-/**
- * Get the siblings of a DOM element
- * @function
- * @memberOf bijou
- * @param {Element} n The element to get siblings of
- * @example
- * _$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.backgroundColor = 'white');
- * //Make every sibling of the first list item's background color white.
- * @returns {Element[]} The array of sibling elements.
- */
-export let elementSiblings = (n) =>
-  [...n.parentElement.children].filter((c) => c != n);
+
 /**
  * Preloads all of the image urls given in the arguments
  * @function
@@ -2574,19 +2747,7 @@ export let urlQuery = (query, url = window.location.href) => {
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
-/**
- * Disables right click on the element spcified.
- * @function
- * @memberOf bijou
- * @param {Element} el The element to disable right click on.
- * @example
- * _$.disableRightClick(document.documentElement)
- * @returns {undefined}
- */
-export let disableRightClick = (el) => {
-  node();
-  return (el.oncontextmenu = false);
-};
+
 /**
  * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
  * @function
@@ -2745,23 +2906,7 @@ export let sanitize = (
     return arr;
   }
 };
-/**
- * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
- * @function
- * @memberOf bijou
- * @param {Element} el The element to convert.
- * @example
- * _$.inlineCSS(document.querySelector("h1"));//Converts the styles for the &lt;h1> element to inline using the style="___" attribute
- * @returns {undefined}
- */
-export let inlineCSS = (el) => {
-  var cs = getComputedStyle(el, null);
-  var i;
-  for (i = 0; i &lt; cs.length; i++) {
-    var s = cs[i] + '';
-    el.style[s] = cs[s];
-  }
-};
+
 /**
  * Saves a blob as a file!
  * @function
@@ -3068,32 +3213,7 @@ export let requestInterval = function (fn, delay) {
   handle.value = requestAnimFrame(loop);
   return handle;
 };
-/**
- * Returns an array of objects representing the attributes of a passed element.
- * @param {Element} el The HMTL element to get attributes from.
- * @function
- * @memberOf bijou
- * @example
- * //Say the &lt;html> tag of the document was "&lt;html style='background-color: #101010;'>", then the function below would log "style," to the console.
- * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
- * @return {Array.&lt;object>} The array of objects representing the attributes
- */
-export let attributes = (el) => {
-  node();
-  var output = [];
-  for (
-    var att, i = 0, atts = el.attributes, n = atts.length;
-    i &lt; n;
-    i++
-  ) {
-    att = atts[i];
-    output.push({
-      name: att.nodeName,
-      value: att.nodeValue,
-    });
-  }
-  return output;
-};
+
 /**
  * Loads a script from a url (Can be to a local file or to a url) then funs a callback once it's loaded.
  * @memberOf bijou
@@ -3152,37 +3272,7 @@ export let memoize = (fn) => {
     }
   };
 };
-/**
- * Observes the mutations of the html element specified.
- * @memberOf bijou
- * @function
- * @param {HTMLElement} element The element to observe
- * @param {Function} callback The callback function to run when a mutation happens.
- * @param {*} options The options to use.
- * @example
- * _$.observeMutations(document, console.log);//Logs all the mutations that happen to the console.
- * @returns {undefined}
- */
-export let observeMutations = (element, callback, options) => {
-  const observer = new MutationObserver((mutations) =>
-    mutations.forEach((m) => callback(m)),
-  );
-  observer.observe(
-    element,
-    Object.assign(
-      {
-        childList: true,
-        attributes: true,
-        attributeOldValue: true,
-        characterData: true,
-        characterDataOldValue: true,
-        subtree: true,
-      },
-      options,
-    ),
-  );
-  return observer;
-};
+
 /**
  * @memberOf bijou
  * @function
@@ -3372,41 +3462,7 @@ export let context = () => {
     menu.style.pointerEvents = 'none';
   });
 };
-/**
- * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
- * @memberOf bijou
- * @function
- * @param {Element} el The element to tilt.
- * @param {Number} x The x value of the mouse
- * @param {Number} y The y value of the mouse
- * @param {Number} perspective The perspective
- * @param {Number} amount The amount to tilt.
- * @returns {undefined}
- * @example
- * //Tilt the first image in the document whenever the mouse moves.
- * let el = document.querySelector("img");
- * el.onmousemove = (e) => {
- *  let x = e.layerX;
- *  let y = e.layerY
- *  _$.tilt(el, x, y);
- * }
- */
-export let tilt = (el, x, y, perspective = 500, amount = 30) => {
-  //Old code
-  /*  const xVal = x
-    const yVal = y
-    const yRotation = amount * ((xVal - width / 2) / width)
-    const xRotation = amount * -1 * ((yVal - height / 2) / height)
-    const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
-    el.style.transform = string */
 
-  //One liner
-  el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
-    amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
-  }deg) rotateY(${
-    amount * ((x - el.clientWidth / 2) / el.clientWidth)
-  }deg)`;
-};
 /**
  * Flattens an array level times.
  * @memberOf bijou
@@ -3468,23 +3524,7 @@ export let formatHTML = (html) => {
 
   return result.substring(1, result.length - 3);
 };
-/**
- * Enters fullscreen on an element.
- * @memberOf bijou
- * @function
- * @param {Element} element The element to enter full screen with.
- * @returns {undefined}
- * @example
- * _$.fullScreen(document.documentElement);//Make the window fullscreen
- */
-export let fullScreen = (element) => {
-  return (
-    element.requestFullScreen ||
-    element.mozRequestFullScreen ||
-    element.webkitRequestFullScreen() ||
-    new Error('Fullscreen failed')
-  );
-};
+
 
 /**
  * Returns the difference between two arrays or strings.
@@ -3573,37 +3613,7 @@ export let beautifyJS = (js, callback) => {
   );
 };
 
-/**
- * Replaces the selected text in a contentEditable div with the HTML given.
- * @memberOf bijou
- * @function
- * @returns {undefined}
- * @example
- * //Add a simple contenteditable div to the page.
- * document.appendChild(_$.createElement("&lt;div contenteditable id='text'>&lt;/div>"));
- * _$.replaceSelection("&lt;b>BOLD TEXT&lt;/b> &lt;small>Bijou is awesome&lt;/small>&lt;h1>You need to use it&lt;/h1>");
- * //Replaces the selection! =)
- * @param {String} replacementText The replacement HTML to replace with.
- */
-export let replaceSelection = (replacementText) => {
-  var sel, range;
-  if (window.getSelection) {
-    sel = window.getSelection();
-    if (sel.rangeCount) {
-      range = sel.getRangeAt(0);
-      range.deleteContents();
-      let n = document.createElement('span');
-      n.insertAdjacentHTML('beforeend', replacementText);
-      range.insertNode(n);
-    }
-  } else if (document.selection &amp;&amp; document.selection.createRange) {
-    console.warn(
-      'You are using IE &lt; 9, you are evil. Falling back to text not HTML.',
-    );
-    range = document.selection.createRange();
-    range.text = replacementText.replace(/&lt;[^>]*>/g, '');
-  }
-};
+
 /**
  * Counts the syllables in the word given.
  * @memberOf bijou
@@ -4040,7 +4050,7 @@ if (isNode) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Thu Feb 18 2021 15:41:09 GMT+0000 (Coordinated Universal Time) using the Toast theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Thu Feb 18 2021 15:47:44 GMT+0000 (Coordinated Universal Time) using the Toast theme.
 </footer>
 
 <script>prettyPrint();</script>
