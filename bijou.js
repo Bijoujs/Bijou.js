@@ -3192,6 +3192,27 @@ export let dispatch = (type, args, target = window) => {
 //#endregion Event
 //#region Utility
 /**
+ * Plays a section of an audio file.
+ * @param {HTMLMediaElement} audioObj The audio object to play. (Needs to be created from "new Audio()")
+ * @param {Number} start The time to start playing.
+ * @param {Number} stop The time to stop playing.
+ * @memberOf bijou
+ * @function
+ * @example
+ * _$.playSection(new Audio("file.mp3"), 5, 20.5);//Plays file.mp3, starting with second 5 and ending at 20.5 seconds into the file.
+ */
+export let playSection = (audioObj, start, stop) => {
+  let audioObjNew = audioObj.cloneNode(true); //this is to prevent "play() request was interrupted" error.
+  audioObjNew.currentTime = start;
+  audioObjNew.play();
+  audioObjNew.int = setInterval(function () {
+    if (audioObjNew.currentTime > stop) {
+      audioObjNew.pause();
+      clearInterval(audioObjNew.int);
+    }
+  }, 10);
+};
+/**
  * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
  * @memberOf bijou
  * @function
