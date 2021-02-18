@@ -2278,6 +2278,111 @@ export let sortObj = (obj) => {
 };
 //#endregion Object
 //#region Element
+
+/**
+ * Re-enables the use of <menu> and <menuitem> tags for corner clicking.
+ * @memberOf bijou
+ * @function
+ * @example
+ * //HTML:
+ * ```
+ * <h1 contextmenu="menu">Corner click me</h1>
+ * <menu>
+ *  <menuitem label="An item!">
+ *  <menuitem label="Another item!">
+ * </menu>
+ * ```
+ * //JS
+ * _$.context();
+ * //Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
+ * @returns {undefined};
+ */
+export let context = () => {
+  var menu = document.createElement('UL');
+  menu.id = 'contextMenu';
+  document.body.appendChild(menu);
+  let styles = document.createElement('STYLE');
+  styles.innerHTML = `#contextMenu {
+       pointer-events: none;
+       padding: 0;
+       opacity: 0;
+       transition: opacity .3s ease;
+       position: fixed;
+       padding-top: 3px;
+       padding-bottom: 3px;
+       max-height: 200px;
+       overflow-y: scroll;
+       overflow-x: hidden;
+       list-style: none;
+       z-index: 10000;
+       background: white;
+       color: #333;
+       font-family: sans-serif;
+       border-radius: 5px;
+       box-shadow: 2px 2px 5px #0004;
+       width: fit-content;
+       min-width: 50px;
+       max-width: 150px;
+     }
+     #contextMenu li {
+       transition: background-color .3s ease;
+       display: block;
+       min-width: 150px;
+       margin: 0;
+       padding: 10px;
+     }
+     #contextMenu li:hover {
+       background-color: #ddd;
+       cursor: pointer;
+     }
+     `;
+  document.body.appendChild(styles);
+  var elements = document.querySelectorAll('[contextmenu]');
+  for (let i = 0; i < elements.length; i++) {
+    window.addEventListener('contextmenu', (e) => {
+      menu.style.pointerEvents = 'auto';
+      let items;
+      try {
+        items = document.querySelectorAll(
+          `#${e.target
+            .closest('[contextmenu]')
+            .getAttribute('contextmenu')} menuitem`,
+        );
+        e.preventDefault();
+      } catch (e) {
+        return true;
+      }
+      menu.innerHTML = '';
+      for (let j = 0; j < items.length; j++) {
+        const contextMenu = items[j];
+        menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
+          'onclick',
+        )}">${contextMenu.getAttribute('label')}</li>`;
+      }
+      console.log(menu.innerHTML);
+      menu.style.top = `${e.clientY}px`;
+      menu.style.left = `${e.clientX}px`;
+      menu.style.opacity = 1;
+    });
+  }
+  var contextTimer = 0;
+  requestInterval(() => {
+    contextTimer += 100;
+    if (contextTimer > 3000) {
+      menu.style.opacity = 0;
+      menu.style.pointerEvents = 'none';
+      contextTimer = 0;
+      return;
+    }
+  }, 100);
+  addEventListeners(menu, ['mousemove', 'click', 'scroll'], () => {
+    contextTimer = 0;
+  });
+  onOutsideClick(menu, () => {
+    menu.style.opacity = 0;
+    menu.style.pointerEvents = 'none';
+  });
+};
 /**
  * Tests whether the specified element is fully in view.
  * @function
@@ -2994,9 +3099,83 @@ export let onScrollStop = (callback) => {
     false,
   );
 };
+/**
+ * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
+ * @memberOf bijou
+ * @function
+ * @returns {Object} The object with the emit, on and off functions in it.
+ * @example
+ * let thing = _$.hub();
+ * //Log any new data to the console
+ * thing.on("data", (data) => console.log(data));
+ * setTimeout(() => {
+ *   thing.emit("data", "Yay! Some data!!");//Logs "Yay! Some data!!" to the console after 2 seconds.
+ * }, 2000)
+ */
+export let hub = () => ({
+  hub: Object.create(null),
+  emit(event, data) {
+    (this.hub[event] || []).forEach((handler) => handler(data));
+  },
+  on(event, handler) {
+    if (!this.hub[event]) this.hub[event] = [];
+    this.hub[event].push(handler);
+  },
+  off(event, handler) {
+    const i = (this.hub[event] || []).findIndex((h) => h === handler);
+    if (i > -1) this.hub[event].splice(i, 1);
+    if (this.hub[event].length === 0) delete this.hub[event];
+  },
+});
+/**
+ * Dispatches an event of the type specified with custom arguments.
+ * @memberOf bijou
+ * @function
+ * @example
+ * //Dispatch a custom mouse move event to the window.
+ * _$.dispatch("mousemove", {clientX: 100, clientY: 150, target: document.documentElement}, window);
+ * @param {String} type The type of event to dispatch (E.g. "mousemove")
+ * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
+ * @param {HTMLElement} target What to dispatch the event to.
+ */
+export let dispatch = (type, args, target = window) => {
+  let e = new Event(type);
+  for (let o in args) {
+    e[o] = args[o];
+  }
+  target.dispatchEvent(e);
+};
 //#endregion Event
 //#region Utility
+/**
+ * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
+ * @memberOf bijou
+ * @function
+ * @param {String} html The string of HTML to format.
+ * @returns {String} The formatted string of HTML.
+ */
+export let formatHTML = (html) => {
+  var tab = '\t';
+  var result = '';
+  var indent = '';
 
+  html.split(/>\s*</).forEach(function (element) {
+    if (element.match(/^\/\w/)) {
+      indent = indent.substring(tab.length);
+    }
+
+    result += indent + '<' + element + '>\r\n';
+
+    if (
+      element.match(/^<?\w[^>]*[^\/]$/) &&
+      !element.startsWith('input')
+    ) {
+      indent += tab;
+    }
+  });
+
+  return result.substring(1, result.length - 3);
+};
 /**
  * Gets JSON from a URL and performs a callback with it.
  * @function
@@ -3145,34 +3324,6 @@ export let loadScript = (url, callback) => {
   document.getElementsByTagName('head')[0].appendChild(script);
 };
 
-/**
- * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
- * @memberOf bijou
- * @function
- * @returns {Object} The object with the emit, on and off functions in it.
- * @example
- * let thing = _$.hub();
- * //Log any new data to the console
- * thing.on("data", (data) => console.log(data));
- * setTimeout(() => {
- *   thing.emit("data", "Yay! Some data!!");//Logs "Yay! Some data!!" to the console after 2 seconds.
- * }, 2000)
- */
-export let hub = () => ({
-  hub: Object.create(null),
-  emit(event, data) {
-    (this.hub[event] || []).forEach((handler) => handler(data));
-  },
-  on(event, handler) {
-    if (!this.hub[event]) this.hub[event] = [];
-    this.hub[event].push(handler);
-  },
-  off(event, handler) {
-    const i = (this.hub[event] || []).findIndex((h) => h === handler);
-    if (i > -1) this.hub[event].splice(i, 1);
-    if (this.hub[event].length === 0) delete this.hub[event];
-  },
-});
 /**
  * Fetches an image and runs the callback with the data url of the image.
  * @memberOf bijou
@@ -3727,161 +3878,6 @@ export let lightOrDark = (color) => {
   }
 };
 //#endregion Color
-
-/**
- * Re-enables the use of <menu> and <menuitem> tags for corner clicking.
- * @memberOf bijou
- * @function
- * @example
- * //HTML:
- * ```
- * <h1 contextmenu="menu">Corner click me</h1>
- * <menu>
- *  <menuitem label="An item!">
- *  <menuitem label="Another item!">
- * </menu>
- * ```
- * //JS
- * _$.context();
- * //Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
- * @returns {undefined};
- */
-export let context = () => {
-  var menu = document.createElement('UL');
-  menu.id = 'contextMenu';
-  document.body.appendChild(menu);
-  let styles = document.createElement('STYLE');
-  styles.innerHTML = `#contextMenu {
-       pointer-events: none;
-       padding: 0;
-       opacity: 0;
-       transition: opacity .3s ease;
-       position: fixed;
-       padding-top: 3px;
-       padding-bottom: 3px;
-       max-height: 200px;
-       overflow-y: scroll;
-       overflow-x: hidden;
-       list-style: none;
-       z-index: 10000;
-       background: white;
-       color: #333;
-       font-family: sans-serif;
-       border-radius: 5px;
-       box-shadow: 2px 2px 5px #0004;
-       width: fit-content;
-       min-width: 50px;
-       max-width: 150px;
-     }
-     #contextMenu li {
-       transition: background-color .3s ease;
-       display: block;
-       min-width: 150px;
-       margin: 0;
-       padding: 10px;
-     }
-     #contextMenu li:hover {
-       background-color: #ddd;
-       cursor: pointer;
-     }
-     `;
-  document.body.appendChild(styles);
-  var elements = document.querySelectorAll('[contextmenu]');
-  for (let i = 0; i < elements.length; i++) {
-    window.addEventListener('contextmenu', (e) => {
-      menu.style.pointerEvents = 'auto';
-      let items;
-      try {
-        items = document.querySelectorAll(
-          `#${e.target
-            .closest('[contextmenu]')
-            .getAttribute('contextmenu')} menuitem`,
-        );
-        e.preventDefault();
-      } catch (e) {
-        return true;
-      }
-      menu.innerHTML = '';
-      for (let j = 0; j < items.length; j++) {
-        const contextMenu = items[j];
-        menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
-          'onclick',
-        )}">${contextMenu.getAttribute('label')}</li>`;
-      }
-      console.log(menu.innerHTML);
-      menu.style.top = `${e.clientY}px`;
-      menu.style.left = `${e.clientX}px`;
-      menu.style.opacity = 1;
-    });
-  }
-  var contextTimer = 0;
-  requestInterval(() => {
-    contextTimer += 100;
-    if (contextTimer > 3000) {
-      menu.style.opacity = 0;
-      menu.style.pointerEvents = 'none';
-      contextTimer = 0;
-      return;
-    }
-  }, 100);
-  addEventListeners(menu, ['mousemove', 'click', 'scroll'], () => {
-    contextTimer = 0;
-  });
-  onOutsideClick(menu, () => {
-    menu.style.opacity = 0;
-    menu.style.pointerEvents = 'none';
-  });
-};
-
-/**
- * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
- * @memberOf bijou
- * @function
- * @param {String} html The string of HTML to format.
- * @returns {String} The formatted string of HTML.
- */
-export let formatHTML = (html) => {
-  var tab = '\t';
-  var result = '';
-  var indent = '';
-
-  html.split(/>\s*</).forEach(function (element) {
-    if (element.match(/^\/\w/)) {
-      indent = indent.substring(tab.length);
-    }
-
-    result += indent + '<' + element + '>\r\n';
-
-    if (
-      element.match(/^<?\w[^>]*[^\/]$/) &&
-      !element.startsWith('input')
-    ) {
-      indent += tab;
-    }
-  });
-
-  return result.substring(1, result.length - 3);
-};
-
-/**
- * Dispatches an event of the type specified with custom arguments.
- * @memberOf bijou
- * @function
- * @example
- * //Dispatch a custom mouse move event to the window.
- * _$.dispatch("mousemove", {clientX: 100, clientY: 150, target: document.documentElement}, window);
- * @param {String} type The type of event to dispatch (E.g. "mousemove")
- * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
- * @param {HTMLElement} target What to dispatch the event to.
- */
-export let dispatch = (type, args, target = window) => {
-  let e = new Event(type);
-  for (let o in args) {
-    e[o] = args[o];
-  }
-  target.dispatchEvent(e);
-};
-
 //#endregion Bijou
 
 let _temp = {
