@@ -479,6 +479,451 @@ export let runAsync = (fn) => {
 //#endregion Function
 //#region Element
 /**
+ * Tests whether the specified element is fully in view.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The DOM element to test.
+ * @example
+ * //Alerts "In view!" if the first <div> in the document is in view.
+ * if (_$.inView(document.querySelector("div"))) alert("In view!");
+ * @returns {Boolean} Whether the element is completely in view.
+ */
+export let inView = (el) => {
+  node();
+  var top = el.offsetTop;
+  var left = el.offsetLeft;
+  var width = el.offsetWidth;
+  var height = el.offsetHeight;
+
+  while (el.offsetParent) {
+    el = el.offsetParent;
+    top += el.offsetTop;
+    left += el.offsetLeft;
+  }
+
+  return (
+    top >= window.pageYOffset &&
+    left >= window.pageXOffset &&
+    top + height <= window.pageYOffset + window.innerHeight &&
+    left + width <= window.pageXOffset + window.innerWidth
+  );
+};
+/**
+ * Tests if the given DOM element is partially (or fully) in view.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element to test.
+ * @example
+ * //Alerts "In view!" if the first <div> in the document is partially or fully view.
+ * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
+ * @returns {Boolean} Whether the DOM element is partially in view.
+ */
+export let inPartialView = (el) => {
+  node();
+  var top = el.offsetTop;
+  var left = el.offsetLeft;
+  var width = el.offsetWidth;
+  var height = el.offsetHeight;
+
+  while (el.offsetParent) {
+    el = el.offsetParent;
+    top += el.offsetTop;
+    left += el.offsetLeft;
+  }
+
+  return (
+    top < window.pageYOffset + window.innerHeight &&
+    left < window.pageXOffset + window.innerWidth &&
+    top + height > window.pageYOffset &&
+    left + width > window.pageXOffset
+  );
+};
+/**
+ * Converts a form to URL queries using the name attribute.
+ * @function
+ * @memberOf bijou
+ * @param {Element} form The form element.
+ * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
+ */
+export let serializeForm = (form) => {
+  node();
+  return Array.from(new FormData(form), (field) =>
+    field.map(encodeURIComponent).join('='),
+  ).join('&');
+};
+
+/**
+ * Replaces the text in an element by running it through a callback.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element to replace the text of.
+ * @param {Function} callback The callback to run (Gets passed the element's text).
+ * @example
+ * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
+ * //Converts the text of the first <div> element to upperCase.
+ * @returns {String} The element who's text was replaced.
+ */
+export let replaceText = (el, callback) => {
+  node();
+  _$.each(_$.textNodes(el), (node) => {
+    node.textContent = callback(node.textContent);
+  });
+};
+/**
+ * @memberOf bijou
+ * @function
+ * @param {El} el The element to get the text nodes of.
+ * @returns {Array} The text nodes.
+ */
+export let textNodes = (el) => {
+  return [...el.childNodes].filter((node) => {
+    return (
+      node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ''
+    );
+  });
+};
+/**
+ * Generates a querySelector for an element passed in.
+ * @function
+ * @memberOf bijou
+ * @param {Element} elem The element to generate the querySelector for.
+ * @example
+ * const textarea = document.getElementById('textarea');
+ * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
+ * @returns {String} The generated querySelector.
+ */
+export let querySelector = (elem) => {
+  node();
+  var element = elem;
+  var str = '';
+
+  function loop(element) {
+    if (
+      element.getAttribute('id') &&
+      document.querySelectorAll(`#${element.getAttribute('id')}`)
+        .length === 1
+    ) {
+      str = str.replace(/^/, ' #' + element.getAttribute('id'));
+      str = str.replace(/\s/, '');
+      str = str.replace(/\s/g, ' > ');
+      return str;
+    }
+    if (document.body === element) {
+      str = str.replace(/^/, ' body');
+      str = str.replace(/\s/, '');
+      str = str.replace(/\s/g, ' > ');
+      return str;
+    }
+    if (element.getAttribute('class')) {
+      var elemClasses = '.';
+      elemClasses += element.getAttribute('class');
+      elemClasses = elemClasses.replace(/\s/g, '.');
+      elemClasses = elemClasses.replace(/^/g, ' ');
+      var classNth = '';
+      var childrens = element.parentNode.children;
+
+      if (childrens.length < 2) {
+        return;
+      }
+
+      var similarClasses = [];
+
+      for (var i = 0; i < childrens.length; i++) {
+        if (
+          element.getAttribute('class') ==
+          childrens[i].getAttribute('class')
+        ) {
+          similarClasses.push(childrens[i]);
+        }
+      }
+
+      if (similarClasses.length > 1) {
+        for (var j = 0; j < similarClasses.length; j++) {
+          if (element === similarClasses[j]) {
+            j++;
+            classNth = ':nth-of-type(' + j + ')';
+            break;
+          }
+        }
+      }
+
+      str = str.replace(/^/, elemClasses + classNth);
+    } else {
+      var name = element.nodeName;
+      name = name.toLowerCase();
+      var nodeNth = '';
+
+      childrens = element.parentNode.children;
+
+      if (childrens.length > 2) {
+        var similarNodes = [];
+
+        for (var i = 0; i < childrens.length; i++) {
+          if (element.nodeName == childrens[i].nodeName) {
+            similarNodes.push(childrens[i]);
+          }
+        }
+
+        if (similarNodes.length > 1) {
+          for (var j = 0; j < similarNodes.length; j++) {
+            if (element === similarNodes[j]) {
+              j++;
+              nodeNth = ':nth-of-type(' + j + ')';
+              break;
+            }
+          }
+        }
+      }
+
+      str = str.replace(/^/, ' ' + name + nodeNth);
+    }
+
+    if (element.parentNode) {
+      loop(element.parentNode);
+    } else {
+      str = str.replace(/\s/g, ' > ');
+      str = str.replace(/\s/, '');
+      return str;
+    }
+  }
+
+  loop(element);
+
+  return str;
+};
+/**
+ * Removes comments from the element or string of code specified.
+ * @function
+ * @memberOf bijou
+ * @param {Element|String} el The element or string or code to remove comments from.
+ * @example
+ * _$.removeComments(document.documentElement);//Removes the comments from the document element.
+ * @returns {String|Element} The string removed of comments or the element removed of comments.
+ */
+export let removeComments = (el) => {
+  if (typeof el === 'object') {
+    if (isNode) {
+      throw new Error(
+        'No document element! (You are probably using Node.js)',
+      );
+    }
+    el.innerHTML = el.innerHTML.replace(
+      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
+      '',
+    );
+    return el;
+  } else if (typeof el === 'string') {
+    return el.replace(
+      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
+      '',
+    );
+  }
+};
+/**
+ * Parses the string of HTML specified and returns an HTML element of it.
+ * @function
+ * @memberOf bijou
+ * @param {String} string The HTML string to parse.
+ * @param {String} [mimeType=text/html] The mimeType of the string.
+ * @example
+ * let html = _$.parseHTML("<div id='hello'><textarea></textarea></div>");
+ * html.querySelector("textarea");//Returns the textarea!
+ * @returns {Element} The HTML document element of the HTML string specified.
+ */
+export let parseHTML = (string, mimeType = 'text/html') => {
+  const domparser = new DOMParser();
+  return domparser.parseFromString(string, mimeType);
+};
+/**
+ * Allows an element to be dragged and dropped.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element to be dragged (And dropped :P ).
+ * @example
+ * _$.drag(document.querySelector('div'));//Allows the first <div> on the page to be dragged.
+ * @returns {Element} The element.
+ */
+export let drag = (el) => {
+  node();
+  var initX, initY, mousePressX, mousePressY;
+  el.addEventListener(
+    'mousedown',
+    function (event) {
+      var style = window.getComputedStyle(el);
+      el.style.top = style.getPropertyValue('top');
+      el.style.left = style.getPropertyValue('left');
+      el.style.right = style.getPropertyValue('right');
+      el.style.bottom = style.getPropertyValue('bottom');
+      this.style.position = 'absolute';
+      initX = this.offsetLeft;
+      initY = this.offsetTop;
+      mousePressX = event.clientX;
+      mousePressY = event.clientY;
+      this.addEventListener('mousemove', repositionElement, false);
+
+      window.addEventListener(
+        'mouseup',
+        function () {
+          el.removeEventListener(
+            'mousemove',
+            repositionElement,
+            false,
+          );
+        },
+        false,
+      );
+    },
+    false,
+  );
+
+  function repositionElement(event) {
+    this.style.left = initX + event.clientX - mousePressX + 'px';
+    this.style.top = initY + event.clientY - mousePressY + 'px';
+  }
+  return el;
+};
+/**
+ * Adds multiple event listeners with one callback to the element specified.
+ * @memberOf bijou
+ * @function
+ * @param {Element} element The element to add the event listeners to.
+ * @param {Array} events The array of events to listen for.
+ * @param {Function} handler The function to run when the events happen.
+ * @param {Boolean} [useCapture=false] Wether to use capture.
+ * @param {*} [args=false] The arguments to use in the handler function.
+ * @example
+ * //Reset a timer every user interaction.
+ * let timer = 0;
+ * setInterval(() => timer++, 1);
+ * _$.addEventListeners(
+ *  document,
+ *  ["mousemove", "click", "scroll", "keypress"],
+ *  () => timer = 0,
+ * );
+ * @returns {undefined}
+ */
+export let addEventListeners = (
+  element,
+  events,
+  handler = {},
+  useCapture = false,
+  args = false,
+) => {
+  if (!(events instanceof Array)) {
+    throw (
+      'addMultipleListeners: ' +
+      'please supply an array of eventstrings ' +
+      '(like ["click","mouseover"])'
+    );
+  }
+  //create a wrapper to be able to use additional arguments
+  var handlerFn = function (e) {
+    handler.apply(this, args && args instanceof Array ? args : []);
+  };
+  for (var i = 0; i < events.length; i += 1) {
+    element.addEventListener(events[i], handlerFn, useCapture);
+  }
+};
+/**
+ * @memberOf bijou
+ * @function
+ * @returns {undefined}
+ * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
+ * @param {HTMLElement} element The table to sort
+ */
+export let sortTable = (element) => {
+  var getCellValue = function (tr, idx) {
+    return tr.children[idx].innerText || tr.children[idx].textContent;
+  };
+
+  var comparer = function (idx, asc) {
+    return function (a, b) {
+      return (function (v1, v2) {
+        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
+          ? v1 - v2
+          : v1.toString().localeCompare(v2);
+      })(
+        getCellValue(asc ? a : b, idx),
+        getCellValue(asc ? b : a, idx),
+      );
+    };
+  };
+
+  Array.prototype.slice
+    .call(element.querySelectorAll('th'))
+    .forEach(function (th) {
+      th.addEventListener('click', function () {
+        var table = th.parentNode;
+        while (table.tagName.toUpperCase() != 'TABLE')
+          table = table.parentNode;
+        Array.prototype.slice
+          .call(table.querySelectorAll('tr:nth-child(n+2)'))
+          .sort(
+            comparer(
+              Array.prototype.slice
+                .call(th.parentNode.children)
+                .indexOf(th),
+              (this.asc = !this.asc),
+            ),
+          )
+          .forEach(function (tr) {
+            table.appendChild(tr);
+          });
+      });
+    });
+};
+/**
+ * Sorts a table by a <th> element.
+ * @memberOf bijou
+ * @function
+ * @returns {undefined}
+ * @example
+ * //Note that this example pretty much recreates the _$ sortTable function, which is much more cross browser and good than this recreation. If sorting a whole table please use that.
+ * _$.each(document.querySelectorAll("#table th"), (th) => {
+ *  th.addEventListener("click", () => {
+ *    //Add event listeners to each of them.
+ *    _$.sortTableBy(th, th.asc = !th.asc);//Toggle the "asc" attribute on the th.
+ *  });
+ * })
+ * @param {HTMLElement} th The table header (<th> element) to sort with.
+ * @param {Boolean} acending Whether to sort the table ascending or descending.
+ */
+export let sortTableBy = (th, acending) => {
+  var getCellValue = function (tr, idx) {
+    return tr.children[idx].innerText || tr.children[idx].textContent;
+  };
+
+  var comparer = function (idx, asc) {
+    return function (a, b) {
+      return (function (v1, v2) {
+        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
+          ? v1 - v2
+          : v1.toString().localeCompare(v2);
+      })(
+        getCellValue(asc ? a : b, idx),
+        getCellValue(asc ? b : a, idx),
+      );
+    };
+  };
+
+  var table = th.parentNode;
+  while (table.tagName.toUpperCase() != 'TABLE')
+    table = table.parentNode;
+  Array.prototype.slice
+    .call(table.querySelectorAll('tr:nth-child(n+2)'))
+    .sort(
+      comparer(
+        Array.prototype.slice
+          .call(th.parentNode.children)
+          .indexOf(th),
+        acending,
+      ),
+    )
+    .forEach(function (tr) {
+      table.appendChild(tr);
+    });
+};
+/**
  * Adds the specified styles to the element specified.
  * @function
  * @memberOf bijou
@@ -740,135 +1185,7 @@ export let browser = () => {
   }
 };
 //#endregion Utility
-
-/**
- * Tests whether the specified element is fully in view.
- * @function
- * @memberOf bijou
- * @param {Element} el The DOM element to test.
- * @example
- * //Alerts "In view!" if the first <div> in the document is in view.
- * if (_$.inView(document.querySelector("div"))) alert("In view!");
- * @returns {Boolean} Whether the element is completely in view.
- */
-export let inView = (el) => {
-  node();
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
-
-  while (el.offsetParent) {
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
-  }
-
-  return (
-    top >= window.pageYOffset &&
-    left >= window.pageXOffset &&
-    top + height <= window.pageYOffset + window.innerHeight &&
-    left + width <= window.pageXOffset + window.innerWidth
-  );
-};
-/**
- * Tests if the given DOM element is partially (or fully) in view.
- * @function
- * @memberOf bijou
- * @param {Element} el The element to test.
- * @example
- * //Alerts "In view!" if the first <div> in the document is partially or fully view.
- * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
- * @returns {Boolean} Whether the DOM element is partially in view.
- */
-export let inPartialView = (el) => {
-  node();
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
-
-  while (el.offsetParent) {
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
-  }
-
-  return (
-    top < window.pageYOffset + window.innerHeight &&
-    left < window.pageXOffset + window.innerWidth &&
-    top + height > window.pageYOffset &&
-    left + width > window.pageXOffset
-  );
-};
-/**
- * Converts a form to URL queries using the name attribute.
- * @function
- * @memberOf bijou
- * @param {Element} form The form element.
- * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
- */
-export let serializeForm = (form) => {
-  node();
-  return Array.from(new FormData(form), (field) =>
-    field.map(encodeURIComponent).join('='),
-  ).join('&');
-};
-
-/**
- * Replaces the text in an element by running it through a callback.
- * @function
- * @memberOf bijou
- * @param {Element} el The element to replace the text of.
- * @param {Function} callback The callback to run (Gets passed the element's text).
- * @example
- * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
- * //Converts the text of the first <div> element to upperCase.
- * @returns {String} The element who's text was replaced.
- */
-export let replaceText = (el, callback) => {
-  node();
-  _$.each(_$.textNodes(el), (node) => {
-    node.textContent = callback(node.textContent);
-  });
-};
-/**
- * @memberOf bijou
- * @function
- * @param {El} el The element to get the text nodes of.
- * @returns {Array} The text nodes.
- */
-export let textNodes = (el) => {
-  return [...el.childNodes].filter((node) => {
-    return (
-      node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ''
-    );
-  });
-};
-
-/**
- * Returns the last space in the string given replaced with "&nbsp;"
- * @function
- * @memberOf bijou
- * @param {String} text The string to replace
- * @example
- * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
- * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
- * @returns {String} The replaced string.
- */
-export let widows = (text) => {
-  var wordArray = text.split(' ');
-  var finalTitle = '';
-  for (var i = 0; i <= wordArray.length - 1; i++) {
-    finalTitle += wordArray[i];
-    if (i == wordArray.length - 2) {
-      finalTitle += '&nbsp;';
-    } else {
-      finalTitle += ' ';
-    }
-  }
-  return finalTitle;
-};
+//#region Color
 /**
  * Generates a random hex color.
  * @function
@@ -960,6 +1277,32 @@ export let lightOrDark = (color) => {
     return { lightOrDark: 'dark', hsp: hsp };
   }
 };
+//#endregion Color
+
+/**
+ * Returns the last space in the string given replaced with "&nbsp;"
+ * @function
+ * @memberOf bijou
+ * @param {String} text The string to replace
+ * @example
+ * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
+ * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
+ * @returns {String} The replaced string.
+ */
+export let widows = (text) => {
+  var wordArray = text.split(' ');
+  var finalTitle = '';
+  for (var i = 0; i <= wordArray.length - 1; i++) {
+    finalTitle += wordArray[i];
+    if (i == wordArray.length - 2) {
+      finalTitle += '&nbsp;';
+    } else {
+      finalTitle += ' ';
+    }
+  }
+  return finalTitle;
+};
+
 /**
  * Gets a property from the computed style of an element.
  * @function
@@ -975,6 +1318,14 @@ export let compStyle = (el, prop) => {
   var computedStyles = window.getComputedStyle(el);
   return computedStyles.getPropertyValue(prop);
 };
+/**
+ * Converts a rgb(a) color to hex.
+ * @memberOf bijou
+ * @function
+ * @example
+ * _$.rgbToHex("rgb(255,255,255)");//Returns "#ffffff"
+ * @param {String} rgb The string of RGB colors.
+ */
 export let rgbToHex = (rgb) => {
   let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
   rgb = rgb.substr(4).split(')')[0].split(sep);
@@ -1030,143 +1381,7 @@ export let hexToRGB = (hex) => {
     ')'
   );
 };
-/**
- * Generates a querySelector for an element passed in.
- * @function
- * @memberOf bijou
- * @param {Element} elem The element to generate the querySelector for.
- * @example
- * const textarea = document.getElementById('textarea');
- * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
- * @returns {String} The generated querySelector.
- */
-export let querySelector = (elem) => {
-  node();
-  var element = elem;
-  var str = '';
 
-  function loop(element) {
-    if (
-      element.getAttribute('id') &&
-      document.querySelectorAll(`#${element.getAttribute('id')}`)
-        .length === 1
-    ) {
-      str = str.replace(/^/, ' #' + element.getAttribute('id'));
-      str = str.replace(/\s/, '');
-      str = str.replace(/\s/g, ' > ');
-      return str;
-    }
-    if (document.body === element) {
-      str = str.replace(/^/, ' body');
-      str = str.replace(/\s/, '');
-      str = str.replace(/\s/g, ' > ');
-      return str;
-    }
-    if (element.getAttribute('class')) {
-      var elemClasses = '.';
-      elemClasses += element.getAttribute('class');
-      elemClasses = elemClasses.replace(/\s/g, '.');
-      elemClasses = elemClasses.replace(/^/g, ' ');
-      var classNth = '';
-      var childrens = element.parentNode.children;
-
-      if (childrens.length < 2) {
-        return;
-      }
-
-      var similarClasses = [];
-
-      for (var i = 0; i < childrens.length; i++) {
-        if (
-          element.getAttribute('class') ==
-          childrens[i].getAttribute('class')
-        ) {
-          similarClasses.push(childrens[i]);
-        }
-      }
-
-      if (similarClasses.length > 1) {
-        for (var j = 0; j < similarClasses.length; j++) {
-          if (element === similarClasses[j]) {
-            j++;
-            classNth = ':nth-of-type(' + j + ')';
-            break;
-          }
-        }
-      }
-
-      str = str.replace(/^/, elemClasses + classNth);
-    } else {
-      var name = element.nodeName;
-      name = name.toLowerCase();
-      var nodeNth = '';
-
-      childrens = element.parentNode.children;
-
-      if (childrens.length > 2) {
-        var similarNodes = [];
-
-        for (var i = 0; i < childrens.length; i++) {
-          if (element.nodeName == childrens[i].nodeName) {
-            similarNodes.push(childrens[i]);
-          }
-        }
-
-        if (similarNodes.length > 1) {
-          for (var j = 0; j < similarNodes.length; j++) {
-            if (element === similarNodes[j]) {
-              j++;
-              nodeNth = ':nth-of-type(' + j + ')';
-              break;
-            }
-          }
-        }
-      }
-
-      str = str.replace(/^/, ' ' + name + nodeNth);
-    }
-
-    if (element.parentNode) {
-      loop(element.parentNode);
-    } else {
-      str = str.replace(/\s/g, ' > ');
-      str = str.replace(/\s/, '');
-      return str;
-    }
-  }
-
-  loop(element);
-
-  return str;
-};
-/**
- * Removes comments from the element or string of code specified.
- * @function
- * @memberOf bijou
- * @param {Element|String} el The element or string or code to remove comments from.
- * @example
- * _$.removeComments(document.documentElement);//Removes the comments from the document element.
- * @returns {String|Element} The string removed of comments or the element removed of comments.
- */
-export let removeComments = (el) => {
-  if (typeof el === 'object') {
-    if (isNode) {
-      throw new Error(
-        'No document element! (You are probably using Node.js)',
-      );
-    }
-    el.innerHTML = el.innerHTML.replace(
-      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-      '',
-    );
-    return el;
-  } else if (typeof el === 'string') {
-    return el.replace(
-      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-      '',
-    );
-  }
-};
 /**
  * Generates a random number between a minimum and maximum number
  * @function
@@ -1248,21 +1463,7 @@ export let unCamelCase = function (str) {
       return s.toUpperCase();
     });
 };
-/**
- * Parses the string of HTML specified and returns an HTML element of it.
- * @function
- * @memberOf bijou
- * @param {String} string The HTML string to parse.
- * @param {String} [mimeType=text/html] The mimeType of the string.
- * @example
- * let html = _$.parseHTML("<div id='hello'><textarea></textarea></div>");
- * html.querySelector("textarea");//Returns the textarea!
- * @returns {Element} The HTML document element of the HTML string specified.
- */
-export let parseHTML = (string, mimeType = 'text/html') => {
-  const domparser = new DOMParser();
-  return domparser.parseFromString(string, mimeType);
-};
+
 /**
  * Syntax highlights a string of code.
  * @function
@@ -2042,195 +2243,7 @@ export let scrambleString = (str) => {
   }
   return a.join('');
 };
-/**
- * Allows an element to be dragged and dropped.
- * @function
- * @memberOf bijou
- * @param {Element} el The element to be dragged (And dropped :P ).
- * @example
- * _$.drag(document.querySelector('div'));//Allows the first <div> on the page to be dragged.
- * @returns {Element} The element.
- */
-export let drag = (el) => {
-  node();
-  var initX, initY, mousePressX, mousePressY;
-  el.addEventListener(
-    'mousedown',
-    function (event) {
-      var style = window.getComputedStyle(el);
-      el.style.top = style.getPropertyValue('top');
-      el.style.left = style.getPropertyValue('left');
-      el.style.right = style.getPropertyValue('right');
-      el.style.bottom = style.getPropertyValue('bottom');
-      this.style.position = 'absolute';
-      initX = this.offsetLeft;
-      initY = this.offsetTop;
-      mousePressX = event.clientX;
-      mousePressY = event.clientY;
-      this.addEventListener('mousemove', repositionElement, false);
 
-      window.addEventListener(
-        'mouseup',
-        function () {
-          el.removeEventListener(
-            'mousemove',
-            repositionElement,
-            false,
-          );
-        },
-        false,
-      );
-    },
-    false,
-  );
-
-  function repositionElement(event) {
-    this.style.left = initX + event.clientX - mousePressX + 'px';
-    this.style.top = initY + event.clientY - mousePressY + 'px';
-  }
-  return el;
-};
-/**
- * Adds multiple event listeners with one callback to the element specified.
- * @memberOf bijou
- * @function
- * @param {Element} element The element to add the event listeners to.
- * @param {Array} events The array of events to listen for.
- * @param {Function} handler The function to run when the events happen.
- * @param {Boolean} [useCapture=false] Wether to use capture.
- * @param {*} [args=false] The arguments to use in the handler function.
- * @example
- * //Reset a timer every user interaction.
- * let timer = 0;
- * setInterval(() => timer++, 1);
- * _$.addEventListeners(
- *  document,
- *  ["mousemove", "click", "scroll", "keypress"],
- *  () => timer = 0,
- * );
- * @returns {undefined}
- */
-export let addEventListeners = (
-  element,
-  events,
-  handler = {},
-  useCapture = false,
-  args = false,
-) => {
-  if (!(events instanceof Array)) {
-    throw (
-      'addMultipleListeners: ' +
-      'please supply an array of eventstrings ' +
-      '(like ["click","mouseover"])'
-    );
-  }
-  //create a wrapper to be able to use additional arguments
-  var handlerFn = function (e) {
-    handler.apply(this, args && args instanceof Array ? args : []);
-  };
-  for (var i = 0; i < events.length; i += 1) {
-    element.addEventListener(events[i], handlerFn, useCapture);
-  }
-};
-/**
- * @memberOf bijou
- * @function
- * @returns {undefined}
- * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
- * @param {HTMLElement} element The table to sort
- */
-export let sortTable = (element) => {
-  var getCellValue = function (tr, idx) {
-    return tr.children[idx].innerText || tr.children[idx].textContent;
-  };
-
-  var comparer = function (idx, asc) {
-    return function (a, b) {
-      return (function (v1, v2) {
-        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
-          ? v1 - v2
-          : v1.toString().localeCompare(v2);
-      })(
-        getCellValue(asc ? a : b, idx),
-        getCellValue(asc ? b : a, idx),
-      );
-    };
-  };
-
-  Array.prototype.slice
-    .call(element.querySelectorAll('th'))
-    .forEach(function (th) {
-      th.addEventListener('click', function () {
-        var table = th.parentNode;
-        while (table.tagName.toUpperCase() != 'TABLE')
-          table = table.parentNode;
-        Array.prototype.slice
-          .call(table.querySelectorAll('tr:nth-child(n+2)'))
-          .sort(
-            comparer(
-              Array.prototype.slice
-                .call(th.parentNode.children)
-                .indexOf(th),
-              (this.asc = !this.asc),
-            ),
-          )
-          .forEach(function (tr) {
-            table.appendChild(tr);
-          });
-      });
-    });
-};
-/**
- * Sorts a table by a <th> element.
- * @memberOf bijou
- * @function
- * @returns {undefined}
- * @example
- * //Note that this example pretty much recreates the _$ sortTable function, which is much more cross browser and good than this recreation. If sorting a whole table please use that.
- * _$.each(document.querySelectorAll("#table th"), (th) => {
- *  th.addEventListener("click", () => {
- *    //Add event listeners to each of them.
- *    _$.sortTableBy(th, th.asc = !th.asc);//Toggle the "asc" attribute on the th.
- *  });
- * })
- * @param {HTMLElement} th The table header (<th> element) to sort with.
- * @param {Boolean} acending Whether to sort the table ascending or descending.
- */
-export let sortTableBy = (th, acending) => {
-  var getCellValue = function (tr, idx) {
-    return tr.children[idx].innerText || tr.children[idx].textContent;
-  };
-
-  var comparer = function (idx, asc) {
-    return function (a, b) {
-      return (function (v1, v2) {
-        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
-          ? v1 - v2
-          : v1.toString().localeCompare(v2);
-      })(
-        getCellValue(asc ? a : b, idx),
-        getCellValue(asc ? b : a, idx),
-      );
-    };
-  };
-
-  var table = th.parentNode;
-  while (table.tagName.toUpperCase() != 'TABLE')
-    table = table.parentNode;
-  Array.prototype.slice
-    .call(table.querySelectorAll('tr:nth-child(n+2)'))
-    .sort(
-      comparer(
-        Array.prototype.slice
-          .call(th.parentNode.children)
-          .indexOf(th),
-        acending,
-      ),
-    )
-    .forEach(function (tr) {
-      table.appendChild(tr);
-    });
-};
 /**
  * Easing functions
  * @Object
