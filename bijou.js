@@ -352,6 +352,51 @@ export let previousPage = () => {
 //#endregion String
 //#region Array
 /**
+ * Splices an array buffer
+ * @function
+ * @memberOf bijou
+ */
+export let spliceArrayBuffer = (arr, start, end, endian) => {
+  endian = endian || false;
+  var direction = endian ? -1 : 1;
+  if (endian) [start, end] = [end, start];
+  start = Math.floor(start);
+  end = Math.floor(end) + direction;
+  for (var i = start, value = 0; i != end; i += direction)
+    value = 256 * value + arr[i];
+  return value;
+};
+/**
+ * Shuffles an array
+ * @function
+ * @memberOf bijou
+ * @param {Array} array The array to shuffle.
+ * @example
+ * let array = [1,2,3,4,5];
+ * array = _$.shuffleArray(array);
+ * //array is now something like this: [2,4,1,5,3].
+ * @returns {Array} The shuffled array.
+ */
+export let shuffleArray = (array) =>
+  array.sort(() => Math.random() - 0.5);
+
+/**
+ * Splice but also for strings
+ * @memberOf bijou
+ * @function
+ * @param {String|Array} array The array of string to operate on
+ * @param {Number} index The index to splice
+ * @param {*} item The item
+ * @param {Number} remove How many to remove.
+ */
+export let splice = (array, index, item, remove = 0) => {
+  return typeof array === 'string'
+    ? array.slice(0, index) +
+        item +
+        array.slice(index + Math.abs(remove))
+    : array.splice(index, remove, item);
+};
+/**
  * Joins two arrays together and removes duplicates.
  * @function
  * @memberOf bijou
@@ -1701,21 +1746,6 @@ export let widows = (text) => {
 };
 
 /**
- * Splices an array buffer
- * @function
- * @memberOf bijou
- */
-export let spliceArrayBuffer = (arr, start, end, endian) => {
-  endian = endian || false;
-  var direction = endian ? -1 : 1;
-  if (endian) [start, end] = [end, start];
-  start = Math.floor(start);
-  end = Math.floor(end) + direction;
-  for (var i = start, value = 0; i != end; i += direction)
-    value = 256 * value + arr[i];
-  return value;
-};
-/**
  * Undoes camelCase.
  * @function
  * @memberOf bijou
@@ -2552,19 +2582,7 @@ export let getHTML = (url, callback) => {
       throw new Error(error.stack);
     });
 };
-/**
- * Shuffles an array
- * @function
- * @memberOf bijou
- * @param {Array} array The array to shuffle.
- * @example
- * let array = [1,2,3,4,5];
- * array = _$.shuffleArray(array);
- * //array is now something like this: [2,4,1,5,3].
- * @returns {Array} The shuffled array.
- */
-export let shuffleArray = (array) =>
-  array.sort(() => Math.random() - 0.5);
+
 /**
  * Hashes a string to a unique integer (This cannot be decrypted easily).
  * @function
@@ -2900,13 +2918,7 @@ export let clone = (obj) => {
   }
   return copy;
 };
-export let splice = (array, index, item, remove = 0) => {
-  return typeof array === 'string'
-    ? array.slice(0, index) +
-        item +
-        array.slice(index + Math.abs(remove))
-    : array.splice(index, remove, item);
-};
+
 /**
  * Converts markdown to HTML.
  * @param {String} src The markdown to convert to HTML.
