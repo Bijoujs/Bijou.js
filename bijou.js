@@ -1770,39 +1770,6 @@ export let previousPage = () => {
 //#region Array
 
 /**
- * Flattens an array level times.
- * @memberOf bijou
- * @function
- * @returns {Array} The flattened array.
- * @example
- * _$.flatten(['a', 'b', ['c', 'd']]);//Returns ['a', 'b', 'c', 'd'];
- * @param {Array} array The array to flatten.
- * @param {Number} [level=1] The number of iterations to flatten it.
- */
-export let flatten = (array, level = 1) => {
-  var output = array;
-  _$.each(level, () => {
-    output = [].concat.apply([], array);
-  });
-  return output;
-};
-
-/**
- * Flattens an array recursively.
- * @function
- * @memberOf bijou
- * @param {Array} arr The array to flatten.
- * @returns {Array} The flattened array.
- */
-export let nFlatten = (arr) => {
-  return arr.reduce(function (flat, toFlatten) {
-    return flat.concat(
-      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
-    );
-  }, []);
-};
-
-/**
  * Returns the difference between two arrays or strings.
  * @memberOf bijou
  * @function
@@ -2045,35 +2012,6 @@ export let nFlatten = (arr) => {
       Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
     );
   }, []);
-};
-
-/**
- * Returns the difference between two arrays or strings.
- * @memberOf bijou
- * @function
- * @returns {Array|String} The difference between two arrays or strings.
- * @example
- * _$.arrayDiff([['a', 'b'], ['a', 'b', 'c', 'd']]);//Returns ["c", "d"];
- * @param {Array} a1 The first array or string
- * @param {Array} a2 The 2nd array or string.
- */
-export let arrayDiff = (a1, a2) => {
-  var a = [],
-    diff = [];
-  for (var i = 0; i < a1.length; i++) {
-    a[a1[i]] = true;
-  }
-  for (var i = 0; i < a2.length; i++) {
-    if (a[a2[i]]) {
-      delete a[a2[i]];
-    } else {
-      a[a2[i]] = true;
-    }
-  }
-  for (var k in a) {
-    diff.push(k);
-  }
-  return diff;
 };
 
 /**
