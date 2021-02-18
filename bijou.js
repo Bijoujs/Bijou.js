@@ -2014,48 +2014,6 @@ export let nFlatten = (arr) => {
   }, []);
 };
 
-/**
- * Gets the difference between two strings.
- * @memberOf bijou
- * @function
- * @param {String} text1 The 1st text to compare
- * @param {String} text2 The 2nd text to compare with the 1st one.
- * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
- */
-export let diff = function (text1, text2) {
-  //Takes in two strings
-  //Returns an array of the span of the differences
-  //So if given:
-  // text1: "that is number 124"
-  // text2: "this is number 123"
-  //It will return:
-  // [[2,4],[17,18]]
-  //If the strings are of different lengths, it will check up to the end of text1
-  //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
-  var diffRange = [];
-  var currentRange = undefined;
-  for (var i = 0; i < text1.length; i++) {
-    if (text1[i] != text2[i]) {
-      //Found a diff!
-      if (currentRange == undefined) {
-        //Start a new range
-        currentRange = [i];
-      }
-    }
-    if (currentRange != undefined && text1[i] == text2[i]) {
-      //End of range!
-      currentRange.push(i);
-      diffRange.push(currentRange);
-      currentRange = undefined;
-    }
-  }
-  //Push any last range if there's still one at the end
-  if (currentRange != undefined) {
-    currentRange.push(i);
-    diffRange.push(currentRange);
-  }
-  return diffRange;
-};
 
 /**
  * Removes an item from the array specified.
