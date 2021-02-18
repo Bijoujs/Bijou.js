@@ -57,9 +57,10 @@ Contributors to Bijou.js:
 ║ (AKA retronbv)    ║ features and bug fixes.    ║
 ║═══════════════════║════════════════════════════║
 ║ thecoder876       ║ Made some improvements.    ║
+║══════════════════ ║ ═══════════════════════════║
+║  AmpersandGD(aka  ║   Stupid commits           ║
+║  the stupid one)  ║                            ║
 ╚═══════════════════╩════════════════════════════╝
-
-
 (c) 2021 Explosion-Scratch, all rights reserved.
 
  */
