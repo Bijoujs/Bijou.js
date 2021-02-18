@@ -1768,7 +1768,6 @@ export let previousPage = () => {
 };
 //#endregion String
 //#region Array
-//#region Function
 
 /**
  * Flattens an array level times.
@@ -2015,7 +2014,372 @@ export let each = (array, callback) => {
     callback(array[i], i, array);
   }
 };
+/**
+ * Flattens an array level times.
+ * @memberOf bijou
+ * @function
+ * @returns {Array} The flattened array.
+ * @example
+ * _$.flatten(['a', 'b', ['c', 'd']]);//Returns ['a', 'b', 'c', 'd'];
+ * @param {Array} array The array to flatten.
+ * @param {Number} [level=1] The number of iterations to flatten it.
+ */
+export let flatten = (array, level = 1) => {
+  var output = array;
+  _$.each(level, () => {
+    output = [].concat.apply([], array);
+  });
+  return output;
+};
+
+/**
+ * Flattens an array recursively.
+ * @function
+ * @memberOf bijou
+ * @param {Array} arr The array to flatten.
+ * @returns {Array} The flattened array.
+ */
+export let nFlatten = (arr) => {
+  return arr.reduce(function (flat, toFlatten) {
+    return flat.concat(
+      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
+    );
+  }, []);
+};
+
+/**
+ * Returns the difference between two arrays or strings.
+ * @memberOf bijou
+ * @function
+ * @returns {Array|String} The difference between two arrays or strings.
+ * @example
+ * _$.arrayDiff([['a', 'b'], ['a', 'b', 'c', 'd']]);//Returns ["c", "d"];
+ * @param {Array} a1 The first array or string
+ * @param {Array} a2 The 2nd array or string.
+ */
+export let arrayDiff = (a1, a2) => {
+  var a = [],
+    diff = [];
+  for (var i = 0; i < a1.length; i++) {
+    a[a1[i]] = true;
+  }
+  for (var i = 0; i < a2.length; i++) {
+    if (a[a2[i]]) {
+      delete a[a2[i]];
+    } else {
+      a[a2[i]] = true;
+    }
+  }
+  for (var k in a) {
+    diff.push(k);
+  }
+  return diff;
+};
+
+/**
+ * Gets the difference between two strings.
+ * @memberOf bijou
+ * @function
+ * @param {String} text1 The 1st text to compare
+ * @param {String} text2 The 2nd text to compare with the 1st one.
+ * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
+ */
+export let diff = function (text1, text2) {
+  //Takes in two strings
+  //Returns an array of the span of the differences
+  //So if given:
+  // text1: "that is number 124"
+  // text2: "this is number 123"
+  //It will return:
+  // [[2,4],[17,18]]
+  //If the strings are of different lengths, it will check up to the end of text1
+  //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
+  var diffRange = [];
+  var currentRange = undefined;
+  for (var i = 0; i < text1.length; i++) {
+    if (text1[i] != text2[i]) {
+      //Found a diff!
+      if (currentRange == undefined) {
+        //Start a new range
+        currentRange = [i];
+      }
+    }
+    if (currentRange != undefined && text1[i] == text2[i]) {
+      //End of range!
+      currentRange.push(i);
+      diffRange.push(currentRange);
+      currentRange = undefined;
+    }
+  }
+  //Push any last range if there's still one at the end
+  if (currentRange != undefined) {
+    currentRange.push(i);
+    diffRange.push(currentRange);
+  }
+  return diffRange;
+};
+
+/**
+ * Removes an item from the array specified.
+ * @memberOf bijou
+ * @function
+ * @param {Array|String} array The array or string to remove the item or string from.
+ * @param {*} item The item to remove.
+ * @example
+ * _$.remove([1,2,3,4,5], 1);//Returns [2,3,4,5].
+ */
+export let remove = (array, item) =>
+  array.indexOf(item) > -1
+    ? array.splice(array.indexOf(item), 1)
+    : array;
+
+/**
+ * Returns whether the specified array or string contains the item given.
+ * @memberOf bijou
+ * @function
+ * @param {Array} array The array to test with.
+ * @param {String} item The item to see if the array contains.
+ * @example
+ * _$.contains([1,2,3,4,5], 3);//Returns true. The array does include 5.
+ * @returns {Boolean} True or false depending on if the array contains that item.
+ */
+export let contains = (array, item) => array.includes(item);
+
+/**
+ * Splices an array buffer
+ * @function
+ * @memberOf bijou
+ */
+export let spliceArrayBuffer = (arr, start, end, endian) => {
+  endian = endian || false;
+  var direction = endian ? -1 : 1;
+  if (endian) [start, end] = [end, start];
+  start = Math.floor(start);
+  end = Math.floor(end) + direction;
+  for (var i = start, value = 0; i != end; i += direction)
+    value = 256 * value + arr[i];
+  return value;
+};
+/**
+ * Shuffles an array
+ * @function
+ * @memberOf bijou
+ * @param {Array} array The array to shuffle.
+ * @example
+ * let array = [1,2,3,4,5];
+ * array = _$.shuffleArray(array);
+ * //array is now something like this: [2,4,1,5,3].
+ * @returns {Array} The shuffled array.
+ */
+export let shuffleArray = (array) =>
+  array.sort(() => Math.random() - 0.5);
+
+/**
+ * Splice but also for strings
+ * @memberOf bijou
+ * @function
+ * @param {String|Array} array The array of string to operate on
+ * @param {Number} index The index to splice
+ * @param {*} item The item
+ * @param {Number} remove How many to remove.
+ */
+export let splice = (array, index, item, remove = 0) => {
+  return typeof array === 'string'
+    ? array.slice(0, index) +
+        item +
+        array.slice(index + Math.abs(remove))
+    : array.splice(index, remove, item);
+};
+/**
+ * Joins two arrays together and removes duplicates.
+ * @function
+ * @memberOf bijou
+ * @param {Array} x The first array to join.
+ * @param {Array} y The second array to join.
+ * @example
+ * _$.unionArrays([1,2,3], [4,5,6]);//Returns [1,2,3,4,5,6]
+ * @returns {Array} The joined array from the two other arrays.
+ */
+export let unionArrays = (x, y) => {
+  var obj = {};
+  for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
+  for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
+  var res = [];
+  for (var k in obj) {
+    if (obj.hasOwnProperty(k)) res.push(obj[k]);
+  }
+  return res;
+};
+/**
+ * averageBy
+ * @function
+ * @memberOf bijou
+ * @param {Array.<number>} arr The array to average
+ * @param {Function} fn The function to apply to each item of the array.
+ * @example
+ * //Averages the array 1,2,3,4 after squaring each number.
+ * _$.averageBy([1,2,3,4], (v) => v ** 2);
+ * @returns {Number} The average of the array.
+ */
+export let averageBy = (arr, fn) =>
+  arr
+    .map(typeof fn === 'function' ? fn : (val) => val[fn])
+    .reduce((acc, val) => acc + val, 0) / arr.length;
+
+/**
+  * Removes duplicates from an array
+  * @function
+  * @memberOf bijou
+  * @param {Array} array The array to remove duplicates from.
+  * @example
+  * let an_array = [1,1,2,3,4,5,5,6]
+  an_array = _$.uniqueArray(an_array);
+  //Now an_array is [1,2,3,4,5,6]
+  * @returns {Array} The array with no duplicates.
+  */
+export let uniqueArray = (array) => [...new Set(array)];
+/**
+ * For each item in an array, run a callback with it.
+ * @function
+ * @memberOf bijou
+ * @param {Array} array The array of items to run the callback with.
+ * @param {Function} callback The callback function to run on the array items.
+ * @example
+ * _$.each(new Array(40), (array_item, i) => console.log(i));//Logs the numbers up to 40.
+ * @returns {undefined}
+ */
+export let each = (array, callback) => {
+  array =
+    typeof array === 'number'
+      ? _$.range(1, array)
+      : typeof array === 'string'
+      ? array.split('')
+      : array;
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i], i, array);
+  }
+};
 //#endregion Array
+//#region Function
+/**
+ * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
+ * @function
+ * @memberOf bijou
+ * @param {Function} fn The function to memoize.
+ * @example
+ * let uuid = _$.memoize(() => uuid());
+ * console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)
+ * @returns {undefined}
+ */
+export let memoize = (fn) => {
+  let cache = {};
+  return function () {
+    let args = JSON.stringify(Array.from(arguments));
+    let arg_array = Array.from(arguments);
+    if (cache[args]) {
+      return cache[args];
+    } else {
+      cache[args] = fn(...arg_array);
+      return cache[args];
+    }
+  };
+};
+/**
+ * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
+ * @function
+ * @memberOf bijou
+ * @returns {Function} The composed function.
+ */
+export let composeFunction = (...functions) => (args) =>
+  functions.reduceRight((arg, fn) => fn(arg), args);
+/**
+ * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
+ * @function
+ * @memberOf bijou
+ * @param
+ * @returns {Function} The curried version of the function.
+ */
+export let curryFunction = (fn, arity = fn.length, ...args) =>
+  arity <= args.length
+    ? fn(...args)
+    : curry.bind(null, fn, arity, ...args);
+/**
+ * Returns if the given function is async or not.
+ * @memberOf bijou
+ * @function
+ * @param {Function} val The function to test.
+ * @returns {Boolean} True if the function is async and false if not.
+ */
+export let isAsync = (val) =>
+  Object.prototype.toString.call(val) === '[object AsyncFunction]';
+/**
+ * Only runs the input function at MAX with the delay specified.
+ * @function
+ * @memberOf bijou
+ * @param {Function} func The function to run.
+ * @param {Object} options The options.
+ * @param {Number} wait The number of milliseconds to wait.
+ * @example
+ * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
+ * setInterval(alert_function, 1)
+ * @returns {Function} The throttled function
+ */
+export let throttle = (func, wait, options) => {
+  var context, args, result;
+  var timeout = null;
+  var previous = 0;
+  if (!options) options = {};
+  var later = function () {
+    previous = options.leading === false ? 0 : Date.now();
+    timeout = null;
+    result = func.apply(context, args);
+    if (!timeout) context = args = null;
+  };
+  return function () {
+    var now = Date.now();
+    if (!previous && options.leading === false) previous = now;
+    var remaining = wait - (now - previous);
+    context = this;
+    args = arguments;
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      previous = now;
+      result = func.apply(context, args);
+      if (!timeout) context = args = null;
+    } else if (!timeout && options.trailing !== false) {
+      timeout = setTimeout(later, remaining);
+    }
+    return result;
+  };
+};
+/**
+ * Runs a function asynchronously in a web worker.
+ * @function
+ * @memberOf bijou
+ * @param {Function} fn The function to run
+ * @example
+ * _$.runAsync(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
+ * @returns {Promise} A promise that resolves into the return value of the function.
+ */
+export let runAsync = (fn) => {
+  const worker = new Worker(
+    URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
+      type: 'application/javascript; charset=utf-8',
+    }),
+  );
+  return new Promise((res, rej) => {
+    worker.onmessage = ({ data }) => {
+      res(data), worker.terminate();
+    };
+    worker.onerror = (err) => {
+      rej(err), worker.terminate();
+    };
+  });
+};
+//#endregion Function
 //#region Object
 /**
  * Deep clones an object
@@ -2157,103 +2521,6 @@ export let sortObj = (obj) => {
     }, {});
 };
 //#endregion Object
-
-/**
- * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
- * @function
- * @memberOf bijou
- * @returns {Function} The composed function.
- */
-export let composeFunction = (...functions) => (args) =>
-  functions.reduceRight((arg, fn) => fn(arg), args);
-/**
- * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
- * @function
- * @memberOf bijou
- * @param
- * @returns {Function} The curried version of the function.
- */
-export let curryFunction = (fn, arity = fn.length, ...args) =>
-  arity <= args.length
-    ? fn(...args)
-    : curry.bind(null, fn, arity, ...args);
-/**
- * Returns if the given function is async or not.
- * @memberOf bijou
- * @function
- * @param {Function} val The function to test.
- * @returns {Boolean} True if the function is async and false if not.
- */
-export let isAsync = (val) =>
-  Object.prototype.toString.call(val) === '[object AsyncFunction]';
-/**
- * Only runs the input function at MAX with the delay specified.
- * @function
- * @memberOf bijou
- * @param {Function} func The function to run.
- * @param {Object} options The options.
- * @param {Number} wait The number of milliseconds to wait.
- * @example
- * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
- * setInterval(alert_function, 1)
- * @returns {Function} The throttled function
- */
-export let throttle = (func, wait, options) => {
-  var context, args, result;
-  var timeout = null;
-  var previous = 0;
-  if (!options) options = {};
-  var later = function () {
-    previous = options.leading === false ? 0 : Date.now();
-    timeout = null;
-    result = func.apply(context, args);
-    if (!timeout) context = args = null;
-  };
-  return function () {
-    var now = Date.now();
-    if (!previous && options.leading === false) previous = now;
-    var remaining = wait - (now - previous);
-    context = this;
-    args = arguments;
-    if (remaining <= 0 || remaining > wait) {
-      if (timeout) {
-        clearTimeout(timeout);
-        timeout = null;
-      }
-      previous = now;
-      result = func.apply(context, args);
-      if (!timeout) context = args = null;
-    } else if (!timeout && options.trailing !== false) {
-      timeout = setTimeout(later, remaining);
-    }
-    return result;
-  };
-};
-/**
- * Runs a function asynchronously in a web worker.
- * @function
- * @memberOf bijou
- * @param {Function} fn The function to run
- * @example
- * _$.runAsync(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
- * @returns {Promise} A promise that resolves into the return value of the function.
- */
-export let runAsync = (fn) => {
-  const worker = new Worker(
-    URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
-      type: 'application/javascript; charset=utf-8',
-    }),
-  );
-  return new Promise((res, rej) => {
-    worker.onmessage = ({ data }) => {
-      res(data), worker.terminate();
-    };
-    worker.onerror = (err) => {
-      rej(err), worker.terminate();
-    };
-  });
-};
-//#endregion Function
 //#region Element
 /**
  * Tests whether the specified element is fully in view.
@@ -3704,30 +3971,6 @@ export let lightOrDark = (color) => {
   }
 };
 //#endregion Color
-
-/**
- * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
- * @function
- * @memberOf bijou
- * @param {Function} fn The function to memoize.
- * @example
- * let uuid = _$.memoize(() => uuid());
- * console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)
- * @returns {undefined}
- */
-export let memoize = (fn) => {
-  let cache = {};
-  return function () {
-    let args = JSON.stringify(Array.from(arguments));
-    let arg_array = Array.from(arguments);
-    if (cache[args]) {
-      return cache[args];
-    } else {
-      cache[args] = fn(...arg_array);
-      return cache[args];
-    }
-  };
-};
 
 /**
  * Re-enables the use of <menu> and <menuitem> tags for corner clicking.
