@@ -6,6 +6,7 @@
   "jsdelivr": "bijou.js",
   "unpkg": "bijou.js",
   "browser": "bijou.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bijou-js/bijou.js.git"
