@@ -63,17 +63,7 @@ Contributors to Bijou.js:
 (c) 2021 Explosion-Scratch, all rights reserved.
 
  */
-/**
- * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
- */
 
-let node = () => {
-  if (isNode) {
-    throw new Error(
-      'You are using Node.js, this function does not work in Node.js! Sorry!',
-    );
-  }
-};
 let isNode = false;
 if (
   typeof window === 'undefined' ||
@@ -89,20 +79,23 @@ if (isNode) {
     'There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.',
   );
 }
-
+/**
+ * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
+ */
+let node = () => {
+  if (isNode) {
+    throw new Error(
+      'You are using Node.js, this function does not work in Node.js! Sorry!',
+    );
+  }
+};
 /*
   ____   ___  _   _ ____   ____ _____ 
  / ___| / _ \| | | |  _ \ / ___| ____|
  \___ \| | | | | | | |_) | |   |  _|  
   ___) | |_| | |_| |  _ <| |___| |___ 
  |____/ \___/ \___/|_| \_\\____|_____|
-*.
-/**
- * Bijou.js source object. It contains all the functions of Bijou.
- * @type {Object}
- * @namespace bijou
- * @author Explosion-Scratch, Bijou.js contributors
- */
+*/
 
 //#region Bijou
 //#region Math
@@ -3880,6 +3873,12 @@ export let lightOrDark = (color) => {
 //#endregion Color
 //#endregion Bijou
 
+/**
+ * Bijou.js source object. It contains all the functions of Bijou.
+ * @type {Object}
+ * @namespace bijou
+ * @author Explosion-Scratch, Bijou.js contributors
+ */
 let _temp = {
   addEventListeners: addEventListeners,
   addStyles: addStyles,
