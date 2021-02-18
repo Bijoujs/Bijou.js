@@ -78,6 +78,9 @@ Bijou.js is included in NodeJS through NPM and yarn! Depending on the platform y
 npm install bijou.js
 ```
 
+
+## `require()`
+
 or
 
 ```
@@ -85,6 +88,7 @@ yarn add bijou.js
 ```
 
 Then just require it in your code:
+
 
 ```js
 const _$ = require('bijou.js');
@@ -126,7 +130,11 @@ this.)</small>
 
 ## Installation
 
-Bijou.js is available in NodeJS through yarn and NPM
+
+Bijou.js is availible in node.js, just run `npm i bijou.js`!
+or you can use yarn, by running `yarn intsall bijou.js`
+
+Bijou.js is available in NodeJS through yarn and Node.js
 
 `npm i bijou.js`
 or
@@ -139,3 +147,4 @@ https://unpkg.com/bijou.js
 https://cdn.jsdelivr.net/npm/bijou.js
 https://cdn.jsdelivr.net/gh/Bijou-js/bijou.js@latest/bijou.js
 ```
+

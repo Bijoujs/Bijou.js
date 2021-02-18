@@ -57,9 +57,10 @@ Contributors to Bijou.js:
 ║ (AKA retronbv)    ║ features and bug fixes.    ║
 ║═══════════════════║════════════════════════════║
 ║ thecoder876       ║ Made some improvements.    ║
+║══════════════════ ║ ═══════════════════════════║
+║  AmpersandGD(aka  ║   Stupid commits           ║
+║  the stupid one)  ║                            ║
 ╚═══════════════════╩════════════════════════════╝
-
-
 (c) 2021 Explosion-Scratch, all rights reserved.
 
  */
@@ -103,6 +104,261 @@ if (isNode) {
  * @namespace bijou
  * @author Explosion-Scratch, Bijou.js contributors
  */
+
+
+let _temp = {
+  /**
+   * Gives an array of prime numbers up to a certain one.
+   * @function
+   * @memberOf bijou
+   * @param {Number} num - The number to give primes to.
+   * @example
+   * _$.primesTo(100);//Returns an array of prime numbers up to 100.
+   * @returns {Array} Returns an array of prime numbers up to the given number.
+   */
+  primesTo: (num) => {
+    let arr = Array.from({
+        length: num - 1,
+      }).map((x, i) => i + 2),
+      sqroot = Math.floor(Math.sqrt(num)),
+      numsTillSqroot = Array.from({
+        length: sqroot - 1,
+      }).map((x, i) => i + 2);
+    numsTillSqroot.forEach(
+      (x) => (arr = arr.filter((y) => y % x !== 0 || y === x))
+    );
+    return arr;
+  },
+  /**
+   * Runs a function asynchronously in a web worker.
+   * @function
+   * @memberOf bijou
+   * @param {Function} fn The function to run
+   * @example
+   * _$.async(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
+   * @returns {Promise} A promise that resolves into the return value of the function.
+   */
+  async: (fn) => {
+    const worker = new Worker(
+      URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
+        type: "application/javascript; charset=utf-8",
+      })
+    );
+    return new Promise((res, rej) => {
+      worker.onmessage = ({ data }) => {
+        res(data), worker.terminate();
+      };
+      worker.onerror = (err) => {
+        rej(err), worker.terminate();
+      };
+    });
+  },
+  /**
+   * Formats a number of milliseconds
+   * @function
+   * @memberOf bijou
+   * @param {Number} ms The number of milliseconds to format to a string.
+   * @example
+   * _$.formatMilliseconds(4000);//Returns "4 seconds"
+   * @returns {Array}
+   */
+  formatMilliseconds: (ms) => {
+    if (ms < 0) ms = -ms;
+    const time = {
+      day: Math.floor(ms / 86400000),
+      hour: Math.floor(ms / 3600000) % 24,
+      minute: Math.floor(ms / 60000) % 60,
+      second: Math.floor(ms / 1000) % 60,
+      millisecond: Math.floor(ms) % 1000,
+    };
+    return Object.entries(time)
+      .filter((val) => val[1] !== 0)
+      .map(([key, val]) => `${val} ${key}${val !== 1 ? "s" : ""}`)
+      .join(", ");
+  },
+  /**
+   * Adds the specified styles to the element specified.
+   * @function
+   * @memberOf bijou
+   * @param {Element} el The element to add the styles to.
+   * @param {Object} styles An object that represents the styles to be added. (camelCased)
+   * @example
+   * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
+   * @returns {Object} the assigned object.
+   */
+  addStyles: (el, styles) => {
+    node();
+    return Object.assign(el.style, styles);
+  },
+  /**
+   * Returns the callback when a a click is registered outside the selected element
+   * @function
+   * @memberOf bijou
+   * @param {Element} element The element to use as the outsideclick element.
+   * @param {Function} callback The function to run when a click is registered outside the specified element.
+   * @example
+   * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
+   * @returns {Function} the function that was called.
+   */
+  onOutsideClick: (element, callback) => {
+    node();
+    document.addEventListener("click", (e) => {
+      if (!element.contains(e.target)) callback();
+    });
+    return callback;
+  },
+  /**
+   * Returns the callback when the user stops scrolling.
+   * @function
+   * @memberOf bijou
+   * @param {Function} callback The callback to call when the user stops scrolling.
+   * @example
+   * _$.onScrollStop(() => {alert("You stopped scrolling!")})
+   * @returns {undefined} Returns undefined.
+   */
+  onScrollStop: (callback) => {
+    let isScrolling;
+    node();
+    window.addEventListener(
+      "scroll",
+      (e) => {
+        clearTimeout(isScrolling);
+        isScrolling = setTimeout(() => {
+          callback(e);
+        }, 150);
+      },
+      false
+    );
+  },
+  /**
+   * Copies the string inputted the clipboard.
+   * @function
+   * @memberOf bijou
+   * @param {String} str The string to copy.
+   * @example
+   * _$.copy("Hello world")
+   * @returns {String} The string copied.
+   */
+  copy: (str) => {
+    node();
+    const el = document.createElement("textarea");
+    el.value = str;
+    el.setAttribute("readonly", "");
+    el.style.position = "absolute";
+    el.style.left = "-9999px";
+    document.body.appendChild(el);
+    const selected =
+      document.getSelection().rangeCount > 0
+        ? document.getSelection().getRangeAt(0)
+        : false;
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    if (selected) {
+      document.getSelection().removeAllRanges();
+      document.getSelection().addRange(selected);
+    }
+    return str;
+  },
+  /**
+   * Only runs the input function at MAX with the delay specified.
+   * @function
+   * @memberOf bijou
+   * @param {Function} fn The function to run.
+   * @param {Number} wait The number of milliseconds to wait.
+   * @example
+   * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
+   * setInterval(alert_function, 1)
+   * @returns {Function} The throttled function
+   */
+  throttle: (fn, wait) => {
+    let inThrottle, lastFn, lastTime;
+    return function () {
+      const context = this,
+        args = arguments;
+      if (!inThrottle) {
+        fn.apply(context, args);
+        lastTime = Date.now();
+        inThrottle = true;
+      } else {
+        clearTimeout(lastFn);
+        lastFn = setTimeout(function () {
+          if (Date.now() - lastTime >= wait) {
+            fn.apply(context, args);
+            lastTime = Date.now();
+          }
+        }, Math.max(wait - (Date.now() - lastTime), 0));
+      }
+    };
+  },
+  /**
+   * Creates an HTML element from the specified string.
+   * @function
+   * @memberOf bijou
+   * @param {String} str The string of the HTML element to create.
+   * @example
+   * //Returns a div with an id of "id_here" and innerText of "Testing!"
+   * _$.createElement("<div id='id_here'>Testing!</div>");
+   * @returns {Element} The created element.
+   */
+  createElement: (str) => {
+    node();
+    const el = document.createElement("div");
+    el.innerHTML = str;
+    return el.firstElementChild;
+  },
+  /**
+   * Returns the browser that the user is using.
+   * @function
+   * @memberOf bijou
+   * @example
+   * _$.browser();//For me this (correctly) returns "Chrome"
+   * @returns {String} A string of the browser name that the user is using.
+   */
+  browser: () => {
+    node();
+    var isOpera =
+      (!!window.opr && !!opr.addons) ||
+      !!window.opera ||
+      navigator.userAgent.indexOf(" OPR/") >= 0;
+    var isFirefox = typeof InstallTrigger !== "undefined";
+    var isSafari =
+      /constructor/i.test(window.HTMLElement) ||
+      (function (p) {
+        return p.toString() === "[object SafariRemoteNotification]";
+      })(
+        !window["safari"] ||
+          (typeof safari !== "undefined" && window["safari"].pushNotification)
+      );
+    var isIE = /*@cc_on!@*/ false || !!document.documentMode;
+    var isEdge = !isIE && !!window.StyleMedia;
+    var isChrome =
+      !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+    var isEdgeChromium = isChrome && navigator.userAgent.indexOf("Edg") != -1;
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+    if (isOpera) {
+      return "Opera";
+    }
+    if (isFirefox) {
+      return "Firefox";
+    }
+    if (isSafari) {
+      return "Safari";
+    }
+    if (isEdge) {
+      return "Edge";
+    }
+    if (isIE) {
+      return "Internet Explorer";
+    }
+    if (isChrome) {
+      return "Chrome";
+    }
+    if (isEdgeChromium) {
+      return "Edge Chromium";
+    }
+    if (isBlink) {
+      return "Blink";
 
 //#region Bijou
 /**
@@ -200,7 +456,7 @@ export let addStyles = (el, styles) => {
  * @example
  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
  * @returns {Function} the function that was called.
- */
+ */ 
 export let onOutsideClick = (element, callback) => {
   node();
   document.addEventListener('click', (e) => {
@@ -300,6 +556,7 @@ export let throttle = (func, wait, options) => {
       if (!timeout) context = args = null;
     } else if (!timeout && options.trailing !== false) {
       timeout = setTimeout(later, remaining);
+
     }
     return result;
   };
@@ -443,6 +700,136 @@ export let dayName = (date = new Date(), locale = 'en-US') =>
   "","7"
    * @returns {String} The string of comma separated values (CSV) created from the JSON.
    */
+
+  jsonToCsv: (arr, columns, delimiter = ",") =>
+    [
+      columns.join(delimiter),
+      ...arr.map((obj) =>
+        columns.reduce(
+          (acc, key) =>
+            `${acc}${!acc.length ? "" : delimiter}"${
+              !obj[key] ? "" : obj[key]
+            }"`,
+          ""
+        )
+      ),
+    ].join("\n"),
+  /**
+   * Joins two arrays together and removes duplicates.
+   * @function
+   * @memberOf bijou
+   * @param {Array} x The first array to join.
+   * @param {Array} y The second array to join.
+   * @example
+   * _$.unionArrays([1,2,3], [4,5,6]);//Returns [1,2,3,4,5,6]
+   * @returns {Array} The joined array from the two other arrays.
+   */
+  unionArrays: (x, y) => {
+    var obj = {};
+    for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
+    for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
+    var res = [];
+    for (var k in obj) {
+      if (obj.hasOwnProperty(k)) res.push(obj[k]);
+    }
+    return res;
+  },
+  /**
+   * For each item in an array, run a callback with it.
+   * @function
+   * @memberOf bijou
+   * @param {Array} array The array of items to run the callback with.
+   * @param {Function} callback The callback function to run on the array items.
+   * @example
+   * _$.each(new Array(40), (i) => console.log(i));//Logs the numbers up to 40.
+   * @returns {undefined}
+   */
+  each: (array, callback) => {
+    for (let i = 0; i < array.length; i++) {
+      callback(array[i], i, array);
+    }
+  },
+  /**
+   * Maps the keys of an object.
+   * @function
+   * @memberOf bijou
+   * @param {Object} obj The object to map.
+   * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
+   * @example
+   * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
+   * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
+   * @returns {Object} The new Object.
+   */
+  mapObjectKeys: (obj, fn) =>
+    Array.isArray(obj)
+      ? obj.map((val) => _$.mapObjectKeys(val, fn))
+      : typeof obj === "object"
+      ? Object.keys(obj).reduce((acc, current) => {
+          const key = fn(current);
+          const val = obj[current];
+          acc[key] =
+            val !== null && typeof val === "object"
+              ? _$.mapObjectKeys(val, fn)
+              : val;
+          return acc;
+        }, {})
+      : obj,
+  /**
+   * Converts an array to CSV (Comma separated values) data.
+   * @function
+   * @memberOf bijou
+   * @param {Array} arr The array to convert.
+   * @param {String} [delimiter=,] The separator (By default this is a comma.)
+   * @example
+   * _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
+   * @returns {String} The comma separated array.
+   */
+  arrayToCSV: (arr, delimiter = ",") =>
+    arr
+      .map((v) =>
+        v
+          .map((x) => (isNaN(x) ? `"${x.replace(/"/g, '""')}"` : x))
+          .join(delimiter)
+      )
+      .join("\n"),
+  /**
+   * averageBy
+   * @function
+   * @memberOf bijou
+   * @param {Array.<number>} arr The array to average
+   * @param {Function} fn The function to apply to each item of the array.
+   * @example
+   * //Averages the array 1,2,3,4 after squaring each number.
+   * _$.averageBy([1,2,3,4], (v) => v ** 2);
+   * @returns {Number} The average of the array.
+   */
+  averageBy: (arr, fn) =>
+    arr
+      .map(typeof fn === "function" ? fn : (val) => val[fn])
+      .reduce((acc, val) => acc + val, 0) / arr.length,
+  /**
+   * Tests whether the specified element is fully in view.
+   * @function
+   * @memberOf bijou
+   * @param {Element} el The DOM element to test.
+   * @example
+   * //Alerts "In view!" if the first <div> in the document is in view.
+   * if (_$.inView(document.querySelector("div"))) alert("In view!");
+   * @returns {Boolean} Whether the element is completely in view.
+   */
+  inView: (el) => {
+    node();
+    var top = el.offsetTop;
+    var left = el.offsetLeft;
+    var width = el.offsetWidth;
+    var height = el.offsetHeight;
+
+    while (el.offsetParent) {
+      el = el.offsetParent;
+      top += el.offsetTop;
+      left += el.offsetLeft;
+    }
+
 export let jsonToCsv = (arr, columns, delimiter = ',') =>
   [
     columns.join(delimiter),
@@ -604,6 +991,7 @@ export let inView = (el) => {
     left += el.offsetLeft;
   }
 
+
   return (
     top >= window.pageYOffset &&
     left >= window.pageXOffset &&
@@ -667,6 +1055,167 @@ export let formToObject = (form) => {
     (acc, [key, value]) => ({
       ...acc,
       [key]: value,
+
+    }));
+  },
+  /**
+   * Generates a unique ID from a seed
+   * @function
+   * @memberOf bijou
+   * @param {Number|String} [seed=Math.random()] The seed to use.
+   * @example
+   * _$.uuid();//Returns a uuid!
+   * @returns {String} The UUID
+   */
+  uuid: (seed = Math.random()) => {
+    if (typeof seed === "string") {
+      // Convert string to a number between 0 and 1
+      seed = _temp.hashString(seed) / 10000000000000000;
+    }
+    function _p8(s) {
+      var p = (seed.toString(16) + "000000000").substr(2, 8);
+      return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
+    }
+    return _p8() + _p8(true) + _p8(true) + _p8();
+  },
+  /**
+   * Escapes a string of HTML
+   * @function
+   * @memberOf bijou
+   * @param {String} str The string of HTML to escape.
+   * @example
+   * _$.escapeHTML("<div>"); Returns the escaped HTML: "&lt;div&gt;"
+   * @returns {String} The escaped HTML.
+   */
+  escapeHTML: (str) =>
+    str.replace(
+      /[&<>'"]/g,
+      (tag) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          "'": "&#39;",
+          '"': "&quot;",
+        }[tag] || tag)
+    ),
+  /**
+   * Unescapes a string of HTML
+   * @function
+   * @memberOf bijou
+   * @param {String} str The string of HTML to unescape.
+   * @example
+   * _$.unescapeHTML("&lt;div&gt;");//Returns "<div>"
+   * @returns {String} The unescaped HTML.
+   */
+  unescapeHTML: (str) =>
+    str.replace(
+      /&amp;|&lt;|&gt;|&#39;|&quot;/g,
+      (tag) =>
+        ({
+          "&amp;": "&",
+          "&lt;": "<",
+          "&gt;": ">",
+          "&#39;": "'",
+          "&quot;": '"',
+        }[tag] || tag)
+    ),
+  /**
+   * Returns the previous page that the user visited.
+   * @function
+   * @memberOf bijou
+   * @example
+   * _$.previousPage()
+   * @returns {String} The url of the previous page the user visited.
+   */
+  previousPage: () => {
+    node();
+    return document.referrer || window.location.href;
+  },
+  /**
+   * Replaces the text in an element by running it through a callback.
+   * @function
+   * @memberOf bijou
+   * @param {Element} el The element to replace the text of.
+   * @param {Function} callback The callback to run (Gets passed the element's text).
+   * @example
+   * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
+   * //Converts the text of the first <div> element to upperCase.
+   * @returns {String} The element who's text was replaced.
+   */
+  replaceText: (el, callback) => {
+    node();
+    for (
+      var e,
+        t = (function () {
+          for (var e, t = el, o = [], a = 0; a < t.length; a++)
+            (e = t[a].childNodes[0]),
+              t[a].hasChildNodes() && 3 == e.nodeType && o.push(e);
+          return o;
+        })(),
+        o = 0,
+        a = t.length;
+      o < a;
+      o++
+    )
+      (e = t[o].nodeValue), (t[o].nodeValue = callback(e));
+    return el;
+  },
+  /**
+   * Times the function passed.
+   * @function
+   * @memberOf bijou
+   * @param {Function} fn The function to run and time.
+   * @param {String} [name=_$ function timer]
+   * @example
+   * //Times how long it took the user to enter their name.
+   * _$.timeFunction(() => prompt("What's your name?"));
+   * @returns {undefined}
+   */
+  timeFunction: (fn, name = "_$ function timer") => {
+    console.time(name);
+    fn();
+    console.timeEnd(name);
+  },
+  /**
+   * Sorts an object alphabetically by its keys.
+   * @function
+   * @memberOf bijou
+   * @param {Object} obj The object to sort.
+   * @example
+   * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
+   * // The object is now {anotherThing: "Another value!", testing: "A value"}
+   * @returns {Object} The sorted object.
+   */
+  sortObj: (obj) => {
+    return Object.keys(obj)
+      .sort()
+      .reduce(function (result, key) {
+        result[key] = obj[key];
+        return result;
+      }, {});
+  },
+  /**
+   * Returns the last space in the string given replaced with "&nbsp;"
+   * @function
+   * @memberOf bijou
+   * @param {String} text The string to replace
+   * @example
+   * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
+   * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
+   * @returns {String} The replaced string.
+   */
+  widows: (text) => {
+    var wordArray = text.split(" ");
+    var finalTitle = "";
+    for (var i = 0; i <= wordArray.length - 1; i++) {
+      finalTitle += wordArray[i];
+      if (i == wordArray.length - 2) {
+        finalTitle += "&nbsp;";
+      } else {
+        finalTitle += " ";
+      }
+
     }),
   );
 };
@@ -828,6 +1377,7 @@ export let widows = (text) => {
       finalTitle += '&nbsp;';
     } else {
       finalTitle += ' ';
+
     }
   }
   return finalTitle;
@@ -1874,6 +2424,52 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       if (e == -1) {
         e = txt.length;
       }
+
+      function getNumPos(txt, func) {
+        var arr = [
+            "<br>",
+            " ",
+            ";",
+            "(",
+            "+",
+            ")",
+            "[",
+            "]",
+            ",",
+            "&",
+            ":",
+            "{",
+            "}",
+            "/",
+            "-",
+            "*",
+            "|",
+            "%",
+            "=",
+          ],
+          i,
+          j,
+          c,
+          startpos = 0,
+          endpos,
+          word;
+        for (i = 0; i < txt.length; i++) {
+          for (j = 0; j < arr.length; j++) {
+            c = txt.substr(i, arr[j].length);
+            if (c == arr[j]) {
+              if (
+                c == "-" &&
+                (txt.substr(i - 1, 1) == "e" || txt.substr(i - 1, 1) == "E")
+              ) {
+                continue;
+              }
+              endpos = i;
+              if (startpos < endpos) {
+                word = txt.substring(startpos, endpos);
+                if (!isNaN(word)) {
+                  return [startpos, endpos, func];
+                }
+
       return [s, e + end.length, func];
     }
     function getNumPos(txt, func) {
@@ -1920,6 +2516,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
               word = txt.substring(startpos, endpos);
               if (!isNaN(word)) {
                 return [startpos, endpos, func];
+
               }
             }
             i += arr[j].length;
@@ -2981,6 +3578,87 @@ export let requestInterval = function (fn, delay) {
       fn.call();
       start = new Date().getTime();
     }
+
+    return el;
+  },
+  /**
+   * Easing functions
+   * @Object
+   * @memberOf bijou
+   * @example
+   * _$.ease.easeInOutQuad(.3);//Returns the eased point of about 1/3 along the animation.
+   * @returns {Function} The easing function.
+   */
+  ease: {
+    // no easing, no acceleration
+    linear: (t) => t,
+    // accelerating from zero velocity
+    easeInQuad: (t) => t * t,
+    // decelerating to zero velocity
+    easeOutQuad: (t) => t * (2 - t),
+    // acceleration until halfway, then deceleration
+    easeInOutQuad: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
+    // accelerating from zero velocity
+    easeInCubic: (t) => t * t * t,
+    // decelerating to zero velocity
+    easeOutCubic: (t) => --t * t * t + 1,
+    // acceleration until halfway, then deceleration
+    easeInOutCubic: (t) =>
+      t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
+    // accelerating from zero velocity
+    easeInQuart: (t) => t * t * t * t,
+    // decelerating to zero velocity
+    easeOutQuart: (t) => 1 - --t * t * t * t,
+    // acceleration until halfway, then deceleration
+    easeInOutQuart: (t) =>
+      t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
+    // accelerating from zero velocity
+    easeInQuint: (t) => t * t * t * t * t,
+    // decelerating to zero velocity
+    easeOutQuint: (t) => 1 + --t * t * t * t * t,
+    // acceleration until halfway, then deceleration
+    easeInOutQuint: (t) =>
+      t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
+  },
+  /**
+   * Gets JSON from a URL and performs a callback with it.
+   * @function
+   * @memberOf bijou
+   * @param {String} url The url of the JSON to be fetched.
+   * @param {Function} callback The function to be run with the JSON code.
+   * @example
+   * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
+   * @returns {undefined}
+   */
+  getJSON: (url, callback) => {
+    node();
+    fetch(url)
+      .then((res) => res.json())
+      .then((json) => callback(json))
+      .catch((error) => {
+        throw new Error(error.stack);
+      });
+  },
+  /**
+   * Gets HTML from a URL and performs a callback with it.
+   * @function
+   * @memberOf bijou
+   * @param {String} url The url of the HTML to be fetched.
+   * @param {Function} callback The function to be run with the HTML code.
+   * @example
+   * //Logs the HTML of wikipedia.org to the console.
+   * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
+   * @returns {undefined}
+   */
+  getHTML: (url, callback) => {
+    node();
+    fetch(url)
+      .then((res) => res.text())
+      .then((html) => callback(_$.parseHTML(html)))
+      .catch((error) => {
+        throw new Error(error.stack);
+      });
+
   }
   handle.value = requestAnimFrame(loop);
   return handle;
@@ -3146,6 +3824,7 @@ export let hub = () => ({
   on(event, handler) {
     if (!this.hub[event]) this.hub[event] = [];
     this.hub[event].push(handler);
+
   },
   off(event, handler) {
     const i = (this.hub[event] || []).findIndex((h) => h === handler);
@@ -3760,6 +4439,67 @@ export let regex = {
    * +31636363634
    * 075-63546725
    */
+
+  cookies: {
+    /**
+     * Sets a cookie to a value
+     * @function
+     * @memberOf bijou
+     * @param {String} name The name of the cookie to set
+     * @param {String} value The value of the cookie
+     * @param {Number} [days=1000] The days that the cookie should last.
+     * @returns {String} The value of the cookie
+     */
+    setItem: (name, value, days = 1000) => {
+      node();
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    },
+    /**
+     * Gets a cookie from its name.
+     * @function
+     * @memberOf bijou
+     * @param {String} name The name of the cookie.
+     * @returns {String} The value of the cookie
+     */
+    getItem: (name) => {
+      node();
+
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == " ") c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    },
+    /**
+     * Deletes a cookie
+     * @memberOf bijou
+     * @param {String} name The name of the cookie to delete.
+     * @returns {undefined}
+     */
+    removeItem: (name) => {
+      node();
+
+      document.cookie =
+        name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    },
+  },
+  /**
+   * A collection of regular expressions to validate and get common things from a page
+   * @memberOf bijou
+   * @Object
+   * @example
+   * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
+   * @returns {Regexp} A regex
+
   phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
   /** Validates names, examples:
    * John Smith
@@ -3772,11 +4512,110 @@ export let regex = {
    * Ai Wong
    * Chao Chang
    * Alzbeta Bara
+
    */
   name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
   /**
     Validates email adresses
     */
+
+    email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    /** Validates a link
+     */
+    link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
+    /**
+     * Tests for a strong password.
+     * Should have:
+     * 1 lowercase letter
+     * 1 uppercase letter
+     * 1 number
+     * 1 special character
+     * At least 8 characters long
+     */
+    strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
+    /**
+     * Tests for a moderate password.
+     * Should have:
+     * 1 lowercase letter
+     * 1 uppercase letter
+     * 1 number
+     * At least 8 characters long */
+    moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
+    /** Ip adresses */
+    /* Match IPv4 address */
+    ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
+    /* Match IPv6 address */
+    ipv6: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/,
+    /**Both ipv4 and ipv6 */
+    ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
+    /**Social security number */
+    socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
+    /**Hex color */
+    hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
+    /** Zip code */
+    zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
+    /**Phone */
+    phone: /^\+?[\d\s]{3,}$/,
+    /**Credit cards */
+    visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
+    expressCredit: /^3[47][0–9]{13}$/,
+    mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
+    discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
+  },
+
+  /**
+   * Finds and replace multiple values with multiple other values.
+   * @function
+   * @memberOf bijou
+   * @param {String} text The text to operate the replace on.
+   * @param {Object} replace The object with find and replace values.
+   * @example
+   * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
+   * @returns {String} The replaced string
+   */
+  replaceMultiple: (text, replace) => {
+    var re = new RegExp(Object.keys(replace).join("|"), "gi");
+    text = text.replace(re, function (matched) {
+      return mapObj[matched];
+    });
+    return text;
+  },
+  /**
+   * Returns the queries from a given url (Or just the current url)
+   * @function
+   * @memberOf bijou
+   * @param {String} query The url query to get.
+   * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
+   * @example
+   * //If the website adress of the current page was "https://example.com/?q=hello&hello=world"
+   * console.log(_$.urlQuery("hello"));//Returns "world";
+   * //Or on a custom url:
+   * console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
+   * @returns {String} The url query
+   */
+  urlQuery: (query, url = window.location.href) => {
+    query = query.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + query + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return "";
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  },
+  /**
+   * Disables right click on the element spcified.
+   * @function
+   * @memberOf bijou
+   * @param {Element} el The element to disable right click on.
+   * @example
+   * _$.disableRightClick(document.documentElement)
+   * @returns {undefined}
+   */
+  disableRightClick: (el) => {
+    el.oncontextmenu = false;
+  },
+
+
+
   email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
   /** Validates a link
    */
@@ -3819,6 +4658,7 @@ export let regex = {
   expressCredit: /^3[47][0–9]{13}$/,
   mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
   discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
+
 };
 //#endregion Bijou
 
