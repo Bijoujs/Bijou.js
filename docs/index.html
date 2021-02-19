@@ -62,34 +62,23 @@
         <span id="header">Bijou</span
         ><span id="small-text"
           ><i
-            ><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> Small and elegant</i
+            ><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> A Small and elegant library of useful JavaScript</i
           ></span
         >
       </p>
       <!-- Buttons (Using iconify)-->
-      <div class="btn">
-        <a
-          class="btn"
-          href="https://github.com/explosion-scratch/Bijou.js"
-          ><span
-            class="iconify"
-            data-icon="icomoon-free:github"
-          ></span></a
-        ><a href="mailto:explosionscratch@gmail.com" class="btn"
-          ><span class="iconify" data-icon="eva:email-outline"></span
-        ></a>
-        <a href="try" class="btn"
-          ><span
-            class="iconify"
-            data-icon="fluent:play-24-filled"
-          ></span
-        ></a>
-        <a href="docs" class="btn"
-          ><span
-            class="iconify"
-            data-icon="simple-line-icons:docs"
-          ></span
-        ></a>
+      <div class="btns">
+        <a href="https://github.com/bijou-js/bijou.js" class="btn">
+          <span class="iconify" data-icon="akar-icons:github-fill" data-inline="false"></span>
+          <span id="btn-text">GitHub</span>
+        </a>
+        <a href="mailto:explosionscratch@gmail.com?subject=Bijou.js" class="btn">
+        <span class="iconify" data-icon="eva:email-outline" data-inline="false"></span>
+          <span id="btn-text">Email Me</span>
+        </a>
+        <a href="try.html" class="btn">
+          <span class="iconify" data-icon="fluent:play-20-filled" data-inline="false"></span>          <span id="btn-text">Try Bijou.js</span>
+        </a>
       </div>
     </section>
     <!-- Scroll down arrow -->
@@ -264,9 +253,11 @@
     color: lightblue;
   }
   /* Button links */
-  a.btn {
+  .btn {
+    overflow: hidden;
+    height: 40px;
     transition: filter 0.3s ease;
-    display: inline-block;
+    display: block;
     padding: 5px;
     background: transparent;
     text-decoration: none;
@@ -274,7 +265,27 @@
     border-radius: 20px;
     margin: 8px;
   }
-
+.btns {
+  position: fixed;
+  left: 0px;
+  top: 10px;
+  display: block;
+  width: 60px;
+  border-radius: 3px;
+  overflow: hidden;
+  transition: width .3s ease, background-color .3s ease;
+}
+.btns:hover {
+  width: 200px;
+  background-color: #0009;
+}
+.btn #btn-text {
+  position: relative;
+  bottom: 8px;
+}
+a.iconify {
+  margin-right: 7px;
+}
   /* More link stuff */
   a .iconify:hover {
     filter: drop-shadow(0 0 5px #fff);
@@ -365,13 +376,21 @@
  * https://github.com/primer/github-syntax-light
  */
 
- .hljs {
+ .hljs,code {
+   background: #222;
+   border-radius: 5px;
+   width: 60vw;
+   max-width: 450px !important;
+   overflow: scroll;
+   white-space: pre;
     display: block;
     overflow-x: auto;
     padding: 0.5em;
     color: #fff;
   }
-  
+  .hljs * {
+    font-family: monospace !important;
+  }
   .hljs-keyword,
   .hljs-doctag,
   .hljs-meta-keyword,
