@@ -2010,6 +2010,11 @@ export let each = (array, callback) => {
 };
 //#endregion Array
 //#region Function
+export let spread = (fn) => {
+  return (args) => {
+    call_me.apply(this, args);
+  };
+};
 /**
  * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
  * @function
