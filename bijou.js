@@ -2013,6 +2013,7 @@ export let each = (array, callback) => {
 /**
  * Uses an array of arguments to make a function based on the one inputted.
  * @memberOf bijou
+ * @function
  * @returns {Function}
  * @example
  * var say = _$.spread(function(who, what) {
