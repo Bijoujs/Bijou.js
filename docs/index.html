@@ -65,6 +65,7 @@
             ><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> A Small and elegant library of useful JavaScript</i
           ></span
         >
+        <button id="big_button">View functions</button>
       </p>
       <!-- Buttons (Using iconify)-->
       <div class="btns">
@@ -106,7 +107,35 @@
     box-sizing: border-box;
     font-family: 'Titillium Web', sans-serif;
   }
-
+section > ul {
+  background: #fff1;
+  border-radius: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
+}
+button#big_button {
+  transition: box-shadow .5s ease, background-color .3s ease, transform .1s ease;
+  position: absolute;
+  left: 50%;
+  margin-top: 13px;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid lightseagreen;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
+}
+button#big_button:active {
+  transform: translateX(-50%) scale(0.95);
+}
+button#big_button:hover {
+  background: rgb(21, 134, 129);
+  box-shadow: 0 0 0 4px #fff1;
+}
   /* Outline on focus */
   *:focus {
     outline: none;
