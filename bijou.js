@@ -2010,6 +2010,17 @@ export let each = (array, callback) => {
 };
 //#endregion Array
 //#region Function
+/**
+ * Uses an array of arguments to make a function based on the one inputted.
+ * @memberOf bijou
+ * @returns {Function}
+ * @example
+ * var say = _$.spread(function(who, what) {
+    return who + ' says ' + what;
+  });
+  say(["Fred", "hi"]);//"Fred says hi"
+ * @param {Function} fn The function to use
+ */
 export let spread = (fn) => {
   return (args) => {
     call_me.apply(this, args);
