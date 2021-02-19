@@ -9,9 +9,10 @@ function commit {
     cd /workspace/Bijou.js
     rm bijou_node.js
     babel --plugins @babel/plugin-transform-modules-commonjs -o bijou_node.js -- bijou.js
+    terser --comments false --ecma 5 --ie8 --module --compress --mangle -o bijou_node.js -- bijou_node.js
     jsdoc -c jsdoc.json
     showdown makehtml -i README.md -o README.html
-    terser --compress --mangle -o bijou-min.js -- bijou.js
+    terser --comments false --ecma 5 --ie8 --module --compress --mangle -o bijou-min.js -- bijou.js
     eslint --fix ./
     prettier --write -- .
     echo "Commit message?   "
