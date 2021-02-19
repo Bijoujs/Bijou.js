@@ -34,7 +34,7 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 
 jsDelivr:
 
-```js
+```html
 <script
   src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"
   type="module"
@@ -43,7 +43,7 @@ jsDelivr:
 
 UNPKG
 
-```js
+```html
 <script
   src="https://unpkg.com/bijou.js@latest/bijou.js"
   type="module"
