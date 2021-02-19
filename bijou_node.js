@@ -1,43 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>bijou.js - Documentation</title>
+'use strict';
 
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-<body>
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.jsonToCsv = exports.regex = exports.cookies = exports.imageToData = exports.loadScript = exports.requestInterval = exports.saveBlob = exports.preloadImage = exports.getHTML = exports.getJSON = exports.formatHTML = exports.playSection = exports.dispatch = exports.hub = exports.onScrollStop = exports.onOutsideClick = exports.replaceSelection = exports.fullScreen = exports.tilt = exports.observeMutations = exports.attributes = exports.inlineCSS = exports.disableRightClick = exports.elementSiblings = exports.compStyle = exports.createElement = exports.addStyles = exports.sortTableBy = exports.sortTable = exports.addEventListeners = exports.drag = exports.parseHTML = exports.removeComments = exports.querySelector = exports.textNodes = exports.replaceText = exports.serializeForm = exports.inPartialView = exports.inView = exports.context = exports.sortObj = exports.formToObject = exports.mapObjectValues = exports.mapObjectKeys = exports.merge = exports.listen = exports.clone = exports.runAsync = exports.debounce = exports.throttle = exports.isAsync = exports.curryFunction = exports.composeFunction = exports.memoize = exports.spread = exports.each = exports.uniqueArray = exports.averageBy = exports.unionArrays = exports.splice = exports.shuffleArray = exports.contains = exports.nFlatten = exports.flatten = exports.spliceArrayBuffer = exports.remove = exports.diff = exports.arrayDiff = exports.previousPage = exports.unescapeHTML = exports.escapeHTML = exports.replaceBetween = exports.capitalize = exports.syllables = exports.beautifyJS = exports.markdownToHTML = exports.sanitize = exports.urlQuery = exports.replaceMultiple = exports.byteSize = exports.editDistance = exports.hashString = exports.scrambleString = exports.camelCase = exports.syntaxHighlight = exports.unCamelCase = exports.widows = exports.speak = exports.removeTags = exports.mobileOrDesktop = exports.formatMilliseconds = exports.dayName = exports.ease = exports.formatNumber = exports.seedRandom = exports.random = exports.primesTo = exports.uuid = exports.range = exports.animate = void 0;
+exports._$ = exports.default = exports.lightOrDark = exports.lightenColor = exports.randomColor = exports.blendColors = exports.hexToRGB = exports.rgbToHex = exports.browser = exports.copy = exports.notify = exports.timeFunction = exports.arrayToCSV = void 0;
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="bijou.html">bijou</a><ul class='methods'><li data-type='method'><a href="bijou.html#.animate">animate</a></li><li data-type='method'><a href="bijou.html#.exports.addEventListeners">exports.addEventListeners</a></li><li data-type='method'><a href="bijou.html#.exports.addEventListeners">exports.addEventListeners</a></li><li data-type='method'><a href="bijou.html#.exports.addStyles">exports.addStyles</a></li><li data-type='method'><a href="bijou.html#.exports.addStyles">exports.addStyles</a></li><li data-type='method'><a href="bijou.html#.exports.animate">exports.animate</a></li><li data-type='method'><a href="bijou.html#.exports.animate">exports.animate</a></li><li data-type='method'><a href="bijou.html#.exports.arrayDiff">exports.arrayDiff</a></li><li data-type='method'><a href="bijou.html#.exports.arrayDiff">exports.arrayDiff</a></li><li data-type='method'><a href="bijou.html#.exports.arrayToCSV">exports.arrayToCSV</a></li><li data-type='method'><a href="bijou.html#.exports.arrayToCSV">exports.arrayToCSV</a></li><li data-type='method'><a href="bijou.html#.exports.attributes">exports.attributes</a></li><li data-type='method'><a href="bijou.html#.exports.attributes">exports.attributes</a></li><li data-type='method'><a href="bijou.html#.exports.averageBy">exports.averageBy</a></li><li data-type='method'><a href="bijou.html#.exports.averageBy">exports.averageBy</a></li><li data-type='method'><a href="bijou.html#.exports.beautifyJS">exports.beautifyJS</a></li><li data-type='method'><a href="bijou.html#.exports.beautifyJS">exports.beautifyJS</a></li><li data-type='method'><a href="bijou.html#.exports.blendColors">exports.blendColors</a></li><li data-type='method'><a href="bijou.html#.exports.blendColors">exports.blendColors</a></li><li data-type='method'><a href="bijou.html#.exports.browser">exports.browser</a></li><li data-type='method'><a href="bijou.html#.exports.browser">exports.browser</a></li><li data-type='method'><a href="bijou.html#.exports.byteSize">exports.byteSize</a></li><li data-type='method'><a href="bijou.html#.exports.byteSize">exports.byteSize</a></li><li data-type='method'><a href="bijou.html#.exports.camelCase">exports.camelCase</a></li><li data-type='method'><a href="bijou.html#.exports.camelCase">exports.camelCase</a></li><li data-type='method'><a href="bijou.html#.exports.capitalize">exports.capitalize</a></li><li data-type='method'><a href="bijou.html#.exports.capitalize">exports.capitalize</a></li><li data-type='method'><a href="bijou.html#.exports.clone">exports.clone</a></li><li data-type='method'><a href="bijou.html#.exports.clone">exports.clone</a></li><li data-type='method'><a href="bijou.html#.exports.composeFunction">exports.composeFunction</a></li><li data-type='method'><a href="bijou.html#.exports.composeFunction">exports.composeFunction</a></li><li data-type='method'><a href="bijou.html#.exports.compStyle">exports.compStyle</a></li><li data-type='method'><a href="bijou.html#.exports.compStyle">exports.compStyle</a></li><li data-type='method'><a href="bijou.html#.exports.contains">exports.contains</a></li><li data-type='method'><a href="bijou.html#.exports.contains">exports.contains</a></li><li data-type='method'><a href="bijou.html#.exports.context">exports.context</a></li><li data-type='method'><a href="bijou.html#.exports.context">exports.context</a></li><li data-type='method'><a href="bijou.html#.exports.copy">exports.copy</a></li><li data-type='method'><a href="bijou.html#.exports.copy">exports.copy</a></li><li data-type='method'><a href="bijou.html#.exports.createElement">exports.createElement</a></li><li data-type='method'><a href="bijou.html#.exports.createElement">exports.createElement</a></li><li data-type='method'><a href="bijou.html#.exports.curryFunction">exports.curryFunction</a></li><li data-type='method'><a href="bijou.html#.exports.curryFunction">exports.curryFunction</a></li><li data-type='method'><a href="bijou.html#.exports.dayName">exports.dayName</a></li><li data-type='method'><a href="bijou.html#.exports.dayName">exports.dayName</a></li><li data-type='method'><a href="bijou.html#.exports.debounce">exports.debounce</a></li><li data-type='method'><a href="bijou.html#.exports.debounce">exports.debounce</a></li><li data-type='method'><a href="bijou.html#.exports.diff">exports.diff</a></li><li data-type='method'><a href="bijou.html#.exports.diff">exports.diff</a></li><li data-type='method'><a href="bijou.html#.exports.disableRightClick">exports.disableRightClick</a></li><li data-type='method'><a href="bijou.html#.exports.disableRightClick">exports.disableRightClick</a></li><li data-type='method'><a href="bijou.html#.exports.dispatch">exports.dispatch</a></li><li data-type='method'><a href="bijou.html#.exports.dispatch">exports.dispatch</a></li><li data-type='method'><a href="bijou.html#.exports.drag">exports.drag</a></li><li data-type='method'><a href="bijou.html#.exports.drag">exports.drag</a></li><li data-type='method'><a href="bijou.html#.exports.each">exports.each</a></li><li data-type='method'><a href="bijou.html#.exports.ease">exports.ease</a></li><li data-type='method'><a href="bijou.html#.exports.editDistance">exports.editDistance</a></li><li data-type='method'><a href="bijou.html#.exports.editDistance">exports.editDistance</a></li><li data-type='method'><a href="bijou.html#.exports.elementSiblings">exports.elementSiblings</a></li><li data-type='method'><a href="bijou.html#.exports.elementSiblings">exports.elementSiblings</a></li><li data-type='method'><a href="bijou.html#.exports.escapeHTML">exports.escapeHTML</a></li><li data-type='method'><a href="bijou.html#.exports.escapeHTML">exports.escapeHTML</a></li><li data-type='method'><a href="bijou.html#.exports.flatten">exports.flatten</a></li><li data-type='method'><a href="bijou.html#.exports.flatten">exports.flatten</a></li><li data-type='method'><a href="bijou.html#.exports.formatHTML">exports.formatHTML</a></li><li data-type='method'><a href="bijou.html#.exports.formatHTML">exports.formatHTML</a></li><li data-type='method'><a href="bijou.html#.exports.formatMilliseconds">exports.formatMilliseconds</a></li><li data-type='method'><a href="bijou.html#.exports.formatMilliseconds">exports.formatMilliseconds</a></li><li data-type='method'><a href="bijou.html#.exports.formatNumber">exports.formatNumber</a></li><li data-type='method'><a href="bijou.html#.exports.formToObject">exports.formToObject</a></li><li data-type='method'><a href="bijou.html#.exports.formToObject">exports.formToObject</a></li><li data-type='method'><a href="bijou.html#.exports.fullScreen">exports.fullScreen</a></li><li data-type='method'><a href="bijou.html#.exports.fullScreen">exports.fullScreen</a></li><li data-type='method'><a href="bijou.html#.exports.getHTML">exports.getHTML</a></li><li data-type='method'><a href="bijou.html#.exports.getHTML">exports.getHTML</a></li><li data-type='method'><a href="bijou.html#.exports.getJSON">exports.getJSON</a></li><li data-type='method'><a href="bijou.html#.exports.getJSON">exports.getJSON</a></li><li data-type='method'><a href="bijou.html#.exports.hashString">exports.hashString</a></li><li data-type='method'><a href="bijou.html#.exports.hashString">exports.hashString</a></li><li data-type='method'><a href="bijou.html#.exports.hexToRGB">exports.hexToRGB</a></li><li data-type='method'><a href="bijou.html#.exports.hexToRGB">exports.hexToRGB</a></li><li data-type='method'><a href="bijou.html#.exports.hub">exports.hub</a></li><li data-type='method'><a href="bijou.html#.exports.hub">exports.hub</a></li><li data-type='method'><a href="bijou.html#.exports.imageToData">exports.imageToData</a></li><li data-type='method'><a href="bijou.html#.exports.inlineCSS">exports.inlineCSS</a></li><li data-type='method'><a href="bijou.html#.exports.inlineCSS">exports.inlineCSS</a></li><li data-type='method'><a href="bijou.html#.exports.inPartialView">exports.inPartialView</a></li><li data-type='method'><a href="bijou.html#.exports.inPartialView">exports.inPartialView</a></li><li data-type='method'><a href="bijou.html#.exports.inView">exports.inView</a></li><li data-type='method'><a href="bijou.html#.exports.inView">exports.inView</a></li><li data-type='method'><a href="bijou.html#.exports.isAsync">exports.isAsync</a></li><li data-type='method'><a href="bijou.html#.exports.isAsync">exports.isAsync</a></li><li data-type='method'><a href="bijou.html#.exports.jsonToCsv">exports.jsonToCsv</a></li><li data-type='method'><a href="bijou.html#.exports.jsonToCsv">exports.jsonToCsv</a></li><li data-type='method'><a href="bijou.html#.exports.lightenColor">exports.lightenColor</a></li><li data-type='method'><a href="bijou.html#.exports.lightenColor">exports.lightenColor</a></li><li data-type='method'><a href="bijou.html#.exports.lightOrDark">exports.lightOrDark</a></li><li data-type='method'><a href="bijou.html#.exports.listen">exports.listen</a></li><li data-type='method'><a href="bijou.html#.exports.listen">exports.listen</a></li><li data-type='method'><a href="bijou.html#.exports.loadScript">exports.loadScript</a></li><li data-type='method'><a href="bijou.html#.exports.loadScript">exports.loadScript</a></li><li data-type='method'><a href="bijou.html#.exports.mapObjectKeys">exports.mapObjectKeys</a></li><li data-type='method'><a href="bijou.html#.exports.mapObjectKeys">exports.mapObjectKeys</a></li><li data-type='method'><a href="bijou.html#.exports.mapObjectValues">exports.mapObjectValues</a></li><li data-type='method'><a href="bijou.html#.exports.mapObjectValues">exports.mapObjectValues</a></li><li data-type='method'><a href="bijou.html#.exports.markdownToHTML">exports.markdownToHTML</a></li><li data-type='method'><a href="bijou.html#.exports.markdownToHTML">exports.markdownToHTML</a></li><li data-type='method'><a href="bijou.html#.exports.memoize">exports.memoize</a></li><li data-type='method'><a href="bijou.html#.exports.memoize">exports.memoize</a></li><li data-type='method'><a href="bijou.html#.exports.merge">exports.merge</a></li><li data-type='method'><a href="bijou.html#.exports.merge">exports.merge</a></li><li data-type='method'><a href="bijou.html#.exports.mobileOrDesktop">exports.mobileOrDesktop</a></li><li data-type='method'><a href="bijou.html#.exports.mobileOrDesktop">exports.mobileOrDesktop</a></li><li data-type='method'><a href="bijou.html#.exports.nFlatten">exports.nFlatten</a></li><li data-type='method'><a href="bijou.html#.exports.nFlatten">exports.nFlatten</a></li><li data-type='method'><a href="bijou.html#.exports.notify">exports.notify</a></li><li data-type='method'><a href="bijou.html#.exports.notify">exports.notify</a></li><li data-type='method'><a href="bijou.html#.exports.observeMutations">exports.observeMutations</a></li><li data-type='method'><a href="bijou.html#.exports.observeMutations">exports.observeMutations</a></li><li data-type='method'><a href="bijou.html#.exports.onOutsideClick">exports.onOutsideClick</a></li><li data-type='method'><a href="bijou.html#.exports.onOutsideClick">exports.onOutsideClick</a></li><li data-type='method'><a href="bijou.html#.exports.onScrollStop">exports.onScrollStop</a></li><li data-type='method'><a href="bijou.html#.exports.onScrollStop">exports.onScrollStop</a></li><li data-type='method'><a href="bijou.html#.exports.parseHTML">exports.parseHTML</a></li><li data-type='method'><a href="bijou.html#.exports.parseHTML">exports.parseHTML</a></li><li data-type='method'><a href="bijou.html#.exports.playSection">exports.playSection</a></li><li data-type='method'><a href="bijou.html#.exports.playSection">exports.playSection</a></li><li data-type='method'><a href="bijou.html#.exports.preloadImage">exports.preloadImage</a></li><li data-type='method'><a href="bijou.html#.exports.preloadImage">exports.preloadImage</a></li><li data-type='method'><a href="bijou.html#.exports.previousPage">exports.previousPage</a></li><li data-type='method'><a href="bijou.html#.exports.previousPage">exports.previousPage</a></li><li data-type='method'><a href="bijou.html#.exports.primesTo">exports.primesTo</a></li><li data-type='method'><a href="bijou.html#.exports.primesTo">exports.primesTo</a></li><li data-type='method'><a href="bijou.html#.exports.querySelector">exports.querySelector</a></li><li data-type='method'><a href="bijou.html#.exports.querySelector">exports.querySelector</a></li><li data-type='method'><a href="bijou.html#.exports.random">exports.random</a></li><li data-type='method'><a href="bijou.html#.exports.random">exports.random</a></li><li data-type='method'><a href="bijou.html#.exports.randomColor">exports.randomColor</a></li><li data-type='method'><a href="bijou.html#.exports.randomColor">exports.randomColor</a></li><li data-type='method'><a href="bijou.html#.exports.range">exports.range</a></li><li data-type='method'><a href="bijou.html#.exports.range">exports.range</a></li><li data-type='method'><a href="bijou.html#.exports.regex">exports.regex</a></li><li data-type='method'><a href="bijou.html#.exports.remove">exports.remove</a></li><li data-type='method'><a href="bijou.html#.exports.remove">exports.remove</a></li><li data-type='method'><a href="bijou.html#.exports.removeComments">exports.removeComments</a></li><li data-type='method'><a href="bijou.html#.exports.removeComments">exports.removeComments</a></li><li data-type='method'><a href="bijou.html#.exports.removeTags">exports.removeTags</a></li><li data-type='method'><a href="bijou.html#.exports.removeTags">exports.removeTags</a></li><li data-type='method'><a href="bijou.html#.exports.replaceBetween">exports.replaceBetween</a></li><li data-type='method'><a href="bijou.html#.exports.replaceBetween">exports.replaceBetween</a></li><li data-type='method'><a href="bijou.html#.exports.replaceMultiple">exports.replaceMultiple</a></li><li data-type='method'><a href="bijou.html#.exports.replaceMultiple">exports.replaceMultiple</a></li><li data-type='method'><a href="bijou.html#.exports.replaceSelection">exports.replaceSelection</a></li><li data-type='method'><a href="bijou.html#.exports.replaceSelection">exports.replaceSelection</a></li><li data-type='method'><a href="bijou.html#.exports.replaceText">exports.replaceText</a></li><li data-type='method'><a href="bijou.html#.exports.replaceText">exports.replaceText</a></li><li data-type='method'><a href="bijou.html#.exports.requestInterval">exports.requestInterval</a></li><li data-type='method'><a href="bijou.html#.exports.requestInterval">exports.requestInterval</a></li><li data-type='method'><a href="bijou.html#.exports.rgbToHex">exports.rgbToHex</a></li><li data-type='method'><a href="bijou.html#.exports.rgbToHex">exports.rgbToHex</a></li><li data-type='method'><a href="bijou.html#.exports.runAsync">exports.runAsync</a></li><li data-type='method'><a href="bijou.html#.exports.runAsync">exports.runAsync</a></li><li data-type='method'><a href="bijou.html#.exports.sanitize">exports.sanitize</a></li><li data-type='method'><a href="bijou.html#.exports.sanitize">exports.sanitize</a></li><li data-type='method'><a href="bijou.html#.exports.saveBlob">exports.saveBlob</a></li><li data-type='method'><a href="bijou.html#.exports.saveBlob">exports.saveBlob</a></li><li data-type='method'><a href="bijou.html#.exports.scrambleString">exports.scrambleString</a></li><li data-type='method'><a href="bijou.html#.exports.scrambleString">exports.scrambleString</a></li><li data-type='method'><a href="bijou.html#.exports.seedRandom">exports.seedRandom</a></li><li data-type='method'><a href="bijou.html#.exports.seedRandom">exports.seedRandom</a></li><li data-type='method'><a href="bijou.html#.exports.serializeForm">exports.serializeForm</a></li><li data-type='method'><a href="bijou.html#.exports.serializeForm">exports.serializeForm</a></li><li data-type='method'><a href="bijou.html#.exports.shuffleArray">exports.shuffleArray</a></li><li data-type='method'><a href="bijou.html#.exports.shuffleArray">exports.shuffleArray</a></li><li data-type='method'><a href="bijou.html#.exports.sortObj">exports.sortObj</a></li><li data-type='method'><a href="bijou.html#.exports.sortObj">exports.sortObj</a></li><li data-type='method'><a href="bijou.html#.exports.sortTable">exports.sortTable</a></li><li data-type='method'><a href="bijou.html#.exports.sortTable">exports.sortTable</a></li><li data-type='method'><a href="bijou.html#.exports.sortTableBy">exports.sortTableBy</a></li><li data-type='method'><a href="bijou.html#.exports.sortTableBy">exports.sortTableBy</a></li><li data-type='method'><a href="bijou.html#.exports.speak">exports.speak</a></li><li data-type='method'><a href="bijou.html#.exports.speak">exports.speak</a></li><li data-type='method'><a href="bijou.html#.exports.splice">exports.splice</a></li><li data-type='method'><a href="bijou.html#.exports.splice">exports.splice</a></li><li data-type='method'><a href="bijou.html#.exports.spliceArrayBuffer">exports.spliceArrayBuffer</a></li><li data-type='method'><a href="bijou.html#.exports.spliceArrayBuffer">exports.spliceArrayBuffer</a></li><li data-type='method'><a href="bijou.html#.exports.spread">exports.spread</a></li><li data-type='method'><a href="bijou.html#.exports.syllables">exports.syllables</a></li><li data-type='method'><a href="bijou.html#.exports.syllables">exports.syllables</a></li><li data-type='method'><a href="bijou.html#.exports.syntaxHighlight">exports.syntaxHighlight</a></li><li data-type='method'><a href="bijou.html#.exports.syntaxHighlight">exports.syntaxHighlight</a></li><li data-type='method'><a href="bijou.html#.exports.textNodes">exports.textNodes</a></li><li data-type='method'><a href="bijou.html#.exports.textNodes">exports.textNodes</a></li><li data-type='method'><a href="bijou.html#.exports.throttle">exports.throttle</a></li><li data-type='method'><a href="bijou.html#.exports.throttle">exports.throttle</a></li><li data-type='method'><a href="bijou.html#.exports.tilt">exports.tilt</a></li><li data-type='method'><a href="bijou.html#.exports.tilt">exports.tilt</a></li><li data-type='method'><a href="bijou.html#.exports.timeFunction">exports.timeFunction</a></li><li data-type='method'><a href="bijou.html#.exports.timeFunction">exports.timeFunction</a></li><li data-type='method'><a href="bijou.html#.exports.unCamelCase">exports.unCamelCase</a></li><li data-type='method'><a href="bijou.html#.exports.unCamelCase">exports.unCamelCase</a></li><li data-type='method'><a href="bijou.html#.exports.unescapeHTML">exports.unescapeHTML</a></li><li data-type='method'><a href="bijou.html#.exports.unescapeHTML">exports.unescapeHTML</a></li><li data-type='method'><a href="bijou.html#.exports.unionArrays">exports.unionArrays</a></li><li data-type='method'><a href="bijou.html#.exports.unionArrays">exports.unionArrays</a></li><li data-type='method'><a href="bijou.html#.exports.uniqueArray">exports.uniqueArray</a></li><li data-type='method'><a href="bijou.html#.exports.uniqueArray">exports.uniqueArray</a></li><li data-type='method'><a href="bijou.html#.exports.urlQuery">exports.urlQuery</a></li><li data-type='method'><a href="bijou.html#.exports.urlQuery">exports.urlQuery</a></li><li data-type='method'><a href="bijou.html#.exports.uuid">exports.uuid</a></li><li data-type='method'><a href="bijou.html#.exports.uuid">exports.uuid</a></li><li data-type='method'><a href="bijou.html#.exports.widows">exports.widows</a></li><li data-type='method'><a href="bijou.html#.exports.widows">exports.widows</a></li><li data-type='method'><a href="bijou.html#.getItem">getItem</a></li><li data-type='method'><a href="bijou.html#.getItem">getItem</a></li><li data-type='method'><a href="bijou.html#.removeItem">removeItem</a></li><li data-type='method'><a href="bijou.html#.removeItem">removeItem</a></li><li data-type='method'><a href="bijou.html#.setItem">setItem</a></li><li data-type='method'><a href="bijou.html#.setItem">setItem</a></li></ul><ul class='members'><li data-type='method'><a href="bijou.html#.exports.cookies">exports.cookies</a></li><li data-type='method'><a href="bijou.html#.exports.cookies">exports.cookies</a></li><li data-type='method'><a href="bijou.html#.exports.each">exports.each</a></li><li data-type='method'><a href="bijou.html#.exports.ease">exports.ease</a></li><li data-type='method'><a href="bijou.html#.exports.formatNumber">exports.formatNumber</a></li><li data-type='method'><a href="bijou.html#.exports.imageToData">exports.imageToData</a></li><li data-type='method'><a href="bijou.html#.exports.regex">exports.regex</a></li><li data-type='method'><a href="bijou.html#.exports.spread">exports.spread</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#node">node</a></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">bijou.js</h1>
-    
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
+/**
  * @file bijou.js
  * @author Explosion-Scratch, Bijou.js contributors
  * @since v0.0.0
@@ -59,7 +28,7 @@ This software comes with ABSOLUTELY NO WARRANTY and is provided "As is" (with th
    ____ ___  _   _ _____ ____  ___ ____  _   _ _____ ___  ____  ____
   / ___/ _ \| \ | |_   _|  _ \|_ _| __ )| | | |_   _/ _ \|  _ \/ ___|
  | |  | | | |  \| | | | | |_) || ||  _ \| | | | | || | | | |_) \___ \
- | |__| |_| | |\  | | | |  _ &lt; | || |_) | |_| | | || |_| |  _ &lt; ___) |
+ | |__| |_| | |\  | | | |  _ < | || |_) | |_| | | || |_| |  _ < ___) |
   \____\___/|_| \_| |_| |_| \_\___|____/ \___/  |_| \___/|_| \_\____/
 -----------------------------------------------------------------------------|
 Contributors to Bijou.js:
@@ -102,8 +71,8 @@ Contributors to Bijou.js:
 (c) 2021 Explosion-Scratch, all rights reserved.
 
  */
-
 let isNode = false;
+
 if (
   typeof window === 'undefined' ||
   typeof document === 'undefined'
@@ -121,6 +90,7 @@ if (isNode) {
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
  */
+
 let node = () => {
   if (isNode) {
     throw new Error(
@@ -132,12 +102,12 @@ let node = () => {
   ____   ___  _   _ ____   ____ _____ 
  / ___| / _ \| | | |  _ \ / ___| ____|
  \___ \| | | | | | | |_) | |   |  _|  
-  ___) | |_| | |_| |  _ &lt;| |___| |___ 
+  ___) | |_| | |_| |  _ <| |___| |___ 
  |____/ \___/ \___/|_| \_\\____|_____|
 */
-
 //#region Bijou
 //#region Math
+
 /**
  * Animates a number from one value to another.
  * @function
@@ -153,7 +123,8 @@ let node = () => {
  * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
  */
 // prettier-ignore
-export let animate = (start, end, duration, callback, interval = 20, num = (num) => num) => {
+
+let animate = (start, end, duration, callback, interval = 20, num = num => num) => {
   var value = start;
   var start_time = Date.now();
   let update = setInterval(() => {
@@ -165,7 +136,7 @@ export let animate = (start, end, duration, callback, interval = 20, num = (num)
     callback(end, 1);
     return;
   }, duration);
-}
+};
 /**
  * Returns an array of the whole numbers (inclusive) between the numbers specified.
  * @memberOf bijou
@@ -173,7 +144,10 @@ export let animate = (start, end, duration, callback, interval = 20, num = (num)
  * @param {Number} start The start value of the array.
  * @param {Number} end The end value of the array.
  */
-export let range = (start, end) => {
+
+exports.animate = animate;
+
+let range = (start, end) => {
   return Array(end - start + 1)
     .fill()
     .map((_, idx) => start + idx);
@@ -187,16 +161,21 @@ export let range = (start, end) => {
  * _$.uuid();//Returns a uuid!
  * @returns {String} The UUID
  */
-export let uuid = (seed = Math.random()) => {
+
+exports.range = range;
+
+let uuid = (seed = Math.random()) => {
   //Magic. Do not touch.
   if (typeof seed === 'string') {
     // Convert string to a number between 0 and 1
     seed = _temp.hashString(seed) / 10000000000000000;
   }
+
   function _p8(s) {
     var p = (seed.toString(16) + '000000000').substr(2, 8);
     return s ? '-' + p.substr(0, 4) + '-' + p.substr(4, 4) : p;
   }
+
   return _p8() + _p8(true) + _p8(true) + _p8();
 };
 /**
@@ -208,7 +187,10 @@ export let uuid = (seed = Math.random()) => {
  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
  * @returns {Array} Returns an array of prime numbers up to the given number.
  */
-export let primesTo = (num) => {
+
+exports.uuid = uuid;
+
+let primesTo = (num) => {
   let arr = Array.from({
       length: num - 1,
     }).map((x, i) => i + 2),
@@ -231,12 +213,10 @@ export let primesTo = (num) => {
  * @param {Number} [seed=Math.random()] The seed for the generated number (Between 0 and 1).
  * @returns {Number} The random numebr generated.
  */
-export let random = (
-  min,
-  max,
-  round = true,
-  seed = Math.random(),
-) => {
+
+exports.primesTo = primesTo;
+
+let random = (min, max, round = true, seed = Math.random()) => {
   if (round) {
     return Math.floor(seed * (max - min + 1) + min);
   } else {
@@ -252,13 +232,15 @@ export let random = (
  * console.log(_$.seedRandom(13));
  * @returns {Number} The random number from the seed.
  */
-export let seedRandom = (seed) => {
+
+exports.random = random;
+
+let seedRandom = (seed) => {
   var t = (seed += 0x6d2b79f5);
   t = Math.imul(t ^ (t >>> 15), t | 1);
   t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 };
-
 /**
  * Formats a number by adding commas to it.
  * @function
@@ -268,7 +250,10 @@ export let seedRandom = (seed) => {
  * console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
  * @returns {String} The formatted string representation of the number.
  */
-export let formatNumber = (n) =>
+
+exports.seedRandom = seedRandom;
+
+let formatNumber = (n) =>
   n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
 /**
  * Easing functions
@@ -278,7 +263,9 @@ export let formatNumber = (n) =>
  * _$.ease.easeInOutQuad(.3);//Returns the eased point of about 1/3 along the animation.
  * @returns {Function} The easing function.
  */
-export let ease = {
+
+exports.formatNumber = formatNumber;
+let ease = {
   // no easing, no acceleration
   linear: (t) => t,
   // accelerating from zero velocity
@@ -286,32 +273,31 @@ export let ease = {
   // decelerating to zero velocity
   easeOutQuad: (t) => t * (2 - t),
   // acceleration until halfway, then deceleration
-  easeInOutQuad: (t) => (t &lt; 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
+  easeInOutQuad: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
   // accelerating from zero velocity
   easeInCubic: (t) => t * t * t,
   // decelerating to zero velocity
   easeOutCubic: (t) => --t * t * t + 1,
   // acceleration until halfway, then deceleration
   easeInOutCubic: (t) =>
-    t &lt; 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
+    t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
   // accelerating from zero velocity
   easeInQuart: (t) => t * t * t * t,
   // decelerating to zero velocity
   easeOutQuart: (t) => 1 - --t * t * t * t,
   // acceleration until halfway, then deceleration
   easeInOutQuart: (t) =>
-    t &lt; 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
+    t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
   // accelerating from zero velocity
   easeInQuint: (t) => t * t * t * t * t,
   // decelerating to zero velocity
   easeOutQuint: (t) => 1 + --t * t * t * t * t,
   // acceleration until halfway, then deceleration
   easeInOutQuint: (t) =>
-    t &lt; 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
-};
-
-//#endregion Math
+    t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
+}; //#endregion Math
 //#region Date
+
 /**
  * Returns the name of the weekday from the Date object specified.
  * @function
@@ -322,11 +308,13 @@ export let ease = {
  * _$.primesTo(100);//Returns an array of prime numbers up to 100.
  * @returns {String} The day name from the date.
  */
-export let dayName = (date = new Date(), locale = 'en-US') =>
+
+exports.ease = ease;
+
+let dayName = (date = new Date(), locale = 'en-US') =>
   date.toLocaleDateString(locale, {
     weekday: 'long',
   });
-
 /**
  * Formats a number of milliseconds
  * @function
@@ -336,9 +324,12 @@ export let dayName = (date = new Date(), locale = 'en-US') =>
  * _$.formatMilliseconds(4000);//Returns "4 seconds"
  * @returns {String} The string of formatted milliseconds.
  */
-export let formatMilliseconds = (ms) => {
+
+exports.dayName = dayName;
+
+let formatMilliseconds = (ms) => {
   ms = typeof ms === 'string' ? +ms : ms;
-  if (ms &lt; 0) ms = -ms;
+  if (ms < 0) ms = -ms;
   const time = {
     century: Math.floor(ms / 1144800000000),
     year: Math.floor(ms / 22896000000) % 50,
@@ -352,8 +343,7 @@ export let formatMilliseconds = (ms) => {
     .filter((val) => val[1] !== 0)
     .map(([key, val]) => `${val} ${key}${val !== 1 ? 's' : ''}`)
     .join(', ');
-};
-//#endregion Date
+}; //#endregion Date
 //#region String
 
 /**
@@ -363,7 +353,10 @@ export let formatMilliseconds = (ms) => {
  * @param
  * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
  */
-export let mobileOrDesktop = () => {
+
+exports.formatMilliseconds = formatMilliseconds;
+
+let mobileOrDesktop = () => {
   node();
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent,
@@ -377,11 +370,13 @@ export let mobileOrDesktop = () => {
  * @memberOf bijou
  * @param {String} html The string of HTML to remove tags from.
  * @example
- * console.log(_$.removeTags("&lt;div>Hello&lt;/div>"));//Logs "Hello" to the console.
+ * console.log(_$.removeTags("<div>Hello</div>"));//Logs "Hello" to the console.
  * @returns {String} THe string of HTML without the tags.
  */
-export let removeTags = (html) => html.replace(/&lt;[^>]*>/g, '');
 
+exports.mobileOrDesktop = mobileOrDesktop;
+
+let removeTags = (html) => html.replace(/<[^>]*>/g, '');
 /**
  * Speaks the text given.
  * @memberOf bijou
@@ -395,7 +390,10 @@ export let removeTags = (html) => html.replace(/&lt;[^>]*>/g, '');
  * @param {Number} [rate=1] The speed.
  * @returns {undefined}
  */
-export let speak = (
+
+exports.removeTags = removeTags;
+
+let speak = (
   text,
   lang = 'en',
   volume = 1,
@@ -412,36 +410,44 @@ export let speak = (
       : voice
     : def;
   msg.volume = volume; // From 0 to 1
+
   msg.rate = rate; // From 0.1 to 10
+
   msg.pitch = pitch; // From 0 to 2
+
   msg.text = text;
   msg.lang = lang;
   speechSynthesis.speak(msg);
 };
 /**
- * Returns the last space in the string given replaced with "&amp;nbsp;"
+ * Returns the last space in the string given replaced with "&nbsp;"
  * @function
  * @memberOf bijou
  * @param {String} text The string to replace
  * @example
  * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
- * //Replaces the last space in the &lt;h1>'s innerText with "&amp;nbsp;"
+ * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
  * @returns {String} The replaced string.
  */
-export let widows = (text) => {
+
+exports.speak = speak;
+
+let widows = (text) => {
   var wordArray = text.split(' ');
   var finalTitle = '';
-  for (var i = 0; i &lt;= wordArray.length - 1; i++) {
+
+  for (var i = 0; i <= wordArray.length - 1; i++) {
     finalTitle += wordArray[i];
+
     if (i == wordArray.length - 2) {
-      finalTitle += '&amp;nbsp;';
+      finalTitle += '&nbsp;';
     } else {
       finalTitle += ' ';
     }
   }
+
   return finalTitle;
 };
-
 /**
  * Undoes camelCase.
  * @function
@@ -451,7 +457,10 @@ export let widows = (text) => {
  * console.log(_$.unCamelCase("helloWorld"));//Logs "Hello World" to the console.
  * @returns {String} The string of unCamelCased code.
  */
-export let unCamelCase = function (str) {
+
+exports.widows = widows;
+
+let unCamelCase = function (str) {
   return str
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/\b([A-Z]+)([A-Z])([a-z])/, '$1 $2$3')
@@ -459,7 +468,6 @@ export let unCamelCase = function (str) {
       return s.toUpperCase();
     });
 };
-
 /**
  * Syntax highlights a string of code.
  * @function
@@ -470,9 +478,11 @@ export let unCamelCase = function (str) {
  * _$.syntaxHighlight('alert(\"Hello\")', 'js');//Returns html of the syntax highlighted version.
  * @returns {String} The highlighted string of code as HTML code.
  */
-export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
-  node();
-  //        .==.        .==.
+
+exports.unCamelCase = unCamelCase;
+
+let syntaxHighlight = (string, mode = 'html', colors = {}) => {
+  node(); //        .==.        .==.
   //       //`^\\      //^`\\
   //      // ^ ^\(\__/)/^ ^^\\
   //     //^ ^^ ^/6  6\ ^^ ^ \\
@@ -481,8 +491,10 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
   //  // ^^/\/ /  `~~`  \ \/\^ ^\\
   //  -----------------------------
   /// HERE BE DRAGONS
+
   let el = document.createElement('DIV');
   el.innerText = string;
+
   let highlightel = (elmnt, mode, colors = {}) => {
     // Credit to w3schools for this
     var lang = mode || 'html';
@@ -507,18 +519,23 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     var jspropertycolor = colors.jsPropertyColor || 'black';
     elmntObj.style.fontFamily =
       colors.fontFamily || "Consolas,'Courier New', monospace";
+
     if (!lang) {
       lang = 'html';
     }
+
     if (lang == 'html') {
       elmntTxt = htmlMode(elmntTxt);
     }
+
     if (lang == 'css') {
       elmntTxt = cssMode(elmntTxt);
     }
+
     if (lang == 'js') {
       elmntTxt = jsMode(elmntTxt);
     }
+
     elmntObj.innerHTML = elmntTxt;
 
     function extract(str, start, end, func, repl) {
@@ -526,12 +543,15 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         e,
         d = '',
         a = [];
+
       while (str.search(start) > -1) {
         s = str.search(start);
         e = str.indexOf(end, s);
+
         if (e == -1) {
           e = str.length;
         }
+
         if (repl) {
           a.push(func(str.substring(s, e + end.length)));
           str =
@@ -542,9 +562,11 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
           str = str.substr(e + end.length);
         }
       }
+
       this.rest = d + str;
       this.arr = a;
     }
+
     function htmlMode(txt) {
       var rest = txt,
         done = '',
@@ -555,82 +577,103 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         i;
       comment = new extract(
         rest,
-        '&amp;lt;!--',
-        '--&amp;gt;',
+        '&lt;!--',
+        '--&gt;',
         commentMode,
         'W3HTMLCOMMENTPOS',
       );
       rest = comment.rest;
-      while (rest.indexOf('&amp;lt;') > -1) {
+
+      while (rest.indexOf('&lt;') > -1) {
         note = '';
-        startpos = rest.indexOf('&amp;lt;');
-        if (rest.substr(startpos, 9).toUpperCase() == '&amp;LT;STYLE') {
+        startpos = rest.indexOf('&lt;');
+
+        if (rest.substr(startpos, 9).toUpperCase() == '&LT;STYLE') {
           note = 'css';
         }
-        if (rest.substr(startpos, 10).toUpperCase() == '&amp;LT;SCRIPT') {
+
+        if (rest.substr(startpos, 10).toUpperCase() == '&LT;SCRIPT') {
           note = 'javascript';
         }
-        endpos = rest.indexOf('&amp;gt;', startpos);
+
+        endpos = rest.indexOf('&gt;', startpos);
+
         if (endpos == -1) {
           endpos = rest.length;
         }
+
         done += rest.substring(0, startpos);
         done += tagMode(rest.substring(startpos, endpos + 4));
         rest = rest.substr(endpos + 4);
+
         if (note == 'css') {
-          endpos = rest.indexOf('&amp;lt;/style&amp;gt;');
+          endpos = rest.indexOf('&lt;/style&gt;');
+
           if (endpos > -1) {
             done += cssMode(rest.substring(0, endpos));
             rest = rest.substr(endpos);
           }
         }
+
         if (note == 'javascript') {
-          endpos = rest.indexOf('&amp;lt;/script&amp;gt;');
+          endpos = rest.indexOf('&lt;/script&gt;');
+
           if (endpos > -1) {
             done += jsMode(rest.substring(0, endpos));
             rest = rest.substr(endpos);
           }
         }
       }
+
       rest = done + rest;
-      for (i = 0; i &lt; comment.arr.length; i++) {
+
+      for (i = 0; i < comment.arr.length; i++) {
         rest = rest.replace('W3HTMLCOMMENTPOS', comment.arr[i]);
       }
+
       return rest;
     }
+
     function tagMode(txt) {
       var rest = txt,
         done = '',
         startpos,
         endpos,
         result;
-      while (rest.search(/(\s|&lt;br>)/) > -1) {
-        startpos = rest.search(/(\s|&lt;br>)/);
-        endpos = rest.indexOf('&amp;gt;');
+
+      while (rest.search(/(\s|<br>)/) > -1) {
+        startpos = rest.search(/(\s|<br>)/);
+        endpos = rest.indexOf('&gt;');
+
         if (endpos == -1) {
           endpos = rest.length;
         }
+
         done += rest.substring(0, startpos);
         done += attributeMode(rest.substring(startpos, endpos));
         rest = rest.substr(endpos);
       }
+
       result = done + rest;
       result =
-        '&lt;span style=color:' +
+        '<span style=color:' +
         tagcolor +
-        '>&amp;lt;&lt;/span>' +
+        '>&lt;</span>' +
         result.substring(4);
-      if (result.substr(result.length - 4, 4) == '&amp;gt;') {
+
+      if (result.substr(result.length - 4, 4) == '&gt;') {
         result =
           result.substring(0, result.length - 4) +
-          '&lt;span style=color:' +
+          '<span style=color:' +
           tagcolor +
-          '>&amp;gt;&lt;/span>';
+          '>&gt;</span>';
       }
+
       return (
-        '&lt;span style=color:' + tagnamecolor + '>' + result + '&lt;/span>'
+        '<span style=color:' + tagnamecolor + '>' + result + '</span>'
       );
     }
+
     function attributeMode(txt) {
       var rest = txt,
         done = '',
@@ -639,63 +682,71 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         singlefnuttpos,
         doublefnuttpos,
         spacepos;
+
       while (rest.indexOf('=') > -1) {
         endpos = -1;
         startpos = rest.indexOf('=');
         singlefnuttpos = rest.indexOf("'", startpos);
         doublefnuttpos = rest.indexOf('"', startpos);
         spacepos = rest.indexOf(' ', startpos + 2);
+
         if (
-          spacepos > -1 &amp;&amp;
-          (spacepos &lt; singlefnuttpos || singlefnuttpos == -1) &amp;&amp;
-          (spacepos &lt; doublefnuttpos || doublefnuttpos == -1)
+          spacepos > -1 &&
+          (spacepos < singlefnuttpos || singlefnuttpos == -1) &&
+          (spacepos < doublefnuttpos || doublefnuttpos == -1)
         ) {
           endpos = rest.indexOf(' ', startpos);
         } else if (
-          doublefnuttpos > -1 &amp;&amp;
-          (doublefnuttpos &lt; singlefnuttpos || singlefnuttpos == -1) &amp;&amp;
-          (doublefnuttpos &lt; spacepos || spacepos == -1)
+          doublefnuttpos > -1 &&
+          (doublefnuttpos < singlefnuttpos || singlefnuttpos == -1) &&
+          (doublefnuttpos < spacepos || spacepos == -1)
         ) {
           endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1);
         } else if (
-          singlefnuttpos > -1 &amp;&amp;
-          (singlefnuttpos &lt; doublefnuttpos || doublefnuttpos == -1) &amp;&amp;
-          (singlefnuttpos &lt; spacepos || spacepos == -1)
+          singlefnuttpos > -1 &&
+          (singlefnuttpos < doublefnuttpos || doublefnuttpos == -1) &&
+          (singlefnuttpos < spacepos || spacepos == -1)
         ) {
           endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1);
         }
-        if (!endpos || endpos == -1 || endpos &lt; startpos) {
+
+        if (!endpos || endpos == -1 || endpos < startpos) {
           endpos = rest.length;
         }
+
         done += rest.substring(0, startpos);
         done += attributeValueMode(
           rest.substring(startpos, endpos + 1),
         );
         rest = rest.substr(endpos + 1);
       }
+
       return (
-        '&lt;span style=color:' +
+        '<span style=color:' +
         attributecolor +
         '>' +
         done +
         rest +
-        '&lt;/span>'
+        '</span>'
       );
     }
+
     function attributeValueMode(txt) {
       return (
-        '&lt;span style=color:' +
+        '<span style=color:' +
         attributevaluecolor +
         '>' +
         txt +
-        '&lt;/span>'
+        '</span>'
       );
     }
+
     function commentMode(txt) {
       return (
-        '&lt;span style=color:' + commentcolor + '>' + txt + '&lt;/span>'
+        '<span style=color:' + commentcolor + '>' + txt + '</span>'
       );
     }
+
     function cssMode(txt) {
       var rest = txt,
         done = '',
@@ -714,57 +765,70 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         'W3CSSCOMMENTPOS',
       );
       rest = comment.rest;
+
       while (rest.search('{') > -1) {
         s = rest.search('{');
         midz = rest.substr(s + 1);
         cc = 1;
         c = 0;
-        for (i = 0; i &lt; midz.length; i++) {
+
+        for (i = 0; i < midz.length; i++) {
           if (midz.substr(i, 1) == '{') {
             cc++;
             c++;
           }
+
           if (midz.substr(i, 1) == '}') {
             cc--;
           }
+
           if (cc == 0) {
             break;
           }
         }
+
         if (cc != 0) {
           c = 0;
         }
+
         e = s;
-        for (i = 0; i &lt;= c; i++) {
+
+        for (i = 0; i <= c; i++) {
           e = rest.indexOf('}', e + 1);
         }
+
         if (e == -1) {
           e = rest.length;
         }
+
         done += rest.substring(0, s + 1);
         done += cssPropertyMode(rest.substring(s + 1, e));
         rest = rest.substr(e);
       }
+
       rest = done + rest;
       rest = rest.replace(
         /{/g,
-        '&lt;span style=color:' + cssdelimitercolor + '>{&lt;/span>',
+        '<span style=color:' + cssdelimitercolor + '>{</span>',
       );
       rest = rest.replace(
         /}/g,
-        '&lt;span style=color:' + cssdelimitercolor + '>}&lt;/span>',
+        '<span style=color:' + cssdelimitercolor + '>}</span>',
       );
-      for (i = 0; i &lt; comment.arr.length; i++) {
+
+      for (i = 0; i < comment.arr.length; i++) {
         rest = rest.replace('W3CSSCOMMENTPOS', comment.arr[i]);
       }
+
       return (
-        '&lt;span style=color:' +
+        '<span style=color:' +
         cssselectorcolor +
         '>' +
         rest +
-        '&lt;/span>'
+        '</span>'
       );
     }
+
     function cssPropertyMode(txt) {
       var rest = txt,
         done = '',
@@ -772,83 +836,97 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         e,
         n,
         loop;
+
       if (rest.indexOf('{') > -1) {
         return cssMode(rest);
       }
+
       while (rest.search(':') > -1) {
         s = rest.search(':');
         loop = true;
         n = s;
+
         while (loop == true) {
           loop = false;
           e = rest.indexOf(';', n);
-          if (rest.substring(e - 5, e + 1) == '&amp;nbsp;') {
+
+          if (rest.substring(e - 5, e + 1) == '&nbsp;') {
             loop = true;
             n = e + 1;
           }
         }
+
         if (e == -1) {
           e = rest.length;
         }
+
         done += rest.substring(0, s);
         done += cssPropertyValueMode(rest.substring(s, e + 1));
         rest = rest.substr(e + 1);
       }
+
       return (
-        '&lt;span style=color:' +
+        '<span style=color:' +
         csspropertycolor +
         '>' +
         done +
         rest +
-        '&lt;/span>'
+        '</span>'
       );
     }
+
     function cssPropertyValueMode(txt) {
       var rest = txt,
         done = '',
         s;
       rest =
-        '&lt;span style=color:' +
+        '<span style=color:' +
         cssdelimitercolor +
-        '>:&lt;/span>' +
+        '>:</span>' +
         rest.substring(1);
+
       while (rest.search(/!important/i) > -1) {
         s = rest.search(/!important/i);
         done += rest.substring(0, s);
         done += cssImportantMode(rest.substring(s, s + 10));
         rest = rest.substr(s + 10);
       }
+
       result = done + rest;
+
       if (
-        result.substr(result.length - 1, 1) == ';' &amp;&amp;
-        result.substr(result.length - 6, 6) != '&amp;nbsp;' &amp;&amp;
-        result.substr(result.length - 4, 4) != '&amp;lt;' &amp;&amp;
-        result.substr(result.length - 4, 4) != '&amp;gt;' &amp;&amp;
-        result.substr(result.length - 5, 5) != '&amp;amp;'
+        result.substr(result.length - 1, 1) == ';' &&
+        result.substr(result.length - 6, 6) != '&nbsp;' &&
+        result.substr(result.length - 4, 4) != '&lt;' &&
+        result.substr(result.length - 4, 4) != '&gt;' &&
+        result.substr(result.length - 5, 5) != '&amp;'
       ) {
         result =
           result.substring(0, result.length - 1) +
-          '&lt;span style=color:' +
+          '<span style=color:' +
           cssdelimitercolor +
-          '>;&lt;/span>';
+          '>;</span>';
       }
+
       return (
-        '&lt;span style=color:' +
+        '<span style=color:' +
         csspropertyvaluecolor +
         '>' +
         result +
-        '&lt;/span>'
+        '</span>'
       );
     }
+
     function cssImportantMode(txt) {
       return (
-        '&lt;span style=color:' +
+        '<span style=color:' +
         cssimportantcolor +
         ';font-weight:bold;>' +
         txt +
-        '&lt;/span>'
+        '</span>'
       );
     }
+
     function jsMode(txt) {
       var rest = txt,
         done = '',
@@ -865,25 +943,31 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         mypos,
         dotpos,
         y;
-      for (i = 0; i &lt; rest.length; i++) {
+
+      for (i = 0; i < rest.length; i++) {
         cc = rest.substr(i, 1);
+
         if (cc == '\\') {
           esc.push(rest.substr(i, 2));
           cc = 'W3JSESCAPE';
           i++;
         }
+
         tt += cc;
       }
+
       rest = tt;
       y = 1;
+
       while (y == 1) {
         sfnuttpos = getPos(rest, "'", "'", jsStringMode);
         dfnuttpos = getPos(rest, '"', '"', jsStringMode);
         compos = getPos(rest, /\/\*/, '*/', commentMode);
-        comlinepos = getPos(rest, /\/\//, '&lt;br>', commentMode);
+        comlinepos = getPos(rest, /\/\//, '<br>', commentMode);
         numpos = getNumPos(rest, jsNumberMode);
         keywordpos = getKeywordPos('js', rest, jsKeywordMode);
         dotpos = getDotPos(rest, jsPropertyMode);
+
         if (
           Math.max(
             numpos[0],
@@ -897,6 +981,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         ) {
           break;
         }
+
         mypos = getMinPos(
           numpos,
           sfnuttpos,
@@ -906,41 +991,51 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
           keywordpos,
           dotpos,
         );
+
         if (mypos[0] == -1) {
           break;
         }
+
         if (mypos[0] > -1) {
           done += rest.substring(0, mypos[0]);
           done += mypos[2](rest.substring(mypos[0], mypos[1]));
           rest = rest.substr(mypos[1]);
         }
       }
+
       rest = done + rest;
-      for (i = 0; i &lt; esc.length; i++) {
+
+      for (i = 0; i < esc.length; i++) {
         rest = rest.replace('W3JSESCAPE', esc[i]);
       }
-      return '&lt;span style=color:' + jscolor + '>' + rest + '&lt;/span>';
+
+      return '<span style=color:' + jscolor + '>' + rest + '</span>';
     }
+
     function jsStringMode(txt) {
       return (
-        '&lt;span style=color:' + jsstringcolor + '>' + txt + '&lt;/span>'
+        '<span style=color:' + jsstringcolor + '>' + txt + '</span>'
       );
     }
+
     function jsKeywordMode(txt) {
       return (
-        '&lt;span style=color:' + jskeywordcolor + '>' + txt + '&lt;/span>'
+        '<span style=color:' + jskeywordcolor + '>' + txt + '</span>'
       );
     }
+
     function jsNumberMode(txt) {
       return (
-        '&lt;span style=color:' + jsnumbercolor + '>' + txt + '&lt;/span>'
+        '<span style=color:' + jsnumbercolor + '>' + txt + '</span>'
       );
     }
+
     function jsPropertyMode(txt) {
       return (
-        '&lt;span style=color:' + jspropertycolor + '>' + txt + '&lt;/span>'
+        '<span style=color:' + jspropertycolor + '>' + txt + '</span>'
       );
     }
+
     function getDotPos(txt, func) {
       var x,
         i,
@@ -949,7 +1044,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         e,
         arr = [
           '.',
-          '&lt;',
+          '<',
           ' ',
           ';',
           '(',
@@ -958,7 +1053,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
           '[',
           ']',
           ',',
-          '&amp;',
+          '&',
           ':',
           '{',
           '}',
@@ -969,11 +1064,14 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
           '%',
         ];
       s = txt.indexOf('.');
+
       if (s > -1) {
         x = txt.substr(s + 1);
-        for (j = 0; j &lt; x.length; j++) {
+
+        for (j = 0; j < x.length; j++) {
           cc = x[j];
-          for (i = 0; i &lt; arr.length; i++) {
+
+          for (i = 0; i < arr.length; i++) {
             if (cc.indexOf(arr[i]) > -1) {
               e = j;
               return [s + 1, e + s + 1, func];
@@ -981,23 +1079,29 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
           }
         }
       }
+
       return [-1, -1, func];
     }
+
     function getMinPos() {
       var i,
         arr = [];
-      for (i = 0; i &lt; arguments.length; i++) {
+
+      for (i = 0; i < arguments.length; i++) {
         if (arguments[i][0] > -1) {
-          if (arr.length == 0 || arguments[i][0] &lt; arr[0]) {
+          if (arr.length == 0 || arguments[i][0] < arr[0]) {
             arr = arguments[i];
           }
         }
       }
+
       if (arr.length == 0) {
         arr = arguments[i];
       }
+
       return arr;
     }
+
     function getKeywordPos(typ, txt, func) {
       var words,
         i,
@@ -1005,6 +1109,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         rpos = -1,
         rpos2 = -1,
         patt;
+
       if (typ == 'js') {
         words = [
           'abstract',
@@ -1073,35 +1178,43 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
           'yield',
         ];
       }
-      for (i = 0; i &lt; words.length; i++) {
+
+      for (i = 0; i < words.length; i++) {
         pos = txt.indexOf(words[i]);
+
         if (pos > -1) {
           patt = /\W/g;
+
           if (
-            txt.substr(pos + words[i].length, 1).match(patt) &amp;&amp;
+            txt.substr(pos + words[i].length, 1).match(patt) &&
             txt.substr(pos - 1, 1).match(patt)
           ) {
-            if (pos > -1 &amp;&amp; (rpos == -1 || pos &lt; rpos)) {
+            if (pos > -1 && (rpos == -1 || pos < rpos)) {
               rpos = pos;
               rpos2 = rpos + words[i].length;
             }
           }
         }
       }
+
       return [rpos, rpos2, func];
     }
+
     function getPos(txt, start, end, func) {
       var s, e;
       s = txt.search(start);
       e = txt.indexOf(end, s + end.length);
+
       if (e == -1) {
         e = txt.length;
       }
+
       return [s, e + end.length, func];
     }
+
     function getNumPos(txt, func) {
       var arr = [
-          '&lt;br>',
+          '<br>',
           ' ',
           ';',
           '(',
@@ -1110,7 +1223,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
           '[',
           ']',
           ',',
-          '&amp;',
+          '&',
           ':',
           '{',
           '}',
@@ -1127,24 +1240,30 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         startpos = 0,
         endpos,
         word;
-      for (i = 0; i &lt; txt.length; i++) {
-        for (j = 0; j &lt; arr.length; j++) {
+
+      for (i = 0; i < txt.length; i++) {
+        for (j = 0; j < arr.length; j++) {
           c = txt.substr(i, arr[j].length);
+
           if (c == arr[j]) {
             if (
-              c == '-' &amp;&amp;
+              c == '-' &&
               (txt.substr(i - 1, 1) == 'e' ||
                 txt.substr(i - 1, 1) == 'E')
             ) {
               continue;
             }
+
             endpos = i;
-            if (startpos &lt; endpos) {
+
+            if (startpos < endpos) {
               word = txt.substring(startpos, endpos);
+
               if (!isNaN(word)) {
                 return [startpos, endpos, func];
               }
             }
+
             i += arr[j].length;
             startpos = i;
             i -= 1;
@@ -1152,9 +1271,11 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
           }
         }
       }
+
       return [-1, -1, func];
     }
   };
+
   highlightel(el, mode, colors);
   return el.innerHTML;
 };
@@ -1167,7 +1288,10 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
  * console.log(_$.camelCase("Hello world"));//Logs "helloWorld" to the console.
  * @returns {String} The camelCased string.
  */
-export let camelCase = (str) => {
+
+exports.syntaxHighlight = syntaxHighlight;
+
+let camelCase = (str) => {
   return str
     .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
       return index === 0 ? word.toLowerCase() : word.toUpperCase();
@@ -1183,7 +1307,10 @@ export let camelCase = (str) => {
  * console.log(_$.scrambleString("Hello world"));//Logs "owllH rdloe" to the console
  * @returns {String} The scrambled text.
  */
-export let scrambleString = (str) => {
+
+exports.camelCase = camelCase;
+
+let scrambleString = (str) => {
   var a = str.split(''),
     n = a.length;
 
@@ -1193,6 +1320,7 @@ export let scrambleString = (str) => {
     a[i] = a[j];
     a[j] = tmp;
   }
+
   return a.join('');
 };
 /**
@@ -1205,23 +1333,27 @@ export let scrambleString = (str) => {
  * console.log(_$.hashString("Hello world"));//Logs 3494146707865688 to the console.
  * @returns {Number} The hashed string.
  */
-export let hashString = (str, seed = 0) => {
+
+exports.scrambleString = scrambleString;
+
+let hashString = (str, seed = 0) => {
   let h1 = 0xdeadbeef ^ seed,
     h2 = 0x41c6ce57 ^ seed;
-  for (let i = 0, ch; i &lt; str.length; i++) {
+
+  for (let i = 0, ch; i < str.length; i++) {
     ch = str.charCodeAt(i);
     h1 = Math.imul(h1 ^ ch, 2654435761);
     h2 = Math.imul(h2 ^ ch, 1597334677);
   }
+
   h1 =
     Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
     Math.imul(h2 ^ (h2 >>> 13), 3266489909);
   h2 =
     Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
     Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-  return 4294967296 * (2097151 &amp; h2) + (h1 >>> 0);
+  return 4294967296 * (2097151 & h2) + (h1 >>> 0);
 };
-
 /**
  * Gets the edit distance between two strings.
  * @function
@@ -1232,27 +1364,28 @@ export let hashString = (str, seed = 0) => {
  * _$.editDistance("hello", "Hello");//Returns 1
  * @returns {Number} The edit distance between two strings
  */
-export let editDistance = (a, b) => {
+
+exports.hashString = hashString;
+
+let editDistance = (a, b) => {
   if (a.length == 0) return b.length;
   if (b.length == 0) return a.length;
+  var matrix = []; // increment along the first column of each row
 
-  var matrix = [];
-
-  // increment along the first column of each row
   var i;
-  for (i = 0; i &lt;= b.length; i++) {
+
+  for (i = 0; i <= b.length; i++) {
     matrix[i] = [i];
-  }
+  } // increment each column in the first row
 
-  // increment each column in the first row
   var j;
-  for (j = 0; j &lt;= a.length; j++) {
-    matrix[0][j] = j;
-  }
 
-  // Fill in the rest of the matrix
-  for (i = 1; i &lt;= b.length; i++) {
-    for (j = 1; j &lt;= a.length; j++) {
+  for (j = 0; j <= a.length; j++) {
+    matrix[0][j] = j;
+  } // Fill in the rest of the matrix
+
+  for (i = 1; i <= b.length; i++) {
+    for (j = 1; j <= a.length; j++) {
       if (b.charAt(i - 1) == a.charAt(j - 1)) {
         matrix[i][j] = matrix[i - 1][j - 1];
       } else {
@@ -1278,8 +1411,10 @@ export let editDistance = (a, b) => {
  * console.log(_$.byteSize("Hello world"));//Logs "11" to the console.
  * @returns {Number} The byte size of the string.
  */
-export let byteSize = (str) => new Blob([str]).size;
 
+exports.editDistance = editDistance;
+
+let byteSize = (str) => new Blob([str]).size;
 /**
  * Finds and replace multiple values with multiple other values.
  * @function
@@ -1290,7 +1425,10 @@ export let byteSize = (str) => new Blob([str]).size;
  * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
  * @returns {String} The replaced string
  */
-export let replaceMultiple = (text, replace) => {
+
+exports.byteSize = byteSize;
+
+let replaceMultiple = (text, replace) => {
   var re = new RegExp(Object.keys(replace).join('|'), 'gi');
   text = text.replace(re, function (matched) {
     return mapObj[matched];
@@ -1304,21 +1442,23 @@ export let replaceMultiple = (text, replace) => {
  * @param {String} query The url query to get.
  * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
  * @example
- * //If the website adress of the current page was "https://example.com/?q=hello&amp;hello=world"
+ * //If the website adress of the current page was "https://example.com/?q=hello&hello=world"
  * console.log(_$.urlQuery("hello"));//Returns "world";
  * //Or on a custom url:
  * console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
  * @returns {String} The url query
  */
-export let urlQuery = (query, url = window.location.href) => {
-  query = query.replace(/[\[\]]/g, '\\$&amp;');
-  var regex = new RegExp(`[?&amp;]${query}(=([^&amp;#]*)|&amp;|#|$)`),
+
+exports.replaceMultiple = replaceMultiple;
+
+let urlQuery = (query, url = window.location.href) => {
+  query = query.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`),
     results = regex.exec(url);
   if (!results) return null;
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
-
 /**
  * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
  * @function
@@ -1327,22 +1467,45 @@ export let urlQuery = (query, url = window.location.href) => {
  * @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
  * @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
  * @example
- * _$.sanitizeHTML("&lt;script>alert('hello')>&lt;/script>&lt;b>A normal tag&lt;/b>");//Returns "&lt;b>A normal tag&lt;/b>"
+ * _$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>");//Returns "<b>A normal tag</b>"
  * @returns {String} The sanitized HTML string.
  */
-export let sanitize = (
-  html,
-  tags = undefined,
-  attributes = undefined,
-) => {
+
+exports.urlQuery = urlQuery;
+
+let sanitize = (html, tags = undefined, attributes = undefined) => {
   node();
   var attributes = attributes || [
-    { attribute: 'src', tags: '*', regex: /^(?:https|http|\/\/):/ },
-    { attribute: 'href', tags: '*', regex: /^(?!javascript:).+/ },
-    { attribute: 'width', tags: '*', regex: /^[0-9]+$/ },
-    { attribute: 'height', tags: '*', regex: /^[0-9]+$/ },
-    { attribute: 'id', tags: '*', regex: /^[a-zA-Z]+$/ },
-    { attribute: 'class', tags: '*', regex: /^[a-zA-Z ]+$/ },
+    {
+      attribute: 'src',
+      tags: '*',
+      regex: /^(?:https|http|\/\/):/,
+    },
+    {
+      attribute: 'href',
+      tags: '*',
+      regex: /^(?!javascript:).+/,
+    },
+    {
+      attribute: 'width',
+      tags: '*',
+      regex: /^[0-9]+$/,
+    },
+    {
+      attribute: 'height',
+      tags: '*',
+      regex: /^[0-9]+$/,
+    },
+    {
+      attribute: 'id',
+      tags: '*',
+      regex: /^[a-zA-Z]+$/,
+    },
+    {
+      attribute: 'class',
+      tags: '*',
+      regex: /^[a-zA-Z ]+$/,
+    },
     {
       attribute: 'value',
       tags: ['INPUT', 'TEXTAREA'],
@@ -1425,55 +1588,69 @@ export let sanitize = (
     'BDI',
     'BDO',
   ];
-
   attributes = attributes.map((el) => {
     if (typeof el === 'string') {
-      return { attribute: el, tags: '*', regex: /^.+$/ };
+      return {
+        attribute: el,
+        tags: '*',
+        regex: /^.+$/,
+      };
     }
+
     let output = el;
+
     if (!el.hasOwnProperty('tags')) {
       output.tags = '*';
     }
+
     if (!el.hasOwnProperty('regex')) {
       output.regex = /^.+$/;
     }
+
     return output;
   });
   var el = new DOMParser().parseFromString(html, 'text/html');
   var elements = el.querySelectorAll('*');
-  for (let i = 0; i &lt; elements.length; i++) {
+
+  for (let i = 0; i < elements.length; i++) {
     const current = elements[i];
     let attr_list = get_attributes(current);
-    for (let j = 0; j &lt; attr_list.length; j++) {
+
+    for (let j = 0; j < attr_list.length; j++) {
       const attribute = attr_list[j];
+
       if (!attribute_matches(current, attribute)) {
         current.removeAttribute(attr_list[j]);
       }
     }
+
     if (!tags.includes(current.tagName)) {
       current.remove();
     }
   }
+
   return el.documentElement.innerHTML;
+
   function attribute_matches(element, attribute) {
     let output = attributes.filter((attr) => {
       let returnval =
-        attr.attribute === attribute &amp;&amp;
-        (attr.tags === '*' || attr.tags.includes(element.tagName)) &amp;&amp;
+        attr.attribute === attribute &&
+        (attr.tags === '*' || attr.tags.includes(element.tagName)) &&
         attr.regex.test(element.getAttribute(attribute));
       return returnval;
     });
-
     return output.length > 0;
   }
+
   function get_attributes(element) {
     for (
       var i = 0, atts = element.attributes, n = atts.length, arr = [];
-      i &lt; n;
+      i < n;
       i++
     ) {
       arr.push(atts[i].nodeName);
     }
+
     return arr;
   }
 };
@@ -1483,19 +1660,22 @@ export let sanitize = (
  * @memberOf bijou
  * @function
  * @example
- * _$.markdownToHTML("_Italic text_, **bold text**");//Returns "&lt;em>Italic text&lt;/em>, &lt;b>bold text&lt;/b>"
+ * _$.markdownToHTML("_Italic text_, **bold text**");//Returns "<em>Italic text</em>, <b>bold text</b>"
  * @returns {String} The string of HTML converted from the markdown input.
  */
-export let markdownToHTML = (src) => {
-  var rx_lt = /&lt;/g;
+
+exports.sanitize = sanitize;
+
+let markdownToHTML = (src) => {
+  var rx_lt = /</g;
   var rx_gt = />/g;
   var rx_space = /\t|\r|\uf8ff/g;
   var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
   var rx_hr = /^([*\-=_] *){3,}$/gm;
-  var rx_blockquote = /\n *&amp;gt; *([^]*?)(?=(\n|$){2})/g;
+  var rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g;
   var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
-  var rx_listjoin = /&lt;\/(ol|ul)>\n\n&lt;\1>/g;
-  var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^&lt;]*?)\2\8(?!\2)(?=\W|_|$)/g;
+  var rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g;
+  var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
   var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|(( {4}.*?\n)+))/g;
   var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
   var rx_table = /\n(( *\|.*?\| *\n)+)/g;
@@ -1503,7 +1683,7 @@ export let markdownToHTML = (src) => {
   var rx_row = /.*\n/g;
   var rx_cell = /\||(.*?[^\\])\|/g;
   var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
-  var rx_para = /(?=^|>|\n)\s*\n+([^&lt;]+?)\n+\s*(?=\n|&lt;|$)/g;
+  var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
   var rx_stash = /-\d+\uf8ff/g;
 
   function replace(rex, fn) {
@@ -1511,14 +1691,14 @@ export let markdownToHTML = (src) => {
   }
 
   function element(tag, content) {
-    return '&lt;' + tag + '>' + content + '&lt;/' + tag + '>';
+    return '<' + tag + '>' + content + '</' + tag + '>';
   }
 
   function blockquote(src) {
     return src.replace(rx_blockquote, function (all, content) {
       return element(
         'blockquote',
-        blockquote(highlight(content.replace(/^ *&amp;gt; */gm, ''))),
+        blockquote(highlight(content.replace(/^ *&gt; */gm, ''))),
       );
     });
   }
@@ -1540,14 +1720,13 @@ export let markdownToHTML = (src) => {
                 ),
               )
               .map(list)
-              .join('&lt;/li>&lt;li>'),
+              .join('</li><li>'),
           ),
         );
-
         return (
           '\n' +
           (ol
-            ? '&lt;ol start="' +
+            ? '<ol start="' +
               (num
                 ? ol + '">'
                 : parseInt(ol, 36) -
@@ -1556,7 +1735,7 @@ export let markdownToHTML = (src) => {
                   (low ? 'low' : 'upp') +
                   'er-alpha">') +
               entry +
-              '&lt;/ol>'
+              '</ol>'
             : element('ul', entry))
         );
       },
@@ -1598,45 +1777,37 @@ export let markdownToHTML = (src) => {
 
   var stash = [];
   var si = 0;
-
   src = '\n' + src + '\n';
+  replace(rx_lt, '&lt;');
+  replace(rx_gt, '&gt;');
+  replace(rx_space, '  '); // blockquote
 
-  replace(rx_lt, '&amp;lt;');
-  replace(rx_gt, '&amp;gt;');
-  replace(rx_space, '  ');
+  src = blockquote(src); // horizontal rule
 
-  // blockquote
-  src = blockquote(src);
+  replace(rx_hr, '<hr/>'); // list
 
-  // horizontal rule
-  replace(rx_hr, '&lt;hr/>');
-
-  // list
   src = list(src);
-  replace(rx_listjoin, '');
+  replace(rx_listjoin, ''); // code
 
-  // code
   replace(rx_code, function (all, p1, p2, p3, p4) {
     stash[--si] = element(
       'pre',
       element('code', p3 || p4.replace(/^ {4}/gm, '')),
     );
     return si + '\uf8ff';
-  });
+  }); // link or image
 
-  // link or image
   replace(rx_link, function (all, p1, p2, p3, p4, p5, p6) {
     stash[--si] = p6
       ? p6
       : p2
       ? p4
-        ? '&lt;img src="' + p4 + '" alt="' + p3 + '"/>'
+        ? '<img src="' + p4 + '" alt="' + p3 + '"/>'
         : p1
-      : '&lt;a href="' + p4 + '">' + unesc(highlight(p3)) + '&lt;/a>';
+      : '<a href="' + p4 + '">' + unesc(highlight(p3)) + '</a>';
     return si + '\uf8ff';
-  });
+  }); // table
 
-  // table
   replace(rx_table, function (all, table) {
     var sep = table.match(rx_thead)[1];
     return (
@@ -1651,7 +1822,7 @@ export let markdownToHTML = (src) => {
                 row.replace(rx_cell, function (all, cell, ci) {
                   return ci
                     ? element(
-                        sep &amp;&amp; !ri ? 'th' : 'td',
+                        sep && !ri ? 'th' : 'td',
                         unesc(highlight(cell || '')),
                       )
                     : '';
@@ -1660,23 +1831,19 @@ export let markdownToHTML = (src) => {
         }),
       )
     );
-  });
+  }); // heading
 
-  // heading
   replace(rx_heading, function (all, _, p1, p2) {
     return _ + element('h' + p1.length, unesc(highlight(p2)));
-  });
+  }); // paragraph
 
-  // paragraph
   replace(rx_para, function (all, content) {
     return element('p', unesc(highlight(content)));
-  });
+  }); // stash
 
-  // stash
   replace(rx_stash, function (all) {
     return stash[parseInt(all)];
   });
-
   return src.trim();
 };
 /**
@@ -1686,7 +1853,10 @@ export let markdownToHTML = (src) => {
  * @param {String} js The string of JavaScript to beautify.
  * @param {Function} callback The callback function to run with the beautified code.
  */
-export let beautifyJS = (js, callback) => {
+
+exports.markdownToHTML = markdownToHTML;
+
+let beautifyJS = (js, callback) => {
   _$.loadScript(
     'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.5/beautify.min.js',
     () => {
@@ -1702,19 +1872,25 @@ export let beautifyJS = (js, callback) => {
  * @example
  * _$.syllables("Hello")//Returns 2.
  */
-export let syllables = (word) => {
+
+exports.beautifyJS = beautifyJS;
+
+let syllables = (word) => {
   word = word.toLowerCase();
   var t_some = 0;
+
   if (word.length > 3) {
     if (word.substring(0, 4) == 'some') {
       word = word.replace('some', '');
       t_some++;
     }
   }
+
   word = word.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/, '');
   word = word.replace(/^y/, '');
   var syl = word.match(/[aeiouy]{1,2}/g);
   console.log(syl);
+
   if (syl) {
     return syl.length + t_some;
   }
@@ -1728,7 +1904,10 @@ export let syllables = (word) => {
  * _$.capitalize("hello world");//Returns "Hello world"
  * @returns {String} The capitalized string.
  */
-export let capitalize = (str) =>
+
+exports.syllables = syllables;
+
+let capitalize = (str) =>
   String.fromCodePoint(str.codePointAt(0)).toUpperCase() +
   str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
 /**
@@ -1742,7 +1921,10 @@ export let capitalize = (str) =>
  * @param {Number} end The end index
  * @param {String} what What to replace with.
  */
-export let replaceBetween = (string, start, end, what) =>
+
+exports.capitalize = capitalize;
+
+let replaceBetween = (string, start, end, what) =>
   string.substring(0, start) + what + string.substring(end);
 /**
  * Escapes a string of HTML
@@ -1750,19 +1932,22 @@ export let replaceBetween = (string, start, end, what) =>
  * @memberOf bijou
  * @param {String} str The string of HTML to escape.
  * @example
- * _$.escapeHTML("&lt;div>"); Returns the escaped HTML: "&amp;lt;div&amp;gt;"
+ * _$.escapeHTML("<div>"); Returns the escaped HTML: "&lt;div&gt;"
  * @returns {String} The escaped HTML.
  */
-export let escapeHTML = (str) =>
+
+exports.replaceBetween = replaceBetween;
+
+let escapeHTML = (str) =>
   str.replace(
-    /[&amp;&lt;>'"]/g,
+    /[&<>'"]/g,
     (tag) =>
       ({
-        '&amp;': '&amp;amp;',
-        '&lt;': '&amp;lt;',
-        '>': '&amp;gt;',
-        "'": '&amp;#39;',
-        '"': '&amp;quot;',
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;',
       }[tag] || tag),
   );
 /**
@@ -1771,19 +1956,22 @@ export let escapeHTML = (str) =>
  * @memberOf bijou
  * @param {String} str The string of HTML to unescape.
  * @example
- * _$.unescapeHTML("&amp;lt;div&amp;gt;");//Returns "&lt;div>"
+ * _$.unescapeHTML("&lt;div&gt;");//Returns "<div>"
  * @returns {String} The unescaped HTML.
  */
-export let unescapeHTML = (str) =>
+
+exports.escapeHTML = escapeHTML;
+
+let unescapeHTML = (str) =>
   str.replace(
-    /&amp;amp;|&amp;lt;|&amp;gt;|&amp;#39;|&amp;quot;/g,
+    /&amp;|&lt;|&gt;|&#39;|&quot;/g,
     (tag) =>
       ({
-        '&amp;amp;': '&amp;',
-        '&amp;lt;': '&lt;',
-        '&amp;gt;': '>',
-        '&amp;#39;': "'",
-        '&amp;quot;': '"',
+        '&amp;': '&',
+        '&lt;': '<',
+        '&gt;': '>',
+        '&#39;': "'",
+        '&quot;': '"',
       }[tag] || tag),
   );
 /**
@@ -1794,11 +1982,13 @@ export let unescapeHTML = (str) =>
  * _$.previousPage()
  * @returns {String} The url of the previous page the user visited.
  */
-export let previousPage = () => {
+
+exports.unescapeHTML = unescapeHTML;
+
+let previousPage = () => {
   node();
   return document.referrer || window.location.href;
-};
-//#endregion String
+}; //#endregion String
 //#region Array
 
 /**
@@ -1811,34 +2001,43 @@ export let previousPage = () => {
  * @param {Array} a1 The first array or string
  * @param {Array} a2 The 2nd array or string.
  */
-export let arrayDiff = (a1, a2) => {
+
+exports.previousPage = previousPage;
+
+let arrayDiff = (a1, a2) => {
   var a = [],
     diff = [];
-  for (var i = 0; i &lt; a1.length; i++) {
+
+  for (var i = 0; i < a1.length; i++) {
     a[a1[i]] = true;
   }
-  for (var i = 0; i &lt; a2.length; i++) {
+
+  for (var i = 0; i < a2.length; i++) {
     if (a[a2[i]]) {
       delete a[a2[i]];
     } else {
       a[a2[i]] = true;
     }
   }
+
   for (var k in a) {
     diff.push(k);
   }
+
   return diff;
 };
-
 /**
  * Gets the difference between two strings.
  * @memberOf bijou
  * @function
  * @param {String} text1 The 1st text to compare
  * @param {String} text2 The 2nd text to compare with the 1st one.
- * @returns {Array.&lt;Array.&lt;number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
+ * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
  */
-export let diff = function (text1, text2) {
+
+exports.arrayDiff = arrayDiff;
+
+let diff = function (text1, text2) {
   //Takes in two strings
   //Returns an array of the span of the differences
   //So if given:
@@ -1850,7 +2049,8 @@ export let diff = function (text1, text2) {
   //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
   var diffRange = [];
   var currentRange = undefined;
-  for (var i = 0; i &lt; text1.length; i++) {
+
+  for (var i = 0; i < text1.length; i++) {
     if (text1[i] != text2[i]) {
       //Found a diff!
       if (currentRange == undefined) {
@@ -1858,21 +2058,22 @@ export let diff = function (text1, text2) {
         currentRange = [i];
       }
     }
-    if (currentRange != undefined &amp;&amp; text1[i] == text2[i]) {
+
+    if (currentRange != undefined && text1[i] == text2[i]) {
       //End of range!
       currentRange.push(i);
       diffRange.push(currentRange);
       currentRange = undefined;
     }
-  }
-  //Push any last range if there's still one at the end
+  } //Push any last range if there's still one at the end
+
   if (currentRange != undefined) {
     currentRange.push(i);
     diffRange.push(currentRange);
   }
+
   return diffRange;
 };
-
 /**
  * Removes an item from the array specified.
  * @memberOf bijou
@@ -1882,27 +2083,33 @@ export let diff = function (text1, text2) {
  * @example
  * _$.remove([1,2,3,4,5], 1);//Returns [2,3,4,5].
  */
-export let remove = (array, item) =>
+
+exports.diff = diff;
+
+let remove = (array, item) =>
   array.indexOf(item) > -1
     ? array.splice(array.indexOf(item), 1)
     : array;
-
 /**
  * Splices an array buffer
  * @function
  * @memberOf bijou
  */
-export let spliceArrayBuffer = (arr, start, end, endian) => {
+
+exports.remove = remove;
+
+let spliceArrayBuffer = (arr, start, end, endian) => {
   endian = endian || false;
   var direction = endian ? -1 : 1;
   if (endian) [start, end] = [end, start];
   start = Math.floor(start);
   end = Math.floor(end) + direction;
+
   for (var i = start, value = 0; i != end; i += direction)
     value = 256 * value + arr[i];
+
   return value;
 };
-
 /**
  * Flattens an array level times.
  * @memberOf bijou
@@ -1913,14 +2120,18 @@ export let spliceArrayBuffer = (arr, start, end, endian) => {
  * @param {Array} array The array to flatten.
  * @param {Number} [level=1] The number of iterations to flatten it.
  */
-export let flatten = (array, level = 1) => {
+
+exports.spliceArrayBuffer = spliceArrayBuffer;
+
+let flatten = (array, level = 1) => {
   var output = array;
+
   _$.each(level, () => {
     output = [].concat.apply([], array);
   });
+
   return output;
 };
-
 /**
  * Flattens an array recursively.
  * @function
@@ -1928,14 +2139,16 @@ export let flatten = (array, level = 1) => {
  * @param {Array} arr The array to flatten.
  * @returns {Array} The flattened array.
  */
-export let nFlatten = (arr) => {
+
+exports.flatten = flatten;
+
+let nFlatten = (arr) => {
   return arr.reduce(function (flat, toFlatten) {
     return flat.concat(
       Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
     );
   }, []);
 };
-
 /**
  * Returns whether the specified array or string contains the item given.
  * @memberOf bijou
@@ -1946,8 +2159,10 @@ export let nFlatten = (arr) => {
  * _$.contains([1,2,3,4,5], 3);//Returns true. The array does include 5.
  * @returns {Boolean} True or false depending on if the array contains that item.
  */
-export let contains = (array, item) => array.includes(item);
 
+exports.nFlatten = nFlatten;
+
+let contains = (array, item) => array.includes(item);
 /**
  * Shuffles an array
  * @function
@@ -1959,9 +2174,10 @@ export let contains = (array, item) => array.includes(item);
  * //array is now something like this: [2,4,1,5,3].
  * @returns {Array} The shuffled array.
  */
-export let shuffleArray = (array) =>
-  array.sort(() => Math.random() - 0.5);
 
+exports.contains = contains;
+
+let shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
 /**
  * Splice but also for strings
  * @memberOf bijou
@@ -1971,7 +2187,10 @@ export let shuffleArray = (array) =>
  * @param {*} item The item
  * @param {Number} remove How many to remove.
  */
-export let splice = (array, index, item, remove = 0) => {
+
+exports.shuffleArray = shuffleArray;
+
+let splice = (array, index, item, remove = 0) => {
   return typeof array === 'string'
     ? array.slice(0, index) +
         item +
@@ -1988,32 +2207,42 @@ export let splice = (array, index, item, remove = 0) => {
  * _$.unionArrays([1,2,3], [4,5,6]);//Returns [1,2,3,4,5,6]
  * @returns {Array} The joined array from the two other arrays.
  */
-export let unionArrays = (x, y) => {
+
+exports.splice = splice;
+
+let unionArrays = (x, y) => {
   var obj = {};
+
   for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
+
   for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
+
   var res = [];
+
   for (var k in obj) {
     if (obj.hasOwnProperty(k)) res.push(obj[k]);
   }
+
   return res;
 };
 /**
  * averageBy
  * @function
  * @memberOf bijou
- * @param {Array.&lt;number>} arr The array to average
+ * @param {Array.<number>} arr The array to average
  * @param {Function} fn The function to apply to each item of the array.
  * @example
  * //Averages the array 1,2,3,4 after squaring each number.
  * _$.averageBy([1,2,3,4], (v) => v ** 2);
  * @returns {Number} The average of the array.
  */
-export let averageBy = (arr, fn) =>
+
+exports.unionArrays = unionArrays;
+
+let averageBy = (arr, fn) =>
   arr
     .map(typeof fn === 'function' ? fn : (val) => val[fn])
     .reduce((acc, val) => acc + val, 0) / arr.length;
-
 /**
   * Removes duplicates from an array
   * @function
@@ -2025,7 +2254,10 @@ export let averageBy = (arr, fn) =>
   //Now an_array is [1,2,3,4,5,6]
   * @returns {Array} The array with no duplicates.
   */
-export let uniqueArray = (array) => [...new Set(array)];
+
+exports.averageBy = averageBy;
+
+let uniqueArray = (array) => [...new Set(array)];
 /**
  * For each item in an array, run a callback with it.
  * @function
@@ -2036,19 +2268,23 @@ export let uniqueArray = (array) => [...new Set(array)];
  * _$.each(new Array(40), (array_item, i) => console.log(i));//Logs the numbers up to 40.
  * @returns {undefined}
  */
-export let each = (array, callback) => {
+
+exports.uniqueArray = uniqueArray;
+
+let each = (array, callback) => {
   array =
     typeof array === 'number'
       ? _$.range(1, array)
       : typeof array === 'string'
       ? array.split('')
       : array;
-  for (let i = 0; i &lt; array.length; i++) {
+
+  for (let i = 0; i < array.length; i++) {
     callback(array[i], i, array);
   }
-};
-//#endregion Array
+}; //#endregion Array
 //#region Function
+
 /**
  * Uses an array of arguments to make a function based on the one inputted.
  * @memberOf bijou
@@ -2060,9 +2296,12 @@ export let each = (array, callback) => {
   say(["Fred", "hi"]);//"Fred says hi"
  * @param {Function} fn The function to use
  */
-export let spread = (fn) => {
+
+exports.each = each;
+
+let spread = (fn) => {
   return (args) => {
-    call_me.apply(this, args);
+    call_me.apply(void 0, args);
   };
 };
 /**
@@ -2075,11 +2314,15 @@ export let spread = (fn) => {
  * console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)
  * @returns {undefined}
  */
-export let memoize = (fn) => {
+
+exports.spread = spread;
+
+let memoize = (fn) => {
   let cache = {};
   return function () {
     let args = JSON.stringify(Array.from(arguments));
     let arg_array = Array.from(arguments);
+
     if (cache[args]) {
       return cache[args];
     } else {
@@ -2094,7 +2337,10 @@ export let memoize = (fn) => {
  * @memberOf bijou
  * @returns {Function} The composed function.
  */
-export let composeFunction = (...functions) => (args) =>
+
+exports.memoize = memoize;
+
+let composeFunction = (...functions) => (args) =>
   functions.reduceRight((arg, fn) => fn(arg), args);
 /**
  * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
@@ -2103,8 +2349,11 @@ export let composeFunction = (...functions) => (args) =>
  * @param
  * @returns {Function} The curried version of the function.
  */
-export let curryFunction = (fn, arity = fn.length, ...args) =>
-  arity &lt;= args.length
+
+exports.composeFunction = composeFunction;
+
+let curryFunction = (fn, arity = fn.length, ...args) =>
+  arity <= args.length
     ? fn(...args)
     : curry.bind(null, fn, arity, ...args);
 /**
@@ -2114,7 +2363,10 @@ export let curryFunction = (fn, arity = fn.length, ...args) =>
  * @param {Function} val The function to test.
  * @returns {Boolean} True if the function is async and false if not.
  */
-export let isAsync = (val) =>
+
+exports.curryFunction = curryFunction;
+
+let isAsync = (val) =>
   Object.prototype.toString.call(val) === '[object AsyncFunction]';
 /**
  * Only runs the input function at MAX with the delay specified.
@@ -2128,34 +2380,42 @@ export let isAsync = (val) =>
  * setInterval(alert_function, 1)
  * @returns {Function} The throttled function
  */
-export let throttle = (func, wait, options) => {
+
+exports.isAsync = isAsync;
+
+let throttle = (func, wait, options) => {
   var context, args, result;
   var timeout = null;
   var previous = 0;
   if (!options) options = {};
+
   var later = function () {
     previous = options.leading === false ? 0 : Date.now();
     timeout = null;
     result = func.apply(context, args);
     if (!timeout) context = args = null;
   };
+
   return function () {
     var now = Date.now();
-    if (!previous &amp;&amp; options.leading === false) previous = now;
+    if (!previous && options.leading === false) previous = now;
     var remaining = wait - (now - previous);
     context = this;
     args = arguments;
-    if (remaining &lt;= 0 || remaining > wait) {
+
+    if (remaining <= 0 || remaining > wait) {
       if (timeout) {
         clearTimeout(timeout);
         timeout = null;
       }
+
       previous = now;
       result = func.apply(context, args);
       if (!timeout) context = args = null;
-    } else if (!timeout &amp;&amp; options.trailing !== false) {
+    } else if (!timeout && options.trailing !== false) {
       timeout = setTimeout(later, remaining);
     }
+
     return result;
   };
 };
@@ -2169,44 +2429,41 @@ export let throttle = (func, wait, options) => {
  * @param {Number} wait The milliseconds to wait between executions.
  * @param {Boolean} [immediate=false] Whether or not to run immediately, or after a group of executions.
  */
-export let debounce = (func, wait, immediate = false) => {
+
+exports.throttle = throttle;
+
+let debounce = (func, wait, immediate = false) => {
   // 'private' variable for instance
   // The returned function will be able to reference this due to closure.
   // Each call to the returned function will share this common timer.
-  var timeout;
+  var timeout; // Calling debounce returns a new anonymous function
 
-  // Calling debounce returns a new anonymous function
   return function () {
     // reference the context and args for the setTimeout function
     var context = this,
-      args = arguments;
-
-    // Should the function be called now? If immediate is true
+      args = arguments; // Should the function be called now? If immediate is true
     //   and not already in a timeout then the answer is: Yes
-    var callNow = immediate &amp;&amp; !timeout;
 
-    // This is the basic debounce behaviour where you can call this
+    var callNow = immediate && !timeout; // This is the basic debounce behaviour where you can call this
     //   function several times, but it will only execute once
     //   [before or after imposing a delay].
     //   Each time the returned function is called, the timer starts over.
-    clearTimeout(timeout);
 
-    // Set the new timeout
+    clearTimeout(timeout); // Set the new timeout
+
     timeout = setTimeout(function () {
       // Inside the timeout function, clear the timeout variable
       // which will let the next execution run when in 'immediate' mode
-      timeout = null;
+      timeout = null; // Check if the function already ran with the immediate flag
 
-      // Check if the function already ran with the immediate flag
       if (!immediate) {
         // Call the original function with apply
         // apply lets you define the 'this' object as well as the arguments
         //    (both captured before setTimeout)
         func.apply(context, args);
       }
-    }, wait);
+    }, wait); // Immediate mode and no wait timer? Execute the function..
 
-    // Immediate mode and no wait timer? Execute the function..
     if (callNow) func.apply(context, args);
   };
 };
@@ -2219,7 +2476,10 @@ export let debounce = (func, wait, immediate = false) => {
  * _$.runAsync(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
  * @returns {Promise} A promise that resolves into the return value of the function.
  */
-export let runAsync = (fn) => {
+
+exports.debounce = debounce;
+
+let runAsync = (fn) => {
   const worker = new Worker(
     URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
       type: 'application/javascript; charset=utf-8',
@@ -2229,13 +2489,14 @@ export let runAsync = (fn) => {
     worker.onmessage = ({ data }) => {
       res(data), worker.terminate();
     };
+
     worker.onerror = (err) => {
       rej(err), worker.terminate();
     };
   });
-};
-//#endregion Function
+}; //#endregion Function
 //#region Object
+
 /**
  * Deep clones an object
  * @function
@@ -2243,12 +2504,17 @@ export let runAsync = (fn) => {
  * @param {Object} obj The object to clone.
  * @returns {Object} The output cloned object.
  */
-export let clone = (obj) => {
+
+exports.runAsync = runAsync;
+
+let clone = (obj) => {
   if (null == obj || 'object' != typeof obj) return obj;
   var copy = obj.constructor();
+
   for (var attr in obj) {
     if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
   }
+
   return copy;
 };
 /**
@@ -2263,7 +2529,10 @@ export let clone = (obj) => {
  * obj.anotherThing = "Setting a key!";//Logs "Set!" to the console!
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
-export let listen = (obj, setCallback, getCallback) => {
+
+exports.clone = clone;
+
+let listen = (obj, setCallback, getCallback) => {
   return new Proxy(obj, {
     set: function (target, key, value) {
       setCallback(key, value);
@@ -2286,7 +2555,10 @@ export let listen = (obj, setCallback, getCallback) => {
  * @example
  * _$.merge({hello: "Hello!!"}, {world: " World"});//Returns {hello: "Hello!!", world: " World"}
  */
-export let merge = function MergeRecursive(obj1, obj2) {
+
+exports.listen = listen;
+
+let merge = function MergeRecursive(obj1, obj2) {
   for (var p in obj2) {
     try {
       // Property in destination object set; update its value.
@@ -2300,6 +2572,7 @@ export let merge = function MergeRecursive(obj1, obj2) {
       obj1[p] = obj2[p];
     }
   }
+
   return obj1;
 };
 /**
@@ -2313,7 +2586,10 @@ export let merge = function MergeRecursive(obj1, obj2) {
  * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
  * @returns {Object} The new Object.
  */
-export let mapObjectKeys = (obj, fn) =>
+
+exports.merge = merge;
+
+let mapObjectKeys = (obj, fn) =>
   Array.isArray(obj)
     ? obj.map((val) => _$.mapObjectKeys(val, fn))
     : typeof obj === 'object'
@@ -2321,7 +2597,7 @@ export let mapObjectKeys = (obj, fn) =>
         const key = fn(current);
         const val = obj[current];
         acc[key] =
-          val !== null &amp;&amp; typeof val === 'object'
+          val !== null && typeof val === 'object'
             ? _$.mapObjectKeys(val, fn)
             : val;
         return acc;
@@ -2335,7 +2611,10 @@ export let mapObjectKeys = (obj, fn) =>
  * @param {Function} fn The callback function to use.
  * @returns {Object} The mapped object.
  */
-export let mapObjectValues = (obj, fn) => {
+
+exports.mapObjectKeys = mapObjectKeys;
+
+let mapObjectValues = (obj, fn) => {
   Object.keys(obj).map(function (key, index) {
     obj[key] = fn(obj[key], index);
   });
@@ -2348,14 +2627,14 @@ export let mapObjectValues = (obj, fn) => {
  * @param {Element} form The form element.
  * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
  */
-export let formToObject = (form) => {
+
+exports.mapObjectValues = mapObjectValues;
+
+let formToObject = (form) => {
   node();
-  return Array.from(new FormData(form)).reduce(
-    (acc, [key, value]) => ({
-      ...acc,
-      [key]: value,
-    }),
-  );
+  return Array.from(
+    new FormData(form),
+  ).reduce((acc, [key, value]) => ({ ...acc, [key]: value }));
 };
 /**
  * Sorts an object alphabetically by its keys.
@@ -2367,36 +2646,41 @@ export let formToObject = (form) => {
  * // The object is now {anotherThing: "Another value!", testing: "A value"}
  * @returns {Object} The sorted object.
  */
-export let sortObj = (obj) => {
+
+exports.formToObject = formToObject;
+
+let sortObj = (obj) => {
   return Object.keys(obj)
     .sort()
     .reduce(function (result, key) {
       result[key] = obj[key];
       return result;
     }, {});
-};
-//#endregion Object
+}; //#endregion Object
 //#region Element
 
 /**
- * Re-enables the use of &lt;menu> and &lt;menuitem> tags for corner clicking.
+ * Re-enables the use of <menu> and <menuitem> tags for corner clicking.
  * @memberOf bijou
  * @function
  * @example
  * //HTML:
  * ```
- * &lt;h1 contextmenu="menu">Corner click me&lt;/h1>
- * &lt;menu>
- *  &lt;menuitem label="An item!">
- *  &lt;menuitem label="Another item!">
- * &lt;/menu>
+ * <h1 contextmenu="menu">Corner click me</h1>
+ * <menu>
+ *  <menuitem label="An item!">
+ *  <menuitem label="Another item!">
+ * </menu>
  * ```
  * //JS
  * _$.context();
  * //Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
  * @returns {undefined};
  */
-export let context = () => {
+
+exports.sortObj = sortObj;
+
+let context = () => {
   var menu = document.createElement('UL');
   menu.id = 'contextMenu';
   document.body.appendChild(menu);
@@ -2437,10 +2721,12 @@ export let context = () => {
      `;
   document.body.appendChild(styles);
   var elements = document.querySelectorAll('[contextmenu]');
-  for (let i = 0; i &lt; elements.length; i++) {
+
+  for (let i = 0; i < elements.length; i++) {
     window.addEventListener('contextmenu', (e) => {
       menu.style.pointerEvents = 'auto';
       let items;
+
       try {
         items = document.querySelectorAll(
           `#${e.target
@@ -2451,22 +2737,27 @@ export let context = () => {
       } catch (e) {
         return true;
       }
+
       menu.innerHTML = '';
-      for (let j = 0; j &lt; items.length; j++) {
+
+      for (let j = 0; j < items.length; j++) {
         const contextMenu = items[j];
-        menu.innerHTML += `&lt;li onclick="${contextMenu.getAttribute(
+        menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
           'onclick',
-        )}">${contextMenu.getAttribute('label')}&lt;/li>`;
+        )}">${contextMenu.getAttribute('label')}</li>`;
       }
+
       console.log(menu.innerHTML);
       menu.style.top = `${e.clientY}px`;
       menu.style.left = `${e.clientX}px`;
       menu.style.opacity = 1;
     });
   }
+
   var contextTimer = 0;
   requestInterval(() => {
     contextTimer += 100;
+
     if (contextTimer > 3000) {
       menu.style.opacity = 0;
       menu.style.pointerEvents = 'none';
@@ -2488,11 +2779,14 @@ export let context = () => {
  * @memberOf bijou
  * @param {Element} el The DOM element to test.
  * @example
- * //Alerts "In view!" if the first &lt;div> in the document is in view.
+ * //Alerts "In view!" if the first <div> in the document is in view.
  * if (_$.inView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the element is completely in view.
  */
-export let inView = (el) => {
+
+exports.context = context;
+
+let inView = (el) => {
   node();
   var top = el.offsetTop;
   var left = el.offsetLeft;
@@ -2506,10 +2800,10 @@ export let inView = (el) => {
   }
 
   return (
-    top >= window.pageYOffset &amp;&amp;
-    left >= window.pageXOffset &amp;&amp;
-    top + height &lt;= window.pageYOffset + window.innerHeight &amp;&amp;
-    left + width &lt;= window.pageXOffset + window.innerWidth
+    top >= window.pageYOffset &&
+    left >= window.pageXOffset &&
+    top + height <= window.pageYOffset + window.innerHeight &&
+    left + width <= window.pageXOffset + window.innerWidth
   );
 };
 /**
@@ -2518,11 +2812,14 @@ export let inView = (el) => {
  * @memberOf bijou
  * @param {Element} el The element to test.
  * @example
- * //Alerts "In view!" if the first &lt;div> in the document is partially or fully view.
+ * //Alerts "In view!" if the first <div> in the document is partially or fully view.
  * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the DOM element is partially in view.
  */
-export let inPartialView = (el) => {
+
+exports.inView = inView;
+
+let inPartialView = (el) => {
   node();
   var top = el.offsetTop;
   var left = el.offsetLeft;
@@ -2536,9 +2833,9 @@ export let inPartialView = (el) => {
   }
 
   return (
-    top &lt; window.pageYOffset + window.innerHeight &amp;&amp;
-    left &lt; window.pageXOffset + window.innerWidth &amp;&amp;
-    top + height > window.pageYOffset &amp;&amp;
+    top < window.pageYOffset + window.innerHeight &&
+    left < window.pageXOffset + window.innerWidth &&
+    top + height > window.pageYOffset &&
     left + width > window.pageXOffset
   );
 };
@@ -2549,13 +2846,15 @@ export let inPartialView = (el) => {
  * @param {Element} form The form element.
  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
  */
-export let serializeForm = (form) => {
+
+exports.inPartialView = inPartialView;
+
+let serializeForm = (form) => {
   node();
   return Array.from(new FormData(form), (field) =>
     field.map(encodeURIComponent).join('='),
-  ).join('&amp;');
+  ).join('&');
 };
-
 /**
  * Replaces the text in an element by running it through a callback.
  * @function
@@ -2564,11 +2863,15 @@ export let serializeForm = (form) => {
  * @param {Function} callback The callback to run (Gets passed the element's text).
  * @example
  * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
- * //Converts the text of the first &lt;div> element to upperCase.
+ * //Converts the text of the first <div> element to upperCase.
  * @returns {String} The element who's text was replaced.
  */
-export let replaceText = (el, callback) => {
+
+exports.serializeForm = serializeForm;
+
+let replaceText = (el, callback) => {
   node();
+
   _$.each(_$.textNodes(el), (node) => {
     node.textContent = callback(node.textContent);
   });
@@ -2579,10 +2882,13 @@ export let replaceText = (el, callback) => {
  * @param {El} el The element to get the text nodes of.
  * @returns {Array} The text nodes.
  */
-export let textNodes = (el) => {
+
+exports.replaceText = replaceText;
+
+let textNodes = (el) => {
   return [...el.childNodes].filter((node) => {
     return (
-      node.nodeType === Node.TEXT_NODE &amp;&amp; node.nodeValue.trim() !== ''
+      node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ''
     );
   });
 };
@@ -2596,14 +2902,17 @@ export let textNodes = (el) => {
  * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
  * @returns {String} The generated querySelector.
  */
-export let querySelector = (elem) => {
+
+exports.textNodes = textNodes;
+
+let querySelector = (elem) => {
   node();
   var element = elem;
   var str = '';
 
   function loop(element) {
     if (
-      element.getAttribute('id') &amp;&amp;
+      element.getAttribute('id') &&
       document.querySelectorAll(`#${element.getAttribute('id')}`)
         .length === 1
     ) {
@@ -2612,12 +2921,14 @@ export let querySelector = (elem) => {
       str = str.replace(/\s/g, ' > ');
       return str;
     }
+
     if (document.body === element) {
       str = str.replace(/^/, ' body');
       str = str.replace(/\s/, '');
       str = str.replace(/\s/g, ' > ');
       return str;
     }
+
     if (element.getAttribute('class')) {
       var elemClasses = '.';
       elemClasses += element.getAttribute('class');
@@ -2626,13 +2937,13 @@ export let querySelector = (elem) => {
       var classNth = '';
       var childrens = element.parentNode.children;
 
-      if (childrens.length &lt; 2) {
+      if (childrens.length < 2) {
         return;
       }
 
       var similarClasses = [];
 
-      for (var i = 0; i &lt; childrens.length; i++) {
+      for (var i = 0; i < childrens.length; i++) {
         if (
           element.getAttribute('class') ==
           childrens[i].getAttribute('class')
@@ -2642,7 +2953,7 @@ export let querySelector = (elem) => {
       }
 
       if (similarClasses.length > 1) {
-        for (var j = 0; j &lt; similarClasses.length; j++) {
+        for (var j = 0; j < similarClasses.length; j++) {
           if (element === similarClasses[j]) {
             j++;
             classNth = ':nth-of-type(' + j + ')';
@@ -2656,20 +2967,19 @@ export let querySelector = (elem) => {
       var name = element.nodeName;
       name = name.toLowerCase();
       var nodeNth = '';
-
       childrens = element.parentNode.children;
 
       if (childrens.length > 2) {
         var similarNodes = [];
 
-        for (var i = 0; i &lt; childrens.length; i++) {
+        for (var i = 0; i < childrens.length; i++) {
           if (element.nodeName == childrens[i].nodeName) {
             similarNodes.push(childrens[i]);
           }
         }
 
         if (similarNodes.length > 1) {
-          for (var j = 0; j &lt; similarNodes.length; j++) {
+          for (var j = 0; j < similarNodes.length; j++) {
             if (element === similarNodes[j]) {
               j++;
               nodeNth = ':nth-of-type(' + j + ')';
@@ -2692,7 +3002,6 @@ export let querySelector = (elem) => {
   }
 
   loop(element);
-
   return str;
 };
 /**
@@ -2704,21 +3013,25 @@ export let querySelector = (elem) => {
  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
  * @returns {String|Element} The string removed of comments or the element removed of comments.
  */
-export let removeComments = (el) => {
+
+exports.querySelector = querySelector;
+
+let removeComments = (el) => {
   if (typeof el === 'object') {
     if (isNode) {
       throw new Error(
         'No document element! (You are probably using Node.js)',
       );
     }
+
     el.innerHTML = el.innerHTML.replace(
-      /&lt;!--[\s\S]*?(?:-->)?&lt;!---+>?|&lt;!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|&lt;[?][^>]*>?/g,
+      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
       '',
     );
     return el;
   } else if (typeof el === 'string') {
     return el.replace(
-      /&lt;!--[\s\S]*?(?:-->)?&lt;!---+>?|&lt;!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|&lt;[?][^>]*>?/g,
+      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
       '',
     );
   }
@@ -2730,11 +3043,14 @@ export let removeComments = (el) => {
  * @param {String} string The HTML string to parse.
  * @param {String} [mimeType=text/html] The mimeType of the string.
  * @example
- * let html = _$.parseHTML("&lt;div id='hello'>&lt;textarea>&lt;/textarea>&lt;/div>");
+ * let html = _$.parseHTML("<div id='hello'><textarea></textarea></div>");
  * html.querySelector("textarea");//Returns the textarea!
  * @returns {Element} The HTML document element of the HTML string specified.
  */
-export let parseHTML = (string, mimeType = 'text/html') => {
+
+exports.removeComments = removeComments;
+
+let parseHTML = (string, mimeType = 'text/html') => {
   const domparser = new DOMParser();
   return domparser.parseFromString(string, mimeType);
 };
@@ -2744,10 +3060,13 @@ export let parseHTML = (string, mimeType = 'text/html') => {
  * @memberOf bijou
  * @param {Element} el The element to be dragged (And dropped :P ).
  * @example
- * _$.drag(document.querySelector('div'));//Allows the first &lt;div> on the page to be dragged.
+ * _$.drag(document.querySelector('div'));//Allows the first <div> on the page to be dragged.
  * @returns {Element} The element.
  */
-export let drag = (el) => {
+
+exports.parseHTML = parseHTML;
+
+let drag = (el) => {
   node();
   var initX, initY, mousePressX, mousePressY;
   el.addEventListener(
@@ -2764,7 +3083,6 @@ export let drag = (el) => {
       mousePressX = event.clientX;
       mousePressY = event.clientY;
       this.addEventListener('mousemove', repositionElement, false);
-
       window.addEventListener(
         'mouseup',
         function () {
@@ -2784,6 +3102,7 @@ export let drag = (el) => {
     this.style.left = initX + event.clientX - mousePressX + 'px';
     this.style.top = initY + event.clientY - mousePressY + 'px';
   }
+
   return el;
 };
 /**
@@ -2806,7 +3125,10 @@ export let drag = (el) => {
  * );
  * @returns {undefined}
  */
-export let addEventListeners = (
+
+exports.drag = drag;
+
+let addEventListeners = (
   element,
   events,
   handler = {},
@@ -2819,12 +3141,13 @@ export let addEventListeners = (
       'please supply an array of eventstrings ' +
       '(like ["click","mouseover"])'
     );
-  }
-  //create a wrapper to be able to use additional arguments
+  } //create a wrapper to be able to use additional arguments
+
   var handlerFn = function (e) {
-    handler.apply(this, args &amp;&amp; args instanceof Array ? args : []);
+    handler.apply(this, args && args instanceof Array ? args : []);
   };
-  for (var i = 0; i &lt; events.length; i += 1) {
+
+  for (var i = 0; i < events.length; i += 1) {
     element.addEventListener(events[i], handlerFn, useCapture);
   }
 };
@@ -2835,7 +3158,10 @@ export let addEventListeners = (
  * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
  * @param {HTMLElement} element The table to sort
  */
-export let sortTable = (element) => {
+
+exports.addEventListeners = addEventListeners;
+
+let sortTable = (element) => {
   var getCellValue = function (tr, idx) {
     return tr.children[idx].innerText || tr.children[idx].textContent;
   };
@@ -2843,7 +3169,7 @@ export let sortTable = (element) => {
   var comparer = function (idx, asc) {
     return function (a, b) {
       return (function (v1, v2) {
-        return v1 !== '' &amp;&amp; v2 !== '' &amp;&amp; !isNaN(v1) &amp;&amp; !isNaN(v2)
+        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
           ? v1 - v2
           : v1.toString().localeCompare(v2);
       })(
@@ -2858,8 +3184,10 @@ export let sortTable = (element) => {
     .forEach(function (th) {
       th.addEventListener('click', function () {
         var table = th.parentNode;
+
         while (table.tagName.toUpperCase() != 'TABLE')
           table = table.parentNode;
+
         Array.prototype.slice
           .call(table.querySelectorAll('tr:nth-child(n+2)'))
           .sort(
@@ -2877,7 +3205,7 @@ export let sortTable = (element) => {
     });
 };
 /**
- * Sorts a table by a &lt;th> element.
+ * Sorts a table by a <th> element.
  * @memberOf bijou
  * @function
  * @returns {undefined}
@@ -2889,10 +3217,13 @@ export let sortTable = (element) => {
  *    _$.sortTableBy(th, th.asc = !th.asc);//Toggle the "asc" attribute on the th.
  *  });
  * })
- * @param {HTMLElement} th The table header (&lt;th> element) to sort with.
+ * @param {HTMLElement} th The table header (<th> element) to sort with.
  * @param {Boolean} acending Whether to sort the table ascending or descending.
  */
-export let sortTableBy = (th, acending) => {
+
+exports.sortTable = sortTable;
+
+let sortTableBy = (th, acending) => {
   var getCellValue = function (tr, idx) {
     return tr.children[idx].innerText || tr.children[idx].textContent;
   };
@@ -2900,7 +3231,7 @@ export let sortTableBy = (th, acending) => {
   var comparer = function (idx, asc) {
     return function (a, b) {
       return (function (v1, v2) {
-        return v1 !== '' &amp;&amp; v2 !== '' &amp;&amp; !isNaN(v1) &amp;&amp; !isNaN(v2)
+        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
           ? v1 - v2
           : v1.toString().localeCompare(v2);
       })(
@@ -2911,8 +3242,10 @@ export let sortTableBy = (th, acending) => {
   };
 
   var table = th.parentNode;
+
   while (table.tagName.toUpperCase() != 'TABLE')
     table = table.parentNode;
+
   Array.prototype.slice
     .call(table.querySelectorAll('tr:nth-child(n+2)'))
     .sort(
@@ -2937,11 +3270,13 @@ export let sortTableBy = (th, acending) => {
  * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
  * @returns {Object} the assigned object.
  */
-export let addStyles = (el, styles) => {
+
+exports.sortTableBy = sortTableBy;
+
+let addStyles = (el, styles) => {
   node();
   return Object.assign(el.style, styles);
 };
-
 /**
  * Creates an HTML element from the specified string.
  * @function
@@ -2949,10 +3284,13 @@ export let addStyles = (el, styles) => {
  * @param {String} str The string of the HTML element to create.
  * @example
  * //Returns a div with an id of "id_here" and innerText of "Testing!"
- * _$.createElement("&lt;div id='id_here'>Testing!&lt;/div>");
+ * _$.createElement("<div id='id_here'>Testing!</div>");
  * @returns {Element} The created element.
  */
-export let createElement = (str) => {
+
+exports.addStyles = addStyles;
+
+let createElement = (str) => {
   node();
   const el = document.createElement('div');
   el.innerHTML = str;
@@ -2968,12 +3306,14 @@ export let createElement = (str) => {
  * console.log(_$.compStyle(document.documentElement, "background-color"));
  * @returns {String} The computed style property for the element specified.
  */
-export let compStyle = (el, prop) => {
+
+exports.createElement = createElement;
+
+let compStyle = (el, prop) => {
   node();
   var computedStyles = window.getComputedStyle(el);
   return computedStyles.getPropertyValue(prop);
 };
-
 /**
  * Get the siblings of a DOM element
  * @function
@@ -2984,7 +3324,10 @@ export let compStyle = (el, prop) => {
  * //Make every sibling of the first list item's background color white.
  * @returns {Element[]} The array of sibling elements.
  */
-export let elementSiblings = (n) =>
+
+exports.compStyle = compStyle;
+
+let elementSiblings = (n) =>
   [...n.parentElement.children].filter((c) => c != n);
 /**
  * Disables right click on the element spcified.
@@ -2995,7 +3338,10 @@ export let elementSiblings = (n) =>
  * _$.disableRightClick(document.documentElement)
  * @returns {undefined}
  */
-export let disableRightClick = (el) => {
+
+exports.elementSiblings = elementSiblings;
+
+let disableRightClick = (el) => {
   node();
   return (el.oncontextmenu = false);
 };
@@ -3005,13 +3351,17 @@ export let disableRightClick = (el) => {
  * @memberOf bijou
  * @param {Element} el The element to convert.
  * @example
- * _$.inlineCSS(document.querySelector("h1"));//Converts the styles for the &lt;h1> element to inline using the style="___" attribute
+ * _$.inlineCSS(document.querySelector("h1"));//Converts the styles for the <h1> element to inline using the style="___" attribute
  * @returns {undefined}
  */
-export let inlineCSS = (el) => {
+
+exports.disableRightClick = disableRightClick;
+
+let inlineCSS = (el) => {
   var cs = getComputedStyle(el, null);
   var i;
-  for (i = 0; i &lt; cs.length; i++) {
+
+  for (i = 0; i < cs.length; i++) {
     var s = cs[i] + '';
     el.style[s] = cs[s];
   }
@@ -3022,16 +3372,20 @@ export let inlineCSS = (el) => {
  * @function
  * @memberOf bijou
  * @example
- * //Say the &lt;html> tag of the document was "&lt;html style='background-color: #101010;'>", then the function below would log "style," to the console.
+ * //Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "style," to the console.
  * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
- * @return {Array.&lt;object>} The array of objects representing the attributes
+ * @return {Array.<object>} The array of objects representing the attributes
  */
-export let attributes = (el) => {
+
+exports.inlineCSS = inlineCSS;
+
+let attributes = (el) => {
   node();
   var output = [];
+
   for (
     var att, i = 0, atts = el.attributes, n = atts.length;
-    i &lt; n;
+    i < n;
     i++
   ) {
     att = atts[i];
@@ -3040,6 +3394,7 @@ export let attributes = (el) => {
       value: att.nodeValue,
     });
   }
+
   return output;
 };
 /**
@@ -3053,7 +3408,10 @@ export let attributes = (el) => {
  * _$.observeMutations(document, console.log);//Logs all the mutations that happen to the console.
  * @returns {undefined}
  */
-export let observeMutations = (element, callback, options) => {
+
+exports.attributes = attributes;
+
+let observeMutations = (element, callback, options) => {
   const observer = new MutationObserver((mutations) =>
     mutations.forEach((m) => callback(m)),
   );
@@ -3092,15 +3450,18 @@ export let observeMutations = (element, callback, options) => {
  *  _$.tilt(el, x, y);
  * }
  */
-export let tilt = (el, x, y, perspective = 500, amount = 30) => {
+
+exports.observeMutations = observeMutations;
+
+let tilt = (el, x, y, perspective = 500, amount = 30) => {
   //Old code
+
   /*  const xVal = x
     const yVal = y
     const yRotation = amount * ((xVal - width / 2) / width)
     const xRotation = amount * -1 * ((yVal - height / 2) / height)
     const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
     el.style.transform = string */
-
   //One liner
   el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
     amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
@@ -3117,7 +3478,10 @@ export let tilt = (el, x, y, perspective = 500, amount = 30) => {
  * @example
  * _$.fullScreen(document.documentElement);//Make the window fullscreen
  */
-export let fullScreen = (element) => {
+
+exports.tilt = tilt;
+
+let fullScreen = (element) => {
   return (
     element.requestFullScreen ||
     element.mozRequestFullScreen ||
@@ -3132,15 +3496,20 @@ export let fullScreen = (element) => {
  * @returns {undefined}
  * @example
  * //Add a simple contenteditable div to the page.
- * document.appendChild(_$.createElement("&lt;div contenteditable id='text'>&lt;/div>"));
- * _$.replaceSelection("&lt;b>BOLD TEXT&lt;/b> &lt;small>Bijou is awesome&lt;/small>&lt;h1>You need to use it&lt;/h1>");
+ * document.appendChild(_$.createElement("<div contenteditable id='text'></div>"));
+ * _$.replaceSelection("<b>BOLD TEXT</b> <small>Bijou is awesome</small><h1>You need to use it</h1>");
  * //Replaces the selection! =)
  * @param {String} replacementText The replacement HTML to replace with.
  */
-export let replaceSelection = (replacementText) => {
+
+exports.fullScreen = fullScreen;
+
+let replaceSelection = (replacementText) => {
   var sel, range;
+
   if (window.getSelection) {
     sel = window.getSelection();
+
     if (sel.rangeCount) {
       range = sel.getRangeAt(0);
       range.deleteContents();
@@ -3148,16 +3517,16 @@ export let replaceSelection = (replacementText) => {
       n.insertAdjacentHTML('beforeend', replacementText);
       range.insertNode(n);
     }
-  } else if (document.selection &amp;&amp; document.selection.createRange) {
+  } else if (document.selection && document.selection.createRange) {
     console.warn(
-      'You are using IE &lt; 9, you are evil. Falling back to text not HTML.',
+      'You are using IE < 9, you are evil. Falling back to text not HTML.',
     );
     range = document.selection.createRange();
-    range.text = replacementText.replace(/&lt;[^>]*>/g, '');
+    range.text = replacementText.replace(/<[^>]*>/g, '');
   }
-};
-//#endregion Element
+}; //#endregion Element
 //#region Event
+
 /**
  * Returns the callback when a a click is registered outside the selected element
  * @function
@@ -3168,7 +3537,10 @@ export let replaceSelection = (replacementText) => {
  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
  * @returns {Function} the function that was called.
  */
-export let onOutsideClick = (element, callback) => {
+
+exports.replaceSelection = replaceSelection;
+
+let onOutsideClick = (element, callback) => {
   node();
   document.addEventListener('click', (e) => {
     if (!element.contains(e.target)) callback();
@@ -3184,7 +3556,10 @@ export let onOutsideClick = (element, callback) => {
  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
  * @returns {undefined} Returns undefined.
  */
-export let onScrollStop = (callback) => {
+
+exports.onOutsideClick = onOutsideClick;
+
+let onScrollStop = (callback) => {
   let isScrolling;
   node();
   window.addEventListener(
@@ -3211,15 +3586,21 @@ export let onScrollStop = (callback) => {
  *   thing.emit("data", "Yay! Some data!!");//Logs "Yay! Some data!!" to the console after 2 seconds.
  * }, 2000)
  */
-export let hub = () => ({
+
+exports.onScrollStop = onScrollStop;
+
+let hub = () => ({
   hub: Object.create(null),
+
   emit(event, data) {
     (this.hub[event] || []).forEach((handler) => handler(data));
   },
+
   on(event, handler) {
     if (!this.hub[event]) this.hub[event] = [];
     this.hub[event].push(handler);
   },
+
   off(event, handler) {
     const i = (this.hub[event] || []).findIndex((h) => h === handler);
     if (i > -1) this.hub[event].splice(i, 1);
@@ -3237,15 +3618,20 @@ export let hub = () => ({
  * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
  * @param {HTMLElement} target What to dispatch the event to.
  */
-export let dispatch = (type, args, target = window) => {
+
+exports.hub = hub;
+
+let dispatch = (type, args, target = window) => {
   let e = new Event(type);
+
   for (let o in args) {
     e[o] = args[o];
   }
+
   target.dispatchEvent(e);
-};
-//#endregion Event
+}; //#endregion Event
 //#region Utility
+
 /**
  * Plays a section of an audio file.
  * @param {HTMLMediaElement} audioObj The audio object to play. (Needs to be created from "new Audio()")
@@ -3256,8 +3642,12 @@ export let dispatch = (type, args, target = window) => {
  * @example
  * _$.playSection(new Audio("file.mp3"), 5, 20.5);//Plays file.mp3, starting with second 5 and ending at 20.5 seconds into the file.
  */
-export let playSection = (audioObj, start, stop) => {
+
+exports.dispatch = dispatch;
+
+let playSection = (audioObj, start, stop) => {
   let audioObjNew = audioObj.cloneNode(true); //this is to prevent "play() request was interrupted" error.
+
   audioObjNew.currentTime = start;
   audioObjNew.play();
   audioObjNew.int = setInterval(function () {
@@ -3274,26 +3664,27 @@ export let playSection = (audioObj, start, stop) => {
  * @param {String} html The string of HTML to format.
  * @returns {String} The formatted string of HTML.
  */
-export let formatHTML = (html) => {
+
+exports.playSection = playSection;
+
+let formatHTML = (html) => {
   var tab = '\t';
   var result = '';
   var indent = '';
-
-  html.split(/>\s*&lt;/).forEach(function (element) {
+  html.split(/>\s*</).forEach(function (element) {
     if (element.match(/^\/\w/)) {
       indent = indent.substring(tab.length);
     }
 
-    result += indent + '&lt;' + element + '>\r\n';
+    result += indent + '<' + element + '>\r\n';
 
     if (
-      element.match(/^&lt;?\w[^>]*[^\/]$/) &amp;&amp;
+      element.match(/^<?\w[^>]*[^\/]$/) &&
       !element.startsWith('input')
     ) {
       indent += tab;
     }
   });
-
   return result.substring(1, result.length - 3);
 };
 /**
@@ -3306,7 +3697,10 @@ export let formatHTML = (html) => {
  * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
  * @returns {undefined}
  */
-export let getJSON = (url, callback) => {
+
+exports.formatHTML = formatHTML;
+
+let getJSON = (url, callback) => {
   node();
   fetch(url)
     .then((res) => res.json())
@@ -3326,7 +3720,10 @@ export let getJSON = (url, callback) => {
  * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
  * @returns {undefined}
  */
-export let getHTML = (url, callback) => {
+
+exports.getJSON = getJSON;
+
+let getHTML = (url, callback) => {
   node();
   fetch(url)
     .then((res) => res.text())
@@ -3335,7 +3732,6 @@ export let getHTML = (url, callback) => {
       throw new Error(error.stack);
     });
 };
-
 /**
  * Preloads all of the image urls given in the arguments
  * @function
@@ -3345,13 +3741,15 @@ export let getHTML = (url, callback) => {
  * _$.preloadImage("https://unsplash.com/some_huge_image.png");//Preloads the unsplash image "some_huge_image.png" :P
  * @returns {undefined}
  */
-export let preloadImage = () => {
-  for (var i = 0; i &lt; arguments.length; i++) {
+
+exports.getHTML = getHTML;
+
+let preloadImage = () => {
+  for (var i = 0; i < arguments.length; i++) {
     images[i] = new Image();
     images[i].src = preload.arguments[i];
   }
 };
-
 /**
  * Saves a blob as a file!
  * @function
@@ -3362,19 +3760,20 @@ export let preloadImage = () => {
  * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
  * @returns {undefined}
  */
-export let saveBlob = (blob, fileName = 'output.txt') => {
+
+exports.preloadImage = preloadImage;
+
+let saveBlob = (blob, fileName = 'output.txt') => {
   node();
   var a = document.createElement('a');
   document.body.appendChild(a);
   a.style = 'display: none';
-
   var url = window.URL.createObjectURL(blob);
   a.href = url;
   a.download = fileName;
   a.click();
   window.URL.revokeObjectURL(url);
 };
-
 /**
  * Works exactly like setInterval but instead uses requestAnimationFrame.
  * @memberOf bijou
@@ -3383,8 +3782,12 @@ export let saveBlob = (blob, fileName = 'output.txt') => {
  * @param {Number} delay The delay time to run the function.
  * @returns {Object}
  */
-export let requestInterval = function (fn, delay) {
+
+exports.saveBlob = saveBlob;
+
+let requestInterval = function (fn, delay) {
   node();
+
   var requestAnimFrame = (function () {
       return (
         window.requestAnimationFrame ||
@@ -3395,19 +3798,21 @@ export let requestInterval = function (fn, delay) {
     })(),
     start = new Date().getTime(),
     handle = {};
+
   function loop() {
     handle.value = requestAnimFrame(loop);
     var current = new Date().getTime(),
       delta = current - start;
+
     if (delta >= delay) {
       fn.call();
       start = new Date().getTime();
     }
   }
+
   handle.value = requestAnimFrame(loop);
   return handle;
 };
-
 /**
  * Loads a script from a url (Can be to a local file or to a url) then funs a callback once it's loaded.
  * @memberOf bijou
@@ -3418,12 +3823,16 @@ export let requestInterval = function (fn, delay) {
  * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
  * @returns {undefined}
  */
-export let loadScript = (url, callback) => {
+
+exports.requestInterval = requestInterval;
+
+let loadScript = (url, callback) => {
   node();
   var script = document.createElement('script');
   script.type = 'text/javascript';
+
   if (script.readyState) {
-    // only required for IE &lt;9
+    // only required for IE <9
     script.onreadystatechange = function () {
       if (
         script.readyState === 'loaded' ||
@@ -3443,7 +3852,6 @@ export let loadScript = (url, callback) => {
   script.src = url;
   document.getElementsByTagName('head')[0].appendChild(script);
 };
-
 /**
  * Fetches an image and runs the callback with the data url of the image.
  * @memberOf bijou
@@ -3458,11 +3866,16 @@ export let loadScript = (url, callback) => {
  *  })
  * })
  */
-export let imageToData = async (url, callback) => {
+
+exports.loadScript = loadScript;
+
+let imageToData = async (url, callback) => {
   let blob = await fetch(url).then((r) => r.blob());
   let dataUrl = await new Promise((resolve) => {
     let reader = new FileReader();
+
     reader.onload = () => resolve(reader.result);
+
     reader.readAsDataURL(blob);
   });
   callback(dataUrl);
@@ -3475,7 +3888,9 @@ export let imageToData = async (url, callback) => {
  * _$.cookies.setItem("a_cookie", "Hello world!", 1);//Set a_cookie to "Hello world" and have it expire in a day.
  * @returns {Function} The function that the user wanted
  */
-export let cookies = {
+
+exports.imageToData = imageToData;
+let cookies = {
   /**
    * Sets a cookie to a value
    * @function
@@ -3488,14 +3903,17 @@ export let cookies = {
   setItem: (name, value, days = 1000) => {
     node();
     var expires = '';
+
     if (days) {
       var date = new Date();
       date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
       expires = '; expires=' + date.toUTCString();
     }
+
     document.cookie =
       name + '=' + (value || '') + expires + '; path=/';
   },
+
   /**
    * Gets a cookie from its name.
    * @function
@@ -3505,17 +3923,21 @@ export let cookies = {
    */
   getItem: (name) => {
     node();
-
     var nameEQ = name + '=';
     var ca = document.cookie.split(';');
-    for (var i = 0; i &lt; ca.length; i++) {
+
+    for (var i = 0; i < ca.length; i++) {
       var c = ca[i];
+
       while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+
       if (c.indexOf(nameEQ) == 0)
         return c.substring(nameEQ.length, c.length);
     }
+
     return null;
   },
+
   /**
    * Deletes a cookie
    * @memberOf bijou
@@ -3524,7 +3946,6 @@ export let cookies = {
    */
   removeItem: (name) => {
     node();
-
     document.cookie =
       name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   },
@@ -3537,7 +3958,9 @@ export let cookies = {
  * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
  * @returns {Regexp} A regex
  */
-export let regex = {
+
+exports.cookies = cookies;
+let regex = {
   /**
    * Valid formats:
    * (123) 456-7890
@@ -3549,6 +3972,7 @@ export let regex = {
    * 075-63546725
    */
   phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+
   /** Validates names, examples:
    * John Smith
    * John D'Largy
@@ -3562,13 +3986,16 @@ export let regex = {
    * Alzbeta Bara
    */
   name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
+
   /**
     Validates email adresses
     */
   email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+
   /** Validates a link
    */
-  link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&amp;?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
+  link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
+
   /**
    * Tests for a strong password.
    * Should have:
@@ -3578,7 +4005,8 @@ export let regex = {
    * 1 special character
    * At least 8 characters long
    */
-  strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&amp;*()\\[\]{}\-_+=~`|:;"'&lt;>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
+  strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
+
   /**
    * Tests for a moderate password.
    * Should have:
@@ -3587,21 +4015,30 @@ export let regex = {
    * 1 number
    * At least 8 characters long */
   moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
+
   /** Ip adresses */
+
   /* Match IPv4 address */
   ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
+
   /* Match IPv6 address */
   ipv6: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/,
+
   /**Both ipv4 and ipv6 */
   ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
+
   /**Social security number */
   socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
+
   /**Hex color */
   hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
+
   /** Zip code */
   zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
+
   /**Phone */
   simplePhone: /^\+?[\d\s]{3,}$/,
+
   /**Credit cards */
   visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
   expressCredit: /^3[47][0–9]{13}$/,
@@ -3628,7 +4065,10 @@ export let regex = {
   "","7"
    * @returns {String} The string of comma separated values (CSV) created from the JSON.
    */
-export let jsonToCsv = (arr, columns, delimiter = ',') =>
+
+exports.regex = regex;
+
+let jsonToCsv = (arr, columns, delimiter = ',') =>
   [
     columns.join(delimiter),
     ...arr.map((obj) =>
@@ -3651,7 +4091,10 @@ export let jsonToCsv = (arr, columns, delimiter = ',') =>
  * _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
  * @returns {String} The comma separated array.
  */
-export let arrayToCSV = (arr, delimiter = ',') =>
+
+exports.jsonToCsv = jsonToCsv;
+
+let arrayToCSV = (arr, delimiter = ',') =>
   arr
     .map((v) =>
       v
@@ -3670,7 +4113,10 @@ export let arrayToCSV = (arr, delimiter = ',') =>
  * _$.timeFunction(() => prompt("What's your name?"));
  * @returns {undefined}
  */
-export let timeFunction = (fn, name = '_$ function timer') => {
+
+exports.arrayToCSV = arrayToCSV;
+
+let timeFunction = (fn, name = '_$ function timer') => {
   console.time(name);
   fn();
   console.timeEnd(name);
@@ -3686,8 +4132,12 @@ export let timeFunction = (fn, name = '_$ function timer') => {
  * _$.notify("Hello", "Hi there! This is a notification!");//Returns an array of prime numbers up to 100.
  * @returns {undefined}
  */
-export let notify = (text, body, icon) => {
+
+exports.timeFunction = timeFunction;
+
+let notify = (text, body, icon) => {
   node();
+
   if (!window.Notification) {
     console.log('Browser does not support notifications.');
   } else {
@@ -3716,7 +4166,10 @@ export let notify = (text, body, icon) => {
  * _$.copy("Hello world")
  * @returns {String} The string copied.
  */
-export let copy = (str) => {
+
+exports.notify = notify;
+
+let copy = (str) => {
   node();
   const el = document.createElement('textarea');
   el.value = str;
@@ -3731,10 +4184,12 @@ export let copy = (str) => {
   el.select();
   document.execCommand('copy');
   document.body.removeChild(el);
+
   if (selected) {
     document.getSelection().removeAllRanges();
     document.getSelection().addRange(selected);
   }
+
   return str;
 };
 /**
@@ -3745,57 +4200,72 @@ export let copy = (str) => {
  * _$.browser();//For me this (correctly) returns "Chrome"
  * @returns {String} A string of the browser name that the user is using.
  */
-export let browser = () => {
+
+exports.copy = copy;
+
+let browser = () => {
   node();
   var isOpera =
-    (!!window.opr &amp;&amp; !!opr.addons) ||
+    (!!window.opr && !!opr.addons) ||
     !!window.opera ||
     navigator.userAgent.indexOf(' OPR/') >= 0;
   var isFirefox = typeof InstallTrigger !== 'undefined';
+
   var isSafari =
     /constructor/i.test(window.HTMLElement) ||
     (function (p) {
       return p.toString() === '[object SafariRemoteNotification]';
     })(
       !window['safari'] ||
-        (typeof safari !== 'undefined' &amp;&amp;
+        (typeof safari !== 'undefined' &&
           window['safari'].pushNotification),
     );
-  var isIE = /*@cc_on!@*/ false || !!document.documentMode;
-  var isEdge = !isIE &amp;&amp; !!window.StyleMedia;
+
+  var isIE =
+    /*@cc_on!@*/
+    false || !!document.documentMode;
+  var isEdge = !isIE && !!window.StyleMedia;
   var isChrome =
-    !!window.chrome &amp;&amp;
+    !!window.chrome &&
     (!!window.chrome.webstore || !!window.chrome.runtime);
   var isEdgeChromium =
-    isChrome &amp;&amp; navigator.userAgent.indexOf('Edg') != -1;
-  var isBlink = (isChrome || isOpera) &amp;&amp; !!window.CSS;
+    isChrome && navigator.userAgent.indexOf('Edg') != -1;
+  var isBlink = (isChrome || isOpera) && !!window.CSS;
+
   if (isOpera) {
     return 'Opera';
   }
+
   if (isFirefox) {
     return 'Firefox';
   }
+
   if (isSafari) {
     return 'Safari';
   }
+
   if (isEdge) {
     return 'Edge';
   }
+
   if (isIE) {
     return 'Internet Explorer';
   }
+
   if (isChrome) {
     return 'Chrome';
   }
+
   if (isEdgeChromium) {
     return 'Edge Chromium';
   }
+
   if (isBlink) {
     return 'Blink';
   }
-};
-//#endregion Utility
+}; //#endregion Utility
 //#region Color
+
 /**
  * Converts a rgb(a) color to hex.
  * @memberOf bijou
@@ -3804,18 +4274,18 @@ export let browser = () => {
  * _$.rgbToHex("rgb(255,255,255)");//Returns "#ffffff"
  * @param {String} rgb The string of RGB colors.
  */
-export let rgbToHex = (rgb) => {
+
+exports.browser = browser;
+
+let rgbToHex = (rgb) => {
   let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
   rgb = rgb.substr(4).split(')')[0].split(sep);
-
   let r = (+rgb[0]).toString(16),
     g = (+rgb[1]).toString(16),
     b = (+rgb[2]).toString(16);
-
   if (r.length == 1) r = '0' + r;
   if (g.length == 1) g = '0' + g;
   if (b.length == 1) b = '0' + b;
-
   return '#' + r + g + b;
 };
 /**
@@ -3825,22 +4295,26 @@ export let rgbToHex = (rgb) => {
  * @param {String} hex The hex code to convert.
  * @returns {String} The RGB color converted from the hex code.
  */
-export let hexToRGB = (hex) => {
+
+exports.rgbToHex = rgbToHex;
+
+let hexToRGB = (hex) => {
   if (
     ((hex.length - 1 === 6 ||
       hex.length - 1 === 8 ||
       hex.length - 1 === 4 ||
-      hex.length - 1 === 3) &amp;&amp;
+      hex.length - 1 === 3) &&
       hex.startsWith('#')) ||
     ((hex.length === 6 ||
       hex.length === 8 ||
       hex.length === 4 ||
-      hex.length === 3) &amp;&amp;
+      hex.length === 3) &&
       !hex.startsWith('#'))
   ) {
   } else {
     throw new Error('Invalid hex');
   }
+
   let alpha = false,
     h = hex.slice(hex.startsWith('#') ? 1 : 0);
   if (h.length === 3) h = [...h].map((x) => x + x).join('');
@@ -3852,10 +4326,10 @@ export let hexToRGB = (hex) => {
     '(' +
     (h >>> (alpha ? 24 : 16)) +
     ', ' +
-    ((h &amp; (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
+    ((h & (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
     ', ' +
-    ((h &amp; (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
-    (alpha ? `, ${h &amp; 0x000000ff}` : '') +
+    ((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
+    (alpha ? `, ${h & 0x000000ff}` : '') +
     ')'
   );
 };
@@ -3870,19 +4344,24 @@ export let hexToRGB = (hex) => {
  * _$.blendColors("#ffffff", "#000000", 80); //Blends white and black together, ending up in a color that is 80% white and 20% black.
  * @returns {String} The blended color (A hex code).
  */
-export let blendColors = (color1, color2, percent = 50) => {
+
+exports.hexToRGB = hexToRGB;
+
+let blendColors = (color1, color2, percent = 50) => {
   const generateHex = (r, g, b) => {
     let R = r.toString(16);
     let G = g.toString(16);
     let B = b.toString(16);
 
-    while (R.length &lt; 2) {
+    while (R.length < 2) {
       R = `0${R}`;
     }
-    while (G.length &lt; 2) {
+
+    while (G.length < 2) {
       G = `0${G}`;
     }
-    while (B.length &lt; 2) {
+
+    while (B.length < 2) {
       B = `0${B}`;
     }
 
@@ -3895,15 +4374,12 @@ export let blendColors = (color1, color2, percent = 50) => {
   const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
   const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
   const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16);
-
   const red2 = parseInt(`${color2[1]}${color2[2]}`, 16);
   const green2 = parseInt(`${color2[3]}${color2[4]}`, 16);
   const blue2 = parseInt(`${color2[5]}${color2[6]}`, 16);
-
   const red = Math.round(mix(red1, red2, percent));
   const green = Math.round(mix(green1, green2, percent));
   const blue = Math.round(mix(blue1, blue2, percent));
-
   return generateHex(red, green, blue);
 };
 /**
@@ -3914,7 +4390,10 @@ export let blendColors = (color1, color2, percent = 50) => {
  * document.querySelector("div").style.backgroundColor = _$.randomColor()
  * @returns {String} A random Hex color
  */
-export let randomColor = () =>
+
+exports.blendColors = blendColors;
+
+let randomColor = () =>
   `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 /**
  * Lighten or darken a color by a certain amount
@@ -3926,7 +4405,10 @@ export let randomColor = () =>
  * _$.lightenColor("#000000", 50);//Lightens black by 50 (Out of 255)
  * @returns {String} The color lightened.
  */
-export let lightenColor = (col, amt) => {
+
+exports.randomColor = randomColor;
+
+let lightenColor = (col, amt) => {
   var usePound = false;
 
   if (col[0] == '#') {
@@ -3935,24 +4417,17 @@ export let lightenColor = (col, amt) => {
   }
 
   var num = parseInt(col, 16);
-
   var r = (num >> 16) + amt;
-
   if (r > 255) r = 255;
-  else if (r &lt; 0) r = 0;
-
-  var b = ((num >> 8) &amp; 0x00ff) + amt;
-
+  else if (r < 0) r = 0;
+  var b = ((num >> 8) & 0x00ff) + amt;
   if (b > 255) b = 255;
-  else if (b &lt; 0) b = 0;
-
-  var g = (num &amp; 0x0000ff) + amt;
-
+  else if (b < 0) b = 0;
+  var g = (num & 0x0000ff) + amt;
   if (g > 255) g = 255;
-  else if (g &lt; 0) g = 0;
-
+  else if (g < 0) g = 0;
   return (
-    (usePound ? '#' : '') + (g | (b &lt;&lt; 8) | (r &lt;&lt; 16)).toString(16)
+    (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16)
   );
 };
 /**
@@ -3968,36 +4443,44 @@ export let lightenColor = (col, amt) => {
   }
   * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
   */
-export let lightOrDark = (color) => {
+
+exports.lightenColor = lightenColor;
+
+let lightOrDark = (color) => {
   var r, g, b, hsp;
+
   if (color.match(/^rgb/)) {
     color = color.match(
       /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
     );
-
     r = color[1];
     g = color[2];
     b = color[3];
   } else {
     color = +(
-      '0x' + color.slice(1).replace(color.length &lt; 5 &amp;&amp; /./g, '$&amp;$&amp;')
+      '0x' + color.slice(1).replace(color.length < 5 && /./g, '$&$&')
     );
-
     r = color >> 16;
-    g = (color >> 8) &amp; 255;
-    b = color &amp; 255;
+    g = (color >> 8) & 255;
+    b = color & 255;
   }
 
   hsp = Math.sqrt(
     0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b),
   );
+
   if (hsp > 127.5) {
-    return { lightOrDark: 'light', hsp: hsp };
+    return {
+      lightOrDark: 'light',
+      hsp: hsp,
+    };
   } else {
-    return { lightOrDark: 'dark', hsp: hsp };
+    return {
+      lightOrDark: 'dark',
+      hsp: hsp,
+    };
   }
-};
-//#endregion Color
+}; //#endregion Color
 //#endregion Bijou
 
 /**
@@ -4006,6 +4489,8 @@ export let lightOrDark = (color) => {
  * @namespace bijou
  * @author Explosion-Scratch, Bijou.js contributors
  */
+
+exports.lightOrDark = lightOrDark;
 let _temp = {
   addEventListeners: addEventListeners,
   addStyles: addStyles,
@@ -4115,13 +4600,16 @@ let _temp = {
   urlQuery: urlQuery,
   uuid: uuid,
   widows: widows,
-};
-// Imports and exports
-export default _temp;
-//Export so that when people do &lt;script src="bijou" type="module">&lt;/script>
-window._$ = _temp;
-//So that we can use bijou in the source code.
-export const _$ = _temp;
+}; // Imports and exports
+
+var _default = _temp; //Export so that when people do <script src="bijou" type="module"></script>
+
+exports.default = _default;
+window._$ = _temp; //So that we can use bijou in the source code.
+
+const _$ = _temp;
+exports._$ = _$;
+
 if (isNode) {
   try {
     module.exports = _temp;
@@ -4129,22 +4617,3 @@ if (isNode) {
     console.error(err);
   }
 }
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Fri Feb 19 2021 12:24:52 GMT+0000 (Coordinated Universal Time) using the Toast theme.
-</footer>
-
-<script>prettyPrint();</script>
-<script src="scripts/linenumber.js"></script>
-</body>
-</html>
