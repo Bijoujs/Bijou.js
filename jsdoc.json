@@ -12,7 +12,7 @@
   "opts": {
     "encoding": "utf8",
     "readme": "./README.md",
-    "destination": "docs/",
+    "destination": "docs/docs",
     "recurse": true,
     "verbose": true,
     "template": "./node_modules/clean-jsdoc-theme",
