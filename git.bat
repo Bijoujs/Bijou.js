@@ -8,7 +8,7 @@ function commit {
   if [[ ${#COMMIT} -ge 1 ]] ; then
     cd /workspace/Bijou.js
     rm bijou_node.js
-    rm -r docs
+    rm -r docs/docs
     eslint --fix ./
     prettier --write -- .
     babel --plugins @babel/plugin-transform-modules-commonjs -o bijou_node.js -- bijou.js
