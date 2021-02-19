@@ -10,9 +10,25 @@
     "monospaceLinks": true
   },
   "opts": {
+    "encoding": "utf8",
+    "readme": "./README.md",
+    "destination": "docs/",
     "recurse": true,
-    "destination": "./docs/",
-    "readme": "README.md",
-    "template": "./node_modules/toast-jsdoc"
+    "verbose": true,
+    "template": "./node_modules/clean-jsdoc-theme",
+    "theme_opts": {
+      "theme": "dark",
+      "menu": [
+        {
+          "title": "Home",
+          "link": "https://bijou.js.org"
+        },
+        {
+          "title": "Github",
+          "link": "https://github.com/bijou-js/bijou.js",
+          "target": "_blank"
+        }
+      ]
+    }
   }
 }
