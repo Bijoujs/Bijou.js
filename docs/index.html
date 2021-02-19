@@ -40,8 +40,8 @@
       href="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"
       as="script"
     /> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.14.17/hls.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
     <!-- Import iconify (For buttons) -->
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <!-- Prefetch -->
@@ -280,25 +280,6 @@
     filter: drop-shadow(0 0 5px #fff);
   }
 
-  /* Pre code */
-  pre {
-    font-family: monospace;
-    white-space: pre;
-    padding: 8px;
-    margin: 10px;
-    overflow: scroll;
-    display: block;
-    border-radius: 4px;
-    background: #fff3;
-    width: 100%;
-    height: fit-content;
-  }
-
-  /* Inline code */
-  pre * {
-    font-family: monospace;
-  }
-
   /* Hide the open sandbox button */
   iframe {
     visibility: hidden !important;
@@ -357,14 +338,6 @@
     100% {
       bottom: 20px;
     }
-  }
-
-  /* Code keyframes */
-  code {
-    display: inline-block;
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    border-radius: 3px;
   }
 
   /* Pause animation on hover */
