@@ -1,18 +1,28 @@
-on: push
-name: Generate docs
-jobs:
- git-bat:
-    if: "contains(github.event.head_commit.message, '[Docs]')"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.1.4
-      - run: sudo npm install --save 
-      - run: npm run doc
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-         commit_message: Docs Generated
+name: Update Docs
 
-        
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update:
+    name: Update
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, '[Docs]')"
+
+    steps:
+      - name: Generate token
+        uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.BOT_APP_ID }}
+          private_key: ${{ secrets.BOT_PRIVATE_KEY }}
+
+      - name: Invoke workflow
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Generate docs
+          repo: Bijou-js/bijou.js.org
+          token: ${{ steps.generate-token.outputs.token }}
+          ref: refs/heads/master
