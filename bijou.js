@@ -316,7 +316,17 @@ export let formatMilliseconds = (ms) => {
 };
 //#endregion Date
 //#region String
-
+/**
+ * Removes the accents from a string.
+ * @memberOf bijou
+ * @function
+ * @returns {String} The string without accents.
+ * @example
+ * _$.decurr("déjà vu");//Returns "deja vu"
+ * @param {String} str The string to use.
+ */
+export let deburr = (str) =>
+  str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 /**
  * Returns either "mobile" or "desktop" depending on which type of device the user is using.
  * @function
