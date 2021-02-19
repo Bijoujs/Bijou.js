@@ -17,7 +17,9 @@
     "verbose": true,
     "template": "./node_modules/clean-jsdoc-theme",
     "theme_opts": {
-      "theme": "dark",
+      "theme": "light",
+      "create_style": "pre, pre * {font-family: monospace !important;} .tooltip * {color: black !important}",
+      "add_scripts": "window.addEventListener('load', () => document.querySelector('.accordion').classList.remove('collapsed'))",
       "menu": [
         {
           "title": "Home",
@@ -27,6 +29,20 @@
           "title": "Github",
           "link": "https://github.com/bijou-js/bijou.js",
           "target": "_blank"
+        },
+        {
+          "title": "Functions in Bijou",
+          "link": "https://bijou.js.org/docs/bijou.html"
+        }
+      ],
+      "meta": [
+        {
+          "name": "author",
+          "content": "Explosion-Scratch"
+        },
+        {
+          "name": "description",
+          "content": "Bijou.js - Useful JS snippets, in one simple library"
         }
       ]
     }
