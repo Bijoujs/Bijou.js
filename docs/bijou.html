@@ -15,6 +15,10 @@
 
     <!-- Adding external script-->
     
+      
+        <script href="https://unpkg.com/bijou.js@v6.2.0" type="module" ></script>
+      
+    
 
     <!-- Adding external style-->
     
@@ -26,6 +30,8 @@
     
 
     <!-- Adding overlay script-->
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/OverlayScrollbars.min.js" integrity="sha512-5R3ngaUdvyhXkQkIqTf/k+Noq3phjmrqlUQyQYbgfI34Mzcx7vLIIYTy/K1VMHkL33T709kfh5y6R9Xy/Cbt7Q==" crossorigin="anonymous"></script>
     
 
     <!-- Adding overlay style-->
@@ -68,7 +74,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=5585943><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=9442719><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
     <path 
         fill-rule="evenodd" 
         clip-rule="evenodd" 
@@ -21028,16 +21034,40 @@ console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would r
 
  
   <script type="text/javascript">
-    window.addEventListener('load', () => document.querySelector('.accordion .accordion-title').classList.remove('collapsed'))
+    document.querySelector("ul:nth-of-type(3)").remove()
+document.querySelector("h3:nth-of-type(2)").remove()
+document.querySelector(".accordion-title").remove()
+document.querySelector(".accordion-content").style.height = "fit-content";
+let els = document.querySelectorAll("li[data-type='method'] a");
+for (let i = 0; i < els.length; i++){
+  els[i].innerText = els[i].innerText.replace(/^exports\./, "")
+}
+
   </script>
 
 
 
   <script type="text/javascript">
-    window.addEventListener('load', () => document.querySelector('.accordion .accordion-title').classList.remove('collapsed'))
+    document.querySelector("ul:nth-of-type(3)").remove()
+document.querySelector("h3:nth-of-type(2)").remove()
+document.querySelector(".accordion-title").remove()
+document.querySelector(".accordion-content").style.height = "fit-content";
+let els = document.querySelectorAll("li[data-type='method'] a");
+for (let i = 0; i < els.length; i++){
+  els[i].innerText = els[i].innerText.replace(/^exports\./, "")
+}
+
   </script>
 
 
+
+  <script type="text/javascript">
+    var option = JSON.parse('{"option":{}}')
+    console.log(option)
+    document.addEventListener("DOMContentLoaded", function() {
+    OverlayScrollbars(document.querySelectorAll('body'), option.option || {});
+  });
+  </script>
 
 
 
