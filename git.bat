@@ -8,13 +8,14 @@ function commit {
   if [[ ${#COMMIT} -ge 1 ]] ; then
     cd /workspace/Bijou.js
     rm bijou_node.js
+    rm -r docs
+    eslint --fix ./
+    prettier --write -- .
     babel --plugins @babel/plugin-transform-modules-commonjs -o bijou_node.js -- bijou.js
     terser --comments false --ecma 5 --ie8 --module --compress --mangle -o bijou_node.js -- bijou_node.js
     jsdoc -c jsdoc.json
     showdown makehtml -i README.md -o README.html
     terser --comments false --ecma 5 --ie8 --module --compress --mangle -o bijou-min.js -- bijou.js
-    eslint --fix ./
-    prettier --write -- .
     echo "Commit message?   "
     read COMMIT_CUSTOM_MSG
     COMMIT_FILE=$(git diff --name-only)
