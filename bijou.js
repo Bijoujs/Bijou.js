@@ -3973,10 +3973,10 @@ export let lightOrDark = (color) => {
 //#endregion Bijou
 
 /**
- * Bijou.js source object. It contains all the functions of Bijou.
+ * Bijou.js source documentation. In the `Bijou` namespace you will find the documentation for all of the functions in Bijou.js, if you have any questions, suggestions or bug reports pleast make an issue (here)[https://github.com/bijou-js/bijou.js/issues/new/choose]. Best of luck! Thanks for using Bijou.js! --Explosion--
  * @type {Object}
  * @namespace bijou
- * @author Explosion-Scratch, Bijou.js contributors
+ * @author Explosion-Scratch, GrahamSH-LLK, Bijou.js contributors
  */
 let _temp = {
   addEventListeners: addEventListeners,
