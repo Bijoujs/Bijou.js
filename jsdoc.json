@@ -19,7 +19,7 @@
     "theme_opts": {
       "theme": "light",
       "create_style": "pre, pre * {font-family: monospace !important;} .tooltip * {color: black !important}",
-      "add_scripts": "document.querySelector(\"ul:nth-of-type(3)\").remove()\r\ndocument.querySelector(\"h3:nth-of-type(2)\").remove()\r\ndocument.querySelector(\".accordion-title\").remove()\r\ndocument.querySelector(\".accordion-content\").style.height = \"fit-content\";\r\nlet els = document.querySelectorAll(\"li[data-type='method'] a\");\r\nfor (let i = 0; i < els.length; i++){\r\n  els[i].innerText = els[i].innerText.replace(/^exports\\./, \"\")\r\n}\r\n",
+      "add_scripts": "document.querySelector(\"ul:nth-of-type(3)\").remove()\r\ndocument.querySelector(\"h3:nth-of-type(2)\").remove()\r\ndocument.querySelector(\".accordion-title\").remove()\r\ndocument.querySelector(\".accordion-content\").style.height = \"fit-content\";\r\nlet els = document.querySelectorAll(\"li[data-type='method'] a\");\r\nfor (let i = 0; i < els.length; i++){\r\n  els[i].innerText = els[i].innerText.replace(/^exports\\./, \"\")\r\n}\r\ndocument.querySelector(\"div.text\").innerText = \"Bijou.js Functions\"",
       "overlay_scrollbar": {
         "option": {}
       },
