@@ -1,0 +1,9 @@
+{
+  "plugins": [
+    "@babel/plugin-transform-arrow-functions",
+    "@babel/plugin-transform-sticky-regex",
+    "@babel/plugin-transform-spread",
+    "@babel/plugin-transform-template-literals",
+    "@babel/plugin-transform-shorthand-properties"
+  ]
+}

@@ -1,6 +1,6 @@
 npm install;
 npm i -g eslint jsdoc prettier terser figlet-cli @babel/core @babel/cli @babel/preset-env @babel/plugin-transform-modules-commonjs
-npm install @babel/preset-env babel @babel/plugin-transform-arrow-functions @babel/plugin-transform-sticky-regex --no-save
+npm install @babel/plugin-transform-spread @babel/plugin-transform-template-literals @babel/preset-env babel @babel/plugin-transform-arrow-functions @babel/plugin-transform-sticky-regex @babel/plugin-transform-shorthand-properties --no-save
 
 function remove {
   rm -f .git/index.lock
@@ -13,10 +13,10 @@ function commit {
   rm bijou-min.js
   eslint --fix ./
   prettier --write -- .
-  babel --plugins=@babel/plugin-transform-modules-commonjs,@babel/plugin-transform-arrow-functions,@babel/plugin-transform-sticky-regex -o bijou_node.js -- bijou.js
+  babel --plugins=@babel/plugin-transform-modules-commonjs -o bijou_node.js -- bijou.js
   terser --mangle --compress --comments false -o bijou_node.js -- bijou_node.js
   jsdoc -c jsdoc.json
-  babel --presets=@babel/preset-env -o bijou-min.js -- bijou.js
+  babel -o bijou-min.js -- bijou.js
   terser --comments false --ecma 4 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou-min.js
   if [[ ${#COMMIT} -ge 1 ]] ; then
     echo "Commit message?   "
