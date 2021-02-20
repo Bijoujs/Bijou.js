@@ -36,8 +36,5 @@
     "prettier": "2.2.1",
     "showdown": "^1.9.1",
     "terser": "^5.5.1"
-  },
-  "dependencies": {
-    "@babel/preset-env": "^7.12.17"
   }
 }
