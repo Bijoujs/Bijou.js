@@ -1,5 +1,5 @@
 npm install;
-npm i -g eslint jsdoc prettier showdown terser toast-jsdoc figlet-cli @babel/core @babel/cli
+npm i -g eslint jsdoc prettier showdown terser toast-jsdoc figlet-cli @babel/core @babel/cli @babel/preset-env@ babel/plugin-transform-modules-commonjs
 function remove {
   rm -f .git/index.lock
 }
@@ -11,10 +11,9 @@ function commit {
     rm -r docs/docs
     eslint --fix ./
     prettier --write -- .
-    babel --plugins @babel/plugin-transform-modules-commonjs -o bijou_node.js -- bijou.js
+    babel --plugins @babel/plugin-transform-modules-commonjs --presets=@babel/preset-env -o bijou_node.js -- bijou.js
     terser --comments false --ecma 5 --ie8 --module --compress --mangle -o bijou_node.js -- bijou_node.js
     jsdoc -c jsdoc.json
-    showdown makehtml -i README.md -o README.html
     terser --comments false --ecma 5 --ie8 --module --compress --mangle -o bijou-min.js -- bijou.js
     echo "Commit message?   "
     read COMMIT_CUSTOM_MSG
