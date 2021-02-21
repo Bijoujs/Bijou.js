@@ -102,7 +102,7 @@
 </html>
 <style>
   /* Import Titillium Web (One of my favorite fonts) */
-  @import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;600;900&display=swap');
 
   /* Initial styles */
   * {
@@ -510,14 +510,13 @@ a.iconify {
 </style>
 
 <script type="module">
-  import * as _$ from './bijou.js';
-  console.log(_$.parseHTML);
+  import  {each, widows, throttle, debounce, mobileOrDesktop, createElement, requestInterval, random, parseHTML} from './bijou.js';
   window.onload = js_Load;
 
   function js_Load() {
     document.body.style.visibility = 'visible';
-    _$.each(document.querySelectorAll('h1, h2, h3'), (e) => {
-      e.innerHTML = _$.widows(e.innerHTML);
+    each(document.querySelectorAll('h1, h2, h3'), (e) => {
+      e.innerHTML = widows(e.innerHTML);
     });
     init();
   }
@@ -525,13 +524,13 @@ a.iconify {
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
   };
-  window.onmousemove = _$.throttle((e) => {
+  window.onmousemove = throttle((e) => {
     mouse = {
       x: e.clientX,
       y: e.clientY,
     };
   }, 100);
-  window.onscroll = _$.debounce((e) => {
+  window.onscroll = debounce((e) => {
     if (window.scrollY > 5) {
       document
         .getElementById('scroll-down-button')
@@ -546,10 +545,10 @@ a.iconify {
     fetch('https://raw.githubusercontent.com/Bijou-js/Bijou.js/main/README.md')
       .then((res) => res.text())
       .then((text) => {
-        let html = _$.parseHTML(generateHTML(text));
+        let html = parseHTML(generateHTML(text));
         html.querySelector('img').remove();
-        _$.each(html.querySelectorAll('br'), (br) => br.remove());
-        _$.each(html.querySelectorAll('img'), (br) => br.remove());
+        each(html.querySelectorAll('br'), (br) => br.remove());
+        each(html.querySelectorAll('img'), (br) => br.remove());
         document.getElementById('readme').innerHTML +=
           html.documentElement.innerHTML;
 	  document.querySelectorAll('pre code').forEach((block) => {
@@ -627,8 +626,8 @@ a.iconify {
 		</filter>
 	</svg>
 	<div class="blobs"></div>`;
-    let blob_int = setTimeout(_$.each(_$.mobileOrDesktop() === "mobile" ? 10 : 25, () => {
-      let blob = _$.createElement("<div class='blob'></div>")
+    let blob_int = setTimeout(each(mobileOrDesktop() === "mobile" ? 10 : 25, () => {
+      let blob = createElement("<div class='blob'></div>")
       document
         .querySelector('.blobs')
         .appendChild(blob);
@@ -637,20 +636,20 @@ a.iconify {
       blob.style.top = `${window.innerHeight / 2}px`;
       blob.style.left = `${window.innerWidth / 2}px`;
       blob.style.background = `#0559`;
-      let random = _$.random(30, 150);
-      blob.style.width = `${random}px`;
-      blob.style.height = `${random}px`;
-      let randomTime = _$.random(1000, 2000);
-      _$.requestInterval(() => {
+      let randomSize = random(30, 150);
+      blob.style.width = `${randomSize}px`;
+      blob.style.height = `${randomSize}px`;
+      let randomTime = random(1000, 2000);
+      requestInterval(() => {
         blob.style.opacity = 1;
-        let random = _$.random(30, 100);
-        blob.style.width = `${random}px`;
-        blob.style.height = `${random}px`;
-        blob.style.top = `${_$.random(
+        randomSize = random(30, 100);
+        blob.style.width = `${randomSize}px`;
+        blob.style.height = `${randomSize}px`;
+        blob.style.top = `${random(
           mouse.y - 150,
           mouse.y + 150,
         )}px`;
-        blob.style.left = `${_$.random(
+        blob.style.left = `${random(
           mouse.x - 150,
           mouse.x + 150,
         )}px`;
