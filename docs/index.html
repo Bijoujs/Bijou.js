@@ -510,7 +510,7 @@ a.iconify {
 </style>
 
 <script type="module">
-  import * as _$ from 'https://cdn.jsdelivr.net/npm/bijou.js@v6.2.0/bijou-min.js';
+  import * as _$ from 'https://cdn.jsdelivr.net/npm/bijou.js@v6.3.3/bijou-min.js';
   console.log(_$.parseHTML);
   window.onload = js_Load;
 
@@ -525,13 +525,13 @@ a.iconify {
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
   };
-  window.onmousemove = (e) => {
+  window.onmousemove = _$.throttle((e) => {
     mouse = {
       x: e.clientX,
       y: e.clientY,
     };
-  };
-  window.onscroll = (e) => {
+  }, 100);
+  window.onscroll = _$.debounce((e) => {
     if (window.scrollY > 5) {
       document
         .getElementById('scroll-down-button')
@@ -541,7 +541,7 @@ a.iconify {
         .getElementById('scroll-down-button')
         .classList.remove('hidden');
     }
-  };
+  }, 100)
   function init() {
     fetch('https://raw.githubusercontent.com/Bijou-js/Bijou.js/main/README.md')
       .then((res) => res.text())
@@ -625,13 +625,12 @@ a.iconify {
 		</filter>
 	</svg>
 	<div class="blobs"></div>`;
-    _$.each(new Array(40), () => {
+    let blob_int = _$.each(10, () => {
+      let blob = _$.createElement("<div class='blob'></div>")
       document
         .querySelector('.blobs')
-        .appendChild(_$.createElement("<div class='blob'></div>"));
-    });
+        .appendChild(blob);
 
-    _$.each(document.querySelectorAll('.blob'), (blob) => {
       blob.style.opacity = 0;
       blob.style.top = `${window.innerHeight / 2}px`;
       blob.style.left = `${window.innerWidth / 2}px`;

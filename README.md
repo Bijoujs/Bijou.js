@@ -16,7 +16,9 @@ from StackOverflow, another project or anywhere else! So if you ever find
 yourself typing the same thing over and over again, copy pasting the same
 snippet as you did a few days ago, use Bijou.js! If the snippet you're using
 isn't in Bijou.js, just submit an issue with the code!
+
 ### Table of contents
+
 - [How to use Bijou.js](#how-to-use-bijoujs)
   - [CDN](#cdn)
   - [Imports](#imports)
