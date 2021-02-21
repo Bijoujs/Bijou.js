@@ -36,8 +36,8 @@
     <!-- Nice theme color on mobile devices! -->
     <meta name="theme-color" content="#00a8a8" />
     <!-- Import bijou.js -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css"></noscript>
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js" defer></script>    
     <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js" defer></script>
     <!-- Import iconify (For buttons) -->
@@ -53,7 +53,7 @@
   </head>
   <!-- Use JS to load -->
 
-  <body onload="js_Load()">
+  <body style="visibility: hidden" onload="js_Load()">
     <!-- Top section -->
     <section>
       <p>
@@ -506,17 +506,15 @@ a.iconify {
 </style>
 
 <script type="module">
-import{each,widows,throttle,debounce,mobileOrDesktop,createElement,requestInterval,random,parseHTML}from"https://unpkg.com/bijou.js@6.3.3/bijou-min.js";each(document.querySelectorAll("h1, h2, h3"),t=>{t.innerHTML=widows(t.innerHTML)}),init();let mouse={x:window.innerWidth/2,y:window.innerHeight/2};function init(){fetch("https://raw.githubusercontent.com/Bijou-js/Bijou.js/main/README.md").then(t=>t.text()).then(t=>{let e=parseHTML(generateHTML(t));e.querySelector("img").remove(),each(e.querySelectorAll("br"),t=>t.remove()),each(e.querySelectorAll("img"),t=>t.remove()),document.getElementById("readme").innerHTML+=e.documentElement.innerHTML,document.querySelectorAll("pre code").forEach(t=>{hljs.highlightBlock(t)}),window.location.hash&&document.querySelector(window.location.hash).scrollIntoView({behavior:"smooth"})}),document.body.innerHTML+='\n\t<svg style="display: none;">\n\t\t<filter id="turbulence-2">\n\t\t\t<feTurbulence\n\t\t\t\tid="turbulence-filter-2"\n\t\t\t\ttype="turbulence"\n\t\t\t\tbaseFrequency="0.05"\n\t\t\t\tnumOctaves="2"\n\t\t\t\tresult="turbulence-2"\n\t\t\t/>\n\t\t\t<feDisplacementMap\n\t\t\t\tin2="turbulence-2"\n\t\t\t\tin="SourceGraphic"\n\t\t\t\tscale="2"\n\t\t\t\txChannelSelector="R"\n\t\t\t\tyChannelSelector="G"\n\t\t\t/>\n\t\t\t<animate\n\t\t\t\txlink:href="#turbulence-filter-2"\n\t\t\t\tattributeName="baseFrequency"\n\t\t\t\tdur="10s"\n\t\t\t\tkeyTimes="0;0.5;1"\n\t\t\t\tvalues="0.02 0.06;0.04 0.08;0.02 0.06"\n\t\t\t\trepeatCount="indefinite"\n\t\t\t/>\n\t\t</filter>\n\t</svg>\n\t<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">\n\t\t<defs>\n\t\t\t<filter id="goo">\n\t\t\t\t<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />\n\t\t\t\t<feColorMatrix\n\t\t\t\t\tin="blur"\n\t\t\t\t\tmode="matrix"\n\t\t\t\t\tvalues="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"\n\t\t\t\t\tresult="goo"\n\t\t\t\t/>\n\t\t\t\t<feBlend in="SourceGraphic" in2="goo" />\n\t\t\t</filter>\n\t\t</defs>\n\t</svg>\n\t\t<svg style="display: none;">\n\t\t<filter id="turbulence">\n\t\t\t<feTurbulence\n\t\t\t\tid="turbulence-filter"\n\t\t\t\ttype="turbulence"\n\t\t\t\tbaseFrequency="0.05"\n\t\t\t\tnumOctaves="2"\n\t\t\t\tresult="turbulence"\n\t\t\t/>\n\t\t\t<feDisplacementMap\n\t\t\t\tin2="turbulence"\n\t\t\t\tin="SourceGraphic"\n\t\t\t\tscale="5"\n\t\t\t\txChannelSelector="R"\n\t\t\t\tyChannelSelector="G"\n\t\t\t/>\n\t\t\t<animate\n\t\t\t\txlink:href="#turbulence-filter"\n\t\t\t\tattributeName="baseFrequency"\n\t\t\t\tdur="10s"\n\t\t\t\tkeyTimes="0;0.5;1"\n\t\t\t\tvalues="0.02 0.06;0.04 0.08;0.02 0.06"\n\t\t\t\trepeatCount="indefinite"\n\t\t\t/>\n\t\t</filter>\n\t</svg>\n\t<div class="blobs"></div>';setTimeout(each("mobile"===mobileOrDesktop()?10:25,()=>{let t=createElement("<div class='blob'></div>");document.querySelector(".blobs").appendChild(t),t.style.opacity=0,t.style.top=`${window.innerHeight/2}px`,t.style.left=`${window.innerWidth/2}px`,t.style.background="#0559";let e=random(30,150);t.style.width=`${e}px`,t.style.height=`${e}px`;let n=random(1e3,2e3);requestInterval(()=>{t.style.opacity=1,e=random(30,100),t.style.width=`${e}px`,t.style.height=`${e}px`,t.style.top=`${random(mouse.y-150,mouse.y+150)}px`,t.style.left=`${random(mouse.x-150,mouse.x+150)}px`,t.style.transitionDuration=n+"ms"},n)}),2e3)}function generateHTML(t){return showdown.setFlavor("github"),(new showdown.Converter).makeHtml(t)}window.onmousemove=throttle(t=>{mouse={x:t.clientX,y:t.clientY}},100),window.onscroll=debounce(t=>{window.scrollY>5?(document.getElementById("scroll-down-button").classList.add("hidden"),document.querySelector(".btns").style.opacity="mobile"===mobileOrDesktop()?0:1):(document.getElementById("scroll-down-button").classList.remove("hidden"),document.querySelector(".btns").style.opacity=(mobileOrDesktop(),1))},100);
-</script>
-<!-- End of doc -->
-<!-- 
-  <script>
-      import  {each, widows, throttle, debounce, mobileOrDesktop, createElement, requestInterval, random, parseHTML} from 'https://unpkg.com/bijou.js@6.3.3/bijou-min.js';
-
+  import  {each, widows, throttle, debounce, mobileOrDesktop, createElement, requestInterval, random, parseHTML} from './bijou.js';
+  window.onload = js_Load;
+  function js_Load() {
+    document.body.style.visibility = 'visible';
     each(document.querySelectorAll('h1, h2, h3'), (e) => {
       e.innerHTML = widows(e.innerHTML);
     });
     init();
+  }
   let mouse = {
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
@@ -661,5 +659,5 @@ import{each,widows,throttle,debounce,mobileOrDesktop,createElement,requestInterv
     showdown.setFlavor('github');
     return (new showdown.Converter()).makeHtml(md);
   }
-  </script>
- -->
+</script>
+<!-- End of doc -->
