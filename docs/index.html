@@ -555,7 +555,9 @@ a.iconify {
 	  document.querySelectorAll('pre code').forEach((block) => {
     		hljs.highlightBlock(block);
   	});
-
+          if (window.location.hash) {
+            document.querySelector(window.location.hash).scrollIntoView({behavior: "smooth"})
+          }
       });
     document.body.innerHTML += `
 	<svg style="display: none;">
@@ -625,7 +627,7 @@ a.iconify {
 		</filter>
 	</svg>
 	<div class="blobs"></div>`;
-    let blob_int = _$.each(10, () => {
+    let blob_int = setTimeout(_$.each(_$.mobileOrDesktop() === "mobile" ? 10 : 25, () => {
       let blob = _$.createElement("<div class='blob'></div>")
       document
         .querySelector('.blobs')
@@ -654,7 +656,7 @@ a.iconify {
         )}px`;
         blob.style.transitionDuration = randomTime + 'ms';
       }, randomTime);
-    });
+    }), 1000);
   }
   function generateHTML(md) {
     var output = '';
