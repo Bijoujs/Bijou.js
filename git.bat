@@ -16,6 +16,7 @@ function commit {
   babel --plugins=@babel/plugin-transform-modules-commonjs -o bijou_node.js -- bijou.js
   terser --mangle --compress --comments false -o bijou_node.js -- bijou_node.js
   jsdoc -c jsdoc.json
+  terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
   terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
   if [[ ${#COMMIT} -ge 1 ]] ; then
     echo "Commit message?   "
