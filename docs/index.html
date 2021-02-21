@@ -36,16 +36,12 @@
     <!-- Nice theme color on mobile devices! -->
     <meta name="theme-color" content="#00a8a8" />
     <!-- Import bijou.js -->
-    <!-- <link
-      rel="preload"
-      href="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou-min.js"
-      as="script"
-    /> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css"></noscript>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js" defer></script>    
     <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js" defer></script>
     <!-- Import iconify (For buttons) -->
-    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js" defer></script>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
     <!-- Prefetch -->
     <link rel="prefetch" href="./try.html" />
