@@ -17,7 +17,7 @@ function commit {
   terser --mangle --compress --comments false -o bijou_node.js -- bijou_node.js
   jsdoc -c jsdoc.json
   babel -o bijou-min.js -- bijou.js
-  terser --comments false --ecma 4 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou-min.js
+  terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou-min.js
   if [[ ${#COMMIT} -ge 1 ]] ; then
     echo "Commit message?   "
     read COMMIT_CUSTOM_MSG
