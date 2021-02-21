@@ -660,11 +660,8 @@ a.iconify {
     }), 2000);
   }
   function generateHTML(md) {
-    var output = '';
     showdown.setFlavor('github');
-    var converter = new showdown.Converter();
-    output = converter.makeHtml(md);
-    return output;
+    return (new showdown.Converter()).makeHtml(md);
   }
 </script>
 <!-- End of doc -->
