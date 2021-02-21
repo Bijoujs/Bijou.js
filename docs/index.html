@@ -42,8 +42,8 @@
       as="script"
     /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>    
-    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js" defer></script>    
+    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js" defer></script>
     <!-- Import iconify (For buttons) -->
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
@@ -130,7 +130,7 @@ button#big_button {
   border-radius: 5px;
   cursor: pointer;
   transform: translateX(-50%);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
 }
 button#big_button:active {
   transform: translateX(-50%) scale(0.95);
@@ -305,7 +305,7 @@ button#big_button:hover {
   width: 60px;
   border-radius: 3px;
   overflow: hidden;
-  transition: width .3s ease, background-color .3s ease, backdrop-filter .3s ease;
+  transition: opacity .5s ease, width .3s ease, background-color .3s ease, backdrop-filter .3s ease;
 }
 .btns:hover {
   width: 200px;
@@ -512,7 +512,6 @@ a.iconify {
 <script type="module">
   import  {each, widows, throttle, debounce, mobileOrDesktop, createElement, requestInterval, random, parseHTML} from './bijou.js';
   window.onload = js_Load;
-
   function js_Load() {
     document.body.style.visibility = 'visible';
     each(document.querySelectorAll('h1, h2, h3'), (e) => {
@@ -535,10 +534,13 @@ a.iconify {
       document
         .getElementById('scroll-down-button')
         .classList.add('hidden');
+      document.querySelector('.btns').style.opacity = mobileOrDesktop() === "mobile" ? 0 : 1;
     } else {
       document
         .getElementById('scroll-down-button')
         .classList.remove('hidden');
+
+      document.querySelector('.btns').style.opacity = mobileOrDesktop() === "mobile" ? 1 : 1;
     }
   }, 100)
   function init() {
