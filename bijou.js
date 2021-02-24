@@ -53,8 +53,8 @@ Contributors to Bijou.js:
 ║                   ║ fixes for GitHub actions   ║
 ║                   ║ glitches.                  ║
 ╠═══════════════════╬════════════════════════════╣
-║ YOYITsM3M8        ║ Suggested a lot of         ║
-║ (AKA retronbv)    ║ features and bug fixes.    ║
+║ retronbv          ║ Suggested a lot of         ║
+║                   ║ features and bug fixes.    ║
 ║═══════════════════║════════════════════════════║
 ║ thecoder876       ║ Made some improvements.    ║
 ╚═══════════════════╩════════════════════════════╝
