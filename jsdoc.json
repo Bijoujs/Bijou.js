@@ -19,7 +19,7 @@
     "theme_opts": {
       "theme": "light",
       "create_style": "pre, pre * {font-family: monospace !important;} .tooltip * {color: black !important}",
-      "add_scripts": "document.querySelector(\"ul:nth-of-type(3)\").remove()\r\ndocument.querySelector(\"h3:nth-of-type(2)\").remove()\r\ndocument.querySelector(\".accordion-title\").remove()\r\ndocument.querySelector(\".accordion-content\").style.height = \"fit-content\";\r\nlet els = document.querySelectorAll(\"li[data-type='method'] a\");\r\nfor (let i = 0; i < els.length; i++){\r\n  els[i].innerText = els[i].innerText.replace(/^exports\\./, \"\")\r\n}\r\ndocument.querySelector(\"div.text\").innerText = \"Bijou.js Functions\"\r\ndocument.head.innerHTML += `<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"https://bijou.js.org/favicon.png\" /><meta name=\"theme-color\" content=\"#008080\" /> <meta name=\"title\" content=\"Bijou.js \u2013 Docs\" /> <meta name=\"description\" content=\"Bijou.js docs, every function in Bijou.js is documented here!\" /> <meta name=\"keywords\" content=\"Bijou.js, Docs, Library, Code, JavaScript, JS, HTML, CSS\" /> <meta name=\"robots\" content=\"index, follow\" /> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> <meta name=\"language\" content=\"English\" /> <meta name=\"revisit-after\" content=\"1 days\" /> <meta name=\"author\" content=\"--Explosion--, GrahamSH-LLK, Bijou.js Contributors\" /> <!-- Open Graph / Facebook --> <meta property=\"og:type\" content=\"website\" /> <meta property=\"og:url\" content=\"https://bijou.js.org\" /> <meta property=\"og:title\" content=\"Bijou.js \u2013 Docs\" /> <meta property=\"og:description\" content=\"Bijou.js docs, every function in Bijou.js is documented here!\" /> <meta property=\"og:image\" content=\"https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401\" /> <meta content=\"Bijou.js docs\" property=\"og:site_name\" /> <link type=\"application/json+oembed\" href=\"embeds.json\" /> <!-- Twitter --> <meta property=\"twitter:card\" content=\"summary_large_image\" /> <meta property=\"twitter:url\" content=\"https://bijou.js.org/docs\" /> <meta property=\"twitter:title\" content=\"Bijou.js - Docs\" /> <meta property=\"twitter:description\" content=\"Bijou.js docs, every function in Bijou.js is documented here!\" /> <meta property=\"twitter:image\" content=\"https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401\" /> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />`",
+      "add_scripts": "document.querySelector(\"ul:nth-of-type(3)\").remove()\r\ndocument.querySelector(\"h3:nth-of-type(2)\").remove()\r\ndocument.querySelector(\".accordion-title\").remove()\r\ndocument.querySelector(\".accordion-content\").style.height = \"fit-content\";\r\nlet els = document.querySelectorAll(\"li[data-type='method'] a\");\r\nfor (let i = 0; i < els.length; i++){\r\n  els[i].innerText = els[i].innerText.replace(/^exports\\./, \"\")\r\n}\r\ndocument.querySelector(\"div.text\").innerText = \"Bijou.js Functions\"",
       "overlay_scrollbar": {
         "option": {}
       },
@@ -70,8 +70,24 @@
           "content": "https://bijou.js.org/docs"
         },
         {
+          "property": "twitter:title",
+          "content": "Bijou.js docs"
+        },
+        {
+          "property": "og:title",
+          "content": "Bijou.js docs"
+        },
+        {
           "property": "og:site_name",
           "content": "Bijou.js"
+        },
+        {
+          "property": "og:description",
+          "content": "Bijou.js documentation: Every function in Bijou.js is documented here!"
+        },
+        {
+          "property": "og:image",
+          "content": "https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401"
         },
         {
           "property": "twitter:image",
