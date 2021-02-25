@@ -112,6 +112,7 @@ let node = () => {
  * @example
  * Animates from 50 to 100 over the course of 3 seconds, updating every half second, and writing the current value to the document body.
  * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
+ * @returns {undefined}
  */
 // prettier-ignore
 export let animate = (start, end, duration, callback, interval = 20, num = (num) => num) => {
@@ -133,6 +134,9 @@ export let animate = (start, end, duration, callback, interval = 20, num = (num)
  * @function
  * @param {Number} start The start value of the array.
  * @param {Number} end The end value of the array.
+ * @example
+ * console.log(_$.range(-2, 1)); // [-2, -1, 0, 1]
+ * @returns {Array.<Number>} An array of whole numbers (inclusive) between the numbers specified.
  */
 export let range = (start, end) => {
   return Array(end - start + 1)
@@ -145,7 +149,7 @@ export let range = (start, end) => {
  * @memberOf bijou
  * @param {Number|String} [seed=Math.random()] The seed to use.
  * @example
- * _$.uuid();//Returns a uuid!
+ * console.log(_$.uuid()); // e.g. 863d0193-863d-0193-863d-0193863d0193
  * @returns {String} The UUID
  */
 export let uuid = (seed = Math.random()) => {
@@ -166,8 +170,8 @@ export let uuid = (seed = Math.random()) => {
  * @memberOf bijou
  * @param {Number} num - The number to give primes to.
  * @example
- * _$.primesTo(100);//Returns an array of prime numbers up to 100.
- * @returns {Array} Returns an array of prime numbers up to the given number.
+ * console.log(_$.primesTo(10)); // [2, 3, 5, 7]
+ * @returns {Array.<Number>} Returns an array of prime numbers up to the given number.
  */
 export let primesTo = (num) => {
   let arr = Array.from({
@@ -190,7 +194,9 @@ export let primesTo = (num) => {
  * @param {Number} max The highest number that the random value generated can be.
  * @param {Boolean} [round=true] Weather to round the generated number
  * @param {Number} [seed=Math.random()] The seed for the generated number (Between 0 and 1).
- * @returns {Number} The random numebr generated.
+ * @returns {Number} The random number generated.
+ * @example
+ * console.log(_$.random(0, 100)); // e.g. 47
  */
 export let random = (
   min,
@@ -210,7 +216,7 @@ export let random = (
  * @memberOf bijou
  * @param {Number} seed The seed to use to generate random numbers.
  * @example
- * console.log(_$.seedRandom(13));
+ * console.log(_$.seedRandom(13)); // 0.5663226493634284
  * @returns {Number} The random number from the seed.
  */
 export let seedRandom = (seed) => {
@@ -226,7 +232,7 @@ export let seedRandom = (seed) => {
  * @memberOf bijou
  * @param {Number} n The number to format.
  * @example
- * console.log(_$.formatNumber(100000000)); Logs "100,000,000 to the console."
+ * console.log(_$.formatNumber(100000000)); // "100,000,000"
  * @returns {String} The formatted string representation of the number.
  */
 export let formatNumber = (n) =>
