@@ -208,7 +208,7 @@ export let random = (
  * Get a random number from a seed.
  * @function
  * @memberOf bijou
- * @param {Number} seed The seed to use to generate random numbers.
+ * @param {number} seed The seed to use to generate random numbers.
  * @example
  * console.log(_$.seedRandom(13));
  * @returns {Number} The random number from the seed.
