@@ -2209,6 +2209,47 @@ export let runAsync = (fn) => {
 //#endregion Function
 //#region Object
 /**
+ * Flattens an object recursively into one. 
+ * @memberOf bijou
+ * @function
+ * @example 
+  * _$.flattenObj({
+      hello: "world",
+      another: {
+          nested: "Value",
+          anotherNestedValue: {
+              "something": "A value"
+          },
+          "more Values!!": "lol"
+      }
+  }) 
+* @param {Object} o The object to flatten
+* @returns {Object} The flattened object.
+ */
+export let flattenObj = (o) => {
+  return o !== Object(o) || Array.isArray(o)
+    ? {}
+    : Object.assign(
+        {},
+        ...(function leaves(o) {
+          return [].concat.apply(
+            [],
+            Object.entries(o).map(([k, v]) => {
+              return !v ||
+                typeof v !== 'object' ||
+                !Object.keys(v).some((key) =>
+                  v.hasOwnProperty(key),
+                ) ||
+                Array.isArray(v)
+                ? { [k]: v }
+                : leaves(v);
+            }),
+          );
+        })(o),
+      );
+};
+
+/**
  * Deep clones an object
  * @function
  * @memberOf bijou
