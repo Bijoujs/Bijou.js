@@ -4,6 +4,11 @@
 
   <head>
     <!-- Setup meta tags -->
+    <noscript
+      ><meta
+        http-equiv="refresh"
+        content="0; url=https://bijou.js.org/index_static.html"
+    /></noscript>
     <meta
       name="google-site-verification"
       content="b-DO3CH5J-EIt3-mVhwI2QpjIUPl6DrSjWm1sVtxaRA"
@@ -376,10 +381,18 @@
     transition: opacity 0.5s ease, width 0.3s ease,
       background-color 0.3s ease, backdrop-filter 0.3s ease;
   }
+  .btns #btn-text {
+    transition: opacity 0.3s ease;
+    color: transparent;
+  }
+  .btns:hover #btn-text {
+    color: white;
+  }
   .btns:hover {
     width: 200px;
     backdrop-filter: blur(10px);
     background-color: #0009;
+    color: white;
   }
   .btn #btn-text {
     position: relative;
