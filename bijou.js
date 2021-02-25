@@ -2392,7 +2392,7 @@ export let sortObj = (obj) => {
 //#region Element
 
 /**
- * Re-enables the use of <menu> and <menuitem> tags for corner clicking.
+ * Re-enables the use of &lt;menu&gt; and &lt;menuitem&gt; tags for corner clicking.
  * @memberOf bijou
  * @function
  * @example
