@@ -2107,7 +2107,12 @@ export let memoize = (fn) => {
  * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
  * @function
  * @memberOf bijou
+ * @param {...Function} The functions to be composed.
  * @returns {Function} The composed function.
+ * @example
+ * const add2 = (x) => x + 2;
+ * const multiply2 = (x) => x * 2;
+ * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  6 * 2 + 2
  */
 export let composeFunction = (...functions) => (args) =>
   functions.reduceRight((arg, fn) => fn(arg), args);
@@ -2128,6 +2133,9 @@ export let curryFunction = (fn, arity = fn.length, ...args) =>
  * @function
  * @param {Function} val The function to test.
  * @returns {Boolean} True if the function is async and false if not.
+ * @example
+ * const asyncFn = async (x) => x ** 3; // It's a silly function, but a good example
+ * console.log(_$.isAsync(asyncFn)); // true
  */
 export let isAsync = (val) =>
   Object.prototype.toString.call(val) === '[object AsyncFunction]';
