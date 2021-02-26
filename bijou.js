@@ -1853,11 +1853,12 @@ export let diff = function (text1, text2) {
  * @example
  * _$.remove([1,2,3,4,5], 1);//Returns [2,3,4,5].
  */
-export let remove = (array, item) =>
-  array.indexOf(item) > -1
-    ? array.splice(array.indexOf(item), 1)
-    : array;
-
+export let remove = (array, item) => {
+  if (array.indexOf(item) > -1) {
+    array.splice(array.indexOf(item), 1);
+  }
+  return array;
+}
 /**
  * Splices an array buffer
  * @function
