@@ -1891,13 +1891,14 @@ export let remove = (array, item) =>
     : array;
 
 /**
- * Splices an array buffer
+ * Splices an ArrayBuffer.
  * @function
  * @memberOf bijou
- * @param {ArrayBuffer} arr The ArrayBuffer to splice
- * @param {Number} start The start index
- * @param {Number} end The end index
- * @param {Boolean} [endian=false] Whether to treat the ArrayBuffer as big endian or little endian
+ * @param {ArrayBuffer|Buffer} arr The ArrayBuffer to splice.
+ * @param {Number} start The start index.
+ * @param {Number} end The end index.
+ * @param {Boolean} [endian=false] Whether to use big endian or not.
+ * @returns {Number} The hex representation of part of the ArrayBuffer.
  */
 export let spliceArrayBuffer = (arr, start, end, endian = false) => {
   var direction = endian ? -1 : 1;
@@ -1910,12 +1911,12 @@ export let spliceArrayBuffer = (arr, start, end, endian = false) => {
 };
 
 /**
- * Flattens an array level times.
+ * Flattens an array `level` times.
  * @memberOf bijou
  * @function
  * @returns {Array} The flattened array.
  * @example
- * _$.flatten(['a', 'b', ['c', 'd']]);//Returns ['a', 'b', 'c', 'd'];
+ * console.log(_$.flatten(['a', 'b', ['c', 'd']])); // ['a', 'b', 'c', 'd'];
  * @param {Array} array The array to flatten.
  * @param {Number} [level=1] The number of iterations to flatten it.
  */
@@ -1933,6 +1934,8 @@ export let flatten = (array, level = 1) => {
  * @memberOf bijou
  * @param {Array} arr The array to flatten.
  * @returns {Array} The flattened array.
+ * @example
+ * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
  */
 export let nFlatten = (arr) => {
   return arr.reduce(function (flat, toFlatten) {
@@ -1949,7 +1952,7 @@ export let nFlatten = (arr) => {
  * @param {Array} array The array to test with.
  * @param {String} item The item to see if the array contains.
  * @example
- * _$.contains([1,2,3,4,5], 3);//Returns true. The array does include 5.
+ * console.log(_$.contains([1,2,3,4,5], 3)); // true 
  * @returns {Boolean} True or false depending on if the array contains that item.
  */
 export let contains = (array, item) => array.includes(item);
@@ -1961,8 +1964,7 @@ export let contains = (array, item) => array.includes(item);
  * @param {Array} array The array to shuffle.
  * @example
  * let array = [1,2,3,4,5];
- * array = _$.shuffleArray(array);
- * //array is now something like this: [2,4,1,5,3].
+ * console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]
  * @returns {Array} The shuffled array.
  */
 export let shuffleArray = (array) =>
@@ -1972,10 +1974,13 @@ export let shuffleArray = (array) =>
  * Splice but also for strings
  * @memberOf bijou
  * @function
- * @param {String|Array} array The array of string to operate on
+ * @param {String|Array} array The array or string to operate on
  * @param {Number} index The index to splice
  * @param {*} item The item
  * @param {Number} remove How many to remove.
+ * @returns {String|Array} the spliced array of string
+ * @example
+ * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
  */
 export let splice = (array, index, item, remove = 0) => {
   return typeof array === 'string'
@@ -1985,13 +1990,13 @@ export let splice = (array, index, item, remove = 0) => {
     : array.splice(index, remove, item);
 };
 /**
- * Joins two arrays together and removes duplicates.
+ * Joins two arrays together and removes duplicate items.
  * @function
  * @memberOf bijou
  * @param {Array} x The first array to join.
  * @param {Array} y The second array to join.
  * @example
- * _$.unionArrays([1,2,3], [4,5,6]);//Returns [1,2,3,4,5,6]
+ * console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]
  * @returns {Array} The joined array from the two other arrays.
  */
 export let unionArrays = (x, y) => {
@@ -2011,8 +2016,8 @@ export let unionArrays = (x, y) => {
  * @param {Array.<number>} arr The array to average
  * @param {Function} fn The function to apply to each item of the array.
  * @example
- * //Averages the array 1,2,3,4 after squaring each number.
- * _$.averageBy([1,2,3,4], (v) => v ** 2);
+ * Logs the average of the first 4 square numbers:
+ * console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5
  * @returns {Number} The average of the array.
  */
 export let averageBy = (arr, fn) =>
@@ -2026,9 +2031,7 @@ export let averageBy = (arr, fn) =>
   * @memberOf bijou
   * @param {Array} array The array to remove duplicates from.
   * @example
-  * let an_array = [1,1,2,3,4,5,5,6]
-  an_array = _$.uniqueArray(an_array);
-  //Now an_array is [1,2,3,4,5,6]
+  * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
   * @returns {Array} The array with no duplicates.
   */
 export let uniqueArray = (array) => [...new Set(array)];
@@ -2036,10 +2039,16 @@ export let uniqueArray = (array) => [...new Set(array)];
  * For each item in an array, run a callback with it.
  * @function
  * @memberOf bijou
- * @param {Array} array The array of items to run the callback with.
+ * @param {Array|String|Number} array The array, string or number to run the callback with.
  * @param {Function} callback The callback function to run on the array items.
  * @example
- * _$.each(new Array(40), (array_item, i) => console.log(i));//Logs the numbers up to 40.
+ * _$.each(new Array(6), (array_item, i) => console.log(i)); 
+ * // 0
+ * // 1
+ * // 2
+ * // 3
+ * // 4
+ * // 5
  * @returns {undefined}
  */
 export let each = (array, callback) => {
@@ -2078,9 +2087,8 @@ export let spread = (fn) => {
  * @memberOf bijou
  * @param {Function} fn The function to memoize.
  * @example
- * let uuid = _$.memoize(() => uuid());
- * console.log(uuid());//Will always log the first uuid generated before, but it will do this instantly instead of having to generate a new one. (Note that the _$.uuid() function is virtually instantaneous anyways and can generate over 10 million uuids in 20 seconds.)
- * @returns {undefined}
+ * let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)
+ * @returns {Function} The memoized function.
  */
 export let memoize = (fn) => {
   let cache = {};
