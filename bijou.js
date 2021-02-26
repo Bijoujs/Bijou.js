@@ -1699,7 +1699,8 @@ export let beautifyJS = (js, callback) => {
  * @function
  * @param {String} word The word to count syllables of
  * @example
- * _$.syllables("Hello")//Returns 2.
+ * console.log(_$.syllables("Hello")); // 2
+ * @returns {Number} The number of syllables in the specified word.
  */
 export let syllables = (word) => {
   word = word.toLowerCase();
@@ -1724,7 +1725,7 @@ export let syllables = (word) => {
  * @function
  * @param {String} str The string to capitalize.
  * @example
- * _$.capitalize("hello world");//Returns "Hello world"
+ * console.log(_$.capitalize("hello world")); // "Hello world"
  * @returns {String} The capitalized string.
  */
 export let capitalize = (str) =>
@@ -1735,11 +1736,12 @@ export let capitalize = (str) =>
  * @memberOf bijou
  * @function
  * @example
- * _$.replaceBetween("Hello world", 6, 11, "earthlings");//Returns "Hello earthlings"
+ * console.log(_$.replaceBetween("Hello world", 6, 11, "earthlings")); // "Hello earthlings"
  * @param {String} string The string to operate on.
  * @param {Number} start The start index
  * @param {Number} end The end index
  * @param {String} what What to replace with.
+ * @returns {String} The replaced string
  */
 export let replaceBetween = (string, start, end, what) =>
   string.substring(0, start) + what + string.substring(end);
@@ -1749,7 +1751,7 @@ export let replaceBetween = (string, start, end, what) =>
  * @memberOf bijou
  * @param {String} str The string of HTML to escape.
  * @example
- * _$.escapeHTML("<div>"); Returns the escaped HTML: "&lt;div&gt;"
+ * console.log(_$.escapeHTML("<div>")); // "&lt;div&gt;"
  * @returns {String} The escaped HTML.
  */
 export let escapeHTML = (str) =>
@@ -1770,7 +1772,7 @@ export let escapeHTML = (str) =>
  * @memberOf bijou
  * @param {String} str The string of HTML to unescape.
  * @example
- * _$.unescapeHTML("&lt;div&gt;");//Returns "<div>"
+ * console.log(_$.unescapeHTML("&lt;div&gt;")); // "<div>"
  * @returns {String} The unescaped HTML.
  */
 export let unescapeHTML = (str) =>
@@ -1790,7 +1792,7 @@ export let unescapeHTML = (str) =>
  * @function
  * @memberOf bijou
  * @example
- * _$.previousPage()
+ * console.log(_$.previousPage()); // e.g. "https://bijou.js.org"
  * @returns {String} The url of the previous page the user visited.
  */
 export let previousPage = () => {
@@ -1806,9 +1808,9 @@ export let previousPage = () => {
  * @function
  * @returns {Array|String} The difference between two arrays or strings.
  * @example
- * _$.arrayDiff([['a', 'b'], ['a', 'b', 'c', 'd']]);//Returns ["c", "d"];
- * @param {Array} a1 The first array or string
- * @param {Array} a2 The 2nd array or string.
+ * console.log(_$.arrayDiff(['a', 'b'], ['a', 'b', 'c', 'd'])); // ["c", "d"]
+ * @param {Array|String} a1 The first array or string
+ * @param {Array|String} a2 The 2nd array or string.
  */
 export let arrayDiff = (a1, a2) => {
   var a = [],
@@ -1835,6 +1837,8 @@ export let arrayDiff = (a1, a2) => {
  * @function
  * @param {String} text1 The 1st text to compare
  * @param {String} text2 The 2nd text to compare with the 1st one.
+ * @example 
+ * console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]
  * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
  */
 export let diff = function (text1, text2) {
@@ -1876,10 +1880,10 @@ export let diff = function (text1, text2) {
  * Removes an item from the array specified.
  * @memberOf bijou
  * @function
- * @param {Array|String} array The array or string to remove the item or string from.
+ * @param {Array} array The array to remove the item from.
  * @param {*} item The item to remove.
  * @example
- * _$.remove([1,2,3,4,5], 1);//Returns [2,3,4,5].
+ * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
  */
 export let remove = (array, item) =>
   array.indexOf(item) > -1
@@ -1890,9 +1894,12 @@ export let remove = (array, item) =>
  * Splices an array buffer
  * @function
  * @memberOf bijou
+ * @param {ArrayBuffer} arr The ArrayBuffer to splice
+ * @param {Number} start The start index
+ * @param {Number} end The end index
+ * @param {Boolean} [endian=false] Whether to treat the ArrayBuffer as big endian or little endian
  */
-export let spliceArrayBuffer = (arr, start, end, endian) => {
-  endian = endian || false;
+export let spliceArrayBuffer = (arr, start, end, endian = false) => {
   var direction = endian ? -1 : 1;
   if (endian) [start, end] = [end, start];
   start = Math.floor(start);
