@@ -149,7 +149,7 @@ export let range = (start, end) => {
  * @memberOf bijou
  * @param {Number|String} [seed=Math.random()] The seed to use.
  * @example
- * console.log(_$.uuid()); // e.g. 863d0193-863d-0193-863d-0193863d0193
+ * console.log(_$.uuid()); // e.g. "863d0193-863d-0193-863d-0193863d0193"
  * @returns {String} The UUID
  */
 export let uuid = (seed = Math.random()) => {
@@ -242,7 +242,7 @@ export let formatNumber = (n) =>
  * @Object
  * @memberOf bijou
  * @example
- * _$.ease.easeInOutQuad(.3);//Returns the eased point of about 1/3 along the animation.
+ * console.log(_$.ease.easeInOutQuad(.3)); // 0.18 - the eased point of about 1/3 along the animation.
  * @returns {Function} The easing function.
  */
 export let ease = {
@@ -286,7 +286,7 @@ export let ease = {
  * @param {Date} [date=new Date()] The date object to use.
  * @param {String} [locale=en-US] The locale to use.
  * @example
- * _$.primesTo(100);//Returns an array of prime numbers up to 100.
+ * console.log(_$.dayName)); // e.g. "Friday"
  * @returns {String} The day name from the date.
  */
 export let dayName = (date = new Date(), locale = 'en-US') =>
@@ -298,9 +298,9 @@ export let dayName = (date = new Date(), locale = 'en-US') =>
  * Formats a number of milliseconds
  * @function
  * @memberOf bijou
- * @param {Number} ms The number of milliseconds to format to a string.
+ * @param {Number|String} ms The number of milliseconds to format to a string.
  * @example
- * _$.formatMilliseconds(4000);//Returns "4 seconds"
+ * console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"
  * @returns {String} The string of formatted milliseconds.
  */
 export let formatMilliseconds = (ms) => {
@@ -328,7 +328,7 @@ export let formatMilliseconds = (ms) => {
  * @function
  * @returns {String} The string without accents.
  * @example
- * _$.decurr("déjà vu");//Returns "deja vu"
+ * console.log(_$.decurr("déjà vu")); // "deja vu"
  * @param {String} str The string to use.
  */
 export let deburr = (str) =>
@@ -339,6 +339,8 @@ export let deburr = (str) =>
  * @memberOf bijou
  * @param
  * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
+ * @example
+ * console.log(_$.mobileOrDesktop()); // e.g. "desktop"
  */
 export let mobileOrDesktop = () => {
   node();
@@ -354,7 +356,7 @@ export let mobileOrDesktop = () => {
  * @memberOf bijou
  * @param {String} html The string of HTML to remove tags from.
  * @example
- * console.log(_$.removeTags("<div>Hello</div>"));//Logs "Hello" to the console.
+ * console.log(_$.removeTags("<div>Hello</div>")); // "Hello"
  * @returns {String} THe string of HTML without the tags.
  */
 export let removeTags = (html) => html.replace(/<[^>]*>/g, '');
@@ -370,6 +372,8 @@ export let removeTags = (html) => html.replace(/<[^>]*>/g, '');
  * @param {Number} [pitch=1] The pitch
  * @param {Number} [volume=1] The volume
  * @param {Number} [rate=1] The speed.
+ * @example
+ * _$.speak("Bijou is awesome!"); // speaks "Bijou is awesome!"
  * @returns {undefined}
  */
 export let speak = (
@@ -423,9 +427,9 @@ export let widows = (text) => {
  * Undoes camelCase.
  * @function
  * @memberOf bijou
- * @param {String} str The string to camelCase.
+ * @param {String} str The string to unCamelCase.
  * @example
- * console.log(_$.unCamelCase("helloWorld"));//Logs "Hello World" to the console.
+ * console.log(_$.unCamelCase("helloWorld")); // "Hello World"
  * @returns {String} The string of unCamelCased code.
  */
 export let unCamelCase = function (str) {
@@ -443,8 +447,25 @@ export let unCamelCase = function (str) {
  * @memberOf bijou
  * @param {String} string The string of HTML to highlight.
  * @param {String} [mode=html] The mode to use for highlighting. (CSS, JS or HTML).
+ * @param {Object} [colors={}] The colors to use for highlighting.
+ * @param {String} [colors.tagNameColor='mediumblue'] The color to use for HTML tags.
+ * @param {String} [colors.tagColor='brown'] The color to use for HTML tag names.
+ * @param {String} [colors.attributeColor='red'] The color to use for HTML attributes.
+ * @param {String} [colors.attributeValueColor='mediumblue'] The color to use for HTML attribute values.
+ * @param {String} [colors.commentColor='green'] The color to use for comments.
+ * @param {String} [colors.cssSelectorColor='brown'] The color to use for CSS selectors.
+ * @param {String} [colors.cssPropertyColor='red'] The color to use for CSS properties.
+ * @param {String} [colors.cssPropertyValueColor='mediumblue'] The color to use for CSS propertie values.
+ * @param {String} [colors.cssLimiterColor='black'] The color to use for css limiters.
+ * @param {String} [colors.cssImportantColor='red'] The color to use for `!important` in CSS.
+ * @param {String} [colors.jsColor='black'] The color to use for the majority of javascript.
+ * @param {String} [colors.jsKeywordColor='black'] The color to use for javascript keywords.
+ * @param {String} [colors.jsStringColor='brown'] The color to use for javascript strings.
+ * @param {String} [colors.jsNumberColor='black'] The color to use for javascript numbers.
+ * @param {String} [colors.jsPropertyColor='black'] The color to use for javascript properties.
+ * @param {String} [colors.fontFamily="Consolas,'Courier New', monospace"] The font to use for syntax highlighting.
  * @example
- * _$.syntaxHighlight('alert(\"Hello\")', 'js');//Returns html of the syntax highlighted version.
+ * _$.syntaxHighlight('alert(\"Hello\")', 'js'); // <span style="color:black">alert(<span style="color:brown">"Hello"</span>)</span>
  * @returns {String} The highlighted string of code as HTML code.
  */
 export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
@@ -1141,7 +1162,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
  * @memberOf bijou
  * @param {String} str The string of non-camelCased text.
  * @example
- * console.log(_$.camelCase("Hello world"));//Logs "helloWorld" to the console.
+ * console.log(_$.camelCase("Hello world")); // "helloWorld"
  * @returns {String} The camelCased string.
  */
 export let camelCase = (str) => {
@@ -1157,7 +1178,7 @@ export let camelCase = (str) => {
  * @memberOf bijou
  * @param {String} str The string to be scrambled
  * @example
- * console.log(_$.scrambleString("Hello world"));//Logs "owllH rdloe" to the console
+ * console.log(_$.scrambleString("Hello world")); // e.g. "owllH rdloe"
  * @returns {String} The scrambled text.
  */
 export let scrambleString = (str) => {
@@ -1179,7 +1200,7 @@ export let scrambleString = (str) => {
  * @param {String} str The String to hash.
  * @param {Number} [seed=0] The seed of the hash.
  * @example
- * console.log(_$.hashString("Hello world"));//Logs 3494146707865688 to the console.
+ * console.log(_$.hashString("Hello world")); // 3494146707865688
  * @returns {Number} The hashed string.
  */
 export let hashString = (str, seed = 0) => {
@@ -1206,7 +1227,7 @@ export let hashString = (str, seed = 0) => {
  * @param {String} a The first string
  * @param {String} b The seconds string
  * @example
- * _$.editDistance("hello", "Hello");//Returns 1
+ * console.log(_$.editDistance("hello", "Hello")); // 1
  * @returns {Number} The edit distance between two strings
  */
 export let editDistance = (a, b) => {
@@ -1252,7 +1273,7 @@ export let editDistance = (a, b) => {
  * @memberOf bijou
  * @param {String} str
  * @example
- * console.log(_$.byteSize("Hello world"));//Logs "11" to the console.
+ * console.log(_$.byteSize("Hello world")); 11
  * @returns {Number} The byte size of the string.
  */
 export let byteSize = (str) => new Blob([str]).size;
@@ -1281,10 +1302,10 @@ export let replaceMultiple = (text, replace) => {
  * @param {String} query The url query to get.
  * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
  * @example
- * //If the website adress of the current page was "https://example.com/?q=hello&hello=world"
- * console.log(_$.urlQuery("hello"));//Returns "world";
- * //Or on a custom url:
- * console.log(_$.urlQuery("q", "https://google.com/search?q=something"));//Would return "something"
+ * // If the website adress of the current page was "https://example.com/?q=hello&hello=world"
+ * console.log(_$.urlQuery("hello")); // "world"
+ * // Or on a custom url:
+ * console.log(_$.urlQuery("q", "https://google.com/search?q=something")); // "something"
  * @returns {String} The url query
  */
 export let urlQuery = (query, url = window.location.href) => {
@@ -1304,7 +1325,7 @@ export let urlQuery = (query, url = window.location.href) => {
  * @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
  * @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
  * @example
- * _$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>");//Returns "<b>A normal tag</b>"
+ * console.log(_$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>")); // "<b>A normal tag</b>"
  * @returns {String} The sanitized HTML string.
  */
 export let sanitize = (
@@ -1460,7 +1481,7 @@ export let sanitize = (
  * @memberOf bijou
  * @function
  * @example
- * _$.markdownToHTML("_Italic text_, **bold text**");//Returns "<em>Italic text</em>, <b>bold text</b>"
+ * console.log(_$.markdownToHTML("_Italic text_, **bold text**")); // "<em>Italic text</em>, <b>bold text</b>"
  * @returns {String} The string of HTML converted from the markdown input.
  */
 export let markdownToHTML = (src) => {
@@ -1663,6 +1684,7 @@ export let markdownToHTML = (src) => {
  * @param {String} js The string of JavaScript to beautify.
  * @param {Function} callback The callback function to run with the beautified code.
  */
+// no example for this one at the mo, because it seems to be very buggy
 export let beautifyJS = (js, callback) => {
   _$.loadScript(
     'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.5/beautify.min.js',
