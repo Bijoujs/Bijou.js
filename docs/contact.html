@@ -1,5 +1,15 @@
+<head>
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+</head>
 <div class="form-container">
   <h1>Contact us!</h1>
+  <div id="err">
+    <span
+      class="iconify"
+      data-icon="fluent:error-circle-12-filled"
+    ></span
+    ><span id="err_text"></span>
+  </div>
   <input type="text" id="name" placeholder="Name/username" />
   <input type="text" placeholder="Subject" id="subject" />
   <textarea
@@ -9,6 +19,25 @@
   <button id="send" onclick="send()">Send!</button>
   <div class="blobs"></div>
 </div>
+<style>
+  #err {
+    color: white;
+    padding: 14px;
+    background: #09f2;
+    border: 1px solid lightseagreen;
+    font-size: 15px;
+    width: 80vw;
+    max-width: 400px;
+    display: block;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+  }
+  .iconify {
+    font-size: 25px;
+    padding-right: 5px;
+    padding-top: 7px;
+  }
+</style>
 <svg
   style="display: none"
   xmlns="http://www.w3.org/2000/svg"
@@ -31,6 +60,16 @@
     </filter>
   </defs>
 </svg>
+<script>
+  const params = new URLSearchParams(location.search);
+  if (params.get('error')) {
+    document.querySelector('#err_text').innerText = atob(
+      params.get('error'),
+    );
+  } else {
+    document.querySelector('#err').style.display = 'none';
+  }
+</script>
 <script type="module">
   import {
     each,
@@ -183,46 +222,17 @@
     }
   }, 10);
   function send() {
-    let webhook =
-      'https://discord.com/api/webhooks/815247357889216514/oSv_H-IsekvfSs7bN1VpJfWWnKe6MsG-gM9n_UIRuLLu_xjKXq9LPDqxm6JMt695kMWg';
-    let data = {
-      embeds: [
-        {
-          color: 48059,
-          fields: [
-            {
-              name: 'Name/username',
-              value: document.querySelector('#name').value,
-              inline: false,
-            },
-            {
-              name: 'Subject',
-              value: document.querySelector('#subject').value,
-              inline: false,
-            },
-            {
-              name: 'Description',
-              value: document.querySelector('#content').value,
-              inline: false,
-            },
-          ],
-        },
-      ],
-    };
     if (!document.querySelector('button').getAttribute('disabled')) {
-      fetch(webhook, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: { 'content-type': 'application/json' },
-      })
-        .catch((e) => {
-          alert(
-            'Your message did not send for some reason, try again?',
-          );
-          window.location.reload();
-        })
-        .finally(() => {
-          window.location.reload();
+      fetch(
+        `https://filter-repl.explosionscratc.repl.co/feedback?content=${escape(
+          document.querySelector('#content').value,
+        )}&name=${escape(
+          document.querySelector('#name').value,
+        )}&subject=${document.querySelector('#subject').value}`,
+      )
+        .then((res) => res.text())
+        .then((text) => {
+          window.location.search = `?error=${escape(btoa(text))}`;
         });
     }
   }
