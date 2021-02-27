@@ -2078,7 +2078,7 @@ export let composeFunction = (...functions) => (args) =>
 export let curryFunction = (fn, arity = fn.length, ...args) =>
   arity <= args.length
     ? fn(...args)
-    : curry.bind(null, fn, arity, ...args);
+    : curryFunction.bind(null, fn, arity, ...args);
 /**
  * Returns if the given function is async or not.
  * @memberOf bijou
