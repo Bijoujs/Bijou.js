@@ -1854,6 +1854,14 @@ export let diff = function (text1, text2) {
  * _$.remove([1,2,3,4,5], 1);//Returns [2,3,4,5].
  */
 export let remove = (array, item) => {
+  if (typeof array === 'string') {
+    return array.replace(item, '');
+  }
+  if (typeof array === 'object') {
+    array[`${item}`] = undefined;
+    array = _$.clone(array, (itm) => itm !== undefined);
+    return array;
+  }
   if (array.indexOf(item) > -1) {
     array.splice(array.indexOf(item), 1);
   }
@@ -2255,13 +2263,18 @@ export let flattenObj = (o) => {
  * @function
  * @memberOf bijou
  * @param {Object} obj The object to clone.
+ * @param {Function} [fn=() => true] The function to run to test if the value should be copied.
  * @returns {Object} The output cloned object.
  */
-export let clone = (obj) => {
+export let clone = (obj, fn = () => true) => {
   if (null == obj || 'object' != typeof obj) return obj;
   var copy = obj.constructor();
   for (var attr in obj) {
-    if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    if (obj.hasOwnProperty(attr)) {
+      if (fn(obj[attr])) {
+        copy[attr] = obj[attr];
+      }
+    }
   }
   return copy;
 };
