@@ -209,10 +209,7 @@
         },
       ],
     };
-    if (
-      document.querySelector('button').getAttribute('disabled') ===
-      false
-    ) {
+    if (!document.querySelector('button').getAttribute('disabled')) {
       fetch(webhook, {
         method: 'POST',
         body: JSON.stringify(data),
