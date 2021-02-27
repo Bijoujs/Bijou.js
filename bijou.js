@@ -1858,7 +1858,7 @@ export let remove = (array, item) => {
     array.splice(array.indexOf(item), 1);
   }
   return array;
-}
+};
 /**
  * Splices an array buffer
  * @function
@@ -2277,7 +2277,11 @@ export let clone = (obj) => {
  * obj.anotherThing = "Setting a key!";//Logs "Set!" to the console!
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
-export let listen = (obj, setCallback = () => null, getCallback = () => null) => {
+export let listen = (
+  obj,
+  setCallback = () => null,
+  getCallback = () => null,
+) => {
   return new Proxy(obj, {
     set: function (target, key, value) {
       setCallback(key, value);

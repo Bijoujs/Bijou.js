@@ -104,7 +104,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=5217179><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=2442465><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
     <path 
         fill-rule="evenodd" 
         clip-rule="evenodd" 
@@ -1980,11 +1980,12 @@ export let diff = function (text1, text2) {
  * @example
  * _$.remove([1,2,3,4,5], 1);//Returns [2,3,4,5].
  */
-export let remove = (array, item) =>
-  array.indexOf(item) > -1
-    ? array.splice(array.indexOf(item), 1)
-    : array;
-
+export let remove = (array, item) => {
+  if (array.indexOf(item) > -1) {
+    array.splice(array.indexOf(item), 1);
+  }
+  return array;
+}
 /**
  * Splices an array buffer
  * @function
@@ -2205,7 +2206,7 @@ export let composeFunction = (...functions) => (args) =>
 export let curryFunction = (fn, arity = fn.length, ...args) =>
   arity &lt;= args.length
     ? fn(...args)
-    : curry.bind(null, fn, arity, ...args);
+    : curryFunction.bind(null, fn, arity, ...args);
 /**
  * Returns if the given function is async or not.
  * @memberOf bijou
@@ -2403,7 +2404,7 @@ export let clone = (obj) => {
  * obj.anotherThing = "Setting a key!";//Logs "Set!" to the console!
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
-export let listen = (obj, setCallback, getCallback) => {
+export let listen = (obj, setCallback = () => null, getCallback = () => null) => {
   return new Proxy(obj, {
     set: function (target, key, value) {
       setCallback(key, value);
