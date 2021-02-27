@@ -2120,8 +2120,13 @@ export let composeFunction = (...functions) => (args) =>
  * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
  * @function
  * @memberOf bijou
- * @param
+ * @param {Function} fn The function to curry.
+ * @param {Number} [arity=fn.length] The arity (number of params) of the function to curry.
+ * {...*} [args] Optional arguments to pass to the function being curried.
  * @returns {Function} The curried version of the function.
+ * @example 
+ * let fn = (x, y, z, w) => x * y * z * w;
+ * console.log(_$.curryFunction(fn, 4, 5)(4)(3)(2)); // 120 i.e. 5 * 4 * 3 * 2
  */
 export let curryFunction = (fn, arity = fn.length, ...args) =>
   arity <= args.length
@@ -2144,7 +2149,7 @@ export let isAsync = (val) =>
  * @function
  * @memberOf bijou
  * @param {Function} func The function to run.
- * @param {Object} options The options.
+ * @param {Object.<Boolean>} options The options.
  * @param {Number} wait The number of milliseconds to wait.
  * @example
  * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
@@ -2239,7 +2244,7 @@ export let debounce = (func, wait, immediate = false) => {
  * @memberOf bijou
  * @param {Function} fn The function to run
  * @example
- * _$.runAsync(() => {console.log("Function!"); return "hello"});//Returns a promise that resolves into "hello".
+ * _$.runAsync(() =>  "hello world").then(console.log); // "hello world"
  * @returns {Promise} A promise that resolves into the return value of the function.
  */
 export let runAsync = (fn) => {
@@ -2264,7 +2269,7 @@ export let runAsync = (fn) => {
  * @memberOf bijou
  * @function
  * @example 
-  * _$.flattenObj({
+ * _$.flattenObj({
       hello: "world",
       another: {
           nested: "Value",
@@ -2273,7 +2278,7 @@ export let runAsync = (fn) => {
           },
           "more Values!!": "lol"
       }
-  }) 
+  }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }
 * @param {Object} o The object to flatten
 * @returns {Object} The flattened object.
  */
@@ -2306,6 +2311,9 @@ export let flattenObj = (o) => {
  * @memberOf bijou
  * @param {Object} obj The object to clone.
  * @returns {Object} The output cloned object.
+ * @example
+ * let obj = { hello: { puny: "earthlings" }};
+ * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
 export let clone = (obj) => {
   if (null == obj || 'object' != typeof obj) return obj;
