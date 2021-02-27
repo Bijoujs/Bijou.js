@@ -1650,21 +1650,7 @@ export let markdownToHTML = (src) => {
 
   return src.trim();
 };
-/**
- * @memberOf bijou
- * @function
- * @returns {undefined}
- * @param {String} js The string of JavaScript to beautify.
- * @param {Function} callback The callback function to run with the beautified code.
- */
-export let beautifyJS = (js, callback) => {
-  _$.loadScript(
-    'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.5/beautify.min.js',
-    () => {
-      callback(js_beautify(js));
-    },
-  );
-};
+
 /**
  * Counts the syllables in the word given.
  * @memberOf bijou
@@ -4048,7 +4034,6 @@ let _temp = {
   arrayToCSV: arrayToCSV,
   attributes: attributes,
   averageBy: averageBy,
-  beautifyJS: beautifyJS,
   blendColors: blendColors,
   browser: browser,
   byteSize: byteSize,
