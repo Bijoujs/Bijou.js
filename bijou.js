@@ -2276,7 +2276,7 @@ export let clone = (obj) => {
  * obj.anotherThing = "Setting a key!";//Logs "Set!" to the console!
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
-export let listen = (obj, setCallback, getCallback) => {
+export let listen = (obj, setCallback = () => null, getCallback = () => null) => {
   return new Proxy(obj, {
     set: function (target, key, value) {
       setCallback(key, value);
