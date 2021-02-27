@@ -104,7 +104,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=785202><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=3035139><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
     <path 
         fill-rule="evenodd" 
         clip-rule="evenodd" 
@@ -2076,14 +2076,14 @@ export let shuffleArray = (array) =>
  * @param {String|Array} array The array of string to operate on
  * @param {Number} index The index to splice
  * @param {*} item The item
- * @param {Number} remove How many to remove.
+ * @param {Number} [remove=0] How many to remove.
  */
-export let splice = (array, index, item, remove = 0) => {
+export let splice = (array, index, remove = 0, item) => {
+  let args = Array.from(arguments);
+  args.shift();
   return typeof array === 'string'
-    ? array.slice(0, index) +
-        item +
-        array.slice(index + Math.abs(remove))
-    : array.splice(index, remove, item);
+    ? array.split("").splice(...args).join("")
+    : array.splice(...args);
 };
 /**
  * Joins two arrays together and removes duplicates.
@@ -2390,7 +2390,7 @@ export let flattenObj = (o) => {
  * @function
  * @memberOf bijou
  * @param {Object} obj The object to clone.
- * @param {Function} [fn=() => true] The function to run to test if the value should be copied. 
+ * @param {Function} [fn=() => true] The function to run to test if the value should be copied.
  * @returns {Object} The output cloned object.
  */
 export let clone = (obj, fn = () => true) => {

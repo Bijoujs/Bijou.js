@@ -1949,14 +1949,17 @@ export let shuffleArray = (array) =>
  * @param {String|Array} array The array of string to operate on
  * @param {Number} index The index to splice
  * @param {*} item The item
- * @param {Number} remove How many to remove.
+ * @param {Number} [remove=0] How many to remove.
  */
-export let splice = (array, index, item, remove = 0) => {
+export let splice = (array, index, remove = 0, item) => {
+  let args = Array.from(arguments);
+  args.shift();
   return typeof array === 'string'
-    ? array.slice(0, index) +
-        item +
-        array.slice(index + Math.abs(remove))
-    : array.splice(index, remove, item);
+    ? array
+        .split('')
+        .splice(...args)
+        .join('')
+    : array.splice(...args);
 };
 /**
  * Joins two arrays together and removes duplicates.
