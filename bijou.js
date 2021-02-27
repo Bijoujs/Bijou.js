@@ -2327,12 +2327,13 @@ export let clone = (obj) => {
  * @memberOf bijou
  * @function
  * @param {Object} obj The object to listen to.
- * @param {Function} callback The callback function to run with the arguments, key, and value. Key is the key changed, and value is the new value of the key.
+ * @param {Function} [getCallback=()=>null] The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).
+ * @param {Function} [setCallback=()=>null] The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).
  * @example
  * let obj = {something: "This is part of the object", anotherThing: "This is another!"};
- * obj = _$.listen(obj, () => console.log("Set!"), () => console.log("Gotten"));
- * obj.something; //Logs "Gotten" to the console!
- * obj.anotherThing = "Setting a key!";//Logs "Set!" to the console!
+ * obj = _$.listen(obj, (k, v) => console.log(`set ${k} to ${v}`), () => console.log("Gotten"));
+ * obj.something; // Logs "Gotten" to the console!
+ * obj.anotherThing = "Hello world!"; // Logs "Set abotherThing to Hello world!" to the console!
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
 export let listen = (obj, setCallback, getCallback) => {
@@ -2349,14 +2350,14 @@ export let listen = (obj, setCallback, getCallback) => {
   });
 };
 /**
- * Merges two objects into one. Note that object 1 properties will overwrite those of object 2.
+ * Merges two objects into one. Note that object 2 properties will overwrite those of object 2.
  * @memberOf bijou
  * @function
  * @param {Object} obj1 The 1st object to merge
  * @param {Object} obj2 The 2nd object to merge.
  * @returns {Object} The merged object.
  * @example
- * _$.merge({hello: "Hello!!"}, {world: " World"});//Returns {hello: "Hello!!", world: " World"}
+ * console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}
  */
 export let merge = function MergeRecursive(obj1, obj2) {
   for (var p in obj2) {
@@ -2400,12 +2401,14 @@ export let mapObjectKeys = (obj, fn) =>
       }, {})
     : obj;
 /**
- * Maps an objects values.
+ * Maps an object's values.
  * @memberOf bijou
  * @function
  * @param {Object} obj The object to map the values of.
  * @param {Function} fn The callback function to use.
  * @returns {Object} The mapped object.
+ * @example 
+ * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
  */
 export let mapObjectValues = (obj, fn) => {
   Object.keys(obj).map(function (key, index) {
@@ -2417,8 +2420,19 @@ export let mapObjectValues = (obj, fn) => {
  * Converts a form to an Object.
  * @function
  * @memberOf bijou
- * @param {Element} form The form element.
+ * @param {HTMLFormElement} form The form element.
  * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
+ * @example
+ * html:
+ * ```
+ * <form id="form">
+ *   <input name"input" />
+ *   <input name="input2" />
+ * </form>
+ * ```
+ * js:
+ * const form = document.getElementById("form");
+ * console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }
  */
 export let formToObject = (form) => {
   node();
@@ -2465,7 +2479,7 @@ export let sortObj = (obj) => {
  * ```
  * //JS
  * _$.context();
- * //Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
+ * // Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
  * @returns {undefined};
  */
 export let context = () => {
@@ -2560,7 +2574,7 @@ export let context = () => {
  * @memberOf bijou
  * @param {Element} el The DOM element to test.
  * @example
- * //Alerts "In view!" if the first <div> in the document is in view.
+ * // Alerts "In view!" if the first <div> in the document is in view.
  * if (_$.inView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the element is completely in view.
  */
@@ -2590,7 +2604,7 @@ export let inView = (el) => {
  * @memberOf bijou
  * @param {Element} el The element to test.
  * @example
- * //Alerts "In view!" if the first <div> in the document is partially or fully view.
+ * // Alerts "In view!" if the first <div> in the document is partially or fully view.
  * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the DOM element is partially in view.
  */
@@ -2618,7 +2632,7 @@ export let inPartialView = (el) => {
  * Converts a form to URL queries using the name attribute.
  * @function
  * @memberOf bijou
- * @param {Element} form The form element.
+ * @param {HTMLFormElement} form The form element.
  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
  */
 export let serializeForm = (form) => {
@@ -2636,8 +2650,8 @@ export let serializeForm = (form) => {
  * @param {Function} callback The callback to run (Gets passed the element's text).
  * @example
  * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
- * //Converts the text of the first <div> element to upperCase.
- * @returns {String} The element who's text was replaced.
+ * // Converts the text of the first <div> element to upperCase.
+ * @returns {undefined} 
  */
 export let replaceText = (el, callback) => {
   node();
@@ -2646,9 +2660,10 @@ export let replaceText = (el, callback) => {
   });
 };
 /**
+ * Gets a list of all the text nodes in an element
  * @memberOf bijou
  * @function
- * @param {El} el The element to get the text nodes of.
+ * @param {Element} el The element to get the text nodes of.
  * @returns {Array} The text nodes.
  */
 export let textNodes = (el) => {
