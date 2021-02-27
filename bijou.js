@@ -3186,37 +3186,45 @@ export let replaceSelection = (replacementText) => {
  * @param {Function} callback The function to run when a click is registered outside the specified element.
  * @example
  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
- * @returns {Function} the function that was called.
+ * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
  */
 export let onOutsideClick = (element, callback) => {
   node();
-  document.addEventListener('click', (e) => {
-    if (!element.contains(e.target)) callback();
+  return new Promise((resolve, reject) => {
+    document.addEventListener('click', (e) => {
+      if (!element.contains(e.target)) {
+        callback();
+        resolve();
+      }
+    });
   });
-  return callback;
 };
 /**
  * Returns the callback when the user stops scrolling.
  * @function
  * @memberOf bijou
  * @param {Function} callback The callback to call when the user stops scrolling.
+ * @param {Number} [time=150]
  * @example
  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
- * @returns {undefined} Returns undefined.
+ * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
  */
-export let onScrollStop = (callback) => {
+export let onScrollStop = (callback, time = 150) => {
   let isScrolling;
   node();
-  window.addEventListener(
-    'scroll',
-    (e) => {
-      clearTimeout(isScrolling);
-      isScrolling = setTimeout(() => {
-        callback(e);
-      }, 150);
-    },
-    false,
-  );
+  return new Promise((resolve, reject) => {
+    window.addEventListener(
+      'scroll',
+      (e) => {
+        clearTimeout(isScrolling);
+        isScrolling = setTimeout(() => {
+          callback(e);
+          resolve(e);
+        }, time);
+      },
+      false,
+    );
+  });
 };
 /**
  * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
@@ -3324,16 +3332,22 @@ export let formatHTML = (html) => {
  * @param {Function} callback The function to be run with the JSON code.
  * @example
  * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
- * @returns {undefined}
+ * @returns {Promise} A promise resolved when the JSON is fetched and parsed.
  */
 export let getJSON = (url, callback) => {
   node();
-  fetch(url)
-    .then((res) => res.json())
-    .then((json) => callback(json))
-    .catch((error) => {
-      throw new Error(error.stack);
-    });
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((json) => {
+        callback(json);
+        resolve(json);
+      })
+      .catch((error) => {
+        reject(error);
+        throw new Error(error.stack);
+      });
+  });
 };
 /**
  * Gets HTML from a URL and performs a callback with it.
@@ -3344,16 +3358,22 @@ export let getJSON = (url, callback) => {
  * @example
  * //Logs the HTML of wikipedia.org to the console.
  * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
- * @returns {undefined}
+ * @returns {Promise} A promise resolved when the HTML is fetched and parsed.
  */
 export let getHTML = (url, callback) => {
   node();
-  fetch(url)
-    .then((res) => res.text())
-    .then((html) => callback(_$.parseHTML(html)))
-    .catch((error) => {
-      throw new Error(error.stack);
-    });
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then((res) => res.text())
+      .then((html) => {
+        callback(_$.parseHTML(html));
+        resolve(_$.parseHTML(html));
+      })
+      .catch((error) => {
+        reject(error.stack);
+        throw new Error(error.stack);
+      });
+  });
 };
 
 /**
@@ -3436,32 +3456,36 @@ export let requestInterval = function (fn, delay) {
  * @param {Function} callback The callback to run when the script is loaded.
  * @example
  * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
- * @returns {undefined}
+ * @returns {Promise} A promise resolved once the script is loaded.
  */
 export let loadScript = (url, callback) => {
   node();
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  if (script.readyState) {
-    // only required for IE <9
-    script.onreadystatechange = function () {
-      if (
-        script.readyState === 'loaded' ||
-        script.readyState === 'complete'
-      ) {
-        script.onreadystatechange = null;
+  return new Promise((resolve, reject) => {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    if (script.readyState) {
+      // only required for IE <9
+      script.onreadystatechange = function () {
+        if (
+          script.readyState === 'loaded' ||
+          script.readyState === 'complete'
+        ) {
+          script.onreadystatechange = null;
+          callback();
+          resolve();
+        }
+      };
+    } else {
+      //Others
+      script.onload = function () {
         callback();
-      }
-    };
-  } else {
-    //Others
-    script.onload = function () {
-      callback();
-    };
-  }
+        resolve();
+      };
+    }
 
-  script.src = url;
-  document.getElementsByTagName('head')[0].appendChild(script);
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  });
 };
 
 /**
@@ -3477,15 +3501,19 @@ export let loadScript = (url, callback) => {
  *    img.src = data;
  *  })
  * })
+ * @returns {Promise} A promise fulfulled when the image is loaded.
  */
 export let imageToData = async (url, callback) => {
-  let blob = await fetch(url).then((r) => r.blob());
-  let dataUrl = await new Promise((resolve) => {
-    let reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.readAsDataURL(blob);
+  return new Promise(async (res, reject) => {
+    let blob = await fetch(url).then((r) => r.blob());
+    let dataUrl = await new Promise((resolve) => {
+      let reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+    callback(dataUrl);
+    res(dataUrl);
   });
-  callback(dataUrl);
 };
 /**
  * A set of functions to set and modify cookies.
