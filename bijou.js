@@ -2665,6 +2665,8 @@ export let replaceText = (el, callback) => {
  * @function
  * @param {Element} el The element to get the text nodes of.
  * @returns {Array} The text nodes.
+ * @example 
+ * _$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements
  */
 export let textNodes = (el) => {
   return [...el.childNodes].filter((node) => {
@@ -2815,11 +2817,11 @@ export let removeComments = (el) => {
  * @function
  * @memberOf bijou
  * @param {String} string The HTML string to parse.
- * @param {String} [mimeType=text/html] The mimeType of the string.
+ * @param {String} [mimeType="text/html"] The mimeType of the string.
  * @example
  * let html = _$.parseHTML("<div id='hello'><textarea></textarea></div>");
  * html.querySelector("textarea");//Returns the textarea!
- * @returns {Element} The HTML document element of the HTML string specified.
+ * @returns {HTMLDocument} The HTML document element of the HTML string specified.
  */
 export let parseHTML = (string, mimeType = 'text/html') => {
   const domparser = new DOMParser();
@@ -2831,7 +2833,7 @@ export let parseHTML = (string, mimeType = 'text/html') => {
  * @memberOf bijou
  * @param {Element} el The element to be dragged (And dropped :P ).
  * @example
- * _$.drag(document.querySelector('div'));//Allows the first <div> on the page to be dragged.
+ * _$.drag(document.querySelector('div')); // Allows the first <div> on the page to be dragged.
  * @returns {Element} The element.
  */
 export let drag = (el) => {
@@ -2878,12 +2880,12 @@ export let drag = (el) => {
  * @memberOf bijou
  * @function
  * @param {Element} element The element to add the event listeners to.
- * @param {Array} events The array of events to listen for.
+ * @param {Array.<String>} events The array of events to listen for.
  * @param {Function} handler The function to run when the events happen.
  * @param {Boolean} [useCapture=false] Wether to use capture.
  * @param {*} [args=false] The arguments to use in the handler function.
  * @example
- * //Reset a timer every user interaction.
+ * // Reset a timer every user interaction.
  * let timer = 0;
  * setInterval(() => timer++, 1);
  * _$.addEventListeners(
