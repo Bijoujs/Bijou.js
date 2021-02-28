@@ -172,7 +172,17 @@
 <style>
   /* Import Titillium Web (One of my favorite fonts) */
   @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;600;900&display=swap');
-
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: lightseagreen;
+    border-radius: 100px;
+  }
   /* Initial styles */
   * {
     margin: 0;
