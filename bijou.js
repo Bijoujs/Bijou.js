@@ -2809,23 +2809,14 @@ export let querySelector = (elem) => {
  * @returns {String|Element} The string removed of comments or the element removed of comments.
  */
 export let removeComments = (el) => {
-  if (typeof el === 'object') {
-    if (isNode) {
-      throw new Error(
-        'No document element! (You are probably using Node.js)',
-      );
+  const isString = typeof el === 'string';
+  el = isString ? _$.parseHTML(el) : el.cloneNode(true);
+  for (const child of [...el.querySelectorAll("*"), el]) {
+    for (const grandchild of child.childNodes) {
+      if (grandchild instanceof Comment) child.removeChild(grandchild);
     }
-    el.innerHTML = el.innerHTML.replace(
-      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-      '',
-    );
-    return el;
-  } else if (typeof el === 'string') {
-    return el.replace(
-      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-      '',
-    );
   }
+  return isString ? el.outerHTML : el;
 };
 /**
  * Parses the string of HTML specified and returns an HTML element of it.
