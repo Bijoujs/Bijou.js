@@ -666,18 +666,18 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       result = done + rest;
       result =
         '<span style=color:' +
-        tagcolor +
+        _$.escapeHTML(tagcolor) +
         '>&lt;</span>' +
         result.substring(4);
       if (result.substr(result.length - 4, 4) == '&gt;') {
         result =
           result.substring(0, result.length - 4) +
           '<span style=color:' +
-          tagcolor +
+          _$.escapeHTML(tagcolor) +
           '>&gt;</span>';
       }
       return (
-        '<span style=color:' + tagnamecolor + '>' + result + '</span>'
+        '<span style=color:' + _$.escapeHTML(tagnamecolor) + '>' + result + '</span>'
       );
     }
     function attributeMode(txt) {
@@ -724,7 +724,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       }
       return (
         '<span style=color:' +
-        attributecolor +
+        _$.escapeHTML(attributecolor) +
         '>' +
         done +
         rest +
@@ -734,7 +734,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     function attributeValueMode(txt) {
       return (
         '<span style=color:' +
-        attributevaluecolor +
+        _$.escapeHTML(attributevaluecolor) +
         '>' +
         txt +
         '</span>'
@@ -742,7 +742,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     }
     function commentMode(txt) {
       return (
-        '<span style=color:' + commentcolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(commentcolor) + '>' + txt + '</span>'
       );
     }
     function cssMode(txt) {
@@ -797,18 +797,18 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       rest = done + rest;
       rest = rest.replace(
         /{/g,
-        '<span style=color:' + cssdelimitercolor + '>{</span>',
+        '<span style=color:' + _$.escapeHTML(cssdelimitercolor) + '>{</span>',
       );
       rest = rest.replace(
         /}/g,
-        '<span style=color:' + cssdelimitercolor + '>}</span>',
+        '<span style=color:' + _$.escapeHTML(cssdelimitercolor) + '>}</span>',
       );
       for (i = 0; i < comment.arr.length; i++) {
         rest = rest.replace('W3CSSCOMMENTPOS', comment.arr[i]);
       }
       return (
         '<span style=color:' +
-        cssselectorcolor +
+        _$.escapeHTML(cssselectorcolor) +
         '>' +
         rest +
         '</span>'
@@ -845,7 +845,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       }
       return (
         '<span style=color:' +
-        csspropertycolor +
+        _$.escapeHTML(csspropertycolor) +
         '>' +
         done +
         rest +
@@ -858,7 +858,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         s;
       rest =
         '<span style=color:' +
-        cssdelimitercolor +
+        _$.escapeHTML(cssdelimitercolor) +
         '>:</span>' +
         rest.substring(1);
       while (rest.search(/!important/i) > -1) {
@@ -878,12 +878,12 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         result =
           result.substring(0, result.length - 1) +
           '<span style=color:' +
-          cssdelimitercolor +
+          _$.escapeHTML(cssdelimitercolor) +
           '>;</span>';
       }
       return (
         '<span style=color:' +
-        csspropertyvaluecolor +
+        _$.escapeHTML(csspropertyvaluecolor) +
         '>' +
         result +
         '</span>'
@@ -892,7 +892,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     function cssImportantMode(txt) {
       return (
         '<span style=color:' +
-        cssimportantcolor +
+        _$.escapeHTML(cssimportantcolor) +
         ';font-weight:bold;>' +
         txt +
         '</span>'
@@ -968,26 +968,26 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       for (i = 0; i < esc.length; i++) {
         rest = rest.replace('W3JSESCAPE', esc[i]);
       }
-      return '<span style=color:' + jscolor + '>' + rest + '</span>';
+      return '<span style=color:' + _$.escapeHTML(jscolor) + '>' + rest + '</span>';
     }
     function jsStringMode(txt) {
       return (
-        '<span style=color:' + jsstringcolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jsstringcolor) + '>' + txt + '</span>'
       );
     }
     function jsKeywordMode(txt) {
       return (
-        '<span style=color:' + jskeywordcolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jskeywordcolor) + '>' + txt + '</span>'
       );
     }
     function jsNumberMode(txt) {
       return (
-        '<span style=color:' + jsnumbercolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jsnumbercolor) + '>' + txt + '</span>'
       );
     }
     function jsPropertyMode(txt) {
       return (
-        '<span style=color:' + jspropertycolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jspropertycolor) + '>' + txt + '</span>'
       );
     }
     function getDotPos(txt, func) {
