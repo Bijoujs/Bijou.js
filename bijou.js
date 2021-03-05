@@ -1387,7 +1387,7 @@ export let sanitize = (
   node();
   var attributes = attributes || [
     { attribute: 'src', tags: '*', regex: /^(?:https|http|\/\/):/ },
-    { attribute: 'href', tags: '*', regex: /^(?!javascript:).+/ },
+    { attribute: 'href', tags: '*', regex: /^(?:https|http|\/\/):/ },
     { attribute: 'width', tags: '*', regex: /^[0-9]+$/ },
     { attribute: 'height', tags: '*', regex: /^[0-9]+$/ },
     { attribute: 'id', tags: '*', regex: /^[a-zA-Z]+$/ },
