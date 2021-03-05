@@ -1763,9 +1763,11 @@ export let syllables = (word) => {
  * _$.capitalize("hello world");//Returns "Hello world"
  * @returns {String} The capitalized string.
  */
-export let capitalize = (str) =>
-  String.fromCodePoint(str.codePointAt(0)).toUpperCase() +
-  str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
+export let capitalize = (str) => {
+  if(!str) throw new TypeError("Missing Param 'Str'.");
+  return str.split("").map((section) => String.fromCodePoint(section.codePointAt(0)).toUpperCase() +
+  section.slice(section.codePointAt(0) > 0xffff ? 2 : 1)).join("")
+}
 /**
  * Replaces between two indexes of a string.
  * @memberOf bijou
