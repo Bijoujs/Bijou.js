@@ -2554,9 +2554,10 @@ export let context = () => {
       menu.innerHTML = '';
       for (let j = 0; j < items.length; j++) {
         const contextMenu = items[j];
-        menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
-          'onclick',
-        )}">${contextMenu.getAttribute('label')}</li>`;
+        const liTag = document.createElement('li');
+        liTag.onclick = contextMenu.getAttribute('onclick');
+        liTag.textContent = contextMenu.getAttribute('label');
+        menu.innerHTML += liTag.outerHTML;
       }
       console.log(menu.innerHTML);
       menu.style.top = `${e.clientY}px`;
