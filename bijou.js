@@ -666,18 +666,18 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       result = done + rest;
       result =
         '<span style=color:' +
-        tagcolor +
+        _$.escapeHTML(tagcolor) +
         '>&lt;</span>' +
         result.substring(4);
       if (result.substr(result.length - 4, 4) == '&gt;') {
         result =
           result.substring(0, result.length - 4) +
           '<span style=color:' +
-          tagcolor +
+          _$.escapeHTML(tagcolor) +
           '>&gt;</span>';
       }
       return (
-        '<span style=color:' + tagnamecolor + '>' + result + '</span>'
+        '<span style=color:' + _$.escapeHTML(tagnamecolor) + '>' + result + '</span>'
       );
     }
     function attributeMode(txt) {
@@ -724,7 +724,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       }
       return (
         '<span style=color:' +
-        attributecolor +
+        _$.escapeHTML(attributecolor) +
         '>' +
         done +
         rest +
@@ -734,7 +734,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     function attributeValueMode(txt) {
       return (
         '<span style=color:' +
-        attributevaluecolor +
+        _$.escapeHTML(attributevaluecolor) +
         '>' +
         txt +
         '</span>'
@@ -742,7 +742,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     }
     function commentMode(txt) {
       return (
-        '<span style=color:' + commentcolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(commentcolor) + '>' + txt + '</span>'
       );
     }
     function cssMode(txt) {
@@ -797,18 +797,18 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       rest = done + rest;
       rest = rest.replace(
         /{/g,
-        '<span style=color:' + cssdelimitercolor + '>{</span>',
+        '<span style=color:' + _$.escapeHTML(cssdelimitercolor) + '>{</span>',
       );
       rest = rest.replace(
         /}/g,
-        '<span style=color:' + cssdelimitercolor + '>}</span>',
+        '<span style=color:' + _$.escapeHTML(cssdelimitercolor) + '>}</span>',
       );
       for (i = 0; i < comment.arr.length; i++) {
         rest = rest.replace('W3CSSCOMMENTPOS', comment.arr[i]);
       }
       return (
         '<span style=color:' +
-        cssselectorcolor +
+        _$.escapeHTML(cssselectorcolor) +
         '>' +
         rest +
         '</span>'
@@ -845,7 +845,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       }
       return (
         '<span style=color:' +
-        csspropertycolor +
+        _$.escapeHTML(csspropertycolor) +
         '>' +
         done +
         rest +
@@ -858,7 +858,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         s;
       rest =
         '<span style=color:' +
-        cssdelimitercolor +
+        _$.escapeHTML(cssdelimitercolor) +
         '>:</span>' +
         rest.substring(1);
       while (rest.search(/!important/i) > -1) {
@@ -878,12 +878,12 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         result =
           result.substring(0, result.length - 1) +
           '<span style=color:' +
-          cssdelimitercolor +
+          _$.escapeHTML(cssdelimitercolor) +
           '>;</span>';
       }
       return (
         '<span style=color:' +
-        csspropertyvaluecolor +
+        _$.escapeHTML(csspropertyvaluecolor) +
         '>' +
         result +
         '</span>'
@@ -892,7 +892,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     function cssImportantMode(txt) {
       return (
         '<span style=color:' +
-        cssimportantcolor +
+        _$.escapeHTML(cssimportantcolor) +
         ';font-weight:bold;>' +
         txt +
         '</span>'
@@ -968,26 +968,26 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       for (i = 0; i < esc.length; i++) {
         rest = rest.replace('W3JSESCAPE', esc[i]);
       }
-      return '<span style=color:' + jscolor + '>' + rest + '</span>';
+      return '<span style=color:' + _$.escapeHTML(jscolor) + '>' + rest + '</span>';
     }
     function jsStringMode(txt) {
       return (
-        '<span style=color:' + jsstringcolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jsstringcolor) + '>' + txt + '</span>'
       );
     }
     function jsKeywordMode(txt) {
       return (
-        '<span style=color:' + jskeywordcolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jskeywordcolor) + '>' + txt + '</span>'
       );
     }
     function jsNumberMode(txt) {
       return (
-        '<span style=color:' + jsnumbercolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jsnumbercolor) + '>' + txt + '</span>'
       );
     }
     function jsPropertyMode(txt) {
       return (
-        '<span style=color:' + jspropertycolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jspropertycolor) + '>' + txt + '</span>'
       );
     }
     function getDotPos(txt, func) {
@@ -1387,7 +1387,7 @@ export let sanitize = (
   node();
   var attributes = attributes || [
     { attribute: 'src', tags: '*', regex: /^(?:https|http|\/\/):/ },
-    { attribute: 'href', tags: '*', regex: /^(?!javascript:).+/ },
+    { attribute: 'href', tags: '*', regex: /^(?:https|http|\/\/):/ },
     { attribute: 'width', tags: '*', regex: /^[0-9]+$/ },
     { attribute: 'height', tags: '*', regex: /^[0-9]+$/ },
     { attribute: 'id', tags: '*', regex: /^[a-zA-Z]+$/ },
@@ -1679,9 +1679,11 @@ export let markdownToHTML = (src) => {
       ? p6
       : p2
       ? p4
-        ? '<img src="' + p4 + '" alt="' + p3 + '"/>'
+        ? '<img src="' + _$.escapeHTML(p4) + '" alt="' + _$.escapeHTML(p3) + '"/>'
         : p1
-      : '<a href="' + p4 + '">' + unesc(highlight(p3)) + '</a>';
+      : /^https?:\/\//g.test(p4)
+        ?'<a href="' + _$.escapeHTML(p4) + '">' + unesc(highlight(p3)) + '</a>'
+        : p1;
     return si + '\uf8ff';
   });
 
@@ -2388,6 +2390,7 @@ export let listen = (
  */
 export let merge = function MergeRecursive(obj1, obj2) {
   for (var p in obj2) {
+    if (p in Object.prototype) continue;
     try {
       // Property in destination object set; update its value.
       if (obj2[p].constructor == Object) {
@@ -2554,9 +2557,10 @@ export let context = () => {
       menu.innerHTML = '';
       for (let j = 0; j < items.length; j++) {
         const contextMenu = items[j];
-        menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
-          'onclick',
-        )}">${contextMenu.getAttribute('label')}</li>`;
+        const liTag = document.createElement('li');
+        liTag.onclick = contextMenu.getAttribute('onclick');
+        liTag.textContent = contextMenu.getAttribute('label');
+        menu.innerHTML += liTag.outerHTML;
       }
       console.log(menu.innerHTML);
       menu.style.top = `${e.clientY}px`;
@@ -2805,23 +2809,14 @@ export let querySelector = (elem) => {
  * @returns {String|Element} The string removed of comments or the element removed of comments.
  */
 export let removeComments = (el) => {
-  if (typeof el === 'object') {
-    if (isNode) {
-      throw new Error(
-        'No document element! (You are probably using Node.js)',
-      );
+  const isString = typeof el === 'string';
+  el = isString ? _$.parseHTML(el) : el.cloneNode(true);
+  for (const child of [...el.querySelectorAll("*"), el]) {
+    for (const grandchild of child.childNodes) {
+      if (grandchild instanceof Comment) child.removeChild(grandchild);
     }
-    el.innerHTML = el.innerHTML.replace(
-      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-      '',
-    );
-    return el;
-  } else if (typeof el === 'string') {
-    return el.replace(
-      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-      '',
-    );
   }
+  return isString ? el.outerHTML : el;
 };
 /**
  * Parses the string of HTML specified and returns an HTML element of it.
