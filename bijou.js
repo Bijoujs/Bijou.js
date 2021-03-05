@@ -3809,7 +3809,7 @@ export let timeFunction = (fn, name = '_$ function timer') => {
  * @param {String} body The body of the notification.
  * @param {String} icon The url to the image for the icon of the notification.
  * @example
- * _$.notify("Hello", "Hi there! This is a notification!");//Returns an array of prime numbers up to 100.
+ * _$.notify("Hello", "Hi there! This is a notification!");//Notifies a notification with "Hello" as the title and "Hi there!" as the body.
  * @returns {undefined}
  */
 export let notify = (text, body, icon) => {
