@@ -669,7 +669,7 @@
         }
       });
     document.body.innerHTML += `
-	<svg style="display: none;">
+	<svg style="position: absolute; height: 0;">
 		<filter id="turbulence-2">
 			<feTurbulence
 				id="turbulence-filter-2"
@@ -695,7 +695,7 @@
 			/>
 		</filter>
 	</svg>
-	<svg style="display: none;" xmlns="http://www.w3.org/2000/svg" version="1.1">
+	<svg style="position: absolute; height: 0;" xmlns="http://www.w3.org/2000/svg" version="1.1">
 		<defs>
 			<filter id="goo">
 				<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
@@ -709,7 +709,7 @@
 			</filter>
 		</defs>
 	</svg>
-		<svg style="display: none;">
+		<svg style="position: absolute; height: 0;">
 		<filter id="turbulence">
 			<feTurbulence
 				id="turbulence-filter"
