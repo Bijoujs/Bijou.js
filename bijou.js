@@ -1679,9 +1679,11 @@ export let markdownToHTML = (src) => {
       ? p6
       : p2
       ? p4
-        ? '<img src="' + p4 + '" alt="' + p3 + '"/>'
+        ? '<img src="' + _$.escapeHTML(p4) + '" alt="' + _$.escapeHTML(p3) + '"/>'
         : p1
-      : '<a href="' + p4 + '">' + unesc(highlight(p3)) + '</a>';
+      : /^https?:\/\//g.test(p4)
+        ?'<a href="' + _$.escapeHTML(p4) + '">' + unesc(highlight(p3)) + '</a>'
+        : p1;
     return si + '\uf8ff';
   });
 
