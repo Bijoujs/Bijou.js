@@ -3460,10 +3460,11 @@ export let getHTML = (url, callback) => {
  * _$.preloadImage("https://unsplash.com/some_huge_image.png");//Preloads the unsplash image "some_huge_image.png" :P
  * @returns {undefined}
  */
-export let preloadImage = () => {
-  for (var i = 0; i < arguments.length; i++) {
+export let preloadImage = (...urls) => {
+  let images = [];
+  for (var i = 0; i < urls.length; i++) {
     images[i] = new Image();
-    images[i].src = preload.arguments[i];
+    images[i].src = urls[i];
   }
 };
 
