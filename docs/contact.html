@@ -1,0 +1,294 @@
+<head>
+  <meta name="title" content="Contact Us – Bijou.js" />
+  <meta
+    name="description"
+    content="Bijou.js – Useful JS snippets, in one simple library: Easy to use, constantly updated, and full of functions."
+  />
+  <meta
+    name="keywords"
+    content="Bijou.js, Library, Code, JavaScript, JS, HTML, CSS"
+  />
+  <meta name="robots" content="index, follow" />
+  <meta
+    http-equiv="Content-Type"
+    content="text/html; charset=utf-8"
+  />
+  <meta name="language" content="English" />
+  <meta name="revisit-after" content="1 days" />
+  <meta
+    name="author"
+    content="--Explosion--, GrahamSH-LLK, Bijou.js Contributors"
+  />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bijou.js.org" />
+  <meta property="og:title" content="Contact Us – Bijou.js" />
+  <meta
+    property="og:description"
+    content="Contact me! Tell me what you want added, suggestions, bug fixes, anything else! I'll respond as soon as possible! I hope you like Bijou.js so far!"
+  />
+  <meta
+    property="og:image"
+    content="https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401"
+  />
+  <meta content="Bijou.js" property="og:site_name" />
+  <link type="application/json+oembed" href="embeds.json" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://bijou.js.org" />
+  <meta property="twitter:title" content="Contact Us – Bijou.js" />
+  <meta
+    property="twitter:description"
+    content="Contact me! Tell me what you want added, suggestions, bug fixes, anything else! I'll respond as soon as possible! I hope you like Bijou.js so far!"
+  />
+  <meta
+    property="twitter:image"
+    content="https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401"
+  />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- Nice theme color on mobile devices! -->
+  <meta name="theme-color" content="#008080" />
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+</head>
+<div class="form-container">
+  <img src="https://cool.explosionscratc.repl.co/bijou_contact.png" style="display: none; position: absolute;">
+  <h1>Contact us!</h1>
+  <div id="err">
+    <span
+      class="iconify"
+      data-icon="fluent:error-circle-12-filled"
+    ></span
+    ><span id="err_text"></span>
+  </div>
+  <input type="text" id="name" placeholder="Name/username" />
+  <input type="text" placeholder="Subject" id="subject" />
+  <textarea
+    id="content"
+    placeholder="Enter your feedback, suggestion, or anything else!"
+  ></textarea>
+  <button id="send" onclick="send()">Send!</button>
+  <div class="blobs"></div>
+</div>
+<style>
+  #err {
+    color: white;
+    padding: 14px;
+    background: #09f2;
+    border: 1px solid lightseagreen;
+    font-size: 15px;
+    width: 80vw;
+    max-width: 400px;
+    display: block;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+  }
+  .iconify {
+    font-size: 25px;
+    padding-right: 5px;
+    padding-top: 7px;
+  }
+</style>
+<svg
+  style="display: none"
+  xmlns="http://www.w3.org/2000/svg"
+  version="1.1"
+>
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur
+        in="SourceGraphic"
+        stdDeviation="10"
+        result="blur"
+      />
+      <feColorMatrix
+        in="blur"
+        mode="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+        result="goo"
+      />
+      <feBlend in="SourceGraphic" in2="goo" />
+    </filter>
+  </defs>
+</svg>
+<script>
+  const params = new URLSearchParams(location.search);
+  if (params.get('error')) {
+    document.querySelector('#err_text').innerText = atob(
+      params.get('error'),
+    );
+  } else {
+    document.querySelector('#err').style.display = 'none';
+  }
+</script>
+<script type="module">
+  import {
+    each,
+    widows,
+    throttle,
+    debounce,
+    mobileOrDesktop,
+    createElement,
+    requestInterval,
+    random,
+    parseHTML,
+  } from './bijou.js';
+  let mouse = {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  };
+  window.onmousemove = throttle((e) => {
+    mouse = {
+      x: e.clientX,
+      y: e.clientY,
+    };
+  }, 100);
+  let blob_int = setTimeout(
+    each(mobileOrDesktop() === 'mobile' ? 10 : 25, () => {
+      let blob = createElement("<div class='blob'></div>");
+      document.querySelector('.blobs').appendChild(blob);
+
+      blob.style.opacity = 0;
+      blob.style.top = `${window.innerHeight / 2}px`;
+      blob.style.left = `${window.innerWidth / 2}px`;
+      blob.style.background = `#0559`;
+      let randomSize = random(30, 150);
+      blob.style.width = `${randomSize}px`;
+      blob.style.height = `${randomSize}px`;
+      let randomTime = random(1000, 2000);
+      requestInterval(() => {
+        blob.style.opacity = 1;
+        randomSize = random(30, 100);
+        blob.style.width = `${randomSize}px`;
+        blob.style.height = `${randomSize}px`;
+        blob.style.top = `${random(mouse.y - 150, mouse.y + 150)}px`;
+        blob.style.left = `${random(mouse.x - 150, mouse.x + 150)}px`;
+        blob.style.transitionDuration = randomTime + 'ms';
+      }, randomTime);
+    }),
+    2000,
+  );
+</script>
+<style>
+  /* Blobs (Most of the movement is done with JS) */
+  .blob {
+    will-change: height, width, top, left;
+    transition: all 3s ease;
+    z-index: -100;
+    border-radius: 50%;
+    position: fixed;
+  }
+
+  /* The container for the blobs */
+  .blobs {
+    top: 0;
+    left: 0;
+    filter: url(#goo);
+    position: fixed;
+    z-index: -100;
+  }
+</style>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;600;900&display=swap');
+
+  * {
+    font-family: 'Titillium Web', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111;
+  }
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 500px;
+    flex-direction: column;
+  }
+  input,
+  textarea,
+  button {
+    padding: 15px;
+    border: 1px solid #00bbbb11;
+    width: 100%;
+    border-radius: 5px;
+    background: #fff1;
+    backdrop-filter: blur(10px);
+    transition: box-shadow 0.3s ease;
+    margin-top: 4px;
+  }
+  input {
+    border-bottom: 3px solid transparent;
+    transition: box-shadow 0.3s ease, border-bottom-color 0.3s ease;
+  }
+  textarea {
+    resize: vertical;
+  }
+  input:focus,
+  textarea:focus,
+  button:focus {
+    box-shadow: 0 0 0 5px #00bbbb11;
+    outline: none;
+  }
+  input:focus {
+    border-bottom: 3px solid lightseagreen;
+  }
+  button {
+    transition: background-color 0.3s ease, transform 0.3s ease,
+      opacity 0.1s ease;
+    padding: 10px 15px;
+    border: 1px solid lightseagreen;
+    background: transparent;
+  }
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  button:hover:not(:disabled) {
+    transform: scale(0.99);
+    background-color: rgb(21, 148, 142);
+  }
+  *::placeholder {
+    color: #bbb;
+  }
+</style>
+<script>
+  setInterval(function () {
+    if (
+      document.querySelector('#name').value &&
+      document.querySelector('#content').value &&
+      document.querySelector('#subject').value
+    ) {
+      document.querySelector('button').removeAttribute('disabled');
+    } else {
+      document.querySelector('button').setAttribute('disabled', true);
+    }
+  }, 10);
+  function send() {
+    if (!document.querySelector('button').getAttribute('disabled')) {
+      fetch(
+        `https://filter-repl.explosionscratc.repl.co/feedback?content=${escape(
+          document.querySelector('#content').value,
+        )}&name=${escape(
+          document.querySelector('#name').value,
+        )}&subject=${document.querySelector('#subject').value}`,
+      )
+        .then((res) => res.text())
+        .then((text) => {
+          window.location.search = `?error=${escape(btoa(text))}`;
+        });
+    }
+  }
+</script>

@@ -214,7 +214,7 @@ export let random = (
  * Get a random number from a seed.
  * @function
  * @memberOf bijou
- * @param {Number} seed The seed to use to generate random numbers.
+ * @param {number} seed The seed to use to generate random numbers.
  * @example
  * console.log(_$.seedRandom(13)); // 0.5663226493634284
  * @returns {Number} The random number from the seed.
@@ -248,6 +248,9 @@ export let formatNumber = (n) =>
 export let ease = {
   // no easing, no acceleration
   linear: (t) => t,
+  easeInSine: (t) => 1 - Math.cos((t * Math.PI) / 2),
+  easeOutSine: (t) => Math.sin((t * Math.PI) / 2),
+  easeInOutSine: (t) => -(Math.cos(Math.PI * t) - 1) / 2,
   // accelerating from zero velocity
   easeInQuad: (t) => t * t,
   // decelerating to zero velocity
@@ -275,6 +278,81 @@ export let ease = {
   // acceleration until halfway, then deceleration
   easeInOutQuint: (t) =>
     t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
+  easeInExpo: (t) => (t === 0 ? 0 : Math.pow(2, 10 * t - 10)),
+  easeOutExpo: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+  easeIntOutExpo: (t) =>
+    t === 0
+      ? 0
+      : t === 1
+      ? 1
+      : t < 0.5
+      ? Math.pow(2, 20 * t - 10) / 2
+      : (2 - Math.pow(2, -20 * t + 10)) / 2,
+  easeInCirc: (t) => 1 - Math.sqrt(1 - t * t),
+  easeOutCirc: (t) => Math.sqrt(1 - (t - 1) * (t - 1)),
+  easeInOutCirc: (t) =>
+    t < 0.5
+      ? 1 - Math.sqrt(1 - 4 * t * t) / 2
+      : (Math.sqrt(1 - Math.pow(-2 * t + 2, 2)) + 1) / 2,
+  easeInBack: (t) => 2.70158 * t * t * t - 1.70158 * t * t,
+  easeOutBack: (t) =>
+    1 + 2.70158 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2),
+  easeInOutBack: (t) => {
+    const c = 2.5949095;
+
+    return t < 0.5
+      ? (4 * t * t * ((c + 1) * 2 * t - c)) / 2
+      : (Math.pow(2 * t - 2, 2) * ((c + 1) * (t * 2 - 2) + c) + 2) /
+          2;
+  },
+  easeInElastic: (t) =>
+    t === 0
+      ? 0
+      : t === 1
+      ? 1
+      : -Math.pow(2, 10 * t - 10) *
+        Math.sin(((t * 10 - 10.75) * (2 * Math.PI)) / 3),
+  easeOutElastic: (t) =>
+    t === 0
+      ? 0
+      : t === 1
+      ? 1
+      : Math.pow(2, -10 * t) *
+          Math.sin(((t * 10 - 0.75) * (2 * Math.PI)) / 3) +
+        1,
+  easeInOutElastic: (t) =>
+    t === 0
+      ? 0
+      : t === 1
+      ? 1
+      : t < 0.5
+      ? -(
+          Math.pow(2, 20 * t - 10) *
+          Math.sin(((20 * t - 11.125) * (2 * Math.PI)) / 4.5)
+        ) / 2
+      : (Math.pow(2, -20 * t + 10) *
+          Math.sin(((20 * t - 11.125) * (2 * Math.PI)) / 4.5)) /
+          2 +
+        1,
+  easeInBounce: (t) => 1 - ease.easeOutBounce(1 - t),
+  easeOutBounce: (t) => {
+    const n = 7.5625;
+    const d = 2.75;
+
+    if (t < 1 / d) {
+      return n * t * t;
+    } else if (t < 2 / d) {
+      return n * (t -= 1.5 / d) * t + 0.75;
+    } else if (t < 2.5 / d) {
+      return n * (t -= 2.25 / d) * t + 0.9375;
+    } else {
+      return n * (t -= 2.625 / d) * t + 0.984375;
+    }
+  },
+  easeInOutBounce: (t) =>
+    t < 0.5
+      ? (1 - ease.easeOutBounce(1 - 2 * t)) / 2
+      : (1 + ease.easeOutBounce(2 * t - 1)) / 2,
 };
 
 //#endregion Math
@@ -615,18 +693,18 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       result = done + rest;
       result =
         '<span style=color:' +
-        tagcolor +
+        _$.escapeHTML(tagcolor) +
         '>&lt;</span>' +
         result.substring(4);
       if (result.substr(result.length - 4, 4) == '&gt;') {
         result =
           result.substring(0, result.length - 4) +
           '<span style=color:' +
-          tagcolor +
+          _$.escapeHTML(tagcolor) +
           '>&gt;</span>';
       }
       return (
-        '<span style=color:' + tagnamecolor + '>' + result + '</span>'
+        '<span style=color:' + _$.escapeHTML(tagnamecolor) + '>' + result + '</span>'
       );
     }
     function attributeMode(txt) {
@@ -673,7 +751,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       }
       return (
         '<span style=color:' +
-        attributecolor +
+        _$.escapeHTML(attributecolor) +
         '>' +
         done +
         rest +
@@ -683,7 +761,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     function attributeValueMode(txt) {
       return (
         '<span style=color:' +
-        attributevaluecolor +
+        _$.escapeHTML(attributevaluecolor) +
         '>' +
         txt +
         '</span>'
@@ -691,7 +769,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     }
     function commentMode(txt) {
       return (
-        '<span style=color:' + commentcolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(commentcolor) + '>' + txt + '</span>'
       );
     }
     function cssMode(txt) {
@@ -746,18 +824,18 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       rest = done + rest;
       rest = rest.replace(
         /{/g,
-        '<span style=color:' + cssdelimitercolor + '>{</span>',
+        '<span style=color:' + _$.escapeHTML(cssdelimitercolor) + '>{</span>',
       );
       rest = rest.replace(
         /}/g,
-        '<span style=color:' + cssdelimitercolor + '>}</span>',
+        '<span style=color:' + _$.escapeHTML(cssdelimitercolor) + '>}</span>',
       );
       for (i = 0; i < comment.arr.length; i++) {
         rest = rest.replace('W3CSSCOMMENTPOS', comment.arr[i]);
       }
       return (
         '<span style=color:' +
-        cssselectorcolor +
+        _$.escapeHTML(cssselectorcolor) +
         '>' +
         rest +
         '</span>'
@@ -794,7 +872,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       }
       return (
         '<span style=color:' +
-        csspropertycolor +
+        _$.escapeHTML(csspropertycolor) +
         '>' +
         done +
         rest +
@@ -807,7 +885,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         s;
       rest =
         '<span style=color:' +
-        cssdelimitercolor +
+        _$.escapeHTML(cssdelimitercolor) +
         '>:</span>' +
         rest.substring(1);
       while (rest.search(/!important/i) > -1) {
@@ -827,12 +905,12 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
         result =
           result.substring(0, result.length - 1) +
           '<span style=color:' +
-          cssdelimitercolor +
+          _$.escapeHTML(cssdelimitercolor) +
           '>;</span>';
       }
       return (
         '<span style=color:' +
-        csspropertyvaluecolor +
+        _$.escapeHTML(csspropertyvaluecolor) +
         '>' +
         result +
         '</span>'
@@ -841,7 +919,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     function cssImportantMode(txt) {
       return (
         '<span style=color:' +
-        cssimportantcolor +
+        _$.escapeHTML(cssimportantcolor) +
         ';font-weight:bold;>' +
         txt +
         '</span>'
@@ -917,26 +995,26 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       for (i = 0; i < esc.length; i++) {
         rest = rest.replace('W3JSESCAPE', esc[i]);
       }
-      return '<span style=color:' + jscolor + '>' + rest + '</span>';
+      return '<span style=color:' + _$.escapeHTML(jscolor) + '>' + rest + '</span>';
     }
     function jsStringMode(txt) {
       return (
-        '<span style=color:' + jsstringcolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jsstringcolor) + '>' + txt + '</span>'
       );
     }
     function jsKeywordMode(txt) {
       return (
-        '<span style=color:' + jskeywordcolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jskeywordcolor) + '>' + txt + '</span>'
       );
     }
     function jsNumberMode(txt) {
       return (
-        '<span style=color:' + jsnumbercolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jsnumbercolor) + '>' + txt + '</span>'
       );
     }
     function jsPropertyMode(txt) {
       return (
-        '<span style=color:' + jspropertycolor + '>' + txt + '</span>'
+        '<span style=color:' + _$.escapeHTML(jspropertycolor) + '>' + txt + '</span>'
       );
     }
     function getDotPos(txt, func) {
@@ -1336,7 +1414,7 @@ export let sanitize = (
   node();
   var attributes = attributes || [
     { attribute: 'src', tags: '*', regex: /^(?:https|http|\/\/):/ },
-    { attribute: 'href', tags: '*', regex: /^(?!javascript:).+/ },
+    { attribute: 'href', tags: '*', regex: /^(?:https|http|\/\/):/ },
     { attribute: 'width', tags: '*', regex: /^[0-9]+$/ },
     { attribute: 'height', tags: '*', regex: /^[0-9]+$/ },
     { attribute: 'id', tags: '*', regex: /^[a-zA-Z]+$/ },
@@ -1628,9 +1706,11 @@ export let markdownToHTML = (src) => {
       ? p6
       : p2
       ? p4
-        ? '<img src="' + p4 + '" alt="' + p3 + '"/>'
+        ? '<img src="' + _$.escapeHTML(p4) + '" alt="' + _$.escapeHTML(p3) + '"/>'
         : p1
-      : '<a href="' + p4 + '">' + unesc(highlight(p3)) + '</a>';
+      : /^https?:\/\//g.test(p4)
+        ?'<a href="' + _$.escapeHTML(p4) + '">' + unesc(highlight(p3)) + '</a>'
+        : p1;
     return si + '\uf8ff';
   });
 
@@ -1677,22 +1757,7 @@ export let markdownToHTML = (src) => {
 
   return src.trim();
 };
-/**
- * @memberOf bijou
- * @function
- * @returns {undefined}
- * @param {String} js The string of JavaScript to beautify.
- * @param {Function} callback The callback function to run with the beautified code.
- */
-// no example for this one at the mo, because it seems to be very buggy
-export let beautifyJS = (js, callback) => {
-  _$.loadScript(
-    'https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.5/beautify.min.js',
-    () => {
-      callback(js_beautify(js));
-    },
-  );
-};
+
 /**
  * Counts the syllables in the word given.
  * @memberOf bijou
@@ -1728,9 +1793,11 @@ export let syllables = (word) => {
  * console.log(_$.capitalize("hello world")); // "Hello world"
  * @returns {String} The capitalized string.
  */
-export let capitalize = (str) =>
-  String.fromCodePoint(str.codePointAt(0)).toUpperCase() +
-  str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
+export let capitalize = (str) => {
+  if(!str) throw new TypeError("Missing Param 'Str'.");
+  return str.split("").map((section) => String.fromCodePoint(section.codePointAt(0)).toUpperCase() +
+  section.slice(section.codePointAt(0) > 0xffff ? 2 : 1)).join("")
+}
 /**
  * Replaces between two indexes of a string.
  * @memberOf bijou
@@ -1885,11 +1952,20 @@ export let diff = function (text1, text2) {
  * @example
  * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
  */
-export let remove = (array, item) =>
-  array.indexOf(item) > -1
-    ? array.splice(array.indexOf(item), 1)
-    : array;
-
+export let remove = (array, item) => {
+  if (typeof array === 'string') {
+    return array.replace(item, '');
+  }
+  if (typeof array === 'object') {
+    array[`${item}`] = undefined;
+    array = _$.clone(array, (itm) => itm !== undefined);
+    return array;
+  }
+  if (array.indexOf(item) > -1) {
+    array.splice(array.indexOf(item), 1);
+  }
+  return array;
+};
 /**
  * Splices an ArrayBuffer.
  * @function
@@ -1977,17 +2053,20 @@ export let shuffleArray = (array) =>
  * @param {String|Array} array The array or string to operate on
  * @param {Number} index The index to splice
  * @param {*} item The item
- * @param {Number} remove How many to remove.
- * @returns {String|Array} the spliced array of string
+ * @param {Number} [remove=0] How many to remove.
+ * @returns {String|Array} the spliced array or string
  * @example
  * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
  */
-export let splice = (array, index, item, remove = 0) => {
+export let splice = (array, index, remove = 0, item) => {
+  let args = Array.from(arguments);
+  args.shift();
   return typeof array === 'string'
-    ? array.slice(0, index) +
-        item +
-        array.slice(index + Math.abs(remove))
-    : array.splice(index, remove, item);
+    ? array
+        .split('')
+        .splice(...args)
+        .join('')
+    : array.splice(...args);
 };
 /**
  * Joins two arrays together and removes duplicate items.
@@ -2131,7 +2210,7 @@ export let composeFunction = (...functions) => (args) =>
 export let curryFunction = (fn, arity = fn.length, ...args) =>
   arity <= args.length
     ? fn(...args)
-    : curry.bind(null, fn, arity, ...args);
+    : curryFunction.bind(null, fn, arity, ...args);
 /**
  * Returns if the given function is async or not.
  * @memberOf bijou
@@ -2310,16 +2389,21 @@ export let flattenObj = (o) => {
  * @function
  * @memberOf bijou
  * @param {Object} obj The object to clone.
+ * @param {Function} [fn=() => true] The function to run to test if the value should be copied.
  * @returns {Object} The output cloned object.
  * @example
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-export let clone = (obj) => {
+export let clone = (obj, fn = () => true) => {
   if (null == obj || 'object' != typeof obj) return obj;
   var copy = obj.constructor();
   for (var attr in obj) {
-    if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    if (obj.hasOwnProperty(attr)) {
+      if (fn(obj[attr])) {
+        copy[attr] = obj[attr];
+      }
+    }
   }
   return copy;
 };
@@ -2336,7 +2420,11 @@ export let clone = (obj) => {
  * obj.anotherThing = "Hello world!"; // Logs "Set abotherThing to Hello world!" to the console!
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
-export let listen = (obj, setCallback, getCallback) => {
+export let listen = (
+  obj,
+  setCallback = () => null,
+  getCallback = () => null,
+) => {
   return new Proxy(obj, {
     set: function (target, key, value) {
       setCallback(key, value);
@@ -2361,6 +2449,7 @@ export let listen = (obj, setCallback, getCallback) => {
  */
 export let merge = function MergeRecursive(obj1, obj2) {
   for (var p in obj2) {
+    if (p in Object.prototype) continue;
     try {
       // Property in destination object set; update its value.
       if (obj2[p].constructor == Object) {
@@ -2465,7 +2554,7 @@ export let sortObj = (obj) => {
 //#region Element
 
 /**
- * Re-enables the use of <menu> and <menuitem> tags for corner clicking.
+ * Re-enables the use of &lt;menu&gt; and &lt;menuitem&gt; tags for corner clicking.
  * @memberOf bijou
  * @function
  * @example
@@ -2540,9 +2629,10 @@ export let context = () => {
       menu.innerHTML = '';
       for (let j = 0; j < items.length; j++) {
         const contextMenu = items[j];
-        menu.innerHTML += `<li onclick="${contextMenu.getAttribute(
-          'onclick',
-        )}">${contextMenu.getAttribute('label')}</li>`;
+        const liTag = document.createElement('li');
+        liTag.onclick = contextMenu.getAttribute('onclick');
+        liTag.textContent = contextMenu.getAttribute('label');
+        menu.innerHTML += liTag.outerHTML;
       }
       console.log(menu.innerHTML);
       menu.style.top = `${e.clientY}px`;
@@ -2794,23 +2884,14 @@ export let querySelector = (elem) => {
  * @returns {String|Element} The string removed of comments or the element removed of comments.
  */
 export let removeComments = (el) => {
-  if (typeof el === 'object') {
-    if (isNode) {
-      throw new Error(
-        'No document element! (You are probably using Node.js)',
-      );
+  const isString = typeof el === 'string';
+  el = isString ? _$.parseHTML(el) : el.cloneNode(true);
+  for (const child of [...el.querySelectorAll("*"), el]) {
+    for (const grandchild of child.childNodes) {
+      if (grandchild instanceof Comment) child.removeChild(grandchild);
     }
-    el.innerHTML = el.innerHTML.replace(
-      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-      '',
-    );
-    return el;
-  } else if (typeof el === 'string') {
-    return el.replace(
-      /<!--[\s\S]*?(?:-->)?<!---+>?|<!(?![dD][oO][cC][tT][yY][pP][eE]|\[CDATA\[)[^>]*>?|<[?][^>]*>?/g,
-      '',
-    );
   }
+  return isString ? el.outerHTML : el;
 };
 /**
  * Parses the string of HTML specified and returns an HTML element of it.
@@ -3255,37 +3336,45 @@ export let replaceSelection = (replacementText) => {
  * @param {Function} callback The function to run when a click is registered outside the specified element.
  * @example
  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
- * @returns {Function} the function that was called.
+ * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
  */
 export let onOutsideClick = (element, callback) => {
   node();
-  document.addEventListener('click', (e) => {
-    if (!element.contains(e.target)) callback();
+  return new Promise((resolve, reject) => {
+    document.addEventListener('click', (e) => {
+      if (!element.contains(e.target)) {
+        callback();
+        resolve();
+      }
+    });
   });
-  return callback;
 };
 /**
  * Returns the callback when the user stops scrolling.
  * @function
  * @memberOf bijou
  * @param {Function} callback The callback to call when the user stops scrolling.
+ * @param {Number} [time=150]
  * @example
  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
- * @returns {undefined}
+ * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
  */
-export let onScrollStop = (callback) => {
+export let onScrollStop = (callback, time = 150) => {
   let isScrolling;
   node();
-  window.addEventListener(
-    'scroll',
-    (e) => {
-      clearTimeout(isScrolling);
-      isScrolling = setTimeout(() => {
-        callback(e);
-      }, 150);
-    },
-    false,
-  );
+  return new Promise((resolve, reject) => {
+    window.addEventListener(
+      'scroll',
+      (e) => {
+        clearTimeout(isScrolling);
+        isScrolling = setTimeout(() => {
+          callback(e);
+          resolve(e);
+        }, time);
+      },
+      false,
+    );
+  });
 };
 /**
  * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
@@ -3403,16 +3492,22 @@ export let formatHTML = (html) => {
  * @param {Function} callback The function to be run with the JSON code.
  * @example
  * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
- * @returns {undefined}
+ * @returns {Promise} A promise resolved when the JSON is fetched and parsed.
  */
 export let getJSON = (url, callback) => {
   node();
-  fetch(url)
-    .then((res) => res.json())
-    .then((json) => callback(json))
-    .catch((error) => {
-      throw new Error(error.stack);
-    });
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((json) => {
+        callback(json);
+        resolve(json);
+      })
+      .catch((error) => {
+        reject(error);
+        throw new Error(error.stack);
+      });
+  });
 };
 /**
  * Gets HTML from a URL and performs a callback with it.
@@ -3423,16 +3518,22 @@ export let getJSON = (url, callback) => {
  * @example
  * // Logs the HTML of wikipedia.org to the console.
  * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
- * @returns {undefined}
+ * @returns {Promise} A promise resolved when the HTML is fetched and parsed.
  */
 export let getHTML = (url, callback) => {
   node();
-  fetch(url)
-    .then((res) => res.text())
-    .then((html) => callback(_$.parseHTML(html)))
-    .catch((error) => {
-      throw new Error(error.stack);
-    });
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then((res) => res.text())
+      .then((html) => {
+        callback(_$.parseHTML(html));
+        resolve(_$.parseHTML(html));
+      })
+      .catch((error) => {
+        reject(error.stack);
+        throw new Error(error.stack);
+      });
+  });
 };
 
 /**
@@ -3514,33 +3615,37 @@ export let requestInterval = function (fn, delay) {
  * @param {String} url The url to load the script from.
  * @param {Function} callback The callback to run when the script is loaded.
  * @example
- * _$.("script.js", ()=>alert("Script loaded!")); // Loads the script from the "script.js" file
- * @returns {undefined}
+ * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
+ * @returns {Promise} A promise resolved once the script is loaded.
  */
 export let loadScript = (url, callback) => {
   node();
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  if (script.readyState) {
-    // only required for IE <9
-    script.onreadystatechange = function () {
-      if (
-        script.readyState === 'loaded' ||
-        script.readyState === 'complete'
-      ) {
-        script.onreadystatechange = null;
+  return new Promise((resolve, reject) => {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    if (script.readyState) {
+      // only required for IE <9
+      script.onreadystatechange = function () {
+        if (
+          script.readyState === 'loaded' ||
+          script.readyState === 'complete'
+        ) {
+          script.onreadystatechange = null;
+          callback();
+          resolve();
+        }
+      };
+    } else {
+      //Others
+      script.onload = function () {
         callback();
-      }
-    };
-  } else {
-    //Others
-    script.onload = function () {
-      callback();
-    };
-  }
+        resolve();
+      };
+    }
 
-  script.src = url;
-  document.getElementsByTagName('head')[0].appendChild(script);
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  });
 };
 
 /**
@@ -3556,15 +3661,19 @@ export let loadScript = (url, callback) => {
  *    img.src = data;
  *  })
  * })
+ * @returns {Promise} A promise fulfulled when the image is loaded.
  */
 export let imageToData = async (url, callback) => {
-  let blob = await fetch(url).then((r) => r.blob());
-  let dataUrl = await new Promise((resolve) => {
-    let reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.readAsDataURL(blob);
+  return new Promise(async (res, reject) => {
+    let blob = await fetch(url).then((r) => r.blob());
+    let dataUrl = await new Promise((resolve) => {
+      let reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+    callback(dataUrl);
+    res(dataUrl);
   });
-  callback(dataUrl);
 };
 /**
  * A set of functions to set and modify cookies.
@@ -4116,7 +4225,6 @@ let _temp = {
   arrayToCSV: arrayToCSV,
   attributes: attributes,
   averageBy: averageBy,
-  beautifyJS: beautifyJS,
   blendColors: blendColors,
   browser: browser,
   byteSize: byteSize,
