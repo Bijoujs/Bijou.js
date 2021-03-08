@@ -2883,7 +2883,7 @@ export let drag = (el) => {
  * @param {Array.<String>} events The array of events to listen for.
  * @param {Function} handler The function to run when the events happen.
  * @param {Boolean} [useCapture=false] Wether to use capture.
- * @param {*} [args=false] The arguments to use in the handler function.
+ * @param {Array} [args=false] The arguments to use in the handler function.
  * @example
  * // Reset a timer every user interaction.
  * let timer = 0;
@@ -2922,7 +2922,7 @@ export let addEventListeners = (
  * @function
  * @returns {undefined}
  * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
- * @param {HTMLElement} element The table to sort
+ * @param {HTMLTableElement} element The table to sort
  */
 export let sortTable = (element) => {
   var getCellValue = function (tr, idx) {
@@ -2978,7 +2978,7 @@ export let sortTable = (element) => {
  *    _$.sortTableBy(th, th.asc = !th.asc);//Toggle the "asc" attribute on the th.
  *  });
  * })
- * @param {HTMLElement} th The table header (<th> element) to sort with.
+ * @param {HTMLTableElement} th The table header (<th> element) to sort with.
  * @param {Boolean} acending Whether to sort the table ascending or descending.
  */
 export let sortTableBy = (th, acending) => {
@@ -3024,7 +3024,7 @@ export let sortTableBy = (th, acending) => {
  * @param {Object} styles An object that represents the styles to be added. (camelCased)
  * @example
  * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
- * @returns {Object} the assigned object.
+ * @returns {Object} the style object of the element.
  */
 export let addStyles = (el, styles) => {
   node();
@@ -3054,7 +3054,7 @@ export let createElement = (str) => {
  * @param {Element} el The element whose styles to get.
  * @param {String} prop The css-property value to get of the styles.
  * @example
- * console.log(_$.compStyle(document.documentElement, "background-color"));
+ * console.log(_$.compStyle(document.documentElement, "background-color")); // logs the background colour of the document
  * @returns {String} The computed style property for the element specified.
  */
 export let compStyle = (el, prop) => {
@@ -3070,7 +3070,7 @@ export let compStyle = (el, prop) => {
  * @param {Element} n The element to get siblings of
  * @example
  * _$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.backgroundColor = 'white');
- * //Make every sibling of the first list item's background color white.
+ * // Make every sibling of the first list item's background color white.
  * @returns {Element[]} The array of sibling elements.
  */
 export let elementSiblings = (n) =>
@@ -3094,7 +3094,7 @@ export let disableRightClick = (el) => {
  * @memberOf bijou
  * @param {Element} el The element to convert.
  * @example
- * _$.inlineCSS(document.querySelector("h1"));//Converts the styles for the <h1> element to inline using the style="___" attribute
+ * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the <h1> element to inline using the style="___" attribute
  * @returns {undefined}
  */
 export let inlineCSS = (el) => {
@@ -3111,7 +3111,7 @@ export let inlineCSS = (el) => {
  * @function
  * @memberOf bijou
  * @example
- * //Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "style," to the console.
+ * // Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "style," to the console.
  * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
  * @return {Array.<object>} The array of objects representing the attributes
  */
@@ -3135,11 +3135,11 @@ export let attributes = (el) => {
  * Observes the mutations of the html element specified.
  * @memberOf bijou
  * @function
- * @param {HTMLElement} element The element to observe
+ * @param {Element} element The element to observe
  * @param {Function} callback The callback function to run when a mutation happens.
- * @param {*} options The options to use.
+ * @param {Object} options The options to use.
  * @example
- * _$.observeMutations(document, console.log);//Logs all the mutations that happen to the console.
+ * _$.observeMutations(document, console.log); // Logs all the mutations that happen to the console.
  * @returns {undefined}
  */
 export let observeMutations = (element, callback, options) => {
@@ -3169,11 +3169,11 @@ export let observeMutations = (element, callback, options) => {
  * @param {Element} el The element to tilt.
  * @param {Number} x The x value of the mouse
  * @param {Number} y The y value of the mouse
- * @param {Number} perspective The perspective
- * @param {Number} amount The amount to tilt.
+ * @param {Number} [perspective=500] The perspective
+ * @param {Number} [amount=30] The amount to tilt.
  * @returns {undefined}
  * @example
- * //Tilt the first image in the document whenever the mouse moves.
+ * // Tilt the first image in the document whenever the mouse moves.
  * let el = document.querySelector("img");
  * el.onmousemove = (e) => {
  *  let x = e.layerX;
@@ -3204,7 +3204,7 @@ export let tilt = (el, x, y, perspective = 500, amount = 30) => {
  * @param {Element} element The element to enter full screen with.
  * @returns {undefined}
  * @example
- * _$.fullScreen(document.documentElement);//Make the window fullscreen
+ * _$.fullScreen(document.documentElement); // Make the window fullscreen
  */
 export let fullScreen = (element) => {
   return (
@@ -3220,7 +3220,7 @@ export let fullScreen = (element) => {
  * @function
  * @returns {undefined}
  * @example
- * //Add a simple contenteditable div to the page.
+ * // Add a simple contenteditable div to the page.
  * document.appendChild(_$.createElement("<div contenteditable id='text'></div>"));
  * _$.replaceSelection("<b>BOLD TEXT</b> <small>Bijou is awesome</small><h1>You need to use it</h1>");
  * //Replaces the selection! =)
@@ -3271,7 +3271,7 @@ export let onOutsideClick = (element, callback) => {
  * @param {Function} callback The callback to call when the user stops scrolling.
  * @example
  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
- * @returns {undefined} Returns undefined.
+ * @returns {undefined}
  */
 export let onScrollStop = (callback) => {
   let isScrolling;
@@ -3294,10 +3294,10 @@ export let onScrollStop = (callback) => {
  * @returns {Object} The object with the emit, on and off functions in it.
  * @example
  * let thing = _$.hub();
- * //Log any new data to the console
+ * // Log any new data to the console
  * thing.on("data", (data) => console.log(data));
  * setTimeout(() => {
- *   thing.emit("data", "Yay! Some data!!");//Logs "Yay! Some data!!" to the console after 2 seconds.
+ *   thing.emit("data", "Yay! Some data!!"); // Logs "Yay! Some data!!" to the console after 2 seconds.
  * }, 2000)
  */
 export let hub = () => ({
@@ -3324,7 +3324,8 @@ export let hub = () => ({
  * _$.dispatch("mousemove", {clientX: 100, clientY: 150, target: document.documentElement}, window);
  * @param {String} type The type of event to dispatch (E.g. "mousemove")
  * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
- * @param {HTMLElement} target What to dispatch the event to.
+ * @param {EventTarget} [target=window] What to dispatch the event to.
+ * @returns {undefined}
  */
 export let dispatch = (type, args, target = window) => {
   let e = new Event(type);
@@ -3343,7 +3344,8 @@ export let dispatch = (type, args, target = window) => {
  * @memberOf bijou
  * @function
  * @example
- * _$.playSection(new Audio("file.mp3"), 5, 20.5);//Plays file.mp3, starting with second 5 and ending at 20.5 seconds into the file.
+ * _$.playSection(new Audio("file.mp3"), 5, 20.5); // Plays file.mp3, starting with second 5 and ending at 20.5 seconds into the file.
+ * @returns {undefined}
  */
 export let playSection = (audioObj, start, stop) => {
   let audioObjNew = audioObj.cloneNode(true); //this is to prevent "play() request was interrupted" error.
@@ -3361,6 +3363,14 @@ export let playSection = (audioObj, start, stop) => {
  * @memberOf bijou
  * @function
  * @param {String} html The string of HTML to format.
+ * @example
+ * console.log(_$.formatHTML("<h1>moo</h1><div id="hi">hello <span>world</span></div>"));
+ * Logs the following to the console:
+ * ```
+   <h1>moo</h1>
+   <div id='hi'>hello <span>world</span>
+   </div>
+   ```
  * @returns {String} The formatted string of HTML.
  */
 export let formatHTML = (html) => {
@@ -3411,7 +3421,7 @@ export let getJSON = (url, callback) => {
  * @param {String} url The url of the HTML to be fetched.
  * @param {Function} callback The function to be run with the HTML code.
  * @example
- * //Logs the HTML of wikipedia.org to the console.
+ * // Logs the HTML of wikipedia.org to the console.
  * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
  * @returns {undefined}
  */
@@ -3431,7 +3441,7 @@ export let getHTML = (url, callback) => {
  * @memberOf bijou
  * @param {...String} urls The urls of the images to be preloaded.
  * @example
- * _$.preloadImage("https://unsplash.com/some_huge_image.png");//Preloads the unsplash image "some_huge_image.png" :P
+ * _$.preloadImage("https://unsplash.com/some_huge_image.png"); // Preloads the unsplash image "some_huge_image.png" :P
  * @returns {undefined}
  */
 export let preloadImage = () => {
@@ -3469,7 +3479,7 @@ export let saveBlob = (blob, fileName = 'output.txt') => {
  * @memberOf bijou
  * @function
  * @param {Function} fn The function to run repeatedly every delay seconds.
- * @param {Number} delay The delay time to run the function.
+ * @param {Number} delay The delay time in milliseconds to run the function.
  * @returns {Object}
  */
 export let requestInterval = function (fn, delay) {
@@ -3498,13 +3508,13 @@ export let requestInterval = function (fn, delay) {
 };
 
 /**
- * Loads a script from a url (Can be to a local file or to a url) then funs a callback once it's loaded.
+ * Loads a script from a url (Can be to a local file or to a url) then runs a callback once it's loaded.
  * @memberOf bijou
  * @function
  * @param {String} url The url to load the script from.
  * @param {Function} callback The callback to run when the script is loaded.
  * @example
- * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
+ * _$.("script.js", ()=>alert("Script loaded!")); // Loads the script from the "script.js" file
  * @returns {undefined}
  */
 export let loadScript = (url, callback) => {
@@ -3561,7 +3571,7 @@ export let imageToData = async (url, callback) => {
  * @memberOf bijou
  * @Object
  * @example
- * _$.cookies.setItem("a_cookie", "Hello world!", 1);//Set a_cookie to "Hello world" and have it expire in a day.
+ * _$.cookies.setItem("a_cookie", "Hello world!", 1); // Set a_cookie to "Hello world" and have it expire in a day.
  * @returns {Function} The function that the user wanted
  */
 export let cookies = {
@@ -3702,7 +3712,7 @@ export let regex = {
    * @function
    * @memberOf bijou
    * @param {Array} arr The array of objects to convert to CSV.
-   * @param {String} columns The number of columns to use.
+   * @param {Array} columns The columns to use.
    * @param {String} [delimiter=","] The delimiter between cells, by default this is a comma.
    * @example
    * _$.jsonToCsv(
@@ -3737,7 +3747,7 @@ export let jsonToCsv = (arr, columns, delimiter = ',') =>
  * @param {Array} arr The array to convert.
  * @param {String} [delimiter=,] The separator (By default this is a comma.)
  * @example
- * _$.arrayToCSV([1,2,3,4]);//Returns "1,2,3,4"
+ * console.log(_$.arrayToCSV([1,2,3,4])); // "1,2,3,4"
  * @returns {String} The comma separated array.
  */
 export let arrayToCSV = (arr, delimiter = ',') =>
@@ -3755,7 +3765,7 @@ export let arrayToCSV = (arr, delimiter = ',') =>
  * @param {Function} fn The function to run and time.
  * @param {String} [name=_$ function timer]
  * @example
- * //Times how long it took the user to enter their name.
+ * // Times how long it took the user to enter their name.
  * _$.timeFunction(() => prompt("What's your name?"));
  * @returns {undefined}
  */
@@ -3772,7 +3782,7 @@ export let timeFunction = (fn, name = '_$ function timer') => {
  * @param {String} body The body of the notification.
  * @param {String} icon The url to the image for the icon of the notification.
  * @example
- * _$.notify("Hello", "Hi there! This is a notification!");//Returns an array of prime numbers up to 100.
+ * _$.notify("Hello", "Hi there! This is a notification!"); Notifies the user with the title "Hello" and the body text "Hi there! This is a notification!"
  * @returns {undefined}
  */
 export let notify = (text, body, icon) => {
@@ -3797,12 +3807,12 @@ export let notify = (text, body, icon) => {
   }
 };
 /**
- * Copies the string inputted the clipboard.
+ * Copies the string inputted to the clipboard.
  * @function
  * @memberOf bijou
  * @param {String} str The string to copy.
  * @example
- * _$.copy("Hello world")
+ * _$.copy("Hello world");
  * @returns {String} The string copied.
  */
 export let copy = (str) => {
@@ -3831,7 +3841,7 @@ export let copy = (str) => {
  * @function
  * @memberOf bijou
  * @example
- * _$.browser();//For me this (correctly) returns "Chrome"
+ * _$.browser(); // For me this (correctly) returns "Chrome"
  * @returns {String} A string of the browser name that the user is using.
  */
 export let browser = () => {
@@ -3890,8 +3900,9 @@ export let browser = () => {
  * @memberOf bijou
  * @function
  * @example
- * _$.rgbToHex("rgb(255,255,255)");//Returns "#ffffff"
+ * console.log(_$.rgbToHex("rgb(255,255,255)")); // "#ffffff"
  * @param {String} rgb The string of RGB colors.
+ * @returns {String} The hex color.
  */
 export let rgbToHex = (rgb) => {
   let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
@@ -3912,6 +3923,8 @@ export let rgbToHex = (rgb) => {
  * @function
  * @memberOf bijou
  * @param {String} hex The hex code to convert.
+ * @example
+ * console.log(_$.rgbToHex("#ffffff")); // "rgb(255,255,255)"
  * @returns {String} The RGB color converted from the hex code.
  */
 export let hexToRGB = (hex) => {
@@ -3954,9 +3967,9 @@ export let hexToRGB = (hex) => {
  * @memberOf bijou
  * @param {String} color1 The hex code of the first color to be blended
  * @param {String} color2 The hex code of the second color to be blended.
- * @param {Number} percent A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
+ * @param {Number} [percent=50] A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
  * @example
- * _$.blendColors("#ffffff", "#000000", 80); //Blends white and black together, ending up in a color that is 80% white and 20% black.
+ * console.log(_$.blendColors("#ffffff", "#000000", 80)); // #333333
  * @returns {String} The blended color (A hex code).
  */
 export let blendColors = (color1, color2, percent = 50) => {
@@ -4000,7 +4013,7 @@ export let blendColors = (color1, color2, percent = 50) => {
  * @function
  * @memberOf bijou
  * @example
- * document.querySelector("div").style.backgroundColor = _$.randomColor()
+ * console.log(_$.randomColor()); // e.g. #5bf462
  * @returns {String} A random Hex color
  */
 export let randomColor = () =>
@@ -4010,9 +4023,9 @@ export let randomColor = () =>
  * @function
  * @memberOf bijou
  * @param {String} color The color to lighten/darken
- * @param {Number} amt The amount to lighten the color.
+ * @param {Number} amt The amount to lighten the color (out of 255).
  * @example
- * _$.lightenColor("#000000", 50);//Lightens black by 50 (Out of 255)
+ * _$.lightenColor("#000000", 50); // #323232
  * @returns {String} The color lightened.
  */
 export let lightenColor = (col, amt) => {
@@ -4048,7 +4061,7 @@ export let lightenColor = (col, amt) => {
   * Tests if a color is light or dark and returns an object representation.
   * @function
   * @memberOf bijou
-  * @param
+  * @param {string} color The hex color to test.
   * @example
   * if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
     document.querySelector("DIV").style.color = "white";
