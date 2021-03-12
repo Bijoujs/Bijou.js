@@ -4341,6 +4341,7 @@ let _temp = {
   urlQuery: urlQuery,
   uuid: uuid,
   widows: widows,
+  forTemplateLiteral: forTemplateLiteral,
 };
 // Imports and exports
 export default _temp;
