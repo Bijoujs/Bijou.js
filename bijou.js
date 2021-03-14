@@ -96,6 +96,57 @@ let node = () => {
   ___) | |_| | |_| |  _ <| |___| |___
  |____/ \___/ \___/|_| \_\\____|_____|
 */
+/**
+ * The array namespace of Bijou.js
+ * @namespace array
+ */
+let array_namespace = {};
+/**
+ * The color namespace of Bijou.js
+ * @namespace color
+ */
+let color_namespace = {};
+/**
+ * The date namespace of Bijou.js
+ * @namespace date
+ */
+let date_namespace = {};
+/**
+ * The element namespace of Bijou.js
+ * @namespace element
+ */
+let element_namespace = {};
+/**
+ * The event namespace of Bijou.js
+ * @namespace event
+ */
+let event_namespace = {};
+/**
+ * The function namespace of Bijou.js
+ * @namespace function
+ */
+let function_namespace = {};
+/**
+ * The math namespace of Bijou.js
+ * @namespace math
+ */
+let math_namespace = {};
+/**
+ * The object namespace of Bijou.js
+ * @namespace object
+ */
+let object_namespace = {};
+/**
+ * The string namespace of Bijou.js
+ * @namespace string
+ */
+let string_namespace = {};
+/**
+ * The utility namespace of Bijou.js
+ * @namespace utility
+ */
+let utility_namespace = {};
+
 //#region bijou
 //#region Array
 
@@ -4124,7 +4175,6 @@ export let browser = () => {
 /**
  * Bijou.js source documentation. In the `Bijou` namespace you will find the documentation for all of the functions in Bijou.js, if you have any questions, suggestions or bug reports pleast make an issue (here)[https://github.com/bijou-js/bijou.js/issues/new/choose]. Best of luck! Thanks for using Bijou.js! --Explosion--
  * @type {Object}
- * @namespace bijou
  * @author Explosion-Scratch, GrahamSH-LLK, Bijou.js contributors
  */
 let _temp = {

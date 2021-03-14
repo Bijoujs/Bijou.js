@@ -4,8 +4,8 @@
 
   <head>
     <!-- Setup meta tags -->
-    <noscript
-      ><meta
+    <noscript>
+      <meta
         http-equiv="refresh"
         content="0; url=https://bijou.js.org/index_static.html"
     /></noscript>
@@ -83,7 +83,7 @@
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
-    <noscript><link rel="stylesheet" href="styles.css" /></noscript>
+    <noscript> <link rel="stylesheet" href="styles.css" /></noscript>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"
       defer
@@ -173,23 +173,28 @@
 <style>
   /* Import Titillium Web (One of my favorite fonts) */
   @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;600;900&display=swap');
+
   html,
   body {
     overflow-x: hidden;
   }
+
   ::-webkit-scrollbar {
     width: 3px;
   }
+
   ::-webkit-scrollbar-thumb {
     background-color: lightseagreen;
     border-radius: 100px;
   }
+
   /* Initial styles */
   * {
     margin: 0;
     box-sizing: border-box;
     font-family: 'Titillium Web', sans-serif;
   }
+
   section > ul {
     background: #fff1;
     border-radius: 7px;
@@ -197,6 +202,7 @@
     padding-bottom: 5px;
     margin: 5px;
   }
+
   button#big_button {
     transition: box-shadow 0.5s ease, background-color 0.3s ease,
       transform 0.1s ease;
@@ -213,13 +219,16 @@
     transform: translateX(-50%);
     backdrop-filter: blur(5px);
   }
+
   button#big_button:active {
     transform: translateX(-50%) scale(0.95);
   }
+
   button#big_button:hover {
     background: rgb(21, 134, 129);
     box-shadow: 0 0 0 4px #fff1;
   }
+
   /* Outline on focus */
   *:focus {
     outline: none;
@@ -267,6 +276,7 @@
     text-align: center;
     display: block;
   }
+
   #readme > ul:first-of-type::before {
     content: 'Table of contents';
     font-size: 24px;
@@ -274,6 +284,7 @@
     width: max-content;
     padding: 0;
   }
+
   /* Gradient <hr>'s */
   hr {
     display: block;
@@ -362,9 +373,11 @@
   ul {
     width: 100%;
   }
+
   a {
     color: lightblue;
   }
+
   /* Button links */
   .btn {
     overflow: hidden;
@@ -378,6 +391,7 @@
     border-radius: 20px;
     margin: 8px;
   }
+
   .btns {
     position: fixed;
     left: 0px;
@@ -389,26 +403,32 @@
     transition: opacity 0.5s ease, width 0.3s ease,
       background-color 0.3s ease, backdrop-filter 0.3s ease;
   }
+
   .btns #btn-text {
     transition: opacity 0.3s ease;
     color: transparent;
   }
+
   .btns:hover #btn-text {
     color: white;
   }
+
   .btns:hover {
     width: 200px;
     backdrop-filter: blur(10px);
     background-color: #0009;
     color: white;
   }
+
   .btn #btn-text {
     position: relative;
     bottom: 8px;
   }
+
   a.iconify {
     margin-right: 7px;
   }
+
   /* More link stuff */
   a .iconify:hover {
     filter: drop-shadow(0 0 5px #fff);
@@ -492,6 +512,7 @@
     background: #0bb4;
     color: currentColor;
   }
+
   /*!
  * GitHub.com style
  *
@@ -513,9 +534,11 @@
     color: #fff;
     overflow-y: visible;
   }
+
   .hljs * {
     font-family: monospace !important;
   }
+
   .hljs-keyword,
   .hljs-doctag,
   .hljs-meta-keyword,
@@ -612,7 +635,8 @@
     requestInterval,
     random,
     parseHTML,
-  } from './bijou.js';
+  } from 'https://cdn.jsdelivr.net/npm/bijou.js@v6.3.0';
+
   window.onload = js_Load;
   function js_Load() {
     document.body.style.visibility = 'visible';

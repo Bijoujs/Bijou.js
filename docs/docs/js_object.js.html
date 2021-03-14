@@ -68,7 +68,7 @@
     
 
 
-    <title>js/array.js</title>
+    <title>js/object.js</title>
 
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -169,7 +169,7 @@
 
 <div id="main">
     
-    <h1 id='page-title' class="page-title">js/array.js</h1>
+    <h1 id='page-title' class="page-title">js/object.js</h1>
     
 
     
@@ -179,281 +179,214 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>//#region Array
-
+            <pre class="prettyprint source linenums"><code>//#region Object
 /**
- * Returns the difference between two arrays or strings.
- * @memberOf array
+ * Flattens an object recursively into one. 
+ * @memberOf object
  * @function
- * @returns {Array|String} The difference between two arrays or strings.
- * @example
- * console.log(_$.arrayDiff(['a', 'b'], ['a', 'b', 'c', 'd'])); // ["c", "d"]
- * @param {Array|String} a1 The first array or string
- * @param {Array|String} a2 The 2nd array or string.
+ * @example 
+ * _$.flattenObj({
+      hello: "world",
+      another: {
+          nested: "Value",
+          anotherNestedValue: {
+              "something": "A value"
+          },
+          "more Values!!": "lol"
+      }
+  }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }
+* @param {Object} o The object to flatten
+* @returns {Object} The flattened object.
  */
-export let arrayDiff = (a1, a2) => {
-  var a = [],
-    diff = [];
-  for (var i = 0; i &lt; a1.length; i++) {
-    a[a1[i]] = true;
-  }
-  for (var i = 0; i &lt; a2.length; i++) {
-    if (a[a2[i]]) {
-      delete a[a2[i]];
-    } else {
-      a[a2[i]] = true;
-    }
-  }
-  for (var k in a) {
-    diff.push(k);
-  }
-  return diff;
+export let flattenObj = (o) => {
+  return o !== Object(o) || Array.isArray(o)
+    ? {}
+    : Object.assign(
+        {},
+        ...(function leaves(o) {
+          return [].concat.apply(
+            [],
+            Object.entries(o).map(([k, v]) => {
+              return !v ||
+                typeof v !== 'object' ||
+                !Object.keys(v).some((key) =>
+                  v.hasOwnProperty(key),
+                ) ||
+                Array.isArray(v)
+                ? { [k]: v }
+                : leaves(v);
+            }),
+          );
+        })(o),
+      );
 };
-
 /**
- * Gets the difference between two strings.
- * @memberOf array
+ * Deep clones an object
  * @function
- * @param {String} text1 The 1st text to compare
- * @param {String} text2 The 2nd text to compare with the 1st one.
+ * @memberOf object
+ * @param {Object} obj The object to clone.
+ * @param {Function} [fn=() => true] The function to run to test if the value should be copied.
+ * @returns {Object} The output cloned object.
  * @example
- * console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]
- * @returns {Array.&lt;Array.&lt;number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
+ * let obj = { hello: { puny: "earthlings" }};
+ * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-export let diff = function (text1, text2) {
-  //Takes in two strings
-  //Returns an array of the span of the differences
-  //So if given:
-  // text1: "that is number 124"
-  // text2: "this is number 123"
-  //It will return:
-  // [[2,4],[17,18]]
-  //If the strings are of different lengths, it will check up to the end of text1
-  //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
-  var diffRange = [];
-  var currentRange = undefined;
-  for (var i = 0; i &lt; text1.length; i++) {
-    if (text1[i] != text2[i]) {
-      //Found a diff!
-      if (currentRange == undefined) {
-        //Start a new range
-        currentRange = [i];
+export let clone = (obj, fn = () => true) => {
+  if (null == obj || 'object' != typeof obj) return obj;
+  var copy = obj.constructor();
+  for (var attr in obj) {
+    if (obj.hasOwnProperty(attr)) {
+      if (fn(obj[attr])) {
+        copy[attr] = obj[attr];
       }
     }
-    if (currentRange != undefined &amp;&amp; text1[i] == text2[i]) {
-      //End of range!
-      currentRange.push(i);
-      diffRange.push(currentRange);
-      currentRange = undefined;
+  }
+  return copy;
+};
+/**
+ * @memberOf object
+ * @function
+ * @param {Object} obj The object to listen to.
+ * @param {Function} [getCallback=()=>null] The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).
+ * @param {Function} [setCallback=()=>null] The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).
+ * @example
+ * let obj = {something: "This is part of the object", anotherThing: "This is another!"};
+ * obj = _$.listen(obj, (k, v) => console.log(`set ${k} to ${v}`), () => console.log("Gotten"));
+ * obj.something; // Logs "Gotten" to the console!
+ * obj.anotherThing = "Hello world!"; // Logs "Set abotherThing to Hello world!" to the console!
+ * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
+ */
+export let listen = (
+  obj,
+  setCallback = () => null,
+  getCallback = () => null,
+) => {
+  return new Proxy(obj, {
+    set: function (target, key, value) {
+      setCallback(key, value);
+      target[key] = value;
+      return target[key];
+    },
+    get: function (target, key, value) {
+      getCallback(key, value);
+      return obj[key];
+    },
+  });
+};
+/**
+ * Merges two objects into one. Note that object 2 properties will overwrite those of object 2.
+ * @memberOf object
+ * @function
+ * @param {Object} obj1 The 1st object to merge
+ * @param {Object} obj2 The 2nd object to merge.
+ * @returns {Object} The merged object.
+ * @example
+ * console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}
+ */
+export let merge = function MergeRecursive(obj1, obj2) {
+  for (var p in obj2) {
+    if (p in Object.prototype) continue;
+    try {
+      // Property in destination object set; update its value.
+      if (obj2[p].constructor == Object) {
+        obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+      } else {
+        obj1[p] = obj2[p];
+      }
+    } catch (e) {
+      // Property in destination object not set; create it and set its value.
+      obj1[p] = obj2[p];
     }
   }
-  //Push any last range if there's still one at the end
-  if (currentRange != undefined) {
-    currentRange.push(i);
-    diffRange.push(currentRange);
-  }
-  return diffRange;
+  return obj1;
 };
-
 /**
- * Removes an item from the array specified.
- * @memberOf array
+ * Maps the keys of an object.
  * @function
- * @param {Array} array The array to remove the item from.
- * @param {*} item The item to remove.
+ * @memberOf object
+ * @param {Object} obj The object to map.
+ * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
  * @example
- * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
+ * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
+ * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
+ * @returns {Object} The new Object.
  */
-export let remove = (array, item) => {
-  if (typeof array === 'string') {
-    return array.replace(item, '');
-  }
-  if (typeof array === 'object') {
-    array[`${item}`] = undefined;
-    array = _$.clone(array, (itm) => itm !== undefined);
-    return array;
-  }
-  if (array.indexOf(item) > -1) {
-    array.splice(array.indexOf(item), 1);
-  }
-  return array;
-};
+export let mapObjectKeys = (obj, fn) =>
+  Array.isArray(obj)
+    ? obj.map((val) => _$.mapObjectKeys(val, fn))
+    : typeof obj === 'object'
+    ? Object.keys(obj).reduce((acc, current) => {
+        const key = fn(current);
+        const val = obj[current];
+        acc[key] =
+          val !== null &amp;&amp; typeof val === 'object'
+            ? _$.mapObjectKeys(val, fn)
+            : val;
+        return acc;
+      }, {})
+    : obj;
 /**
- * Splices an ArrayBuffer.
+ * Maps an object's values.
+ * @memberOf object
  * @function
- * @memberOf array
- * @param {ArrayBuffer|Buffer} arr The ArrayBuffer to splice.
- * @param {Number} start The start index.
- * @param {Number} end The end index.
- * @param {Boolean} [endian=false] Whether to use big endian or not.
- * @returns {Number} The hex representation of part of the ArrayBuffer.
- */
-export let spliceArrayBuffer = (arr, start, end, endian = false) => {
-  var direction = endian ? -1 : 1;
-  if (endian) [start, end] = [end, start];
-  start = Math.floor(start);
-  end = Math.floor(end) + direction;
-  for (var i = start, value = 0; i != end; i += direction)
-    value = 256 * value + arr[i];
-  return value;
-};
-
-/**
- * Flattens an array `level` times.
- * @memberOf array
- * @function
- * @returns {Array} The flattened array.
+ * @param {Object} obj The object to map the values of.
+ * @param {Function} fn The callback function to use.
+ * @returns {Object} The mapped object.
  * @example
- * console.log(_$.flatten(['a', 'b', ['c', 'd']])); // ['a', 'b', 'c', 'd'];
- * @param {Array} array The array to flatten.
- * @param {Number} [level=1] The number of iterations to flatten it.
+ * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
  */
-export let flatten = (array, level = 1) => {
-  var output = array;
-  _$.each(level, () => {
-    output = [].concat.apply([], array);
+export let mapObjectValues = (obj, fn) => {
+  Object.keys(obj).map(function (key, index) {
+    obj[key] = fn(obj[key], index);
   });
-  return output;
-};
-
-/**
- * Flattens an array recursively.
- * @function
- * @memberOf array
- * @param {Array} arr The array to flatten.
- * @returns {Array} The flattened array.
- * @example
- * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
- */
-export let nFlatten = (arr) => {
-  return arr.reduce(function (flat, toFlatten) {
-    return flat.concat(
-      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
-    );
-  }, []);
-};
-
-/**
- * Returns whether the specified array or string contains the item given.
- * @memberOf array
- * @function
- * @param {Array} array The array to test with.
- * @param {String} item The item to see if the array contains.
- * @example
- * console.log(_$.contains([1,2,3,4,5], 3)); // true
- * @returns {Boolean} True or false depending on if the array contains that item.
- */
-export let contains = (array, item) => array.includes(item);
-
-/**
- * Shuffles an array
- * @function
- * @memberOf array
- * @param {Array} array The array to shuffle.
- * @example
- * let array = [1,2,3,4,5];
- * console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]
- * @returns {Array} The shuffled array.
- */
-export let shuffleArray = (array) =>
-  array.sort(() => Math.random() - 0.5);
-
-/**
- * Splice but also for strings
- * @memberOf array
- * @function
- * @param {String|Array} array The array or string to operate on
- * @param {Number} index The index to splice
- * @param {*} item The item
- * @param {Number} [remove=0] How many to remove.
- * @returns {String|Array} the spliced array or string
- * @example
- * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
- */
-export let splice = (array, index, remove = 0, item) => {
-  let args = Array.from(arguments);
-  args.shift();
-  return typeof array === 'string'
-    ? array
-        .split('')
-        .splice(...args)
-        .join('')
-    : array.splice(...args);
+  return obj;
 };
 /**
- * Joins two arrays together and removes duplicate items.
+ * Converts a form to an Object.
  * @function
- * @memberOf array
- * @param {Array} x The first array to join.
- * @param {Array} y The second array to join.
+ * @memberOf object
+ * @param {HTMLFormElement} form The form element.
+ * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
  * @example
- * console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]
- * @returns {Array} The joined array from the two other arrays.
+ * html:
+ * ```
+ * &lt;form id="form">
+ *   &lt;input name"input" />
+ *   &lt;input name="input2" />
+ * &lt;/form>
+ * ```
+ * js:
+ * const form = document.getElementById("form");
+ * console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }
  */
-export let unionArrays = (x, y) => {
-  var obj = {};
-  for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
-  for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
-  var res = [];
-  for (var k in obj) {
-    if (obj.hasOwnProperty(k)) res.push(obj[k]);
-  }
-  return res;
+export let formToObject = (form) => {
+  node();
+  return Array.from(new FormData(form)).reduce(
+    (acc, [key, value]) => ({
+      ...acc,
+      [key]: value,
+    }),
+  );
 };
 /**
- * averageBy
+ * Sorts an object alphabetically by its keys.
  * @function
- * @memberOf array
- * @param {Array.&lt;number>} arr The array to average
- * @param {Function} fn The function to apply to each item of the array.
+ * @memberOf object
+ * @param {Object} obj The object to sort.
  * @example
- * Logs the average of the first 4 square numbers:
- * console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5
- * @returns {Number} The average of the array.
+ * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
+ * // The object is now {anotherThing: "Another value!", testing: "A value"}
+ * @returns {Object} The sorted object.
  */
-export let averageBy = (arr, fn) =>
-  arr
-    .map(typeof fn === 'function' ? fn : (val) => val[fn])
-    .reduce((acc, val) => acc + val, 0) / arr.length;
-
-/**
- * Removes duplicates from an array
- * @function
- * @memberOf array
- * @param {Array} array The array to remove duplicates from.
- * @example
- * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
- * @returns {Array} The array with no duplicates.
- */
-export let uniqueArray = (array) => [...new Set(array)];
-/**
- * For each item in an array, run a callback with it.
- * @function
- * @memberOf array
- * @param {Array|String|Number} array The array, string or number to run the callback with.
- * @param {Function} callback The callback function to run on the array items.
- * @example
- * _$.each(new Array(6), (array_item, i) => console.log(i));
- * // 0
- * // 1
- * // 2
- * // 3
- * // 4
- * // 5
- * @returns {undefined}
- */
-export let each = (array, callback) => {
-  array =
-    typeof array === 'number'
-      ? _$.range(1, array)
-      : typeof array === 'string'
-      ? array.split('')
-      : array;
-  for (let i = 0; i &lt; array.length; i++) {
-    callback(array[i], i, array);
-  }
+export let sortObj = (obj) => {
+  return Object.keys(obj)
+    .sort()
+    .reduce(function (result, key) {
+      result[key] = obj[key];
+      return result;
+    }, {});
 };
-//#endregion Array
+//#endregion Object
 </code></pre>
         </article>
     </section>
