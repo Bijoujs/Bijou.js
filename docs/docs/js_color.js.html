@@ -104,7 +104,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=9716492><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=5257028><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
     <path 
         fill-rule="evenodd" 
         clip-rule="evenodd" 
@@ -136,18 +136,18 @@
  * @returns {String} The hex color.
  */
 export let rgbToHex = (rgb) => {
-    let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
-    rgb = rgb.substr(4).split(')')[0].split(sep);
+  let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
+  rgb = rgb.substr(4).split(')')[0].split(sep);
 
-    let r = (+rgb[0]).toString(16),
-        g = (+rgb[1]).toString(16),
-        b = (+rgb[2]).toString(16);
+  let r = (+rgb[0]).toString(16),
+    g = (+rgb[1]).toString(16),
+    b = (+rgb[2]).toString(16);
 
-    if (r.length == 1) r = '0' + r;
-    if (g.length == 1) g = '0' + g;
-    if (b.length == 1) b = '0' + b;
+  if (r.length == 1) r = '0' + r;
+  if (g.length == 1) g = '0' + g;
+  if (b.length == 1) b = '0' + b;
 
-    return '#' + r + g + b;
+  return '#' + r + g + b;
 };
 /**
  * Converts a hex code to a RGB color.
@@ -159,38 +159,38 @@ export let rgbToHex = (rgb) => {
  * @returns {String} The RGB color converted from the hex code.
  */
 export let hexToRGB = (hex) => {
-    if (
-        ((hex.length - 1 === 6 ||
-            hex.length - 1 === 8 ||
-            hex.length - 1 === 4 ||
-            hex.length - 1 === 3) &amp;&amp;
-            hex.startsWith('#')) ||
-        ((hex.length === 6 ||
-            hex.length === 8 ||
-            hex.length === 4 ||
-            hex.length === 3) &amp;&amp;
-            !hex.startsWith('#'))
-    ) {
-    } else {
-        throw new Error('Invalid hex');
-    }
-    let alpha = false,
-        h = hex.slice(hex.startsWith('#') ? 1 : 0);
-    if (h.length === 3) h = [...h].map((x) => x + x).join('');
-    else if (h.length === 8) alpha = true;
-    h = parseInt(h, 16);
-    return (
-        'rgb' +
-        (alpha ? 'a' : '') +
-        '(' +
-        (h >>> (alpha ? 24 : 16)) +
-        ', ' +
-        ((h &amp; (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
-        ', ' +
-        ((h &amp; (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
-        (alpha ? `, ${h &amp; 0x000000ff}` : '') +
-        ')'
-    );
+  if (
+    ((hex.length - 1 === 6 ||
+      hex.length - 1 === 8 ||
+      hex.length - 1 === 4 ||
+      hex.length - 1 === 3) &amp;&amp;
+      hex.startsWith('#')) ||
+    ((hex.length === 6 ||
+      hex.length === 8 ||
+      hex.length === 4 ||
+      hex.length === 3) &amp;&amp;
+      !hex.startsWith('#'))
+  ) {
+  } else {
+    throw new Error('Invalid hex');
+  }
+  let alpha = false,
+    h = hex.slice(hex.startsWith('#') ? 1 : 0);
+  if (h.length === 3) h = [...h].map((x) => x + x).join('');
+  else if (h.length === 8) alpha = true;
+  h = parseInt(h, 16);
+  return (
+    'rgb' +
+    (alpha ? 'a' : '') +
+    '(' +
+    (h >>> (alpha ? 24 : 16)) +
+    ', ' +
+    ((h &amp; (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
+    ', ' +
+    ((h &amp; (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
+    (alpha ? `, ${h &amp; 0x000000ff}` : '') +
+    ')'
+  );
 };
 /**
  * Blends two colors through additive blending by a percentage.
@@ -204,40 +204,40 @@ export let hexToRGB = (hex) => {
  * @returns {String} The blended color (A hex code).
  */
 export let blendColors = (color1, color2, percent = 50) => {
-    const generateHex = (r, g, b) => {
-        let R = r.toString(16);
-        let G = g.toString(16);
-        let B = b.toString(16);
+  const generateHex = (r, g, b) => {
+    let R = r.toString(16);
+    let G = g.toString(16);
+    let B = b.toString(16);
 
-        while (R.length &lt; 2) {
-            R = `0${R}`;
-        }
-        while (G.length &lt; 2) {
-            G = `0${G}`;
-        }
-        while (B.length &lt; 2) {
-            B = `0${B}`;
-        }
+    while (R.length &lt; 2) {
+      R = `0${R}`;
+    }
+    while (G.length &lt; 2) {
+      G = `0${G}`;
+    }
+    while (B.length &lt; 2) {
+      B = `0${B}`;
+    }
 
-        return `#${R}${G}${B}`;
-    };
+    return `#${R}${G}${B}`;
+  };
 
-    const mix = (start, end, percent) =>
-        start + (percent / 100) * (end - start);
+  const mix = (start, end, percent) =>
+    start + (percent / 100) * (end - start);
 
-    const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
-    const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
-    const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16);
+  const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
+  const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
+  const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16);
 
-    const red2 = parseInt(`${color2[1]}${color2[2]}`, 16);
-    const green2 = parseInt(`${color2[3]}${color2[4]}`, 16);
-    const blue2 = parseInt(`${color2[5]}${color2[6]}`, 16);
+  const red2 = parseInt(`${color2[1]}${color2[2]}`, 16);
+  const green2 = parseInt(`${color2[3]}${color2[4]}`, 16);
+  const blue2 = parseInt(`${color2[5]}${color2[6]}`, 16);
 
-    const red = Math.round(mix(red1, red2, percent));
-    const green = Math.round(mix(green1, green2, percent));
-    const blue = Math.round(mix(blue1, blue2, percent));
+  const red = Math.round(mix(red1, red2, percent));
+  const green = Math.round(mix(green1, green2, percent));
+  const blue = Math.round(mix(blue1, blue2, percent));
 
-    return generateHex(red, green, blue);
+  return generateHex(red, green, blue);
 };
 /**
  * Generates a random hex color.
@@ -248,7 +248,7 @@ export let blendColors = (color1, color2, percent = 50) => {
  * @returns {String} A random Hex color
  */
 export let randomColor = () =>
-    `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 /**
  * Lighten or darken a color by a certain amount
  * @function
@@ -260,33 +260,33 @@ export let randomColor = () =>
  * @returns {String} The color lightened.
  */
 export let lightenColor = (col, amt) => {
-    var usePound = false;
+  var usePound = false;
 
-    if (col[0] == '#') {
-        col = col.slice(1);
-        usePound = true;
-    }
+  if (col[0] == '#') {
+    col = col.slice(1);
+    usePound = true;
+  }
 
-    var num = parseInt(col, 16);
+  var num = parseInt(col, 16);
 
-    var r = (num >> 16) + amt;
+  var r = (num >> 16) + amt;
 
-    if (r > 255) r = 255;
-    else if (r &lt; 0) r = 0;
+  if (r > 255) r = 255;
+  else if (r &lt; 0) r = 0;
 
-    var b = ((num >> 8) &amp; 0x00ff) + amt;
+  var b = ((num >> 8) &amp; 0x00ff) + amt;
 
-    if (b > 255) b = 255;
-    else if (b &lt; 0) b = 0;
+  if (b > 255) b = 255;
+  else if (b &lt; 0) b = 0;
 
-    var g = (num &amp; 0x0000ff) + amt;
+  var g = (num &amp; 0x0000ff) + amt;
 
-    if (g > 255) g = 255;
-    else if (g &lt; 0) g = 0;
+  if (g > 255) g = 255;
+  else if (g &lt; 0) g = 0;
 
-    return (
-        (usePound ? '#' : '') + (g | (b &lt;&lt; 8) | (r &lt;&lt; 16)).toString(16)
-    );
+  return (
+    (usePound ? '#' : '') + (g | (b &lt;&lt; 8) | (r &lt;&lt; 16)).toString(16)
+  );
 };
 /**
   * Tests if a color is light or dark and returns an object representation.
@@ -302,33 +302,33 @@ export let lightenColor = (col, amt) => {
   * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
   */
 export let lightOrDark = (color) => {
-    var r, g, b, hsp;
-    if (color.match(/^rgb/)) {
-        color = color.match(
-            /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
-        );
-
-        r = color[1];
-        g = color[2];
-        b = color[3];
-    } else {
-        color = +(
-            '0x' + color.slice(1).replace(color.length &lt; 5 &amp;&amp; /./g, '$&amp;$&amp;')
-        );
-
-        r = color >> 16;
-        g = (color >> 8) &amp; 255;
-        b = color &amp; 255;
-    }
-
-    hsp = Math.sqrt(
-        0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b),
+  var r, g, b, hsp;
+  if (color.match(/^rgb/)) {
+    color = color.match(
+      /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
     );
-    if (hsp > 127.5) {
-        return { lightOrDark: 'light', hsp: hsp };
-    } else {
-        return { lightOrDark: 'dark', hsp: hsp };
-    }
+
+    r = color[1];
+    g = color[2];
+    b = color[3];
+  } else {
+    color = +(
+      '0x' + color.slice(1).replace(color.length &lt; 5 &amp;&amp; /./g, '$&amp;$&amp;')
+    );
+
+    r = color >> 16;
+    g = (color >> 8) &amp; 255;
+    b = color &amp; 255;
+  }
+
+  hsp = Math.sqrt(
+    0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b),
+  );
+  if (hsp > 127.5) {
+    return { lightOrDark: 'light', hsp: hsp };
+  } else {
+    return { lightOrDark: 'dark', hsp: hsp };
+  }
 };
 //#endregion Color
 </code></pre>

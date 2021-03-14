@@ -104,7 +104,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=9716492><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=5257028><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
     <path 
         fill-rule="evenodd" 
         clip-rule="evenodd" 
@@ -139,9 +139,9 @@
  * @param {Function} fn The function to use
  */
 export let spread = (fn) => {
-    return (args) => {
-        call_me.apply(this, args);
-    };
+  return (args) => {
+    call_me.apply(this, args);
+  };
 };
 /**
  * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
@@ -153,17 +153,17 @@ export let spread = (fn) => {
  * @returns {Function} The memoized function.
  */
 export let memoize = (fn) => {
-    let cache = {};
-    return function () {
-        let args = JSON.stringify(Array.from(arguments));
-        let arg_array = Array.from(arguments);
-        if (cache[args]) {
-            return cache[args];
-        } else {
-            cache[args] = fn(...arg_array);
-            return cache[args];
-        }
-    };
+  let cache = {};
+  return function () {
+    let args = JSON.stringify(Array.from(arguments));
+    let arg_array = Array.from(arguments);
+    if (cache[args]) {
+      return cache[args];
+    } else {
+      cache[args] = fn(...arg_array);
+      return cache[args];
+    }
+  };
 };
 /**
  * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
@@ -177,7 +177,7 @@ export let memoize = (fn) => {
  * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  6 * 2 + 2
  */
 export let composeFunction = (...functions) => (args) =>
-    functions.reduceRight((arg, fn) => fn(arg), args);
+  functions.reduceRight((arg, fn) => fn(arg), args);
 /**
  * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
  * @function
@@ -191,9 +191,9 @@ export let composeFunction = (...functions) => (args) =>
  * console.log(_$.curryFunction(fn, 4, 5)(4)(3)(2)); // 120 i.e. 5 * 4 * 3 * 2
  */
 export let curryFunction = (fn, arity = fn.length, ...args) =>
-    arity &lt;= args.length
-        ? fn(...args)
-        : curryFunction.bind(null, fn, arity, ...args);
+  arity &lt;= args.length
+    ? fn(...args)
+    : curryFunction.bind(null, fn, arity, ...args);
 /**
  * Returns if the given function is async or not.
  * @memberOf function
@@ -205,7 +205,7 @@ export let curryFunction = (fn, arity = fn.length, ...args) =>
  * console.log(_$.isAsync(asyncFn)); // true
  */
 export let isAsync = (val) =>
-    Object.prototype.toString.call(val) === '[object AsyncFunction]';
+  Object.prototype.toString.call(val) === '[object AsyncFunction]';
 /**
  * Only runs the input function at MAX with the delay specified.
  * @function
@@ -219,35 +219,35 @@ export let isAsync = (val) =>
  * @returns {Function} The throttled function
  */
 export let throttle = (func, wait, options) => {
-    var context, args, result;
-    var timeout = null;
-    var previous = 0;
-    if (!options) options = {};
-    var later = function () {
-        previous = options.leading === false ? 0 : Date.now();
+  var context, args, result;
+  var timeout = null;
+  var previous = 0;
+  if (!options) options = {};
+  var later = function () {
+    previous = options.leading === false ? 0 : Date.now();
+    timeout = null;
+    result = func.apply(context, args);
+    if (!timeout) context = args = null;
+  };
+  return function () {
+    var now = Date.now();
+    if (!previous &amp;&amp; options.leading === false) previous = now;
+    var remaining = wait - (now - previous);
+    context = this;
+    args = arguments;
+    if (remaining &lt;= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
         timeout = null;
-        result = func.apply(context, args);
-        if (!timeout) context = args = null;
-    };
-    return function () {
-        var now = Date.now();
-        if (!previous &amp;&amp; options.leading === false) previous = now;
-        var remaining = wait - (now - previous);
-        context = this;
-        args = arguments;
-        if (remaining &lt;= 0 || remaining > wait) {
-            if (timeout) {
-                clearTimeout(timeout);
-                timeout = null;
-            }
-            previous = now;
-            result = func.apply(context, args);
-            if (!timeout) context = args = null;
-        } else if (!timeout &amp;&amp; options.trailing !== false) {
-            timeout = setTimeout(later, remaining);
-        }
-        return result;
-    };
+      }
+      previous = now;
+      result = func.apply(context, args);
+      if (!timeout) context = args = null;
+    } else if (!timeout &amp;&amp; options.trailing !== false) {
+      timeout = setTimeout(later, remaining);
+    }
+    return result;
+  };
 };
 /**
  * Debounces a function
@@ -260,45 +260,45 @@ export let throttle = (func, wait, options) => {
  * @param {Boolean} [immediate=false] Whether or not to run immediately, or after a group of executions.
  */
 export let debounce = (func, wait, immediate = false) => {
-    // 'private' variable for instance
-    // The returned function will be able to reference this due to closure.
-    // Each call to the returned function will share this common timer.
-    var timeout;
+  // 'private' variable for instance
+  // The returned function will be able to reference this due to closure.
+  // Each call to the returned function will share this common timer.
+  var timeout;
 
-    // Calling debounce returns a new anonymous function
-    return function () {
-        // reference the context and args for the setTimeout function
-        var context = this,
-            args = arguments;
+  // Calling debounce returns a new anonymous function
+  return function () {
+    // reference the context and args for the setTimeout function
+    var context = this,
+      args = arguments;
 
-        // Should the function be called now? If immediate is true
-        //   and not already in a timeout then the answer is: Yes
-        var callNow = immediate &amp;&amp; !timeout;
+    // Should the function be called now? If immediate is true
+    //   and not already in a timeout then the answer is: Yes
+    var callNow = immediate &amp;&amp; !timeout;
 
-        // This is the basic debounce behaviour where you can call this
-        //   function several times, but it will only execute once
-        //   [before or after imposing a delay].
-        //   Each time the returned function is called, the timer starts over.
-        clearTimeout(timeout);
+    // This is the basic debounce behaviour where you can call this
+    //   function several times, but it will only execute once
+    //   [before or after imposing a delay].
+    //   Each time the returned function is called, the timer starts over.
+    clearTimeout(timeout);
 
-        // Set the new timeout
-        timeout = setTimeout(function () {
-            // Inside the timeout function, clear the timeout variable
-            // which will let the next execution run when in 'immediate' mode
-            timeout = null;
+    // Set the new timeout
+    timeout = setTimeout(function () {
+      // Inside the timeout function, clear the timeout variable
+      // which will let the next execution run when in 'immediate' mode
+      timeout = null;
 
-            // Check if the function already ran with the immediate flag
-            if (!immediate) {
-                // Call the original function with apply
-                // apply lets you define the 'this' object as well as the arguments
-                //    (both captured before setTimeout)
-                func.apply(context, args);
-            }
-        }, wait);
+      // Check if the function already ran with the immediate flag
+      if (!immediate) {
+        // Call the original function with apply
+        // apply lets you define the 'this' object as well as the arguments
+        //    (both captured before setTimeout)
+        func.apply(context, args);
+      }
+    }, wait);
 
-        // Immediate mode and no wait timer? Execute the function..
-        if (callNow) func.apply(context, args);
-    };
+    // Immediate mode and no wait timer? Execute the function..
+    if (callNow) func.apply(context, args);
+  };
 };
 /**
  * Runs a function asynchronously in a web worker.
@@ -310,19 +310,19 @@ export let debounce = (func, wait, immediate = false) => {
  * @returns {Promise} A promise that resolves into the return value of the function.
  */
 export let runAsync = (fn) => {
-    const worker = new Worker(
-        URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
-            type: 'application/javascript; charset=utf-8',
-        }),
-    );
-    return new Promise((res, rej) => {
-        worker.onmessage = ({ data }) => {
-            res(data), worker.terminate();
-        };
-        worker.onerror = (err) => {
-            rej(err), worker.terminate();
-        };
-    });
+  const worker = new Worker(
+    URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
+      type: 'application/javascript; charset=utf-8',
+    }),
+  );
+  return new Promise((res, rej) => {
+    worker.onmessage = ({ data }) => {
+      res(data), worker.terminate();
+    };
+    worker.onerror = (err) => {
+      rej(err), worker.terminate();
+    };
+  });
 };
 //#endregion Function
 </code></pre>

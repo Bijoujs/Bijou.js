@@ -104,7 +104,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=9716492><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=5257028><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
     <path 
         fill-rule="evenodd" 
         clip-rule="evenodd" 
@@ -138,22 +138,22 @@
  * @param {Array|String} a2 The 2nd array or string.
  */
 export let arrayDiff = (a1, a2) => {
-    var a = [],
-        diff = [];
-    for (var i = 0; i &lt; a1.length; i++) {
-        a[a1[i]] = true;
+  var a = [],
+    diff = [];
+  for (var i = 0; i &lt; a1.length; i++) {
+    a[a1[i]] = true;
+  }
+  for (var i = 0; i &lt; a2.length; i++) {
+    if (a[a2[i]]) {
+      delete a[a2[i]];
+    } else {
+      a[a2[i]] = true;
     }
-    for (var i = 0; i &lt; a2.length; i++) {
-        if (a[a2[i]]) {
-            delete a[a2[i]];
-        } else {
-            a[a2[i]] = true;
-        }
-    }
-    for (var k in a) {
-        diff.push(k);
-    }
-    return diff;
+  }
+  for (var k in a) {
+    diff.push(k);
+  }
+  return diff;
 };
 
 /**
@@ -167,38 +167,38 @@ export let arrayDiff = (a1, a2) => {
  * @returns {Array.&lt;Array.&lt;number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
  */
 export let diff = function (text1, text2) {
-    //Takes in two strings
-    //Returns an array of the span of the differences
-    //So if given:
-    // text1: "that is number 124"
-    // text2: "this is number 123"
-    //It will return:
-    // [[2,4],[17,18]]
-    //If the strings are of different lengths, it will check up to the end of text1
-    //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
-    var diffRange = [];
-    var currentRange = undefined;
-    for (var i = 0; i &lt; text1.length; i++) {
-        if (text1[i] != text2[i]) {
-            //Found a diff!
-            if (currentRange == undefined) {
-                //Start a new range
-                currentRange = [i];
-            }
-        }
-        if (currentRange != undefined &amp;&amp; text1[i] == text2[i]) {
-            //End of range!
-            currentRange.push(i);
-            diffRange.push(currentRange);
-            currentRange = undefined;
-        }
+  //Takes in two strings
+  //Returns an array of the span of the differences
+  //So if given:
+  // text1: "that is number 124"
+  // text2: "this is number 123"
+  //It will return:
+  // [[2,4],[17,18]]
+  //If the strings are of different lengths, it will check up to the end of text1
+  //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
+  var diffRange = [];
+  var currentRange = undefined;
+  for (var i = 0; i &lt; text1.length; i++) {
+    if (text1[i] != text2[i]) {
+      //Found a diff!
+      if (currentRange == undefined) {
+        //Start a new range
+        currentRange = [i];
+      }
     }
-    //Push any last range if there's still one at the end
-    if (currentRange != undefined) {
-        currentRange.push(i);
-        diffRange.push(currentRange);
+    if (currentRange != undefined &amp;&amp; text1[i] == text2[i]) {
+      //End of range!
+      currentRange.push(i);
+      diffRange.push(currentRange);
+      currentRange = undefined;
     }
-    return diffRange;
+  }
+  //Push any last range if there's still one at the end
+  if (currentRange != undefined) {
+    currentRange.push(i);
+    diffRange.push(currentRange);
+  }
+  return diffRange;
 };
 
 /**
@@ -211,18 +211,18 @@ export let diff = function (text1, text2) {
  * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
  */
 export let remove = (array, item) => {
-    if (typeof array === 'string') {
-        return array.replace(item, '');
-    }
-    if (typeof array === 'object') {
-        array[`${item}`] = undefined;
-        array = _$.clone(array, (itm) => itm !== undefined);
-        return array;
-    }
-    if (array.indexOf(item) > -1) {
-        array.splice(array.indexOf(item), 1);
-    }
+  if (typeof array === 'string') {
+    return array.replace(item, '');
+  }
+  if (typeof array === 'object') {
+    array[`${item}`] = undefined;
+    array = _$.clone(array, (itm) => itm !== undefined);
     return array;
+  }
+  if (array.indexOf(item) > -1) {
+    array.splice(array.indexOf(item), 1);
+  }
+  return array;
 };
 /**
  * Splices an ArrayBuffer.
@@ -235,13 +235,13 @@ export let remove = (array, item) => {
  * @returns {Number} The hex representation of part of the ArrayBuffer.
  */
 export let spliceArrayBuffer = (arr, start, end, endian = false) => {
-    var direction = endian ? -1 : 1;
-    if (endian) [start, end] = [end, start];
-    start = Math.floor(start);
-    end = Math.floor(end) + direction;
-    for (var i = start, value = 0; i != end; i += direction)
-        value = 256 * value + arr[i];
-    return value;
+  var direction = endian ? -1 : 1;
+  if (endian) [start, end] = [end, start];
+  start = Math.floor(start);
+  end = Math.floor(end) + direction;
+  for (var i = start, value = 0; i != end; i += direction)
+    value = 256 * value + arr[i];
+  return value;
 };
 
 /**
@@ -255,11 +255,11 @@ export let spliceArrayBuffer = (arr, start, end, endian = false) => {
  * @param {Number} [level=1] The number of iterations to flatten it.
  */
 export let flatten = (array, level = 1) => {
-    var output = array;
-    _$.each(level, () => {
-        output = [].concat.apply([], array);
-    });
-    return output;
+  var output = array;
+  _$.each(level, () => {
+    output = [].concat.apply([], array);
+  });
+  return output;
 };
 
 /**
@@ -272,11 +272,11 @@ export let flatten = (array, level = 1) => {
  * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
  */
 export let nFlatten = (arr) => {
-    return arr.reduce(function (flat, toFlatten) {
-        return flat.concat(
-            Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
-        );
-    }, []);
+  return arr.reduce(function (flat, toFlatten) {
+    return flat.concat(
+      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
+    );
+  }, []);
 };
 
 /**
@@ -302,7 +302,7 @@ export let contains = (array, item) => array.includes(item);
  * @returns {Array} The shuffled array.
  */
 export let shuffleArray = (array) =>
-    array.sort(() => Math.random() - 0.5);
+  array.sort(() => Math.random() - 0.5);
 
 /**
  * Splice but also for strings
@@ -317,14 +317,14 @@ export let shuffleArray = (array) =>
  * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
  */
 export let splice = (array, index, remove = 0, item) => {
-    let args = Array.from(arguments);
-    args.shift();
-    return typeof array === 'string'
-        ? array
-            .split('')
-            .splice(...args)
-            .join('')
-        : array.splice(...args);
+  let args = Array.from(arguments);
+  args.shift();
+  return typeof array === 'string'
+    ? array
+        .split('')
+        .splice(...args)
+        .join('')
+    : array.splice(...args);
 };
 /**
  * Joins two arrays together and removes duplicate items.
@@ -337,14 +337,14 @@ export let splice = (array, index, remove = 0, item) => {
  * @returns {Array} The joined array from the two other arrays.
  */
 export let unionArrays = (x, y) => {
-    var obj = {};
-    for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
-    for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
-    var res = [];
-    for (var k in obj) {
-        if (obj.hasOwnProperty(k)) res.push(obj[k]);
-    }
-    return res;
+  var obj = {};
+  for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
+  for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
+  var res = [];
+  for (var k in obj) {
+    if (obj.hasOwnProperty(k)) res.push(obj[k]);
+  }
+  return res;
 };
 /**
  * averageBy
@@ -358,9 +358,9 @@ export let unionArrays = (x, y) => {
  * @returns {Number} The average of the array.
  */
 export let averageBy = (arr, fn) =>
-    arr
-        .map(typeof fn === 'function' ? fn : (val) => val[fn])
-        .reduce((acc, val) => acc + val, 0) / arr.length;
+  arr
+    .map(typeof fn === 'function' ? fn : (val) => val[fn])
+    .reduce((acc, val) => acc + val, 0) / arr.length;
 
 /**
  * Removes duplicates from an array
@@ -389,15 +389,15 @@ export let uniqueArray = (array) => [...new Set(array)];
  * @returns {undefined}
  */
 export let each = (array, callback) => {
-    array =
-        typeof array === 'number'
-            ? _$.range(1, array)
-            : typeof array === 'string'
-                ? array.split('')
-                : array;
-    for (let i = 0; i &lt; array.length; i++) {
-        callback(array[i], i, array);
-    }
+  array =
+    typeof array === 'number'
+      ? _$.range(1, array)
+      : typeof array === 'string'
+      ? array.split('')
+      : array;
+  for (let i = 0; i &lt; array.length; i++) {
+    callback(array[i], i, array);
+  }
 };
 //#endregion Array
 </code></pre>

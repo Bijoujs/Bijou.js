@@ -104,7 +104,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=9716492><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+    <h2><a href="index.html"><div class="text">Home</div></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><ul><li><a href='https://bijou.js.org' class='' id='' target=''>Home</a></li><li><a href='https://github.com/bijou-js/bijou.js' class='' id='' target='_blank'>Github</a></li><li><a href='https://bijou.js.org/docs/bijou.html' class='' id='' target=''>Functions in Bijou</a></li></ul><h3>Namespaces</h3><ul><li class="accordion collapsed" id=5257028><div class="accordion-title"><a href="bijou.html">bijou</a><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
     <path 
         fill-rule="evenodd" 
         clip-rule="evenodd" 
@@ -138,7 +138,7 @@
  * @returns {String} String that has been for looped
  */
 export let forTemplateLiteral = (arr, callback) => {
-    return arr.map((item, i) => callback(item, i)).join``;
+  return arr.map((item, i) => callback(item, i)).join``;
 };
 
 /**
@@ -151,7 +151,7 @@ export let forTemplateLiteral = (arr, callback) => {
  * @param {String} str The string to use.
  */
 export let deburr = (str) =>
-    str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 /**
  * Returns either "mobile" or "desktop" depending on which type of device the user is using.
  * @function
@@ -162,12 +162,12 @@ export let deburr = (str) =>
  * console.log(_$.mobileOrDesktop()); // e.g. "desktop"
  */
 export let mobileOrDesktop = () => {
-    node();
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent,
-    )
-        ? 'mobile'
-        : 'desktop';
+  node();
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent,
+  )
+    ? 'mobile'
+    : 'desktop';
 };
 /**
  * Removes tags from the HTML string specified.
@@ -196,27 +196,27 @@ export let removeTags = (html) => html.replace(/&lt;[^>]*>/g, '');
  * @returns {undefined}
  */
 export let speak = (
-    text,
-    lang = 'en',
-    volume = 1,
-    voice = 1,
-    pitch = 1,
-    rate = 1,
+  text,
+  lang = 'en',
+  volume = 1,
+  voice = 1,
+  pitch = 1,
+  rate = 1,
 ) => {
-    var msg = new SpeechSynthesisUtterance();
-    var voices = window.speechSynthesis.getVoices();
-    let def = voices.filter((c) => c.default);
-    msg.voice = voice
-        ? typeof voice === 'number'
-            ? voices[voice]
-            : voice
-        : def;
-    msg.volume = volume; // From 0 to 1
-    msg.rate = rate; // From 0.1 to 10
-    msg.pitch = pitch; // From 0 to 2
-    msg.text = text;
-    msg.lang = lang;
-    speechSynthesis.speak(msg);
+  var msg = new SpeechSynthesisUtterance();
+  var voices = window.speechSynthesis.getVoices();
+  let def = voices.filter((c) => c.default);
+  msg.voice = voice
+    ? typeof voice === 'number'
+      ? voices[voice]
+      : voice
+    : def;
+  msg.volume = volume; // From 0 to 1
+  msg.rate = rate; // From 0.1 to 10
+  msg.pitch = pitch; // From 0 to 2
+  msg.text = text;
+  msg.lang = lang;
+  speechSynthesis.speak(msg);
 };
 /**
  * Returns the last space in the string given replaced with "&amp;nbsp;"
@@ -229,17 +229,17 @@ export let speak = (
  * @returns {String} The replaced string.
  */
 export let widows = (text) => {
-    var wordArray = text.split(' ');
-    var finalTitle = '';
-    for (var i = 0; i &lt;= wordArray.length - 1; i++) {
-        finalTitle += wordArray[i];
-        if (i == wordArray.length - 2) {
-            finalTitle += '&amp;nbsp;';
-        } else {
-            finalTitle += ' ';
-        }
+  var wordArray = text.split(' ');
+  var finalTitle = '';
+  for (var i = 0; i &lt;= wordArray.length - 1; i++) {
+    finalTitle += wordArray[i];
+    if (i == wordArray.length - 2) {
+      finalTitle += '&amp;nbsp;';
+    } else {
+      finalTitle += ' ';
     }
-    return finalTitle;
+  }
+  return finalTitle;
 };
 
 /**
@@ -252,12 +252,12 @@ export let widows = (text) => {
  * @returns {String} The string of unCamelCased code.
  */
 export let unCamelCase = function (str) {
-    return str
-        .replace(/([a-z])([A-Z])/g, '$1 $2')
-        .replace(/\b([A-Z]+)([A-Z])([a-z])/, '$1 $2$3')
-        .replace(/^./, function (s) {
-            return s.toUpperCase();
-        });
+  return str
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/\b([A-Z]+)([A-Z])([a-z])/, '$1 $2$3')
+    .replace(/^./, function (s) {
+      return s.toUpperCase();
+    });
 };
 
 /**
@@ -288,726 +288,726 @@ export let unCamelCase = function (str) {
  * @returns {String} The highlighted string of code as HTML code.
  */
 export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
-    node();
-    //        .==.        .==.
-    //       //`^\\      //^`\\
-    //      // ^ ^\(\__/)/^ ^^\\
-    //     //^ ^^ ^/6  6\ ^^ ^ \\
-    //    //^ ^^ ^/( .. )\^ ^ ^ \\
-    //   // ^^ ^/\| v""v |/\^ ^ ^\\
-    //  // ^^/\/ /  `~~`  \ \/\^ ^\\
-    //  -----------------------------
-    /// HERE BE DRAGONS
-    let el = document.createElement('DIV');
-    el.innerText = string;
-    let highlightel = (elmnt, mode, colors = {}) => {
-        // Credit to w3schools for this
-        var lang = mode || 'html';
-        var elmntObj = document.getElementById(elmnt) || elmnt;
-        var elmntTxt = elmntObj.innerHTML;
-        var tagcolor = colors.tagColor || 'mediumblue';
-        var tagnamecolor = colors.tagNameColor || 'brown';
-        var attributecolor = colors.attributeColor || 'red';
-        var attributevaluecolor =
-            colors.attributeValueColor || 'mediumblue';
-        var commentcolor = colors.commentColor || 'green';
-        var cssselectorcolor = colors.cssSelectorColor || 'brown';
-        var csspropertycolor = colors.cssPropertyColor || 'red';
-        var csspropertyvaluecolor =
-            colors.cssPropertyValueColor || 'mediumblue';
-        var cssdelimitercolor = colors.cssLimiterColor || 'black';
-        var cssimportantcolor = colors.cssImportantColor || 'red';
-        var jscolor = colors.jsColor || 'black';
-        var jskeywordcolor = colors.jsKeywordColor || 'mediumblue';
-        var jsstringcolor = colors.jsStringColor || 'brown';
-        var jsnumbercolor = colors.jsNumberColor || 'red';
-        var jspropertycolor = colors.jsPropertyColor || 'black';
-        elmntObj.style.fontFamily =
-            colors.fontFamily || "Consolas,'Courier New', monospace";
-        if (!lang) {
-            lang = 'html';
-        }
-        if (lang == 'html') {
-            elmntTxt = htmlMode(elmntTxt);
-        }
-        if (lang == 'css') {
-            elmntTxt = cssMode(elmntTxt);
-        }
-        if (lang == 'js') {
-            elmntTxt = jsMode(elmntTxt);
-        }
-        elmntObj.innerHTML = elmntTxt;
+  node();
+  //        .==.        .==.
+  //       //`^\\      //^`\\
+  //      // ^ ^\(\__/)/^ ^^\\
+  //     //^ ^^ ^/6  6\ ^^ ^ \\
+  //    //^ ^^ ^/( .. )\^ ^ ^ \\
+  //   // ^^ ^/\| v""v |/\^ ^ ^\\
+  //  // ^^/\/ /  `~~`  \ \/\^ ^\\
+  //  -----------------------------
+  /// HERE BE DRAGONS
+  let el = document.createElement('DIV');
+  el.innerText = string;
+  let highlightel = (elmnt, mode, colors = {}) => {
+    // Credit to w3schools for this
+    var lang = mode || 'html';
+    var elmntObj = document.getElementById(elmnt) || elmnt;
+    var elmntTxt = elmntObj.innerHTML;
+    var tagcolor = colors.tagColor || 'mediumblue';
+    var tagnamecolor = colors.tagNameColor || 'brown';
+    var attributecolor = colors.attributeColor || 'red';
+    var attributevaluecolor =
+      colors.attributeValueColor || 'mediumblue';
+    var commentcolor = colors.commentColor || 'green';
+    var cssselectorcolor = colors.cssSelectorColor || 'brown';
+    var csspropertycolor = colors.cssPropertyColor || 'red';
+    var csspropertyvaluecolor =
+      colors.cssPropertyValueColor || 'mediumblue';
+    var cssdelimitercolor = colors.cssLimiterColor || 'black';
+    var cssimportantcolor = colors.cssImportantColor || 'red';
+    var jscolor = colors.jsColor || 'black';
+    var jskeywordcolor = colors.jsKeywordColor || 'mediumblue';
+    var jsstringcolor = colors.jsStringColor || 'brown';
+    var jsnumbercolor = colors.jsNumberColor || 'red';
+    var jspropertycolor = colors.jsPropertyColor || 'black';
+    elmntObj.style.fontFamily =
+      colors.fontFamily || "Consolas,'Courier New', monospace";
+    if (!lang) {
+      lang = 'html';
+    }
+    if (lang == 'html') {
+      elmntTxt = htmlMode(elmntTxt);
+    }
+    if (lang == 'css') {
+      elmntTxt = cssMode(elmntTxt);
+    }
+    if (lang == 'js') {
+      elmntTxt = jsMode(elmntTxt);
+    }
+    elmntObj.innerHTML = elmntTxt;
 
-        function extract(str, start, end, func, repl) {
-            var s,
-                e,
-                d = '',
-                a = [];
-            while (str.search(start) > -1) {
-                s = str.search(start);
-                e = str.indexOf(end, s);
-                if (e == -1) {
-                    e = str.length;
-                }
-                if (repl) {
-                    a.push(func(str.substring(s, e + end.length)));
-                    str =
-                        str.substring(0, s) + repl + str.substr(e + end.length);
-                } else {
-                    d += str.substring(0, s);
-                    d += func(str.substring(s, e + end.length));
-                    str = str.substr(e + end.length);
-                }
-            }
-            this.rest = d + str;
-            this.arr = a;
+    function extract(str, start, end, func, repl) {
+      var s,
+        e,
+        d = '',
+        a = [];
+      while (str.search(start) > -1) {
+        s = str.search(start);
+        e = str.indexOf(end, s);
+        if (e == -1) {
+          e = str.length;
         }
-        function htmlMode(txt) {
-            var rest = txt,
-                done = '',
-                comment,
-                startpos,
-                endpos,
-                note,
-                i;
-            comment = new extract(
-                rest,
-                '&amp;lt;!--',
-                '--&amp;gt;',
-                commentMode,
-                'W3HTMLCOMMENTPOS',
-            );
-            rest = comment.rest;
-            while (rest.indexOf('&amp;lt;') > -1) {
-                note = '';
-                startpos = rest.indexOf('&amp;lt;');
-                if (rest.substr(startpos, 9).toUpperCase() == '&amp;LT;STYLE') {
-                    note = 'css';
-                }
-                if (rest.substr(startpos, 10).toUpperCase() == '&amp;LT;SCRIPT') {
-                    note = 'javascript';
-                }
-                endpos = rest.indexOf('&amp;gt;', startpos);
-                if (endpos == -1) {
-                    endpos = rest.length;
-                }
-                done += rest.substring(0, startpos);
-                done += tagMode(rest.substring(startpos, endpos + 4));
-                rest = rest.substr(endpos + 4);
-                if (note == 'css') {
-                    endpos = rest.indexOf('&amp;lt;/style&amp;gt;');
-                    if (endpos > -1) {
-                        done += cssMode(rest.substring(0, endpos));
-                        rest = rest.substr(endpos);
-                    }
-                }
-                if (note == 'javascript') {
-                    endpos = rest.indexOf('&amp;lt;/script&amp;gt;');
-                    if (endpos > -1) {
-                        done += jsMode(rest.substring(0, endpos));
-                        rest = rest.substr(endpos);
-                    }
-                }
-            }
-            rest = done + rest;
-            for (i = 0; i &lt; comment.arr.length; i++) {
-                rest = rest.replace('W3HTMLCOMMENTPOS', comment.arr[i]);
-            }
-            return rest;
+        if (repl) {
+          a.push(func(str.substring(s, e + end.length)));
+          str =
+            str.substring(0, s) + repl + str.substr(e + end.length);
+        } else {
+          d += str.substring(0, s);
+          d += func(str.substring(s, e + end.length));
+          str = str.substr(e + end.length);
         }
-        function tagMode(txt) {
-            var rest = txt,
-                done = '',
-                startpos,
-                endpos,
-                result;
-            while (rest.search(/(\s|&lt;br>)/) > -1) {
-                startpos = rest.search(/(\s|&lt;br>)/);
-                endpos = rest.indexOf('&amp;gt;');
-                if (endpos == -1) {
-                    endpos = rest.length;
-                }
-                done += rest.substring(0, startpos);
-                done += attributeMode(rest.substring(startpos, endpos));
-                rest = rest.substr(endpos);
-            }
-            result = done + rest;
-            result =
-                '&lt;span style=color:' +
-                _$.escapeHTML(tagcolor) +
-                '>&amp;lt;&lt;/span>' +
-                result.substring(4);
-            if (result.substr(result.length - 4, 4) == '&amp;gt;') {
-                result =
-                    result.substring(0, result.length - 4) +
-                    '&lt;span style=color:' +
-                    _$.escapeHTML(tagcolor) +
-                    '>&amp;gt;&lt;/span>';
-            }
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(tagnamecolor) +
-                '>' +
-                result +
-                '&lt;/span>'
-            );
+      }
+      this.rest = d + str;
+      this.arr = a;
+    }
+    function htmlMode(txt) {
+      var rest = txt,
+        done = '',
+        comment,
+        startpos,
+        endpos,
+        note,
+        i;
+      comment = new extract(
+        rest,
+        '&amp;lt;!--',
+        '--&amp;gt;',
+        commentMode,
+        'W3HTMLCOMMENTPOS',
+      );
+      rest = comment.rest;
+      while (rest.indexOf('&amp;lt;') > -1) {
+        note = '';
+        startpos = rest.indexOf('&amp;lt;');
+        if (rest.substr(startpos, 9).toUpperCase() == '&amp;LT;STYLE') {
+          note = 'css';
         }
-        function attributeMode(txt) {
-            var rest = txt,
-                done = '',
-                startpos,
-                endpos,
-                singlefnuttpos,
-                doublefnuttpos,
-                spacepos;
-            while (rest.indexOf('=') > -1) {
-                endpos = -1;
-                startpos = rest.indexOf('=');
-                singlefnuttpos = rest.indexOf("'", startpos);
-                doublefnuttpos = rest.indexOf('"', startpos);
-                spacepos = rest.indexOf(' ', startpos + 2);
-                if (
-                    spacepos > -1 &amp;&amp;
-                    (spacepos &lt; singlefnuttpos || singlefnuttpos == -1) &amp;&amp;
-                    (spacepos &lt; doublefnuttpos || doublefnuttpos == -1)
-                ) {
-                    endpos = rest.indexOf(' ', startpos);
-                } else if (
-                    doublefnuttpos > -1 &amp;&amp;
-                    (doublefnuttpos &lt; singlefnuttpos || singlefnuttpos == -1) &amp;&amp;
-                    (doublefnuttpos &lt; spacepos || spacepos == -1)
-                ) {
-                    endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1);
-                } else if (
-                    singlefnuttpos > -1 &amp;&amp;
-                    (singlefnuttpos &lt; doublefnuttpos || doublefnuttpos == -1) &amp;&amp;
-                    (singlefnuttpos &lt; spacepos || spacepos == -1)
-                ) {
-                    endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1);
-                }
-                if (!endpos || endpos == -1 || endpos &lt; startpos) {
-                    endpos = rest.length;
-                }
-                done += rest.substring(0, startpos);
-                done += attributeValueMode(
-                    rest.substring(startpos, endpos + 1),
-                );
-                rest = rest.substr(endpos + 1);
-            }
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(attributecolor) +
-                '>' +
-                done +
-                rest +
-                '&lt;/span>'
-            );
+        if (rest.substr(startpos, 10).toUpperCase() == '&amp;LT;SCRIPT') {
+          note = 'javascript';
         }
-        function attributeValueMode(txt) {
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(attributevaluecolor) +
-                '>' +
-                txt +
-                '&lt;/span>'
-            );
+        endpos = rest.indexOf('&amp;gt;', startpos);
+        if (endpos == -1) {
+          endpos = rest.length;
         }
-        function commentMode(txt) {
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(commentcolor) +
-                '>' +
-                txt +
-                '&lt;/span>'
-            );
+        done += rest.substring(0, startpos);
+        done += tagMode(rest.substring(startpos, endpos + 4));
+        rest = rest.substr(endpos + 4);
+        if (note == 'css') {
+          endpos = rest.indexOf('&amp;lt;/style&amp;gt;');
+          if (endpos > -1) {
+            done += cssMode(rest.substring(0, endpos));
+            rest = rest.substr(endpos);
+          }
         }
-        function cssMode(txt) {
-            var rest = txt,
-                done = '',
-                s,
-                e,
-                comment,
-                i,
-                midz,
-                c,
-                cc;
-            comment = new extract(
-                rest,
-                /\/\*/,
-                '*/',
-                commentMode,
-                'W3CSSCOMMENTPOS',
-            );
-            rest = comment.rest;
-            while (rest.search('{') > -1) {
-                s = rest.search('{');
-                midz = rest.substr(s + 1);
-                cc = 1;
-                c = 0;
-                for (i = 0; i &lt; midz.length; i++) {
-                    if (midz.substr(i, 1) == '{') {
-                        cc++;
-                        c++;
-                    }
-                    if (midz.substr(i, 1) == '}') {
-                        cc--;
-                    }
-                    if (cc == 0) {
-                        break;
-                    }
-                }
-                if (cc != 0) {
-                    c = 0;
-                }
-                e = s;
-                for (i = 0; i &lt;= c; i++) {
-                    e = rest.indexOf('}', e + 1);
-                }
-                if (e == -1) {
-                    e = rest.length;
-                }
-                done += rest.substring(0, s + 1);
-                done += cssPropertyMode(rest.substring(s + 1, e));
-                rest = rest.substr(e);
-            }
-            rest = done + rest;
-            rest = rest.replace(
-                /{/g,
-                '&lt;span style=color:' +
-                _$.escapeHTML(cssdelimitercolor) +
-                '>{&lt;/span>',
-            );
-            rest = rest.replace(
-                /}/g,
-                '&lt;span style=color:' +
-                _$.escapeHTML(cssdelimitercolor) +
-                '>}&lt;/span>',
-            );
-            for (i = 0; i &lt; comment.arr.length; i++) {
-                rest = rest.replace('W3CSSCOMMENTPOS', comment.arr[i]);
-            }
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(cssselectorcolor) +
-                '>' +
-                rest +
-                '&lt;/span>'
-            );
+        if (note == 'javascript') {
+          endpos = rest.indexOf('&amp;lt;/script&amp;gt;');
+          if (endpos > -1) {
+            done += jsMode(rest.substring(0, endpos));
+            rest = rest.substr(endpos);
+          }
         }
-        function cssPropertyMode(txt) {
-            var rest = txt,
-                done = '',
-                s,
-                e,
-                n,
-                loop;
-            if (rest.indexOf('{') > -1) {
-                return cssMode(rest);
-            }
-            while (rest.search(':') > -1) {
-                s = rest.search(':');
-                loop = true;
-                n = s;
-                while (loop == true) {
-                    loop = false;
-                    e = rest.indexOf(';', n);
-                    if (rest.substring(e - 5, e + 1) == '&amp;nbsp;') {
-                        loop = true;
-                        n = e + 1;
-                    }
-                }
-                if (e == -1) {
-                    e = rest.length;
-                }
-                done += rest.substring(0, s);
-                done += cssPropertyValueMode(rest.substring(s, e + 1));
-                rest = rest.substr(e + 1);
-            }
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(csspropertycolor) +
-                '>' +
-                done +
-                rest +
-                '&lt;/span>'
-            );
+      }
+      rest = done + rest;
+      for (i = 0; i &lt; comment.arr.length; i++) {
+        rest = rest.replace('W3HTMLCOMMENTPOS', comment.arr[i]);
+      }
+      return rest;
+    }
+    function tagMode(txt) {
+      var rest = txt,
+        done = '',
+        startpos,
+        endpos,
+        result;
+      while (rest.search(/(\s|&lt;br>)/) > -1) {
+        startpos = rest.search(/(\s|&lt;br>)/);
+        endpos = rest.indexOf('&amp;gt;');
+        if (endpos == -1) {
+          endpos = rest.length;
         }
-        function cssPropertyValueMode(txt) {
-            var rest = txt,
-                done = '',
-                s;
-            rest =
-                '&lt;span style=color:' +
-                _$.escapeHTML(cssdelimitercolor) +
-                '>:&lt;/span>' +
-                rest.substring(1);
-            while (rest.search(/!important/i) > -1) {
-                s = rest.search(/!important/i);
-                done += rest.substring(0, s);
-                done += cssImportantMode(rest.substring(s, s + 10));
-                rest = rest.substr(s + 10);
+        done += rest.substring(0, startpos);
+        done += attributeMode(rest.substring(startpos, endpos));
+        rest = rest.substr(endpos);
+      }
+      result = done + rest;
+      result =
+        '&lt;span style=color:' +
+        _$.escapeHTML(tagcolor) +
+        '>&amp;lt;&lt;/span>' +
+        result.substring(4);
+      if (result.substr(result.length - 4, 4) == '&amp;gt;') {
+        result =
+          result.substring(0, result.length - 4) +
+          '&lt;span style=color:' +
+          _$.escapeHTML(tagcolor) +
+          '>&amp;gt;&lt;/span>';
+      }
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(tagnamecolor) +
+        '>' +
+        result +
+        '&lt;/span>'
+      );
+    }
+    function attributeMode(txt) {
+      var rest = txt,
+        done = '',
+        startpos,
+        endpos,
+        singlefnuttpos,
+        doublefnuttpos,
+        spacepos;
+      while (rest.indexOf('=') > -1) {
+        endpos = -1;
+        startpos = rest.indexOf('=');
+        singlefnuttpos = rest.indexOf("'", startpos);
+        doublefnuttpos = rest.indexOf('"', startpos);
+        spacepos = rest.indexOf(' ', startpos + 2);
+        if (
+          spacepos > -1 &amp;&amp;
+          (spacepos &lt; singlefnuttpos || singlefnuttpos == -1) &amp;&amp;
+          (spacepos &lt; doublefnuttpos || doublefnuttpos == -1)
+        ) {
+          endpos = rest.indexOf(' ', startpos);
+        } else if (
+          doublefnuttpos > -1 &amp;&amp;
+          (doublefnuttpos &lt; singlefnuttpos || singlefnuttpos == -1) &amp;&amp;
+          (doublefnuttpos &lt; spacepos || spacepos == -1)
+        ) {
+          endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1);
+        } else if (
+          singlefnuttpos > -1 &amp;&amp;
+          (singlefnuttpos &lt; doublefnuttpos || doublefnuttpos == -1) &amp;&amp;
+          (singlefnuttpos &lt; spacepos || spacepos == -1)
+        ) {
+          endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1);
+        }
+        if (!endpos || endpos == -1 || endpos &lt; startpos) {
+          endpos = rest.length;
+        }
+        done += rest.substring(0, startpos);
+        done += attributeValueMode(
+          rest.substring(startpos, endpos + 1),
+        );
+        rest = rest.substr(endpos + 1);
+      }
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(attributecolor) +
+        '>' +
+        done +
+        rest +
+        '&lt;/span>'
+      );
+    }
+    function attributeValueMode(txt) {
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(attributevaluecolor) +
+        '>' +
+        txt +
+        '&lt;/span>'
+      );
+    }
+    function commentMode(txt) {
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(commentcolor) +
+        '>' +
+        txt +
+        '&lt;/span>'
+      );
+    }
+    function cssMode(txt) {
+      var rest = txt,
+        done = '',
+        s,
+        e,
+        comment,
+        i,
+        midz,
+        c,
+        cc;
+      comment = new extract(
+        rest,
+        /\/\*/,
+        '*/',
+        commentMode,
+        'W3CSSCOMMENTPOS',
+      );
+      rest = comment.rest;
+      while (rest.search('{') > -1) {
+        s = rest.search('{');
+        midz = rest.substr(s + 1);
+        cc = 1;
+        c = 0;
+        for (i = 0; i &lt; midz.length; i++) {
+          if (midz.substr(i, 1) == '{') {
+            cc++;
+            c++;
+          }
+          if (midz.substr(i, 1) == '}') {
+            cc--;
+          }
+          if (cc == 0) {
+            break;
+          }
+        }
+        if (cc != 0) {
+          c = 0;
+        }
+        e = s;
+        for (i = 0; i &lt;= c; i++) {
+          e = rest.indexOf('}', e + 1);
+        }
+        if (e == -1) {
+          e = rest.length;
+        }
+        done += rest.substring(0, s + 1);
+        done += cssPropertyMode(rest.substring(s + 1, e));
+        rest = rest.substr(e);
+      }
+      rest = done + rest;
+      rest = rest.replace(
+        /{/g,
+        '&lt;span style=color:' +
+          _$.escapeHTML(cssdelimitercolor) +
+          '>{&lt;/span>',
+      );
+      rest = rest.replace(
+        /}/g,
+        '&lt;span style=color:' +
+          _$.escapeHTML(cssdelimitercolor) +
+          '>}&lt;/span>',
+      );
+      for (i = 0; i &lt; comment.arr.length; i++) {
+        rest = rest.replace('W3CSSCOMMENTPOS', comment.arr[i]);
+      }
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(cssselectorcolor) +
+        '>' +
+        rest +
+        '&lt;/span>'
+      );
+    }
+    function cssPropertyMode(txt) {
+      var rest = txt,
+        done = '',
+        s,
+        e,
+        n,
+        loop;
+      if (rest.indexOf('{') > -1) {
+        return cssMode(rest);
+      }
+      while (rest.search(':') > -1) {
+        s = rest.search(':');
+        loop = true;
+        n = s;
+        while (loop == true) {
+          loop = false;
+          e = rest.indexOf(';', n);
+          if (rest.substring(e - 5, e + 1) == '&amp;nbsp;') {
+            loop = true;
+            n = e + 1;
+          }
+        }
+        if (e == -1) {
+          e = rest.length;
+        }
+        done += rest.substring(0, s);
+        done += cssPropertyValueMode(rest.substring(s, e + 1));
+        rest = rest.substr(e + 1);
+      }
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(csspropertycolor) +
+        '>' +
+        done +
+        rest +
+        '&lt;/span>'
+      );
+    }
+    function cssPropertyValueMode(txt) {
+      var rest = txt,
+        done = '',
+        s;
+      rest =
+        '&lt;span style=color:' +
+        _$.escapeHTML(cssdelimitercolor) +
+        '>:&lt;/span>' +
+        rest.substring(1);
+      while (rest.search(/!important/i) > -1) {
+        s = rest.search(/!important/i);
+        done += rest.substring(0, s);
+        done += cssImportantMode(rest.substring(s, s + 10));
+        rest = rest.substr(s + 10);
+      }
+      result = done + rest;
+      if (
+        result.substr(result.length - 1, 1) == ';' &amp;&amp;
+        result.substr(result.length - 6, 6) != '&amp;nbsp;' &amp;&amp;
+        result.substr(result.length - 4, 4) != '&amp;lt;' &amp;&amp;
+        result.substr(result.length - 4, 4) != '&amp;gt;' &amp;&amp;
+        result.substr(result.length - 5, 5) != '&amp;amp;'
+      ) {
+        result =
+          result.substring(0, result.length - 1) +
+          '&lt;span style=color:' +
+          _$.escapeHTML(cssdelimitercolor) +
+          '>;&lt;/span>';
+      }
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(csspropertyvaluecolor) +
+        '>' +
+        result +
+        '&lt;/span>'
+      );
+    }
+    function cssImportantMode(txt) {
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(cssimportantcolor) +
+        ';font-weight:bold;>' +
+        txt +
+        '&lt;/span>'
+      );
+    }
+    function jsMode(txt) {
+      var rest = txt,
+        done = '',
+        esc = [],
+        i,
+        cc,
+        tt = '',
+        sfnuttpos,
+        dfnuttpos,
+        compos,
+        comlinepos,
+        keywordpos,
+        numpos,
+        mypos,
+        dotpos,
+        y;
+      for (i = 0; i &lt; rest.length; i++) {
+        cc = rest.substr(i, 1);
+        if (cc == '\\') {
+          esc.push(rest.substr(i, 2));
+          cc = 'W3JSESCAPE';
+          i++;
+        }
+        tt += cc;
+      }
+      rest = tt;
+      y = 1;
+      while (y == 1) {
+        sfnuttpos = getPos(rest, "'", "'", jsStringMode);
+        dfnuttpos = getPos(rest, '"', '"', jsStringMode);
+        compos = getPos(rest, /\/\*/, '*/', commentMode);
+        comlinepos = getPos(rest, /\/\//, '&lt;br>', commentMode);
+        numpos = getNumPos(rest, jsNumberMode);
+        keywordpos = getKeywordPos('js', rest, jsKeywordMode);
+        dotpos = getDotPos(rest, jsPropertyMode);
+        if (
+          Math.max(
+            numpos[0],
+            sfnuttpos[0],
+            dfnuttpos[0],
+            compos[0],
+            comlinepos[0],
+            keywordpos[0],
+            dotpos[0],
+          ) == -1
+        ) {
+          break;
+        }
+        mypos = getMinPos(
+          numpos,
+          sfnuttpos,
+          dfnuttpos,
+          compos,
+          comlinepos,
+          keywordpos,
+          dotpos,
+        );
+        if (mypos[0] == -1) {
+          break;
+        }
+        if (mypos[0] > -1) {
+          done += rest.substring(0, mypos[0]);
+          done += mypos[2](rest.substring(mypos[0], mypos[1]));
+          rest = rest.substr(mypos[1]);
+        }
+      }
+      rest = done + rest;
+      for (i = 0; i &lt; esc.length; i++) {
+        rest = rest.replace('W3JSESCAPE', esc[i]);
+      }
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(jscolor) +
+        '>' +
+        rest +
+        '&lt;/span>'
+      );
+    }
+    function jsStringMode(txt) {
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(jsstringcolor) +
+        '>' +
+        txt +
+        '&lt;/span>'
+      );
+    }
+    function jsKeywordMode(txt) {
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(jskeywordcolor) +
+        '>' +
+        txt +
+        '&lt;/span>'
+      );
+    }
+    function jsNumberMode(txt) {
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(jsnumbercolor) +
+        '>' +
+        txt +
+        '&lt;/span>'
+      );
+    }
+    function jsPropertyMode(txt) {
+      return (
+        '&lt;span style=color:' +
+        _$.escapeHTML(jspropertycolor) +
+        '>' +
+        txt +
+        '&lt;/span>'
+      );
+    }
+    function getDotPos(txt, func) {
+      var x,
+        i,
+        j,
+        s,
+        e,
+        arr = [
+          '.',
+          '&lt;',
+          ' ',
+          ';',
+          '(',
+          '+',
+          ')',
+          '[',
+          ']',
+          ',',
+          '&amp;',
+          ':',
+          '{',
+          '}',
+          '/',
+          '-',
+          '*',
+          '|',
+          '%',
+        ];
+      s = txt.indexOf('.');
+      if (s > -1) {
+        x = txt.substr(s + 1);
+        for (j = 0; j &lt; x.length; j++) {
+          cc = x[j];
+          for (i = 0; i &lt; arr.length; i++) {
+            if (cc.indexOf(arr[i]) > -1) {
+              e = j;
+              return [s + 1, e + s + 1, func];
             }
-            result = done + rest;
+          }
+        }
+      }
+      return [-1, -1, func];
+    }
+    function getMinPos() {
+      var i,
+        arr = [];
+      for (i = 0; i &lt; arguments.length; i++) {
+        if (arguments[i][0] > -1) {
+          if (arr.length == 0 || arguments[i][0] &lt; arr[0]) {
+            arr = arguments[i];
+          }
+        }
+      }
+      if (arr.length == 0) {
+        arr = arguments[i];
+      }
+      return arr;
+    }
+    function getKeywordPos(typ, txt, func) {
+      var words,
+        i,
+        pos,
+        rpos = -1,
+        rpos2 = -1,
+        patt;
+      if (typ == 'js') {
+        words = [
+          'abstract',
+          'arguments',
+          'boolean',
+          'break',
+          'byte',
+          'case',
+          'catch',
+          'char',
+          'class',
+          'const',
+          'continue',
+          'debugger',
+          'default',
+          'delete',
+          'do',
+          'double',
+          'else',
+          'enum',
+          'eval',
+          'export',
+          'extends',
+          'false',
+          'final',
+          'finally',
+          'float',
+          'for',
+          'function',
+          'goto',
+          'if',
+          'implements',
+          'import',
+          'in',
+          'instanceof',
+          'int',
+          'interface',
+          'let',
+          'long',
+          'NaN',
+          'native',
+          'new',
+          'null',
+          'package',
+          'private',
+          'protected',
+          'public',
+          'return',
+          'short',
+          'static',
+          'super',
+          'switch',
+          'synchronized',
+          'this',
+          'throw',
+          'throws',
+          'transient',
+          'true',
+          'try',
+          'typeof',
+          'var',
+          'void',
+          'volatile',
+          'while',
+          'with',
+          'yield',
+        ];
+      }
+      for (i = 0; i &lt; words.length; i++) {
+        pos = txt.indexOf(words[i]);
+        if (pos > -1) {
+          patt = /\W/g;
+          if (
+            txt.substr(pos + words[i].length, 1).match(patt) &amp;&amp;
+            txt.substr(pos - 1, 1).match(patt)
+          ) {
+            if (pos > -1 &amp;&amp; (rpos == -1 || pos &lt; rpos)) {
+              rpos = pos;
+              rpos2 = rpos + words[i].length;
+            }
+          }
+        }
+      }
+      return [rpos, rpos2, func];
+    }
+    function getPos(txt, start, end, func) {
+      var s, e;
+      s = txt.search(start);
+      e = txt.indexOf(end, s + end.length);
+      if (e == -1) {
+        e = txt.length;
+      }
+      return [s, e + end.length, func];
+    }
+    function getNumPos(txt, func) {
+      var arr = [
+          '&lt;br>',
+          ' ',
+          ';',
+          '(',
+          '+',
+          ')',
+          '[',
+          ']',
+          ',',
+          '&amp;',
+          ':',
+          '{',
+          '}',
+          '/',
+          '-',
+          '*',
+          '|',
+          '%',
+          '=',
+        ],
+        i,
+        j,
+        c,
+        startpos = 0,
+        endpos,
+        word;
+      for (i = 0; i &lt; txt.length; i++) {
+        for (j = 0; j &lt; arr.length; j++) {
+          c = txt.substr(i, arr[j].length);
+          if (c == arr[j]) {
             if (
-                result.substr(result.length - 1, 1) == ';' &amp;&amp;
-                result.substr(result.length - 6, 6) != '&amp;nbsp;' &amp;&amp;
-                result.substr(result.length - 4, 4) != '&amp;lt;' &amp;&amp;
-                result.substr(result.length - 4, 4) != '&amp;gt;' &amp;&amp;
-                result.substr(result.length - 5, 5) != '&amp;amp;'
+              c == '-' &amp;&amp;
+              (txt.substr(i - 1, 1) == 'e' ||
+                txt.substr(i - 1, 1) == 'E')
             ) {
-                result =
-                    result.substring(0, result.length - 1) +
-                    '&lt;span style=color:' +
-                    _$.escapeHTML(cssdelimitercolor) +
-                    '>;&lt;/span>';
+              continue;
             }
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(csspropertyvaluecolor) +
-                '>' +
-                result +
-                '&lt;/span>'
-            );
-        }
-        function cssImportantMode(txt) {
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(cssimportantcolor) +
-                ';font-weight:bold;>' +
-                txt +
-                '&lt;/span>'
-            );
-        }
-        function jsMode(txt) {
-            var rest = txt,
-                done = '',
-                esc = [],
-                i,
-                cc,
-                tt = '',
-                sfnuttpos,
-                dfnuttpos,
-                compos,
-                comlinepos,
-                keywordpos,
-                numpos,
-                mypos,
-                dotpos,
-                y;
-            for (i = 0; i &lt; rest.length; i++) {
-                cc = rest.substr(i, 1);
-                if (cc == '\\') {
-                    esc.push(rest.substr(i, 2));
-                    cc = 'W3JSESCAPE';
-                    i++;
-                }
-                tt += cc;
+            endpos = i;
+            if (startpos &lt; endpos) {
+              word = txt.substring(startpos, endpos);
+              if (!isNaN(word)) {
+                return [startpos, endpos, func];
+              }
             }
-            rest = tt;
-            y = 1;
-            while (y == 1) {
-                sfnuttpos = getPos(rest, "'", "'", jsStringMode);
-                dfnuttpos = getPos(rest, '"', '"', jsStringMode);
-                compos = getPos(rest, /\/\*/, '*/', commentMode);
-                comlinepos = getPos(rest, /\/\//, '&lt;br>', commentMode);
-                numpos = getNumPos(rest, jsNumberMode);
-                keywordpos = getKeywordPos('js', rest, jsKeywordMode);
-                dotpos = getDotPos(rest, jsPropertyMode);
-                if (
-                    Math.max(
-                        numpos[0],
-                        sfnuttpos[0],
-                        dfnuttpos[0],
-                        compos[0],
-                        comlinepos[0],
-                        keywordpos[0],
-                        dotpos[0],
-                    ) == -1
-                ) {
-                    break;
-                }
-                mypos = getMinPos(
-                    numpos,
-                    sfnuttpos,
-                    dfnuttpos,
-                    compos,
-                    comlinepos,
-                    keywordpos,
-                    dotpos,
-                );
-                if (mypos[0] == -1) {
-                    break;
-                }
-                if (mypos[0] > -1) {
-                    done += rest.substring(0, mypos[0]);
-                    done += mypos[2](rest.substring(mypos[0], mypos[1]));
-                    rest = rest.substr(mypos[1]);
-                }
-            }
-            rest = done + rest;
-            for (i = 0; i &lt; esc.length; i++) {
-                rest = rest.replace('W3JSESCAPE', esc[i]);
-            }
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(jscolor) +
-                '>' +
-                rest +
-                '&lt;/span>'
-            );
+            i += arr[j].length;
+            startpos = i;
+            i -= 1;
+            break;
+          }
         }
-        function jsStringMode(txt) {
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(jsstringcolor) +
-                '>' +
-                txt +
-                '&lt;/span>'
-            );
-        }
-        function jsKeywordMode(txt) {
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(jskeywordcolor) +
-                '>' +
-                txt +
-                '&lt;/span>'
-            );
-        }
-        function jsNumberMode(txt) {
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(jsnumbercolor) +
-                '>' +
-                txt +
-                '&lt;/span>'
-            );
-        }
-        function jsPropertyMode(txt) {
-            return (
-                '&lt;span style=color:' +
-                _$.escapeHTML(jspropertycolor) +
-                '>' +
-                txt +
-                '&lt;/span>'
-            );
-        }
-        function getDotPos(txt, func) {
-            var x,
-                i,
-                j,
-                s,
-                e,
-                arr = [
-                    '.',
-                    '&lt;',
-                    ' ',
-                    ';',
-                    '(',
-                    '+',
-                    ')',
-                    '[',
-                    ']',
-                    ',',
-                    '&amp;',
-                    ':',
-                    '{',
-                    '}',
-                    '/',
-                    '-',
-                    '*',
-                    '|',
-                    '%',
-                ];
-            s = txt.indexOf('.');
-            if (s > -1) {
-                x = txt.substr(s + 1);
-                for (j = 0; j &lt; x.length; j++) {
-                    cc = x[j];
-                    for (i = 0; i &lt; arr.length; i++) {
-                        if (cc.indexOf(arr[i]) > -1) {
-                            e = j;
-                            return [s + 1, e + s + 1, func];
-                        }
-                    }
-                }
-            }
-            return [-1, -1, func];
-        }
-        function getMinPos() {
-            var i,
-                arr = [];
-            for (i = 0; i &lt; arguments.length; i++) {
-                if (arguments[i][0] > -1) {
-                    if (arr.length == 0 || arguments[i][0] &lt; arr[0]) {
-                        arr = arguments[i];
-                    }
-                }
-            }
-            if (arr.length == 0) {
-                arr = arguments[i];
-            }
-            return arr;
-        }
-        function getKeywordPos(typ, txt, func) {
-            var words,
-                i,
-                pos,
-                rpos = -1,
-                rpos2 = -1,
-                patt;
-            if (typ == 'js') {
-                words = [
-                    'abstract',
-                    'arguments',
-                    'boolean',
-                    'break',
-                    'byte',
-                    'case',
-                    'catch',
-                    'char',
-                    'class',
-                    'const',
-                    'continue',
-                    'debugger',
-                    'default',
-                    'delete',
-                    'do',
-                    'double',
-                    'else',
-                    'enum',
-                    'eval',
-                    'export',
-                    'extends',
-                    'false',
-                    'final',
-                    'finally',
-                    'float',
-                    'for',
-                    'function',
-                    'goto',
-                    'if',
-                    'implements',
-                    'import',
-                    'in',
-                    'instanceof',
-                    'int',
-                    'interface',
-                    'let',
-                    'long',
-                    'NaN',
-                    'native',
-                    'new',
-                    'null',
-                    'package',
-                    'private',
-                    'protected',
-                    'public',
-                    'return',
-                    'short',
-                    'static',
-                    'super',
-                    'switch',
-                    'synchronized',
-                    'this',
-                    'throw',
-                    'throws',
-                    'transient',
-                    'true',
-                    'try',
-                    'typeof',
-                    'var',
-                    'void',
-                    'volatile',
-                    'while',
-                    'with',
-                    'yield',
-                ];
-            }
-            for (i = 0; i &lt; words.length; i++) {
-                pos = txt.indexOf(words[i]);
-                if (pos > -1) {
-                    patt = /\W/g;
-                    if (
-                        txt.substr(pos + words[i].length, 1).match(patt) &amp;&amp;
-                        txt.substr(pos - 1, 1).match(patt)
-                    ) {
-                        if (pos > -1 &amp;&amp; (rpos == -1 || pos &lt; rpos)) {
-                            rpos = pos;
-                            rpos2 = rpos + words[i].length;
-                        }
-                    }
-                }
-            }
-            return [rpos, rpos2, func];
-        }
-        function getPos(txt, start, end, func) {
-            var s, e;
-            s = txt.search(start);
-            e = txt.indexOf(end, s + end.length);
-            if (e == -1) {
-                e = txt.length;
-            }
-            return [s, e + end.length, func];
-        }
-        function getNumPos(txt, func) {
-            var arr = [
-                '&lt;br>',
-                ' ',
-                ';',
-                '(',
-                '+',
-                ')',
-                '[',
-                ']',
-                ',',
-                '&amp;',
-                ':',
-                '{',
-                '}',
-                '/',
-                '-',
-                '*',
-                '|',
-                '%',
-                '=',
-            ],
-                i,
-                j,
-                c,
-                startpos = 0,
-                endpos,
-                word;
-            for (i = 0; i &lt; txt.length; i++) {
-                for (j = 0; j &lt; arr.length; j++) {
-                    c = txt.substr(i, arr[j].length);
-                    if (c == arr[j]) {
-                        if (
-                            c == '-' &amp;&amp;
-                            (txt.substr(i - 1, 1) == 'e' ||
-                                txt.substr(i - 1, 1) == 'E')
-                        ) {
-                            continue;
-                        }
-                        endpos = i;
-                        if (startpos &lt; endpos) {
-                            word = txt.substring(startpos, endpos);
-                            if (!isNaN(word)) {
-                                return [startpos, endpos, func];
-                            }
-                        }
-                        i += arr[j].length;
-                        startpos = i;
-                        i -= 1;
-                        break;
-                    }
-                }
-            }
-            return [-1, -1, func];
-        }
-    };
-    highlightel(el, mode, colors);
-    return el.innerHTML;
+      }
+      return [-1, -1, func];
+    }
+  };
+  highlightel(el, mode, colors);
+  return el.innerHTML;
 };
 /**
  * camelCases a string.
@@ -1019,11 +1019,11 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
  * @returns {String} The camelCased string.
  */
 export let camelCase = (str) => {
-    return str
-        .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-            return index === 0 ? word.toLowerCase() : word.toUpperCase();
-        })
-        .replace(/\s+/g, '');
+  return str
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+      return index === 0 ? word.toLowerCase() : word.toUpperCase();
+    })
+    .replace(/\s+/g, '');
 };
 /**
  * Scrambles the order of characters in a string. Thanks to @\Touchcreator for the suggestion for this.
@@ -1035,16 +1035,16 @@ export let camelCase = (str) => {
  * @returns {String} The scrambled text.
  */
 export let scrambleString = (str) => {
-    var a = str.split(''),
-        n = a.length;
+  var a = str.split(''),
+    n = a.length;
 
-    for (var i = n - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var tmp = a[i];
-        a[i] = a[j];
-        a[j] = tmp;
-    }
-    return a.join('');
+  for (var i = n - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i];
+    a[i] = a[j];
+    a[j] = tmp;
+  }
+  return a.join('');
 };
 /**
  * Hashes a string to a unique integer (This cannot be decrypted easily).
@@ -1057,20 +1057,20 @@ export let scrambleString = (str) => {
  * @returns {Number} The hashed string.
  */
 export let hashString = (str, seed = 0) => {
-    let h1 = 0xdeadbeef ^ seed,
-        h2 = 0x41c6ce57 ^ seed;
-    for (let i = 0, ch; i &lt; str.length; i++) {
-        ch = str.charCodeAt(i);
-        h1 = Math.imul(h1 ^ ch, 2654435761);
-        h2 = Math.imul(h2 ^ ch, 1597334677);
-    }
-    h1 =
-        Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
-        Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-    h2 =
-        Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
-        Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-    return 4294967296 * (2097151 &amp; h2) + (h1 >>> 0);
+  let h1 = 0xdeadbeef ^ seed,
+    h2 = 0x41c6ce57 ^ seed;
+  for (let i = 0, ch; i &lt; str.length; i++) {
+    ch = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 =
+    Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
+    Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 =
+    Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
+    Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return 4294967296 * (2097151 &amp; h2) + (h1 >>> 0);
 };
 
 /**
@@ -1084,41 +1084,41 @@ export let hashString = (str, seed = 0) => {
  * @returns {Number} The edit distance between two strings
  */
 export let editDistance = (a, b) => {
-    if (a.length == 0) return b.length;
-    if (b.length == 0) return a.length;
+  if (a.length == 0) return b.length;
+  if (b.length == 0) return a.length;
 
-    var matrix = [];
+  var matrix = [];
 
-    // increment along the first column of each row
-    var i;
-    for (i = 0; i &lt;= b.length; i++) {
-        matrix[i] = [i];
+  // increment along the first column of each row
+  var i;
+  for (i = 0; i &lt;= b.length; i++) {
+    matrix[i] = [i];
+  }
+
+  // increment each column in the first row
+  var j;
+  for (j = 0; j &lt;= a.length; j++) {
+    matrix[0][j] = j;
+  }
+
+  // Fill in the rest of the matrix
+  for (i = 1; i &lt;= b.length; i++) {
+    for (j = 1; j &lt;= a.length; j++) {
+      if (b.charAt(i - 1) == a.charAt(j - 1)) {
+        matrix[i][j] = matrix[i - 1][j - 1];
+      } else {
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j - 1] + 1, // substitution
+          Math.min(
+            matrix[i][j - 1] + 1, // insertion
+            matrix[i - 1][j] + 1,
+          ),
+        ); // deletion
+      }
     }
+  }
 
-    // increment each column in the first row
-    var j;
-    for (j = 0; j &lt;= a.length; j++) {
-        matrix[0][j] = j;
-    }
-
-    // Fill in the rest of the matrix
-    for (i = 1; i &lt;= b.length; i++) {
-        for (j = 1; j &lt;= a.length; j++) {
-            if (b.charAt(i - 1) == a.charAt(j - 1)) {
-                matrix[i][j] = matrix[i - 1][j - 1];
-            } else {
-                matrix[i][j] = Math.min(
-                    matrix[i - 1][j - 1] + 1, // substitution
-                    Math.min(
-                        matrix[i][j - 1] + 1, // insertion
-                        matrix[i - 1][j] + 1,
-                    ),
-                ); // deletion
-            }
-        }
-    }
-
-    return matrix[b.length][a.length];
+  return matrix[b.length][a.length];
 };
 /**
  * Returns the size of a string in bytes.
@@ -1142,11 +1142,11 @@ export let byteSize = (str) => new Blob([str]).size;
  * @returns {String} The replaced string
  */
 export let replaceMultiple = (text, replace) => {
-    var re = new RegExp(Object.keys(replace).join('|'), 'gi');
-    text = text.replace(re, function (matched) {
-        return mapObj[matched];
-    });
-    return text;
+  var re = new RegExp(Object.keys(replace).join('|'), 'gi');
+  text = text.replace(re, function (matched) {
+    return mapObj[matched];
+  });
+  return text;
 };
 /**
  * Returns the queries from a given url (Or just the current url)
@@ -1162,12 +1162,12 @@ export let replaceMultiple = (text, replace) => {
  * @returns {String} The url query
  */
 export let urlQuery = (query, url = window.location.href) => {
-    query = query.replace(/[\[\]]/g, '\\$&amp;');
-    var regex = new RegExp(`[?&amp;]${query}(=([^&amp;#]*)|&amp;|#|$)`),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  query = query.replace(/[\[\]]/g, '\\$&amp;');
+  var regex = new RegExp(`[?&amp;]${query}(=([^&amp;#]*)|&amp;|#|$)`),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
 
 /**
@@ -1182,151 +1182,151 @@ export let urlQuery = (query, url = window.location.href) => {
  * @returns {String} The sanitized HTML string.
  */
 export let sanitize = (
-    html,
-    tags = undefined,
-    attributes = undefined,
+  html,
+  tags = undefined,
+  attributes = undefined,
 ) => {
-    node();
-    var attributes = attributes || [
-        { attribute: 'src', tags: '*', regex: /^(?:https|http|\/\/):/ },
-        { attribute: 'href', tags: '*', regex: /^(?:https|http|\/\/):/ },
-        { attribute: 'width', tags: '*', regex: /^[0-9]+$/ },
-        { attribute: 'height', tags: '*', regex: /^[0-9]+$/ },
-        { attribute: 'id', tags: '*', regex: /^[a-zA-Z]+$/ },
-        { attribute: 'class', tags: '*', regex: /^[a-zA-Z ]+$/ },
-        {
-            attribute: 'value',
-            tags: ['INPUT', 'TEXTAREA'],
-            regex: /^.+$/,
-        },
-        {
-            attribute: 'checked',
-            tags: ['INPUT'],
-            regex: /^(?:true|false)+$/,
-        },
-        {
-            attribute: 'placeholder',
-            tags: ['INPUT', 'TEXTAREA'],
-            regex: /^.+$/,
-        },
-        {
-            attribute: 'alt',
-            tags: ['IMG', 'AREA', 'INPUT'],
-            //"^" and "$" match beggining and end
-            regex: /^[0-9a-zA-Z]+$/,
-        },
-        {
-            attribute: 'autofocus',
-            tags: ['INPUT'],
-            regex: /^(?:true|false)+$/,
-        },
-        {
-            attribute: 'for',
-            tags: ['LABEL', 'OUTPUT'],
-            regex: /^[a-zA-Z0-9]+$/,
-        },
-    ];
-    var tags = tags || [
-        'I',
-        'P',
-        'B',
-        'BODY',
-        'HTML',
-        'DEL',
-        'INS',
-        'STRONG',
-        'SMALL',
-        'A',
-        'IMG',
-        'CITE',
-        'FIGCAPTION',
-        'ASIDE',
-        'ARTICLE',
-        'SUMMARY',
-        'DETAILS',
-        'NAV',
-        'TD',
-        'TH',
-        'TABLE',
-        'THEAD',
-        'TBODY',
-        'NAV',
-        'SPAN',
-        'BR',
-        'CODE',
-        'PRE',
-        'BLOCKQUOTE',
-        'EM',
-        'HR',
-        'H1',
-        'H2',
-        'H3',
-        'H4',
-        'H5',
-        'H6',
-        'DIV',
-        'MAIN',
-        'HEADER',
-        'FOOTER',
-        'SELECT',
-        'COL',
-        'AREA',
-        'ADDRESS',
-        'ABBR',
-        'BDI',
-        'BDO',
-    ];
+  node();
+  var attributes = attributes || [
+    { attribute: 'src', tags: '*', regex: /^(?:https|http|\/\/):/ },
+    { attribute: 'href', tags: '*', regex: /^(?:https|http|\/\/):/ },
+    { attribute: 'width', tags: '*', regex: /^[0-9]+$/ },
+    { attribute: 'height', tags: '*', regex: /^[0-9]+$/ },
+    { attribute: 'id', tags: '*', regex: /^[a-zA-Z]+$/ },
+    { attribute: 'class', tags: '*', regex: /^[a-zA-Z ]+$/ },
+    {
+      attribute: 'value',
+      tags: ['INPUT', 'TEXTAREA'],
+      regex: /^.+$/,
+    },
+    {
+      attribute: 'checked',
+      tags: ['INPUT'],
+      regex: /^(?:true|false)+$/,
+    },
+    {
+      attribute: 'placeholder',
+      tags: ['INPUT', 'TEXTAREA'],
+      regex: /^.+$/,
+    },
+    {
+      attribute: 'alt',
+      tags: ['IMG', 'AREA', 'INPUT'],
+      //"^" and "$" match beggining and end
+      regex: /^[0-9a-zA-Z]+$/,
+    },
+    {
+      attribute: 'autofocus',
+      tags: ['INPUT'],
+      regex: /^(?:true|false)+$/,
+    },
+    {
+      attribute: 'for',
+      tags: ['LABEL', 'OUTPUT'],
+      regex: /^[a-zA-Z0-9]+$/,
+    },
+  ];
+  var tags = tags || [
+    'I',
+    'P',
+    'B',
+    'BODY',
+    'HTML',
+    'DEL',
+    'INS',
+    'STRONG',
+    'SMALL',
+    'A',
+    'IMG',
+    'CITE',
+    'FIGCAPTION',
+    'ASIDE',
+    'ARTICLE',
+    'SUMMARY',
+    'DETAILS',
+    'NAV',
+    'TD',
+    'TH',
+    'TABLE',
+    'THEAD',
+    'TBODY',
+    'NAV',
+    'SPAN',
+    'BR',
+    'CODE',
+    'PRE',
+    'BLOCKQUOTE',
+    'EM',
+    'HR',
+    'H1',
+    'H2',
+    'H3',
+    'H4',
+    'H5',
+    'H6',
+    'DIV',
+    'MAIN',
+    'HEADER',
+    'FOOTER',
+    'SELECT',
+    'COL',
+    'AREA',
+    'ADDRESS',
+    'ABBR',
+    'BDI',
+    'BDO',
+  ];
 
-    attributes = attributes.map((el) => {
-        if (typeof el === 'string') {
-            return { attribute: el, tags: '*', regex: /^.+$/ };
-        }
-        let output = el;
-        if (!el.hasOwnProperty('tags')) {
-            output.tags = '*';
-        }
-        if (!el.hasOwnProperty('regex')) {
-            output.regex = /^.+$/;
-        }
-        return output;
+  attributes = attributes.map((el) => {
+    if (typeof el === 'string') {
+      return { attribute: el, tags: '*', regex: /^.+$/ };
+    }
+    let output = el;
+    if (!el.hasOwnProperty('tags')) {
+      output.tags = '*';
+    }
+    if (!el.hasOwnProperty('regex')) {
+      output.regex = /^.+$/;
+    }
+    return output;
+  });
+  var el = new DOMParser().parseFromString(html, 'text/html');
+  var elements = el.querySelectorAll('*');
+  for (let i = 0; i &lt; elements.length; i++) {
+    const current = elements[i];
+    let attr_list = get_attributes(current);
+    for (let j = 0; j &lt; attr_list.length; j++) {
+      const attribute = attr_list[j];
+      if (!attribute_matches(current, attribute)) {
+        current.removeAttribute(attr_list[j]);
+      }
+    }
+    if (!tags.includes(current.tagName)) {
+      current.remove();
+    }
+  }
+  return el.documentElement.innerHTML;
+  function attribute_matches(element, attribute) {
+    let output = attributes.filter((attr) => {
+      let returnval =
+        attr.attribute === attribute &amp;&amp;
+        (attr.tags === '*' || attr.tags.includes(element.tagName)) &amp;&amp;
+        attr.regex.test(element.getAttribute(attribute));
+      return returnval;
     });
-    var el = new DOMParser().parseFromString(html, 'text/html');
-    var elements = el.querySelectorAll('*');
-    for (let i = 0; i &lt; elements.length; i++) {
-        const current = elements[i];
-        let attr_list = get_attributes(current);
-        for (let j = 0; j &lt; attr_list.length; j++) {
-            const attribute = attr_list[j];
-            if (!attribute_matches(current, attribute)) {
-                current.removeAttribute(attr_list[j]);
-            }
-        }
-        if (!tags.includes(current.tagName)) {
-            current.remove();
-        }
-    }
-    return el.documentElement.innerHTML;
-    function attribute_matches(element, attribute) {
-        let output = attributes.filter((attr) => {
-            let returnval =
-                attr.attribute === attribute &amp;&amp;
-                (attr.tags === '*' || attr.tags.includes(element.tagName)) &amp;&amp;
-                attr.regex.test(element.getAttribute(attribute));
-            return returnval;
-        });
 
-        return output.length > 0;
+    return output.length > 0;
+  }
+  function get_attributes(element) {
+    for (
+      var i = 0, atts = element.attributes, n = atts.length, arr = [];
+      i &lt; n;
+      i++
+    ) {
+      arr.push(atts[i].nodeName);
     }
-    function get_attributes(element) {
-        for (
-            var i = 0, atts = element.attributes, n = atts.length, arr = [];
-            i &lt; n;
-            i++
-        ) {
-            arr.push(atts[i].nodeName);
-        }
-        return arr;
-    }
+    return arr;
+  }
 };
 /**
  * Converts markdown to HTML.
@@ -1338,207 +1338,207 @@ export let sanitize = (
  * @returns {String} The string of HTML converted from the markdown input.
  */
 export let markdownToHTML = (src) => {
-    var rx_lt = /&lt;/g;
-    var rx_gt = />/g;
-    var rx_space = /\t|\r|\uf8ff/g;
-    var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
-    var rx_hr = /^([*\-=_] *){3,}$/gm;
-    var rx_blockquote = /\n *&amp;gt; *([^]*?)(?=(\n|$){2})/g;
-    var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
-    var rx_listjoin = /&lt;\/(ol|ul)>\n\n&lt;\1>/g;
-    var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^&lt;]*?)\2\8(?!\2)(?=\W|_|$)/g;
-    var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|(( {4}.*?\n)+))/g;
-    var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
-    var rx_table = /\n(( *\|.*?\| *\n)+)/g;
-    var rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
-    var rx_row = /.*\n/g;
-    var rx_cell = /\||(.*?[^\\])\|/g;
-    var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
-    var rx_para = /(?=^|>|\n)\s*\n+([^&lt;]+?)\n+\s*(?=\n|&lt;|$)/g;
-    var rx_stash = /-\d+\uf8ff/g;
+  var rx_lt = /&lt;/g;
+  var rx_gt = />/g;
+  var rx_space = /\t|\r|\uf8ff/g;
+  var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
+  var rx_hr = /^([*\-=_] *){3,}$/gm;
+  var rx_blockquote = /\n *&amp;gt; *([^]*?)(?=(\n|$){2})/g;
+  var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
+  var rx_listjoin = /&lt;\/(ol|ul)>\n\n&lt;\1>/g;
+  var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^&lt;]*?)\2\8(?!\2)(?=\W|_|$)/g;
+  var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|(( {4}.*?\n)+))/g;
+  var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
+  var rx_table = /\n(( *\|.*?\| *\n)+)/g;
+  var rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
+  var rx_row = /.*\n/g;
+  var rx_cell = /\||(.*?[^\\])\|/g;
+  var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
+  var rx_para = /(?=^|>|\n)\s*\n+([^&lt;]+?)\n+\s*(?=\n|&lt;|$)/g;
+  var rx_stash = /-\d+\uf8ff/g;
 
-    function replace(rex, fn) {
-        src = src.replace(rex, fn);
-    }
+  function replace(rex, fn) {
+    src = src.replace(rex, fn);
+  }
 
-    function element(tag, content) {
-        return '&lt;' + tag + '>' + content + '&lt;/' + tag + '>';
-    }
+  function element(tag, content) {
+    return '&lt;' + tag + '>' + content + '&lt;/' + tag + '>';
+  }
 
-    function blockquote(src) {
-        return src.replace(rx_blockquote, function (all, content) {
-            return element(
-                'blockquote',
-                blockquote(highlight(content.replace(/^ *&amp;gt; */gm, ''))),
-            );
-        });
-    }
-
-    function list(src) {
-        return src.replace(
-            rx_list,
-            function (all, ind, ol, num, low, content) {
-                var entry = element(
-                    'li',
-                    highlight(
-                        content
-                            .split(
-                                RegExp(
-                                    '\n ?' +
-                                    ind +
-                                    '(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +',
-                                    'g',
-                                ),
-                            )
-                            .map(list)
-                            .join('&lt;/li>&lt;li>'),
-                    ),
-                );
-
-                return (
-                    '\n' +
-                    (ol
-                        ? '&lt;ol start="' +
-                        (num
-                            ? ol + '">'
-                            : parseInt(ol, 36) -
-                            9 +
-                            '" style="list-style-type:' +
-                            (low ? 'low' : 'upp') +
-                            'er-alpha">') +
-                        entry +
-                        '&lt;/ol>'
-                        : element('ul', entry))
-                );
-            },
-        );
-    }
-
-    function highlight(src) {
-        return src.replace(
-            rx_highlight,
-            function (all, _, p1, emp, sub, sup, small, big, p2, content) {
-                return (
-                    _ +
-                    element(
-                        emp
-                            ? p2
-                                ? 'strong'
-                                : 'em'
-                            : sub
-                                ? p2
-                                    ? 's'
-                                    : 'sub'
-                                : sup
-                                    ? 'sup'
-                                    : small
-                                        ? 'small'
-                                        : big
-                                            ? 'big'
-                                            : 'code',
-                        highlight(content),
-                    )
-                );
-            },
-        );
-    }
-
-    function unesc(str) {
-        return str.replace(rx_escape, '$1');
-    }
-
-    var stash = [];
-    var si = 0;
-
-    src = '\n' + src + '\n';
-
-    replace(rx_lt, '&amp;lt;');
-    replace(rx_gt, '&amp;gt;');
-    replace(rx_space, '  ');
-
-    // blockquote
-    src = blockquote(src);
-
-    // horizontal rule
-    replace(rx_hr, '&lt;hr/>');
-
-    // list
-    src = list(src);
-    replace(rx_listjoin, '');
-
-    // code
-    replace(rx_code, function (all, p1, p2, p3, p4) {
-        stash[--si] = element(
-            'pre',
-            element('code', p3 || p4.replace(/^ {4}/gm, '')),
-        );
-        return si + '\uf8ff';
+  function blockquote(src) {
+    return src.replace(rx_blockquote, function (all, content) {
+      return element(
+        'blockquote',
+        blockquote(highlight(content.replace(/^ *&amp;gt; */gm, ''))),
+      );
     });
+  }
 
-    // link or image
-    replace(rx_link, function (all, p1, p2, p3, p4, p5, p6) {
-        stash[--si] = p6
-            ? p6
-            : p2
-                ? p4
-                    ? '&lt;img src="' +
-                    _$.escapeHTML(p4) +
-                    '" alt="' +
-                    _$.escapeHTML(p3) +
-                    '"/>'
-                    : p1
-                : /^https?:\/\//g.test(p4)
-                    ? '&lt;a href="' +
-                    _$.escapeHTML(p4) +
-                    '">' +
-                    unesc(highlight(p3)) +
-                    '&lt;/a>'
-                    : p1;
-        return si + '\uf8ff';
-    });
+  function list(src) {
+    return src.replace(
+      rx_list,
+      function (all, ind, ol, num, low, content) {
+        var entry = element(
+          'li',
+          highlight(
+            content
+              .split(
+                RegExp(
+                  '\n ?' +
+                    ind +
+                    '(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +',
+                  'g',
+                ),
+              )
+              .map(list)
+              .join('&lt;/li>&lt;li>'),
+          ),
+        );
 
-    // table
-    replace(rx_table, function (all, table) {
-        var sep = table.match(rx_thead)[1];
         return (
-            '\n' +
-            element(
-                'table',
-                table.replace(rx_row, function (row, ri) {
-                    return row == sep
-                        ? ''
-                        : element(
-                            'tr',
-                            row.replace(rx_cell, function (all, cell, ci) {
-                                return ci
-                                    ? element(
-                                        sep &amp;&amp; !ri ? 'th' : 'td',
-                                        unesc(highlight(cell || '')),
-                                    )
-                                    : '';
-                            }),
-                        );
-                }),
-            )
+          '\n' +
+          (ol
+            ? '&lt;ol start="' +
+              (num
+                ? ol + '">'
+                : parseInt(ol, 36) -
+                  9 +
+                  '" style="list-style-type:' +
+                  (low ? 'low' : 'upp') +
+                  'er-alpha">') +
+              entry +
+              '&lt;/ol>'
+            : element('ul', entry))
         );
-    });
+      },
+    );
+  }
 
-    // heading
-    replace(rx_heading, function (all, _, p1, p2) {
-        return _ + element('h' + p1.length, unesc(highlight(p2)));
-    });
+  function highlight(src) {
+    return src.replace(
+      rx_highlight,
+      function (all, _, p1, emp, sub, sup, small, big, p2, content) {
+        return (
+          _ +
+          element(
+            emp
+              ? p2
+                ? 'strong'
+                : 'em'
+              : sub
+              ? p2
+                ? 's'
+                : 'sub'
+              : sup
+              ? 'sup'
+              : small
+              ? 'small'
+              : big
+              ? 'big'
+              : 'code',
+            highlight(content),
+          )
+        );
+      },
+    );
+  }
 
-    // paragraph
-    replace(rx_para, function (all, content) {
-        return element('p', unesc(highlight(content)));
-    });
+  function unesc(str) {
+    return str.replace(rx_escape, '$1');
+  }
 
-    // stash
-    replace(rx_stash, function (all) {
-        return stash[parseInt(all)];
-    });
+  var stash = [];
+  var si = 0;
 
-    return src.trim();
+  src = '\n' + src + '\n';
+
+  replace(rx_lt, '&amp;lt;');
+  replace(rx_gt, '&amp;gt;');
+  replace(rx_space, '  ');
+
+  // blockquote
+  src = blockquote(src);
+
+  // horizontal rule
+  replace(rx_hr, '&lt;hr/>');
+
+  // list
+  src = list(src);
+  replace(rx_listjoin, '');
+
+  // code
+  replace(rx_code, function (all, p1, p2, p3, p4) {
+    stash[--si] = element(
+      'pre',
+      element('code', p3 || p4.replace(/^ {4}/gm, '')),
+    );
+    return si + '\uf8ff';
+  });
+
+  // link or image
+  replace(rx_link, function (all, p1, p2, p3, p4, p5, p6) {
+    stash[--si] = p6
+      ? p6
+      : p2
+      ? p4
+        ? '&lt;img src="' +
+          _$.escapeHTML(p4) +
+          '" alt="' +
+          _$.escapeHTML(p3) +
+          '"/>'
+        : p1
+      : /^https?:\/\//g.test(p4)
+      ? '&lt;a href="' +
+        _$.escapeHTML(p4) +
+        '">' +
+        unesc(highlight(p3)) +
+        '&lt;/a>'
+      : p1;
+    return si + '\uf8ff';
+  });
+
+  // table
+  replace(rx_table, function (all, table) {
+    var sep = table.match(rx_thead)[1];
+    return (
+      '\n' +
+      element(
+        'table',
+        table.replace(rx_row, function (row, ri) {
+          return row == sep
+            ? ''
+            : element(
+                'tr',
+                row.replace(rx_cell, function (all, cell, ci) {
+                  return ci
+                    ? element(
+                        sep &amp;&amp; !ri ? 'th' : 'td',
+                        unesc(highlight(cell || '')),
+                      )
+                    : '';
+                }),
+              );
+        }),
+      )
+    );
+  });
+
+  // heading
+  replace(rx_heading, function (all, _, p1, p2) {
+    return _ + element('h' + p1.length, unesc(highlight(p2)));
+  });
+
+  // paragraph
+  replace(rx_para, function (all, content) {
+    return element('p', unesc(highlight(content)));
+  });
+
+  // stash
+  replace(rx_stash, function (all) {
+    return stash[parseInt(all)];
+  });
+
+  return src.trim();
 };
 
 /**
@@ -1551,21 +1551,21 @@ export let markdownToHTML = (src) => {
  * @returns {Number} The number of syllables in the specified word.
  */
 export let syllables = (word) => {
-    word = word.toLowerCase();
-    var t_some = 0;
-    if (word.length > 3) {
-        if (word.substring(0, 4) == 'some') {
-            word = word.replace('some', '');
-            t_some++;
-        }
+  word = word.toLowerCase();
+  var t_some = 0;
+  if (word.length > 3) {
+    if (word.substring(0, 4) == 'some') {
+      word = word.replace('some', '');
+      t_some++;
     }
-    word = word.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/, '');
-    word = word.replace(/^y/, '');
-    var syl = word.match(/[aeiouy]{1,2}/g);
-    console.log(syl);
-    if (syl) {
-        return syl.length + t_some;
-    }
+  }
+  word = word.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/, '');
+  word = word.replace(/^y/, '');
+  var syl = word.match(/[aeiouy]{1,2}/g);
+  console.log(syl);
+  if (syl) {
+    return syl.length + t_some;
+  }
 };
 /**
  * Capitalizes the first letter of the string
@@ -1577,15 +1577,15 @@ export let syllables = (word) => {
  * @returns {String} The capitalized string.
  */
 export let capitalize = (str) => {
-    if (!str) throw new TypeError("Missing Param 'Str'.");
-    return str
-        .split('')
-        .map(
-            (section) =>
-                String.fromCodePoint(section.codePointAt(0)).toUpperCase() +
-                section.slice(section.codePointAt(0) > 0xffff ? 2 : 1),
-        )
-        .join('');
+  if (!str) throw new TypeError("Missing Param 'Str'.");
+  return str
+    .split('')
+    .map(
+      (section) =>
+        String.fromCodePoint(section.codePointAt(0)).toUpperCase() +
+        section.slice(section.codePointAt(0) > 0xffff ? 2 : 1),
+    )
+    .join('');
 };
 /**
  * Replaces between two indexes of a string.
@@ -1600,7 +1600,7 @@ export let capitalize = (str) => {
  * @returns {String} The replaced string
  */
 export let replaceBetween = (string, start, end, what) =>
-    string.substring(0, start) + what + string.substring(end);
+  string.substring(0, start) + what + string.substring(end);
 /**
  * Escapes a string of HTML
  * @function
@@ -1611,17 +1611,17 @@ export let replaceBetween = (string, start, end, what) =>
  * @returns {String} The escaped HTML.
  */
 export let escapeHTML = (str) =>
-    str.replace(
-        /[&amp;&lt;>'"]/g,
-        (tag) =>
-            ({
-                '&amp;': '&amp;amp;',
-                '&lt;': '&amp;lt;',
-                '>': '&amp;gt;',
-                "'": '&amp;#39;',
-                '"': '&amp;quot;',
-            }[tag] || tag),
-    );
+  str.replace(
+    /[&amp;&lt;>'"]/g,
+    (tag) =>
+      ({
+        '&amp;': '&amp;amp;',
+        '&lt;': '&amp;lt;',
+        '>': '&amp;gt;',
+        "'": '&amp;#39;',
+        '"': '&amp;quot;',
+      }[tag] || tag),
+  );
 /**
  * Unescapes a string of HTML
  * @function
@@ -1632,17 +1632,17 @@ export let escapeHTML = (str) =>
  * @returns {String} The unescaped HTML.
  */
 export let unescapeHTML = (str) =>
-    str.replace(
-        /&amp;amp;|&amp;lt;|&amp;gt;|&amp;#39;|&amp;quot;/g,
-        (tag) =>
-            ({
-                '&amp;amp;': '&amp;',
-                '&amp;lt;': '&lt;',
-                '&amp;gt;': '>',
-                '&amp;#39;': "'",
-                '&amp;quot;': '"',
-            }[tag] || tag),
-    );
+  str.replace(
+    /&amp;amp;|&amp;lt;|&amp;gt;|&amp;#39;|&amp;quot;/g,
+    (tag) =>
+      ({
+        '&amp;amp;': '&amp;',
+        '&amp;lt;': '&lt;',
+        '&amp;gt;': '>',
+        '&amp;#39;': "'",
+        '&amp;quot;': '"',
+      }[tag] || tag),
+  );
 /**
  * Returns the previous page that the user visited.
  * @function
@@ -1652,8 +1652,8 @@ export let unescapeHTML = (str) =>
  * @returns {String} The url of the previous page the user visited.
  */
 export let previousPage = () => {
-    node();
-    return document.referrer || window.location.href;
+  node();
+  return document.referrer || window.location.href;
 };
 //#endregion String
 </code></pre>
