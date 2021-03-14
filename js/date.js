@@ -2,7 +2,7 @@
 /**
  * Returns the name of the weekday from the Date object specified.
  * @function
- * @memberOf bijou
+ * @memberOf date
  * @param {Date} [date=new Date()] The date object to use.
  * @param {String} [locale=en-US] The locale to use.
  * @example
@@ -17,7 +17,7 @@ export let dayName = (date = new Date(), locale = 'en-US') =>
 /**
  * Formats a number of milliseconds
  * @function
- * @memberOf bijou
+ * @memberOf date
  * @param {Number|String} ms The number of milliseconds to format to a string.
  * @example
  * console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"

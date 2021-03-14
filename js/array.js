@@ -2,7 +2,7 @@
 
 /**
  * Returns the difference between two arrays or strings.
- * @memberOf bijou
+ * @memberOf array
  * @function
  * @returns {Array|String} The difference between two arrays or strings.
  * @example
@@ -31,7 +31,7 @@ export let arrayDiff = (a1, a2) => {
 
 /**
  * Gets the difference between two strings.
- * @memberOf bijou
+ * @memberOf array
  * @function
  * @param {String} text1 The 1st text to compare
  * @param {String} text2 The 2nd text to compare with the 1st one.
@@ -76,7 +76,7 @@ export let diff = function (text1, text2) {
 
 /**
  * Removes an item from the array specified.
- * @memberOf bijou
+ * @memberOf array
  * @function
  * @param {Array} array The array to remove the item from.
  * @param {*} item The item to remove.
@@ -100,7 +100,7 @@ export let remove = (array, item) => {
 /**
  * Splices an ArrayBuffer.
  * @function
- * @memberOf bijou
+ * @memberOf array
  * @param {ArrayBuffer|Buffer} arr The ArrayBuffer to splice.
  * @param {Number} start The start index.
  * @param {Number} end The end index.
@@ -119,7 +119,7 @@ export let spliceArrayBuffer = (arr, start, end, endian = false) => {
 
 /**
  * Flattens an array `level` times.
- * @memberOf bijou
+ * @memberOf array
  * @function
  * @returns {Array} The flattened array.
  * @example
@@ -138,7 +138,7 @@ export let flatten = (array, level = 1) => {
 /**
  * Flattens an array recursively.
  * @function
- * @memberOf bijou
+ * @memberOf array
  * @param {Array} arr The array to flatten.
  * @returns {Array} The flattened array.
  * @example
@@ -154,7 +154,7 @@ export let nFlatten = (arr) => {
 
 /**
  * Returns whether the specified array or string contains the item given.
- * @memberOf bijou
+ * @memberOf array
  * @function
  * @param {Array} array The array to test with.
  * @param {String} item The item to see if the array contains.
@@ -167,7 +167,7 @@ export let contains = (array, item) => array.includes(item);
 /**
  * Shuffles an array
  * @function
- * @memberOf bijou
+ * @memberOf array
  * @param {Array} array The array to shuffle.
  * @example
  * let array = [1,2,3,4,5];
@@ -179,7 +179,7 @@ export let shuffleArray = (array) =>
 
 /**
  * Splice but also for strings
- * @memberOf bijou
+ * @memberOf array
  * @function
  * @param {String|Array} array The array or string to operate on
  * @param {Number} index The index to splice
@@ -202,7 +202,7 @@ export let splice = (array, index, remove = 0, item) => {
 /**
  * Joins two arrays together and removes duplicate items.
  * @function
- * @memberOf bijou
+ * @memberOf array
  * @param {Array} x The first array to join.
  * @param {Array} y The second array to join.
  * @example
@@ -222,7 +222,7 @@ export let unionArrays = (x, y) => {
 /**
  * averageBy
  * @function
- * @memberOf bijou
+ * @memberOf array
  * @param {Array.<number>} arr The array to average
  * @param {Function} fn The function to apply to each item of the array.
  * @example
@@ -238,7 +238,7 @@ export let averageBy = (arr, fn) =>
 /**
  * Removes duplicates from an array
  * @function
- * @memberOf bijou
+ * @memberOf array
  * @param {Array} array The array to remove duplicates from.
  * @example
  * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
@@ -248,7 +248,7 @@ export let uniqueArray = (array) => [...new Set(array)];
 /**
  * For each item in an array, run a callback with it.
  * @function
- * @memberOf bijou
+ * @memberOf array
  * @param {Array|String|Number} array The array, string or number to run the callback with.
  * @param {Function} callback The callback function to run on the array items.
  * @example

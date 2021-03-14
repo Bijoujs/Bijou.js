@@ -2,7 +2,7 @@
 /**
  * Animates a number from one value to another.
  * @function
- * @memberOf bijou
+ * @memberOf math
  * @param {Number} start The initial value of the number in the animation
  * @param {Number} end The final value of the number in the animation
  * @param {Number} duration The duration of the animation in milliseconds
@@ -16,21 +16,21 @@
  */
 // prettier-ignore
 export let animate = (start, end, duration, callback, interval = 20, num = (num) => num) => {
-  var value = start;
-  var start_time = Date.now();
-  let update = setInterval(() => {
-    value = num((Date.now() - start_time) / duration) * (end - start) + start;
-    callback(value, num((Date.now() - start_time) / duration));
-  }, interval);
-  setTimeout(() => {
-    clearInterval(update);
-    callback(end, 1);
-    return;
-  }, duration);
+    var value = start;
+    var start_time = Date.now();
+    let update = setInterval(() => {
+        value = num((Date.now() - start_time) / duration) * (end - start) + start;
+        callback(value, num((Date.now() - start_time) / duration));
+    }, interval);
+    setTimeout(() => {
+        clearInterval(update);
+        callback(end, 1);
+        return;
+    }, duration);
 }
 /**
  * Returns an array of the whole numbers (inclusive) between the numbers specified.
- * @memberOf bijou
+ * @memberOf math
  * @function
  * @param {Number} start The start value of the array.
  * @param {Number} end The end value of the array.
@@ -46,7 +46,7 @@ export let range = (start, end) => {
 /**
  * Generates a unique ID from a seed
  * @function
- * @memberOf bijou
+ * @memberOf math
  * @param {Number|String} [seed=Math.random()] The seed to use.
  * @example
  * console.log(_$.uuid()); // e.g. "863d0193-863d-0193-863d-0193863d0193"
@@ -67,7 +67,7 @@ export let uuid = (seed = Math.random()) => {
 /**
  * Gives an array of prime numbers up to a certain one.
  * @function
- * @memberOf bijou
+ * @memberOf math
  * @param {Number} num - The number to give primes to.
  * @example
  * console.log(_$.primesTo(10)); // [2, 3, 5, 7]
@@ -89,7 +89,7 @@ export let primesTo = (num) => {
 /**
  * Generates a random number between a minimum and maximum number
  * @function
- * @memberOf bijou
+ * @memberOf math
  * @param {Number} min The lowest number that the random value generated can be.
  * @param {Number} max The highest number that the random value generated can be.
  * @param {Boolean} [round=true] Weather to round the generated number
@@ -113,7 +113,7 @@ export let random = (
 /**
  * Get a random number from a seed.
  * @function
- * @memberOf bijou
+ * @memberOf math
  * @param {number} seed The seed to use to generate random numbers.
  * @example
  * console.log(_$.seedRandom(13)); // 0.5663226493634284
@@ -129,7 +129,7 @@ export let seedRandom = (seed) => {
 /**
  * Formats a number by adding commas to it.
  * @function
- * @memberOf bijou
+ * @memberOf math
  * @param {Number} n The number to format.
  * @example
  * console.log(_$.formatNumber(100000000)); // "100,000,000"
@@ -140,7 +140,7 @@ export let formatNumber = (n) =>
 /**
  * Easing functions
  * @Object
- * @memberOf bijou
+ * @memberOf math
  * @example
  * console.log(_$.ease.easeInOutQuad(.3)); // 0.18 - the eased point of about 1/3 along the animation.
  * @returns {Function} The easing function.

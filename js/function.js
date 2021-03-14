@@ -1,7 +1,7 @@
 //#region Function
 /**
  * Uses an array of arguments to make a function based on the one inputted.
- * @memberOf bijou
+ * @memberOf function
  * @function
  * @returns {Function}
  * @example
@@ -19,7 +19,7 @@ export let spread = (fn) => {
 /**
  * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
  * @function
- * @memberOf bijou
+ * @memberOf function
  * @param {Function} fn The function to memoize.
  * @example
  * let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)
@@ -41,7 +41,7 @@ export let memoize = (fn) => {
 /**
  * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
  * @function
- * @memberOf bijou
+ * @memberOf function
  * @param {...Function} The functions to be composed.
  * @returns {Function} The composed function.
  * @example
@@ -54,7 +54,7 @@ export let composeFunction = (...functions) => (args) =>
 /**
  * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
  * @function
- * @memberOf bijou
+ * @memberOf function
  * @param {Function} fn The function to curry.
  * @param {Number} [arity=fn.length] The arity (number of params) of the function to curry.
  * {...*} [args] Optional arguments to pass to the function being curried.
@@ -69,7 +69,7 @@ export let curryFunction = (fn, arity = fn.length, ...args) =>
     : curryFunction.bind(null, fn, arity, ...args);
 /**
  * Returns if the given function is async or not.
- * @memberOf bijou
+ * @memberOf function
  * @function
  * @param {Function} val The function to test.
  * @returns {Boolean} True if the function is async and false if not.
@@ -82,7 +82,7 @@ export let isAsync = (val) =>
 /**
  * Only runs the input function at MAX with the delay specified.
  * @function
- * @memberOf bijou
+ * @memberOf function
  * @param {Function} func The function to run.
  * @param {Object.<Boolean>} options The options.
  * @param {Number} wait The number of milliseconds to wait.
@@ -124,7 +124,7 @@ export let throttle = (func, wait, options) => {
 };
 /**
  * Debounces a function
- * @memberOf bijou
+ * @memberOf function
  * @function
  * @example
  * window.addEventListener("keyup", _$.debounce(expensiveFunction, 100));//Run the function expensiveFunction at most every 100ms.
@@ -176,7 +176,7 @@ export let debounce = (func, wait, immediate = false) => {
 /**
  * Runs a function asynchronously in a web worker.
  * @function
- * @memberOf bijou
+ * @memberOf function
  * @param {Function} fn The function to run
  * @example
  * _$.runAsync(() =>  "hello world").then(console.log); // "hello world"

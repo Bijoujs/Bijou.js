@@ -2,7 +2,7 @@
 /**
  * Lets you use a for loop in template literals.
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {arr} The array to loop.
  * @param {callback} Callback to return strings
  * @example
@@ -16,7 +16,7 @@ export let forTemplateLiteral = (arr, callback) => {
 
 /**
  * Removes the accents from a string.
- * @memberOf bijou
+ * @memberOf string
  * @function
  * @returns {String} The string without accents.
  * @example
@@ -28,7 +28,7 @@ export let deburr = (str) =>
 /**
  * Returns either "mobile" or "desktop" depending on which type of device the user is using.
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param
  * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
  * @example
@@ -45,7 +45,7 @@ export let mobileOrDesktop = () => {
 /**
  * Removes tags from the HTML string specified.
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} html The string of HTML to remove tags from.
  * @example
  * console.log(_$.removeTags("<div>Hello</div>")); // "Hello"
@@ -55,7 +55,7 @@ export let removeTags = (html) => html.replace(/<[^>]*>/g, '');
 
 /**
  * Speaks the text given.
- * @memberOf bijou
+ * @memberOf string
  * @function
  * @param {String} text The text to split
  * @param {String} [lang=en-US] The language to speak with.
@@ -94,7 +94,7 @@ export let speak = (
 /**
  * Returns the last space in the string given replaced with "&nbsp;"
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} text The string to replace
  * @example
  * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
@@ -118,7 +118,7 @@ export let widows = (text) => {
 /**
  * Undoes camelCase.
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} str The string to unCamelCase.
  * @example
  * console.log(_$.unCamelCase("helloWorld")); // "Hello World"
@@ -136,7 +136,7 @@ export let unCamelCase = function (str) {
 /**
  * Syntax highlights a string of code.
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} string The string of HTML to highlight.
  * @param {String} [mode=html] The mode to use for highlighting. (CSS, JS or HTML).
  * @param {Object} [colors={}] The colors to use for highlighting.
@@ -885,7 +885,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
 /**
  * camelCases a string.
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} str The string of non-camelCased text.
  * @example
  * console.log(_$.camelCase("Hello world")); // "helloWorld"
@@ -901,7 +901,7 @@ export let camelCase = (str) => {
 /**
  * Scrambles the order of characters in a string. Thanks to @\Touchcreator for the suggestion for this.
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} str The string to be scrambled
  * @example
  * console.log(_$.scrambleString("Hello world")); // e.g. "owllH rdloe"
@@ -922,7 +922,7 @@ export let scrambleString = (str) => {
 /**
  * Hashes a string to a unique integer (This cannot be decrypted easily).
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} str The String to hash.
  * @param {Number} [seed=0] The seed of the hash.
  * @example
@@ -949,7 +949,7 @@ export let hashString = (str, seed = 0) => {
 /**
  * Gets the edit distance between two strings.
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} a The first string
  * @param {String} b The seconds string
  * @example
@@ -996,7 +996,7 @@ export let editDistance = (a, b) => {
 /**
  * Returns the size of a string in bytes.
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} str
  * @example
  * console.log(_$.byteSize("Hello world")); 11
@@ -1007,7 +1007,7 @@ export let byteSize = (str) => new Blob([str]).size;
 /**
  * Finds and replace multiple values with multiple other values.
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} text The text to operate the replace on.
  * @param {Object} replace The object with find and replace values.
  * @example
@@ -1024,7 +1024,7 @@ export let replaceMultiple = (text, replace) => {
 /**
  * Returns the queries from a given url (Or just the current url)
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} query The url query to get.
  * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
  * @example
@@ -1046,7 +1046,7 @@ export let urlQuery = (query, url = window.location.href) => {
 /**
  * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} html The input string to sanitize.
  * @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
  * @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
@@ -1204,7 +1204,7 @@ export let sanitize = (
 /**
  * Converts markdown to HTML.
  * @param {String} src The markdown to convert to HTML.
- * @memberOf bijou
+ * @memberOf string
  * @function
  * @example
  * console.log(_$.markdownToHTML("_Italic text_, **bold text**")); // "<em>Italic text</em>, <b>bold text</b>"
@@ -1416,7 +1416,7 @@ export let markdownToHTML = (src) => {
 
 /**
  * Counts the syllables in the word given.
- * @memberOf bijou
+ * @memberOf string
  * @function
  * @param {String} word The word to count syllables of
  * @example
@@ -1442,7 +1442,7 @@ export let syllables = (word) => {
 };
 /**
  * Capitalizes the first letter of the string
- * @memberOf bijou
+ * @memberOf string
  * @function
  * @param {String} str The string to capitalize.
  * @example
@@ -1462,7 +1462,7 @@ export let capitalize = (str) => {
 };
 /**
  * Replaces between two indexes of a string.
- * @memberOf bijou
+ * @memberOf string
  * @function
  * @example
  * console.log(_$.replaceBetween("Hello world", 6, 11, "earthlings")); // "Hello earthlings"
@@ -1477,7 +1477,7 @@ export let replaceBetween = (string, start, end, what) =>
 /**
  * Escapes a string of HTML
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} str The string of HTML to escape.
  * @example
  * console.log(_$.escapeHTML("<div>")); // "&lt;div&gt;"
@@ -1498,7 +1498,7 @@ export let escapeHTML = (str) =>
 /**
  * Unescapes a string of HTML
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @param {String} str The string of HTML to unescape.
  * @example
  * console.log(_$.unescapeHTML("&lt;div&gt;")); // "<div>"
@@ -1519,7 +1519,7 @@ export let unescapeHTML = (str) =>
 /**
  * Returns the previous page that the user visited.
  * @function
- * @memberOf bijou
+ * @memberOf string
  * @example
  * console.log(_$.previousPage()); // e.g. "https://bijou.js.org"
  * @returns {String} The url of the previous page the user visited.

@@ -2,7 +2,7 @@
 /**
  * Returns the callback when a a click is registered outside the selected element
  * @function
- * @memberOf bijou
+ * @memberOf event
  * @param {Element} element The element to use as the outsideclick element.
  * @param {Function} callback The function to run when a click is registered outside the specified element.
  * @example
@@ -23,7 +23,7 @@ export let onOutsideClick = (element, callback) => {
 /**
  * Returns the callback when the user stops scrolling.
  * @function
- * @memberOf bijou
+ * @memberOf event
  * @param {Function} callback The callback to call when the user stops scrolling.
  * @param {Number} [time=150]
  * @example
@@ -49,7 +49,7 @@ export let onScrollStop = (callback, time = 150) => {
 };
 /**
  * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
- * @memberOf bijou
+ * @memberOf event
  * @function
  * @returns {Object} The object with the emit, on and off functions in it.
  * @example
@@ -77,7 +77,7 @@ export let hub = () => ({
 });
 /**
  * Dispatches an event of the type specified with custom arguments.
- * @memberOf bijou
+ * @memberOf event
  * @function
  * @example
  * //Dispatch a custom mouse move event to the window.

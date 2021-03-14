@@ -4,7 +4,7 @@
  * @param {HTMLMediaElement} audioObj The audio object to play. (Needs to be created from "new Audio()")
  * @param {Number} start The time to start playing.
  * @param {Number} stop The time to stop playing.
- * @memberOf bijou
+ * @memberOf utility
  * @function
  * @example
  * _$.playSection(new Audio("file.mp3"), 5, 20.5); // Plays file.mp3, starting with second 5 and ending at 20.5 seconds into the file.
@@ -23,7 +23,7 @@ export let playSection = (audioObj, start, stop) => {
 };
 /**
  * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
- * @memberOf bijou
+ * @memberOf utility
  * @function
  * @param {String} html The string of HTML to format.
  * @example
@@ -61,14 +61,14 @@ export let formatHTML = (html) => {
 /**
  * Gets JSON from a URL and performs a callback with it.
  * @function
- * @memberOf bijou
+ * @memberOf utility
  * @param {String} url The url of the JSON to be fetched.
  * @param {Function} callback The function to be run with the JSON code.
  * @example
  * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
  * @returns {Promise} A promise resolved when the JSON is fetched and parsed.
  */
-export let getJSON = (url, callback) => {
+export let getJSON = (url, callback = () => {}) => {
   node();
   return new Promise((resolve, reject) => {
     fetch(url)
@@ -86,7 +86,7 @@ export let getJSON = (url, callback) => {
 /**
  * Gets HTML from a URL and performs a callback with it.
  * @function
- * @memberOf bijou
+ * @memberOf utility
  * @param {String} url The url of the HTML to be fetched.
  * @param {Function} callback The function to be run with the HTML code.
  * @example
@@ -94,7 +94,7 @@ export let getJSON = (url, callback) => {
  * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
  * @returns {Promise} A promise resolved when the HTML is fetched and parsed.
  */
-export let getHTML = (url, callback) => {
+export let getHTML = (url, callback = () => {}) => {
   node();
   return new Promise((resolve, reject) => {
     fetch(url)
@@ -113,7 +113,7 @@ export let getHTML = (url, callback) => {
 /**
  * Preloads all of the image urls given in the arguments
  * @function
- * @memberOf bijou
+ * @memberOf utility
  * @param {...String} urls The urls of the images to be preloaded.
  * @example
  * _$.preloadImage("https://unsplash.com/some_huge_image.png"); // Preloads the unsplash image "some_huge_image.png" :P
@@ -130,7 +130,7 @@ export let preloadImage = (...urls) => {
 /**
  * Saves a blob as a file!
  * @function
- * @memberOf bijou
+ * @memberOf utility
  * @param {Blob} blob The blob to save as a file.
  * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
  * @example
@@ -152,7 +152,7 @@ export let saveBlob = (blob, fileName = 'output.txt') => {
 
 /**
  * Works exactly like setInterval but instead uses requestAnimationFrame.
- * @memberOf bijou
+ * @memberOf utility
  * @function
  * @param {Function} fn The function to run repeatedly every delay seconds.
  * @param {Number} delay The delay time in milliseconds to run the function.
@@ -185,7 +185,7 @@ export let requestInterval = function (fn, delay) {
 
 /**
  * Loads a script from a url (Can be to a local file or to a url) then runs a callback once it's loaded.
- * @memberOf bijou
+ * @memberOf utility
  * @function
  * @param {String} url The url to load the script from.
  * @param {Function} callback The callback to run when the script is loaded.
@@ -193,7 +193,7 @@ export let requestInterval = function (fn, delay) {
  * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
  * @returns {Promise} A promise resolved once the script is loaded.
  */
-export let loadScript = (url, callback) => {
+export let loadScript = (url, callback = () => {}) => {
   node();
   return new Promise((resolve, reject) => {
     var script = document.createElement('script');
@@ -225,7 +225,7 @@ export let loadScript = (url, callback) => {
 
 /**
  * Fetches an image and runs the callback with the data url of the image.
- * @memberOf bijou
+ * @memberOf utility
  * @function
  * @param {String} url The url of the image to load.
  * @param {Function} callback The callback function.
@@ -238,7 +238,7 @@ export let loadScript = (url, callback) => {
  * })
  * @returns {Promise} A promise fulfulled when the image is loaded.
  */
-export let imageToData = async (url, callback) => {
+export let imageToData = async (url, callback = () => {}) => {
   return new Promise(async (res, reject) => {
     let blob = await fetch(url).then((r) => r.blob());
     let dataUrl = await new Promise((resolve) => {
@@ -252,7 +252,7 @@ export let imageToData = async (url, callback) => {
 };
 /**
  * A set of functions to set and modify cookies.
- * @memberOf bijou
+ * @memberOf utility
  * @Object
  * @example
  * _$.cookies.setItem("a_cookie", "Hello world!", 1); // Set a_cookie to "Hello world" and have it expire in a day.
@@ -262,7 +262,7 @@ export let cookies = {
   /**
    * Sets a cookie to a value
    * @function
-   * @memberOf bijou
+   * @memberOf utility
    * @param {String} name The name of the cookie to set
    * @param {String} value The value of the cookie
    * @param {Number} [days=1000] The days that the cookie should last.
@@ -282,7 +282,7 @@ export let cookies = {
   /**
    * Gets a cookie from its name.
    * @function
-   * @memberOf bijou
+   * @memberOf utility
    * @param {String} name The name of the cookie.
    * @returns {String} The value of the cookie
    */
@@ -301,7 +301,7 @@ export let cookies = {
   },
   /**
    * Deletes a cookie
-   * @memberOf bijou
+   * @memberOf utility
    * @param {String} name The name of the cookie to delete.
    * @returns {undefined}
    */
@@ -314,7 +314,7 @@ export let cookies = {
 };
 /**
  * A collection of regular expressions to validate and get common things from a page
- * @memberOf bijou
+ * @memberOf utility
  * @Object
  * @example
  * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
@@ -346,8 +346,8 @@ export let regex = {
    */
   name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
   /**
-    Validates email adresses
-    */
+      Validates email adresses
+      */
   email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
   /** Validates a link
    */
@@ -394,7 +394,7 @@ export let regex = {
 /**
    * Converts JSON to a CSV string
    * @function
-   * @memberOf bijou
+   * @memberOf utility
    * @param {Array} arr The array of objects to convert to CSV.
    * @param {Array} columns The columns to use.
    * @param {String} [delimiter=","] The delimiter between cells, by default this is a comma.
@@ -427,7 +427,7 @@ export let jsonToCsv = (arr, columns, delimiter = ',') =>
 /**
  * Converts an array to CSV (Comma separated values) data.
  * @function
- * @memberOf bijou
+ * @memberOf utility
  * @param {Array} arr The array to convert.
  * @param {String} [delimiter=,] The separator (By default this is a comma.)
  * @example
@@ -445,7 +445,7 @@ export let arrayToCSV = (arr, delimiter = ',') =>
 /**
  * Times the function passed.
  * @function
- * @memberOf bijou
+ * @memberOf utility
  * @param {Function} fn The function to run and time.
  * @param {String} [name=_$ function timer]
  * @example
@@ -461,7 +461,7 @@ export let timeFunction = (fn, name = '_$ function timer') => {
 /**
  * Displays a desktop notification with the specified text.
  * @function
- * @memberOf bijou
+ * @memberOf utility
  * @param {String} text The title of the notification.
  * @param {String} body The body of the notification.
  * @param {String} icon The url to the image for the icon of the notification.
@@ -493,7 +493,7 @@ export let notify = (text, body, icon) => {
 /**
  * Copies the string inputted to the clipboard.
  * @function
- * @memberOf bijou
+ * @memberOf utility
  * @param {String} str The string to copy.
  * @example
  * _$.copy("Hello world");
@@ -523,7 +523,7 @@ export let copy = (str) => {
 /**
  * Returns the browser that the user is using.
  * @function
- * @memberOf bijou
+ * @memberOf utility
  * @example
  * _$.browser(); // For me this (correctly) returns "Chrome"
  * @returns {String} A string of the browser name that the user is using.

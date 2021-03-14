@@ -1,8 +1,64 @@
 //#region Element
+/**
+ * Create a DOM element from a querySelector with option to include content
+ * @memberOf element
+ * @param {String} querySelector (optional) default to div
+ * @param {...*} [content] (optional) String|Number|DOMElement
+ * @returns DOMElement
+ *
+ * @example
+ * - createElement(); // <div>
+ * - createElement('span#my-id.my-class.second-class'); // <span id="my-id" class="my-class second-class">
+ * - createElement('#my-id.my-class.second-class', 'text to insert', 12345); // <div id="my-id" class="my-class second-class">
+ */
+export function create(querySelector = 'div', ...content) {
+  let nodeType = querySelector.match(/^[a-z0-9]+/i);
+  let id = querySelector.match(/#([a-z]+[a-z0-9-]*)/gi);
+  let classes = querySelector.match(/\.([a-z]+[a-z0-9-]*)/gi);
+  let attributes = querySelector.match(
+    /\[([a-z][a-z-]+)(=['|"]?([^\]]*)['|"]?)?\]/gi,
+  );
+  let node = nodeType ? nodeType[0] : 'div';
 
+  if (id && id.length > 1) {
+    throw new Error('only 1 ID is allowed');
+  }
+
+  const elt = document.createElement(node);
+
+  if (id) {
+    elt.id = id[0].replace('#', '');
+  }
+
+  if (classes) {
+    const attrClasses = classes.join(' ').replace(/\./g, '');
+    elt.setAttribute('class', attrClasses);
+  }
+
+  if (attributes) {
+    attributes.forEach((item) => {
+      item = item.slice(0, -1).slice(1);
+      let [label, value] = item.split('=');
+      if (value) {
+        value = value.replace(/^['"](.*)['"]$/, '$1');
+      }
+      elt.setAttribute(label, value || '');
+    });
+  }
+
+  content.forEach((item) => {
+    if (typeof item === 'string' || typeof item === 'number') {
+      elt.appendChild(document.createTextNode(item));
+    } else if (item.nodeType === document.ELEMENT_NODE) {
+      elt.appendChild(item);
+    }
+  });
+
+  return elt;
+}
 /**
  * Re-enables the use of &lt;menu&gt; and &lt;menuitem&gt; tags for corner clicking.
- * @memberOf bijou
+ * @memberOf element
  * @function
  * @example
  * //HTML:
@@ -108,7 +164,7 @@ export let context = () => {
 /**
  * Tests whether the specified element is fully in view.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {Element} el The DOM element to test.
  * @example
  * // Alerts "In view!" if the first <div> in the document is in view.
@@ -138,7 +194,7 @@ export let inView = (el) => {
 /**
  * Tests if the given DOM element is partially (or fully) in view.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {Element} el The element to test.
  * @example
  * // Alerts "In view!" if the first <div> in the document is partially or fully view.
@@ -168,7 +224,7 @@ export let inPartialView = (el) => {
 /**
  * Converts a form to URL queries using the name attribute.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {HTMLFormElement} form The form element.
  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
  */
@@ -182,7 +238,7 @@ export let serializeForm = (form) => {
 /**
  * Replaces the text in an element by running it through a callback.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {Element} el The element to replace the text of.
  * @param {Function} callback The callback to run (Gets passed the element's text).
  * @example
@@ -198,7 +254,7 @@ export let replaceText = (el, callback) => {
 };
 /**
  * Gets a list of all the text nodes in an element
- * @memberOf bijou
+ * @memberOf element
  * @function
  * @param {Element} el The element to get the text nodes of.
  * @returns {Array} The text nodes.
@@ -215,7 +271,7 @@ export let textNodes = (el) => {
 /**
  * Generates a querySelector for an element passed in.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {Element} elem The element to generate the querySelector for.
  * @example
  * const textarea = document.getElementById('textarea');
@@ -324,7 +380,7 @@ export let querySelector = (elem) => {
 /**
  * Removes comments from the element or string of code specified.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {Element|String} el The element or string or code to remove comments from.
  * @example
  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
@@ -344,7 +400,7 @@ export let removeComments = (el) => {
 /**
  * Parses the string of HTML specified and returns an HTML element of it.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {String} string The HTML string to parse.
  * @param {String} [mimeType="text/html"] The mimeType of the string.
  * @example
@@ -359,7 +415,7 @@ export let parseHTML = (string, mimeType = 'text/html') => {
 /**
  * Allows an element to be dragged and dropped.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {Element} el The element to be dragged (And dropped :P ).
  * @example
  * _$.drag(document.querySelector('div')); // Allows the first <div> on the page to be dragged.
@@ -406,7 +462,7 @@ export let drag = (el) => {
 };
 /**
  * Adds multiple event listeners with one callback to the element specified.
- * @memberOf bijou
+ * @memberOf element
  * @function
  * @param {Element} element The element to add the event listeners to.
  * @param {Array.<String>} events The array of events to listen for.
@@ -447,7 +503,7 @@ export let addEventListeners = (
   }
 };
 /**
- * @memberOf bijou
+ * @memberOf element
  * @function
  * @returns {undefined}
  * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
@@ -496,7 +552,7 @@ export let sortTable = (element) => {
 };
 /**
  * Sorts a table by a <th> element.
- * @memberOf bijou
+ * @memberOf element
  * @function
  * @returns {undefined}
  * @example
@@ -548,7 +604,7 @@ export let sortTableBy = (th, acending) => {
 /**
  * Adds the specified styles to the element specified.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {Element} el The element to add the styles to.
  * @param {Object} styles An object that represents the styles to be added. (camelCased)
  * @example
@@ -563,7 +619,7 @@ export let addStyles = (el, styles) => {
 /**
  * Creates an HTML element from the specified string.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {String} str The string of the HTML element to create.
  * @example
  * //Returns a div with an id of "id_here" and innerText of "Testing!"
@@ -579,7 +635,7 @@ export let createElement = (str) => {
 /**
  * Gets a property from the computed style of an element.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {Element} el The element whose styles to get.
  * @param {String} prop The css-property value to get of the styles.
  * @example
@@ -595,7 +651,7 @@ export let compStyle = (el, prop) => {
 /**
  * Get the siblings of a DOM element
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {Element} n The element to get siblings of
  * @example
  * _$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.backgroundColor = 'white');
@@ -607,7 +663,7 @@ export let elementSiblings = (n) =>
 /**
  * Disables right click on the element spcified.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {Element} el The element to disable right click on.
  * @example
  * _$.disableRightClick(document.documentElement)
@@ -620,7 +676,7 @@ export let disableRightClick = (el) => {
 /**
  * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @param {Element} el The element to convert.
  * @example
  * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the <h1> element to inline using the style="___" attribute
@@ -638,7 +694,7 @@ export let inlineCSS = (el) => {
  * Returns an array of objects representing the attributes of a passed element.
  * @param {Element} el The HMTL element to get attributes from.
  * @function
- * @memberOf bijou
+ * @memberOf element
  * @example
  * // Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "style," to the console.
  * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
@@ -662,7 +718,7 @@ export let attributes = (el) => {
 };
 /**
  * Observes the mutations of the html element specified.
- * @memberOf bijou
+ * @memberOf element
  * @function
  * @param {Element} element The element to observe
  * @param {Function} callback The callback function to run when a mutation happens.
@@ -693,7 +749,7 @@ export let observeMutations = (element, callback, options) => {
 };
 /**
  * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
- * @memberOf bijou
+ * @memberOf element
  * @function
  * @param {Element} el The element to tilt.
  * @param {Number} x The x value of the mouse
@@ -713,11 +769,11 @@ export let observeMutations = (element, callback, options) => {
 export let tilt = (el, x, y, perspective = 500, amount = 30) => {
   //Old code
   /*  const xVal = x
-    const yVal = y
-    const yRotation = amount * ((xVal - width / 2) / width)
-    const xRotation = amount * -1 * ((yVal - height / 2) / height)
-    const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
-    el.style.transform = string */
+      const yVal = y
+      const yRotation = amount * ((xVal - width / 2) / width)
+      const xRotation = amount * -1 * ((yVal - height / 2) / height)
+      const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
+      el.style.transform = string */
 
   //One liner
   el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
@@ -728,7 +784,7 @@ export let tilt = (el, x, y, perspective = 500, amount = 30) => {
 };
 /**
  * Enters fullscreen on an element.
- * @memberOf bijou
+ * @memberOf element
  * @function
  * @param {Element} element The element to enter full screen with.
  * @returns {undefined}
@@ -745,7 +801,7 @@ export let fullScreen = (element) => {
 };
 /**
  * Replaces the selected text in a contentEditable div with the HTML given.
- * @memberOf bijou
+ * @memberOf element
  * @function
  * @returns {undefined}
  * @example

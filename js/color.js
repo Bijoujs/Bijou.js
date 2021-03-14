@@ -1,7 +1,7 @@
 //#region Color
 /**
  * Converts a rgb(a) color to hex.
- * @memberOf bijou
+ * @memberOf color
  * @function
  * @example
  * console.log(_$.rgbToHex("rgb(255,255,255)")); // "#ffffff"
@@ -25,7 +25,7 @@ export let rgbToHex = (rgb) => {
 /**
  * Converts a hex code to a RGB color.
  * @function
- * @memberOf bijou
+ * @memberOf color
  * @param {String} hex The hex code to convert.
  * @example
  * console.log(_$.rgbToHex("#ffffff")); // "rgb(255,255,255)"
@@ -68,7 +68,7 @@ export let hexToRGB = (hex) => {
 /**
  * Blends two colors through additive blending by a percentage.
  * @function
- * @memberOf bijou
+ * @memberOf color
  * @param {String} color1 The hex code of the first color to be blended
  * @param {String} color2 The hex code of the second color to be blended.
  * @param {Number} [percent=50] A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
@@ -115,7 +115,7 @@ export let blendColors = (color1, color2, percent = 50) => {
 /**
  * Generates a random hex color.
  * @function
- * @memberOf bijou
+ * @memberOf color
  * @example
  * console.log(_$.randomColor()); // e.g. #5bf462
  * @returns {String} A random Hex color
@@ -125,7 +125,7 @@ export let randomColor = () =>
 /**
  * Lighten or darken a color by a certain amount
  * @function
- * @memberOf bijou
+ * @memberOf color
  * @param {String} color The color to lighten/darken
  * @param {Number} amt The amount to lighten the color (out of 255).
  * @example
@@ -164,7 +164,7 @@ export let lightenColor = (col, amt) => {
 /**
   * Tests if a color is light or dark and returns an object representation.
   * @function
-  * @memberOf bijou
+  * @memberOf color
   * @param {string} color The hex color to test.
   * @example
   * if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
