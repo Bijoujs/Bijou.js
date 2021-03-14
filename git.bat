@@ -5,6 +5,7 @@ npm install eslint-plugin-jsdoc @babel/plugin-transform-spread @babel/plugin-tra
 function remove {
   rm -f .git/index.lock
 }
+
 function commit {
   COMMIT=$(git status --porcelain)
   cd /workspace/Bijou.js
