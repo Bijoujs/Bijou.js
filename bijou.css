@@ -22,7 +22,8 @@
   --margin-bottom: 10px;
   --margin-left: 10px;
   --margin-right: 10px;
-} /* Initial styles */
+}
+/* Initial styles */
 .initial-styles,
 .initial-styles * {
   color: var(--text);

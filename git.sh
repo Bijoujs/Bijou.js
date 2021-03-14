@@ -4,9 +4,11 @@ npm install eslint-plugin-jsdoc @babel/plugin-transform-spread @babel/plugin-tra
 
 function remove {
   rm -f .git/index.lock
+  rm -f bijou.*
 }
 function build {
   cat libs/js/*.js >> bijou.js
+  echo libs/exports.js >> bijou.js
   cat libs/css/*.css >> bijou.css
 }
 function commit {
