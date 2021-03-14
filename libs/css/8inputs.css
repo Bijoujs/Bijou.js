@@ -1,0 +1,13 @@
+/* Inputs */
+.input {
+  padding: 10px;
+  background-color: var(--background-color);
+  border-color: var(--border-color);
+  border-radius: 5px;
+}
+.select {
+  padding: 10px;
+  border-radius: 5px;
+  background: var(--background);
+  border-color: var(--border-color);
+}

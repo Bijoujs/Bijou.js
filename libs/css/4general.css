@@ -1,0 +1,51 @@
+/* General elements */
+.border-radius {
+    border-radius: 10px;
+  }
+  .monospace {
+    font-family: var(--monospace-font), Courier, monospace;
+  }
+  .full-height {
+    min-height: 100vh;
+  }
+  .light-border {
+    border: 1px solid var(--border-color);
+  }
+  .border {
+    border: 2px solid var(--border-color);
+  }
+  .padding {
+    padding: var(--padding);
+  }
+  .large-padding {
+    padding: var(--large-padding);
+  }
+  .margin-top {
+    margin-top: var(--margin-top);
+  }
+  .margin-bottom {
+    margin-bottom: var(--margin-bottom);
+  }
+  .margin-left {
+    margin-left: var(--margin-left);
+  }
+  .margin-right {
+    margin-right: var(--margin-right);
+  }
+  .margin {
+    margin: 5px;
+  }
+  .hr {
+    display: block;
+    width: 100%;
+    height: 2px;
+    border: none;
+    outline: none;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--hr-color),
+      transparent
+    );
+  }
+  

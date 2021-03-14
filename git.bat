@@ -4,6 +4,11 @@ npm install eslint-plugin-jsdoc @babel/plugin-transform-spread @babel/plugin-tra
 
 function remove {
   rm -f .git/index.lock
+  rm -f src/*
+}
+function build {
+  cat libs/js/*.js >> bijou.js
+  cat libs/css/*.css >> bijou.css
 }
 function commit {
   COMMIT=$(git status --porcelain)
@@ -33,7 +38,7 @@ function commit {
     git commit -m "${COMMIT_CUSTOM_MSG} ${COMMIT_FILE}" -m "${COMMIT_MSG}"
   fi
 }
-
 remove
+build
 commit
 git push

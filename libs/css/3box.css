@@ -1,0 +1,11 @@
+/* Box shadows and soon more general stylings */
+.box-shadow-focus:focus {
+    outline: none;
+    box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
+      var(--box-shadow);
+  }
+  .box-shadow-hover:hover {
+    box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
+      var(--box-shadow);
+  }
+  

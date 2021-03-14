@@ -1,0 +1,10 @@
+/* Initial styles */
+.initial-styles,
+.initial-styles * {
+  color: var(--text);
+  background: var(--background);
+  font-family: var(--main-font);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
