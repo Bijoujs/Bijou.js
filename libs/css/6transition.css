@@ -1,32 +1,31 @@
 /* Transition effects */
 .transition-bg {
-    transition-property: background-color;
-  }
-  .transition-shadow {
-    transition-property: box-shadow;
-  }
-  .transition-bg.transition-shadow {
-    transition-property: background-color, color, box-shadow;
-  }
-  .transition-bg.transition-shadow.transition-border {
-    transition-property: background-color, color, box-shadow, border;
-  }
-  .transition-slow {
-    transition-duration: var(--slow-transition);
-  }
-  .transition-medium {
-    transition-duration: var(--medium-transition);
-  }
-  .transition-fast {
-    transition-duration: var(--fast-transition);
-  }
-  .transition-ease {
-    transition-property: ease;
-  }
-  .transition-linear {
-    transition-property: linear;
-  }
-  .transition-bounce {
-    transition-property: cubic-bezier(0.175, 0.885, 0.32, 1.675);
-  }
-  
+  transition-property: background-color;
+}
+.transition-shadow {
+  transition-property: box-shadow;
+}
+.transition-bg.transition-shadow {
+  transition-property: background-color, color, box-shadow;
+}
+.transition-bg.transition-shadow.transition-border {
+  transition-property: background-color, color, box-shadow, border;
+}
+.transition-slow {
+  transition-duration: var(--slow-transition);
+}
+.transition-medium {
+  transition-duration: var(--medium-transition);
+}
+.transition-fast {
+  transition-duration: var(--fast-transition);
+}
+.transition-ease {
+  transition-property: ease;
+}
+.transition-linear {
+  transition-property: linear;
+}
+.transition-bounce {
+  transition-property: cubic-bezier(0.175, 0.885, 0.32, 1.675);
+}

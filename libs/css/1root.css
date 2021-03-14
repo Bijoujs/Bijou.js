@@ -1,25 +1,25 @@
 /* Bijou.css library! */
 :root {
-    --background: #fff;
-    --text: #333;
-    --box-shadow-spread: 5px;
-    --box-shadow: #0002;
-    --box-shadow-blur: 0px;
-    --border-color: lightgrey;
-    --success-color: rgb(21, 163, 16);
-    --success-color-hover: rgb(16, 116, 16);
-    --error-color: rgb(212, 72, 47);
-    --error-color-hover: rgb(180, 52, 30);
-    --hr-color: lightseagreen;
-    --slow-transition: 3s;
-    --medium-transition: 0.5s;
-    --fast-transition: 0.3s;
-    --monospace-font: 'Courier New';
-    --main-font: 'Poppins', sans-serif;
-    --padding: 10px;
-    --large-padding: 20px;
-    --margin-top: 10px;
-    --margin-bottom: 10px;
-    --margin-left: 10px;
-    --margin-right: 10px;
+  --background: #fff;
+  --text: #333;
+  --box-shadow-spread: 5px;
+  --box-shadow: #0002;
+  --box-shadow-blur: 0px;
+  --border-color: lightgrey;
+  --success-color: rgb(21, 163, 16);
+  --success-color-hover: rgb(16, 116, 16);
+  --error-color: rgb(212, 72, 47);
+  --error-color-hover: rgb(180, 52, 30);
+  --hr-color: lightseagreen;
+  --slow-transition: 3s;
+  --medium-transition: 0.5s;
+  --fast-transition: 0.3s;
+  --monospace-font: 'Courier New';
+  --main-font: 'Poppins', sans-serif;
+  --padding: 10px;
+  --large-padding: 20px;
+  --margin-top: 10px;
+  --margin-bottom: 10px;
+  --margin-left: 10px;
+  --margin-right: 10px;
 }

@@ -1,10 +1,9 @@
-npm install;
+npm install
 npm i -g eslint eslint-plugin-jsdoc jsdoc prettier terser figlet-cli @babel/core @babel/cli @babel/preset-env @babel/plugin-transform-modules-commonjs
 npm install eslint-plugin-jsdoc @babel/plugin-transform-spread @babel/plugin-transform-template-literals @babel/preset-env babel @babel/plugin-transform-arrow-functions @babel/plugin-transform-sticky-regex @babel/plugin-transform-shorthand-properties
 
 function remove {
   rm -f .git/index.lock
-  rm -f src/*
 }
 function build {
   cat libs/js/*.js >> bijou.js

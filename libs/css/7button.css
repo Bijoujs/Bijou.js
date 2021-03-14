@@ -1,48 +1,47 @@
 /* Button styling */
 .border-button {
-    padding: 10px 15px;
-    text-decoration: none;
-    color: var(--text);
-    background: transparent;
-    border-radius: 5px;
-    border: 1px solid var(--border-color);
-  }
-  .border-button:hover {
-    box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
-      var(--box-shadow);
-  }
-  .button {
-    display: inline-block;
-    padding: 10px 15px;
-    text-decoration: none;
-    color: var(--background);
-    background: var(--text);
-    border-radius: 5px;
-    border-color: transparent;
-  }
-  .button:disabled,
-  .button.disabled {
-    opacity: 0.5;
-  }
-  .button:hover {
-    background: var(--background);
-    color: var(--text);
-    border-color: var(--border-color);
-  }
-  .button.error {
-    background-color: var(--error-color);
-  }
-  .button.error:hover {
-    background-color: var(--error-color-hover);
-    color: var(--background);
-  }
-  .button.success {
-    background-color: var(--success-color);
-    border-color: var(--success-color-hover);
-  }
-  .button.success:hover {
-    background-color: var(--success-color-hover);
-    border-color: var(--success-color);
-    color: var(--background);
-  }
-  
+  padding: 10px 15px;
+  text-decoration: none;
+  color: var(--text);
+  background: transparent;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+}
+.border-button:hover {
+  box-shadow: 0 0 var(--box-shadow-blur) var(--box-shadow-spread)
+    var(--box-shadow);
+}
+.button {
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: var(--background);
+  background: var(--text);
+  border-radius: 5px;
+  border-color: transparent;
+}
+.button:disabled,
+.button.disabled {
+  opacity: 0.5;
+}
+.button:hover {
+  background: var(--background);
+  color: var(--text);
+  border-color: var(--border-color);
+}
+.button.error {
+  background-color: var(--error-color);
+}
+.button.error:hover {
+  background-color: var(--error-color-hover);
+  color: var(--background);
+}
+.button.success {
+  background-color: var(--success-color);
+  border-color: var(--success-color-hover);
+}
+.button.success:hover {
+  background-color: var(--success-color-hover);
+  border-color: var(--success-color);
+  color: var(--background);
+}

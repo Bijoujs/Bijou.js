@@ -35,7 +35,7 @@ export let arrayDiff = (a1, a2) => {
  * @function
  * @param {String} text1 The 1st text to compare
  * @param {String} text2 The 2nd text to compare with the 1st one.
- * @example 
+ * @example
  * console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]
  * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
  */
@@ -159,7 +159,7 @@ export let nFlatten = (arr) => {
  * @param {Array} array The array to test with.
  * @param {String} item The item to see if the array contains.
  * @example
- * console.log(_$.contains([1,2,3,4,5], 3)); // true 
+ * console.log(_$.contains([1,2,3,4,5], 3)); // true
  * @returns {Boolean} True or false depending on if the array contains that item.
  */
 export let contains = (array, item) => array.includes(item);
@@ -236,14 +236,14 @@ export let averageBy = (arr, fn) =>
     .reduce((acc, val) => acc + val, 0) / arr.length;
 
 /**
-  * Removes duplicates from an array
-  * @function
-  * @memberOf bijou
-  * @param {Array} array The array to remove duplicates from.
-  * @example
-  * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
-  * @returns {Array} The array with no duplicates.
-  */
+ * Removes duplicates from an array
+ * @function
+ * @memberOf bijou
+ * @param {Array} array The array to remove duplicates from.
+ * @example
+ * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
+ * @returns {Array} The array with no duplicates.
+ */
 export let uniqueArray = (array) => [...new Set(array)];
 /**
  * For each item in an array, run a callback with it.
@@ -252,7 +252,7 @@ export let uniqueArray = (array) => [...new Set(array)];
  * @param {Array|String|Number} array The array, string or number to run the callback with.
  * @param {Function} callback The callback function to run on the array items.
  * @example
- * _$.each(new Array(6), (array_item, i) => console.log(i)); 
+ * _$.each(new Array(6), (array_item, i) => console.log(i));
  * // 0
  * // 1
  * // 2
