@@ -68,7 +68,7 @@
     
 
 
-    <title>Home</title>
+    <title>js/_copyright.js</title>
 
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -115,242 +115,117 @@
 
 <div id="main">
     
+    <h1 id='page-title' class="page-title">js/_copyright.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file bijou.js
+ * @author Explosion-Scratch, Bijou.js contributors
+ * @since v0.0.0
+ * @copyright © Explosion-Scratch and GrahamSH, All rights reserved.
+ */
+
+/* --------------------------------------------------------------------------|
+  ____ ___    _  ___  _   _   _     
+ | __ )_ _|  | |/ _ \| | | | (_)___ 
+ |  _ \| |_  | | | | | | | | | / __|
+ | |_) | | |_| | |_| | |_| | | \__ \
+ |____/___\___/ \___/ \___(_)/ |___/
+                           |__/     
+------------------------------------------------------------------------------|
+Bijou.js is copyrighted by Explosion-Scratch and GrahamSH-LLK of GitHub and released under the MIT license.
+This software comes with ABSOLUTELY NO WARRANTY and is provided "As is" (with the best intentions of Explosion-Scratch and contributors! =D )
+
+-----------------------------------------------------------------------------|
+   ____ ___  _   _ _____ ____  ___ ____  _   _ _____ ___  ____  ____
+  / ___/ _ \| \ | |_   _|  _ \|_ _| __ )| | | |_   _/ _ \|  _ \/ ___|
+ | |  | | | |  \| | | | | |_) || ||  _ \| | | | | || | | | |_) \___ \
+ | |__| |_| | |\  | | | |  _ &lt; | || |_) | |_| | | || |_| |  _ &lt; ___) |
+  \____\___/|_| \_| |_| |_| \_\___|____/ \___/  |_| \___/|_| \_\____/
+-----------------------------------------------------------------------------|
+Contributors to Bijou.js:
+╔═══════════════════╦════════════════════════════╗
+║ GITHUB USERNAME   ║ CONTRIBUTIONS              ║
+╠═══════════════════╬════════════════════════════╣
+║ Explosion-Scratch ║ Founder and creator of     ║
+║                   ║ Bijou.js, over 1500        ║
+║                   ║ commits to the source      ║
+║                   ║ repository.                ║
+╠═══════════════════╬════════════════════════════╣
+║ GrahamSH-LLK      ║ Great guy, contributed     ║
+║                   ║ a ton towards the          ║
+║                   ║ development of this        ║
+║                   ║ project. He fixed glitches ║
+║                   ║ suggested new features,    ║
+║                   ║ and helped publish this    ║
+║                   ║ to NPM and fix the GitHub  ║
+║                   ║ actions on the project.    ║
+╠═══════════════════╬════════════════════════════╣
+║ Touchcreator      ║ Pointed out several bugs   ║
+║                   ║ in Bijou.js and suggested  ║
+║                   ║ several new features.      ║
+╠═══════════════════╬════════════════════════════╣
+║ TheColaber        ║ Collaborated?? (lol)       ║
+║                   ║ Fixed tons of bugs         ║
+╠═══════════════════╬════════════════════════════╣
+║ Hans5958          ║ Helped fix glitches in the ║
+║                   ║ website and suggested      ║
+║                   ║ fixes for GitHub actions   ║
+║                   ║ glitches.                  ║
+╠═══════════════════╬════════════════════════════╣
+║ retronbv          ║ Suggested a lot of         ║
+║                   ║ features and bug fixes.    ║
+║═══════════════════║════════════════════════════║
+║ thecoder876       ║ Made some improvements.    ║
+╚═══════════════════╩════════════════════════════╝
 
 
+(c) 2021 Explosion-Scratch, all rights reserved.
 
+ */
 
+let isNode = false;
+if (
+  typeof window === 'undefined' ||
+  typeof document === 'undefined'
+) {
+  isNode = true;
+} else {
+  isNode = false;
+}
 
-
-
-
-
-    
-
-
-    <section class="readme">
-        <article><div align="center"><a href="https://bijou.js.org"><img width="700" src="https://user-images.githubusercontent.com/72760579/110570598-271dc400-8124-11eb-91be-2e7651d27797.gif"></a></div>
-<p><a href="https://npmjs.com/bijou.js"><img src="https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&amp;color=lightseagreen" alt="NPM Downloads"></a>
-<a href="https://github.com/bijou-js/bijou.js/stargazers"><img src="https://img.shields.io/github/stars/bijou-js/bijou.js?color=lightseagreen&amp;style=for-the-badge" alt="GitHub stars"></a>
-<a href="https://bijou.js.org"><img src="https://img.shields.io/website?down_color=lightseagreen&amp;down_message=Down%20%3A%27%28&amp;label=Website%20status&amp;style=for-the-badge&amp;up_color=lightseagreen&amp;up_message=Online%21&amp;url=https%3A%2F%2Fbijou.js.org" alt="Website"></a>
-<a href="https://discord.gg/tApDpbyK2F"><img src="https://img.shields.io/discord/789662824678686720?style=for-the-badge&amp;color=lightseagreen" alt="Discord"></a>
-<a href="https://gitpod.io/#https://github.com/bijou-js/bijou.js"><img src="https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod&amp;style=for-the-badge&amp;color=lightseagreen" alt="Gitpod Ready-to-Code"></a></p>
-<h1 align=center>Bijou.js</h1>
-<p>Bijou.js is a library of super helpful JavaScript snippets! It has a bunch of
-useful snippets for all your coding needs! If there's something that's not in
-here currently but you use frequently, feel free to submit an issue! I'd be happy
-to add it! Bijou's goal is to eliminate the need to copy paste the same thing
-from StackOverflow, another project or anywhere else! So if you ever find
-yourself typing the same thing over and over again, copy pasting the same
-snippet as you did a few days ago, use Bijou.js! If the snippet you're using
-isn't in Bijou.js, just submit an issue with the code!</p>
-<h3>Table of contents</h3>
-<ul>
-<li><a href="#how-to-use-bijoujs">How to use Bijou.js</a>
-<ul>
-<li><a href="#cdn">CDN</a></li>
-<li><a href="#imports">Imports</a></li>
-<li><a href="#nodejs">NodeJS</a></li>
-</ul>
-</li>
-<li><a href="#usage">Usage</a></li>
-<li><a href="#who-made-bijoujs">Who made Bijou.js?</a></li>
-<li><a href="#why-use-bijou">Why use Bijou?</a>
-<ul>
-<li><a href="#installation">Installation</a></li>
-</ul>
-</li>
-</ul>
-<h1>How to use Bijou.js</h1>
-<p>Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:</p>
-<h2>CDN</h2>
-<p>jsDelivr:</p>
-<pre class="prettyprint source lang-html"><code>&lt;script
-  src=&quot;https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js&quot;
-  type=&quot;module&quot;
->&lt;/script>
+if (isNode) {
+  console.warn(
+    'There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.',
+  );
+}
+/**
+ * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
+ */
+let node = () => {
+  if (isNode) {
+    throw new Error(
+      'You are using Node.js, this function does not work in Node.js! Sorry!',
+    );
+  }
+};
+/*
+  ____   ___  _   _ ____   ____ _____
+ / ___| / _ \| | | |  _ \ / ___| ____|
+ \___ \| | | | | | | |_) | |   |  _|
+  ___) | |_| | |_| |  _ &lt;| |___| |___
+ |____/ \___/ \___/|_| \_\\____|_____|
+*/
 </code></pre>
-<p>UNPKG</p>
-<pre class="prettyprint source lang-html"><code>&lt;script
-  src=&quot;https://unpkg.com/bijou.js@latest/bijou.js&quot;
-  type=&quot;module&quot;
->&lt;/script>
-</code></pre>
-<h2>Imports</h2>
-<p>You can also import parts of bijou, for example only the uuid() function:</p>
-<pre class="prettyprint source lang-html"><code>&lt;script type=&quot;module&quot;>
-  import { uuid } from 'https://unpkg.com/bijou.js';
-  console.log(uuid()); //Same as _$.uuid() when importing the whole library.
-&lt;/script>
-</code></pre>
-<p>or you can import the whole thing:</p>
-<pre class="prettyprint source lang-html"><code>&lt;script type=&quot;module&quot;>
-  import * as _$ from 'https://unpkg.com/bijou.js';
-  console.log(_$.uuid());
-&lt;/script>
-</code></pre>
-<h2>NodeJS</h2>
-<p>Bijou.js is included in NodeJS through NPM and yarn! Depending on the platform you're using you may have to install it through npm or yarn:</p>
-<pre class="prettyprint source lang-bash"><code>npm install bijou.js
-</code></pre>
-<p>or</p>
-<pre class="prettyprint source"><code>yarn add bijou.js
-</code></pre>
-<p>Then just require it in your code:</p>
-<pre class="prettyprint source lang-js"><code>const _$ = require('bijou.js');
-console.log(_$.uuid());
-</code></pre>
-<h1>Usage</h1>
-<p>To use Bijou.js simply call one of the many functions built into it!</p>
-<pre class="prettyprint source lang-js"><code>_$.anyFunction(); //You can name bijou anything when using imports, or when using node you can name it using require();
-</code></pre>
-<p>Such as this one!</p>
-<pre class="prettyprint source lang-js"><code>_$.uuid(); //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
-</code></pre>
-<p>If you need to use a custom prefix than you can set a variable that you want to use as Bijou.js to <code>_$</code></p>
-<h1>Who made Bijou.js?</h1>
-<p>Me (@Explosion-Scratch) and my good friend @GrahamSH-LLK with a lot of help from other people such as retronbv and TheColaber!</p>
-<h1>Why use Bijou?</h1>
-<p>Well, a few reasons:</p>
-<ol>
-<li><s>I made it. 😛</s></li>
-<li>It's useful! (If it's not useful just tell me what you want added in the
-issues tab! I'd be happy to add it!)</li>
-<li>It's jam packed full of functions that are super useful but hard to think of!</li>
-<li>It's very easy to use, and I'm happy to add anything you think of!</li>
-</ol>
-<p><small>(You can probably see I'm pretty desperate for people to use
-this.)</small></p>
-<h2>Installation</h2>
-<p>Bijou.js is available in NodeJS through yarn and NPM</p>
-<p><code>npm i bijou.js</code>
-or
-<code>yarn add bijou.js</code></p>
-<p>Or through a CDN:</p>
-<pre class="prettyprint source"><code>https://unpkg.com/bijou.js
-https://cdn.jsdelivr.net/npm/bijou.js
-https://cdn.jsdelivr.net/gh/Bijou-js/bijou.js@latest/bijou.js
-</code></pre></article>
+        </article>
     </section>
-
-
-
-
-
-
-
-
-
-<section>
-
-
-<header>
-    
-        
-        <h2>
-        
-        bijou.js
-        
-        </h2>
-        
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>bijou.js</p></div>
-        
-
-        
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-
-<header>
-    
-        
-        <h2>
-        
-        js/_copyright.js
-        
-        </h2>
-        
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>bijou.js</p></div>
-        
-
-        
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
 
 
 

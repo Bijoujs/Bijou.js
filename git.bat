@@ -9,6 +9,8 @@ function commit {
   COMMIT=$(git status --porcelain)
   cd /workspace/Bijou.js
   rm bijou_node.js
+  rm bijou.js
+  cat ./js/_copyright.js ./js/array.js ./js/color.js ./js/date.js ./js/element.js ./js/event.js ./js/function.js ./js/math.js ./js/string.js ./js/_end.js > bijou.js
   rm -r docs/docs
   rm bijou-min.js
   jsdoc -c jsdoc.json

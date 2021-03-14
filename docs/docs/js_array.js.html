@@ -68,7 +68,7 @@
     
 
 
-    <title>Home</title>
+    <title>js/array.js</title>
 
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -115,242 +115,294 @@
 
 <div id="main">
     
+    <h1 id='page-title' class="page-title">js/array.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//#region Array
 
+/**
+ * Returns the difference between two arrays or strings.
+ * @memberOf bijou
+ * @function
+ * @returns {Array|String} The difference between two arrays or strings.
+ * @example
+ * console.log(_$.arrayDiff(['a', 'b'], ['a', 'b', 'c', 'd'])); // ["c", "d"]
+ * @param {Array|String} a1 The first array or string
+ * @param {Array|String} a2 The 2nd array or string.
+ */
+export let arrayDiff = (a1, a2) => {
+  var a = [],
+    diff = [];
+  for (var i = 0; i &lt; a1.length; i++) {
+    a[a1[i]] = true;
+  }
+  for (var i = 0; i &lt; a2.length; i++) {
+    if (a[a2[i]]) {
+      delete a[a2[i]];
+    } else {
+      a[a2[i]] = true;
+    }
+  }
+  for (var k in a) {
+    diff.push(k);
+  }
+  return diff;
+};
 
+/**
+ * Gets the difference between two strings.
+ * @memberOf bijou
+ * @function
+ * @param {String} text1 The 1st text to compare
+ * @param {String} text2 The 2nd text to compare with the 1st one.
+ * @example
+ * console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]
+ * @returns {Array.&lt;Array.&lt;number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
+ */
+export let diff = function (text1, text2) {
+  //Takes in two strings
+  //Returns an array of the span of the differences
+  //So if given:
+  // text1: "that is number 124"
+  // text2: "this is number 123"
+  //It will return:
+  // [[2,4],[17,18]]
+  //If the strings are of different lengths, it will check up to the end of text1
+  //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
+  var diffRange = [];
+  var currentRange = undefined;
+  for (var i = 0; i &lt; text1.length; i++) {
+    if (text1[i] != text2[i]) {
+      //Found a diff!
+      if (currentRange == undefined) {
+        //Start a new range
+        currentRange = [i];
+      }
+    }
+    if (currentRange != undefined &amp;&amp; text1[i] == text2[i]) {
+      //End of range!
+      currentRange.push(i);
+      diffRange.push(currentRange);
+      currentRange = undefined;
+    }
+  }
+  //Push any last range if there's still one at the end
+  if (currentRange != undefined) {
+    currentRange.push(i);
+    diffRange.push(currentRange);
+  }
+  return diffRange;
+};
 
+/**
+ * Removes an item from the array specified.
+ * @memberOf bijou
+ * @function
+ * @param {Array} array The array to remove the item from.
+ * @param {*} item The item to remove.
+ * @example
+ * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
+ */
+export let remove = (array, item) => {
+  if (typeof array === 'string') {
+    return array.replace(item, '');
+  }
+  if (typeof array === 'object') {
+    array[`${item}`] = undefined;
+    array = _$.clone(array, (itm) => itm !== undefined);
+    return array;
+  }
+  if (array.indexOf(item) > -1) {
+    array.splice(array.indexOf(item), 1);
+  }
+  return array;
+};
+/**
+ * Splices an ArrayBuffer.
+ * @function
+ * @memberOf bijou
+ * @param {ArrayBuffer|Buffer} arr The ArrayBuffer to splice.
+ * @param {Number} start The start index.
+ * @param {Number} end The end index.
+ * @param {Boolean} [endian=false] Whether to use big endian or not.
+ * @returns {Number} The hex representation of part of the ArrayBuffer.
+ */
+export let spliceArrayBuffer = (arr, start, end, endian = false) => {
+  var direction = endian ? -1 : 1;
+  if (endian) [start, end] = [end, start];
+  start = Math.floor(start);
+  end = Math.floor(end) + direction;
+  for (var i = start, value = 0; i != end; i += direction)
+    value = 256 * value + arr[i];
+  return value;
+};
 
+/**
+ * Flattens an array `level` times.
+ * @memberOf bijou
+ * @function
+ * @returns {Array} The flattened array.
+ * @example
+ * console.log(_$.flatten(['a', 'b', ['c', 'd']])); // ['a', 'b', 'c', 'd'];
+ * @param {Array} array The array to flatten.
+ * @param {Number} [level=1] The number of iterations to flatten it.
+ */
+export let flatten = (array, level = 1) => {
+  var output = array;
+  _$.each(level, () => {
+    output = [].concat.apply([], array);
+  });
+  return output;
+};
 
+/**
+ * Flattens an array recursively.
+ * @function
+ * @memberOf bijou
+ * @param {Array} arr The array to flatten.
+ * @returns {Array} The flattened array.
+ * @example
+ * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
+ */
+export let nFlatten = (arr) => {
+  return arr.reduce(function (flat, toFlatten) {
+    return flat.concat(
+      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
+    );
+  }, []);
+};
 
+/**
+ * Returns whether the specified array or string contains the item given.
+ * @memberOf bijou
+ * @function
+ * @param {Array} array The array to test with.
+ * @param {String} item The item to see if the array contains.
+ * @example
+ * console.log(_$.contains([1,2,3,4,5], 3)); // true
+ * @returns {Boolean} True or false depending on if the array contains that item.
+ */
+export let contains = (array, item) => array.includes(item);
 
+/**
+ * Shuffles an array
+ * @function
+ * @memberOf bijou
+ * @param {Array} array The array to shuffle.
+ * @example
+ * let array = [1,2,3,4,5];
+ * console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]
+ * @returns {Array} The shuffled array.
+ */
+export let shuffleArray = (array) =>
+  array.sort(() => Math.random() - 0.5);
 
+/**
+ * Splice but also for strings
+ * @memberOf bijou
+ * @function
+ * @param {String|Array} array The array or string to operate on
+ * @param {Number} index The index to splice
+ * @param {*} item The item
+ * @param {Number} [remove=0] How many to remove.
+ * @returns {String|Array} the spliced array or string
+ * @example
+ * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
+ */
+export let splice = (array, index, remove = 0, item) => {
+  let args = Array.from(arguments);
+  args.shift();
+  return typeof array === 'string'
+    ? array
+        .split('')
+        .splice(...args)
+        .join('')
+    : array.splice(...args);
+};
+/**
+ * Joins two arrays together and removes duplicate items.
+ * @function
+ * @memberOf bijou
+ * @param {Array} x The first array to join.
+ * @param {Array} y The second array to join.
+ * @example
+ * console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]
+ * @returns {Array} The joined array from the two other arrays.
+ */
+export let unionArrays = (x, y) => {
+  var obj = {};
+  for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
+  for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
+  var res = [];
+  for (var k in obj) {
+    if (obj.hasOwnProperty(k)) res.push(obj[k]);
+  }
+  return res;
+};
+/**
+ * averageBy
+ * @function
+ * @memberOf bijou
+ * @param {Array.&lt;number>} arr The array to average
+ * @param {Function} fn The function to apply to each item of the array.
+ * @example
+ * Logs the average of the first 4 square numbers:
+ * console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5
+ * @returns {Number} The average of the array.
+ */
+export let averageBy = (arr, fn) =>
+  arr
+    .map(typeof fn === 'function' ? fn : (val) => val[fn])
+    .reduce((acc, val) => acc + val, 0) / arr.length;
 
-    
-
-
-    <section class="readme">
-        <article><div align="center"><a href="https://bijou.js.org"><img width="700" src="https://user-images.githubusercontent.com/72760579/110570598-271dc400-8124-11eb-91be-2e7651d27797.gif"></a></div>
-<p><a href="https://npmjs.com/bijou.js"><img src="https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&amp;color=lightseagreen" alt="NPM Downloads"></a>
-<a href="https://github.com/bijou-js/bijou.js/stargazers"><img src="https://img.shields.io/github/stars/bijou-js/bijou.js?color=lightseagreen&amp;style=for-the-badge" alt="GitHub stars"></a>
-<a href="https://bijou.js.org"><img src="https://img.shields.io/website?down_color=lightseagreen&amp;down_message=Down%20%3A%27%28&amp;label=Website%20status&amp;style=for-the-badge&amp;up_color=lightseagreen&amp;up_message=Online%21&amp;url=https%3A%2F%2Fbijou.js.org" alt="Website"></a>
-<a href="https://discord.gg/tApDpbyK2F"><img src="https://img.shields.io/discord/789662824678686720?style=for-the-badge&amp;color=lightseagreen" alt="Discord"></a>
-<a href="https://gitpod.io/#https://github.com/bijou-js/bijou.js"><img src="https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod&amp;style=for-the-badge&amp;color=lightseagreen" alt="Gitpod Ready-to-Code"></a></p>
-<h1 align=center>Bijou.js</h1>
-<p>Bijou.js is a library of super helpful JavaScript snippets! It has a bunch of
-useful snippets for all your coding needs! If there's something that's not in
-here currently but you use frequently, feel free to submit an issue! I'd be happy
-to add it! Bijou's goal is to eliminate the need to copy paste the same thing
-from StackOverflow, another project or anywhere else! So if you ever find
-yourself typing the same thing over and over again, copy pasting the same
-snippet as you did a few days ago, use Bijou.js! If the snippet you're using
-isn't in Bijou.js, just submit an issue with the code!</p>
-<h3>Table of contents</h3>
-<ul>
-<li><a href="#how-to-use-bijoujs">How to use Bijou.js</a>
-<ul>
-<li><a href="#cdn">CDN</a></li>
-<li><a href="#imports">Imports</a></li>
-<li><a href="#nodejs">NodeJS</a></li>
-</ul>
-</li>
-<li><a href="#usage">Usage</a></li>
-<li><a href="#who-made-bijoujs">Who made Bijou.js?</a></li>
-<li><a href="#why-use-bijou">Why use Bijou?</a>
-<ul>
-<li><a href="#installation">Installation</a></li>
-</ul>
-</li>
-</ul>
-<h1>How to use Bijou.js</h1>
-<p>Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:</p>
-<h2>CDN</h2>
-<p>jsDelivr:</p>
-<pre class="prettyprint source lang-html"><code>&lt;script
-  src=&quot;https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js&quot;
-  type=&quot;module&quot;
->&lt;/script>
+/**
+ * Removes duplicates from an array
+ * @function
+ * @memberOf bijou
+ * @param {Array} array The array to remove duplicates from.
+ * @example
+ * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
+ * @returns {Array} The array with no duplicates.
+ */
+export let uniqueArray = (array) => [...new Set(array)];
+/**
+ * For each item in an array, run a callback with it.
+ * @function
+ * @memberOf bijou
+ * @param {Array|String|Number} array The array, string or number to run the callback with.
+ * @param {Function} callback The callback function to run on the array items.
+ * @example
+ * _$.each(new Array(6), (array_item, i) => console.log(i));
+ * // 0
+ * // 1
+ * // 2
+ * // 3
+ * // 4
+ * // 5
+ * @returns {undefined}
+ */
+export let each = (array, callback) => {
+  array =
+    typeof array === 'number'
+      ? _$.range(1, array)
+      : typeof array === 'string'
+      ? array.split('')
+      : array;
+  for (let i = 0; i &lt; array.length; i++) {
+    callback(array[i], i, array);
+  }
+};
+//#endregion Array
 </code></pre>
-<p>UNPKG</p>
-<pre class="prettyprint source lang-html"><code>&lt;script
-  src=&quot;https://unpkg.com/bijou.js@latest/bijou.js&quot;
-  type=&quot;module&quot;
->&lt;/script>
-</code></pre>
-<h2>Imports</h2>
-<p>You can also import parts of bijou, for example only the uuid() function:</p>
-<pre class="prettyprint source lang-html"><code>&lt;script type=&quot;module&quot;>
-  import { uuid } from 'https://unpkg.com/bijou.js';
-  console.log(uuid()); //Same as _$.uuid() when importing the whole library.
-&lt;/script>
-</code></pre>
-<p>or you can import the whole thing:</p>
-<pre class="prettyprint source lang-html"><code>&lt;script type=&quot;module&quot;>
-  import * as _$ from 'https://unpkg.com/bijou.js';
-  console.log(_$.uuid());
-&lt;/script>
-</code></pre>
-<h2>NodeJS</h2>
-<p>Bijou.js is included in NodeJS through NPM and yarn! Depending on the platform you're using you may have to install it through npm or yarn:</p>
-<pre class="prettyprint source lang-bash"><code>npm install bijou.js
-</code></pre>
-<p>or</p>
-<pre class="prettyprint source"><code>yarn add bijou.js
-</code></pre>
-<p>Then just require it in your code:</p>
-<pre class="prettyprint source lang-js"><code>const _$ = require('bijou.js');
-console.log(_$.uuid());
-</code></pre>
-<h1>Usage</h1>
-<p>To use Bijou.js simply call one of the many functions built into it!</p>
-<pre class="prettyprint source lang-js"><code>_$.anyFunction(); //You can name bijou anything when using imports, or when using node you can name it using require();
-</code></pre>
-<p>Such as this one!</p>
-<pre class="prettyprint source lang-js"><code>_$.uuid(); //Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1
-</code></pre>
-<p>If you need to use a custom prefix than you can set a variable that you want to use as Bijou.js to <code>_$</code></p>
-<h1>Who made Bijou.js?</h1>
-<p>Me (@Explosion-Scratch) and my good friend @GrahamSH-LLK with a lot of help from other people such as retronbv and TheColaber!</p>
-<h1>Why use Bijou?</h1>
-<p>Well, a few reasons:</p>
-<ol>
-<li><s>I made it. 😛</s></li>
-<li>It's useful! (If it's not useful just tell me what you want added in the
-issues tab! I'd be happy to add it!)</li>
-<li>It's jam packed full of functions that are super useful but hard to think of!</li>
-<li>It's very easy to use, and I'm happy to add anything you think of!</li>
-</ol>
-<p><small>(You can probably see I'm pretty desperate for people to use
-this.)</small></p>
-<h2>Installation</h2>
-<p>Bijou.js is available in NodeJS through yarn and NPM</p>
-<p><code>npm i bijou.js</code>
-or
-<code>yarn add bijou.js</code></p>
-<p>Or through a CDN:</p>
-<pre class="prettyprint source"><code>https://unpkg.com/bijou.js
-https://cdn.jsdelivr.net/npm/bijou.js
-https://cdn.jsdelivr.net/gh/Bijou-js/bijou.js@latest/bijou.js
-</code></pre></article>
+        </article>
     </section>
-
-
-
-
-
-
-
-
-
-<section>
-
-
-<header>
-    
-        
-        <h2>
-        
-        bijou.js
-        
-        </h2>
-        
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>bijou.js</p></div>
-        
-
-        
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-
-
-
-<section>
-
-
-<header>
-    
-        
-        <h2>
-        
-        js/_copyright.js
-        
-        </h2>
-        
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>bijou.js</p></div>
-        
-
-        
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
 
 
 
