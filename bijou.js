@@ -90,14 +90,1610 @@ let node = () => {
   }
 };
 /*
-  ____   ___  _   _ ____   ____ _____ 
+  ____   ___  _   _ ____   ____ _____
  / ___| / _ \| | | |  _ \ / ___| ____|
- \___ \| | | | | | | |_) | |   |  _|  
-  ___) | |_| | |_| |  _ <| |___| |___ 
+ \___ \| | | | | | | |_) | |   |  _|
+  ___) | |_| | |_| |  _ <| |___| |___
  |____/ \___/ \___/|_| \_\\____|_____|
 */
+//#region Array
 
-//#region Bijou
+/**
+ * Returns the difference between two arrays or strings.
+ * @memberOf bijou
+ * @function
+ * @returns {Array|String} The difference between two arrays or strings.
+ * @example
+ * console.log(_$.arrayDiff(['a', 'b'], ['a', 'b', 'c', 'd'])); // ["c", "d"]
+ * @param {Array|String} a1 The first array or string
+ * @param {Array|String} a2 The 2nd array or string.
+ */
+export let arrayDiff = (a1, a2) => {
+  var a = [],
+    diff = [];
+  for (var i = 0; i < a1.length; i++) {
+    a[a1[i]] = true;
+  }
+  for (var i = 0; i < a2.length; i++) {
+    if (a[a2[i]]) {
+      delete a[a2[i]];
+    } else {
+      a[a2[i]] = true;
+    }
+  }
+  for (var k in a) {
+    diff.push(k);
+  }
+  return diff;
+};
+
+/**
+ * Gets the difference between two strings.
+ * @memberOf bijou
+ * @function
+ * @param {String} text1 The 1st text to compare
+ * @param {String} text2 The 2nd text to compare with the 1st one.
+ * @example
+ * console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]
+ * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
+ */
+export let diff = function (text1, text2) {
+  //Takes in two strings
+  //Returns an array of the span of the differences
+  //So if given:
+  // text1: "that is number 124"
+  // text2: "this is number 123"
+  //It will return:
+  // [[2,4],[17,18]]
+  //If the strings are of different lengths, it will check up to the end of text1
+  //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
+  var diffRange = [];
+  var currentRange = undefined;
+  for (var i = 0; i < text1.length; i++) {
+    if (text1[i] != text2[i]) {
+      //Found a diff!
+      if (currentRange == undefined) {
+        //Start a new range
+        currentRange = [i];
+      }
+    }
+    if (currentRange != undefined && text1[i] == text2[i]) {
+      //End of range!
+      currentRange.push(i);
+      diffRange.push(currentRange);
+      currentRange = undefined;
+    }
+  }
+  //Push any last range if there's still one at the end
+  if (currentRange != undefined) {
+    currentRange.push(i);
+    diffRange.push(currentRange);
+  }
+  return diffRange;
+};
+
+/**
+ * Removes an item from the array specified.
+ * @memberOf bijou
+ * @function
+ * @param {Array} array The array to remove the item from.
+ * @param {*} item The item to remove.
+ * @example
+ * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
+ */
+export let remove = (array, item) => {
+  if (typeof array === 'string') {
+    return array.replace(item, '');
+  }
+  if (typeof array === 'object') {
+    array[`${item}`] = undefined;
+    array = _$.clone(array, (itm) => itm !== undefined);
+    return array;
+  }
+  if (array.indexOf(item) > -1) {
+    array.splice(array.indexOf(item), 1);
+  }
+  return array;
+};
+/**
+ * Splices an ArrayBuffer.
+ * @function
+ * @memberOf bijou
+ * @param {ArrayBuffer|Buffer} arr The ArrayBuffer to splice.
+ * @param {Number} start The start index.
+ * @param {Number} end The end index.
+ * @param {Boolean} [endian=false] Whether to use big endian or not.
+ * @returns {Number} The hex representation of part of the ArrayBuffer.
+ */
+export let spliceArrayBuffer = (arr, start, end, endian = false) => {
+  var direction = endian ? -1 : 1;
+  if (endian) [start, end] = [end, start];
+  start = Math.floor(start);
+  end = Math.floor(end) + direction;
+  for (var i = start, value = 0; i != end; i += direction)
+    value = 256 * value + arr[i];
+  return value;
+};
+
+/**
+ * Flattens an array `level` times.
+ * @memberOf bijou
+ * @function
+ * @returns {Array} The flattened array.
+ * @example
+ * console.log(_$.flatten(['a', 'b', ['c', 'd']])); // ['a', 'b', 'c', 'd'];
+ * @param {Array} array The array to flatten.
+ * @param {Number} [level=1] The number of iterations to flatten it.
+ */
+export let flatten = (array, level = 1) => {
+  var output = array;
+  _$.each(level, () => {
+    output = [].concat.apply([], array);
+  });
+  return output;
+};
+
+/**
+ * Flattens an array recursively.
+ * @function
+ * @memberOf bijou
+ * @param {Array} arr The array to flatten.
+ * @returns {Array} The flattened array.
+ * @example
+ * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
+ */
+export let nFlatten = (arr) => {
+  return arr.reduce(function (flat, toFlatten) {
+    return flat.concat(
+      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
+    );
+  }, []);
+};
+
+/**
+ * Returns whether the specified array or string contains the item given.
+ * @memberOf bijou
+ * @function
+ * @param {Array} array The array to test with.
+ * @param {String} item The item to see if the array contains.
+ * @example
+ * console.log(_$.contains([1,2,3,4,5], 3)); // true
+ * @returns {Boolean} True or false depending on if the array contains that item.
+ */
+export let contains = (array, item) => array.includes(item);
+
+/**
+ * Shuffles an array
+ * @function
+ * @memberOf bijou
+ * @param {Array} array The array to shuffle.
+ * @example
+ * let array = [1,2,3,4,5];
+ * console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]
+ * @returns {Array} The shuffled array.
+ */
+export let shuffleArray = (array) =>
+  array.sort(() => Math.random() - 0.5);
+
+/**
+ * Splice but also for strings
+ * @memberOf bijou
+ * @function
+ * @param {String|Array} array The array or string to operate on
+ * @param {Number} index The index to splice
+ * @param {*} item The item
+ * @param {Number} [remove=0] How many to remove.
+ * @returns {String|Array} the spliced array or string
+ * @example
+ * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
+ */
+export let splice = (array, index, remove = 0, item) => {
+  let args = Array.from(arguments);
+  args.shift();
+  return typeof array === 'string'
+    ? array
+        .split('')
+        .splice(...args)
+        .join('')
+    : array.splice(...args);
+};
+/**
+ * Joins two arrays together and removes duplicate items.
+ * @function
+ * @memberOf bijou
+ * @param {Array} x The first array to join.
+ * @param {Array} y The second array to join.
+ * @example
+ * console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]
+ * @returns {Array} The joined array from the two other arrays.
+ */
+export let unionArrays = (x, y) => {
+  var obj = {};
+  for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
+  for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
+  var res = [];
+  for (var k in obj) {
+    if (obj.hasOwnProperty(k)) res.push(obj[k]);
+  }
+  return res;
+};
+/**
+ * averageBy
+ * @function
+ * @memberOf bijou
+ * @param {Array.<number>} arr The array to average
+ * @param {Function} fn The function to apply to each item of the array.
+ * @example
+ * Logs the average of the first 4 square numbers:
+ * console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5
+ * @returns {Number} The average of the array.
+ */
+export let averageBy = (arr, fn) =>
+  arr
+    .map(typeof fn === 'function' ? fn : (val) => val[fn])
+    .reduce((acc, val) => acc + val, 0) / arr.length;
+
+/**
+ * Removes duplicates from an array
+ * @function
+ * @memberOf bijou
+ * @param {Array} array The array to remove duplicates from.
+ * @example
+ * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
+ * @returns {Array} The array with no duplicates.
+ */
+export let uniqueArray = (array) => [...new Set(array)];
+/**
+ * For each item in an array, run a callback with it.
+ * @function
+ * @memberOf bijou
+ * @param {Array|String|Number} array The array, string or number to run the callback with.
+ * @param {Function} callback The callback function to run on the array items.
+ * @example
+ * _$.each(new Array(6), (array_item, i) => console.log(i));
+ * // 0
+ * // 1
+ * // 2
+ * // 3
+ * // 4
+ * // 5
+ * @returns {undefined}
+ */
+export let each = (array, callback) => {
+  array =
+    typeof array === 'number'
+      ? _$.range(1, array)
+      : typeof array === 'string'
+      ? array.split('')
+      : array;
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i], i, array);
+  }
+};
+//#endregion Array
+//#region Color
+/**
+ * Converts a rgb(a) color to hex.
+ * @memberOf bijou
+ * @function
+ * @example
+ * console.log(_$.rgbToHex("rgb(255,255,255)")); // "#ffffff"
+ * @param {String} rgb The string of RGB colors.
+ * @returns {String} The hex color.
+ */
+export let rgbToHex = (rgb) => {
+  let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
+  rgb = rgb.substr(4).split(')')[0].split(sep);
+
+  let r = (+rgb[0]).toString(16),
+    g = (+rgb[1]).toString(16),
+    b = (+rgb[2]).toString(16);
+
+  if (r.length == 1) r = '0' + r;
+  if (g.length == 1) g = '0' + g;
+  if (b.length == 1) b = '0' + b;
+
+  return '#' + r + g + b;
+};
+/**
+ * Converts a hex code to a RGB color.
+ * @function
+ * @memberOf bijou
+ * @param {String} hex The hex code to convert.
+ * @example
+ * console.log(_$.rgbToHex("#ffffff")); // "rgb(255,255,255)"
+ * @returns {String} The RGB color converted from the hex code.
+ */
+export let hexToRGB = (hex) => {
+  if (
+    ((hex.length - 1 === 6 ||
+      hex.length - 1 === 8 ||
+      hex.length - 1 === 4 ||
+      hex.length - 1 === 3) &&
+      hex.startsWith('#')) ||
+    ((hex.length === 6 ||
+      hex.length === 8 ||
+      hex.length === 4 ||
+      hex.length === 3) &&
+      !hex.startsWith('#'))
+  ) {
+  } else {
+    throw new Error('Invalid hex');
+  }
+  let alpha = false,
+    h = hex.slice(hex.startsWith('#') ? 1 : 0);
+  if (h.length === 3) h = [...h].map((x) => x + x).join('');
+  else if (h.length === 8) alpha = true;
+  h = parseInt(h, 16);
+  return (
+    'rgb' +
+    (alpha ? 'a' : '') +
+    '(' +
+    (h >>> (alpha ? 24 : 16)) +
+    ', ' +
+    ((h & (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
+    ', ' +
+    ((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
+    (alpha ? `, ${h & 0x000000ff}` : '') +
+    ')'
+  );
+};
+/**
+ * Blends two colors through additive blending by a percentage.
+ * @function
+ * @memberOf bijou
+ * @param {String} color1 The hex code of the first color to be blended
+ * @param {String} color2 The hex code of the second color to be blended.
+ * @param {Number} [percent=50] A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
+ * @example
+ * console.log(_$.blendColors("#ffffff", "#000000", 80)); // #333333
+ * @returns {String} The blended color (A hex code).
+ */
+export let blendColors = (color1, color2, percent = 50) => {
+  const generateHex = (r, g, b) => {
+    let R = r.toString(16);
+    let G = g.toString(16);
+    let B = b.toString(16);
+
+    while (R.length < 2) {
+      R = `0${R}`;
+    }
+    while (G.length < 2) {
+      G = `0${G}`;
+    }
+    while (B.length < 2) {
+      B = `0${B}`;
+    }
+
+    return `#${R}${G}${B}`;
+  };
+
+  const mix = (start, end, percent) =>
+    start + (percent / 100) * (end - start);
+
+  const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
+  const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
+  const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16);
+
+  const red2 = parseInt(`${color2[1]}${color2[2]}`, 16);
+  const green2 = parseInt(`${color2[3]}${color2[4]}`, 16);
+  const blue2 = parseInt(`${color2[5]}${color2[6]}`, 16);
+
+  const red = Math.round(mix(red1, red2, percent));
+  const green = Math.round(mix(green1, green2, percent));
+  const blue = Math.round(mix(blue1, blue2, percent));
+
+  return generateHex(red, green, blue);
+};
+/**
+ * Generates a random hex color.
+ * @function
+ * @memberOf bijou
+ * @example
+ * console.log(_$.randomColor()); // e.g. #5bf462
+ * @returns {String} A random Hex color
+ */
+export let randomColor = () =>
+  `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+/**
+ * Lighten or darken a color by a certain amount
+ * @function
+ * @memberOf bijou
+ * @param {String} color The color to lighten/darken
+ * @param {Number} amt The amount to lighten the color (out of 255).
+ * @example
+ * _$.lightenColor("#000000", 50); // #323232
+ * @returns {String} The color lightened.
+ */
+export let lightenColor = (col, amt) => {
+  var usePound = false;
+
+  if (col[0] == '#') {
+    col = col.slice(1);
+    usePound = true;
+  }
+
+  var num = parseInt(col, 16);
+
+  var r = (num >> 16) + amt;
+
+  if (r > 255) r = 255;
+  else if (r < 0) r = 0;
+
+  var b = ((num >> 8) & 0x00ff) + amt;
+
+  if (b > 255) b = 255;
+  else if (b < 0) b = 0;
+
+  var g = (num & 0x0000ff) + amt;
+
+  if (g > 255) g = 255;
+  else if (g < 0) g = 0;
+
+  return (
+    (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16)
+  );
+};
+/**
+  * Tests if a color is light or dark and returns an object representation.
+  * @function
+  * @memberOf bijou
+  * @param {string} color The hex color to test.
+  * @example
+  * if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
+    document.querySelector("DIV").style.color = "white";
+  } else {
+      document.querySelector("DIV").style.color = "black";
+  }
+  * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
+  */
+export let lightOrDark = (color) => {
+  var r, g, b, hsp;
+  if (color.match(/^rgb/)) {
+    color = color.match(
+      /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
+    );
+
+    r = color[1];
+    g = color[2];
+    b = color[3];
+  } else {
+    color = +(
+      '0x' + color.slice(1).replace(color.length < 5 && /./g, '$&$&')
+    );
+
+    r = color >> 16;
+    g = (color >> 8) & 255;
+    b = color & 255;
+  }
+
+  hsp = Math.sqrt(
+    0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b),
+  );
+  if (hsp > 127.5) {
+    return { lightOrDark: 'light', hsp: hsp };
+  } else {
+    return { lightOrDark: 'dark', hsp: hsp };
+  }
+};
+//#endregion Color
+//#region Date
+/**
+ * Returns the name of the weekday from the Date object specified.
+ * @function
+ * @memberOf bijou
+ * @param {Date} [date=new Date()] The date object to use.
+ * @param {String} [locale=en-US] The locale to use.
+ * @example
+ * console.log(_$.dayName)); // e.g. "Friday"
+ * @returns {String} The day name from the date.
+ */
+export let dayName = (date = new Date(), locale = 'en-US') =>
+  date.toLocaleDateString(locale, {
+    weekday: 'long',
+  });
+
+/**
+ * Formats a number of milliseconds
+ * @function
+ * @memberOf bijou
+ * @param {Number|String} ms The number of milliseconds to format to a string.
+ * @example
+ * console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"
+ * @returns {String} The string of formatted milliseconds.
+ */
+export let formatMilliseconds = (ms) => {
+  ms = typeof ms === 'string' ? +ms : ms;
+  if (ms < 0) ms = -ms;
+  const time = {
+    century: Math.floor(ms / 1144800000000),
+    year: Math.floor(ms / 22896000000) % 50,
+    day: Math.floor(ms / 86400000) % 365,
+    hour: Math.floor(ms / 3600000) % 24,
+    minute: Math.floor(ms / 60000) % 60,
+    second: Math.floor(ms / 1000) % 60,
+    millisecond: Math.floor(ms) % 1000,
+  };
+  return Object.entries(time)
+    .filter((val) => val[1] !== 0)
+    .map(([key, val]) => `${val} ${key}${val !== 1 ? 's' : ''}`)
+    .join(', ');
+};
+//#endregion Date
+//#region Element
+
+/**
+ * Re-enables the use of &lt;menu&gt; and &lt;menuitem&gt; tags for corner clicking.
+ * @memberOf bijou
+ * @function
+ * @example
+ * //HTML:
+ * ```
+ * <h1 contextmenu="menu">Corner click me</h1>
+ * <menu>
+ *  <menuitem label="An item!">
+ *  <menuitem label="Another item!">
+ * </menu>
+ * ```
+ * //JS
+ * _$.context();
+ * // Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
+ * @returns {undefined};
+ */
+export let context = () => {
+  var menu = document.createElement('UL');
+  menu.id = 'contextMenu';
+  document.body.appendChild(menu);
+  let styles = document.createElement('STYLE');
+  styles.innerHTML = `#contextMenu {
+       pointer-events: none;
+       padding: 0;
+       opacity: 0;
+       transition: opacity .3s ease;
+       position: fixed;
+       padding-top: 3px;
+       padding-bottom: 3px;
+       max-height: 200px;
+       overflow-y: scroll;
+       overflow-x: hidden;
+       list-style: none;
+       z-index: 10000;
+       background: white;
+       color: #333;
+       font-family: sans-serif;
+       border-radius: 5px;
+       box-shadow: 2px 2px 5px #0004;
+       width: fit-content;
+       min-width: 50px;
+       max-width: 150px;
+     }
+     #contextMenu li {
+       transition: background-color .3s ease;
+       display: block;
+       min-width: 150px;
+       margin: 0;
+       padding: 10px;
+     }
+     #contextMenu li:hover {
+       background-color: #ddd;
+       cursor: pointer;
+     }
+     `;
+  document.body.appendChild(styles);
+  var elements = document.querySelectorAll('[contextmenu]');
+  for (let i = 0; i < elements.length; i++) {
+    window.addEventListener('contextmenu', (e) => {
+      menu.style.pointerEvents = 'auto';
+      let items;
+      try {
+        items = document.querySelectorAll(
+          `#${e.target
+            .closest('[contextmenu]')
+            .getAttribute('contextmenu')} menuitem`,
+        );
+        e.preventDefault();
+      } catch (e) {
+        return true;
+      }
+      menu.innerHTML = '';
+      for (let j = 0; j < items.length; j++) {
+        const contextMenu = items[j];
+        const liTag = document.createElement('li');
+        liTag.onclick = contextMenu.getAttribute('onclick');
+        liTag.textContent = contextMenu.getAttribute('label');
+        menu.innerHTML += liTag.outerHTML;
+      }
+      console.log(menu.innerHTML);
+      menu.style.top = `${e.clientY}px`;
+      menu.style.left = `${e.clientX}px`;
+      menu.style.opacity = 1;
+    });
+  }
+  var contextTimer = 0;
+  requestInterval(() => {
+    contextTimer += 100;
+    if (contextTimer > 3000) {
+      menu.style.opacity = 0;
+      menu.style.pointerEvents = 'none';
+      contextTimer = 0;
+      return;
+    }
+  }, 100);
+  addEventListeners(menu, ['mousemove', 'click', 'scroll'], () => {
+    contextTimer = 0;
+  });
+  onOutsideClick(menu, () => {
+    menu.style.opacity = 0;
+    menu.style.pointerEvents = 'none';
+  });
+};
+/**
+ * Tests whether the specified element is fully in view.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The DOM element to test.
+ * @example
+ * // Alerts "In view!" if the first <div> in the document is in view.
+ * if (_$.inView(document.querySelector("div"))) alert("In view!");
+ * @returns {Boolean} Whether the element is completely in view.
+ */
+export let inView = (el) => {
+  node();
+  var top = el.offsetTop;
+  var left = el.offsetLeft;
+  var width = el.offsetWidth;
+  var height = el.offsetHeight;
+
+  while (el.offsetParent) {
+    el = el.offsetParent;
+    top += el.offsetTop;
+    left += el.offsetLeft;
+  }
+
+  return (
+    top >= window.pageYOffset &&
+    left >= window.pageXOffset &&
+    top + height <= window.pageYOffset + window.innerHeight &&
+    left + width <= window.pageXOffset + window.innerWidth
+  );
+};
+/**
+ * Tests if the given DOM element is partially (or fully) in view.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element to test.
+ * @example
+ * // Alerts "In view!" if the first <div> in the document is partially or fully view.
+ * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
+ * @returns {Boolean} Whether the DOM element is partially in view.
+ */
+export let inPartialView = (el) => {
+  node();
+  var top = el.offsetTop;
+  var left = el.offsetLeft;
+  var width = el.offsetWidth;
+  var height = el.offsetHeight;
+
+  while (el.offsetParent) {
+    el = el.offsetParent;
+    top += el.offsetTop;
+    left += el.offsetLeft;
+  }
+
+  return (
+    top < window.pageYOffset + window.innerHeight &&
+    left < window.pageXOffset + window.innerWidth &&
+    top + height > window.pageYOffset &&
+    left + width > window.pageXOffset
+  );
+};
+/**
+ * Converts a form to URL queries using the name attribute.
+ * @function
+ * @memberOf bijou
+ * @param {HTMLFormElement} form The form element.
+ * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
+ */
+export let serializeForm = (form) => {
+  node();
+  return Array.from(new FormData(form), (field) =>
+    field.map(encodeURIComponent).join('='),
+  ).join('&');
+};
+
+/**
+ * Replaces the text in an element by running it through a callback.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element to replace the text of.
+ * @param {Function} callback The callback to run (Gets passed the element's text).
+ * @example
+ * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
+ * // Converts the text of the first <div> element to upperCase.
+ * @returns {undefined}
+ */
+export let replaceText = (el, callback) => {
+  node();
+  _$.each(_$.textNodes(el), (node) => {
+    node.textContent = callback(node.textContent);
+  });
+};
+/**
+ * Gets a list of all the text nodes in an element
+ * @memberOf bijou
+ * @function
+ * @param {Element} el The element to get the text nodes of.
+ * @returns {Array} The text nodes.
+ * @example
+ * _$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements
+ */
+export let textNodes = (el) => {
+  return [...el.childNodes].filter((node) => {
+    return (
+      node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ''
+    );
+  });
+};
+/**
+ * Generates a querySelector for an element passed in.
+ * @function
+ * @memberOf bijou
+ * @param {Element} elem The element to generate the querySelector for.
+ * @example
+ * const textarea = document.getElementById('textarea');
+ * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
+ * @returns {String} The generated querySelector.
+ */
+export let querySelector = (elem) => {
+  node();
+  var element = elem;
+  var str = '';
+
+  function loop(element) {
+    if (
+      element.getAttribute('id') &&
+      document.querySelectorAll(`#${element.getAttribute('id')}`)
+        .length === 1
+    ) {
+      str = str.replace(/^/, ' #' + element.getAttribute('id'));
+      str = str.replace(/\s/, '');
+      str = str.replace(/\s/g, ' > ');
+      return str;
+    }
+    if (document.body === element) {
+      str = str.replace(/^/, ' body');
+      str = str.replace(/\s/, '');
+      str = str.replace(/\s/g, ' > ');
+      return str;
+    }
+    if (element.getAttribute('class')) {
+      var elemClasses = '.';
+      elemClasses += element.getAttribute('class');
+      elemClasses = elemClasses.replace(/\s/g, '.');
+      elemClasses = elemClasses.replace(/^/g, ' ');
+      var classNth = '';
+      var childrens = element.parentNode.children;
+
+      if (childrens.length < 2) {
+        return;
+      }
+
+      var similarClasses = [];
+
+      for (var i = 0; i < childrens.length; i++) {
+        if (
+          element.getAttribute('class') ==
+          childrens[i].getAttribute('class')
+        ) {
+          similarClasses.push(childrens[i]);
+        }
+      }
+
+      if (similarClasses.length > 1) {
+        for (var j = 0; j < similarClasses.length; j++) {
+          if (element === similarClasses[j]) {
+            j++;
+            classNth = ':nth-of-type(' + j + ')';
+            break;
+          }
+        }
+      }
+
+      str = str.replace(/^/, elemClasses + classNth);
+    } else {
+      var name = element.nodeName;
+      name = name.toLowerCase();
+      var nodeNth = '';
+
+      childrens = element.parentNode.children;
+
+      if (childrens.length > 2) {
+        var similarNodes = [];
+
+        for (var i = 0; i < childrens.length; i++) {
+          if (element.nodeName == childrens[i].nodeName) {
+            similarNodes.push(childrens[i]);
+          }
+        }
+
+        if (similarNodes.length > 1) {
+          for (var j = 0; j < similarNodes.length; j++) {
+            if (element === similarNodes[j]) {
+              j++;
+              nodeNth = ':nth-of-type(' + j + ')';
+              break;
+            }
+          }
+        }
+      }
+
+      str = str.replace(/^/, ' ' + name + nodeNth);
+    }
+
+    if (element.parentNode) {
+      loop(element.parentNode);
+    } else {
+      str = str.replace(/\s/g, ' > ');
+      str = str.replace(/\s/, '');
+      return str;
+    }
+  }
+
+  loop(element);
+
+  return str;
+};
+/**
+ * Removes comments from the element or string of code specified.
+ * @function
+ * @memberOf bijou
+ * @param {Element|String} el The element or string or code to remove comments from.
+ * @example
+ * _$.removeComments(document.documentElement);//Removes the comments from the document element.
+ * @returns {String|Element} The string removed of comments or the element removed of comments.
+ */
+export let removeComments = (el) => {
+  const isString = typeof el === 'string';
+  el = isString ? _$.parseHTML(el) : el.cloneNode(true);
+  for (const child of [...el.querySelectorAll('*'), el]) {
+    for (const grandchild of child.childNodes) {
+      if (grandchild instanceof Comment)
+        child.removeChild(grandchild);
+    }
+  }
+  return isString ? el.outerHTML : el;
+};
+/**
+ * Parses the string of HTML specified and returns an HTML element of it.
+ * @function
+ * @memberOf bijou
+ * @param {String} string The HTML string to parse.
+ * @param {String} [mimeType="text/html"] The mimeType of the string.
+ * @example
+ * let html = _$.parseHTML("<div id='hello'><textarea></textarea></div>");
+ * html.querySelector("textarea");//Returns the textarea!
+ * @returns {HTMLDocument} The HTML document element of the HTML string specified.
+ */
+export let parseHTML = (string, mimeType = 'text/html') => {
+  const domparser = new DOMParser();
+  return domparser.parseFromString(string, mimeType);
+};
+/**
+ * Allows an element to be dragged and dropped.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element to be dragged (And dropped :P ).
+ * @example
+ * _$.drag(document.querySelector('div')); // Allows the first <div> on the page to be dragged.
+ * @returns {Element} The element.
+ */
+export let drag = (el) => {
+  node();
+  var initX, initY, mousePressX, mousePressY;
+  el.addEventListener(
+    'mousedown',
+    function (event) {
+      var style = window.getComputedStyle(el);
+      el.style.top = style.getPropertyValue('top');
+      el.style.left = style.getPropertyValue('left');
+      el.style.right = style.getPropertyValue('right');
+      el.style.bottom = style.getPropertyValue('bottom');
+      this.style.position = 'absolute';
+      initX = this.offsetLeft;
+      initY = this.offsetTop;
+      mousePressX = event.clientX;
+      mousePressY = event.clientY;
+      this.addEventListener('mousemove', repositionElement, false);
+
+      window.addEventListener(
+        'mouseup',
+        function () {
+          el.removeEventListener(
+            'mousemove',
+            repositionElement,
+            false,
+          );
+        },
+        false,
+      );
+    },
+    false,
+  );
+
+  function repositionElement(event) {
+    this.style.left = initX + event.clientX - mousePressX + 'px';
+    this.style.top = initY + event.clientY - mousePressY + 'px';
+  }
+  return el;
+};
+/**
+ * Adds multiple event listeners with one callback to the element specified.
+ * @memberOf bijou
+ * @function
+ * @param {Element} element The element to add the event listeners to.
+ * @param {Array.<String>} events The array of events to listen for.
+ * @param {Function} handler The function to run when the events happen.
+ * @param {Boolean} [useCapture=false] Wether to use capture.
+ * @param {Array} [args=false] The arguments to use in the handler function.
+ * @example
+ * // Reset a timer every user interaction.
+ * let timer = 0;
+ * setInterval(() => timer++, 1);
+ * _$.addEventListeners(
+ *  document,
+ *  ["mousemove", "click", "scroll", "keypress"],
+ *  () => timer = 0,
+ * );
+ * @returns {undefined}
+ */
+export let addEventListeners = (
+  element,
+  events,
+  handler = {},
+  useCapture = false,
+  args = false,
+) => {
+  if (!(events instanceof Array)) {
+    throw (
+      'addMultipleListeners: ' +
+      'please supply an array of eventstrings ' +
+      '(like ["click","mouseover"])'
+    );
+  }
+  //create a wrapper to be able to use additional arguments
+  var handlerFn = function (e) {
+    handler.apply(this, args && args instanceof Array ? args : []);
+  };
+  for (var i = 0; i < events.length; i += 1) {
+    element.addEventListener(events[i], handlerFn, useCapture);
+  }
+};
+/**
+ * @memberOf bijou
+ * @function
+ * @returns {undefined}
+ * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
+ * @param {HTMLTableElement} element The table to sort
+ */
+export let sortTable = (element) => {
+  var getCellValue = function (tr, idx) {
+    return tr.children[idx].innerText || tr.children[idx].textContent;
+  };
+
+  var comparer = function (idx, asc) {
+    return function (a, b) {
+      return (function (v1, v2) {
+        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
+          ? v1 - v2
+          : v1.toString().localeCompare(v2);
+      })(
+        getCellValue(asc ? a : b, idx),
+        getCellValue(asc ? b : a, idx),
+      );
+    };
+  };
+
+  Array.prototype.slice
+    .call(element.querySelectorAll('th'))
+    .forEach(function (th) {
+      th.addEventListener('click', function () {
+        var table = th.parentNode;
+        while (table.tagName.toUpperCase() != 'TABLE')
+          table = table.parentNode;
+        Array.prototype.slice
+          .call(table.querySelectorAll('tr:nth-child(n+2)'))
+          .sort(
+            comparer(
+              Array.prototype.slice
+                .call(th.parentNode.children)
+                .indexOf(th),
+              (this.asc = !this.asc),
+            ),
+          )
+          .forEach(function (tr) {
+            table.appendChild(tr);
+          });
+      });
+    });
+};
+/**
+ * Sorts a table by a <th> element.
+ * @memberOf bijou
+ * @function
+ * @returns {undefined}
+ * @example
+ * //Note that this example pretty much recreates the _$ sortTable function, which is much more cross browser and good than this recreation. If sorting a whole table please use that.
+ * _$.each(document.querySelectorAll("#table th"), (th) => {
+ *  th.addEventListener("click", () => {
+ *    //Add event listeners to each of them.
+ *    _$.sortTableBy(th, th.asc = !th.asc);//Toggle the "asc" attribute on the th.
+ *  });
+ * })
+ * @param {HTMLTableElement} th The table header (<th> element) to sort with.
+ * @param {Boolean} acending Whether to sort the table ascending or descending.
+ */
+export let sortTableBy = (th, acending) => {
+  var getCellValue = function (tr, idx) {
+    return tr.children[idx].innerText || tr.children[idx].textContent;
+  };
+
+  var comparer = function (idx, asc) {
+    return function (a, b) {
+      return (function (v1, v2) {
+        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
+          ? v1 - v2
+          : v1.toString().localeCompare(v2);
+      })(
+        getCellValue(asc ? a : b, idx),
+        getCellValue(asc ? b : a, idx),
+      );
+    };
+  };
+
+  var table = th.parentNode;
+  while (table.tagName.toUpperCase() != 'TABLE')
+    table = table.parentNode;
+  Array.prototype.slice
+    .call(table.querySelectorAll('tr:nth-child(n+2)'))
+    .sort(
+      comparer(
+        Array.prototype.slice
+          .call(th.parentNode.children)
+          .indexOf(th),
+        acending,
+      ),
+    )
+    .forEach(function (tr) {
+      table.appendChild(tr);
+    });
+};
+/**
+ * Adds the specified styles to the element specified.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element to add the styles to.
+ * @param {Object} styles An object that represents the styles to be added. (camelCased)
+ * @example
+ * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
+ * @returns {Object} the style object of the element.
+ */
+export let addStyles = (el, styles) => {
+  node();
+  return Object.assign(el.style, styles);
+};
+
+/**
+ * Creates an HTML element from the specified string.
+ * @function
+ * @memberOf bijou
+ * @param {String} str The string of the HTML element to create.
+ * @example
+ * //Returns a div with an id of "id_here" and innerText of "Testing!"
+ * _$.createElement("<div id='id_here'>Testing!</div>");
+ * @returns {Element} The created element.
+ */
+export let createElement = (str) => {
+  node();
+  const el = document.createElement('div');
+  el.innerHTML = str;
+  return el.firstElementChild;
+};
+/**
+ * Gets a property from the computed style of an element.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element whose styles to get.
+ * @param {String} prop The css-property value to get of the styles.
+ * @example
+ * console.log(_$.compStyle(document.documentElement, "background-color")); // logs the background colour of the document
+ * @returns {String} The computed style property for the element specified.
+ */
+export let compStyle = (el, prop) => {
+  node();
+  var computedStyles = window.getComputedStyle(el);
+  return computedStyles.getPropertyValue(prop);
+};
+
+/**
+ * Get the siblings of a DOM element
+ * @function
+ * @memberOf bijou
+ * @param {Element} n The element to get siblings of
+ * @example
+ * _$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.backgroundColor = 'white');
+ * // Make every sibling of the first list item's background color white.
+ * @returns {Element[]} The array of sibling elements.
+ */
+export let elementSiblings = (n) =>
+  [...n.parentElement.children].filter((c) => c != n);
+/**
+ * Disables right click on the element spcified.
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element to disable right click on.
+ * @example
+ * _$.disableRightClick(document.documentElement)
+ * @returns {undefined}
+ */
+export let disableRightClick = (el) => {
+  node();
+  return (el.oncontextmenu = false);
+};
+/**
+ * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
+ * @function
+ * @memberOf bijou
+ * @param {Element} el The element to convert.
+ * @example
+ * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the <h1> element to inline using the style="___" attribute
+ * @returns {undefined}
+ */
+export let inlineCSS = (el) => {
+  var cs = getComputedStyle(el, null);
+  var i;
+  for (i = 0; i < cs.length; i++) {
+    var s = cs[i] + '';
+    el.style[s] = cs[s];
+  }
+};
+/**
+ * Returns an array of objects representing the attributes of a passed element.
+ * @param {Element} el The HMTL element to get attributes from.
+ * @function
+ * @memberOf bijou
+ * @example
+ * // Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "style," to the console.
+ * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
+ * @return {Array.<object>} The array of objects representing the attributes
+ */
+export let attributes = (el) => {
+  node();
+  var output = [];
+  for (
+    var att, i = 0, atts = el.attributes, n = atts.length;
+    i < n;
+    i++
+  ) {
+    att = atts[i];
+    output.push({
+      name: att.nodeName,
+      value: att.nodeValue,
+    });
+  }
+  return output;
+};
+/**
+ * Observes the mutations of the html element specified.
+ * @memberOf bijou
+ * @function
+ * @param {Element} element The element to observe
+ * @param {Function} callback The callback function to run when a mutation happens.
+ * @param {Object} options The options to use.
+ * @example
+ * _$.observeMutations(document, console.log); // Logs all the mutations that happen to the console.
+ * @returns {undefined}
+ */
+export let observeMutations = (element, callback, options) => {
+  const observer = new MutationObserver((mutations) =>
+    mutations.forEach((m) => callback(m)),
+  );
+  observer.observe(
+    element,
+    Object.assign(
+      {
+        childList: true,
+        attributes: true,
+        attributeOldValue: true,
+        characterData: true,
+        characterDataOldValue: true,
+        subtree: true,
+      },
+      options,
+    ),
+  );
+  return observer;
+};
+/**
+ * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
+ * @memberOf bijou
+ * @function
+ * @param {Element} el The element to tilt.
+ * @param {Number} x The x value of the mouse
+ * @param {Number} y The y value of the mouse
+ * @param {Number} [perspective=500] The perspective
+ * @param {Number} [amount=30] The amount to tilt.
+ * @returns {undefined}
+ * @example
+ * // Tilt the first image in the document whenever the mouse moves.
+ * let el = document.querySelector("img");
+ * el.onmousemove = (e) => {
+ *  let x = e.layerX;
+ *  let y = e.layerY
+ *  _$.tilt(el, x, y);
+ * }
+ */
+export let tilt = (el, x, y, perspective = 500, amount = 30) => {
+  //Old code
+  /*  const xVal = x
+    const yVal = y
+    const yRotation = amount * ((xVal - width / 2) / width)
+    const xRotation = amount * -1 * ((yVal - height / 2) / height)
+    const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
+    el.style.transform = string */
+
+  //One liner
+  el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
+    amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
+  }deg) rotateY(${
+    amount * ((x - el.clientWidth / 2) / el.clientWidth)
+  }deg)`;
+};
+/**
+ * Enters fullscreen on an element.
+ * @memberOf bijou
+ * @function
+ * @param {Element} element The element to enter full screen with.
+ * @returns {undefined}
+ * @example
+ * _$.fullScreen(document.documentElement); // Make the window fullscreen
+ */
+export let fullScreen = (element) => {
+  return (
+    element.requestFullScreen ||
+    element.mozRequestFullScreen ||
+    element.webkitRequestFullScreen() ||
+    new Error('Fullscreen failed')
+  );
+};
+/**
+ * Replaces the selected text in a contentEditable div with the HTML given.
+ * @memberOf bijou
+ * @function
+ * @returns {undefined}
+ * @example
+ * // Add a simple contenteditable div to the page.
+ * document.appendChild(_$.createElement("<div contenteditable id='text'></div>"));
+ * _$.replaceSelection("<b>BOLD TEXT</b> <small>Bijou is awesome</small><h1>You need to use it</h1>");
+ * //Replaces the selection! =)
+ * @param {String} replacementText The replacement HTML to replace with.
+ */
+export let replaceSelection = (replacementText) => {
+  var sel, range;
+  if (window.getSelection) {
+    sel = window.getSelection();
+    if (sel.rangeCount) {
+      range = sel.getRangeAt(0);
+      range.deleteContents();
+      let n = document.createElement('span');
+      n.insertAdjacentHTML('beforeend', replacementText);
+      range.insertNode(n);
+    }
+  } else if (document.selection && document.selection.createRange) {
+    console.warn(
+      'You are using IE < 9, you are evil. Falling back to text not HTML.',
+    );
+    range = document.selection.createRange();
+    range.text = replacementText.replace(/<[^>]*>/g, '');
+  }
+};
+//#endregion Element
+//#region Event
+/**
+ * Returns the callback when a a click is registered outside the selected element
+ * @function
+ * @memberOf bijou
+ * @param {Element} element The element to use as the outsideclick element.
+ * @param {Function} callback The function to run when a click is registered outside the specified element.
+ * @example
+ * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
+ * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
+ */
+export let onOutsideClick = (element, callback) => {
+  node();
+  return new Promise((resolve, reject) => {
+    document.addEventListener('click', (e) => {
+      if (!element.contains(e.target)) {
+        callback();
+        resolve();
+      }
+    });
+  });
+};
+/**
+ * Returns the callback when the user stops scrolling.
+ * @function
+ * @memberOf bijou
+ * @param {Function} callback The callback to call when the user stops scrolling.
+ * @param {Number} [time=150]
+ * @example
+ * _$.onScrollStop(() => {alert("You stopped scrolling!")})
+ * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
+ */
+export let onScrollStop = (callback, time = 150) => {
+  let isScrolling;
+  node();
+  return new Promise((resolve, reject) => {
+    window.addEventListener(
+      'scroll',
+      (e) => {
+        clearTimeout(isScrolling);
+        isScrolling = setTimeout(() => {
+          callback(e);
+          resolve(e);
+        }, time);
+      },
+      false,
+    );
+  });
+};
+/**
+ * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
+ * @memberOf bijou
+ * @function
+ * @returns {Object} The object with the emit, on and off functions in it.
+ * @example
+ * let thing = _$.hub();
+ * // Log any new data to the console
+ * thing.on("data", (data) => console.log(data));
+ * setTimeout(() => {
+ *   thing.emit("data", "Yay! Some data!!"); // Logs "Yay! Some data!!" to the console after 2 seconds.
+ * }, 2000)
+ */
+export let hub = () => ({
+  hub: Object.create(null),
+  emit(event, data) {
+    (this.hub[event] || []).forEach((handler) => handler(data));
+  },
+  on(event, handler) {
+    if (!this.hub[event]) this.hub[event] = [];
+    this.hub[event].push(handler);
+  },
+  off(event, handler) {
+    const i = (this.hub[event] || []).findIndex((h) => h === handler);
+    if (i > -1) this.hub[event].splice(i, 1);
+    if (this.hub[event].length === 0) delete this.hub[event];
+  },
+});
+/**
+ * Dispatches an event of the type specified with custom arguments.
+ * @memberOf bijou
+ * @function
+ * @example
+ * //Dispatch a custom mouse move event to the window.
+ * _$.dispatch("mousemove", {clientX: 100, clientY: 150, target: document.documentElement}, window);
+ * @param {String} type The type of event to dispatch (E.g. "mousemove")
+ * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
+ * @param {EventTarget} [target=window] What to dispatch the event to.
+ * @returns {undefined}
+ */
+export let dispatch = (type, args, target = window) => {
+  let e = new Event(type);
+  for (let o in args) {
+    e[o] = args[o];
+  }
+  target.dispatchEvent(e);
+};
+//#endregion Event
+//#region Function
+/**
+ * Uses an array of arguments to make a function based on the one inputted.
+ * @memberOf bijou
+ * @function
+ * @returns {Function}
+ * @example
+ * var say = _$.spread(function(who, what) {
+    return who + ' says ' + what;
+  });
+  say(["Fred", "hi"]);//"Fred says hi"
+ * @param {Function} fn The function to use
+ */
+export let spread = (fn) => {
+  return (args) => {
+    call_me.apply(this, args);
+  };
+};
+/**
+ * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
+ * @function
+ * @memberOf bijou
+ * @param {Function} fn The function to memoize.
+ * @example
+ * let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)
+ * @returns {Function} The memoized function.
+ */
+export let memoize = (fn) => {
+  let cache = {};
+  return function () {
+    let args = JSON.stringify(Array.from(arguments));
+    let arg_array = Array.from(arguments);
+    if (cache[args]) {
+      return cache[args];
+    } else {
+      cache[args] = fn(...arg_array);
+      return cache[args];
+    }
+  };
+};
+/**
+ * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
+ * @function
+ * @memberOf bijou
+ * @param {...Function} The functions to be composed.
+ * @returns {Function} The composed function.
+ * @example
+ * const add2 = (x) => x + 2;
+ * const multiply2 = (x) => x * 2;
+ * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  6 * 2 + 2
+ */
+export let composeFunction = (...functions) => (args) =>
+  functions.reduceRight((arg, fn) => fn(arg), args);
+/**
+ * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
+ * @function
+ * @memberOf bijou
+ * @param {Function} fn The function to curry.
+ * @param {Number} [arity=fn.length] The arity (number of params) of the function to curry.
+ * {...*} [args] Optional arguments to pass to the function being curried.
+ * @returns {Function} The curried version of the function.
+ * @example
+ * let fn = (x, y, z, w) => x * y * z * w;
+ * console.log(_$.curryFunction(fn, 4, 5)(4)(3)(2)); // 120 i.e. 5 * 4 * 3 * 2
+ */
+export let curryFunction = (fn, arity = fn.length, ...args) =>
+  arity <= args.length
+    ? fn(...args)
+    : curryFunction.bind(null, fn, arity, ...args);
+/**
+ * Returns if the given function is async or not.
+ * @memberOf bijou
+ * @function
+ * @param {Function} val The function to test.
+ * @returns {Boolean} True if the function is async and false if not.
+ * @example
+ * const asyncFn = async (x) => x ** 3; // It's a silly function, but a good example
+ * console.log(_$.isAsync(asyncFn)); // true
+ */
+export let isAsync = (val) =>
+  Object.prototype.toString.call(val) === '[object AsyncFunction]';
+/**
+ * Only runs the input function at MAX with the delay specified.
+ * @function
+ * @memberOf bijou
+ * @param {Function} func The function to run.
+ * @param {Object.<Boolean>} options The options.
+ * @param {Number} wait The number of milliseconds to wait.
+ * @example
+ * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
+ * setInterval(alert_function, 1)
+ * @returns {Function} The throttled function
+ */
+export let throttle = (func, wait, options) => {
+  var context, args, result;
+  var timeout = null;
+  var previous = 0;
+  if (!options) options = {};
+  var later = function () {
+    previous = options.leading === false ? 0 : Date.now();
+    timeout = null;
+    result = func.apply(context, args);
+    if (!timeout) context = args = null;
+  };
+  return function () {
+    var now = Date.now();
+    if (!previous && options.leading === false) previous = now;
+    var remaining = wait - (now - previous);
+    context = this;
+    args = arguments;
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      previous = now;
+      result = func.apply(context, args);
+      if (!timeout) context = args = null;
+    } else if (!timeout && options.trailing !== false) {
+      timeout = setTimeout(later, remaining);
+    }
+    return result;
+  };
+};
+/**
+ * Debounces a function
+ * @memberOf bijou
+ * @function
+ * @example
+ * window.addEventListener("keyup", _$.debounce(expensiveFunction, 100));//Run the function expensiveFunction at most every 100ms.
+ * @param {Function} func The function to throttle.
+ * @param {Number} wait The milliseconds to wait between executions.
+ * @param {Boolean} [immediate=false] Whether or not to run immediately, or after a group of executions.
+ */
+export let debounce = (func, wait, immediate = false) => {
+  // 'private' variable for instance
+  // The returned function will be able to reference this due to closure.
+  // Each call to the returned function will share this common timer.
+  var timeout;
+
+  // Calling debounce returns a new anonymous function
+  return function () {
+    // reference the context and args for the setTimeout function
+    var context = this,
+      args = arguments;
+
+    // Should the function be called now? If immediate is true
+    //   and not already in a timeout then the answer is: Yes
+    var callNow = immediate && !timeout;
+
+    // This is the basic debounce behaviour where you can call this
+    //   function several times, but it will only execute once
+    //   [before or after imposing a delay].
+    //   Each time the returned function is called, the timer starts over.
+    clearTimeout(timeout);
+
+    // Set the new timeout
+    timeout = setTimeout(function () {
+      // Inside the timeout function, clear the timeout variable
+      // which will let the next execution run when in 'immediate' mode
+      timeout = null;
+
+      // Check if the function already ran with the immediate flag
+      if (!immediate) {
+        // Call the original function with apply
+        // apply lets you define the 'this' object as well as the arguments
+        //    (both captured before setTimeout)
+        func.apply(context, args);
+      }
+    }, wait);
+
+    // Immediate mode and no wait timer? Execute the function..
+    if (callNow) func.apply(context, args);
+  };
+};
+/**
+ * Runs a function asynchronously in a web worker.
+ * @function
+ * @memberOf bijou
+ * @param {Function} fn The function to run
+ * @example
+ * _$.runAsync(() =>  "hello world").then(console.log); // "hello world"
+ * @returns {Promise} A promise that resolves into the return value of the function.
+ */
+export let runAsync = (fn) => {
+  const worker = new Worker(
+    URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
+      type: 'application/javascript; charset=utf-8',
+    }),
+  );
+  return new Promise((res, rej) => {
+    worker.onmessage = ({ data }) => {
+      res(data), worker.terminate();
+    };
+    worker.onerror = (err) => {
+      rej(err), worker.terminate();
+    };
+  });
+};
+//#endregion Function
 //#region Math
 /**
  * Animates a number from one value to another.
@@ -356,50 +1952,22 @@ export let ease = {
 };
 
 //#endregion Math
-//#region Date
-/**
- * Returns the name of the weekday from the Date object specified.
- * @function
- * @memberOf bijou
- * @param {Date} [date=new Date()] The date object to use.
- * @param {String} [locale=en-US] The locale to use.
- * @example
- * console.log(_$.dayName)); // e.g. "Friday"
- * @returns {String} The day name from the date.
- */
-export let dayName = (date = new Date(), locale = 'en-US') =>
-  date.toLocaleDateString(locale, {
-    weekday: 'long',
-  });
-
-/**
- * Formats a number of milliseconds
- * @function
- * @memberOf bijou
- * @param {Number|String} ms The number of milliseconds to format to a string.
- * @example
- * console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"
- * @returns {String} The string of formatted milliseconds.
- */
-export let formatMilliseconds = (ms) => {
-  ms = typeof ms === 'string' ? +ms : ms;
-  if (ms < 0) ms = -ms;
-  const time = {
-    century: Math.floor(ms / 1144800000000),
-    year: Math.floor(ms / 22896000000) % 50,
-    day: Math.floor(ms / 86400000) % 365,
-    hour: Math.floor(ms / 3600000) % 24,
-    minute: Math.floor(ms / 60000) % 60,
-    second: Math.floor(ms / 1000) % 60,
-    millisecond: Math.floor(ms) % 1000,
-  };
-  return Object.entries(time)
-    .filter((val) => val[1] !== 0)
-    .map(([key, val]) => `${val} ${key}${val !== 1 ? 's' : ''}`)
-    .join(', ');
-};
-//#endregion Date
 //#region String
+/**
+ * Lets you use a for loop in template literals.
+ * @function
+ * @memberOf bijou
+ * @param {arr} The array to loop.
+ * @param {callback} Callback to return strings
+ * @example
+ * `Things: ${_$.forTemplateLiteral(["apple"], (item, i) => {return `an ${item}`})}`
+ * // "Things: an apple
+ * @returns {String} String that has been for looped
+ */
+export let forTemplateLiteral = (arr, callback) => {
+  return arr.map((item, i) => callback(item, i)).join``;
+};
+
 /**
  * Removes the accents from a string.
  * @memberOf bijou
@@ -704,7 +2272,11 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
           '>&gt;</span>';
       }
       return (
-        '<span style=color:' + _$.escapeHTML(tagnamecolor) + '>' + result + '</span>'
+        '<span style=color:' +
+        _$.escapeHTML(tagnamecolor) +
+        '>' +
+        result +
+        '</span>'
       );
     }
     function attributeMode(txt) {
@@ -769,7 +2341,11 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
     }
     function commentMode(txt) {
       return (
-        '<span style=color:' + _$.escapeHTML(commentcolor) + '>' + txt + '</span>'
+        '<span style=color:' +
+        _$.escapeHTML(commentcolor) +
+        '>' +
+        txt +
+        '</span>'
       );
     }
     function cssMode(txt) {
@@ -824,11 +2400,15 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       rest = done + rest;
       rest = rest.replace(
         /{/g,
-        '<span style=color:' + _$.escapeHTML(cssdelimitercolor) + '>{</span>',
+        '<span style=color:' +
+          _$.escapeHTML(cssdelimitercolor) +
+          '>{</span>',
       );
       rest = rest.replace(
         /}/g,
-        '<span style=color:' + _$.escapeHTML(cssdelimitercolor) + '>}</span>',
+        '<span style=color:' +
+          _$.escapeHTML(cssdelimitercolor) +
+          '>}</span>',
       );
       for (i = 0; i < comment.arr.length; i++) {
         rest = rest.replace('W3CSSCOMMENTPOS', comment.arr[i]);
@@ -995,26 +2575,48 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
       for (i = 0; i < esc.length; i++) {
         rest = rest.replace('W3JSESCAPE', esc[i]);
       }
-      return '<span style=color:' + _$.escapeHTML(jscolor) + '>' + rest + '</span>';
+      return (
+        '<span style=color:' +
+        _$.escapeHTML(jscolor) +
+        '>' +
+        rest +
+        '</span>'
+      );
     }
     function jsStringMode(txt) {
       return (
-        '<span style=color:' + _$.escapeHTML(jsstringcolor) + '>' + txt + '</span>'
+        '<span style=color:' +
+        _$.escapeHTML(jsstringcolor) +
+        '>' +
+        txt +
+        '</span>'
       );
     }
     function jsKeywordMode(txt) {
       return (
-        '<span style=color:' + _$.escapeHTML(jskeywordcolor) + '>' + txt + '</span>'
+        '<span style=color:' +
+        _$.escapeHTML(jskeywordcolor) +
+        '>' +
+        txt +
+        '</span>'
       );
     }
     function jsNumberMode(txt) {
       return (
-        '<span style=color:' + _$.escapeHTML(jsnumbercolor) + '>' + txt + '</span>'
+        '<span style=color:' +
+        _$.escapeHTML(jsnumbercolor) +
+        '>' +
+        txt +
+        '</span>'
       );
     }
     function jsPropertyMode(txt) {
       return (
-        '<span style=color:' + _$.escapeHTML(jspropertycolor) + '>' + txt + '</span>'
+        '<span style=color:' +
+        _$.escapeHTML(jspropertycolor) +
+        '>' +
+        txt +
+        '</span>'
       );
     }
     function getDotPos(txt, func) {
@@ -1706,11 +3308,19 @@ export let markdownToHTML = (src) => {
       ? p6
       : p2
       ? p4
-        ? '<img src="' + _$.escapeHTML(p4) + '" alt="' + _$.escapeHTML(p3) + '"/>'
+        ? '<img src="' +
+          _$.escapeHTML(p4) +
+          '" alt="' +
+          _$.escapeHTML(p3) +
+          '"/>'
         : p1
       : /^https?:\/\//g.test(p4)
-        ?'<a href="' + _$.escapeHTML(p4) + '">' + unesc(highlight(p3)) + '</a>'
-        : p1;
+      ? '<a href="' +
+        _$.escapeHTML(p4) +
+        '">' +
+        unesc(highlight(p3)) +
+        '</a>'
+      : p1;
     return si + '\uf8ff';
   });
 
@@ -1794,10 +3404,16 @@ export let syllables = (word) => {
  * @returns {String} The capitalized string.
  */
 export let capitalize = (str) => {
-  if(!str) throw new TypeError("Missing Param 'Str'.");
-  return str.split("").map((section) => String.fromCodePoint(section.codePointAt(0)).toUpperCase() +
-  section.slice(section.codePointAt(0) > 0xffff ? 2 : 1)).join("")
-}
+  if (!str) throw new TypeError("Missing Param 'Str'.");
+  return str
+    .split('')
+    .map(
+      (section) =>
+        String.fromCodePoint(section.codePointAt(0)).toUpperCase() +
+        section.slice(section.codePointAt(0) > 0xffff ? 2 : 1),
+    )
+    .join('');
+};
 /**
  * Replaces between two indexes of a string.
  * @memberOf bijou
@@ -1867,2366 +3483,6 @@ export let previousPage = () => {
   return document.referrer || window.location.href;
 };
 //#endregion String
-//#region Array
-
-/**
- * Returns the difference between two arrays or strings.
- * @memberOf bijou
- * @function
- * @returns {Array|String} The difference between two arrays or strings.
- * @example
- * console.log(_$.arrayDiff(['a', 'b'], ['a', 'b', 'c', 'd'])); // ["c", "d"]
- * @param {Array|String} a1 The first array or string
- * @param {Array|String} a2 The 2nd array or string.
- */
-export let arrayDiff = (a1, a2) => {
-  var a = [],
-    diff = [];
-  for (var i = 0; i < a1.length; i++) {
-    a[a1[i]] = true;
-  }
-  for (var i = 0; i < a2.length; i++) {
-    if (a[a2[i]]) {
-      delete a[a2[i]];
-    } else {
-      a[a2[i]] = true;
-    }
-  }
-  for (var k in a) {
-    diff.push(k);
-  }
-  return diff;
-};
-
-/**
- * Gets the difference between two strings.
- * @memberOf bijou
- * @function
- * @param {String} text1 The 1st text to compare
- * @param {String} text2 The 2nd text to compare with the 1st one.
- * @example 
- * console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]
- * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
- */
-export let diff = function (text1, text2) {
-  //Takes in two strings
-  //Returns an array of the span of the differences
-  //So if given:
-  // text1: "that is number 124"
-  // text2: "this is number 123"
-  //It will return:
-  // [[2,4],[17,18]]
-  //If the strings are of different lengths, it will check up to the end of text1
-  //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
-  var diffRange = [];
-  var currentRange = undefined;
-  for (var i = 0; i < text1.length; i++) {
-    if (text1[i] != text2[i]) {
-      //Found a diff!
-      if (currentRange == undefined) {
-        //Start a new range
-        currentRange = [i];
-      }
-    }
-    if (currentRange != undefined && text1[i] == text2[i]) {
-      //End of range!
-      currentRange.push(i);
-      diffRange.push(currentRange);
-      currentRange = undefined;
-    }
-  }
-  //Push any last range if there's still one at the end
-  if (currentRange != undefined) {
-    currentRange.push(i);
-    diffRange.push(currentRange);
-  }
-  return diffRange;
-};
-
-/**
- * Removes an item from the array specified.
- * @memberOf bijou
- * @function
- * @param {Array} array The array to remove the item from.
- * @param {*} item The item to remove.
- * @example
- * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
- */
-export let remove = (array, item) => {
-  if (typeof array === 'string') {
-    return array.replace(item, '');
-  }
-  if (typeof array === 'object') {
-    array[`${item}`] = undefined;
-    array = _$.clone(array, (itm) => itm !== undefined);
-    return array;
-  }
-  if (array.indexOf(item) > -1) {
-    array.splice(array.indexOf(item), 1);
-  }
-  return array;
-};
-/**
- * Splices an ArrayBuffer.
- * @function
- * @memberOf bijou
- * @param {ArrayBuffer|Buffer} arr The ArrayBuffer to splice.
- * @param {Number} start The start index.
- * @param {Number} end The end index.
- * @param {Boolean} [endian=false] Whether to use big endian or not.
- * @returns {Number} The hex representation of part of the ArrayBuffer.
- */
-export let spliceArrayBuffer = (arr, start, end, endian = false) => {
-  var direction = endian ? -1 : 1;
-  if (endian) [start, end] = [end, start];
-  start = Math.floor(start);
-  end = Math.floor(end) + direction;
-  for (var i = start, value = 0; i != end; i += direction)
-    value = 256 * value + arr[i];
-  return value;
-};
-
-/**
- * Flattens an array `level` times.
- * @memberOf bijou
- * @function
- * @returns {Array} The flattened array.
- * @example
- * console.log(_$.flatten(['a', 'b', ['c', 'd']])); // ['a', 'b', 'c', 'd'];
- * @param {Array} array The array to flatten.
- * @param {Number} [level=1] The number of iterations to flatten it.
- */
-export let flatten = (array, level = 1) => {
-  var output = array;
-  _$.each(level, () => {
-    output = [].concat.apply([], array);
-  });
-  return output;
-};
-
-/**
- * Flattens an array recursively.
- * @function
- * @memberOf bijou
- * @param {Array} arr The array to flatten.
- * @returns {Array} The flattened array.
- * @example
- * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
- */
-export let nFlatten = (arr) => {
-  return arr.reduce(function (flat, toFlatten) {
-    return flat.concat(
-      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
-    );
-  }, []);
-};
-
-/**
- * Returns whether the specified array or string contains the item given.
- * @memberOf bijou
- * @function
- * @param {Array} array The array to test with.
- * @param {String} item The item to see if the array contains.
- * @example
- * console.log(_$.contains([1,2,3,4,5], 3)); // true 
- * @returns {Boolean} True or false depending on if the array contains that item.
- */
-export let contains = (array, item) => array.includes(item);
-
-/**
- * Shuffles an array
- * @function
- * @memberOf bijou
- * @param {Array} array The array to shuffle.
- * @example
- * let array = [1,2,3,4,5];
- * console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]
- * @returns {Array} The shuffled array.
- */
-export let shuffleArray = (array) =>
-  array.sort(() => Math.random() - 0.5);
-
-/**
- * Splice but also for strings
- * @memberOf bijou
- * @function
- * @param {String|Array} array The array or string to operate on
- * @param {Number} index The index to splice
- * @param {*} item The item
- * @param {Number} [remove=0] How many to remove.
- * @returns {String|Array} the spliced array or string
- * @example
- * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
- */
-export let splice = (array, index, remove = 0, item) => {
-  let args = Array.from(arguments);
-  args.shift();
-  return typeof array === 'string'
-    ? array
-        .split('')
-        .splice(...args)
-        .join('')
-    : array.splice(...args);
-};
-/**
- * Joins two arrays together and removes duplicate items.
- * @function
- * @memberOf bijou
- * @param {Array} x The first array to join.
- * @param {Array} y The second array to join.
- * @example
- * console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]
- * @returns {Array} The joined array from the two other arrays.
- */
-export let unionArrays = (x, y) => {
-  var obj = {};
-  for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
-  for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
-  var res = [];
-  for (var k in obj) {
-    if (obj.hasOwnProperty(k)) res.push(obj[k]);
-  }
-  return res;
-};
-/**
- * averageBy
- * @function
- * @memberOf bijou
- * @param {Array.<number>} arr The array to average
- * @param {Function} fn The function to apply to each item of the array.
- * @example
- * Logs the average of the first 4 square numbers:
- * console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5
- * @returns {Number} The average of the array.
- */
-export let averageBy = (arr, fn) =>
-  arr
-    .map(typeof fn === 'function' ? fn : (val) => val[fn])
-    .reduce((acc, val) => acc + val, 0) / arr.length;
-
-/**
-  * Removes duplicates from an array
-  * @function
-  * @memberOf bijou
-  * @param {Array} array The array to remove duplicates from.
-  * @example
-  * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
-  * @returns {Array} The array with no duplicates.
-  */
-export let uniqueArray = (array) => [...new Set(array)];
-/**
- * For each item in an array, run a callback with it.
- * @function
- * @memberOf bijou
- * @param {Array|String|Number} array The array, string or number to run the callback with.
- * @param {Function} callback The callback function to run on the array items.
- * @example
- * _$.each(new Array(6), (array_item, i) => console.log(i)); 
- * // 0
- * // 1
- * // 2
- * // 3
- * // 4
- * // 5
- * @returns {undefined}
- */
-export let each = (array, callback) => {
-  array =
-    typeof array === 'number'
-      ? _$.range(1, array)
-      : typeof array === 'string'
-      ? array.split('')
-      : array;
-  for (let i = 0; i < array.length; i++) {
-    callback(array[i], i, array);
-  }
-};
-//#endregion Array
-//#region Function
-/**
- * Uses an array of arguments to make a function based on the one inputted.
- * @memberOf bijou
- * @function
- * @returns {Function}
- * @example
- * var say = _$.spread(function(who, what) {
-    return who + ' says ' + what;
-  });
-  say(["Fred", "hi"]);//"Fred says hi"
- * @param {Function} fn The function to use
- */
-export let spread = (fn) => {
-  return (args) => {
-    call_me.apply(this, args);
-  };
-};
-/**
- * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
- * @function
- * @memberOf bijou
- * @param {Function} fn The function to memoize.
- * @example
- * let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)
- * @returns {Function} The memoized function.
- */
-export let memoize = (fn) => {
-  let cache = {};
-  return function () {
-    let args = JSON.stringify(Array.from(arguments));
-    let arg_array = Array.from(arguments);
-    if (cache[args]) {
-      return cache[args];
-    } else {
-      cache[args] = fn(...arg_array);
-      return cache[args];
-    }
-  };
-};
-/**
- * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
- * @function
- * @memberOf bijou
- * @param {...Function} The functions to be composed.
- * @returns {Function} The composed function.
- * @example
- * const add2 = (x) => x + 2;
- * const multiply2 = (x) => x * 2;
- * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  6 * 2 + 2
- */
-export let composeFunction = (...functions) => (args) =>
-  functions.reduceRight((arg, fn) => fn(arg), args);
-/**
- * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
- * @function
- * @memberOf bijou
- * @param {Function} fn The function to curry.
- * @param {Number} [arity=fn.length] The arity (number of params) of the function to curry.
- * {...*} [args] Optional arguments to pass to the function being curried.
- * @returns {Function} The curried version of the function.
- * @example 
- * let fn = (x, y, z, w) => x * y * z * w;
- * console.log(_$.curryFunction(fn, 4, 5)(4)(3)(2)); // 120 i.e. 5 * 4 * 3 * 2
- */
-export let curryFunction = (fn, arity = fn.length, ...args) =>
-  arity <= args.length
-    ? fn(...args)
-    : curryFunction.bind(null, fn, arity, ...args);
-/**
- * Returns if the given function is async or not.
- * @memberOf bijou
- * @function
- * @param {Function} val The function to test.
- * @returns {Boolean} True if the function is async and false if not.
- * @example
- * const asyncFn = async (x) => x ** 3; // It's a silly function, but a good example
- * console.log(_$.isAsync(asyncFn)); // true
- */
-export let isAsync = (val) =>
-  Object.prototype.toString.call(val) === '[object AsyncFunction]';
-/**
- * Only runs the input function at MAX with the delay specified.
- * @function
- * @memberOf bijou
- * @param {Function} func The function to run.
- * @param {Object.<Boolean>} options The options.
- * @param {Number} wait The number of milliseconds to wait.
- * @example
- * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
- * setInterval(alert_function, 1)
- * @returns {Function} The throttled function
- */
-export let throttle = (func, wait, options) => {
-  var context, args, result;
-  var timeout = null;
-  var previous = 0;
-  if (!options) options = {};
-  var later = function () {
-    previous = options.leading === false ? 0 : Date.now();
-    timeout = null;
-    result = func.apply(context, args);
-    if (!timeout) context = args = null;
-  };
-  return function () {
-    var now = Date.now();
-    if (!previous && options.leading === false) previous = now;
-    var remaining = wait - (now - previous);
-    context = this;
-    args = arguments;
-    if (remaining <= 0 || remaining > wait) {
-      if (timeout) {
-        clearTimeout(timeout);
-        timeout = null;
-      }
-      previous = now;
-      result = func.apply(context, args);
-      if (!timeout) context = args = null;
-    } else if (!timeout && options.trailing !== false) {
-      timeout = setTimeout(later, remaining);
-    }
-    return result;
-  };
-};
-/**
- * Debounces a function
- * @memberOf bijou
- * @function
- * @example
- * window.addEventListener("keyup", _$.debounce(expensiveFunction, 100));//Run the function expensiveFunction at most every 100ms.
- * @param {Function} func The function to throttle.
- * @param {Number} wait The milliseconds to wait between executions.
- * @param {Boolean} [immediate=false] Whether or not to run immediately, or after a group of executions.
- */
-export let debounce = (func, wait, immediate = false) => {
-  // 'private' variable for instance
-  // The returned function will be able to reference this due to closure.
-  // Each call to the returned function will share this common timer.
-  var timeout;
-
-  // Calling debounce returns a new anonymous function
-  return function () {
-    // reference the context and args for the setTimeout function
-    var context = this,
-      args = arguments;
-
-    // Should the function be called now? If immediate is true
-    //   and not already in a timeout then the answer is: Yes
-    var callNow = immediate && !timeout;
-
-    // This is the basic debounce behaviour where you can call this
-    //   function several times, but it will only execute once
-    //   [before or after imposing a delay].
-    //   Each time the returned function is called, the timer starts over.
-    clearTimeout(timeout);
-
-    // Set the new timeout
-    timeout = setTimeout(function () {
-      // Inside the timeout function, clear the timeout variable
-      // which will let the next execution run when in 'immediate' mode
-      timeout = null;
-
-      // Check if the function already ran with the immediate flag
-      if (!immediate) {
-        // Call the original function with apply
-        // apply lets you define the 'this' object as well as the arguments
-        //    (both captured before setTimeout)
-        func.apply(context, args);
-      }
-    }, wait);
-
-    // Immediate mode and no wait timer? Execute the function..
-    if (callNow) func.apply(context, args);
-  };
-};
-/**
- * Runs a function asynchronously in a web worker.
- * @function
- * @memberOf bijou
- * @param {Function} fn The function to run
- * @example
- * _$.runAsync(() =>  "hello world").then(console.log); // "hello world"
- * @returns {Promise} A promise that resolves into the return value of the function.
- */
-export let runAsync = (fn) => {
-  const worker = new Worker(
-    URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
-      type: 'application/javascript; charset=utf-8',
-    }),
-  );
-  return new Promise((res, rej) => {
-    worker.onmessage = ({ data }) => {
-      res(data), worker.terminate();
-    };
-    worker.onerror = (err) => {
-      rej(err), worker.terminate();
-    };
-  });
-};
-//#endregion Function
-//#region Object
-/**
- * Flattens an object recursively into one. 
- * @memberOf bijou
- * @function
- * @example 
- * _$.flattenObj({
-      hello: "world",
-      another: {
-          nested: "Value",
-          anotherNestedValue: {
-              "something": "A value"
-          },
-          "more Values!!": "lol"
-      }
-  }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }
-* @param {Object} o The object to flatten
-* @returns {Object} The flattened object.
- */
-export let flattenObj = (o) => {
-  return o !== Object(o) || Array.isArray(o)
-    ? {}
-    : Object.assign(
-        {},
-        ...(function leaves(o) {
-          return [].concat.apply(
-            [],
-            Object.entries(o).map(([k, v]) => {
-              return !v ||
-                typeof v !== 'object' ||
-                !Object.keys(v).some((key) =>
-                  v.hasOwnProperty(key),
-                ) ||
-                Array.isArray(v)
-                ? { [k]: v }
-                : leaves(v);
-            }),
-          );
-        })(o),
-      );
-};
-
-/**
- * Deep clones an object
- * @function
- * @memberOf bijou
- * @param {Object} obj The object to clone.
- * @param {Function} [fn=() => true] The function to run to test if the value should be copied.
- * @returns {Object} The output cloned object.
- * @example
- * let obj = { hello: { puny: "earthlings" }};
- * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
- */
-export let clone = (obj, fn = () => true) => {
-  if (null == obj || 'object' != typeof obj) return obj;
-  var copy = obj.constructor();
-  for (var attr in obj) {
-    if (obj.hasOwnProperty(attr)) {
-      if (fn(obj[attr])) {
-        copy[attr] = obj[attr];
-      }
-    }
-  }
-  return copy;
-};
-/**
- * @memberOf bijou
- * @function
- * @param {Object} obj The object to listen to.
- * @param {Function} [getCallback=()=>null] The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).
- * @param {Function} [setCallback=()=>null] The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).
- * @example
- * let obj = {something: "This is part of the object", anotherThing: "This is another!"};
- * obj = _$.listen(obj, (k, v) => console.log(`set ${k} to ${v}`), () => console.log("Gotten"));
- * obj.something; // Logs "Gotten" to the console!
- * obj.anotherThing = "Hello world!"; // Logs "Set abotherThing to Hello world!" to the console!
- * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
- */
-export let listen = (
-  obj,
-  setCallback = () => null,
-  getCallback = () => null,
-) => {
-  return new Proxy(obj, {
-    set: function (target, key, value) {
-      setCallback(key, value);
-      target[key] = value;
-      return target[key];
-    },
-    get: function (target, key, value) {
-      getCallback(key, value);
-      return obj[key];
-    },
-  });
-};
-/**
- * Merges two objects into one. Note that object 2 properties will overwrite those of object 2.
- * @memberOf bijou
- * @function
- * @param {Object} obj1 The 1st object to merge
- * @param {Object} obj2 The 2nd object to merge.
- * @returns {Object} The merged object.
- * @example
- * console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}
- */
-export let merge = function MergeRecursive(obj1, obj2) {
-  for (var p in obj2) {
-    if (p in Object.prototype) continue;
-    try {
-      // Property in destination object set; update its value.
-      if (obj2[p].constructor == Object) {
-        obj1[p] = MergeRecursive(obj1[p], obj2[p]);
-      } else {
-        obj1[p] = obj2[p];
-      }
-    } catch (e) {
-      // Property in destination object not set; create it and set its value.
-      obj1[p] = obj2[p];
-    }
-  }
-  return obj1;
-};
-/**
- * Maps the keys of an object.
- * @function
- * @memberOf bijou
- * @param {Object} obj The object to map.
- * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
- * @example
- * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
- * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
- * @returns {Object} The new Object.
- */
-export let mapObjectKeys = (obj, fn) =>
-  Array.isArray(obj)
-    ? obj.map((val) => _$.mapObjectKeys(val, fn))
-    : typeof obj === 'object'
-    ? Object.keys(obj).reduce((acc, current) => {
-        const key = fn(current);
-        const val = obj[current];
-        acc[key] =
-          val !== null && typeof val === 'object'
-            ? _$.mapObjectKeys(val, fn)
-            : val;
-        return acc;
-      }, {})
-    : obj;
-/**
- * Maps an object's values.
- * @memberOf bijou
- * @function
- * @param {Object} obj The object to map the values of.
- * @param {Function} fn The callback function to use.
- * @returns {Object} The mapped object.
- * @example 
- * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
- */
-export let mapObjectValues = (obj, fn) => {
-  Object.keys(obj).map(function (key, index) {
-    obj[key] = fn(obj[key], index);
-  });
-  return obj;
-};
-/**
- * Converts a form to an Object.
- * @function
- * @memberOf bijou
- * @param {HTMLFormElement} form The form element.
- * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
- * @example
- * html:
- * ```
- * <form id="form">
- *   <input name"input" />
- *   <input name="input2" />
- * </form>
- * ```
- * js:
- * const form = document.getElementById("form");
- * console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }
- */
-export let formToObject = (form) => {
-  node();
-  return Array.from(new FormData(form)).reduce(
-    (acc, [key, value]) => ({
-      ...acc,
-      [key]: value,
-    }),
-  );
-};
-/**
- * Sorts an object alphabetically by its keys.
- * @function
- * @memberOf bijou
- * @param {Object} obj The object to sort.
- * @example
- * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
- * // The object is now {anotherThing: "Another value!", testing: "A value"}
- * @returns {Object} The sorted object.
- */
-export let sortObj = (obj) => {
-  return Object.keys(obj)
-    .sort()
-    .reduce(function (result, key) {
-      result[key] = obj[key];
-      return result;
-    }, {});
-};
-//#endregion Object
-//#region Element
-
-/**
- * Re-enables the use of &lt;menu&gt; and &lt;menuitem&gt; tags for corner clicking.
- * @memberOf bijou
- * @function
- * @example
- * //HTML:
- * ```
- * <h1 contextmenu="menu">Corner click me</h1>
- * <menu>
- *  <menuitem label="An item!">
- *  <menuitem label="Another item!">
- * </menu>
- * ```
- * //JS
- * _$.context();
- * // Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
- * @returns {undefined};
- */
-export let context = () => {
-  var menu = document.createElement('UL');
-  menu.id = 'contextMenu';
-  document.body.appendChild(menu);
-  let styles = document.createElement('STYLE');
-  styles.innerHTML = `#contextMenu {
-       pointer-events: none;
-       padding: 0;
-       opacity: 0;
-       transition: opacity .3s ease;
-       position: fixed;
-       padding-top: 3px;
-       padding-bottom: 3px;
-       max-height: 200px;
-       overflow-y: scroll;
-       overflow-x: hidden;
-       list-style: none;
-       z-index: 10000;
-       background: white;
-       color: #333;
-       font-family: sans-serif;
-       border-radius: 5px;
-       box-shadow: 2px 2px 5px #0004;
-       width: fit-content;
-       min-width: 50px;
-       max-width: 150px;
-     }
-     #contextMenu li {
-       transition: background-color .3s ease;
-       display: block;
-       min-width: 150px;
-       margin: 0;
-       padding: 10px;
-     }
-     #contextMenu li:hover {
-       background-color: #ddd;
-       cursor: pointer;
-     }
-     `;
-  document.body.appendChild(styles);
-  var elements = document.querySelectorAll('[contextmenu]');
-  for (let i = 0; i < elements.length; i++) {
-    window.addEventListener('contextmenu', (e) => {
-      menu.style.pointerEvents = 'auto';
-      let items;
-      try {
-        items = document.querySelectorAll(
-          `#${e.target
-            .closest('[contextmenu]')
-            .getAttribute('contextmenu')} menuitem`,
-        );
-        e.preventDefault();
-      } catch (e) {
-        return true;
-      }
-      menu.innerHTML = '';
-      for (let j = 0; j < items.length; j++) {
-        const contextMenu = items[j];
-        const liTag = document.createElement('li');
-        liTag.onclick = contextMenu.getAttribute('onclick');
-        liTag.textContent = contextMenu.getAttribute('label');
-        menu.innerHTML += liTag.outerHTML;
-      }
-      console.log(menu.innerHTML);
-      menu.style.top = `${e.clientY}px`;
-      menu.style.left = `${e.clientX}px`;
-      menu.style.opacity = 1;
-    });
-  }
-  var contextTimer = 0;
-  requestInterval(() => {
-    contextTimer += 100;
-    if (contextTimer > 3000) {
-      menu.style.opacity = 0;
-      menu.style.pointerEvents = 'none';
-      contextTimer = 0;
-      return;
-    }
-  }, 100);
-  addEventListeners(menu, ['mousemove', 'click', 'scroll'], () => {
-    contextTimer = 0;
-  });
-  onOutsideClick(menu, () => {
-    menu.style.opacity = 0;
-    menu.style.pointerEvents = 'none';
-  });
-};
-/**
- * Tests whether the specified element is fully in view.
- * @function
- * @memberOf bijou
- * @param {Element} el The DOM element to test.
- * @example
- * // Alerts "In view!" if the first <div> in the document is in view.
- * if (_$.inView(document.querySelector("div"))) alert("In view!");
- * @returns {Boolean} Whether the element is completely in view.
- */
-export let inView = (el) => {
-  node();
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
-
-  while (el.offsetParent) {
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
-  }
-
-  return (
-    top >= window.pageYOffset &&
-    left >= window.pageXOffset &&
-    top + height <= window.pageYOffset + window.innerHeight &&
-    left + width <= window.pageXOffset + window.innerWidth
-  );
-};
-/**
- * Tests if the given DOM element is partially (or fully) in view.
- * @function
- * @memberOf bijou
- * @param {Element} el The element to test.
- * @example
- * // Alerts "In view!" if the first <div> in the document is partially or fully view.
- * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
- * @returns {Boolean} Whether the DOM element is partially in view.
- */
-export let inPartialView = (el) => {
-  node();
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
-
-  while (el.offsetParent) {
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
-  }
-
-  return (
-    top < window.pageYOffset + window.innerHeight &&
-    left < window.pageXOffset + window.innerWidth &&
-    top + height > window.pageYOffset &&
-    left + width > window.pageXOffset
-  );
-};
-/**
- * Converts a form to URL queries using the name attribute.
- * @function
- * @memberOf bijou
- * @param {HTMLFormElement} form The form element.
- * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
- */
-export let serializeForm = (form) => {
-  node();
-  return Array.from(new FormData(form), (field) =>
-    field.map(encodeURIComponent).join('='),
-  ).join('&');
-};
-
-/**
- * Replaces the text in an element by running it through a callback.
- * @function
- * @memberOf bijou
- * @param {Element} el The element to replace the text of.
- * @param {Function} callback The callback to run (Gets passed the element's text).
- * @example
- * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
- * // Converts the text of the first <div> element to upperCase.
- * @returns {undefined} 
- */
-export let replaceText = (el, callback) => {
-  node();
-  _$.each(_$.textNodes(el), (node) => {
-    node.textContent = callback(node.textContent);
-  });
-};
-/**
- * Gets a list of all the text nodes in an element
- * @memberOf bijou
- * @function
- * @param {Element} el The element to get the text nodes of.
- * @returns {Array} The text nodes.
- * @example 
- * _$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements
- */
-export let textNodes = (el) => {
-  return [...el.childNodes].filter((node) => {
-    return (
-      node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ''
-    );
-  });
-};
-/**
- * Generates a querySelector for an element passed in.
- * @function
- * @memberOf bijou
- * @param {Element} elem The element to generate the querySelector for.
- * @example
- * const textarea = document.getElementById('textarea');
- * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
- * @returns {String} The generated querySelector.
- */
-export let querySelector = (elem) => {
-  node();
-  var element = elem;
-  var str = '';
-
-  function loop(element) {
-    if (
-      element.getAttribute('id') &&
-      document.querySelectorAll(`#${element.getAttribute('id')}`)
-        .length === 1
-    ) {
-      str = str.replace(/^/, ' #' + element.getAttribute('id'));
-      str = str.replace(/\s/, '');
-      str = str.replace(/\s/g, ' > ');
-      return str;
-    }
-    if (document.body === element) {
-      str = str.replace(/^/, ' body');
-      str = str.replace(/\s/, '');
-      str = str.replace(/\s/g, ' > ');
-      return str;
-    }
-    if (element.getAttribute('class')) {
-      var elemClasses = '.';
-      elemClasses += element.getAttribute('class');
-      elemClasses = elemClasses.replace(/\s/g, '.');
-      elemClasses = elemClasses.replace(/^/g, ' ');
-      var classNth = '';
-      var childrens = element.parentNode.children;
-
-      if (childrens.length < 2) {
-        return;
-      }
-
-      var similarClasses = [];
-
-      for (var i = 0; i < childrens.length; i++) {
-        if (
-          element.getAttribute('class') ==
-          childrens[i].getAttribute('class')
-        ) {
-          similarClasses.push(childrens[i]);
-        }
-      }
-
-      if (similarClasses.length > 1) {
-        for (var j = 0; j < similarClasses.length; j++) {
-          if (element === similarClasses[j]) {
-            j++;
-            classNth = ':nth-of-type(' + j + ')';
-            break;
-          }
-        }
-      }
-
-      str = str.replace(/^/, elemClasses + classNth);
-    } else {
-      var name = element.nodeName;
-      name = name.toLowerCase();
-      var nodeNth = '';
-
-      childrens = element.parentNode.children;
-
-      if (childrens.length > 2) {
-        var similarNodes = [];
-
-        for (var i = 0; i < childrens.length; i++) {
-          if (element.nodeName == childrens[i].nodeName) {
-            similarNodes.push(childrens[i]);
-          }
-        }
-
-        if (similarNodes.length > 1) {
-          for (var j = 0; j < similarNodes.length; j++) {
-            if (element === similarNodes[j]) {
-              j++;
-              nodeNth = ':nth-of-type(' + j + ')';
-              break;
-            }
-          }
-        }
-      }
-
-      str = str.replace(/^/, ' ' + name + nodeNth);
-    }
-
-    if (element.parentNode) {
-      loop(element.parentNode);
-    } else {
-      str = str.replace(/\s/g, ' > ');
-      str = str.replace(/\s/, '');
-      return str;
-    }
-  }
-
-  loop(element);
-
-  return str;
-};
-/**
- * Removes comments from the element or string of code specified.
- * @function
- * @memberOf bijou
- * @param {Element|String} el The element or string or code to remove comments from.
- * @example
- * _$.removeComments(document.documentElement);//Removes the comments from the document element.
- * @returns {String|Element} The string removed of comments or the element removed of comments.
- */
-export let removeComments = (el) => {
-  const isString = typeof el === 'string';
-  el = isString ? _$.parseHTML(el) : el.cloneNode(true);
-  for (const child of [...el.querySelectorAll("*"), el]) {
-    for (const grandchild of child.childNodes) {
-      if (grandchild instanceof Comment) child.removeChild(grandchild);
-    }
-  }
-  return isString ? el.outerHTML : el;
-};
-/**
- * Parses the string of HTML specified and returns an HTML element of it.
- * @function
- * @memberOf bijou
- * @param {String} string The HTML string to parse.
- * @param {String} [mimeType="text/html"] The mimeType of the string.
- * @example
- * let html = _$.parseHTML("<div id='hello'><textarea></textarea></div>");
- * html.querySelector("textarea");//Returns the textarea!
- * @returns {HTMLDocument} The HTML document element of the HTML string specified.
- */
-export let parseHTML = (string, mimeType = 'text/html') => {
-  const domparser = new DOMParser();
-  return domparser.parseFromString(string, mimeType);
-};
-/**
- * Allows an element to be dragged and dropped.
- * @function
- * @memberOf bijou
- * @param {Element} el The element to be dragged (And dropped :P ).
- * @example
- * _$.drag(document.querySelector('div')); // Allows the first <div> on the page to be dragged.
- * @returns {Element} The element.
- */
-export let drag = (el) => {
-  node();
-  var initX, initY, mousePressX, mousePressY;
-  el.addEventListener(
-    'mousedown',
-    function (event) {
-      var style = window.getComputedStyle(el);
-      el.style.top = style.getPropertyValue('top');
-      el.style.left = style.getPropertyValue('left');
-      el.style.right = style.getPropertyValue('right');
-      el.style.bottom = style.getPropertyValue('bottom');
-      this.style.position = 'absolute';
-      initX = this.offsetLeft;
-      initY = this.offsetTop;
-      mousePressX = event.clientX;
-      mousePressY = event.clientY;
-      this.addEventListener('mousemove', repositionElement, false);
-
-      window.addEventListener(
-        'mouseup',
-        function () {
-          el.removeEventListener(
-            'mousemove',
-            repositionElement,
-            false,
-          );
-        },
-        false,
-      );
-    },
-    false,
-  );
-
-  function repositionElement(event) {
-    this.style.left = initX + event.clientX - mousePressX + 'px';
-    this.style.top = initY + event.clientY - mousePressY + 'px';
-  }
-  return el;
-};
-/**
- * Adds multiple event listeners with one callback to the element specified.
- * @memberOf bijou
- * @function
- * @param {Element} element The element to add the event listeners to.
- * @param {Array.<String>} events The array of events to listen for.
- * @param {Function} handler The function to run when the events happen.
- * @param {Boolean} [useCapture=false] Wether to use capture.
- * @param {Array} [args=false] The arguments to use in the handler function.
- * @example
- * // Reset a timer every user interaction.
- * let timer = 0;
- * setInterval(() => timer++, 1);
- * _$.addEventListeners(
- *  document,
- *  ["mousemove", "click", "scroll", "keypress"],
- *  () => timer = 0,
- * );
- * @returns {undefined}
- */
-export let addEventListeners = (
-  element,
-  events,
-  handler = {},
-  useCapture = false,
-  args = false,
-) => {
-  if (!(events instanceof Array)) {
-    throw (
-      'addMultipleListeners: ' +
-      'please supply an array of eventstrings ' +
-      '(like ["click","mouseover"])'
-    );
-  }
-  //create a wrapper to be able to use additional arguments
-  var handlerFn = function (e) {
-    handler.apply(this, args && args instanceof Array ? args : []);
-  };
-  for (var i = 0; i < events.length; i += 1) {
-    element.addEventListener(events[i], handlerFn, useCapture);
-  }
-};
-/**
- * @memberOf bijou
- * @function
- * @returns {undefined}
- * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
- * @param {HTMLTableElement} element The table to sort
- */
-export let sortTable = (element) => {
-  var getCellValue = function (tr, idx) {
-    return tr.children[idx].innerText || tr.children[idx].textContent;
-  };
-
-  var comparer = function (idx, asc) {
-    return function (a, b) {
-      return (function (v1, v2) {
-        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
-          ? v1 - v2
-          : v1.toString().localeCompare(v2);
-      })(
-        getCellValue(asc ? a : b, idx),
-        getCellValue(asc ? b : a, idx),
-      );
-    };
-  };
-
-  Array.prototype.slice
-    .call(element.querySelectorAll('th'))
-    .forEach(function (th) {
-      th.addEventListener('click', function () {
-        var table = th.parentNode;
-        while (table.tagName.toUpperCase() != 'TABLE')
-          table = table.parentNode;
-        Array.prototype.slice
-          .call(table.querySelectorAll('tr:nth-child(n+2)'))
-          .sort(
-            comparer(
-              Array.prototype.slice
-                .call(th.parentNode.children)
-                .indexOf(th),
-              (this.asc = !this.asc),
-            ),
-          )
-          .forEach(function (tr) {
-            table.appendChild(tr);
-          });
-      });
-    });
-};
-/**
- * Sorts a table by a <th> element.
- * @memberOf bijou
- * @function
- * @returns {undefined}
- * @example
- * //Note that this example pretty much recreates the _$ sortTable function, which is much more cross browser and good than this recreation. If sorting a whole table please use that.
- * _$.each(document.querySelectorAll("#table th"), (th) => {
- *  th.addEventListener("click", () => {
- *    //Add event listeners to each of them.
- *    _$.sortTableBy(th, th.asc = !th.asc);//Toggle the "asc" attribute on the th.
- *  });
- * })
- * @param {HTMLTableElement} th The table header (<th> element) to sort with.
- * @param {Boolean} acending Whether to sort the table ascending or descending.
- */
-export let sortTableBy = (th, acending) => {
-  var getCellValue = function (tr, idx) {
-    return tr.children[idx].innerText || tr.children[idx].textContent;
-  };
-
-  var comparer = function (idx, asc) {
-    return function (a, b) {
-      return (function (v1, v2) {
-        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
-          ? v1 - v2
-          : v1.toString().localeCompare(v2);
-      })(
-        getCellValue(asc ? a : b, idx),
-        getCellValue(asc ? b : a, idx),
-      );
-    };
-  };
-
-  var table = th.parentNode;
-  while (table.tagName.toUpperCase() != 'TABLE')
-    table = table.parentNode;
-  Array.prototype.slice
-    .call(table.querySelectorAll('tr:nth-child(n+2)'))
-    .sort(
-      comparer(
-        Array.prototype.slice
-          .call(th.parentNode.children)
-          .indexOf(th),
-        acending,
-      ),
-    )
-    .forEach(function (tr) {
-      table.appendChild(tr);
-    });
-};
-/**
- * Adds the specified styles to the element specified.
- * @function
- * @memberOf bijou
- * @param {Element} el The element to add the styles to.
- * @param {Object} styles An object that represents the styles to be added. (camelCased)
- * @example
- * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
- * @returns {Object} the style object of the element.
- */
-export let addStyles = (el, styles) => {
-  node();
-  return Object.assign(el.style, styles);
-};
-
-/**
- * Creates an HTML element from the specified string.
- * @function
- * @memberOf bijou
- * @param {String} str The string of the HTML element to create.
- * @example
- * //Returns a div with an id of "id_here" and innerText of "Testing!"
- * _$.createElement("<div id='id_here'>Testing!</div>");
- * @returns {Element} The created element.
- */
-export let createElement = (str) => {
-  node();
-  const el = document.createElement('div');
-  el.innerHTML = str;
-  return el.firstElementChild;
-};
-/**
- * Gets a property from the computed style of an element.
- * @function
- * @memberOf bijou
- * @param {Element} el The element whose styles to get.
- * @param {String} prop The css-property value to get of the styles.
- * @example
- * console.log(_$.compStyle(document.documentElement, "background-color")); // logs the background colour of the document
- * @returns {String} The computed style property for the element specified.
- */
-export let compStyle = (el, prop) => {
-  node();
-  var computedStyles = window.getComputedStyle(el);
-  return computedStyles.getPropertyValue(prop);
-};
-
-/**
- * Get the siblings of a DOM element
- * @function
- * @memberOf bijou
- * @param {Element} n The element to get siblings of
- * @example
- * _$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.backgroundColor = 'white');
- * // Make every sibling of the first list item's background color white.
- * @returns {Element[]} The array of sibling elements.
- */
-export let elementSiblings = (n) =>
-  [...n.parentElement.children].filter((c) => c != n);
-/**
- * Disables right click on the element spcified.
- * @function
- * @memberOf bijou
- * @param {Element} el The element to disable right click on.
- * @example
- * _$.disableRightClick(document.documentElement)
- * @returns {undefined}
- */
-export let disableRightClick = (el) => {
-  node();
-  return (el.oncontextmenu = false);
-};
-/**
- * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
- * @function
- * @memberOf bijou
- * @param {Element} el The element to convert.
- * @example
- * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the <h1> element to inline using the style="___" attribute
- * @returns {undefined}
- */
-export let inlineCSS = (el) => {
-  var cs = getComputedStyle(el, null);
-  var i;
-  for (i = 0; i < cs.length; i++) {
-    var s = cs[i] + '';
-    el.style[s] = cs[s];
-  }
-};
-/**
- * Returns an array of objects representing the attributes of a passed element.
- * @param {Element} el The HMTL element to get attributes from.
- * @function
- * @memberOf bijou
- * @example
- * // Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "style," to the console.
- * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
- * @return {Array.<object>} The array of objects representing the attributes
- */
-export let attributes = (el) => {
-  node();
-  var output = [];
-  for (
-    var att, i = 0, atts = el.attributes, n = atts.length;
-    i < n;
-    i++
-  ) {
-    att = atts[i];
-    output.push({
-      name: att.nodeName,
-      value: att.nodeValue,
-    });
-  }
-  return output;
-};
-/**
- * Observes the mutations of the html element specified.
- * @memberOf bijou
- * @function
- * @param {Element} element The element to observe
- * @param {Function} callback The callback function to run when a mutation happens.
- * @param {Object} options The options to use.
- * @example
- * _$.observeMutations(document, console.log); // Logs all the mutations that happen to the console.
- * @returns {undefined}
- */
-export let observeMutations = (element, callback, options) => {
-  const observer = new MutationObserver((mutations) =>
-    mutations.forEach((m) => callback(m)),
-  );
-  observer.observe(
-    element,
-    Object.assign(
-      {
-        childList: true,
-        attributes: true,
-        attributeOldValue: true,
-        characterData: true,
-        characterDataOldValue: true,
-        subtree: true,
-      },
-      options,
-    ),
-  );
-  return observer;
-};
-/**
- * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
- * @memberOf bijou
- * @function
- * @param {Element} el The element to tilt.
- * @param {Number} x The x value of the mouse
- * @param {Number} y The y value of the mouse
- * @param {Number} [perspective=500] The perspective
- * @param {Number} [amount=30] The amount to tilt.
- * @returns {undefined}
- * @example
- * // Tilt the first image in the document whenever the mouse moves.
- * let el = document.querySelector("img");
- * el.onmousemove = (e) => {
- *  let x = e.layerX;
- *  let y = e.layerY
- *  _$.tilt(el, x, y);
- * }
- */
-export let tilt = (el, x, y, perspective = 500, amount = 30) => {
-  //Old code
-  /*  const xVal = x
-    const yVal = y
-    const yRotation = amount * ((xVal - width / 2) / width)
-    const xRotation = amount * -1 * ((yVal - height / 2) / height)
-    const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
-    el.style.transform = string */
-
-  //One liner
-  el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
-    amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
-  }deg) rotateY(${
-    amount * ((x - el.clientWidth / 2) / el.clientWidth)
-  }deg)`;
-};
-/**
- * Enters fullscreen on an element.
- * @memberOf bijou
- * @function
- * @param {Element} element The element to enter full screen with.
- * @returns {undefined}
- * @example
- * _$.fullScreen(document.documentElement); // Make the window fullscreen
- */
-export let fullScreen = (element) => {
-  return (
-    element.requestFullScreen ||
-    element.mozRequestFullScreen ||
-    element.webkitRequestFullScreen() ||
-    new Error('Fullscreen failed')
-  );
-};
-/**
- * Replaces the selected text in a contentEditable div with the HTML given.
- * @memberOf bijou
- * @function
- * @returns {undefined}
- * @example
- * // Add a simple contenteditable div to the page.
- * document.appendChild(_$.createElement("<div contenteditable id='text'></div>"));
- * _$.replaceSelection("<b>BOLD TEXT</b> <small>Bijou is awesome</small><h1>You need to use it</h1>");
- * //Replaces the selection! =)
- * @param {String} replacementText The replacement HTML to replace with.
- */
-export let replaceSelection = (replacementText) => {
-  var sel, range;
-  if (window.getSelection) {
-    sel = window.getSelection();
-    if (sel.rangeCount) {
-      range = sel.getRangeAt(0);
-      range.deleteContents();
-      let n = document.createElement('span');
-      n.insertAdjacentHTML('beforeend', replacementText);
-      range.insertNode(n);
-    }
-  } else if (document.selection && document.selection.createRange) {
-    console.warn(
-      'You are using IE < 9, you are evil. Falling back to text not HTML.',
-    );
-    range = document.selection.createRange();
-    range.text = replacementText.replace(/<[^>]*>/g, '');
-  }
-};
-//#endregion Element
-//#region Event
-/**
- * Returns the callback when a a click is registered outside the selected element
- * @function
- * @memberOf bijou
- * @param {Element} element The element to use as the outsideclick element.
- * @param {Function} callback The function to run when a click is registered outside the specified element.
- * @example
- * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
- * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
- */
-export let onOutsideClick = (element, callback) => {
-  node();
-  return new Promise((resolve, reject) => {
-    document.addEventListener('click', (e) => {
-      if (!element.contains(e.target)) {
-        callback();
-        resolve();
-      }
-    });
-  });
-};
-/**
- * Returns the callback when the user stops scrolling.
- * @function
- * @memberOf bijou
- * @param {Function} callback The callback to call when the user stops scrolling.
- * @param {Number} [time=150]
- * @example
- * _$.onScrollStop(() => {alert("You stopped scrolling!")})
- * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
- */
-export let onScrollStop = (callback, time = 150) => {
-  let isScrolling;
-  node();
-  return new Promise((resolve, reject) => {
-    window.addEventListener(
-      'scroll',
-      (e) => {
-        clearTimeout(isScrolling);
-        isScrolling = setTimeout(() => {
-          callback(e);
-          resolve(e);
-        }, time);
-      },
-      false,
-    );
-  });
-};
-/**
- * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
- * @memberOf bijou
- * @function
- * @returns {Object} The object with the emit, on and off functions in it.
- * @example
- * let thing = _$.hub();
- * // Log any new data to the console
- * thing.on("data", (data) => console.log(data));
- * setTimeout(() => {
- *   thing.emit("data", "Yay! Some data!!"); // Logs "Yay! Some data!!" to the console after 2 seconds.
- * }, 2000)
- */
-export let hub = () => ({
-  hub: Object.create(null),
-  emit(event, data) {
-    (this.hub[event] || []).forEach((handler) => handler(data));
-  },
-  on(event, handler) {
-    if (!this.hub[event]) this.hub[event] = [];
-    this.hub[event].push(handler);
-  },
-  off(event, handler) {
-    const i = (this.hub[event] || []).findIndex((h) => h === handler);
-    if (i > -1) this.hub[event].splice(i, 1);
-    if (this.hub[event].length === 0) delete this.hub[event];
-  },
-});
-/**
- * Dispatches an event of the type specified with custom arguments.
- * @memberOf bijou
- * @function
- * @example
- * //Dispatch a custom mouse move event to the window.
- * _$.dispatch("mousemove", {clientX: 100, clientY: 150, target: document.documentElement}, window);
- * @param {String} type The type of event to dispatch (E.g. "mousemove")
- * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
- * @param {EventTarget} [target=window] What to dispatch the event to.
- * @returns {undefined}
- */
-export let dispatch = (type, args, target = window) => {
-  let e = new Event(type);
-  for (let o in args) {
-    e[o] = args[o];
-  }
-  target.dispatchEvent(e);
-};
-//#endregion Event
-//#region Utility
-/**
- * Plays a section of an audio file.
- * @param {HTMLMediaElement} audioObj The audio object to play. (Needs to be created from "new Audio()")
- * @param {Number} start The time to start playing.
- * @param {Number} stop The time to stop playing.
- * @memberOf bijou
- * @function
- * @example
- * _$.playSection(new Audio("file.mp3"), 5, 20.5); // Plays file.mp3, starting with second 5 and ending at 20.5 seconds into the file.
- * @returns {undefined}
- */
-export let playSection = (audioObj, start, stop) => {
-  let audioObjNew = audioObj.cloneNode(true); //this is to prevent "play() request was interrupted" error.
-  audioObjNew.currentTime = start;
-  audioObjNew.play();
-  audioObjNew.int = setInterval(function () {
-    if (audioObjNew.currentTime > stop) {
-      audioObjNew.pause();
-      clearInterval(audioObjNew.int);
-    }
-  }, 10);
-};
-/**
- * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
- * @memberOf bijou
- * @function
- * @param {String} html The string of HTML to format.
- * @example
- * console.log(_$.formatHTML("<h1>moo</h1><div id="hi">hello <span>world</span></div>"));
- * Logs the following to the console:
- * ```
-   <h1>moo</h1>
-   <div id='hi'>hello <span>world</span>
-   </div>
-   ```
- * @returns {String} The formatted string of HTML.
- */
-export let formatHTML = (html) => {
-  var tab = '\t';
-  var result = '';
-  var indent = '';
-
-  html.split(/>\s*</).forEach(function (element) {
-    if (element.match(/^\/\w/)) {
-      indent = indent.substring(tab.length);
-    }
-
-    result += indent + '<' + element + '>\r\n';
-
-    if (
-      element.match(/^<?\w[^>]*[^\/]$/) &&
-      !element.startsWith('input')
-    ) {
-      indent += tab;
-    }
-  });
-
-  return result.substring(1, result.length - 3);
-};
-/**
- * Gets JSON from a URL and performs a callback with it.
- * @function
- * @memberOf bijou
- * @param {String} url The url of the JSON to be fetched.
- * @param {Function} callback The function to be run with the JSON code.
- * @example
- * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
- * @returns {Promise} A promise resolved when the JSON is fetched and parsed.
- */
-export let getJSON = (url, callback) => {
-  node();
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((json) => {
-        callback(json);
-        resolve(json);
-      })
-      .catch((error) => {
-        reject(error);
-        throw new Error(error.stack);
-      });
-  });
-};
-/**
- * Gets HTML from a URL and performs a callback with it.
- * @function
- * @memberOf bijou
- * @param {String} url The url of the HTML to be fetched.
- * @param {Function} callback The function to be run with the HTML code.
- * @example
- * // Logs the HTML of wikipedia.org to the console.
- * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
- * @returns {Promise} A promise resolved when the HTML is fetched and parsed.
- */
-export let getHTML = (url, callback) => {
-  node();
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.text())
-      .then((html) => {
-        callback(_$.parseHTML(html));
-        resolve(_$.parseHTML(html));
-      })
-      .catch((error) => {
-        reject(error.stack);
-        throw new Error(error.stack);
-      });
-  });
-};
-
-/**
- * Preloads all of the image urls given in the arguments
- * @function
- * @memberOf bijou
- * @param {...String} urls The urls of the images to be preloaded.
- * @example
- * _$.preloadImage("https://unsplash.com/some_huge_image.png"); // Preloads the unsplash image "some_huge_image.png" :P
- * @returns {undefined}
- */
-export let preloadImage = (...urls) => {
-  let images = [];
-  for (var i = 0; i < urls.length; i++) {
-    images[i] = new Image();
-    images[i].src = urls[i];
-  }
-};
-
-/**
- * Saves a blob as a file!
- * @function
- * @memberOf bijou
- * @param {Blob} blob The blob to save as a file.
- * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
- * @example
- * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
- * @returns {undefined}
- */
-export let saveBlob = (blob, fileName = 'output.txt') => {
-  node();
-  var a = document.createElement('a');
-  document.body.appendChild(a);
-  a.style = 'display: none';
-
-  var url = window.URL.createObjectURL(blob);
-  a.href = url;
-  a.download = fileName;
-  a.click();
-  window.URL.revokeObjectURL(url);
-};
-
-/**
- * Works exactly like setInterval but instead uses requestAnimationFrame.
- * @memberOf bijou
- * @function
- * @param {Function} fn The function to run repeatedly every delay seconds.
- * @param {Number} delay The delay time in milliseconds to run the function.
- * @returns {Object}
- */
-export let requestInterval = function (fn, delay) {
-  node();
-  var requestAnimFrame = (function () {
-      return (
-        window.requestAnimationFrame ||
-        function (callback) {
-          window.setTimeout(callback, 1000 / 60);
-        }
-      );
-    })(),
-    start = new Date().getTime(),
-    handle = {};
-  function loop() {
-    handle.value = requestAnimFrame(loop);
-    var current = new Date().getTime(),
-      delta = current - start;
-    if (delta >= delay) {
-      fn.call();
-      start = new Date().getTime();
-    }
-  }
-  handle.value = requestAnimFrame(loop);
-  return handle;
-};
-
-/**
- * Loads a script from a url (Can be to a local file or to a url) then runs a callback once it's loaded.
- * @memberOf bijou
- * @function
- * @param {String} url The url to load the script from.
- * @param {Function} callback The callback to run when the script is loaded.
- * @example
- * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
- * @returns {Promise} A promise resolved once the script is loaded.
- */
-export let loadScript = (url, callback) => {
-  node();
-  return new Promise((resolve, reject) => {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    if (script.readyState) {
-      // only required for IE <9
-      script.onreadystatechange = function () {
-        if (
-          script.readyState === 'loaded' ||
-          script.readyState === 'complete'
-        ) {
-          script.onreadystatechange = null;
-          callback();
-          resolve();
-        }
-      };
-    } else {
-      //Others
-      script.onload = function () {
-        callback();
-        resolve();
-      };
-    }
-
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-  });
-};
-
-/**
- * Fetches an image and runs the callback with the data url of the image.
- * @memberOf bijou
- * @function
- * @param {String} url The url of the image to load.
- * @param {Function} callback The callback function.
- * @example
- * //Replaces every image's url with its respective data url.
- * _$.each(document.querySelectorAll('img'), (img) => {
- *   _$.imageToData(img.src, (data) => {
- *    img.src = data;
- *  })
- * })
- * @returns {Promise} A promise fulfulled when the image is loaded.
- */
-export let imageToData = async (url, callback) => {
-  return new Promise(async (res, reject) => {
-    let blob = await fetch(url).then((r) => r.blob());
-    let dataUrl = await new Promise((resolve) => {
-      let reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.readAsDataURL(blob);
-    });
-    callback(dataUrl);
-    res(dataUrl);
-  });
-};
-/**
- * A set of functions to set and modify cookies.
- * @memberOf bijou
- * @Object
- * @example
- * _$.cookies.setItem("a_cookie", "Hello world!", 1); // Set a_cookie to "Hello world" and have it expire in a day.
- * @returns {Function} The function that the user wanted
- */
-export let cookies = {
-  /**
-   * Sets a cookie to a value
-   * @function
-   * @memberOf bijou
-   * @param {String} name The name of the cookie to set
-   * @param {String} value The value of the cookie
-   * @param {Number} [days=1000] The days that the cookie should last.
-   * @returns {String} The value of the cookie
-   */
-  setItem: (name, value, days = 1000) => {
-    node();
-    var expires = '';
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-      expires = '; expires=' + date.toUTCString();
-    }
-    document.cookie =
-      name + '=' + (value || '') + expires + '; path=/';
-  },
-  /**
-   * Gets a cookie from its name.
-   * @function
-   * @memberOf bijou
-   * @param {String} name The name of the cookie.
-   * @returns {String} The value of the cookie
-   */
-  getItem: (name) => {
-    node();
-
-    var nameEQ = name + '=';
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) == 0)
-        return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  },
-  /**
-   * Deletes a cookie
-   * @memberOf bijou
-   * @param {String} name The name of the cookie to delete.
-   * @returns {undefined}
-   */
-  removeItem: (name) => {
-    node();
-
-    document.cookie =
-      name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  },
-};
-/**
- * A collection of regular expressions to validate and get common things from a page
- * @memberOf bijou
- * @Object
- * @example
- * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
- * @returns {Regexp} A regex
- */
-export let regex = {
-  /**
-   * Valid formats:
-   * (123) 456-7890
-   * (123)456-7890
-   * 123-456-7890
-   * 123.456.7890
-   * 1234567890
-   * +31636363634
-   * 075-63546725
-   */
-  phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-  /** Validates names, examples:
-   * John Smith
-   * John D'Largy
-   * John Doe-Smith
-   * John Doe Smith
-   * Hector Sausage-Hausen
-   * Mathias d'Arras
-   * Martin Luther King
-   * Ai Wong
-   * Chao Chang
-   * Alzbeta Bara
-   */
-  name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
-  /**
-    Validates email adresses
-    */
-  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-  /** Validates a link
-   */
-  link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
-  /**
-   * Tests for a strong password.
-   * Should have:
-   * 1 lowercase letter
-   * 1 uppercase letter
-   * 1 number
-   * 1 special character
-   * At least 8 characters long
-   */
-  strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
-  /**
-   * Tests for a moderate password.
-   * Should have:
-   * 1 lowercase letter
-   * 1 uppercase letter
-   * 1 number
-   * At least 8 characters long */
-  moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
-  /** Ip adresses */
-  /* Match IPv4 address */
-  ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
-  /* Match IPv6 address */
-  ipv6: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/,
-  /**Both ipv4 and ipv6 */
-  ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
-  /**Social security number */
-  socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
-  /**Hex color */
-  hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
-  /** Zip code */
-  zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
-  /**Phone */
-  simplePhone: /^\+?[\d\s]{3,}$/,
-  /**Credit cards */
-  visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
-  expressCredit: /^3[47][0–9]{13}$/,
-  mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
-  discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
-};
-/**
-   * Converts JSON to a CSV string
-   * @function
-   * @memberOf bijou
-   * @param {Array} arr The array of objects to convert to CSV.
-   * @param {Array} columns The columns to use.
-   * @param {String} [delimiter=","] The delimiter between cells, by default this is a comma.
-   * @example
-   * _$.jsonToCsv(
-    [{ a: 1, b: 2 }, { a: 3, b: 4, c: 5 }, { a: 6 }, { b: 7 }],
-    ['a', 'b']
-  );
-  * //
-   a,b
-  "1","2"
-  "3","4"
-  "6",""
-  "","7"
-   * @returns {String} The string of comma separated values (CSV) created from the JSON.
-   */
-export let jsonToCsv = (arr, columns, delimiter = ',') =>
-  [
-    columns.join(delimiter),
-    ...arr.map((obj) =>
-      columns.reduce(
-        (acc, key) =>
-          `${acc}${!acc.length ? '' : delimiter}"${
-            !obj[key] ? '' : obj[key]
-          }"`,
-        '',
-      ),
-    ),
-  ].join('\n');
-/**
- * Converts an array to CSV (Comma separated values) data.
- * @function
- * @memberOf bijou
- * @param {Array} arr The array to convert.
- * @param {String} [delimiter=,] The separator (By default this is a comma.)
- * @example
- * console.log(_$.arrayToCSV([1,2,3,4])); // "1,2,3,4"
- * @returns {String} The comma separated array.
- */
-export let arrayToCSV = (arr, delimiter = ',') =>
-  arr
-    .map((v) =>
-      v
-        .map((x) => (isNaN(x) ? `"${x.replace(/"/g, '""')}"` : x))
-        .join(delimiter),
-    )
-    .join('\n');
-/**
- * Times the function passed.
- * @function
- * @memberOf bijou
- * @param {Function} fn The function to run and time.
- * @param {String} [name=_$ function timer]
- * @example
- * // Times how long it took the user to enter their name.
- * _$.timeFunction(() => prompt("What's your name?"));
- * @returns {undefined}
- */
-export let timeFunction = (fn, name = '_$ function timer') => {
-  console.time(name);
-  fn();
-  console.timeEnd(name);
-};
-/**
- * Displays a desktop notification with the specified text.
- * @function
- * @memberOf bijou
- * @param {String} text The title of the notification.
- * @param {String} body The body of the notification.
- * @param {String} icon The url to the image for the icon of the notification.
- * @example
- * _$.notify("Hello", "Hi there! This is a notification!"); Notifies the user with the title "Hello" and the body text "Hi there! This is a notification!"
- * @returns {undefined}
- */
-export let notify = (text, body, icon) => {
-  node();
-  if (!window.Notification) {
-    console.log('Browser does not support notifications.');
-  } else {
-    if (Notification.permission === 'granted') {
-    } else {
-      Notification.requestPermission()
-        .then(function (p) {
-          if (p === 'granted') {
-          } else {
-            console.log('User blocked notifications.');
-          }
-        })
-        .catch(function (err) {
-          //Eat it.
-          console.error(err);
-        });
-    }
-  }
-};
-/**
- * Copies the string inputted to the clipboard.
- * @function
- * @memberOf bijou
- * @param {String} str The string to copy.
- * @example
- * _$.copy("Hello world");
- * @returns {String} The string copied.
- */
-export let copy = (str) => {
-  node();
-  const el = document.createElement('textarea');
-  el.value = str;
-  el.setAttribute('readonly', '');
-  el.style.position = 'absolute';
-  el.style.left = '-9999px';
-  document.body.appendChild(el);
-  const selected =
-    document.getSelection().rangeCount > 0
-      ? document.getSelection().getRangeAt(0)
-      : false;
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
-  if (selected) {
-    document.getSelection().removeAllRanges();
-    document.getSelection().addRange(selected);
-  }
-  return str;
-};
-/**
- * Returns the browser that the user is using.
- * @function
- * @memberOf bijou
- * @example
- * _$.browser(); // For me this (correctly) returns "Chrome"
- * @returns {String} A string of the browser name that the user is using.
- */
-export let browser = () => {
-  node();
-  var isOpera =
-    (!!window.opr && !!opr.addons) ||
-    !!window.opera ||
-    navigator.userAgent.indexOf(' OPR/') >= 0;
-  var isFirefox = typeof InstallTrigger !== 'undefined';
-  var isSafari =
-    /constructor/i.test(window.HTMLElement) ||
-    (function (p) {
-      return p.toString() === '[object SafariRemoteNotification]';
-    })(
-      !window['safari'] ||
-        (typeof safari !== 'undefined' &&
-          window['safari'].pushNotification),
-    );
-  var isIE = /*@cc_on!@*/ false || !!document.documentMode;
-  var isEdge = !isIE && !!window.StyleMedia;
-  var isChrome =
-    !!window.chrome &&
-    (!!window.chrome.webstore || !!window.chrome.runtime);
-  var isEdgeChromium =
-    isChrome && navigator.userAgent.indexOf('Edg') != -1;
-  var isBlink = (isChrome || isOpera) && !!window.CSS;
-  if (isOpera) {
-    return 'Opera';
-  }
-  if (isFirefox) {
-    return 'Firefox';
-  }
-  if (isSafari) {
-    return 'Safari';
-  }
-  if (isEdge) {
-    return 'Edge';
-  }
-  if (isIE) {
-    return 'Internet Explorer';
-  }
-  if (isChrome) {
-    return 'Chrome';
-  }
-  if (isEdgeChromium) {
-    return 'Edge Chromium';
-  }
-  if (isBlink) {
-    return 'Blink';
-  }
-};
-//#endregion Utility
-//#region Color
-/**
- * Converts a rgb(a) color to hex.
- * @memberOf bijou
- * @function
- * @example
- * console.log(_$.rgbToHex("rgb(255,255,255)")); // "#ffffff"
- * @param {String} rgb The string of RGB colors.
- * @returns {String} The hex color.
- */
-export let rgbToHex = (rgb) => {
-  let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
-  rgb = rgb.substr(4).split(')')[0].split(sep);
-
-  let r = (+rgb[0]).toString(16),
-    g = (+rgb[1]).toString(16),
-    b = (+rgb[2]).toString(16);
-
-  if (r.length == 1) r = '0' + r;
-  if (g.length == 1) g = '0' + g;
-  if (b.length == 1) b = '0' + b;
-
-  return '#' + r + g + b;
-};
-/**
- * Converts a hex code to a RGB color.
- * @function
- * @memberOf bijou
- * @param {String} hex The hex code to convert.
- * @example
- * console.log(_$.rgbToHex("#ffffff")); // "rgb(255,255,255)"
- * @returns {String} The RGB color converted from the hex code.
- */
-export let hexToRGB = (hex) => {
-  if (
-    ((hex.length - 1 === 6 ||
-      hex.length - 1 === 8 ||
-      hex.length - 1 === 4 ||
-      hex.length - 1 === 3) &&
-      hex.startsWith('#')) ||
-    ((hex.length === 6 ||
-      hex.length === 8 ||
-      hex.length === 4 ||
-      hex.length === 3) &&
-      !hex.startsWith('#'))
-  ) {
-  } else {
-    throw new Error('Invalid hex');
-  }
-  let alpha = false,
-    h = hex.slice(hex.startsWith('#') ? 1 : 0);
-  if (h.length === 3) h = [...h].map((x) => x + x).join('');
-  else if (h.length === 8) alpha = true;
-  h = parseInt(h, 16);
-  return (
-    'rgb' +
-    (alpha ? 'a' : '') +
-    '(' +
-    (h >>> (alpha ? 24 : 16)) +
-    ', ' +
-    ((h & (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
-    ', ' +
-    ((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
-    (alpha ? `, ${h & 0x000000ff}` : '') +
-    ')'
-  );
-};
-/**
- * Blends two colors through additive blending by a percentage.
- * @function
- * @memberOf bijou
- * @param {String} color1 The hex code of the first color to be blended
- * @param {String} color2 The hex code of the second color to be blended.
- * @param {Number} [percent=50] A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
- * @example
- * console.log(_$.blendColors("#ffffff", "#000000", 80)); // #333333
- * @returns {String} The blended color (A hex code).
- */
-export let blendColors = (color1, color2, percent = 50) => {
-  const generateHex = (r, g, b) => {
-    let R = r.toString(16);
-    let G = g.toString(16);
-    let B = b.toString(16);
-
-    while (R.length < 2) {
-      R = `0${R}`;
-    }
-    while (G.length < 2) {
-      G = `0${G}`;
-    }
-    while (B.length < 2) {
-      B = `0${B}`;
-    }
-
-    return `#${R}${G}${B}`;
-  };
-
-  const mix = (start, end, percent) =>
-    start + (percent / 100) * (end - start);
-
-  const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
-  const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
-  const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16);
-
-  const red2 = parseInt(`${color2[1]}${color2[2]}`, 16);
-  const green2 = parseInt(`${color2[3]}${color2[4]}`, 16);
-  const blue2 = parseInt(`${color2[5]}${color2[6]}`, 16);
-
-  const red = Math.round(mix(red1, red2, percent));
-  const green = Math.round(mix(green1, green2, percent));
-  const blue = Math.round(mix(blue1, blue2, percent));
-
-  return generateHex(red, green, blue);
-};
-/**
- * Generates a random hex color.
- * @function
- * @memberOf bijou
- * @example
- * console.log(_$.randomColor()); // e.g. #5bf462
- * @returns {String} A random Hex color
- */
-export let randomColor = () =>
-  `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-/**
- * Lighten or darken a color by a certain amount
- * @function
- * @memberOf bijou
- * @param {String} color The color to lighten/darken
- * @param {Number} amt The amount to lighten the color (out of 255).
- * @example
- * _$.lightenColor("#000000", 50); // #323232
- * @returns {String} The color lightened.
- */
-export let lightenColor = (col, amt) => {
-  var usePound = false;
-
-  if (col[0] == '#') {
-    col = col.slice(1);
-    usePound = true;
-  }
-
-  var num = parseInt(col, 16);
-
-  var r = (num >> 16) + amt;
-
-  if (r > 255) r = 255;
-  else if (r < 0) r = 0;
-
-  var b = ((num >> 8) & 0x00ff) + amt;
-
-  if (b > 255) b = 255;
-  else if (b < 0) b = 0;
-
-  var g = (num & 0x0000ff) + amt;
-
-  if (g > 255) g = 255;
-  else if (g < 0) g = 0;
-
-  return (
-    (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16)
-  );
-};
-/**
-  * Tests if a color is light or dark and returns an object representation.
-  * @function
-  * @memberOf bijou
-  * @param {string} color The hex color to test.
-  * @example
-  * if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
-    document.querySelector("DIV").style.color = "white";
-  } else {
-      document.querySelector("DIV").style.color = "black";
-  }
-  * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
-  */
-export let lightOrDark = (color) => {
-  var r, g, b, hsp;
-  if (color.match(/^rgb/)) {
-    color = color.match(
-      /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
-    );
-
-    r = color[1];
-    g = color[2];
-    b = color[3];
-  } else {
-    color = +(
-      '0x' + color.slice(1).replace(color.length < 5 && /./g, '$&$&')
-    );
-
-    r = color >> 16;
-    g = (color >> 8) & 255;
-    b = color & 255;
-  }
-
-  hsp = Math.sqrt(
-    0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b),
-  );
-  if (hsp > 127.5) {
-    return { lightOrDark: 'light', hsp: hsp };
-  } else {
-    return { lightOrDark: 'dark', hsp: hsp };
-  }
-};
-//#endregion Color
-/**
-  * Lets you use a for loop in template literals.
-  * @function
-  * @memberOf bijou
-  * @param {arr} The array to loop.
-  * @param {callback} Callback to return strings
-  * @example
-  * `Things: ${_$.forTemplateLiteral(["apple"], (item, i) => {return `an ${item}`})}`
-  * // "Things: an apple
-  * @returns {String} String that has been for looped
-  */
-export let forTemplateLiteral = (arr, callback) => {
-  return arr.map((item,i)=> callback(item,i)).join``
-}
-
-//#endregion Bijou
-
 /**
  * Bijou.js source documentation. In the `Bijou` namespace you will find the documentation for all of the functions in Bijou.js, if you have any questions, suggestions or bug reports pleast make an issue (here)[https://github.com/bijou-js/bijou.js/issues/new/choose]. Best of luck! Thanks for using Bijou.js! --Explosion--
  * @type {Object}
