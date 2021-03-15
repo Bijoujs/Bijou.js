@@ -686,6 +686,7 @@ export let formatMilliseconds = (ms) => {
  * - createElement('#my-id.my-class.second-class', 'text to insert', 12345); // <div id="my-id" class="my-class second-class">
  */
 export function create(querySelector = 'div', ...content) {
+  node();
   let nodeType = querySelector.match(/^[a-z0-9]+/i);
   let id = querySelector.match(/#([a-z]+[a-z0-9-]*)/gi);
   let classes = querySelector.match(/\.([a-z]+[a-z0-9-]*)/gi);
