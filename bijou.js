@@ -3994,13 +3994,16 @@ export let requestInterval = function (fn, delay) {
  * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
  * @returns {Promise} A promise resolved once the script is loaded.
  */
-export let loadScript = (url, callback = () => {}) => {
+export let loadScript = (url, callback, options = {}) => {
   node();
   return new Promise((resolve, reject) => {
     var script = document.createElement('script');
     script.type = 'text/javascript';
+    let keys = Object.keys(options);
+    _$.each(keys, (key) => {
+      script.setAttribute(key, options[key]);
+    });
     if (script.readyState) {
-      // only required for IE <9
       script.onreadystatechange = function () {
         if (
           script.readyState === 'loaded' ||
@@ -4012,7 +4015,6 @@ export let loadScript = (url, callback = () => {}) => {
         }
       };
     } else {
-      //Others
       script.onload = function () {
         callback();
         resolve();
