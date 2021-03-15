@@ -1,5 +1,7 @@
 setInterval(() => {
-  document.querySelector('.os-content-arrange').remove();
+  try {
+    document.querySelector('.os-content-arrange').remove();
+  } catch (e) {}
 
   var els = document.querySelectorAll('ul.accordion-content a');
   for (var i = 0; i < els.length; i++) {
