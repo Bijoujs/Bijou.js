@@ -1142,7 +1142,7 @@ export let drag = (el) => {
  * @param {Element} element The element to add the event listeners to.
  * @param {Array.<String>} events The array of events to listen for.
  * @param {Function} handler The function to run when the events happen.
- * @param {Boolean|Object} [useCapture=false] whether to use capture.
+ * @param {Boolean|Object} [useCapture=false] Whether to use capture, or an options object.
  * @param {Array} [args=false] The arguments to use in the handler function.
  * @example
  * // Reset a timer every user interaction.
