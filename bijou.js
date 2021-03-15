@@ -1684,6 +1684,25 @@ export let curryFunction = (fn, arity = fn.length, ...args) =>
  */
 export let isAsync = (val) =>
   Object.prototype.toString.call(val) === '[object AsyncFunction]';
+
+/**
+ * Times the function passed.
+ * @function
+ * @memberOf utility
+ * @param {Function} fn The function to run and time.
+ * @param {String} [name=_$ function timer]
+ * @example
+ * // Times how long it took the user to enter their name.
+ * _$.timeFunction(() => prompt("What's your name?"));
+ * @returns {undefined}
+ */
+export let timeFunction = (fn, name = '_$ function timer') => {
+  let startTime = performance.now();
+  console.time(name);
+  fn();
+  console.timeEnd(name);
+  return performance.now() - startTime;
+};
 /**
  * Only runs the input function at MAX with the delay specified.
  * @function
@@ -4246,22 +4265,7 @@ export let arrayToCSV = (arr, delimiter = ',') =>
         .join(delimiter),
     )
     .join('\n');
-/**
- * Times the function passed.
- * @function
- * @memberOf utility
- * @param {Function} fn The function to run and time.
- * @param {String} [name=_$ function timer]
- * @example
- * // Times how long it took the user to enter their name.
- * _$.timeFunction(() => prompt("What's your name?"));
- * @returns {undefined}
- */
-export let timeFunction = (fn, name = '_$ function timer') => {
-  console.time(name);
-  fn();
-  console.timeEnd(name);
-};
+
 /**
  * Displays a desktop notification with the specified text.
  * @function
