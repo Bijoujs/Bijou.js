@@ -107,42 +107,42 @@ let array_namespace = {};
  */
 let color_namespace = {};
 /**
- * The date namespace of Bijou.js
+ * The date namespace of Bijou.js, containing functions to format dates, do math with them and more!
  * @namespace date
  */
 let date_namespace = {};
 /**
- * The element namespace of Bijou.js
+ * The element namespace of Bijou.js, containing functions to create elements from query selectors, enable custom right click options, test if an element is on screen, replace the text of an element without altering it's styling, and much more!
  * @namespace element
  */
 let element_namespace = {};
 /**
- * The event namespace of Bijou.js
+ * The event namespace of Bijou.js, containing functions to listen and dispatch events, such as scroll stop, outside click, and multiple event listeners.
  * @namespace event
  */
 let event_namespace = {};
 /**
- * The function namespace of Bijou.js
+ * The function namespace of Bijou.js, containing functions to work with functions themselves, such as debouncing, throttling, memoizing, currying, timing and much more!
  * @namespace function
  */
 let function_namespace = {};
 /**
- * The math namespace of Bijou.js
+ * The math namespace of Bijou.js, containing functions to validate credit card numbers, animate with JavaScript, generate unique id's and much more!
  * @namespace math
  */
 let math_namespace = {};
 /**
- * The object namespace of Bijou.js
+ * The object namespace of Bijou.js, for stuff like flattening nested objects, cloning, merging, and even listening to changes to objects!
  * @namespace object
  */
 let object_namespace = {};
 /**
- * The string namespace of Bijou.js
+ * The string namespace of Bijou.js, containing functions to map strings, remove accents from strings, speak text, syntax highlight JS, HTML and CSS and much more!
  * @namespace string
  */
 let string_namespace = {};
 /**
- * The utility namespace of Bijou.js
+ * The utility namespace of Bijou.js, containing utilities to do many things, such as playing audio, fetching JSON, preloading images and much more.
  * @namespace utility
  */
 let utility_namespace = {};
@@ -671,6 +671,48 @@ export let formatMilliseconds = (ms) => {
     .map(([key, val]) => `${val} ${key}${val !== 1 ? 's' : ''}`)
     .join(', ');
 };
+/**
+ * Adds a certain number of minutes to a date object.
+ * @memberof date
+ * @example
+ * _$.addMinutesToDate(new Date(), 4);//Create a date 4 minutes from now.
+ * @param {Date} date The date to add minutes to.
+ * @param {Number} n How many minutes to add to the date.
+ * @returns {Date} The date with minutes added.
+ */
+export let addMinutesToDate = (date, n) => {
+  const d = new Date(date);
+  d.setTime(d.getTime() + n * 60000);
+  return d.toISOString().split('.')[0].replace('T', ' ');
+};
+/**
+ * Validates a date from a string.
+ * @memberOf date
+ * @example
+ *  _$.isDateValid('December 17, 1995 03:24:00'); // true
+    _$.isDateValid('1995-12-17T03:24:00'); // true
+    _$.isDateValid('1995-12-17 T03:24:00'); // false
+    _$.isDateValid('Duck'); // false
+    _$.isDateValid(1995, 11, 17); // true
+    _$.isDateValid(1995, 11, 17, 'Duck'); // false
+    _$.isDateValid({}); // false
+ * @param  {...any} val The arguments of the date to validate.
+ * @returns {Boolean} Returns if the date is valid or not.
+ */
+export let isDateValid = (...val) =>
+  !Number.isNaN(new Date(...val).valueOf());
+/**
+ * Adds a specified number of days to a date.
+ * @memberOf date
+ * @param {Date} date The date to add days to
+ * @param {Number} n How many days to add to the date.
+ * @returns {Date} The date with the specified number of days added.
+ */
+export let addDaysToDate = (date, n) => {
+  const d = new Date(date);
+  d.setDate(d.getDate() + n);
+  return d.toISOString().split('T')[0];
+};
 //#endregion Date
 //#region Element
 /**
@@ -895,19 +937,6 @@ export let inPartialView = (el) => {
     top + height > window.pageYOffset &&
     left + width > window.pageXOffset
   );
-};
-/**
- * Converts a form to URL queries using the name attribute.
- * @function
- * @memberOf element
- * @param {HTMLFormElement} form The form element.
- * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
- */
-export let serializeForm = (form) => {
-  node();
-  return Array.from(new FormData(form), (field) =>
-    field.map(encodeURIComponent).join('='),
-  ).join('&');
 };
 
 /**
@@ -2062,6 +2091,29 @@ export let sortObj = (obj) => {
 //#endregion Object
 //#region Math
 /**
+ * Performs the Luhn Check on a number, which is used to validate credit card numbers, IMEI numbers, National Provider Identifier numbers in the United States, Canadian Social Insurance Numbers, Israeli ID Numbers, South African ID Numbers, Greek Social Security Numbers (ΑΜΚΑ), and survey codes appearing on McDonald's, Taco Bell, and Tractor Supply Co. receipts.
+ * @example
+ *  - _$.luhnCheck('4485275742308327'); // true
+    - _$.luhnCheck(6011329933655299); //  false
+    - _$.luhnCheck(123456789); // false
+ * @param {Number|String} num The number or string to check on.
+ * @memberOf math
+ */
+export let luhnCheck = (num) => {
+  let arr = (num + '')
+    .split('')
+    .reverse()
+    .map((x) => parseInt(x));
+  let lastDigit = arr.splice(0, 1)[0];
+  let sum = arr.reduce(
+    (acc, val, i) =>
+      i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9,
+    0,
+  );
+  sum += lastDigit;
+  return sum % 10 === 0;
+};
+/**
  * Animates a number from one value to another.
  * @function
  * @memberOf math
@@ -2333,7 +2385,18 @@ export let ease = {
 export let forTemplateLiteral = (arr, callback) => {
   return arr.map((item, i) => callback(item, i)).join``;
 };
-
+/**
+ * Maps a string like an array.
+ * @example
+ * _$.mapString("Hello world", (e) => e.toUpperCase());//Returns "HELLO WORLD"
+ * @param {String} str The string to map
+ * @param {Function} fn The callback function to run to map the string.
+ */
+export let mapString = (str, fn) =>
+  str
+    .split('')
+    .map((c, i) => fn(c, i, str))
+    .join('');
 /**
  * Removes the accents from a string.
  * @memberOf string
@@ -2345,23 +2408,7 @@ export let forTemplateLiteral = (arr, callback) => {
  */
 export let deburr = (str) =>
   str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-/**
- * Returns either "mobile" or "desktop" depending on which type of device the user is using.
- * @function
- * @memberOf string
- * @param
- * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
- * @example
- * console.log(_$.mobileOrDesktop()); // e.g. "desktop"
- */
-export let mobileOrDesktop = () => {
-  node();
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent,
-  )
-    ? 'mobile'
-    : 'desktop';
-};
+
 /**
  * Removes tags from the HTML string specified.
  * @function
@@ -3851,6 +3898,23 @@ export let previousPage = () => {
 //#endregion String
 //#region Utility
 /**
+ * Returns either "mobile" or "desktop" depending on which type of device the user is using.
+ * @function
+ * @memberOf string
+ * @param
+ * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
+ * @example
+ * console.log(_$.mobileOrDesktop()); // e.g. "desktop"
+ */
+export let mobileOrDesktop = () => {
+  node();
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent,
+  )
+    ? 'mobile'
+    : 'desktop';
+};
+/**
  * Plays a section of an audio file.
  * @param {HTMLMediaElement} audioObj The audio object to play. (Needs to be created from "new Audio()")
  * @param {Number} start The time to start playing.
@@ -4416,6 +4480,19 @@ export let browser = () => {
     return 'Blink';
   }
 };
+/**
+ * Converts a form to URL queries using the name attribute.
+ * @function
+ * @memberOf element
+ * @param {HTMLFormElement} form The form element.
+ * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
+ */
+export let serializeForm = (form) => {
+  node();
+  return Array.from(new FormData(form), (field) =>
+    field.map(encodeURIComponent).join('='),
+  ).join('&');
+};
 //#endregion Utility
 //#endregion bijou
 /**
@@ -4424,7 +4501,9 @@ export let browser = () => {
  * @author Explosion-Scratch, GrahamSH-LLK, Bijou.js contributors
  */
 let _temp = {
+  addDaysToDate: addDaysToDate,
   addEventListeners: addEventListeners,
+  addMinutesToDate: addMinutesToDate,
   addStyles: addStyles,
   animate: animate,
   arrayDiff: arrayDiff,
@@ -4443,9 +4522,12 @@ let _temp = {
   context: context,
   cookies: cookies,
   copy: copy,
+  create: create,
   createElement: createElement,
   curryFunction: curryFunction,
   dayName: dayName,
+  debounce: debounce,
+  deburr: deburr,
   diff: diff,
   disableRightClick: disableRightClick,
   dispatch: dispatch,
@@ -4456,6 +4538,8 @@ let _temp = {
   elementSiblings: elementSiblings,
   escapeHTML: escapeHTML,
   flatten: flatten,
+  flattenObj: flattenObj,
+  forTemplateLiteral: forTemplateLiteral,
   formToObject: formToObject,
   formatHTML: formatHTML,
   formatMilliseconds: formatMilliseconds,
@@ -4471,13 +4555,16 @@ let _temp = {
   inView: inView,
   inlineCSS: inlineCSS,
   isAsync: isAsync,
+  isDateValid: isDateValid,
   jsonToCsv: jsonToCsv,
   lightOrDark: lightOrDark,
   lightenColor: lightenColor,
   listen: listen,
   loadScript: loadScript,
+  luhnCheck: luhnCheck,
   mapObjectKeys: mapObjectKeys,
   mapObjectValues: mapObjectValues,
+  mapString: mapString,
   markdownToHTML: markdownToHTML,
   memoize: memoize,
   merge: merge,
@@ -4488,6 +4575,7 @@ let _temp = {
   onOutsideClick: onOutsideClick,
   onScrollStop: onScrollStop,
   parseHTML: parseHTML,
+  playSection: playSection,
   preloadImage: preloadImage,
   previousPage: previousPage,
   primesTo: primesTo,
@@ -4518,6 +4606,7 @@ let _temp = {
   speak: speak,
   splice: splice,
   spliceArrayBuffer: spliceArrayBuffer,
+  spread: spread,
   syllables: syllables,
   syntaxHighlight: syntaxHighlight,
   textNodes: textNodes,
@@ -4531,8 +4620,8 @@ let _temp = {
   urlQuery: urlQuery,
   uuid: uuid,
   widows: widows,
-  forTemplateLiteral: forTemplateLiteral,
 };
+_temp = sortObj(_temp);
 // Imports and exports
 export default _temp;
 //Export so that when people do <script src="bijou" type="module"></script>

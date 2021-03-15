@@ -107,42 +107,42 @@ let array_namespace = {};
  */
 let color_namespace = {};
 /**
- * The date namespace of Bijou.js
+ * The date namespace of Bijou.js, containing functions to format dates, do math with them and more!
  * @namespace date
  */
 let date_namespace = {};
 /**
- * The element namespace of Bijou.js
+ * The element namespace of Bijou.js, containing functions to create elements from query selectors, enable custom right click options, test if an element is on screen, replace the text of an element without altering it's styling, and much more!
  * @namespace element
  */
 let element_namespace = {};
 /**
- * The event namespace of Bijou.js
+ * The event namespace of Bijou.js, containing functions to listen and dispatch events, such as scroll stop, outside click, and multiple event listeners.
  * @namespace event
  */
 let event_namespace = {};
 /**
- * The function namespace of Bijou.js
+ * The function namespace of Bijou.js, containing functions to work with functions themselves, such as debouncing, throttling, memoizing, currying, timing and much more!
  * @namespace function
  */
 let function_namespace = {};
 /**
- * The math namespace of Bijou.js
+ * The math namespace of Bijou.js, containing functions to validate credit card numbers, animate with JavaScript, generate unique id's and much more!
  * @namespace math
  */
 let math_namespace = {};
 /**
- * The object namespace of Bijou.js
+ * The object namespace of Bijou.js, for stuff like flattening nested objects, cloning, merging, and even listening to changes to objects!
  * @namespace object
  */
 let object_namespace = {};
 /**
- * The string namespace of Bijou.js
+ * The string namespace of Bijou.js, containing functions to map strings, remove accents from strings, speak text, syntax highlight JS, HTML and CSS and much more!
  * @namespace string
  */
 let string_namespace = {};
 /**
- * The utility namespace of Bijou.js
+ * The utility namespace of Bijou.js, containing utilities to do many things, such as playing audio, fetching JSON, preloading images and much more.
  * @namespace utility
  */
 let utility_namespace = {};

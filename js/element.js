@@ -222,19 +222,6 @@ export let inPartialView = (el) => {
     left + width > window.pageXOffset
   );
 };
-/**
- * Converts a form to URL queries using the name attribute.
- * @function
- * @memberOf element
- * @param {HTMLFormElement} form The form element.
- * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
- */
-export let serializeForm = (form) => {
-  node();
-  return Array.from(new FormData(form), (field) =>
-    field.map(encodeURIComponent).join('='),
-  ).join('&');
-};
 
 /**
  * Replaces the text in an element by running it through a callback.

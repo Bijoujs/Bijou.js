@@ -13,7 +13,18 @@
 export let forTemplateLiteral = (arr, callback) => {
   return arr.map((item, i) => callback(item, i)).join``;
 };
-
+/**
+ * Maps a string like an array.
+ * @example
+ * _$.mapString("Hello world", (e) => e.toUpperCase());//Returns "HELLO WORLD"
+ * @param {String} str The string to map
+ * @param {Function} fn The callback function to run to map the string.
+ */
+export let mapString = (str, fn) =>
+  str
+    .split('')
+    .map((c, i) => fn(c, i, str))
+    .join('');
 /**
  * Removes the accents from a string.
  * @memberOf string
@@ -25,23 +36,7 @@ export let forTemplateLiteral = (arr, callback) => {
  */
 export let deburr = (str) =>
   str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-/**
- * Returns either "mobile" or "desktop" depending on which type of device the user is using.
- * @function
- * @memberOf string
- * @param
- * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
- * @example
- * console.log(_$.mobileOrDesktop()); // e.g. "desktop"
- */
-export let mobileOrDesktop = () => {
-  node();
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent,
-  )
-    ? 'mobile'
-    : 'desktop';
-};
+
 /**
  * Removes tags from the HTML string specified.
  * @function

@@ -40,4 +40,46 @@ export let formatMilliseconds = (ms) => {
     .map(([key, val]) => `${val} ${key}${val !== 1 ? 's' : ''}`)
     .join(', ');
 };
+/**
+ * Adds a certain number of minutes to a date object.
+ * @memberof date
+ * @example
+ * _$.addMinutesToDate(new Date(), 4);//Create a date 4 minutes from now.
+ * @param {Date} date The date to add minutes to.
+ * @param {Number} n How many minutes to add to the date.
+ * @returns {Date} The date with minutes added.
+ */
+export let addMinutesToDate = (date, n) => {
+  const d = new Date(date);
+  d.setTime(d.getTime() + n * 60000);
+  return d.toISOString().split('.')[0].replace('T', ' ');
+};
+/**
+ * Validates a date from a string.
+ * @memberOf date
+ * @example
+ *  _$.isDateValid('December 17, 1995 03:24:00'); // true
+    _$.isDateValid('1995-12-17T03:24:00'); // true
+    _$.isDateValid('1995-12-17 T03:24:00'); // false
+    _$.isDateValid('Duck'); // false
+    _$.isDateValid(1995, 11, 17); // true
+    _$.isDateValid(1995, 11, 17, 'Duck'); // false
+    _$.isDateValid({}); // false
+ * @param  {...any} val The arguments of the date to validate.
+ * @returns {Boolean} Returns if the date is valid or not.
+ */
+export let isDateValid = (...val) =>
+  !Number.isNaN(new Date(...val).valueOf());
+/**
+ * Adds a specified number of days to a date.
+ * @memberOf date
+ * @param {Date} date The date to add days to
+ * @param {Number} n How many days to add to the date.
+ * @returns {Date} The date with the specified number of days added.
+ */
+export let addDaysToDate = (date, n) => {
+  const d = new Date(date);
+  d.setDate(d.getDate() + n);
+  return d.toISOString().split('T')[0];
+};
 //#endregion Date

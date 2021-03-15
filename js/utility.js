@@ -1,5 +1,22 @@
 //#region Utility
 /**
+ * Returns either "mobile" or "desktop" depending on which type of device the user is using.
+ * @function
+ * @memberOf string
+ * @param
+ * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
+ * @example
+ * console.log(_$.mobileOrDesktop()); // e.g. "desktop"
+ */
+export let mobileOrDesktop = () => {
+  node();
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent,
+  )
+    ? 'mobile'
+    : 'desktop';
+};
+/**
  * Plays a section of an audio file.
  * @param {HTMLMediaElement} audioObj The audio object to play. (Needs to be created from "new Audio()")
  * @param {Number} start The time to start playing.
@@ -564,5 +581,18 @@ export let browser = () => {
   if (isBlink) {
     return 'Blink';
   }
+};
+/**
+ * Converts a form to URL queries using the name attribute.
+ * @function
+ * @memberOf element
+ * @param {HTMLFormElement} form The form element.
+ * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
+ */
+export let serializeForm = (form) => {
+  node();
+  return Array.from(new FormData(form), (field) =>
+    field.map(encodeURIComponent).join('='),
+  ).join('&');
 };
 //#endregion Utility

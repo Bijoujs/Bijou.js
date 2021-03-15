@@ -5,7 +5,9 @@
  * @author Explosion-Scratch, GrahamSH-LLK, Bijou.js contributors
  */
 let _temp = {
+  addDaysToDate: addDaysToDate,
   addEventListeners: addEventListeners,
+  addMinutesToDate: addMinutesToDate,
   addStyles: addStyles,
   animate: animate,
   arrayDiff: arrayDiff,
@@ -24,9 +26,12 @@ let _temp = {
   context: context,
   cookies: cookies,
   copy: copy,
+  create: create,
   createElement: createElement,
   curryFunction: curryFunction,
   dayName: dayName,
+  debounce: debounce,
+  deburr: deburr,
   diff: diff,
   disableRightClick: disableRightClick,
   dispatch: dispatch,
@@ -37,6 +42,8 @@ let _temp = {
   elementSiblings: elementSiblings,
   escapeHTML: escapeHTML,
   flatten: flatten,
+  flattenObj: flattenObj,
+  forTemplateLiteral: forTemplateLiteral,
   formToObject: formToObject,
   formatHTML: formatHTML,
   formatMilliseconds: formatMilliseconds,
@@ -52,13 +59,16 @@ let _temp = {
   inView: inView,
   inlineCSS: inlineCSS,
   isAsync: isAsync,
+  isDateValid: isDateValid,
   jsonToCsv: jsonToCsv,
   lightOrDark: lightOrDark,
   lightenColor: lightenColor,
   listen: listen,
   loadScript: loadScript,
+  luhnCheck: luhnCheck,
   mapObjectKeys: mapObjectKeys,
   mapObjectValues: mapObjectValues,
+  mapString: mapString,
   markdownToHTML: markdownToHTML,
   memoize: memoize,
   merge: merge,
@@ -69,6 +79,7 @@ let _temp = {
   onOutsideClick: onOutsideClick,
   onScrollStop: onScrollStop,
   parseHTML: parseHTML,
+  playSection: playSection,
   preloadImage: preloadImage,
   previousPage: previousPage,
   primesTo: primesTo,
@@ -99,6 +110,7 @@ let _temp = {
   speak: speak,
   splice: splice,
   spliceArrayBuffer: spliceArrayBuffer,
+  spread: spread,
   syllables: syllables,
   syntaxHighlight: syntaxHighlight,
   textNodes: textNodes,
@@ -112,8 +124,8 @@ let _temp = {
   urlQuery: urlQuery,
   uuid: uuid,
   widows: widows,
-  forTemplateLiteral: forTemplateLiteral,
 };
+_temp = sortObj(_temp);
 // Imports and exports
 export default _temp;
 //Export so that when people do <script src="bijou" type="module"></script>
