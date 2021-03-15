@@ -19,13 +19,11 @@
     "theme_opts": {
       "theme": "light",
       "create_style": "pre, pre * {font-family: monospace !important;} .tooltip * {color: black !important}",
+      "add_scripts": "setInterval(() => {\r\n  try {\r\n    document.querySelector('.os-content-arrange').remove();\r\n  } catch (e) {}\r\n\r\n  var els = Array.from(document.querySelectorAll('ul.accordion-content a')).filter(el => el.innerText.startsWith(\"exports.\"));\r\n  for (var i = 0; i < els.length; i++) {\r\n    els[i].innerText = els[i].innerText.replace(/^exports\\./, '');\r\n  }\r\n}, 100);\r\n",
       "add_script_path": [
         {
           "href": "https://unpkg.com/bijou.js@v6.2.0",
           "type": "module"
-        },
-        {
-          "href": "docs/docs_script.js"
         }
       ],
       "menu": [

@@ -3,7 +3,9 @@ setInterval(() => {
     document.querySelector('.os-content-arrange').remove();
   } catch (e) {}
 
-  var els = document.querySelectorAll('ul.accordion-content a');
+  var els = Array.from(
+    document.querySelectorAll('ul.accordion-content a'),
+  ).filter((el) => el.innerText.startsWith('exports.'));
   for (var i = 0; i < els.length; i++) {
     els[i].innerText = els[i].innerText.replace(/^exports\./, '');
   }
