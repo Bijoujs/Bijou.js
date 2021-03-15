@@ -19,7 +19,7 @@
     "theme_opts": {
       "theme": "light",
       "create_style": "pre, pre * {font-family: monospace !important;} .tooltip * {color: black !important}",
-      "add_scripts": "document.querySelector('.os-content-arrange').remove()",
+      "add_scripts": "document.querySelector('.os-content-arrange').remove();var els = document.querySelectorAll(\"ul.accordion-content a\")\r\nfor (var i = 0; i < els.length; i++){\r\n   els[i].innerText = els[i].innerText.replace(/^exports\\./, \"\")\r\n}",
       "overlay_scrollbar": {
         "option": {}
       },
