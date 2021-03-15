@@ -2,7 +2,7 @@
   "source": {
     "include": ["./"],
     "includePattern": ".js$",
-    "excludePattern": "(node_modules/|out/|.github/)"
+    "excludePattern": "(node_modules/|out/|.github/|bijou.js)"
   },
   "plugins": ["plugins/markdown"],
   "templates": {
