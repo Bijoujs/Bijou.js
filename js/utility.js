@@ -241,6 +241,7 @@ export let loadScript = (url, callback, options = {}) => {
  * @returns {Promise} A promise fulfulled when the image is loaded.
  */
 export let imageToData = async (url, callback = () => {}) => {
+  node();
   return new Promise(async (res, reject) => {
     let blob = await fetch(url).then((r) => r.blob());
     let dataUrl = await new Promise((resolve) => {
