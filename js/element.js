@@ -1,5 +1,44 @@
 //#region Element
 /**
+ * Renders an HTML element from an object in the container specified.
+ * @memberOf element
+ * @example
+ * //Renders a button in the document body.
+ * _$.renderElement({
+  type: 'button',
+  props: {
+    type: 'button',
+    className: 'btn',
+    onClick: () => alert('Clicked'),
+    children: [{ props: { nodeValue: 'Click me' } }]
+  }
+}, document.body)
+ * @param {Object} param The type of object (the HTML tagName)
+ * @param {HTMLElement} container The html element to render it in.
+ */
+export let renderElement = ({ type, props = {} }, container) => {
+  const isTextElement = !type;
+  const element = isTextElement
+    ? document.createTextNode('')
+    : document.createElement(type);
+
+  const isListener = (p) => p.startsWith('on');
+  const isAttribute = (p) => !isListener(p) && p !== 'children';
+
+  Object.keys(props).forEach((p) => {
+    if (isAttribute(p)) element[p] = props[p];
+    if (!isTextElement && isListener(p))
+      element.addEventListener(p.toLowerCase().slice(2), props[p]);
+  });
+
+  if (!isTextElement && props.children && props.children.length)
+    props.children.forEach((childElement) =>
+      renderElement(childElement, element),
+    );
+
+  container.appendChild(element);
+};
+/**
  * Create a DOM element from a querySelector with option to include content
  * @memberOf element
  * @param {String} querySelector (optional) default to div

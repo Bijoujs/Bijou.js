@@ -716,6 +716,45 @@ export let addDaysToDate = (date, n) => {
 //#endregion Date
 //#region Element
 /**
+ * Renders an HTML element from an object in the container specified.
+ * @memberOf element
+ * @example
+ * //Renders a button in the document body.
+ * _$.renderElement({
+  type: 'button',
+  props: {
+    type: 'button',
+    className: 'btn',
+    onClick: () => alert('Clicked'),
+    children: [{ props: { nodeValue: 'Click me' } }]
+  }
+}, document.body)
+ * @param {Object} param The type of object (the HTML tagName)
+ * @param {HTMLElement} container The html element to render it in.
+ */
+export let renderElement = ({ type, props = {} }, container) => {
+  const isTextElement = !type;
+  const element = isTextElement
+    ? document.createTextNode('')
+    : document.createElement(type);
+
+  const isListener = (p) => p.startsWith('on');
+  const isAttribute = (p) => !isListener(p) && p !== 'children';
+
+  Object.keys(props).forEach((p) => {
+    if (isAttribute(p)) element[p] = props[p];
+    if (!isTextElement && isListener(p))
+      element.addEventListener(p.toLowerCase().slice(2), props[p]);
+  });
+
+  if (!isTextElement && props.children && props.children.length)
+    props.children.forEach((childElement) =>
+      renderElement(childElement, element),
+    );
+
+  container.appendChild(element);
+};
+/**
  * Create a DOM element from a querySelector with option to include content
  * @memberOf element
  * @param {String} querySelector (optional) default to div
@@ -2091,6 +2130,36 @@ export let sortObj = (obj) => {
 //#endregion Object
 //#region Math
 /**
+ * Tests if a given number is prime.
+ * @returns {boolean} Whether the number is prime
+ * @memberOf math
+ * @example
+ * _$.isPrime(11);//True
+ * _$.isPrime(10);//False
+ * @param {Number} num The number to test.
+ */
+export let isPrime = (num) => {
+  const boundary = Math.floor(Math.sqrt(num));
+  for (let i = 2; i <= boundary; i++) if (num % i === 0) return false;
+  return num >= 2;
+};
+/**
+ * Gets the factorial of a number given.
+ * @memberOf math
+ * @param {Number} n The number to get the factorial of.
+ * @returns {Number}
+ * @example
+ * _$.factorial(3);//6
+ */
+export let factorial = (n) =>
+  n < 0
+    ? (() => {
+        throw new TypeError('Negative numbers are not allowed!');
+      })()
+    : n <= 1
+    ? 1
+    : n * factorial(n - 1);
+/**
  * Performs the Luhn Check on a number, which is used to validate credit card numbers, IMEI numbers, National Provider Identifier numbers in the United States, Canadian Social Insurance Numbers, Israeli ID Numbers, South African ID Numbers, Greek Social Security Numbers (ΑΜΚΑ), and survey codes appearing on McDonald's, Taco Bell, and Tractor Supply Co. receipts.
  * @example
  *  - _$.luhnCheck('4485275742308327'); // true
@@ -2371,6 +2440,73 @@ export let ease = {
 
 //#endregion Math
 //#region String
+/**
+ * Prefixes the given CSS property for the current browser.
+ * @example
+ * document.body.style[_$.prefix("appearance")] = "hidden";//Sets the document body's appearance property to "hidden".
+ * @param {String} prop The property to prefix.
+ * @returns {String} The prefixed value (camelCased, instead of css-case, so mozAppearance instead of -moz-appearance).
+ */
+export let prefixCSS = (prop) => {
+  node();
+  const capitalizedProp =
+    prop.charAt(0).toUpperCase() + prop.slice(1);
+  const prefixes = ['', 'webkit', 'moz', 'ms', 'o'];
+  const i = prefixes.findIndex(
+    (prefix) =>
+      typeof document.body.style[
+        prefix ? prefix + capitalizedProp : prop
+      ] !== 'undefined',
+  );
+  return i !== -1
+    ? i === 0
+      ? prop
+      : prefixes[i] + capitalizedProp
+    : null;
+};
+
+/**
+ * Parses a cookie string into object and value pairs.
+ * @memberOf string
+ * @example
+ * _$.parseCookie("foo=bar; something=hello%20world");//Returns {foo: "bar", something: "hello world"};
+ * @param {String} str The string to parse.
+ */
+export let parseCookie = (str) =>
+  str
+    .split(';')
+    .map((v) => v.split('='))
+    .reduce((acc, v) => {
+      acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
+        v[1].trim(),
+      );
+      return acc;
+    }, {});
+/**
+ * Hashes a string using the crypto api. 
+ * @memberOf string
+ * @example
+ * _$.hash(
+    JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
+  ).then(console.log);
+  // '04aa106279f5977f59f9067fa9712afc4aedc6f5862a8defc34552d8c7206393'
+ * @param {String} val The string to hash
+ * @returns {Promise} A promise that resolves into the hashed string.
+ */
+export let hash = (val) => {
+  node();
+  return crypto.subtle
+    .digest('SHA-256', new TextEncoder('utf-8').encode(val))
+    .then((h) => {
+      let hexes = [],
+        view = new DataView(h);
+      for (let i = 0; i < view.byteLength; i += 4)
+        hexes.push(
+          ('00000000' + view.getUint32(i).toString(16)).slice(-8),
+        );
+      return hexes.join('');
+    });
+};
 /**
  * Lets you use a for loop in template literals.
  * @function

@@ -1,5 +1,72 @@
 //#region String
 /**
+ * Prefixes the given CSS property for the current browser.
+ * @example
+ * document.body.style[_$.prefix("appearance")] = "hidden";//Sets the document body's appearance property to "hidden".
+ * @param {String} prop The property to prefix.
+ * @returns {String} The prefixed value (camelCased, instead of css-case, so mozAppearance instead of -moz-appearance).
+ */
+export let prefixCSS = (prop) => {
+  node();
+  const capitalizedProp =
+    prop.charAt(0).toUpperCase() + prop.slice(1);
+  const prefixes = ['', 'webkit', 'moz', 'ms', 'o'];
+  const i = prefixes.findIndex(
+    (prefix) =>
+      typeof document.body.style[
+        prefix ? prefix + capitalizedProp : prop
+      ] !== 'undefined',
+  );
+  return i !== -1
+    ? i === 0
+      ? prop
+      : prefixes[i] + capitalizedProp
+    : null;
+};
+
+/**
+ * Parses a cookie string into object and value pairs.
+ * @memberOf string
+ * @example
+ * _$.parseCookie("foo=bar; something=hello%20world");//Returns {foo: "bar", something: "hello world"};
+ * @param {String} str The string to parse.
+ */
+export let parseCookie = (str) =>
+  str
+    .split(';')
+    .map((v) => v.split('='))
+    .reduce((acc, v) => {
+      acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
+        v[1].trim(),
+      );
+      return acc;
+    }, {});
+/**
+ * Hashes a string using the crypto api. 
+ * @memberOf string
+ * @example
+ * _$.hash(
+    JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
+  ).then(console.log);
+  // '04aa106279f5977f59f9067fa9712afc4aedc6f5862a8defc34552d8c7206393'
+ * @param {String} val The string to hash
+ * @returns {Promise} A promise that resolves into the hashed string.
+ */
+export let hash = (val) => {
+  node();
+  return crypto.subtle
+    .digest('SHA-256', new TextEncoder('utf-8').encode(val))
+    .then((h) => {
+      let hexes = [],
+        view = new DataView(h);
+      for (let i = 0; i < view.byteLength; i += 4)
+        hexes.push(
+          ('00000000' + view.getUint32(i).toString(16)).slice(-8),
+        );
+      return hexes.join('');
+    });
+};
+/**
  * Lets you use a for loop in template literals.
  * @function
  * @memberOf string

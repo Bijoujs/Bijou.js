@@ -1,5 +1,35 @@
 //#region Math
 /**
+ * Tests if a given number is prime.
+ * @returns {boolean} Whether the number is prime
+ * @memberOf math
+ * @example
+ * _$.isPrime(11);//True
+ * _$.isPrime(10);//False
+ * @param {Number} num The number to test.
+ */
+export let isPrime = (num) => {
+  const boundary = Math.floor(Math.sqrt(num));
+  for (let i = 2; i <= boundary; i++) if (num % i === 0) return false;
+  return num >= 2;
+};
+/**
+ * Gets the factorial of a number given.
+ * @memberOf math
+ * @param {Number} n The number to get the factorial of.
+ * @returns {Number}
+ * @example
+ * _$.factorial(3);//6
+ */
+export let factorial = (n) =>
+  n < 0
+    ? (() => {
+        throw new TypeError('Negative numbers are not allowed!');
+      })()
+    : n <= 1
+    ? 1
+    : n * factorial(n - 1);
+/**
  * Performs the Luhn Check on a number, which is used to validate credit card numbers, IMEI numbers, National Provider Identifier numbers in the United States, Canadian Social Insurance Numbers, Israeli ID Numbers, South African ID Numbers, Greek Social Security Numbers (ΑΜΚΑ), and survey codes appearing on McDonald's, Taco Bell, and Tractor Supply Co. receipts.
  * @example
  *  - _$.luhnCheck('4485275742308327'); // true
