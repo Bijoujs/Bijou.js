@@ -50,17 +50,47 @@ export let flattenObj = (o) => {
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-export let clone = (obj, fn = () => true) => {
-  if (null == obj || 'object' != typeof obj) return obj;
-  var copy = obj.constructor();
-  for (var attr in obj) {
-    if (obj.hasOwnProperty(attr)) {
-      if (fn(obj[attr])) {
-        copy[attr] = obj[attr];
+export let clone = (item) => {
+  if (!item) {
+    return item;
+  }
+  var types = [Number, String, Boolean],
+    result;
+  types.forEach(function (type) {
+    if (item instanceof type) {
+      result = type(item);
+    }
+  });
+  if (typeof result == 'undefined') {
+    if (Array.isArray(item)) {
+      result = [];
+      item.forEach(function (child, index, array) {
+        result[index] = clone(child);
+      });
+    } else if (typeof item == 'object') {
+      if (item.nodeType && typeof item.cloneNode == 'function') {
+        result = item.cloneNode(true);
+      } else if (!item.prototype) {
+        if (item instanceof Date) {
+          result = new Date(item);
+        } else {
+          result = {};
+          for (var i in item) {
+            result[i] = clone(item[i]);
+          }
+        }
+      } else {
+        if (false && item.constructor) {
+          result = new item.constructor();
+        } else {
+          result = item;
+        }
       }
+    } else {
+      result = item;
     }
   }
-  return copy;
+  return result;
 };
 /**
  * @memberOf object
