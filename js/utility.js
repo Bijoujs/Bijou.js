@@ -23,7 +23,7 @@
  * @returns {HTMLElement} The CSS <style> element.
  * @param {String} css The CSS to inject.
  */
-export let injectCSS = (css) => {
+export let injectCSS = (css = req('string', 'css')) => {
   node();
   let el = document.createElement('style');
   el.setAttribute('type', 'text/css');
@@ -59,7 +59,11 @@ export let mobileOrDesktop = () => {
  * _$.playSection(new Audio("file.mp3"), 5, 20.5); // Plays file.mp3, starting with second 5 and ending at 20.5 seconds into the file.
  * @returns {undefined}
  */
-export let playSection = (audioObj, start, stop) => {
+export let playSection = (
+  audioObj = req('HTMLMediaElement', 'audio'),
+  start = req('number', 'start'),
+  stop = req('number', 'stop'),
+) => {
   let audioObjNew = audioObj.cloneNode(true); //this is to prevent "play() request was interrupted" error.
   audioObjNew.currentTime = start;
   audioObjNew.play();
@@ -85,7 +89,7 @@ export let playSection = (audioObj, start, stop) => {
    ```
  * @returns {String} The formatted string of HTML.
  */
-export let formatHTML = (html) => {
+export let formatHTML = (html = req('string', 'html')) => {
   var tab = '\t';
   var result = '';
   var indent = '';
@@ -117,7 +121,10 @@ export let formatHTML = (html) => {
  * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
  * @returns {Promise} A promise resolved when the JSON is fetched and parsed.
  */
-export let getJSON = (url, callback = () => {}) => {
+export let getJSON = (
+  url = req('string', 'url'),
+  callback = () => {},
+) => {
   node();
   return new Promise((resolve, reject) => {
     fetch(url)
@@ -143,7 +150,10 @@ export let getJSON = (url, callback = () => {}) => {
  * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
  * @returns {Promise} A promise resolved when the HTML is fetched and parsed.
  */
-export let getHTML = (url, callback = () => {}) => {
+export let getHTML = (
+  url = req('string', 'url'),
+  callback = () => {},
+) => {
   node();
   return new Promise((resolve, reject) => {
     fetch(url)
@@ -169,6 +179,7 @@ export let getHTML = (url, callback = () => {}) => {
  * @returns {undefined}
  */
 export let preloadImage = (...urls) => {
+  req('string', 'url arguments', ![...urls].length);
   let images = [];
   for (var i = 0; i < urls.length; i++) {
     images[i] = new Image();
@@ -186,7 +197,10 @@ export let preloadImage = (...urls) => {
  * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
  * @returns {undefined}
  */
-export let saveBlob = (blob, fileName = 'output.txt') => {
+export let saveBlob = (
+  blob = req('blob', 'blob'),
+  fileName = 'output.txt',
+) => {
   node();
   var a = document.createElement('a');
   document.body.appendChild(a);
@@ -207,7 +221,10 @@ export let saveBlob = (blob, fileName = 'output.txt') => {
  * @param {Number} delay The delay time in milliseconds to run the function.
  * @returns {Object}
  */
-export let requestInterval = function (fn, delay) {
+export let requestInterval = function (
+  fn = req('function', 'function'),
+  delay = req('number', 'delay'),
+) {
   node();
   var requestAnimFrame = (function () {
       return (
@@ -242,7 +259,11 @@ export let requestInterval = function (fn, delay) {
  * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
  * @returns {Promise} A promise resolved once the script is loaded.
  */
-export let loadScript = (url, callback, options = {}) => {
+export let loadScript = (
+  url = req('string', 'url'),
+  callback = req('function', 'callback'),
+  options = {},
+) => {
   node();
   return new Promise((resolve, reject) => {
     var script = document.createElement('script');
@@ -289,7 +310,10 @@ export let loadScript = (url, callback, options = {}) => {
  * })
  * @returns {Promise} A promise fulfulled when the image is loaded.
  */
-export let imageToData = async (url, callback = () => {}) => {
+export let imageToData = async (
+  url = req('string', 'url'),
+  callback = () => {},
+) => {
   node();
   return new Promise(async (res, reject) => {
     let blob = await fetch(url).then((r) => r.blob());
@@ -320,7 +344,11 @@ export let cookies = {
    * @param {Number} [days=1000] The days that the cookie should last.
    * @returns {String} The value of the cookie
    */
-  setItem: (name, value, days = 1000) => {
+  setItem: (
+    name = req('string', 'name'),
+    value = req('string', 'value'),
+    days = 1000,
+  ) => {
     node();
     var expires = '';
     if (days) {
@@ -338,7 +366,7 @@ export let cookies = {
    * @param {String} name The name of the cookie.
    * @returns {String} The value of the cookie
    */
-  getItem: (name) => {
+  getItem: (name = req('string', 'name')) => {
     node();
 
     var nameEQ = name + '=';
@@ -357,7 +385,7 @@ export let cookies = {
    * @param {String} name The name of the cookie to delete.
    * @returns {undefined}
    */
-  removeItem: (name) => {
+  removeItem: (name = req('string', 'name')) => {
     node();
 
     document.cookie =
@@ -463,7 +491,11 @@ export let regex = {
   "","7"
    * @returns {String} The string of comma separated values (CSV) created from the JSON.
    */
-export let jsonToCsv = (arr, columns, delimiter = ',') =>
+export let jsonToCsv = (
+  arr = req('array', 'array'),
+  columns = req('number', 'columns'),
+  delimiter = ',',
+) =>
   [
     columns.join(delimiter),
     ...arr.map((obj) =>
@@ -486,7 +518,10 @@ export let jsonToCsv = (arr, columns, delimiter = ',') =>
  * console.log(_$.arrayToCSV([1,2,3,4])); // "1,2,3,4"
  * @returns {String} The comma separated array.
  */
-export let arrayToCSV = (arr, delimiter = ',') =>
+export let arrayToCSV = (
+  arr = req('array', 'array'),
+  delimiter = ',',
+) =>
   arr
     .map((v) =>
       v
@@ -506,7 +541,11 @@ export let arrayToCSV = (arr, delimiter = ',') =>
  * _$.notify("Hello", "Hi there! This is a notification!"); Notifies the user with the title "Hello" and the body text "Hi there! This is a notification!"
  * @returns {undefined}
  */
-export let notify = (text, body, icon) => {
+export let notify = (
+  text = req('string', 'text'),
+  body = req('string', 'body'),
+  icon = undefined,
+) => {
   node();
   if (!window.Notification) {
     console.log('Browser does not support notifications.');
@@ -536,7 +575,7 @@ export let notify = (text, body, icon) => {
  * _$.copy("Hello world");
  * @returns {String} The string copied.
  */
-export let copy = (str) => {
+export let copy = (str = req('string', 'string')) => {
   node();
   const el = document.createElement('textarea');
   el.value = str;
@@ -621,7 +660,9 @@ export let browser = () => {
  * @param {HTMLFormElement} form The form element.
  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
  */
-export let serializeForm = (form) => {
+export let serializeForm = (
+  form = req('HTMLFormElement', 'form'),
+) => {
   node();
   return Array.from(new FormData(form), (field) =>
     field.map(encodeURIComponent).join('='),
