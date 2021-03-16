@@ -1815,7 +1815,7 @@ export let dispatch = (
   say(["Fred", "hi"]);//"Fred says hi"
  * @param {Function} fn The function to use
  */
-export let spread = (fn) => {
+export let spread = (fn = req('function')) => {
   return (args) => {
     call_me.apply(this, args);
   };
@@ -1829,7 +1829,7 @@ export let spread = (fn) => {
  * let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)
  * @returns {Function} The memoized function.
  */
-export let memoize = (fn) => {
+export let memoize = (fn = req('function')) => {
   let cache = {};
   return function () {
     let args = JSON.stringify(Array.from(arguments));
@@ -1851,10 +1851,12 @@ export let memoize = (fn) => {
  * @example
  * const add2 = (x) => x + 2;
  * const multiply2 = (x) => x * 2;
- * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  6 * 2 + 2
+ * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  3 * 2 + 2
  */
-export let composeFunction = (...functions) => (args) =>
-  functions.reduceRight((arg, fn) => fn(arg), args);
+export let composeFunction = (...functions) => (args) => {
+  req('functions', 'function list', ![...functions].length);
+  return functions.reduceRight((arg, fn) => fn(arg), args);
+};
 /**
  * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
  * @function
@@ -1867,7 +1869,11 @@ export let composeFunction = (...functions) => (args) =>
  * let fn = (x, y, z, w) => x * y * z * w;
  * console.log(_$.curryFunction(fn, 4, 5)(4)(3)(2)); // 120 i.e. 5 * 4 * 3 * 2
  */
-export let curryFunction = (fn, arity = fn.length, ...args) =>
+export let curryFunction = (
+  fn = req('function'),
+  arity = fn.length,
+  ...args
+) =>
   arity <= args.length
     ? fn(...args)
     : curryFunction.bind(null, fn, arity, ...args);
@@ -1881,7 +1887,7 @@ export let curryFunction = (fn, arity = fn.length, ...args) =>
  * const asyncFn = async (x) => x ** 3; // It's a silly function, but a good example
  * console.log(_$.isAsync(asyncFn)); // true
  */
-export let isAsync = (val) =>
+export let isAsync = (val = req('function')) =>
   Object.prototype.toString.call(val) === '[object AsyncFunction]';
 
 /**
@@ -1895,7 +1901,10 @@ export let isAsync = (val) =>
  * _$.timeFunction(() => prompt("What's your name?"));
  * @returns {undefined}
  */
-export let timeFunction = (fn, name = '_$ function timer') => {
+export let timeFunction = (
+  fn = req('function'),
+  name = '_$ function timer',
+) => {
   let startTime = performance.now();
   console.time(name);
   fn();
@@ -1914,7 +1923,11 @@ export let timeFunction = (fn, name = '_$ function timer') => {
  * setInterval(alert_function, 1)
  * @returns {Function} The throttled function
  */
-export let throttle = (func, wait, options) => {
+export let throttle = (
+  func = req('function'),
+  wait = req('number', 'wait'),
+  options = {},
+) => {
   var context, args, result;
   var timeout = null;
   var previous = 0;
@@ -1955,7 +1968,11 @@ export let throttle = (func, wait, options) => {
  * @param {Number} wait The milliseconds to wait between executions.
  * @param {Boolean} [immediate=false] Whether or not to run immediately, or after a group of executions.
  */
-export let debounce = (func, wait, immediate = false) => {
+export let debounce = (
+  func = req('function'),
+  wait = req('number', 'wait'),
+  immediate = false,
+) => {
   // 'private' variable for instance
   // The returned function will be able to reference this due to closure.
   // Each call to the returned function will share this common timer.
@@ -2005,7 +2022,7 @@ export let debounce = (func, wait, immediate = false) => {
  * _$.runAsync(() =>  "hello world").then(console.log); // "hello world"
  * @returns {Promise} A promise that resolves into the return value of the function.
  */
-export let runAsync = (fn) => {
+export let runAsync = (fn = req('function')) => {
   const worker = new Worker(
     URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
       type: 'application/javascript; charset=utf-8',
