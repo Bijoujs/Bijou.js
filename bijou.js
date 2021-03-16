@@ -756,8 +756,7 @@ export let addMinutesToDate = (
  * @returns {Boolean} Returns if the date is valid or not.
  */
 export let isDateValid = (...val) =>
-  req('any', 'date args', !val.length);
-!Number.isNaN(new Date(...val).valueOf());
+  !Number.isNaN(new Date(...val).valueOf());
 /**
  * Adds a specified number of days to a date.
  * @memberOf date
