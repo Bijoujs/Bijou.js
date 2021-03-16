@@ -814,7 +814,10 @@ export let getImages = (
  * @param {Object} param The type of object (the HTML tagName)
  * @param {HTMLElement} container The html element to render it in.
  */
-export let renderElement = ({ type, props = {} }, container) => {
+export let renderElement = (
+  { type, props = {} } = req('object', 'options'),
+  container = req('HTMLElement', 'container'),
+) => {
   const isTextElement = !type;
   const element = isTextElement
     ? document.createTextNode('')
@@ -1009,7 +1012,7 @@ export let context = () => {
  * if (_$.inView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the element is completely in view.
  */
-export let inView = (el) => {
+export let inView = (el = req('HTMLElement', 'element')) => {
   node();
   var top = el.offsetTop;
   var left = el.offsetLeft;
@@ -1039,7 +1042,7 @@ export let inView = (el) => {
  * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the DOM element is partially in view.
  */
-export let inPartialView = (el) => {
+export let inPartialView = (el = req('HTMLElement', 'element')) => {
   node();
   var top = el.offsetTop;
   var left = el.offsetLeft;
@@ -1071,7 +1074,10 @@ export let inPartialView = (el) => {
  * // Converts the text of the first <div> element to upperCase.
  * @returns {undefined}
  */
-export let replaceText = (el, callback) => {
+export let replaceText = (
+  el = req('HTMLElement', 'element'),
+  callback = req('function', 'callback'),
+) => {
   node();
   _$.each(_$.textNodes(el), (node) => {
     node.textContent = callback(node.textContent);
@@ -1086,7 +1092,7 @@ export let replaceText = (el, callback) => {
  * @example
  * _$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements
  */
-export let textNodes = (el) => {
+export let textNodes = (el = req('HTMLElement', 'element')) => {
   return [...el.childNodes].filter((node) => {
     return (
       node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ''
@@ -1103,7 +1109,7 @@ export let textNodes = (el) => {
  * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
  * @returns {String} The generated querySelector.
  */
-export let querySelector = (elem) => {
+export let querySelector = (elem = req('HTMLElement', 'element')) => {
   node();
   var element = elem;
   var str = '';
@@ -1211,7 +1217,9 @@ export let querySelector = (elem) => {
  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
  * @returns {String|Element} The string removed of comments or the element removed of comments.
  */
-export let removeComments = (el) => {
+export let removeComments = (
+  el = req('String|HTMLElement', 'element or string'),
+) => {
   const isString = typeof el === 'string';
   el = isString ? _$.parseHTML(el) : el.cloneNode(true);
   for (const child of [...el.querySelectorAll('*'), el]) {
@@ -1233,7 +1241,10 @@ export let removeComments = (el) => {
  * html.querySelector("textarea");//Returns the textarea!
  * @returns {HTMLDocument} The HTML document element of the HTML string specified.
  */
-export let parseHTML = (string, mimeType = 'text/html') => {
+export let parseHTML = (
+  string = req('string', 'html string'),
+  mimeType = 'text/html',
+) => {
   const domparser = new DOMParser();
   return domparser.parseFromString(string, mimeType);
 };
@@ -1246,7 +1257,7 @@ export let parseHTML = (string, mimeType = 'text/html') => {
  * _$.drag(document.querySelector('div')); // Allows the first <div> on the page to be dragged.
  * @returns {Element} The element.
  */
-export let drag = (el) => {
+export let drag = (el = req('HTMLElement', 'element')) => {
   node();
   var initX, initY, mousePressX, mousePressY;
   el.addEventListener(
@@ -1306,8 +1317,8 @@ export let drag = (el) => {
  * @returns {undefined}
  */
 export let addEventListeners = (
-  element,
-  events,
+  element = req('HTMLElement', 'element'),
+  events = req('array', 'events'),
   handler = {},
   useCapture = false,
   args = false,
@@ -1334,7 +1345,9 @@ export let addEventListeners = (
  * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
  * @param {HTMLTableElement} element The table to sort
  */
-export let sortTable = (element) => {
+export let sortTable = (
+  element = req('HTMLTableElement', 'table element'),
+) => {
   var getCellValue = function (tr, idx) {
     return tr.children[idx].innerText || tr.children[idx].textContent;
   };
@@ -1391,7 +1404,10 @@ export let sortTable = (element) => {
  * @param {HTMLTableElement} th The table header (<th> element) to sort with.
  * @param {Boolean} acending Whether to sort the table ascending or descending.
  */
-export let sortTableBy = (th, acending) => {
+export let sortTableBy = (
+  th = req('HTMLTableElement', '<th> element'),
+  acending = req('boolean', 'ascending'),
+) => {
   var getCellValue = function (tr, idx) {
     return tr.children[idx].innerText || tr.children[idx].textContent;
   };
@@ -1436,7 +1452,10 @@ export let sortTableBy = (th, acending) => {
  * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
  * @returns {Object} the style object of the element.
  */
-export let addStyles = (el, styles) => {
+export let addStyles = (
+  el = req('HTMLElement', 'element'),
+  styles = req('Object', 'styles'),
+) => {
   node();
   return Object.assign(el.style, styles);
 };
@@ -1451,7 +1470,9 @@ export let addStyles = (el, styles) => {
  * _$.createElement("<div id='id_here'>Testing!</div>");
  * @returns {Element} The created element.
  */
-export let createElement = (str) => {
+export let createElement = (
+  str = req('String', 'HTML element string'),
+) => {
   node();
   const el = document.createElement('div');
   el.innerHTML = str;
@@ -1467,7 +1488,10 @@ export let createElement = (str) => {
  * console.log(_$.compStyle(document.documentElement, "background-color")); // logs the background colour of the document
  * @returns {String} The computed style property for the element specified.
  */
-export let compStyle = (el, prop) => {
+export let compStyle = (
+  el = req('HTMLElement', 'element'),
+  prop = req('String', 'CSS property string'),
+) => {
   node();
   var computedStyles = window.getComputedStyle(el);
   return computedStyles.getPropertyValue(prop);
@@ -1483,7 +1507,7 @@ export let compStyle = (el, prop) => {
  * // Make every sibling of the first list item's background color white.
  * @returns {Element[]} The array of sibling elements.
  */
-export let elementSiblings = (n) =>
+export let elementSiblings = (n = req('HTMLElement', 'element')) =>
   [...n.parentElement.children].filter((c) => c != n);
 /**
  * Disables right click on the element spcified.
@@ -1494,7 +1518,9 @@ export let elementSiblings = (n) =>
  * _$.disableRightClick(document.documentElement)
  * @returns {undefined}
  */
-export let disableRightClick = (el) => {
+export let disableRightClick = (
+  el = req('HTMLElement', 'element'),
+) => {
   node();
   return (el.oncontextmenu = false);
 };
@@ -1507,7 +1533,7 @@ export let disableRightClick = (el) => {
  * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the <h1> element to inline using the style="___" attribute
  * @returns {undefined}
  */
-export let inlineCSS = (el) => {
+export let inlineCSS = (el = req('HTMLElement', 'element')) => {
   var cs = getComputedStyle(el, null);
   var i;
   for (i = 0; i < cs.length; i++) {
@@ -1525,7 +1551,7 @@ export let inlineCSS = (el) => {
  * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
  * @return {Array.<object>} The array of objects representing the attributes
  */
-export let attributes = (el) => {
+export let attributes = (el = req('HTMLElement', 'element')) => {
   node();
   var output = [];
   for (
@@ -1552,7 +1578,11 @@ export let attributes = (el) => {
  * _$.observeMutations(document, console.log); // Logs all the mutations that happen to the console.
  * @returns {undefined}
  */
-export let observeMutations = (element, callback, options) => {
+export let observeMutations = (
+  element = req('HTMLElement', 'element'),
+  callback = req('function', 'callback'),
+  options = {},
+) => {
   const observer = new MutationObserver((mutations) =>
     mutations.forEach((m) => callback(m)),
   );
@@ -1591,7 +1621,13 @@ export let observeMutations = (element, callback, options) => {
  *  _$.tilt(el, x, y);
  * }
  */
-export let tilt = (el, x, y, perspective = 500, amount = 30) => {
+export let tilt = (
+  el = req('HTMLElement', 'element'),
+  x = req('number', 'x'),
+  y = req('number', 'y'),
+  perspective = 500,
+  amount = 30,
+) => {
   //Old code
   /*  const xVal = x
       const yVal = y
@@ -1616,7 +1652,7 @@ export let tilt = (el, x, y, perspective = 500, amount = 30) => {
  * @example
  * _$.fullScreen(document.documentElement); // Make the window fullscreen
  */
-export let fullScreen = (element) => {
+export let fullScreen = (element = req('HTMLElement', 'element')) => {
   return (
     element.requestFullScreen ||
     element.mozRequestFullScreen ||
@@ -1636,7 +1672,9 @@ export let fullScreen = (element) => {
  * //Replaces the selection! =)
  * @param {String} replacementText The replacement HTML to replace with.
  */
-export let replaceSelection = (replacementText) => {
+export let replaceSelection = (
+  replacementText = req('string', 'replacement text'),
+) => {
   var sel, range;
   if (window.getSelection) {
     sel = window.getSelection();
