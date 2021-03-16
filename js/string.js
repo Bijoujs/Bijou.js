@@ -6,7 +6,7 @@
  * @param {String} prop The property to prefix.
  * @returns {String} The prefixed value (camelCased, instead of css-case, so mozAppearance instead of -moz-appearance).
  */
-export let prefixCSS = (prop) => {
+export let prefixCSS = (prop = req('string', 'property')) => {
   node();
   const capitalizedProp =
     prop.charAt(0).toUpperCase() + prop.slice(1);
@@ -31,7 +31,7 @@ export let prefixCSS = (prop) => {
  * _$.parseCookie("foo=bar; something=hello%20world");//Returns {foo: "bar", something: "hello world"};
  * @param {String} str The string to parse.
  */
-export let parseCookie = (str) =>
+export let parseCookie = (str = req('string', 'cookie string')) =>
   str
     .split(';')
     .map((v) => v.split('='))
@@ -52,7 +52,7 @@ export let parseCookie = (str) =>
  * @param {String} val The string to hash
  * @returns {Promise} A promise that resolves into the hashed string.
  */
-export let hash = (val) => {
+export let hash = (val = req('string', 'input string')) => {
   node();
   return crypto.subtle
     .digest('SHA-256', new TextEncoder('utf-8').encode(val))
@@ -73,11 +73,14 @@ export let hash = (val) => {
  * @param {arr} The array to loop.
  * @param {callback} Callback to return strings
  * @example
- * `Things: ${_$.forTemplateLiteral(["apple"], (item, i) => {return `an ${item}`})}`
- * // "Things: an apple
+ * console.log(`Things: ${_$.forTemplateLiteral(["apple", "orange"], (item, i) => {return `an ${item}`})}`)
+ * // "Things: an apple an orange
  * @returns {String} String that has been for looped
  */
-export let forTemplateLiteral = (arr, callback) => {
+export let forTemplateLiteral = (
+  arr = req('array', 'array'),
+  callback = req('function', 'callback'),
+) => {
   return arr.map((item, i) => callback(item, i)).join``;
 };
 /**
@@ -87,8 +90,10 @@ export let forTemplateLiteral = (arr, callback) => {
  * @param {String} str The string to map
  * @param {Function} fn The callback function to run to map the string.
  */
-export let mapString = (str, fn) =>
-  Array.prototype.map.call(str, fn).join('');
+export let mapString = (
+  str = req('string', 'string'),
+  fn = req('function', 'callback'),
+) => Array.prototype.map.call(str, fn).join('');
 /**
  * Removes the accents from a string.
  * @memberOf string
@@ -98,7 +103,7 @@ export let mapString = (str, fn) =>
  * console.log(_$.decurr("déjà vu")); // "deja vu"
  * @param {String} str The string to use.
  */
-export let deburr = (str) =>
+export let deburr = (str = req('string', 'string')) =>
   str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
 /**
@@ -110,7 +115,8 @@ export let deburr = (str) =>
  * console.log(_$.removeTags("<div>Hello</div>")); // "Hello"
  * @returns {String} THe string of HTML without the tags.
  */
-export let removeTags = (html) => html.replace(/<[^>]*>/g, '');
+export let removeTags = (html = req('string', 'html string')) =>
+  html.replace(/<[^>]*>/g, '');
 
 /**
  * Speaks the text given.
@@ -128,7 +134,7 @@ export let removeTags = (html) => html.replace(/<[^>]*>/g, '');
  * @returns {undefined}
  */
 export let speak = (
-  text,
+  text = req('string', 'text'),
   lang = 'en',
   volume = 1,
   voice = 1,
@@ -160,7 +166,7 @@ export let speak = (
  * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
  * @returns {String} The replaced string.
  */
-export let widows = (text) => {
+export let widows = (text = req('string', 'text')) => {
   var wordArray = text.split(' ');
   var finalTitle = '';
   for (var i = 0; i <= wordArray.length - 1; i++) {
@@ -183,7 +189,7 @@ export let widows = (text) => {
  * console.log(_$.unCamelCase("helloWorld")); // "Hello World"
  * @returns {String} The string of unCamelCased code.
  */
-export let unCamelCase = function (str) {
+export let unCamelCase = function (str = req('string', 'string')) {
   return str
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/\b([A-Z]+)([A-Z])([a-z])/, '$1 $2$3')
@@ -219,7 +225,11 @@ export let unCamelCase = function (str) {
  * _$.syntaxHighlight('alert(\"Hello\")', 'js'); // <span style="color:black">alert(<span style="color:brown">"Hello"</span>)</span>
  * @returns {String} The highlighted string of code as HTML code.
  */
-export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
+export let syntaxHighlight = (
+  string = req('string', 'string'),
+  mode = 'html',
+  colors = {},
+) => {
   node();
   //        .==.        .==.
   //       //`^\\      //^`\\
@@ -950,7 +960,7 @@ export let syntaxHighlight = (string, mode = 'html', colors = {}) => {
  * console.log(_$.camelCase("Hello world")); // "helloWorld"
  * @returns {String} The camelCased string.
  */
-export let camelCase = (str) => {
+export let camelCase = (str = req('string', 'string')) => {
   return str
     .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
       return index === 0 ? word.toLowerCase() : word.toUpperCase();
@@ -966,7 +976,7 @@ export let camelCase = (str) => {
  * console.log(_$.scrambleString("Hello world")); // e.g. "owllH rdloe"
  * @returns {String} The scrambled text.
  */
-export let scrambleString = (str) => {
+export let scrambleString = (str = req('string')) => {
   var a = str.split(''),
     n = a.length;
 
@@ -988,7 +998,7 @@ export let scrambleString = (str) => {
  * console.log(_$.hashString("Hello world")); // 3494146707865688
  * @returns {Number} The hashed string.
  */
-export let hashString = (str, seed = 0) => {
+export let hashString = (str = req('string'), seed = 0) => {
   let h1 = 0xdeadbeef ^ seed,
     h2 = 0x41c6ce57 ^ seed;
   for (let i = 0, ch; i < str.length; i++) {
@@ -1015,7 +1025,10 @@ export let hashString = (str, seed = 0) => {
  * console.log(_$.editDistance("hello", "Hello")); // 1
  * @returns {Number} The edit distance between two strings
  */
-export let editDistance = (a, b) => {
+export let editDistance = (
+  a = req('string', 'string 1'),
+  b = req('string', 'string 2'),
+) => {
   if (a.length == 0) return b.length;
   if (b.length == 0) return a.length;
 
@@ -1061,7 +1074,8 @@ export let editDistance = (a, b) => {
  * console.log(_$.byteSize("Hello world")); 11
  * @returns {Number} The byte size of the string.
  */
-export let byteSize = (str) => new Blob([str]).size;
+export let byteSize = (str = req('string', 'string')) =>
+  new Blob([str]).size;
 
 /**
  * Finds and replace multiple values with multiple other values.
@@ -1073,7 +1087,10 @@ export let byteSize = (str) => new Blob([str]).size;
  * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
  * @returns {String} The replaced string
  */
-export let replaceMultiple = (text, replace) => {
+export let replaceMultiple = (
+  text = req('string', 'text'),
+  replace = req('object', 'replace key pairs'),
+) => {
   var re = new RegExp(Object.keys(replace).join('|'), 'gi');
   text = text.replace(re, function (matched) {
     return mapObj[matched];
@@ -1093,7 +1110,10 @@ export let replaceMultiple = (text, replace) => {
  * console.log(_$.urlQuery("q", "https://google.com/search?q=something")); // "something"
  * @returns {String} The url query
  */
-export let urlQuery = (query, url = window.location.href) => {
+export let urlQuery = (
+  query = req('string', 'query'),
+  url = window.location.href,
+) => {
   query = query.replace(/[\[\]]/g, '\\$&');
   var regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`),
     results = regex.exec(url);
@@ -1114,7 +1134,7 @@ export let urlQuery = (query, url = window.location.href) => {
  * @returns {String} The sanitized HTML string.
  */
 export let sanitize = (
-  html,
+  html = req('string', 'input html'),
   tags = undefined,
   attributes = undefined,
 ) => {
@@ -1269,7 +1289,7 @@ export let sanitize = (
  * console.log(_$.markdownToHTML("_Italic text_, **bold text**")); // "<em>Italic text</em>, <b>bold text</b>"
  * @returns {String} The string of HTML converted from the markdown input.
  */
-export let markdownToHTML = (src) => {
+export let markdownToHTML = (src = req('string', 'input')) => {
   var rx_lt = /</g;
   var rx_gt = />/g;
   var rx_space = /\t|\r|\uf8ff/g;
@@ -1482,7 +1502,7 @@ export let markdownToHTML = (src) => {
  * console.log(_$.syllables("Hello")); // 2
  * @returns {Number} The number of syllables in the specified word.
  */
-export let syllables = (word) => {
+export let syllables = (word = req('string', 'word')) => {
   word = word.toLowerCase();
   var t_some = 0;
   if (word.length > 3) {
@@ -1508,7 +1528,7 @@ export let syllables = (word) => {
  * _$.titleCase("hello world");//Returns "Hello World"
  * @returns {String} The string in title case.
  */
-export let titleCase = (str) =>
+export let titleCase = (str = req('string', 'string')) =>
   str
     .toLowerCase()
     .split(' ')
@@ -1569,8 +1589,12 @@ export let capitalize = (str = req('string', 'string')) =>
  * @param {String} what What to replace with.
  * @returns {String} The replaced string
  */
-export let replaceBetween = (string, start, end, what) =>
-  string.substring(0, start) + what + string.substring(end);
+export let replaceBetween = (
+  string = req('string', 'string'),
+  start = req('number', 'start'),
+  end = req('number', 'end'),
+  what = req('string', 'replace with'),
+) => string.substring(0, start) + what + string.substring(end);
 /**
  * Escapes a string of HTML
  * @function
@@ -1580,7 +1604,7 @@ export let replaceBetween = (string, start, end, what) =>
  * console.log(_$.escapeHTML("<div>")); // "&lt;div&gt;"
  * @returns {String} The escaped HTML.
  */
-export let escapeHTML = (str) =>
+export let escapeHTML = (str = req('string')) =>
   str.replace(
     /[&<>'"]/g,
     (tag) =>
@@ -1601,7 +1625,7 @@ export let escapeHTML = (str) =>
  * console.log(_$.unescapeHTML("&lt;div&gt;")); // "<div>"
  * @returns {String} The unescaped HTML.
  */
-export let unescapeHTML = (str) =>
+export let unescapeHTML = (str = req('string')) =>
   str.replace(
     /&amp;|&lt;|&gt;|&#39;|&quot;/g,
     (tag) =>

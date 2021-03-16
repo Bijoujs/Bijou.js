@@ -17,7 +17,7 @@
 * @param {Object} o The object to flatten
 * @returns {Object} The flattened object.
  */
-export let flattenObj = (o) => {
+export let flattenObj = (o = req('object', 'object')) => {
   return o !== Object(o) || Array.isArray(o)
     ? {}
     : Object.assign(
@@ -50,7 +50,7 @@ export let flattenObj = (o) => {
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-export let clone = (item) => {
+export let clone = (item = req('object')) => {
   if (!item) {
     return item;
   }
@@ -106,7 +106,7 @@ export let clone = (item) => {
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
 export let listen = (
-  obj,
+  obj = req('object'),
   setCallback = () => null,
   getCallback = () => null,
 ) => {
@@ -132,7 +132,10 @@ export let listen = (
  * @example
  * console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}
  */
-export let merge = function MergeRecursive(obj1, obj2) {
+export let merge = function MergeRecursive(
+  obj1 = req('object', 'object 1'),
+  obj2 = req('object', 'object 2'),
+) {
   for (var p in obj2) {
     if (p in Object.prototype) continue;
     try {
@@ -160,7 +163,10 @@ export let merge = function MergeRecursive(obj1, obj2) {
  * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
  * @returns {Object} The new Object.
  */
-export let mapObjectKeys = (obj, fn) =>
+export let mapObjectKeys = (
+  obj = req('object'),
+  fn = req('function', 'callback'),
+) =>
   Array.isArray(obj)
     ? obj.map((val) => _$.mapObjectKeys(val, fn))
     : typeof obj === 'object'
@@ -184,7 +190,10 @@ export let mapObjectKeys = (obj, fn) =>
  * @example
  * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
  */
-export let mapObjectValues = (obj, fn) => {
+export let mapObjectValues = (
+  obj = req('object', 'object'),
+  fn = req('function', 'callback'),
+) => {
   Object.keys(obj).map(function (key, index) {
     obj[key] = fn(obj[key], index);
   });
@@ -208,7 +217,9 @@ export let mapObjectValues = (obj, fn) => {
  * const form = document.getElementById("form");
  * console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }
  */
-export let formToObject = (form) => {
+export let formToObject = (
+  form = req('HTMLFormElement', 'the form'),
+) => {
   node();
   return Array.from(new FormData(form)).reduce(
     (acc, [key, value]) => ({
@@ -227,7 +238,7 @@ export let formToObject = (form) => {
  * // The object is now {anotherThing: "Another value!", testing: "A value"}
  * @returns {Object} The sorted object.
  */
-export let sortObj = (obj) => {
+export let sortObj = (obj = req('object', 'object')) => {
   return Object.keys(obj)
     .sort()
     .reduce(function (result, key) {
