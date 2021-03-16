@@ -4089,6 +4089,52 @@ export let syllables = (word) => {
   }
 };
 /**
+ * Converts a string to title case
+ * @memberOf bijou
+ * @function
+ * @param {String} str The string to convert to title case.
+ * @example
+ * _$.titleCase("hello world");//Returns "Hello World"
+ * @returns {String} The string in title case.
+ */
+export let titleCase = (str) =>
+  str
+    .toLowerCase()
+    .split(' ')
+    .map((word, index) =>
+      [
+        'at',
+        'by',
+        'for',
+        'in',
+        'of',
+        'off',
+        'on',
+        'out',
+        'to',
+        'up',
+        'as',
+        'if',
+        'but',
+        'per',
+        'via',
+        'for',
+        'and',
+        'nor',
+        'but',
+        'or',
+        'yet',
+        'so',
+        'the',
+        'a',
+        'an',
+      ].includes(word) && index != 0
+        ? word
+        : String.fromCodePoint(word.codePointAt(0)).toUpperCase() +
+          word.slice(word.codePointAt(0) > 0xffff ? 2 : 1),
+    )
+    .join(' ');
+/**
  * Capitalizes the first letter of the string
  * @memberOf string
  * @function
@@ -4097,17 +4143,9 @@ export let syllables = (word) => {
  * console.log(_$.capitalize("hello world")); // "Hello world"
  * @returns {String} The capitalized string.
  */
-export let capitalize = (str) => {
-  if (!str) throw new TypeError("Missing Param 'Str'.");
-  return str
-    .split('')
-    .map(
-      (section) =>
-        String.fromCodePoint(section.codePointAt(0)).toUpperCase() +
-        section.slice(section.codePointAt(0) > 0xffff ? 2 : 1),
-    )
-    .join('');
-};
+export let capitalize = (str = req('string', 'string')) =>
+  String.fromCodePoint(str.codePointAt(0)).toUpperCase() +
+  str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
 /**
  * Replaces between two indexes of a string.
  * @memberOf string
