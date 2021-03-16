@@ -1,5 +1,27 @@
 //#region Element
 /**
+ * Gets all the images that are children of the specified element.
+ * @returns {Array} The array of image urls.
+ * @memberOf element
+ * @example
+ * //Get all the images on the page and convert their url's to data urls then log that list to console.
+ * _$.getImages().forEach(image_url => {
+ *  image_data_list.push(_$.imageToData(image_url))
+ * })
+ * console.log(image_data_list);
+ * @param {HTMLElement} [el=document.documentElement] The element to get images from (e.g. document.body)
+ * @param {Boolean} [includeDuplicates=false] Whether to include duplicate images, defaults to false.
+ */
+export let getImages = (
+  el = document.documentElement,
+  includeDuplicates = false,
+) => {
+  const images = [...el.getElementsByTagName('img')].map((img) =>
+    img.getAttribute('src'),
+  );
+  return includeDuplicates ? images : [...new Set(images)];
+};
+/**
  * Renders an HTML element from an object in the container specified.
  * @memberOf element
  * @example

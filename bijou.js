@@ -716,6 +716,28 @@ export let addDaysToDate = (date, n) => {
 //#endregion Date
 //#region Element
 /**
+ * Gets all the images that are children of the specified element.
+ * @returns {Array} The array of image urls.
+ * @memberOf element
+ * @example
+ * //Get all the images on the page and convert their url's to data urls then log that list to console.
+ * _$.getImages().forEach(image_url => {
+ *  image_data_list.push(_$.imageToData(image_url))
+ * })
+ * console.log(image_data_list);
+ * @param {HTMLElement} [el=document.documentElement] The element to get images from (e.g. document.body)
+ * @param {Boolean} [includeDuplicates=false] Whether to include duplicate images, defaults to false.
+ */
+export let getImages = (
+  el = document.documentElement,
+  includeDuplicates = false,
+) => {
+  const images = [...el.getElementsByTagName('img')].map((img) =>
+    img.getAttribute('src'),
+  );
+  return includeDuplicates ? images : [...new Set(images)];
+};
+/**
  * Renders an HTML element from an object in the container specified.
  * @memberOf element
  * @example
@@ -4034,6 +4056,37 @@ export let previousPage = () => {
 //#endregion String
 //#region Utility
 /**
+ * Injects CSS into the document head.
+ * @memberOf utility
+ * @example
+ * //Makes the body's background a dark charcoal color.
+ * _$.injectCSS("body {background: #101010; color: white;}");
+ * @example
+ * //Set the text color to an appropriate color depending on the background color of the document body:
+ * if (_$.lightOrDark(_$.compStyle(document.body, "background-color")).lightOrDark === "light"){
+ *    _$.injectCSS(`
+ *      body {
+ *        color: ${_$.lightenColor(_$.compStyle(document.body, "background-color"), -100)};
+ *      }
+ *    `)
+ * } else {
+ *    _$.injectCSS(`
+ *      body {
+ *        color: ${_$.lightenColor(_$.compStyle(document.body, "background-color"), 100)};
+ *      }
+ *    `)
+ * }
+ * @returns {HTMLElement} The CSS <style> element.
+ * @param {String} css The CSS to inject.
+ */
+export let injectCSS = (css) => {
+  let el = document.createElement('style');
+  el.setAttribute('type', 'text/css');
+  el.innerText = css;
+  document.head.appendChild(el);
+  return el;
+};
+/**
  * Returns either "mobile" or "desktop" depending on which type of device the user is using.
  * @function
  * @memberOf string
@@ -4683,10 +4736,12 @@ let _temp = {
   fullScreen: fullScreen,
   getHTML: getHTML,
   getJSON: getJSON,
+  getImages: getImages,
   hashString: hashString,
   hexToRGB: hexToRGB,
   hub: hub,
   imageToData: imageToData,
+  injectCSS: injectCSS,
   inPartialView: inPartialView,
   inView: inView,
   inlineCSS: inlineCSS,

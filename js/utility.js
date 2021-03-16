@@ -1,5 +1,36 @@
 //#region Utility
 /**
+ * Injects CSS into the document head.
+ * @memberOf utility
+ * @example
+ * //Makes the body's background a dark charcoal color.
+ * _$.injectCSS("body {background: #101010; color: white;}");
+ * @example
+ * //Set the text color to an appropriate color depending on the background color of the document body:
+ * if (_$.lightOrDark(_$.compStyle(document.body, "background-color")).lightOrDark === "light"){
+ *    _$.injectCSS(`
+ *      body {
+ *        color: ${_$.lightenColor(_$.compStyle(document.body, "background-color"), -100)};
+ *      }
+ *    `)
+ * } else {
+ *    _$.injectCSS(`
+ *      body {
+ *        color: ${_$.lightenColor(_$.compStyle(document.body, "background-color"), 100)};
+ *      }
+ *    `)
+ * }
+ * @returns {HTMLElement} The CSS <style> element.
+ * @param {String} css The CSS to inject.
+ */
+export let injectCSS = (css) => {
+  let el = document.createElement('style');
+  el.setAttribute('type', 'text/css');
+  el.innerText = css;
+  document.head.appendChild(el);
+  return el;
+};
+/**
  * Returns either "mobile" or "desktop" depending on which type of device the user is using.
  * @function
  * @memberOf string
