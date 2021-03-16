@@ -10,13 +10,13 @@
  * if (_$.lightOrDark(_$.compStyle(document.body, "background-color")).lightOrDark === "light"){
  *    _$.injectCSS(`
  *      body {
- *        color: ${_$.lightenColor(_$.compStyle(document.body, "background-color"), -100)};
+ *        color: ${_$.lightenColor(_$.rgbToHex(_$.compStyle(document.body, "background-color")), -100)};
  *      }
  *    `)
  * } else {
  *    _$.injectCSS(`
  *      body {
- *        color: ${_$.lightenColor(_$.compStyle(document.body, "background-color"), 100)};
+ *        color: ${_$.lightenColor(_$.rgbToHex(_$.compStyle(document.body, "background-color")), 100)};
  *      }
  *    `)
  * }
