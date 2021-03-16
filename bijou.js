@@ -1705,7 +1705,10 @@ export let replaceSelection = (
  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
  * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
  */
-export let onOutsideClick = (element, callback) => {
+export let onOutsideClick = (
+  element = req('HTMLElement', 'element'),
+  callback = req('function', 'callback'),
+) => {
   node();
   return new Promise((resolve, reject) => {
     document.addEventListener('click', (e) => {
@@ -1726,7 +1729,10 @@ export let onOutsideClick = (element, callback) => {
  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
  * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
  */
-export let onScrollStop = (callback, time = 150) => {
+export let onScrollStop = (
+  callback = req('function', 'callback'),
+  time = 150,
+) => {
   let isScrolling;
   node();
   return new Promise((resolve, reject) => {
@@ -1783,7 +1789,11 @@ export let hub = () => ({
  * @param {EventTarget} [target=window] What to dispatch the event to.
  * @returns {undefined}
  */
-export let dispatch = (type, args, target = window) => {
+export let dispatch = (
+  type = req('string', 'type'),
+  args = req('object', 'event properties'),
+  target = window,
+) => {
   let e = new Event(type);
   for (let o in args) {
     e[o] = args[o];
