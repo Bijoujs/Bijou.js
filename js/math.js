@@ -8,7 +8,7 @@
  * _$.isPrime(10);//False
  * @param {Number} num The number to test.
  */
-export let isPrime = (num) => {
+export let isPrime = (num = req('number', 'number')) => {
   const boundary = Math.floor(Math.sqrt(num));
   for (let i = 2; i <= boundary; i++) if (num % i === 0) return false;
   return num >= 2;
@@ -21,7 +21,7 @@ export let isPrime = (num) => {
  * @example
  * _$.factorial(3);//6
  */
-export let factorial = (n) =>
+export let factorial = (n = req('number')) =>
   n < 0
     ? (() => {
         throw new TypeError('Negative numbers are not allowed!');
@@ -38,7 +38,7 @@ export let factorial = (n) =>
  * @param {Number|String} num The number or string to check on.
  * @memberOf math
  */
-export let luhnCheck = (num) => {
+export let luhnCheck = (num = req('String|Number')) => {
   let arr = (num + '')
     .split('')
     .reverse()
@@ -68,7 +68,7 @@ export let luhnCheck = (num) => {
  * @returns {undefined}
  */
 // prettier-ignore
-export let animate = (start, end, duration, callback, interval = 20, num = (num) => num) => {
+export let animate = (start = req("Number", "start"), end = req("Number", "end"), duration=req("number", "duration"), callback = req("function", "callback"), interval = 20, num = (num) => num) => {
     var value = start;
     var start_time = Date.now();
     let update = setInterval(() => {
@@ -91,7 +91,10 @@ export let animate = (start, end, duration, callback, interval = 20, num = (num)
  * console.log(_$.range(-2, 1)); // [-2, -1, 0, 1]
  * @returns {Array.<Number>} An array of whole numbers (inclusive) between the numbers specified.
  */
-export let range = (start, end) => {
+export let range = (
+  start = req('number', 'start'),
+  end = req('number', 'end'),
+) => {
   return Array(end - start + 1)
     .fill()
     .map((_, idx) => start + idx);
@@ -126,7 +129,7 @@ export let uuid = (seed = Math.random()) => {
  * console.log(_$.primesTo(10)); // [2, 3, 5, 7]
  * @returns {Array.<Number>} Returns an array of prime numbers up to the given number.
  */
-export let primesTo = (num) => {
+export let primesTo = (num = req('number', 'number')) => {
   let arr = Array.from({
       length: num - 1,
     }).map((x, i) => i + 2),
@@ -152,8 +155,8 @@ export let primesTo = (num) => {
  * console.log(_$.random(0, 100)); // e.g. 47
  */
 export let random = (
-  min,
-  max,
+  min = req('number', 'min'),
+  max = req('number', 'max'),
   round = true,
   seed = Math.random(),
 ) => {
@@ -172,7 +175,7 @@ export let random = (
  * console.log(_$.seedRandom(13)); // 0.5663226493634284
  * @returns {Number} The random number from the seed.
  */
-export let seedRandom = (seed) => {
+export let seedRandom = (seed = req('number', 'seed')) => {
   var t = (seed += 0x6d2b79f5);
   t = Math.imul(t ^ (t >>> 15), t | 1);
   t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
@@ -188,7 +191,7 @@ export let seedRandom = (seed) => {
  * console.log(_$.formatNumber(100000000)); // "100,000,000"
  * @returns {String} The formatted string representation of the number.
  */
-export let formatNumber = (n) =>
+export let formatNumber = (n = req('number', 'number')) =>
   n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
 /**
  * Easing functions
@@ -200,40 +203,48 @@ export let formatNumber = (n) =>
  */
 export let ease = {
   // no easing, no acceleration
-  linear: (t) => t,
-  easeInSine: (t) => 1 - Math.cos((t * Math.PI) / 2),
-  easeOutSine: (t) => Math.sin((t * Math.PI) / 2),
-  easeInOutSine: (t) => -(Math.cos(Math.PI * t) - 1) / 2,
+  linear: (t = req('number', 'percentage')) => t,
+  easeInSine: (t = req('number', 'percentage')) =>
+    1 - Math.cos((t * Math.PI) / 2),
+  easeOutSine: (t = req('number', 'percentage')) =>
+    Math.sin((t * Math.PI) / 2),
+  easeInOutSine: (t = req('number', 'percentage')) =>
+    -(Math.cos(Math.PI * t) - 1) / 2,
   // accelerating from zero velocity
-  easeInQuad: (t) => t * t,
+  easeInQuad: (t = req('number', 'percentage')) => t * t,
   // decelerating to zero velocity
-  easeOutQuad: (t) => t * (2 - t),
+  easeOutQuad: (t = req('number', 'percentage')) => t * (2 - t),
   // acceleration until halfway, then deceleration
-  easeInOutQuad: (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t),
+  easeInOutQuad: (t = req('number', 'percentage')) =>
+    t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
   // accelerating from zero velocity
-  easeInCubic: (t) => t * t * t,
+  easeInCubic: (t = req('number', 'percentage')) => t * t * t,
   // decelerating to zero velocity
-  easeOutCubic: (t) => --t * t * t + 1,
+  easeOutCubic: (t = req('number', 'percentage')) => --t * t * t + 1,
   // acceleration until halfway, then deceleration
-  easeInOutCubic: (t) =>
+  easeInOutCubic: (t = req('number', 'percentage')) =>
     t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
   // accelerating from zero velocity
-  easeInQuart: (t) => t * t * t * t,
+  easeInQuart: (t = req('number', 'percentage')) => t * t * t * t,
   // decelerating to zero velocity
-  easeOutQuart: (t) => 1 - --t * t * t * t,
+  easeOutQuart: (t = req('number', 'percentage')) =>
+    1 - --t * t * t * t,
   // acceleration until halfway, then deceleration
-  easeInOutQuart: (t) =>
+  easeInOutQuart: (t = req('number', 'percentage')) =>
     t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
   // accelerating from zero velocity
-  easeInQuint: (t) => t * t * t * t * t,
+  easeInQuint: (t = req('number', 'percentage')) => t * t * t * t * t,
   // decelerating to zero velocity
-  easeOutQuint: (t) => 1 + --t * t * t * t * t,
+  easeOutQuint: (t = req('number', 'percentage')) =>
+    1 + --t * t * t * t * t,
   // acceleration until halfway, then deceleration
-  easeInOutQuint: (t) =>
+  easeInOutQuint: (t = req('number', 'percentage')) =>
     t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
-  easeInExpo: (t) => (t === 0 ? 0 : Math.pow(2, 10 * t - 10)),
-  easeOutExpo: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-  easeIntOutExpo: (t) =>
+  easeInExpo: (t = req('number', 'percentage')) =>
+    t === 0 ? 0 : Math.pow(2, 10 * t - 10),
+  easeOutExpo: (t = req('number', 'percentage')) =>
+    t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
+  easeIntOutExpo: (t = req('number', 'percentage')) =>
     t === 0
       ? 0
       : t === 1
@@ -241,14 +252,17 @@ export let ease = {
       : t < 0.5
       ? Math.pow(2, 20 * t - 10) / 2
       : (2 - Math.pow(2, -20 * t + 10)) / 2,
-  easeInCirc: (t) => 1 - Math.sqrt(1 - t * t),
-  easeOutCirc: (t) => Math.sqrt(1 - (t - 1) * (t - 1)),
-  easeInOutCirc: (t) =>
+  easeInCirc: (t = req('number', 'percentage')) =>
+    1 - Math.sqrt(1 - t * t),
+  easeOutCirc: (t = req('number', 'percentage')) =>
+    Math.sqrt(1 - (t - 1) * (t - 1)),
+  easeInOutCirc: (t = req('number', 'percentage')) =>
     t < 0.5
       ? 1 - Math.sqrt(1 - 4 * t * t) / 2
       : (Math.sqrt(1 - Math.pow(-2 * t + 2, 2)) + 1) / 2,
-  easeInBack: (t) => 2.70158 * t * t * t - 1.70158 * t * t,
-  easeOutBack: (t) =>
+  easeInBack: (t = req('number', 'percentage')) =>
+    2.70158 * t * t * t - 1.70158 * t * t,
+  easeOutBack: (t = req('number', 'percentage')) =>
     1 + 2.70158 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2),
   easeInOutBack: (t) => {
     const c = 2.5949095;
@@ -258,14 +272,14 @@ export let ease = {
       : (Math.pow(2 * t - 2, 2) * ((c + 1) * (t * 2 - 2) + c) + 2) /
           2;
   },
-  easeInElastic: (t) =>
+  easeInElastic: (t = req('number', 'percentage')) =>
     t === 0
       ? 0
       : t === 1
       ? 1
       : -Math.pow(2, 10 * t - 10) *
         Math.sin(((t * 10 - 10.75) * (2 * Math.PI)) / 3),
-  easeOutElastic: (t) =>
+  easeOutElastic: (t = req('number', 'percentage')) =>
     t === 0
       ? 0
       : t === 1
@@ -273,7 +287,7 @@ export let ease = {
       : Math.pow(2, -10 * t) *
           Math.sin(((t * 10 - 0.75) * (2 * Math.PI)) / 3) +
         1,
-  easeInOutElastic: (t) =>
+  easeInOutElastic: (t = req('number', 'percentage')) =>
     t === 0
       ? 0
       : t === 1
@@ -287,8 +301,9 @@ export let ease = {
           Math.sin(((20 * t - 11.125) * (2 * Math.PI)) / 4.5)) /
           2 +
         1,
-  easeInBounce: (t) => 1 - ease.easeOutBounce(1 - t),
-  easeOutBounce: (t) => {
+  easeInBounce: (t = req('number', 'percentage')) =>
+    1 - ease.easeOutBounce(1 - t),
+  easeOutBounce: (t = req('number', 'percentage')) => {
     const n = 7.5625;
     const d = 2.75;
 
@@ -302,7 +317,7 @@ export let ease = {
       return n * (t -= 2.625 / d) * t + 0.984375;
     }
   },
-  easeInOutBounce: (t) =>
+  easeInOutBounce: (t = req('number', 'percentage')) =>
     t < 0.5
       ? (1 - ease.easeOutBounce(1 - 2 * t)) / 2
       : (1 + ease.easeOutBounce(2 * t - 1)) / 2,
