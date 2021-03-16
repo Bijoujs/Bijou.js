@@ -147,4 +147,14 @@ let string_namespace = {};
  */
 let utility_namespace = {};
 
+const req = (type, desc) => {
+  let err = 'Missing parameter';
+  if (type) {
+    err += ' of type ' + type;
+  }
+  if (desc) {
+    err = `Parameter ${desc} ${type ? `(${type})` : ''} required.`;
+  }
+  throw new Error(err);
+};
 //#region bijou
