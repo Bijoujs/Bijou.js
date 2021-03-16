@@ -147,7 +147,8 @@ let string_namespace = {};
  */
 let utility_namespace = {};
 
-const req = (type, desc) => {
+const req = (type, desc, condition = true) => {
+  if (!condition) return;
   let err = 'Missing parameter';
   if (type) {
     err += ' of type ' + type;

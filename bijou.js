@@ -147,7 +147,8 @@ let string_namespace = {};
  */
 let utility_namespace = {};
 
-const req = (type, desc) => {
+const req = (type, desc, condition = true) => {
+  if (!condition) return;
   let err = 'Missing parameter';
   if (type) {
     err += ' of type ' + type;
@@ -704,7 +705,9 @@ export let dayName = (date = new Date(), locale = 'en-US') =>
  * console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"
  * @returns {String} The string of formatted milliseconds.
  */
-export let formatMilliseconds = (ms) => {
+export let formatMilliseconds = (
+  ms = req('number', 'milliseconds'),
+) => {
   ms = typeof ms === 'string' ? +ms : ms;
   if (ms < 0) ms = -ms;
   const time = {
@@ -726,11 +729,14 @@ export let formatMilliseconds = (ms) => {
  * @memberof date
  * @example
  * _$.addMinutesToDate(new Date(), 4);//Create a date 4 minutes from now.
- * @param {Date} date The date to add minutes to.
+ * @param {Date|string} date The date to add minutes to.
  * @param {Number} n How many minutes to add to the date.
  * @returns {Date} The date with minutes added.
  */
-export let addMinutesToDate = (date, n) => {
+export let addMinutesToDate = (
+  date = req('date', 'date or date string'),
+  n = req('number', 'minutes'),
+) => {
   const d = new Date(date);
   d.setTime(d.getTime() + n * 60000);
   return d.toISOString().split('.')[0].replace('T', ' ');
@@ -750,7 +756,8 @@ export let addMinutesToDate = (date, n) => {
  * @returns {Boolean} Returns if the date is valid or not.
  */
 export let isDateValid = (...val) =>
-  !Number.isNaN(new Date(...val).valueOf());
+  req('any', 'date args', !val.length);
+!Number.isNaN(new Date(...val).valueOf());
 /**
  * Adds a specified number of days to a date.
  * @memberOf date
@@ -758,7 +765,10 @@ export let isDateValid = (...val) =>
  * @param {Number} n How many days to add to the date.
  * @returns {Date} The date with the specified number of days added.
  */
-export let addDaysToDate = (date, n) => {
+export let addDaysToDate = (
+  date = req('date', 'date or date string'),
+  n = req('number', 'days'),
+) => {
   const d = new Date(date);
   d.setDate(d.getDate() + n);
   return d.toISOString().split('T')[0];
