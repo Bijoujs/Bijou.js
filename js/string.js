@@ -88,10 +88,7 @@ export let forTemplateLiteral = (arr, callback) => {
  * @param {Function} fn The callback function to run to map the string.
  */
 export let mapString = (str, fn) =>
-  str
-    .split('')
-    .map((c, i) => fn(c, i, str))
-    .join('');
+  Array.prototype.map.call(str, fn).join('');
 /**
  * Removes the accents from a string.
  * @memberOf string
