@@ -474,7 +474,7 @@ export let each = (
  * @param {String} rgb The string of RGB colors.
  * @returns {String} The hex color.
  */
-export let rgbToHex = (rgb) => {
+export let rgbToHex = (rgb = req('string', 'RGB color')) => {
   let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
   rgb = rgb.substr(4).split(')')[0].split(sep);
 
@@ -497,7 +497,7 @@ export let rgbToHex = (rgb) => {
  * console.log(_$.rgbToHex("#ffffff")); // "rgb(255,255,255)"
  * @returns {String} The RGB color converted from the hex code.
  */
-export let hexToRGB = (hex) => {
+export let hexToRGB = (hex = req('string', 'hex color')) => {
   if (
     ((hex.length - 1 === 6 ||
       hex.length - 1 === 8 ||
@@ -542,7 +542,11 @@ export let hexToRGB = (hex) => {
  * console.log(_$.blendColors("#ffffff", "#000000", 80)); // #333333
  * @returns {String} The blended color (A hex code).
  */
-export let blendColors = (color1, color2, percent = 50) => {
+export let blendColors = (
+  color1 = req('string', 'color 1'),
+  color2 = req('string', 'color 2'),
+  percent = 50,
+) => {
   const generateHex = (r, g, b) => {
     let R = r.toString(16);
     let G = g.toString(16);
@@ -598,7 +602,10 @@ export let randomColor = () =>
  * _$.lightenColor("#000000", 50); // #323232
  * @returns {String} The color lightened.
  */
-export let lightenColor = (col, amt) => {
+export let lightenColor = (
+  col = req('string', 'hex color'),
+  amt = req('number', 'amount'),
+) => {
   var usePound = false;
 
   if (col[0] == '#') {
@@ -640,7 +647,9 @@ export let lightenColor = (col, amt) => {
   }
   * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
   */
-export let lightOrDark = (color) => {
+export let lightOrDark = (
+  color = req('string', 'hex or RGB color'),
+) => {
   var r, g, b, hsp;
   if (color.match(/^rgb/)) {
     color = color.match(
