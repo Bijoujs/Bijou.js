@@ -24,6 +24,7 @@
  * @param {String} css The CSS to inject.
  */
 export let injectCSS = (css) => {
+  node();
   let el = document.createElement('style');
   el.setAttribute('type', 'text/css');
   el.innerText = css;

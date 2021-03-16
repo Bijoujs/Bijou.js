@@ -170,7 +170,10 @@ const req = (type, desc) => {
  * @param {Array|String} a1 The first array or string
  * @param {Array|String} a2 The 2nd array or string.
  */
-export let arrayDiff = (a1, a2) => {
+export let arrayDiff = (
+  a1 = req('array', 'array 1'),
+  a2 = req('array', 'array 2'),
+) => {
   var a = [],
     diff = [];
   for (var i = 0; i < a1.length; i++) {
@@ -199,7 +202,10 @@ export let arrayDiff = (a1, a2) => {
  * console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]
  * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
  */
-export let diff = function (text1, text2) {
+export let diff = function (
+  text1 = req('string', 'Text 1'),
+  text2 = req('string', 'Text 2'),
+) {
   //Takes in two strings
   //Returns an array of the span of the differences
   //So if given:
@@ -243,7 +249,10 @@ export let diff = function (text1, text2) {
  * @example
  * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
  */
-export let remove = (array, item) => {
+export let remove = (
+  array = req('array', 'array'),
+  item = req(undefined, 'item'),
+) => {
   if (typeof array === 'string') {
     return array.replace(item, '');
   }
@@ -267,7 +276,12 @@ export let remove = (array, item) => {
  * @param {Boolean} [endian=false] Whether to use big endian or not.
  * @returns {Number} The hex representation of part of the ArrayBuffer.
  */
-export let spliceArrayBuffer = (arr, start, end, endian = false) => {
+export let spliceArrayBuffer = (
+  arr = req('ArrayBuffer'),
+  start = req('number'),
+  end = req('number'),
+  endian = false,
+) => {
   var direction = endian ? -1 : 1;
   if (endian) [start, end] = [end, start];
   start = Math.floor(start);
@@ -287,7 +301,7 @@ export let spliceArrayBuffer = (arr, start, end, endian = false) => {
  * @param {Array} array The array to flatten.
  * @param {Number} [level=1] The number of iterations to flatten it.
  */
-export let flatten = (array, level = 1) => {
+export let flatten = (array = req('array', 'array'), level = 1) => {
   var output = array;
   _$.each(level, () => {
     output = [].concat.apply([], array);
@@ -304,7 +318,7 @@ export let flatten = (array, level = 1) => {
  * @example
  * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
  */
-export let nFlatten = (arr) => {
+export let nFlatten = (arr = req('array', 'array')) => {
   return arr.reduce(function (flat, toFlatten) {
     return flat.concat(
       Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
@@ -322,7 +336,8 @@ export let nFlatten = (arr) => {
  * console.log(_$.contains([1,2,3,4,5], 3)); // true
  * @returns {Boolean} True or false depending on if the array contains that item.
  */
-export let contains = (array, item) => array.includes(item);
+export let contains = (array = req('array'), item = req('string')) =>
+  array.includes(item);
 
 /**
  * Shuffles an array
@@ -334,7 +349,7 @@ export let contains = (array, item) => array.includes(item);
  * console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]
  * @returns {Array} The shuffled array.
  */
-export let shuffleArray = (array) =>
+export let shuffleArray = (array = req('array')) =>
   array.sort(() => Math.random() - 0.5);
 
 /**
@@ -349,7 +364,12 @@ export let shuffleArray = (array) =>
  * @example
  * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
  */
-export let splice = (array, index, remove = 0, item) => {
+export let splice = (
+  array = req('array', 'array'),
+  index = req('number', 'index'),
+  remove = 0,
+  item,
+) => {
   let args = Array.from(arguments);
   args.shift();
   return typeof array === 'string'
@@ -369,7 +389,10 @@ export let splice = (array, index, remove = 0, item) => {
  * console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]
  * @returns {Array} The joined array from the two other arrays.
  */
-export let unionArrays = (x, y) => {
+export let unionArrays = (
+  x = req('array', 'array1'),
+  y = req('array', 'array2'),
+) => {
   var obj = {};
   for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
   for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
@@ -390,7 +413,10 @@ export let unionArrays = (x, y) => {
  * console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5
  * @returns {Number} The average of the array.
  */
-export let averageBy = (arr, fn) =>
+export let averageBy = (
+  arr = req('array', 'array'),
+  fn = req('function', 'callback'),
+) =>
   arr
     .map(typeof fn === 'function' ? fn : (val) => val[fn])
     .reduce((acc, val) => acc + val, 0) / arr.length;
@@ -404,7 +430,9 @@ export let averageBy = (arr, fn) =>
  * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
  * @returns {Array} The array with no duplicates.
  */
-export let uniqueArray = (array) => [...new Set(array)];
+export let uniqueArray = (array = req('array', 'array')) => [
+  ...new Set(array),
+];
 /**
  * For each item in an array, run a callback with it.
  * @function
@@ -421,7 +449,10 @@ export let uniqueArray = (array) => [...new Set(array)];
  * // 5
  * @returns {undefined}
  */
-export let each = (array, callback) => {
+export let each = (
+  array = req('Array|Number|String', 'array'),
+  callback = req('function', 'callback'),
+) => {
   array =
     typeof array === 'number'
       ? _$.range(1, array)
@@ -4090,6 +4121,7 @@ export let previousPage = () => {
  * @param {String} css The CSS to inject.
  */
 export let injectCSS = (css) => {
+  node();
   let el = document.createElement('style');
   el.setAttribute('type', 'text/css');
   el.innerText = css;
