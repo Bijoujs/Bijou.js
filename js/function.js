@@ -1,5 +1,23 @@
 //#region Function
 /**
+ * Returns the index of the fastest function in an array of functions.
+ * @memberOf math
+ * @returns {Number} The index of the fastest function in the array.
+ * @example
+ * _$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("<h1>Hello world</h1>", "html")]);//0, the first function.
+ * @param {Array} fns The array of functions to execute.
+ * @param {Number} [iterations=1000] How many times to execute the functions. (More is more reliable but takes longer.)
+ */
+export let fastestFunction = (fns, iterations = 1000) => {
+  const times = fns.map((fn) => {
+    const before = performance.now();
+    for (let i = 0; i < iterations; i++) fn();
+    return performance.now() - before;
+  });
+  return times.indexOf(Math.min(...times));
+};
+
+/**
  * Uses an array of arguments to make a function based on the one inputted.
  * @memberOf function
  * @function
