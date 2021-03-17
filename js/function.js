@@ -1,5 +1,36 @@
 //#region Function
 /**
+ * Runs a list of functions with a list of arguments.
+ * @returns {Array.<array>} The list of outputs.
+ * @memberOf function
+ * @example
+ * //It returns an array of outputs, each item in the base array is the output of one function, and each item in that array is the output for each argument.
+ * _$.juxt(
+    x => x + 1,
+    x => x - 1,
+    x => x * 10
+  )(1, 2, 3); // [[2, 3, 4], [0, 1, 2], [10, 20, 30]]
+ * @param  {...function} fns The functions to call.
+ */
+export let juxt = (...fns) => (...args) =>
+  [...fns].map((fn) => [...args].map(fn));
+/**
+ * Returns a promise after a specified number of milliseconds.
+ * @returns {Promise}
+ * @memberOf function
+ * @example
+ * (async () => {
+ *    while (true){
+ *     document.body.innerHTML = (await _$.getJSON("https://time.jsontest.com")).time
+ *     await _$.sleep(60000);//Wait one minute then loop.
+ *    }
+ * })
+ * @param {Number} ms The milliseconds to sleep.
+ */
+export let sleep = (ms) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+/**
  * Returns the index of the fastest function in an array of functions.
  * @memberOf math
  * @returns {Number} The index of the fastest function in the array.

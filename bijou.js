@@ -160,7 +160,6 @@ const req = (type, desc, condition = true) => {
 };
 //#region bijou
 //#region Array
-
 /**
  * Returns the difference between two arrays or strings.
  * @memberOf array
@@ -1803,6 +1802,55 @@ export let dispatch = (
 };
 //#endregion Event
 //#region Function
+/**
+ * Runs a list of functions with a list of arguments.
+ * @returns {Array.<array>} The list of outputs.
+ * @memberOf function
+ * @example
+ * //It returns an array of outputs, each item in the base array is the output of one function, and each item in that array is the output for each argument.
+ * _$.juxt(
+    x => x + 1,
+    x => x - 1,
+    x => x * 10
+  )(1, 2, 3); // [[2, 3, 4], [0, 1, 2], [10, 20, 30]]
+ * @param  {...function} fns The functions to call.
+ */
+export let juxt = (...fns) => (...args) =>
+  [...fns].map((fn) => [...args].map(fn));
+/**
+ * Returns a promise after a specified number of milliseconds.
+ * @returns {Promise}
+ * @memberOf function
+ * @example
+ * (async () => {
+ *    while (true){
+ *     document.body.innerHTML = (await _$.getJSON("https://time.jsontest.com")).time
+ *     await _$.sleep(60000);//Wait one minute then loop.
+ *    }
+ * })
+ * @param {Number} ms The milliseconds to sleep.
+ */
+export let sleep = (ms) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Returns the index of the fastest function in an array of functions.
+ * @memberOf math
+ * @returns {Number} The index of the fastest function in the array.
+ * @example
+ * _$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("<h1>Hello world</h1>", "html")]);//0, the first function.
+ * @param {Array} fns The array of functions to execute.
+ * @param {Number} [iterations=1000] How many times to execute the functions. (More is more reliable but takes longer.)
+ */
+export let fastestFunction = (fns, iterations = 1000) => {
+  const times = fns.map((fn) => {
+    const before = performance.now();
+    for (let i = 0; i < iterations; i++) fn();
+    return performance.now() - before;
+  });
+  return times.indexOf(Math.min(...times));
+};
+
 /**
  * Uses an array of arguments to make a function based on the one inputted.
  * @memberOf function
