@@ -80,7 +80,7 @@ export let spread = (fn = req('function')) => {
   };
 };
 /**
- * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
+ * Memoizes a function, basically caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
  * @function
  * @memberOf function
  * @param {Function} fn The function to memoize.

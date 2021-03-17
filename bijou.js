@@ -161,6 +161,22 @@ const req = (type, desc, condition = true) => {
 //#region bijou
 //#region Array
 /**
+ * Counts the items in an array, returning a separate count for each object.
+ * @returns {Object}
+ * @example
+ * _$.count(['a', 'b', 'c', 'd', 'e', 'f'])//{'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1}
+ *
+ * //But if you have multiple items:
+ * _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 'e': 1}
+ * @param {Array} arr The array to count items in.
+ */
+export let count = (arr = req('array', 'array')) =>
+  arr.reduce((counts, item) => {
+    counts[item] = (counts[item] || 0) + 1;
+    return counts;
+  }, {});
+
+/**
  * Returns the difference between two arrays or strings.
  * @memberOf array
  * @function
@@ -1891,7 +1907,7 @@ export let spread = (fn = req('function')) => {
   };
 };
 /**
- * Memoizes a function, bascally caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
+ * Memoizes a function, basically caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
  * @function
  * @memberOf function
  * @param {Function} fn The function to memoize.
@@ -5034,6 +5050,7 @@ let _temp = {
   context: context,
   cookies: cookies,
   copy: copy,
+  count: count,
   create: create,
   createElement: createElement,
   curryFunction: curryFunction,

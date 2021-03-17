@@ -26,6 +26,7 @@ let _temp = {
   context: context,
   cookies: cookies,
   copy: copy,
+  count: count,
   create: create,
   createElement: createElement,
   curryFunction: curryFunction,
