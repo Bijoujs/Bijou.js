@@ -974,7 +974,14 @@ export let context = () => {
       for (let j = 0; j < items.length; j++) {
         const contextMenu = items[j];
         const liTag = document.createElement('li');
-        liTag.onclick = contextMenu.getAttribute('onclick');
+        liTag.setAttribute(
+          'onclick',
+          contextMenu.getAttribute('onclick'),
+        );
+        liTag.addEventListener('click', () => {
+          menu.style.opacity = 0;
+          menu.style.pointerEvents = 'none';
+        });
         liTag.textContent = contextMenu.getAttribute('label');
         menu.innerHTML += liTag.outerHTML;
       }
@@ -985,7 +992,7 @@ export let context = () => {
     });
   }
   var contextTimer = 0;
-  requestInterval(() => {
+  setInterval(() => {
     contextTimer += 100;
     if (contextTimer > 3000) {
       menu.style.opacity = 0;
@@ -994,14 +1001,15 @@ export let context = () => {
       return;
     }
   }, 100);
-  addEventListeners(menu, ['mousemove', 'click', 'scroll'], () => {
+  _$.addEventListeners(menu, ['mousemove', 'click', 'scroll'], () => {
     contextTimer = 0;
   });
-  onOutsideClick(menu, () => {
+  _$.onOutsideClick(menu, () => {
     menu.style.opacity = 0;
     menu.style.pointerEvents = 'none';
   });
 };
+
 /**
  * Tests whether the specified element is fully in view.
  * @function
