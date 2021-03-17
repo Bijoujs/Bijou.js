@@ -27,9 +27,23 @@ export let juxt = (...fns) => (...args) =>
  * })
  * @param {Number} ms The milliseconds to sleep.
  */
-export let sleep = (ms) =>
+export let sleep = (ms = req('number', 'milliseconds')) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
+/**
+ * Limits the arguments that a given function takes to only the 1st n arguments.
+ * @example
+ * //Now console can only log one item. How utterly useless but explanatory at the same time!
+ * console.log = _$.limitArgs(console.log, 1);
+ * @memberOf function
+ * @returns {Function} The new function that only takes the 1st n arguments.
+ * @param {Function} fn The function to call.
+ * @param {Number} n The number of arguments to accept.
+ */
+export let limitArgs = (
+  fn = req('function', 'function'),
+  n = req('number', 'arguments'),
+) => (...args) => fn(...args.slice(0, n));
 /**
  * Returns the index of the fastest function in an array of functions.
  * @memberOf math

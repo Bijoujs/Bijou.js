@@ -1830,9 +1830,23 @@ export let juxt = (...fns) => (...args) =>
  * })
  * @param {Number} ms The milliseconds to sleep.
  */
-export let sleep = (ms) =>
+export let sleep = (ms = req('number', 'milliseconds')) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
+/**
+ * Limits the arguments that a given function takes to only the 1st n arguments.
+ * @example
+ * //Now console can only log one item. How utterly useless but explanatory at the same time!
+ * console.log = _$.limitArgs(console.log, 1);
+ * @memberOf function
+ * @returns {Function} The new function that only takes the 1st n arguments.
+ * @param {Function} fn The function to call.
+ * @param {Number} n The number of arguments to accept.
+ */
+export let limitArgs = (
+  fn = req('function', 'function'),
+  n = req('number', 'arguments'),
+) => (...args) => fn(...args.slice(0, n));
 /**
  * Returns the index of the fastest function in an array of functions.
  * @memberOf math
@@ -5027,6 +5041,8 @@ let _temp = {
   editDistance: editDistance,
   elementSiblings: elementSiblings,
   escapeHTML: escapeHTML,
+  factorial: factorial,
+  fastestFunction: fastestFunction,
   flatten: flatten,
   flattenObj: flattenObj,
   forTemplateLiteral: forTemplateLiteral,
@@ -5036,19 +5052,22 @@ let _temp = {
   formatNumber: formatNumber,
   fullScreen: fullScreen,
   getHTML: getHTML,
-  getJSON: getJSON,
   getImages: getImages,
+  getJSON: getJSON,
+  hash: hash,
   hashString: hashString,
   hexToRGB: hexToRGB,
   hub: hub,
   imageToData: imageToData,
-  injectCSS: injectCSS,
   inPartialView: inPartialView,
   inView: inView,
+  injectCSS: injectCSS,
   inlineCSS: inlineCSS,
   isAsync: isAsync,
   isDateValid: isDateValid,
+  isPrime: isPrime,
   jsonToCsv: jsonToCsv,
+  juxt: juxt,
   lightOrDark: lightOrDark,
   lightenColor: lightenColor,
   listen: listen,
@@ -5066,8 +5085,10 @@ let _temp = {
   observeMutations: observeMutations,
   onOutsideClick: onOutsideClick,
   onScrollStop: onScrollStop,
+  parseCookie: parseCookie,
   parseHTML: parseHTML,
   playSection: playSection,
+  prefixCSS: prefixCSS,
   preloadImage: preloadImage,
   previousPage: previousPage,
   primesTo: primesTo,
@@ -5079,6 +5100,7 @@ let _temp = {
   remove: remove,
   removeComments: removeComments,
   removeTags: removeTags,
+  renderElement: renderElement,
   replaceBetween: replaceBetween,
   replaceMultiple: replaceMultiple,
   replaceSelection: replaceSelection,
@@ -5092,6 +5114,7 @@ let _temp = {
   seedRandom: seedRandom,
   serializeForm: serializeForm,
   shuffleArray: shuffleArray,
+  sleep: sleep,
   sortObj: sortObj,
   sortTable: sortTable,
   sortTableBy: sortTableBy,
@@ -5105,6 +5128,7 @@ let _temp = {
   throttle: throttle,
   tilt: tilt,
   timeFunction: timeFunction,
+  titleCase: titleCase,
   unCamelCase: unCamelCase,
   unescapeHTML: unescapeHTML,
   unionArrays: unionArrays,
