@@ -1,5 +1,32 @@
 //#region Element
 /**
+ * Gets the parent elements of the element given.
+ * @returns {Array.<HTMLElement>} An array of the parent elements from deepest to outermost.
+ * @memberOf element
+ * @example
+ * //Where the html is like so:
+ * ```
+ * <html>
+ *  <head>
+ *  </head>
+ * <body>
+ *   <div id="img">
+ *    <img src="https://example.com/example.png">
+ *   </div>
+ * </body>
+ * </html>
+ * ```
+ * _$.parents(document.querySelector("img"));//[div#img, body, html]
+ * @param {HTMLElement} el The element
+ */
+export let parents = (el = req('element')) => [
+  ...(function* (e) {
+    while ((e = e.parentNode)) {
+      yield e;
+    }
+  })(el),
+];
+/**
  * Gets all the images that are children of the specified element.
  * @returns {Array} The array of image urls.
  * @memberOf element

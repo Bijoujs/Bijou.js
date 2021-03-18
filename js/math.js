@@ -1,4 +1,17 @@
 //#region Math
+
+/**
+ * Gets the greatest common divisor of a list of numbers.
+ * @returns {Number} The greatest common divisor
+ * @memberOf math
+ * @example
+ * _$.gcd(12, 4, 8);//Returns 4
+ * @param {...Number} arr The numbers to compare
+ */
+gcd = (...arr) => {
+  const _gcd = (x, y) => (!y ? x : gcd(y, x % y));
+  return [...arr].reduce((a, b) => _gcd(a, b));
+};
 /**
  * Tests if a given number is prime.
  * @returns {boolean} Whether the number is prime

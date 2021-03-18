@@ -792,6 +792,33 @@ export let addDaysToDate = (
 //#endregion Date
 //#region Element
 /**
+ * Gets the parent elements of the element given.
+ * @returns {Array.<HTMLElement>} An array of the parent elements from deepest to outermost.
+ * @memberOf element
+ * @example
+ * //Where the html is like so:
+ * ```
+ * <html>
+ *  <head>
+ *  </head>
+ * <body>
+ *   <div id="img">
+ *    <img src="https://example.com/example.png">
+ *   </div>
+ * </body>
+ * </html>
+ * ```
+ * _$.parents(document.querySelector("img"));//[div#img, body, html]
+ * @param {HTMLElement} el The element
+ */
+export let parents = (el = req('element')) => [
+  ...(function* (e) {
+    while ((e = e.parentNode)) {
+      yield e;
+    }
+  })(el),
+];
+/**
  * Gets all the images that are children of the specified element.
  * @returns {Array} The array of image urls.
  * @memberOf element
@@ -2374,6 +2401,19 @@ export let sortObj = (obj = req('object', 'object')) => {
 };
 //#endregion Object
 //#region Math
+
+/**
+ * Gets the greatest common divisor of a list of numbers.
+ * @returns {Number} The greatest common divisor
+ * @memberOf math
+ * @example
+ * _$.gcd(12, 4, 8);//Returns 4
+ * @param {...Number} arr The numbers to compare
+ */
+gcd = (...arr) => {
+  const _gcd = (x, y) => (!y ? x : gcd(y, x % y));
+  return [...arr].reduce((a, b) => _gcd(a, b));
+};
 /**
  * Tests if a given number is prime.
  * @returns {boolean} Whether the number is prime
