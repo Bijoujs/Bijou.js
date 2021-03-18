@@ -8,9 +8,26 @@
  * _$.gcd(12, 4, 8);//Returns 4
  * @param {...Number} arr The numbers to compare
  */
-gcd = (...arr) => {
+export let gcd = function gcd(...arr) {
+  req('arguments', undefined, ![...arr].length);
   const _gcd = (x, y) => (!y ? x : gcd(y, x % y));
   return [...arr].reduce((a, b) => _gcd(a, b));
+};
+/**
+ * Tests if two things are equal, like "thing === thing2" but it also works for dates and objects.
+ * @param {*} a The first thing to test
+ * @param {*} b The second thing to test
+ */
+export let equals = (a = req('any', 'a'), b = req('any', 'b')) => {
+  if (a === b) return true;
+  if (a instanceof Date && b instanceof Date)
+    return a.getTime() === b.getTime();
+  if (!a || !b || (typeof a !== 'object' && typeof b !== 'object'))
+    return a === b;
+  if (a.prototype !== b.prototype) return false;
+  let keys = Object.keys(a);
+  if (keys.length !== Object.keys(b).length) return false;
+  return keys.every((k) => equals(a[k], b[k]));
 };
 /**
  * Tests if a given number is prime.

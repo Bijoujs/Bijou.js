@@ -1,5 +1,27 @@
 //#region Element
 /**
+ * Tests if an element is a child element of another element.
+ * @returns {Boolean} If the element is a child or not
+ * @memberOf element
+ * @example
+ * _$.elementContains(document.querySelector("#container"), document.querySelector("#img"));//If the element with an id of "img" is inside the #container element this will return true, otherwise it will return false
+ * @example
+ * //Note that the easiest way to do this would be to use _$.onOutsideClick(), but this is another way that demonstrates the use of this function.
+ * //Listen for a click outside of an element (in this case the div#popup element) then remove the popup element.
+ * document.querySelector("div#popup").addEventListener("click", (e) => {
+ *  let contains = _$.elementContains(document.querySelector("div#popup"), e.target);
+ *  if (!contains){
+ *    document.querySelector("div#popup".remove()
+ *  }
+ * })
+ * @param {HTMLElement} parent The parent element to test.
+ * @param {HTMLElement} child The child element to test.
+ */
+export let elementContains = (
+  parent = req('HTMLElement', 'parent'),
+  child = req('HTMLElement', 'child'),
+) => parent !== child && parent.contains(child);
+/**
  * Gets the parent elements of the element given.
  * @returns {Array.<HTMLElement>} An array of the parent elements from deepest to outermost.
  * @memberOf element

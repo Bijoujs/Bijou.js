@@ -792,6 +792,28 @@ export let addDaysToDate = (
 //#endregion Date
 //#region Element
 /**
+ * Tests if an element is a child element of another element.
+ * @returns {Boolean} If the element is a child or not
+ * @memberOf element
+ * @example
+ * _$.elementContains(document.querySelector("#container"), document.querySelector("#img"));//If the element with an id of "img" is inside the #container element this will return true, otherwise it will return false
+ * @example
+ * //Note that the easiest way to do this would be to use _$.onOutsideClick(), but this is another way that demonstrates the use of this function.
+ * //Listen for a click outside of an element (in this case the div#popup element) then remove the popup element.
+ * document.querySelector("div#popup").addEventListener("click", (e) => {
+ *  let contains = _$.elementContains(document.querySelector("div#popup"), e.target);
+ *  if (!contains){
+ *    document.querySelector("div#popup".remove()
+ *  }
+ * })
+ * @param {HTMLElement} parent The parent element to test.
+ * @param {HTMLElement} child The child element to test.
+ */
+export let elementContains = (
+  parent = req('HTMLElement', 'parent'),
+  child = req('HTMLElement', 'child'),
+) => parent !== child && parent.contains(child);
+/**
  * Gets the parent elements of the element given.
  * @returns {Array.<HTMLElement>} An array of the parent elements from deepest to outermost.
  * @memberOf element
@@ -2410,9 +2432,26 @@ export let sortObj = (obj = req('object', 'object')) => {
  * _$.gcd(12, 4, 8);//Returns 4
  * @param {...Number} arr The numbers to compare
  */
-gcd = (...arr) => {
+export let gcd = function gcd(...arr) {
+  req('arguments', undefined, ![...arr].length);
   const _gcd = (x, y) => (!y ? x : gcd(y, x % y));
   return [...arr].reduce((a, b) => _gcd(a, b));
+};
+/**
+ * Tests if two things are equal, like "thing === thing2" but it also works for dates and objects.
+ * @param {*} a The first thing to test
+ * @param {*} b The second thing to test
+ */
+export let equals = (a = req('any', 'a'), b = req('any', 'b')) => {
+  if (a === b) return true;
+  if (a instanceof Date && b instanceof Date)
+    return a.getTime() === b.getTime();
+  if (!a || !b || (typeof a !== 'object' && typeof b !== 'object'))
+    return a === b;
+  if (a.prototype !== b.prototype) return false;
+  let keys = Object.keys(a);
+  if (keys.length !== Object.keys(b).length) return false;
+  return keys.every((k) => equals(a[k], b[k]));
 };
 /**
  * Tests if a given number is prime.
