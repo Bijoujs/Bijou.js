@@ -31,11 +31,11 @@ export let elementContains = (
  * <html>
  *  <head>
  *  </head>
- * <body>
- *   <div id="img">
- *    <img src="https://example.com/example.png">
- *   </div>
- * </body>
+ *  <body>
+ *    <div id="img">
+ *     <img src="https://example.com/example.png">
+ *    </div>
+ *  </body>
  * </html>
  * ```
  * _$.parents(document.querySelector("img"));//[div#img, body, html]
