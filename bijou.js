@@ -498,9 +498,9 @@ export let rgbToHex = (rgb = req('string', 'RGB color')) => {
     g = (+rgb[1]).toString(16),
     b = (+rgb[2]).toString(16);
 
-  if (r.length == 1) r = '0' + r;
-  if (g.length == 1) g = '0' + g;
-  if (b.length == 1) b = '0' + b;
+  if (r.length === 1) r = '0' + r;
+  if (g.length === 1) g = '0' + g;
+  if (b.length === 1) b = '0' + b;
 
   return '#' + r + g + b;
 };
@@ -4806,7 +4806,7 @@ export let cookies = {
     for (var i = 0; i < ca.length; i++) {
       var c = ca[i];
       while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) == 0)
+      if (c.indexOf(nameEQ) === 0)
         return c.substring(nameEQ.length, c.length);
     }
     return null;
