@@ -163,6 +163,7 @@ const req = (type, desc, condition = true) => {
 /**
  * Counts the items in an array, returning a separate count for each object.
  * @returns {Object}
+ * @memberOf array
  * @example
  * _$.count(['a', 'b', 'c', 'd', 'e', 'f'])//{'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1}
  *
@@ -2439,6 +2440,13 @@ export let gcd = function gcd(...arr) {
 };
 /**
  * Tests if two things are equal, like "thing === thing2" but it also works for dates and objects.
+ * @memberOf math
+ * @example
+ * console.assert(new Date() === new Date());//Not equal
+ * console.assert(_$.equals(new Date(), new Date()));//Equal!
+ * @example
+ * console.assert({thing: "Thing!"} === {thing: "Thing!"});//Not equal;
+ * console.assert(_$.equals({thing: "Thing!"}, {thing: "Thing!"}))
  * @param {*} a The first thing to test
  * @param {*} b The second thing to test
  */
@@ -2865,6 +2873,7 @@ export let forTemplateLiteral = (
 };
 /**
  * Maps a string like an array.
+ * @memberOf string
  * @example
  * _$.mapString("Hello world", (e) => e.toUpperCase());//Returns "HELLO WORLD"
  * @param {String} str The string to map

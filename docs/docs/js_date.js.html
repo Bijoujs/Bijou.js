@@ -191,7 +191,7 @@
 				</ul>
 				<h3>Namespaces</h3>
 				<ul>
-					<li class="accordion collapsed" id="4848837">
+					<li class="accordion collapsed" id="9104942">
 						<div class="accordion-title">
 							<a href="array.html">array</a
 							><svg
@@ -271,7 +271,7 @@
 							</li>
 						</ul>
 					</li>
-					<li class="accordion collapsed" id="9652852">
+					<li class="accordion collapsed" id="4218520">
 						<div class="accordion-title">
 							<a href="color.html">color</a
 							><svg
@@ -320,7 +320,7 @@
 							</li>
 						</ul>
 					</li>
-					<li class="accordion collapsed" id="8680576">
+					<li class="accordion collapsed" id="769519">
 						<div class="accordion-title">
 							<a href="date.html">date</a
 							><svg
@@ -349,7 +349,7 @@
 							</li>
 						</ul>
 					</li>
-					<li class="accordion collapsed" id="7988635">
+					<li class="accordion collapsed" id="2601720">
 						<div class="accordion-title">
 							<a href="element.html">element</a
 							><svg
@@ -489,7 +489,7 @@
 							</li>
 						</ul>
 					</li>
-					<li class="accordion collapsed" id="9432374">
+					<li class="accordion collapsed" id="9057968">
 						<div class="accordion-title">
 							<a href="event.html">event</a
 							><svg
@@ -526,7 +526,7 @@
 							</li>
 						</ul>
 					</li>
-					<li class="accordion collapsed" id="2767915">
+					<li class="accordion collapsed" id="5497658">
 						<div class="accordion-title">
 							<a href="function.html">function</a
 							><svg
@@ -585,7 +585,7 @@
 							</li>
 						</ul>
 					</li>
-					<li class="accordion collapsed" id="9331597">
+					<li class="accordion collapsed" id="6011066">
 						<div class="accordion-title">
 							<a href="math.html">math</a
 							><svg
@@ -633,7 +633,7 @@
 							</li>
 						</ul>
 					</li>
-					<li class="accordion collapsed" id="1286835">
+					<li class="accordion collapsed" id="8722681">
 						<div class="accordion-title">
 							<a href="object.html">object</a
 							><svg
@@ -688,7 +688,7 @@
 							</li>
 						</ul>
 					</li>
-					<li class="accordion collapsed" id="2340261">
+					<li class="accordion collapsed" id="4532215">
 						<div class="accordion-title">
 							<a href="string.html">string</a
 							><svg
@@ -820,7 +820,7 @@
 							</li>
 						</ul>
 					</li>
-					<li class="accordion collapsed" id="5749118">
+					<li class="accordion collapsed" id="307602">
 						<div class="accordion-title">
 							<a href="utility.html">utility</a
 							><svg
@@ -925,9 +925,6 @@
 				<h3><a href="global.html">Global</a></h3>
 				<ul>
 					<li><a href="global.html#_temp">_temp</a></li>
-					<li><a href="global.html#count">count</a></li>
-					<li><a href="global.html#equals">equals</a></li>
-					<li><a href="global.html#mapString">mapString</a></li>
 					<li><a href="global.html#node">node</a></li>
 					<li><a href="global.html#prefixCSS">prefixCSS</a></li>
 				</ul>
@@ -952,10 +949,10 @@
  * console.log(_$.dayName)); // e.g. "Friday"
  * @returns {String} The day name from the date.
  */
-export let dayName = (date = new Date(), locale = 'en-US') =>
-  date.toLocaleDateString(locale, {
-    weekday: 'long',
-  });
+export let dayName = (date = new Date(), locale = "en-US") =>
+	date.toLocaleDateString(locale, {
+		weekday: "long",
+	});
 
 /**
  * Formats a number of milliseconds
@@ -967,23 +964,23 @@ export let dayName = (date = new Date(), locale = 'en-US') =>
  * @returns {String} The string of formatted milliseconds.
  */
 export let formatMilliseconds = (
-  ms = req('number', 'milliseconds'),
+	ms = req("number", "milliseconds"),
 ) => {
-  ms = typeof ms === 'string' ? +ms : ms;
-  if (ms &lt; 0) ms = -ms;
-  const time = {
-    century: Math.floor(ms / 1144800000000),
-    year: Math.floor(ms / 22896000000) % 50,
-    day: Math.floor(ms / 86400000) % 365,
-    hour: Math.floor(ms / 3600000) % 24,
-    minute: Math.floor(ms / 60000) % 60,
-    second: Math.floor(ms / 1000) % 60,
-    millisecond: Math.floor(ms) % 1000,
-  };
-  return Object.entries(time)
-    .filter((val) => val[1] !== 0)
-    .map(([key, val]) => `${val} ${key}${val !== 1 ? 's' : ''}`)
-    .join(', ');
+	ms = typeof ms === "string" ? +ms : ms;
+	if (ms &lt; 0) ms = -ms;
+	const time = {
+		century: Math.floor(ms / 1144800000000),
+		year: Math.floor(ms / 22896000000) % 50,
+		day: Math.floor(ms / 86400000) % 365,
+		hour: Math.floor(ms / 3600000) % 24,
+		minute: Math.floor(ms / 60000) % 60,
+		second: Math.floor(ms / 1000) % 60,
+		millisecond: Math.floor(ms) % 1000,
+	};
+	return Object.entries(time)
+		.filter((val) => val[1] !== 0)
+		.map(([key, val]) => `${val} ${key}${val !== 1 ? "s" : ""}`)
+		.join(", ");
 };
 /**
  * Adds a certain number of minutes to a date object.
@@ -995,12 +992,12 @@ export let formatMilliseconds = (
  * @returns {Date} The date with minutes added.
  */
 export let addMinutesToDate = (
-  date = req('date', 'date or date string'),
-  n = req('number', 'minutes'),
+	date = req("date", "date or date string"),
+	n = req("number", "minutes"),
 ) => {
-  const d = new Date(date);
-  d.setTime(d.getTime() + n * 60000);
-  return d.toISOString().split('.')[0].replace('T', ' ');
+	const d = new Date(date);
+	d.setTime(d.getTime() + n * 60000);
+	return d.toISOString().split(".")[0].replace("T", " ");
 };
 /**
  * Validates a date from a string.
@@ -1017,8 +1014,8 @@ export let addMinutesToDate = (
  * @returns {Boolean} Returns if the date is valid or not.
  */
 export let isDateValid = (...val) => {
-  req('any', 'date arguments', ![...val].length);
-  return !Number.isNaN(new Date(...val).valueOf());
+	req("any", "date arguments", ![...val].length);
+	return !Number.isNaN(new Date(...val).valueOf());
 };
 /**
  * Adds a specified number of days to a date.
@@ -1028,12 +1025,12 @@ export let isDateValid = (...val) => {
  * @returns {Date} The date with the specified number of days added.
  */
 export let addDaysToDate = (
-  date = req('date', 'date or date string'),
-  n = req('number', 'days'),
+	date = req("date", "date or date string"),
+	n = req("number", "days"),
 ) => {
-  const d = new Date(date);
-  d.setDate(d.getDate() + n);
-  return d.toISOString().split('T')[0];
+	const d = new Date(date);
+	d.setDate(d.getDate() + n);
+	return d.toISOString().split("T")[0];
 };
 //#endregion Date
 </code></pre>
@@ -1649,21 +1646,6 @@ export let addDaysToDate = (
 					title: "_temp",
 					link:
 						'<a href="global.html#_temp">Global &rtrif; _temp</a>',
-				},
-				{
-					title: "count",
-					link:
-						'<a href="global.html#count">Global &rtrif; count</a>',
-				},
-				{
-					title: "equals",
-					link:
-						'<a href="global.html#equals">Global &rtrif; equals</a>',
-				},
-				{
-					title: "mapString",
-					link:
-						'<a href="global.html#mapString">Global &rtrif; mapString</a>',
 				},
 				{
 					title: "node",

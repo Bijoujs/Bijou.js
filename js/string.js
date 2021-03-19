@@ -1,6 +1,7 @@
 //#region String
 /**
  * Prefixes the given CSS property for the current browser.
+ * @memberOf string
  * @example
  * document.body.style[_$.prefix("appearance")] = "hidden";//Sets the document body's appearance property to "hidden".
  * @param {String} prop The property to prefix.
@@ -85,6 +86,7 @@ export let forTemplateLiteral = (
 };
 /**
  * Maps a string like an array.
+ * @memberOf string
  * @example
  * _$.mapString("Hello world", (e) => e.toUpperCase());//Returns "HELLO WORLD"
  * @param {String} str The string to map

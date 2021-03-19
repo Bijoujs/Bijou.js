@@ -15,6 +15,13 @@ export let gcd = function gcd(...arr) {
 };
 /**
  * Tests if two things are equal, like "thing === thing2" but it also works for dates and objects.
+ * @memberOf math
+ * @example
+ * console.assert(new Date() === new Date());//Not equal
+ * console.assert(_$.equals(new Date(), new Date()));//Equal!
+ * @example
+ * console.assert({thing: "Thing!"} === {thing: "Thing!"});//Not equal;
+ * console.assert(_$.equals({thing: "Thing!"}, {thing: "Thing!"}))
  * @param {*} a The first thing to test
  * @param {*} b The second thing to test
  */
