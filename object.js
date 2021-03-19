@@ -18,26 +18,26 @@
 * @returns {Object} The flattened object.
  */
 export let flattenObj = (o) => {
-  return o !== Object(o) || Array.isArray(o)
-    ? {}
-    : Object.assign(
-        {},
-        ...(function leaves(o) {
-          return [].concat.apply(
-            [],
-            Object.entries(o).map(([k, v]) => {
-              return !v ||
-                typeof v !== 'object' ||
-                !Object.keys(v).some((key) =>
-                  v.hasOwnProperty(key),
-                ) ||
-                Array.isArray(v)
-                ? { [k]: v }
-                : leaves(v);
-            }),
-          );
-        })(o),
-      );
+	return o !== Object(o) || Array.isArray(o)
+		? {}
+		: Object.assign(
+				{},
+				...(function leaves(o) {
+					return [].concat.apply(
+						[],
+						Object.entries(o).map(([k, v]) => {
+							return !v ||
+								typeof v !== "object" ||
+								!Object.keys(v).some((key) =>
+									v.hasOwnProperty(key),
+								) ||
+								Array.isArray(v)
+								? { [k]: v }
+								: leaves(v);
+						}),
+					);
+				})(o),
+		  );
 };
 
 /**
@@ -52,16 +52,16 @@ export let flattenObj = (o) => {
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
 export let clone = (obj, fn = () => true) => {
-  if (null == obj || 'object' != typeof obj) return obj;
-  var copy = obj.constructor();
-  for (var attr in obj) {
-    if (obj.hasOwnProperty(attr)) {
-      if (fn(obj[attr])) {
-        copy[attr] = obj[attr];
-      }
-    }
-  }
-  return copy;
+	if (null == obj || "object" != typeof obj) return obj;
+	var copy = obj.constructor();
+	for (var attr in obj) {
+		if (obj.hasOwnProperty(attr)) {
+			if (fn(obj[attr])) {
+				copy[attr] = obj[attr];
+			}
+		}
+	}
+	return copy;
 };
 /**
  * @memberOf bijou
@@ -77,21 +77,21 @@ export let clone = (obj, fn = () => true) => {
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
 export let listen = (
-  obj,
-  setCallback = () => null,
-  getCallback = () => null,
+	obj,
+	setCallback = () => null,
+	getCallback = () => null,
 ) => {
-  return new Proxy(obj, {
-    set: function (target, key, value) {
-      setCallback(key, value);
-      target[key] = value;
-      return target[key];
-    },
-    get: function (target, key, value) {
-      getCallback(key, value);
-      return obj[key];
-    },
-  });
+	return new Proxy(obj, {
+		set: function (target, key, value) {
+			setCallback(key, value);
+			target[key] = value;
+			return target[key];
+		},
+		get: function (target, key, value) {
+			getCallback(key, value);
+			return obj[key];
+		},
+	});
 };
 /**
  * Merges two objects into one. Note that object 2 properties will overwrite those of object 2.
@@ -104,21 +104,21 @@ export let listen = (
  * console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}
  */
 export let merge = function MergeRecursive(obj1, obj2) {
-  for (var p in obj2) {
-    if (p in Object.prototype) continue;
-    try {
-      // Property in destination object set; update its value.
-      if (obj2[p].constructor == Object) {
-        obj1[p] = MergeRecursive(obj1[p], obj2[p]);
-      } else {
-        obj1[p] = obj2[p];
-      }
-    } catch (e) {
-      // Property in destination object not set; create it and set its value.
-      obj1[p] = obj2[p];
-    }
-  }
-  return obj1;
+	for (var p in obj2) {
+		if (p in Object.prototype) continue;
+		try {
+			// Property in destination object set; update its value.
+			if (obj2[p].constructor == Object) {
+				obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+			} else {
+				obj1[p] = obj2[p];
+			}
+		} catch (e) {
+			// Property in destination object not set; create it and set its value.
+			obj1[p] = obj2[p];
+		}
+	}
+	return obj1;
 };
 /**
  * Maps the keys of an object.
@@ -132,19 +132,19 @@ export let merge = function MergeRecursive(obj1, obj2) {
  * @returns {Object} The new Object.
  */
 export let mapObjectKeys = (obj, fn) =>
-  Array.isArray(obj)
-    ? obj.map((val) => _$.mapObjectKeys(val, fn))
-    : typeof obj === 'object'
-    ? Object.keys(obj).reduce((acc, current) => {
-        const key = fn(current);
-        const val = obj[current];
-        acc[key] =
-          val !== null && typeof val === 'object'
-            ? _$.mapObjectKeys(val, fn)
-            : val;
-        return acc;
-      }, {})
-    : obj;
+	Array.isArray(obj)
+		? obj.map((val) => _$.mapObjectKeys(val, fn))
+		: typeof obj === "object"
+		? Object.keys(obj).reduce((acc, current) => {
+				const key = fn(current);
+				const val = obj[current];
+				acc[key] =
+					val !== null && typeof val === "object"
+						? _$.mapObjectKeys(val, fn)
+						: val;
+				return acc;
+		  }, {})
+		: obj;
 /**
  * Maps an object's values.
  * @memberOf bijou
@@ -156,10 +156,10 @@ export let mapObjectKeys = (obj, fn) =>
  * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
  */
 export let mapObjectValues = (obj, fn) => {
-  Object.keys(obj).map(function (key, index) {
-    obj[key] = fn(obj[key], index);
-  });
-  return obj;
+	Object.keys(obj).map(function (key, index) {
+		obj[key] = fn(obj[key], index);
+	});
+	return obj;
 };
 /**
  * Converts a form to an Object.
@@ -180,13 +180,13 @@ export let mapObjectValues = (obj, fn) => {
  * console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }
  */
 export let formToObject = (form) => {
-  node();
-  return Array.from(new FormData(form)).reduce(
-    (acc, [key, value]) => ({
-      ...acc,
-      [key]: value,
-    }),
-  );
+	node();
+	return Array.from(new FormData(form)).reduce(
+		(acc, [key, value]) => ({
+			...acc,
+			[key]: value,
+		}),
+	);
 };
 /**
  * Sorts an object alphabetically by its keys.
@@ -199,11 +199,11 @@ export let formToObject = (form) => {
  * @returns {Object} The sorted object.
  */
 export let sortObj = (obj) => {
-  return Object.keys(obj)
-    .sort()
-    .reduce(function (result, key) {
-      result[key] = obj[key];
-      return result;
-    }, {});
+	return Object.keys(obj)
+		.sort()
+		.reduce(function (result, key) {
+			result[key] = obj[key];
+			return result;
+		}, {});
 };
 //#endregion Object

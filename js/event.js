@@ -10,18 +10,18 @@
  * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
  */
 export let onOutsideClick = (
-  element = req('HTMLElement', 'element'),
-  callback = req('function', 'callback'),
+	element = req("HTMLElement", "element"),
+	callback = req("function", "callback"),
 ) => {
-  node();
-  return new Promise((resolve, reject) => {
-    document.addEventListener('click', (e) => {
-      if (!element.contains(e.target)) {
-        callback();
-        resolve();
-      }
-    });
-  });
+	node();
+	return new Promise((resolve, reject) => {
+		document.addEventListener("click", (e) => {
+			if (!element.contains(e.target)) {
+				callback();
+				resolve();
+			}
+		});
+	});
 };
 /**
  * Returns the callback when the user stops scrolling.
@@ -34,24 +34,24 @@ export let onOutsideClick = (
  * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
  */
 export let onScrollStop = (
-  callback = req('function', 'callback'),
-  time = 150,
+	callback = req("function", "callback"),
+	time = 150,
 ) => {
-  let isScrolling;
-  node();
-  return new Promise((resolve, reject) => {
-    window.addEventListener(
-      'scroll',
-      (e) => {
-        clearTimeout(isScrolling);
-        isScrolling = setTimeout(() => {
-          callback(e);
-          resolve(e);
-        }, time);
-      },
-      false,
-    );
-  });
+	let isScrolling;
+	node();
+	return new Promise((resolve, reject) => {
+		window.addEventListener(
+			"scroll",
+			(e) => {
+				clearTimeout(isScrolling);
+				isScrolling = setTimeout(() => {
+					callback(e);
+					resolve(e);
+				}, time);
+			},
+			false,
+		);
+	});
 };
 /**
  * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
@@ -67,19 +67,19 @@ export let onScrollStop = (
  * }, 2000)
  */
 export let hub = () => ({
-  hub: Object.create(null),
-  emit(event, data) {
-    (this.hub[event] || []).forEach((handler) => handler(data));
-  },
-  on(event, handler) {
-    if (!this.hub[event]) this.hub[event] = [];
-    this.hub[event].push(handler);
-  },
-  off(event, handler) {
-    const i = (this.hub[event] || []).findIndex((h) => h === handler);
-    if (i > -1) this.hub[event].splice(i, 1);
-    if (this.hub[event].length === 0) delete this.hub[event];
-  },
+	hub: Object.create(null),
+	emit(event, data) {
+		(this.hub[event] || []).forEach((handler) => handler(data));
+	},
+	on(event, handler) {
+		if (!this.hub[event]) this.hub[event] = [];
+		this.hub[event].push(handler);
+	},
+	off(event, handler) {
+		const i = (this.hub[event] || []).findIndex((h) => h === handler);
+		if (i > -1) this.hub[event].splice(i, 1);
+		if (this.hub[event].length === 0) delete this.hub[event];
+	},
 });
 /**
  * Dispatches an event of the type specified with custom arguments.
@@ -94,14 +94,14 @@ export let hub = () => ({
  * @returns {undefined}
  */
 export let dispatch = (
-  type = req('string', 'type'),
-  args = req('object', 'event properties'),
-  target = window,
+	type = req("string", "type"),
+	args = req("object", "event properties"),
+	target = window,
 ) => {
-  let e = new Event(type);
-  for (let o in args) {
-    e[o] = args[o];
-  }
-  target.dispatchEvent(e);
+	let e = new Event(type);
+	for (let o in args) {
+		e[o] = args[o];
+	}
+	target.dispatchEvent(e);
 };
 //#endregion Event

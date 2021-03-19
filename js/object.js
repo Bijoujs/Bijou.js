@@ -17,27 +17,27 @@
 * @param {Object} o The object to flatten
 * @returns {Object} The flattened object.
  */
-export let flattenObj = (o = req('object', 'object')) => {
-  return o !== Object(o) || Array.isArray(o)
-    ? {}
-    : Object.assign(
-        {},
-        ...(function leaves(o) {
-          return [].concat.apply(
-            [],
-            Object.entries(o).map(([k, v]) => {
-              return !v ||
-                typeof v !== 'object' ||
-                !Object.keys(v).some((key) =>
-                  v.hasOwnProperty(key),
-                ) ||
-                Array.isArray(v)
-                ? { [k]: v }
-                : leaves(v);
-            }),
-          );
-        })(o),
-      );
+export let flattenObj = (o = req("object", "object")) => {
+	return o !== Object(o) || Array.isArray(o)
+		? {}
+		: Object.assign(
+				{},
+				...(function leaves(o) {
+					return [].concat.apply(
+						[],
+						Object.entries(o).map(([k, v]) => {
+							return !v ||
+								typeof v !== "object" ||
+								!Object.keys(v).some((key) =>
+									v.hasOwnProperty(key),
+								) ||
+								Array.isArray(v)
+								? { [k]: v }
+								: leaves(v);
+						}),
+					);
+				})(o),
+		  );
 };
 /**
  * Deep clones an object
@@ -50,47 +50,47 @@ export let flattenObj = (o = req('object', 'object')) => {
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-export let clone = (item = req('object')) => {
-  if (!item) {
-    return item;
-  }
-  var types = [Number, String, Boolean],
-    result;
-  types.forEach(function (type) {
-    if (item instanceof type) {
-      result = type(item);
-    }
-  });
-  if (typeof result == 'undefined') {
-    if (Array.isArray(item)) {
-      result = [];
-      item.forEach(function (child, index, array) {
-        result[index] = clone(child);
-      });
-    } else if (typeof item == 'object') {
-      if (item.nodeType && typeof item.cloneNode == 'function') {
-        result = item.cloneNode(true);
-      } else if (!item.prototype) {
-        if (item instanceof Date) {
-          result = new Date(item);
-        } else {
-          result = {};
-          for (var i in item) {
-            result[i] = clone(item[i]);
-          }
-        }
-      } else {
-        if (false && item.constructor) {
-          result = new item.constructor();
-        } else {
-          result = item;
-        }
-      }
-    } else {
-      result = item;
-    }
-  }
-  return result;
+export let clone = (item = req("object")) => {
+	if (!item) {
+		return item;
+	}
+	var types = [Number, String, Boolean],
+		result;
+	types.forEach(function (type) {
+		if (item instanceof type) {
+			result = type(item);
+		}
+	});
+	if (typeof result == "undefined") {
+		if (Array.isArray(item)) {
+			result = [];
+			item.forEach(function (child, index, array) {
+				result[index] = clone(child);
+			});
+		} else if (typeof item == "object") {
+			if (item.nodeType && typeof item.cloneNode == "function") {
+				result = item.cloneNode(true);
+			} else if (!item.prototype) {
+				if (item instanceof Date) {
+					result = new Date(item);
+				} else {
+					result = {};
+					for (var i in item) {
+						result[i] = clone(item[i]);
+					}
+				}
+			} else {
+				if (false && item.constructor) {
+					result = new item.constructor();
+				} else {
+					result = item;
+				}
+			}
+		} else {
+			result = item;
+		}
+	}
+	return result;
 };
 /**
  * @memberOf object
@@ -106,21 +106,21 @@ export let clone = (item = req('object')) => {
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
 export let listen = (
-  obj = req('object'),
-  setCallback = () => null,
-  getCallback = () => null,
+	obj = req("object"),
+	setCallback = () => null,
+	getCallback = () => null,
 ) => {
-  return new Proxy(obj, {
-    set: function (target, key, value) {
-      setCallback(key, value);
-      target[key] = value;
-      return target[key];
-    },
-    get: function (target, key, value) {
-      getCallback(key, value);
-      return obj[key];
-    },
-  });
+	return new Proxy(obj, {
+		set: function (target, key, value) {
+			setCallback(key, value);
+			target[key] = value;
+			return target[key];
+		},
+		get: function (target, key, value) {
+			getCallback(key, value);
+			return obj[key];
+		},
+	});
 };
 /**
  * Merges two objects into one. Note that object 2 properties will overwrite those of object 2.
@@ -133,24 +133,24 @@ export let listen = (
  * console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}
  */
 export let merge = function MergeRecursive(
-  obj1 = req('object', 'object 1'),
-  obj2 = req('object', 'object 2'),
+	obj1 = req("object", "object 1"),
+	obj2 = req("object", "object 2"),
 ) {
-  for (var p in obj2) {
-    if (p in Object.prototype) continue;
-    try {
-      // Property in destination object set; update its value.
-      if (obj2[p].constructor == Object) {
-        obj1[p] = MergeRecursive(obj1[p], obj2[p]);
-      } else {
-        obj1[p] = obj2[p];
-      }
-    } catch (e) {
-      // Property in destination object not set; create it and set its value.
-      obj1[p] = obj2[p];
-    }
-  }
-  return obj1;
+	for (var p in obj2) {
+		if (p in Object.prototype) continue;
+		try {
+			// Property in destination object set; update its value.
+			if (obj2[p].constructor == Object) {
+				obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+			} else {
+				obj1[p] = obj2[p];
+			}
+		} catch (e) {
+			// Property in destination object not set; create it and set its value.
+			obj1[p] = obj2[p];
+		}
+	}
+	return obj1;
 };
 /**
  * Maps the keys of an object.
@@ -164,22 +164,22 @@ export let merge = function MergeRecursive(
  * @returns {Object} The new Object.
  */
 export let mapObjectKeys = (
-  obj = req('object'),
-  fn = req('function', 'callback'),
+	obj = req("object"),
+	fn = req("function", "callback"),
 ) =>
-  Array.isArray(obj)
-    ? obj.map((val) => _$.mapObjectKeys(val, fn))
-    : typeof obj === 'object'
-    ? Object.keys(obj).reduce((acc, current) => {
-        const key = fn(current);
-        const val = obj[current];
-        acc[key] =
-          val !== null && typeof val === 'object'
-            ? _$.mapObjectKeys(val, fn)
-            : val;
-        return acc;
-      }, {})
-    : obj;
+	Array.isArray(obj)
+		? obj.map((val) => _$.mapObjectKeys(val, fn))
+		: typeof obj === "object"
+		? Object.keys(obj).reduce((acc, current) => {
+				const key = fn(current);
+				const val = obj[current];
+				acc[key] =
+					val !== null && typeof val === "object"
+						? _$.mapObjectKeys(val, fn)
+						: val;
+				return acc;
+		  }, {})
+		: obj;
 /**
  * Maps an object's values.
  * @memberOf object
@@ -191,13 +191,13 @@ export let mapObjectKeys = (
  * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
  */
 export let mapObjectValues = (
-  obj = req('object', 'object'),
-  fn = req('function', 'callback'),
+	obj = req("object", "object"),
+	fn = req("function", "callback"),
 ) => {
-  Object.keys(obj).map(function (key, index) {
-    obj[key] = fn(obj[key], index);
-  });
-  return obj;
+	Object.keys(obj).map(function (key, index) {
+		obj[key] = fn(obj[key], index);
+	});
+	return obj;
 };
 /**
  * Converts a form to an Object.
@@ -218,15 +218,15 @@ export let mapObjectValues = (
  * console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }
  */
 export let formToObject = (
-  form = req('HTMLFormElement', 'the form'),
+	form = req("HTMLFormElement", "the form"),
 ) => {
-  node();
-  return Array.from(new FormData(form)).reduce(
-    (acc, [key, value]) => ({
-      ...acc,
-      [key]: value,
-    }),
-  );
+	node();
+	return Array.from(new FormData(form)).reduce(
+		(acc, [key, value]) => ({
+			...acc,
+			[key]: value,
+		}),
+	);
 };
 /**
  * Sorts an object alphabetically by its keys.
@@ -238,12 +238,12 @@ export let formToObject = (
  * // The object is now {anotherThing: "Another value!", testing: "A value"}
  * @returns {Object} The sorted object.
  */
-export let sortObj = (obj = req('object', 'object')) => {
-  return Object.keys(obj)
-    .sort()
-    .reduce(function (result, key) {
-      result[key] = obj[key];
-      return result;
-    }, {});
+export let sortObj = (obj = req("object", "object")) => {
+	return Object.keys(obj)
+		.sort()
+		.reduce(function (result, key) {
+			result[key] = obj[key];
+			return result;
+		}, {});
 };
 //#endregion Object

@@ -9,10 +9,10 @@
  * console.log(_$.dayName)); // e.g. "Friday"
  * @returns {String} The day name from the date.
  */
-export let dayName = (date = new Date(), locale = 'en-US') =>
-  date.toLocaleDateString(locale, {
-    weekday: 'long',
-  });
+export let dayName = (date = new Date(), locale = "en-US") =>
+	date.toLocaleDateString(locale, {
+		weekday: "long",
+	});
 
 /**
  * Formats a number of milliseconds
@@ -24,23 +24,23 @@ export let dayName = (date = new Date(), locale = 'en-US') =>
  * @returns {String} The string of formatted milliseconds.
  */
 export let formatMilliseconds = (
-  ms = req('number', 'milliseconds'),
+	ms = req("number", "milliseconds"),
 ) => {
-  ms = typeof ms === 'string' ? +ms : ms;
-  if (ms < 0) ms = -ms;
-  const time = {
-    century: Math.floor(ms / 1144800000000),
-    year: Math.floor(ms / 22896000000) % 50,
-    day: Math.floor(ms / 86400000) % 365,
-    hour: Math.floor(ms / 3600000) % 24,
-    minute: Math.floor(ms / 60000) % 60,
-    second: Math.floor(ms / 1000) % 60,
-    millisecond: Math.floor(ms) % 1000,
-  };
-  return Object.entries(time)
-    .filter((val) => val[1] !== 0)
-    .map(([key, val]) => `${val} ${key}${val !== 1 ? 's' : ''}`)
-    .join(', ');
+	ms = typeof ms === "string" ? +ms : ms;
+	if (ms < 0) ms = -ms;
+	const time = {
+		century: Math.floor(ms / 1144800000000),
+		year: Math.floor(ms / 22896000000) % 50,
+		day: Math.floor(ms / 86400000) % 365,
+		hour: Math.floor(ms / 3600000) % 24,
+		minute: Math.floor(ms / 60000) % 60,
+		second: Math.floor(ms / 1000) % 60,
+		millisecond: Math.floor(ms) % 1000,
+	};
+	return Object.entries(time)
+		.filter((val) => val[1] !== 0)
+		.map(([key, val]) => `${val} ${key}${val !== 1 ? "s" : ""}`)
+		.join(", ");
 };
 /**
  * Adds a certain number of minutes to a date object.
@@ -52,12 +52,12 @@ export let formatMilliseconds = (
  * @returns {Date} The date with minutes added.
  */
 export let addMinutesToDate = (
-  date = req('date', 'date or date string'),
-  n = req('number', 'minutes'),
+	date = req("date", "date or date string"),
+	n = req("number", "minutes"),
 ) => {
-  const d = new Date(date);
-  d.setTime(d.getTime() + n * 60000);
-  return d.toISOString().split('.')[0].replace('T', ' ');
+	const d = new Date(date);
+	d.setTime(d.getTime() + n * 60000);
+	return d.toISOString().split(".")[0].replace("T", " ");
 };
 /**
  * Validates a date from a string.
@@ -74,8 +74,8 @@ export let addMinutesToDate = (
  * @returns {Boolean} Returns if the date is valid or not.
  */
 export let isDateValid = (...val) => {
-  req('any', 'date arguments', ![...val].length);
-  return !Number.isNaN(new Date(...val).valueOf());
+	req("any", "date arguments", ![...val].length);
+	return !Number.isNaN(new Date(...val).valueOf());
 };
 /**
  * Adds a specified number of days to a date.
@@ -85,11 +85,11 @@ export let isDateValid = (...val) => {
  * @returns {Date} The date with the specified number of days added.
  */
 export let addDaysToDate = (
-  date = req('date', 'date or date string'),
-  n = req('number', 'days'),
+	date = req("date", "date or date string"),
+	n = req("number", "days"),
 ) => {
-  const d = new Date(date);
-  d.setDate(d.getDate() + n);
-  return d.toISOString().split('T')[0];
+	const d = new Date(date);
+	d.setDate(d.getDate() + n);
+	return d.toISOString().split("T")[0];
 };
 //#endregion Date

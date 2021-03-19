@@ -66,28 +66,28 @@ Contributors to Bijou.js:
 
 let isNode = false;
 if (
-  typeof window === 'undefined' ||
-  typeof document === 'undefined'
+	typeof window === "undefined" ||
+	typeof document === "undefined"
 ) {
-  isNode = true;
+	isNode = true;
 } else {
-  isNode = false;
+	isNode = false;
 }
 
 if (isNode) {
-  console.warn(
-    'There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.',
-  );
+	console.warn(
+		"There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.",
+	);
 }
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
  */
 let node = () => {
-  if (isNode) {
-    throw new Error(
-      'You are using Node.js, this function does not work in Node.js! Sorry!',
-    );
-  }
+	if (isNode) {
+		throw new Error(
+			"You are using Node.js, this function does not work in Node.js! Sorry!",
+		);
+	}
 };
 /*
   ____   ___  _   _ ____   ____ _____
@@ -148,14 +148,14 @@ let string_namespace = {};
 let utility_namespace = {};
 
 const req = (type, desc, condition = true) => {
-  if (!condition) return;
-  let err = 'Missing parameter';
-  if (type) {
-    err += ' of type ' + type;
-  }
-  if (desc) {
-    err = `Parameter ${desc} ${type ? `(${type})` : ''} required.`;
-  }
-  throw new Error(err);
+	if (!condition) return;
+	let err = "Missing parameter";
+	if (type) {
+		err += " of type " + type;
+	}
+	if (desc) {
+		err = `Parameter ${desc} ${type ? `(${type})` : ""} required.`;
+	}
+	throw new Error(err);
 };
 //#region bijou

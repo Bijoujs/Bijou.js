@@ -18,8 +18,8 @@
  * @param {HTMLElement} child The child element to test.
  */
 export let elementContains = (
-  parent = req('HTMLElement', 'parent'),
-  child = req('HTMLElement', 'child'),
+	parent = req("HTMLElement", "parent"),
+	child = req("HTMLElement", "child"),
 ) => parent !== child && parent.contains(child);
 /**
  * Gets the parent elements of the element given.
@@ -41,12 +41,12 @@ export let elementContains = (
  * _$.parents(document.querySelector("img"));//[div#img, body, html]
  * @param {HTMLElement} el The element
  */
-export let parents = (el = req('element')) => [
-  ...(function* (e) {
-    while ((e = e.parentNode)) {
-      yield e;
-    }
-  })(el),
+export let parents = (el = req("element")) => [
+	...(function* (e) {
+		while ((e = e.parentNode)) {
+			yield e;
+		}
+	})(el),
 ];
 /**
  * Gets all the images that are children of the specified element.
@@ -62,13 +62,13 @@ export let parents = (el = req('element')) => [
  * @param {Boolean} [includeDuplicates=false] Whether to include duplicate images, defaults to false.
  */
 export let getImages = (
-  el = document.documentElement,
-  includeDuplicates = false,
+	el = document.documentElement,
+	includeDuplicates = false,
 ) => {
-  const images = [...el.getElementsByTagName('img')].map((img) =>
-    img.getAttribute('src'),
-  );
-  return includeDuplicates ? images : [...new Set(images)];
+	const images = [...el.getElementsByTagName("img")].map((img) =>
+		img.getAttribute("src"),
+	);
+	return includeDuplicates ? images : [...new Set(images)];
 };
 /**
  * Renders an HTML element from an object in the container specified.
@@ -88,29 +88,29 @@ export let getImages = (
  * @param {HTMLElement} container The html element to render it in.
  */
 export let renderElement = (
-  { type, props = {} } = req('object', 'options'),
-  container = req('HTMLElement', 'container'),
+	{ type, props = {} } = req("object", "options"),
+	container = req("HTMLElement", "container"),
 ) => {
-  const isTextElement = !type;
-  const element = isTextElement
-    ? document.createTextNode('')
-    : document.createElement(type);
+	const isTextElement = !type;
+	const element = isTextElement
+		? document.createTextNode("")
+		: document.createElement(type);
 
-  const isListener = (p) => p.startsWith('on');
-  const isAttribute = (p) => !isListener(p) && p !== 'children';
+	const isListener = (p) => p.startsWith("on");
+	const isAttribute = (p) => !isListener(p) && p !== "children";
 
-  Object.keys(props).forEach((p) => {
-    if (isAttribute(p)) element[p] = props[p];
-    if (!isTextElement && isListener(p))
-      element.addEventListener(p.toLowerCase().slice(2), props[p]);
-  });
+	Object.keys(props).forEach((p) => {
+		if (isAttribute(p)) element[p] = props[p];
+		if (!isTextElement && isListener(p))
+			element.addEventListener(p.toLowerCase().slice(2), props[p]);
+	});
 
-  if (!isTextElement && props.children && props.children.length)
-    props.children.forEach((childElement) =>
-      renderElement(childElement, element),
-    );
+	if (!isTextElement && props.children && props.children.length)
+		props.children.forEach((childElement) =>
+			renderElement(childElement, element),
+		);
 
-  container.appendChild(element);
+	container.appendChild(element);
 };
 /**
  * Create a DOM element from a querySelector with option to include content
@@ -124,51 +124,51 @@ export let renderElement = (
  * - createElement('span#my-id.my-class.second-class'); // <span id="my-id" class="my-class second-class">
  * - createElement('#my-id.my-class.second-class', 'text to insert', 12345); // <div id="my-id" class="my-class second-class">
  */
-export function create(querySelector = 'div', ...content) {
-  node();
-  let nodeType = querySelector.match(/^[a-z0-9]+/i);
-  let id = querySelector.match(/#([a-z]+[a-z0-9-]*)/gi);
-  let classes = querySelector.match(/\.([a-z]+[a-z0-9-]*)/gi);
-  let attributes = querySelector.match(
-    /\[([a-z][a-z-]+)(=['|"]?([^\]]*)['|"]?)?\]/gi,
-  );
-  let node = nodeType ? nodeType[0] : 'div';
+export function create(querySelector = "div", ...content) {
+	node();
+	let nodeType = querySelector.match(/^[a-z0-9]+/i);
+	let id = querySelector.match(/#([a-z]+[a-z0-9-]*)/gi);
+	let classes = querySelector.match(/\.([a-z]+[a-z0-9-]*)/gi);
+	let attributes = querySelector.match(
+		/\[([a-z][a-z-]+)(=['|"]?([^\]]*)['|"]?)?\]/gi,
+	);
+	let node = nodeType ? nodeType[0] : "div";
 
-  if (id && id.length > 1) {
-    throw new Error('only 1 ID is allowed');
-  }
+	if (id && id.length > 1) {
+		throw new Error("only 1 ID is allowed");
+	}
 
-  const elt = document.createElement(node);
+	const elt = document.createElement(node);
 
-  if (id) {
-    elt.id = id[0].replace('#', '');
-  }
+	if (id) {
+		elt.id = id[0].replace("#", "");
+	}
 
-  if (classes) {
-    const attrClasses = classes.join(' ').replace(/\./g, '');
-    elt.setAttribute('class', attrClasses);
-  }
+	if (classes) {
+		const attrClasses = classes.join(" ").replace(/\./g, "");
+		elt.setAttribute("class", attrClasses);
+	}
 
-  if (attributes) {
-    attributes.forEach((item) => {
-      item = item.slice(0, -1).slice(1);
-      let [label, value] = item.split('=');
-      if (value) {
-        value = value.replace(/^['"](.*)['"]$/, '$1');
-      }
-      elt.setAttribute(label, value || '');
-    });
-  }
+	if (attributes) {
+		attributes.forEach((item) => {
+			item = item.slice(0, -1).slice(1);
+			let [label, value] = item.split("=");
+			if (value) {
+				value = value.replace(/^['"](.*)['"]$/, "$1");
+			}
+			elt.setAttribute(label, value || "");
+		});
+	}
 
-  content.forEach((item) => {
-    if (typeof item === 'string' || typeof item === 'number') {
-      elt.appendChild(document.createTextNode(item));
-    } else if (item.nodeType === document.ELEMENT_NODE) {
-      elt.appendChild(item);
-    }
-  });
+	content.forEach((item) => {
+		if (typeof item === "string" || typeof item === "number") {
+			elt.appendChild(document.createTextNode(item));
+		} else if (item.nodeType === document.ELEMENT_NODE) {
+			elt.appendChild(item);
+		}
+	});
 
-  return elt;
+	return elt;
 }
 /**
  * Re-enables the use of &lt;menu&gt; and &lt;menuitem&gt; tags for corner clicking.
@@ -189,11 +189,11 @@ export function create(querySelector = 'div', ...content) {
  * @returns {undefined};
  */
 export let context = () => {
-  var menu = document.createElement('UL');
-  menu.id = 'contextMenu';
-  document.body.appendChild(menu);
-  let styles = document.createElement('STYLE');
-  styles.innerHTML = `#contextMenu {
+	var menu = document.createElement("UL");
+	menu.id = "contextMenu";
+	document.body.appendChild(menu);
+	let styles = document.createElement("STYLE");
+	styles.innerHTML = `#contextMenu {
        pointer-events: none;
        padding: 0;
        opacity: 0;
@@ -227,60 +227,60 @@ export let context = () => {
        cursor: pointer;
      }
      `;
-  document.body.appendChild(styles);
-  var elements = document.querySelectorAll('[contextmenu]');
-  for (let i = 0; i < elements.length; i++) {
-    window.addEventListener('contextmenu', (e) => {
-      menu.style.pointerEvents = 'auto';
-      let items;
-      try {
-        items = document.querySelectorAll(
-          `#${e.target
-            .closest('[contextmenu]')
-            .getAttribute('contextmenu')} menuitem`,
-        );
-        e.preventDefault();
-      } catch (e) {
-        return true;
-      }
-      menu.innerHTML = '';
-      for (let j = 0; j < items.length; j++) {
-        const contextMenu = items[j];
-        const liTag = document.createElement('li');
-        liTag.setAttribute(
-          'onclick',
-          contextMenu.getAttribute('onclick'),
-        );
-        liTag.addEventListener('click', () => {
-          menu.style.opacity = 0;
-          menu.style.pointerEvents = 'none';
-        });
-        liTag.textContent = contextMenu.getAttribute('label');
-        menu.innerHTML += liTag.outerHTML;
-      }
-      console.log(menu.innerHTML);
-      menu.style.top = `${e.clientY}px`;
-      menu.style.left = `${e.clientX}px`;
-      menu.style.opacity = 1;
-    });
-  }
-  var contextTimer = 0;
-  setInterval(() => {
-    contextTimer += 100;
-    if (contextTimer > 3000) {
-      menu.style.opacity = 0;
-      menu.style.pointerEvents = 'none';
-      contextTimer = 0;
-      return;
-    }
-  }, 100);
-  _$.addEventListeners(menu, ['mousemove', 'click', 'scroll'], () => {
-    contextTimer = 0;
-  });
-  _$.onOutsideClick(menu, () => {
-    menu.style.opacity = 0;
-    menu.style.pointerEvents = 'none';
-  });
+	document.body.appendChild(styles);
+	var elements = document.querySelectorAll("[contextmenu]");
+	for (let i = 0; i < elements.length; i++) {
+		window.addEventListener("contextmenu", (e) => {
+			menu.style.pointerEvents = "auto";
+			let items;
+			try {
+				items = document.querySelectorAll(
+					`#${e.target
+						.closest("[contextmenu]")
+						.getAttribute("contextmenu")} menuitem`,
+				);
+				e.preventDefault();
+			} catch (e) {
+				return true;
+			}
+			menu.innerHTML = "";
+			for (let j = 0; j < items.length; j++) {
+				const contextMenu = items[j];
+				const liTag = document.createElement("li");
+				liTag.setAttribute(
+					"onclick",
+					contextMenu.getAttribute("onclick"),
+				);
+				liTag.addEventListener("click", () => {
+					menu.style.opacity = 0;
+					menu.style.pointerEvents = "none";
+				});
+				liTag.textContent = contextMenu.getAttribute("label");
+				menu.innerHTML += liTag.outerHTML;
+			}
+			console.log(menu.innerHTML);
+			menu.style.top = `${e.clientY}px`;
+			menu.style.left = `${e.clientX}px`;
+			menu.style.opacity = 1;
+		});
+	}
+	var contextTimer = 0;
+	setInterval(() => {
+		contextTimer += 100;
+		if (contextTimer > 3000) {
+			menu.style.opacity = 0;
+			menu.style.pointerEvents = "none";
+			contextTimer = 0;
+			return;
+		}
+	}, 100);
+	_$.addEventListeners(menu, ["mousemove", "click", "scroll"], () => {
+		contextTimer = 0;
+	});
+	_$.onOutsideClick(menu, () => {
+		menu.style.opacity = 0;
+		menu.style.pointerEvents = "none";
+	});
 };
 
 /**
@@ -293,25 +293,25 @@ export let context = () => {
  * if (_$.inView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the element is completely in view.
  */
-export let inView = (el = req('HTMLElement', 'element')) => {
-  node();
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
+export let inView = (el = req("HTMLElement", "element")) => {
+	node();
+	var top = el.offsetTop;
+	var left = el.offsetLeft;
+	var width = el.offsetWidth;
+	var height = el.offsetHeight;
 
-  while (el.offsetParent) {
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
-  }
+	while (el.offsetParent) {
+		el = el.offsetParent;
+		top += el.offsetTop;
+		left += el.offsetLeft;
+	}
 
-  return (
-    top >= window.pageYOffset &&
-    left >= window.pageXOffset &&
-    top + height <= window.pageYOffset + window.innerHeight &&
-    left + width <= window.pageXOffset + window.innerWidth
-  );
+	return (
+		top >= window.pageYOffset &&
+		left >= window.pageXOffset &&
+		top + height <= window.pageYOffset + window.innerHeight &&
+		left + width <= window.pageXOffset + window.innerWidth
+	);
 };
 /**
  * Tests if the given DOM element is partially (or fully) in view.
@@ -323,25 +323,25 @@ export let inView = (el = req('HTMLElement', 'element')) => {
  * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the DOM element is partially in view.
  */
-export let inPartialView = (el = req('HTMLElement', 'element')) => {
-  node();
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
+export let inPartialView = (el = req("HTMLElement", "element")) => {
+	node();
+	var top = el.offsetTop;
+	var left = el.offsetLeft;
+	var width = el.offsetWidth;
+	var height = el.offsetHeight;
 
-  while (el.offsetParent) {
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
-  }
+	while (el.offsetParent) {
+		el = el.offsetParent;
+		top += el.offsetTop;
+		left += el.offsetLeft;
+	}
 
-  return (
-    top < window.pageYOffset + window.innerHeight &&
-    left < window.pageXOffset + window.innerWidth &&
-    top + height > window.pageYOffset &&
-    left + width > window.pageXOffset
-  );
+	return (
+		top < window.pageYOffset + window.innerHeight &&
+		left < window.pageXOffset + window.innerWidth &&
+		top + height > window.pageYOffset &&
+		left + width > window.pageXOffset
+	);
 };
 
 /**
@@ -356,13 +356,13 @@ export let inPartialView = (el = req('HTMLElement', 'element')) => {
  * @returns {undefined}
  */
 export let replaceText = (
-  el = req('HTMLElement', 'element'),
-  callback = req('function', 'callback'),
+	el = req("HTMLElement", "element"),
+	callback = req("function", "callback"),
 ) => {
-  node();
-  _$.each(_$.textNodes(el), (node) => {
-    node.textContent = callback(node.textContent);
-  });
+	node();
+	_$.each(_$.textNodes(el), (node) => {
+		node.textContent = callback(node.textContent);
+	});
 };
 /**
  * Gets a list of all the text nodes in an element
@@ -373,12 +373,12 @@ export let replaceText = (
  * @example
  * _$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements
  */
-export let textNodes = (el = req('HTMLElement', 'element')) => {
-  return [...el.childNodes].filter((node) => {
-    return (
-      node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ''
-    );
-  });
+export let textNodes = (el = req("HTMLElement", "element")) => {
+	return [...el.childNodes].filter((node) => {
+		return (
+			node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ""
+		);
+	});
 };
 /**
  * Generates a querySelector for an element passed in.
@@ -390,104 +390,104 @@ export let textNodes = (el = req('HTMLElement', 'element')) => {
  * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
  * @returns {String} The generated querySelector.
  */
-export let querySelector = (elem = req('HTMLElement', 'element')) => {
-  node();
-  var element = elem;
-  var str = '';
+export let querySelector = (elem = req("HTMLElement", "element")) => {
+	node();
+	var element = elem;
+	var str = "";
 
-  function loop(element) {
-    if (
-      element.getAttribute('id') &&
-      document.querySelectorAll(`#${element.getAttribute('id')}`)
-        .length === 1
-    ) {
-      str = str.replace(/^/, ' #' + element.getAttribute('id'));
-      str = str.replace(/\s/, '');
-      str = str.replace(/\s/g, ' > ');
-      return str;
-    }
-    if (document.body === element) {
-      str = str.replace(/^/, ' body');
-      str = str.replace(/\s/, '');
-      str = str.replace(/\s/g, ' > ');
-      return str;
-    }
-    if (element.getAttribute('class')) {
-      var elemClasses = '.';
-      elemClasses += element.getAttribute('class');
-      elemClasses = elemClasses.replace(/\s/g, '.');
-      elemClasses = elemClasses.replace(/^/g, ' ');
-      var classNth = '';
-      var childrens = element.parentNode.children;
+	function loop(element) {
+		if (
+			element.getAttribute("id") &&
+			document.querySelectorAll(`#${element.getAttribute("id")}`)
+				.length === 1
+		) {
+			str = str.replace(/^/, " #" + element.getAttribute("id"));
+			str = str.replace(/\s/, "");
+			str = str.replace(/\s/g, " > ");
+			return str;
+		}
+		if (document.body === element) {
+			str = str.replace(/^/, " body");
+			str = str.replace(/\s/, "");
+			str = str.replace(/\s/g, " > ");
+			return str;
+		}
+		if (element.getAttribute("class")) {
+			var elemClasses = ".";
+			elemClasses += element.getAttribute("class");
+			elemClasses = elemClasses.replace(/\s/g, ".");
+			elemClasses = elemClasses.replace(/^/g, " ");
+			var classNth = "";
+			var childrens = element.parentNode.children;
 
-      if (childrens.length < 2) {
-        return;
-      }
+			if (childrens.length < 2) {
+				return;
+			}
 
-      var similarClasses = [];
+			var similarClasses = [];
 
-      for (var i = 0; i < childrens.length; i++) {
-        if (
-          element.getAttribute('class') ==
-          childrens[i].getAttribute('class')
-        ) {
-          similarClasses.push(childrens[i]);
-        }
-      }
+			for (var i = 0; i < childrens.length; i++) {
+				if (
+					element.getAttribute("class") ==
+					childrens[i].getAttribute("class")
+				) {
+					similarClasses.push(childrens[i]);
+				}
+			}
 
-      if (similarClasses.length > 1) {
-        for (var j = 0; j < similarClasses.length; j++) {
-          if (element === similarClasses[j]) {
-            j++;
-            classNth = ':nth-of-type(' + j + ')';
-            break;
-          }
-        }
-      }
+			if (similarClasses.length > 1) {
+				for (var j = 0; j < similarClasses.length; j++) {
+					if (element === similarClasses[j]) {
+						j++;
+						classNth = ":nth-of-type(" + j + ")";
+						break;
+					}
+				}
+			}
 
-      str = str.replace(/^/, elemClasses + classNth);
-    } else {
-      var name = element.nodeName;
-      name = name.toLowerCase();
-      var nodeNth = '';
+			str = str.replace(/^/, elemClasses + classNth);
+		} else {
+			var name = element.nodeName;
+			name = name.toLowerCase();
+			var nodeNth = "";
 
-      childrens = element.parentNode.children;
+			childrens = element.parentNode.children;
 
-      if (childrens.length > 2) {
-        var similarNodes = [];
+			if (childrens.length > 2) {
+				var similarNodes = [];
 
-        for (var i = 0; i < childrens.length; i++) {
-          if (element.nodeName == childrens[i].nodeName) {
-            similarNodes.push(childrens[i]);
-          }
-        }
+				for (var i = 0; i < childrens.length; i++) {
+					if (element.nodeName == childrens[i].nodeName) {
+						similarNodes.push(childrens[i]);
+					}
+				}
 
-        if (similarNodes.length > 1) {
-          for (var j = 0; j < similarNodes.length; j++) {
-            if (element === similarNodes[j]) {
-              j++;
-              nodeNth = ':nth-of-type(' + j + ')';
-              break;
-            }
-          }
-        }
-      }
+				if (similarNodes.length > 1) {
+					for (var j = 0; j < similarNodes.length; j++) {
+						if (element === similarNodes[j]) {
+							j++;
+							nodeNth = ":nth-of-type(" + j + ")";
+							break;
+						}
+					}
+				}
+			}
 
-      str = str.replace(/^/, ' ' + name + nodeNth);
-    }
+			str = str.replace(/^/, " " + name + nodeNth);
+		}
 
-    if (element.parentNode) {
-      loop(element.parentNode);
-    } else {
-      str = str.replace(/\s/g, ' > ');
-      str = str.replace(/\s/, '');
-      return str;
-    }
-  }
+		if (element.parentNode) {
+			loop(element.parentNode);
+		} else {
+			str = str.replace(/\s/g, " > ");
+			str = str.replace(/\s/, "");
+			return str;
+		}
+	}
 
-  loop(element);
+	loop(element);
 
-  return str;
+	return str;
 };
 /**
  * Removes comments from the element or string of code specified.
@@ -499,17 +499,17 @@ export let querySelector = (elem = req('HTMLElement', 'element')) => {
  * @returns {String|Element} The string removed of comments or the element removed of comments.
  */
 export let removeComments = (
-  el = req('String|HTMLElement', 'element or string'),
+	el = req("String|HTMLElement", "element or string"),
 ) => {
-  const isString = typeof el === 'string';
-  el = isString ? _$.parseHTML(el) : el.cloneNode(true);
-  for (const child of [...el.querySelectorAll('*'), el]) {
-    for (const grandchild of child.childNodes) {
-      if (grandchild instanceof Comment)
-        child.removeChild(grandchild);
-    }
-  }
-  return isString ? el.outerHTML : el;
+	const isString = typeof el === "string";
+	el = isString ? _$.parseHTML(el) : el.cloneNode(true);
+	for (const child of [...el.querySelectorAll("*"), el]) {
+		for (const grandchild of child.childNodes) {
+			if (grandchild instanceof Comment)
+				child.removeChild(grandchild);
+		}
+	}
+	return isString ? el.outerHTML : el;
 };
 /**
  * Parses the string of HTML specified and returns an HTML element of it.
@@ -523,11 +523,11 @@ export let removeComments = (
  * @returns {HTMLDocument} The HTML document element of the HTML string specified.
  */
 export let parseHTML = (
-  string = req('string', 'html string'),
-  mimeType = 'text/html',
+	string = req("string", "html string"),
+	mimeType = "text/html",
 ) => {
-  const domparser = new DOMParser();
-  return domparser.parseFromString(string, mimeType);
+	const domparser = new DOMParser();
+	return domparser.parseFromString(string, mimeType);
 };
 /**
  * Allows an element to be dragged and dropped.
@@ -538,44 +538,44 @@ export let parseHTML = (
  * _$.drag(document.querySelector('div')); // Allows the first <div> on the page to be dragged.
  * @returns {Element} The element.
  */
-export let drag = (el = req('HTMLElement', 'element')) => {
-  node();
-  var initX, initY, mousePressX, mousePressY;
-  el.addEventListener(
-    'mousedown',
-    function (event) {
-      var style = window.getComputedStyle(el);
-      el.style.top = style.getPropertyValue('top');
-      el.style.left = style.getPropertyValue('left');
-      el.style.right = style.getPropertyValue('right');
-      el.style.bottom = style.getPropertyValue('bottom');
-      this.style.position = 'absolute';
-      initX = this.offsetLeft;
-      initY = this.offsetTop;
-      mousePressX = event.clientX;
-      mousePressY = event.clientY;
-      this.addEventListener('mousemove', repositionElement, false);
+export let drag = (el = req("HTMLElement", "element")) => {
+	node();
+	var initX, initY, mousePressX, mousePressY;
+	el.addEventListener(
+		"mousedown",
+		function (event) {
+			var style = window.getComputedStyle(el);
+			el.style.top = style.getPropertyValue("top");
+			el.style.left = style.getPropertyValue("left");
+			el.style.right = style.getPropertyValue("right");
+			el.style.bottom = style.getPropertyValue("bottom");
+			this.style.position = "absolute";
+			initX = this.offsetLeft;
+			initY = this.offsetTop;
+			mousePressX = event.clientX;
+			mousePressY = event.clientY;
+			this.addEventListener("mousemove", repositionElement, false);
 
-      window.addEventListener(
-        'mouseup',
-        function () {
-          el.removeEventListener(
-            'mousemove',
-            repositionElement,
-            false,
-          );
-        },
-        false,
-      );
-    },
-    false,
-  );
+			window.addEventListener(
+				"mouseup",
+				function () {
+					el.removeEventListener(
+						"mousemove",
+						repositionElement,
+						false,
+					);
+				},
+				false,
+			);
+		},
+		false,
+	);
 
-  function repositionElement(event) {
-    this.style.left = initX + event.clientX - mousePressX + 'px';
-    this.style.top = initY + event.clientY - mousePressY + 'px';
-  }
-  return el;
+	function repositionElement(event) {
+		this.style.left = initX + event.clientX - mousePressX + "px";
+		this.style.top = initY + event.clientY - mousePressY + "px";
+	}
+	return el;
 };
 /**
  * Adds multiple event listeners with one callback to the element specified.
@@ -598,26 +598,26 @@ export let drag = (el = req('HTMLElement', 'element')) => {
  * @returns {undefined}
  */
 export let addEventListeners = (
-  element = req('HTMLElement', 'element'),
-  events = req('array', 'events'),
-  handler = {},
-  useCapture = false,
-  args = false,
+	element = req("HTMLElement", "element"),
+	events = req("array", "events"),
+	handler = {},
+	useCapture = false,
+	args = false,
 ) => {
-  if (!(events instanceof Array)) {
-    throw (
-      'addMultipleListeners: ' +
-      'please supply an array of eventstrings ' +
-      '(like ["click","mouseover"])'
-    );
-  }
-  //create a wrapper to be able to use additional arguments
-  var handlerFn = function (e) {
-    handler.apply(this, args && args instanceof Array ? args : []);
-  };
-  for (var i = 0; i < events.length; i += 1) {
-    element.addEventListener(events[i], handlerFn, useCapture);
-  }
+	if (!(events instanceof Array)) {
+		throw (
+			"addMultipleListeners: " +
+			"please supply an array of eventstrings " +
+			'(like ["click","mouseover"])'
+		);
+	}
+	//create a wrapper to be able to use additional arguments
+	var handlerFn = function (e) {
+		handler.apply(this, args && args instanceof Array ? args : []);
+	};
+	for (var i = 0; i < events.length; i += 1) {
+		element.addEventListener(events[i], handlerFn, useCapture);
+	}
 };
 /**
  * @memberOf element
@@ -627,47 +627,47 @@ export let addEventListeners = (
  * @param {HTMLTableElement} element The table to sort
  */
 export let sortTable = (
-  element = req('HTMLTableElement', 'table element'),
+	element = req("HTMLTableElement", "table element"),
 ) => {
-  var getCellValue = function (tr, idx) {
-    return tr.children[idx].innerText || tr.children[idx].textContent;
-  };
+	var getCellValue = function (tr, idx) {
+		return tr.children[idx].innerText || tr.children[idx].textContent;
+	};
 
-  var comparer = function (idx, asc) {
-    return function (a, b) {
-      return (function (v1, v2) {
-        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
-          ? v1 - v2
-          : v1.toString().localeCompare(v2);
-      })(
-        getCellValue(asc ? a : b, idx),
-        getCellValue(asc ? b : a, idx),
-      );
-    };
-  };
+	var comparer = function (idx, asc) {
+		return function (a, b) {
+			return (function (v1, v2) {
+				return v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
+					? v1 - v2
+					: v1.toString().localeCompare(v2);
+			})(
+				getCellValue(asc ? a : b, idx),
+				getCellValue(asc ? b : a, idx),
+			);
+		};
+	};
 
-  Array.prototype.slice
-    .call(element.querySelectorAll('th'))
-    .forEach(function (th) {
-      th.addEventListener('click', function () {
-        var table = th.parentNode;
-        while (table.tagName.toUpperCase() != 'TABLE')
-          table = table.parentNode;
-        Array.prototype.slice
-          .call(table.querySelectorAll('tr:nth-child(n+2)'))
-          .sort(
-            comparer(
-              Array.prototype.slice
-                .call(th.parentNode.children)
-                .indexOf(th),
-              (this.asc = !this.asc),
-            ),
-          )
-          .forEach(function (tr) {
-            table.appendChild(tr);
-          });
-      });
-    });
+	Array.prototype.slice
+		.call(element.querySelectorAll("th"))
+		.forEach(function (th) {
+			th.addEventListener("click", function () {
+				var table = th.parentNode;
+				while (table.tagName.toUpperCase() != "TABLE")
+					table = table.parentNode;
+				Array.prototype.slice
+					.call(table.querySelectorAll("tr:nth-child(n+2)"))
+					.sort(
+						comparer(
+							Array.prototype.slice
+								.call(th.parentNode.children)
+								.indexOf(th),
+							(this.asc = !this.asc),
+						),
+					)
+					.forEach(function (tr) {
+						table.appendChild(tr);
+					});
+			});
+		});
 };
 /**
  * Sorts a table by a <th> element.
@@ -686,42 +686,42 @@ export let sortTable = (
  * @param {Boolean} acending Whether to sort the table ascending or descending.
  */
 export let sortTableBy = (
-  th = req('HTMLTableElement', '<th> element'),
-  acending = req('boolean', 'ascending'),
+	th = req("HTMLTableElement", "<th> element"),
+	acending = req("boolean", "ascending"),
 ) => {
-  var getCellValue = function (tr, idx) {
-    return tr.children[idx].innerText || tr.children[idx].textContent;
-  };
+	var getCellValue = function (tr, idx) {
+		return tr.children[idx].innerText || tr.children[idx].textContent;
+	};
 
-  var comparer = function (idx, asc) {
-    return function (a, b) {
-      return (function (v1, v2) {
-        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
-          ? v1 - v2
-          : v1.toString().localeCompare(v2);
-      })(
-        getCellValue(asc ? a : b, idx),
-        getCellValue(asc ? b : a, idx),
-      );
-    };
-  };
+	var comparer = function (idx, asc) {
+		return function (a, b) {
+			return (function (v1, v2) {
+				return v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
+					? v1 - v2
+					: v1.toString().localeCompare(v2);
+			})(
+				getCellValue(asc ? a : b, idx),
+				getCellValue(asc ? b : a, idx),
+			);
+		};
+	};
 
-  var table = th.parentNode;
-  while (table.tagName.toUpperCase() != 'TABLE')
-    table = table.parentNode;
-  Array.prototype.slice
-    .call(table.querySelectorAll('tr:nth-child(n+2)'))
-    .sort(
-      comparer(
-        Array.prototype.slice
-          .call(th.parentNode.children)
-          .indexOf(th),
-        acending,
-      ),
-    )
-    .forEach(function (tr) {
-      table.appendChild(tr);
-    });
+	var table = th.parentNode;
+	while (table.tagName.toUpperCase() != "TABLE")
+		table = table.parentNode;
+	Array.prototype.slice
+		.call(table.querySelectorAll("tr:nth-child(n+2)"))
+		.sort(
+			comparer(
+				Array.prototype.slice
+					.call(th.parentNode.children)
+					.indexOf(th),
+				acending,
+			),
+		)
+		.forEach(function (tr) {
+			table.appendChild(tr);
+		});
 };
 /**
  * Adds the specified styles to the element specified.
@@ -734,11 +734,11 @@ export let sortTableBy = (
  * @returns {Object} the style object of the element.
  */
 export let addStyles = (
-  el = req('HTMLElement', 'element'),
-  styles = req('Object', 'styles'),
+	el = req("HTMLElement", "element"),
+	styles = req("Object", "styles"),
 ) => {
-  node();
-  return Object.assign(el.style, styles);
+	node();
+	return Object.assign(el.style, styles);
 };
 
 /**
@@ -752,12 +752,12 @@ export let addStyles = (
  * @returns {Element} The created element.
  */
 export let createElement = (
-  str = req('String', 'HTML element string'),
+	str = req("String", "HTML element string"),
 ) => {
-  node();
-  const el = document.createElement('div');
-  el.innerHTML = str;
-  return el.firstElementChild;
+	node();
+	const el = document.createElement("div");
+	el.innerHTML = str;
+	return el.firstElementChild;
 };
 /**
  * Gets a property from the computed style of an element.
@@ -770,12 +770,12 @@ export let createElement = (
  * @returns {String} The computed style property for the element specified.
  */
 export let compStyle = (
-  el = req('HTMLElement', 'element'),
-  prop = req('String', 'CSS property string'),
+	el = req("HTMLElement", "element"),
+	prop = req("String", "CSS property string"),
 ) => {
-  node();
-  var computedStyles = window.getComputedStyle(el);
-  return computedStyles.getPropertyValue(prop);
+	node();
+	var computedStyles = window.getComputedStyle(el);
+	return computedStyles.getPropertyValue(prop);
 };
 
 /**
@@ -788,8 +788,8 @@ export let compStyle = (
  * // Make every sibling of the first list item's background color white.
  * @returns {Element[]} The array of sibling elements.
  */
-export let elementSiblings = (n = req('HTMLElement', 'element')) =>
-  [...n.parentElement.children].filter((c) => c != n);
+export let elementSiblings = (n = req("HTMLElement", "element")) =>
+	[...n.parentElement.children].filter((c) => c != n);
 /**
  * Disables right click on the element spcified.
  * @function
@@ -800,10 +800,10 @@ export let elementSiblings = (n = req('HTMLElement', 'element')) =>
  * @returns {undefined}
  */
 export let disableRightClick = (
-  el = req('HTMLElement', 'element'),
+	el = req("HTMLElement", "element"),
 ) => {
-  node();
-  return (el.oncontextmenu = false);
+	node();
+	return (el.oncontextmenu = false);
 };
 /**
  * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
@@ -814,13 +814,13 @@ export let disableRightClick = (
  * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the <h1> element to inline using the style="___" attribute
  * @returns {undefined}
  */
-export let inlineCSS = (el = req('HTMLElement', 'element')) => {
-  var cs = getComputedStyle(el, null);
-  var i;
-  for (i = 0; i < cs.length; i++) {
-    var s = cs[i] + '';
-    el.style[s] = cs[s];
-  }
+export let inlineCSS = (el = req("HTMLElement", "element")) => {
+	var cs = getComputedStyle(el, null);
+	var i;
+	for (i = 0; i < cs.length; i++) {
+		var s = cs[i] + "";
+		el.style[s] = cs[s];
+	}
 };
 /**
  * Returns an array of objects representing the attributes of a passed element.
@@ -832,21 +832,21 @@ export let inlineCSS = (el = req('HTMLElement', 'element')) => {
  * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
  * @return {Array.<object>} The array of objects representing the attributes
  */
-export let attributes = (el = req('HTMLElement', 'element')) => {
-  node();
-  var output = [];
-  for (
-    var att, i = 0, atts = el.attributes, n = atts.length;
-    i < n;
-    i++
-  ) {
-    att = atts[i];
-    output.push({
-      name: att.nodeName,
-      value: att.nodeValue,
-    });
-  }
-  return output;
+export let attributes = (el = req("HTMLElement", "element")) => {
+	node();
+	var output = [];
+	for (
+		var att, i = 0, atts = el.attributes, n = atts.length;
+		i < n;
+		i++
+	) {
+		att = atts[i];
+		output.push({
+			name: att.nodeName,
+			value: att.nodeValue,
+		});
+	}
+	return output;
 };
 /**
  * Observes the mutations of the html element specified.
@@ -860,28 +860,28 @@ export let attributes = (el = req('HTMLElement', 'element')) => {
  * @returns {undefined}
  */
 export let observeMutations = (
-  element = req('HTMLElement', 'element'),
-  callback = req('function', 'callback'),
-  options = {},
+	element = req("HTMLElement", "element"),
+	callback = req("function", "callback"),
+	options = {},
 ) => {
-  const observer = new MutationObserver((mutations) =>
-    mutations.forEach((m) => callback(m)),
-  );
-  observer.observe(
-    element,
-    Object.assign(
-      {
-        childList: true,
-        attributes: true,
-        attributeOldValue: true,
-        characterData: true,
-        characterDataOldValue: true,
-        subtree: true,
-      },
-      options,
-    ),
-  );
-  return observer;
+	const observer = new MutationObserver((mutations) =>
+		mutations.forEach((m) => callback(m)),
+	);
+	observer.observe(
+		element,
+		Object.assign(
+			{
+				childList: true,
+				attributes: true,
+				attributeOldValue: true,
+				characterData: true,
+				characterDataOldValue: true,
+				subtree: true,
+			},
+			options,
+		),
+	);
+	return observer;
 };
 /**
  * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
@@ -903,26 +903,26 @@ export let observeMutations = (
  * }
  */
 export let tilt = (
-  el = req('HTMLElement', 'element'),
-  x = req('number', 'x'),
-  y = req('number', 'y'),
-  perspective = 500,
-  amount = 30,
+	el = req("HTMLElement", "element"),
+	x = req("number", "x"),
+	y = req("number", "y"),
+	perspective = 500,
+	amount = 30,
 ) => {
-  //Old code
-  /*  const xVal = x
+	//Old code
+	/*  const xVal = x
       const yVal = y
       const yRotation = amount * ((xVal - width / 2) / width)
       const xRotation = amount * -1 * ((yVal - height / 2) / height)
       const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
       el.style.transform = string */
 
-  //One liner
-  el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
-    amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
-  }deg) rotateY(${
-    amount * ((x - el.clientWidth / 2) / el.clientWidth)
-  }deg)`;
+	//One liner
+	el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
+		amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
+	}deg) rotateY(${
+		amount * ((x - el.clientWidth / 2) / el.clientWidth)
+	}deg)`;
 };
 /**
  * Enters fullscreen on an element.
@@ -933,13 +933,13 @@ export let tilt = (
  * @example
  * _$.fullScreen(document.documentElement); // Make the window fullscreen
  */
-export let fullScreen = (element = req('HTMLElement', 'element')) => {
-  return (
-    element.requestFullScreen ||
-    element.mozRequestFullScreen ||
-    element.webkitRequestFullScreen() ||
-    new Error('Fullscreen failed')
-  );
+export let fullScreen = (element = req("HTMLElement", "element")) => {
+	return (
+		element.requestFullScreen ||
+		element.mozRequestFullScreen ||
+		element.webkitRequestFullScreen() ||
+		new Error("Fullscreen failed")
+	);
 };
 /**
  * Replaces the selected text in a contentEditable div with the HTML given.
@@ -954,24 +954,24 @@ export let fullScreen = (element = req('HTMLElement', 'element')) => {
  * @param {String} replacementText The replacement HTML to replace with.
  */
 export let replaceSelection = (
-  replacementText = req('string', 'replacement text'),
+	replacementText = req("string", "replacement text"),
 ) => {
-  var sel, range;
-  if (window.getSelection) {
-    sel = window.getSelection();
-    if (sel.rangeCount) {
-      range = sel.getRangeAt(0);
-      range.deleteContents();
-      let n = document.createElement('span');
-      n.insertAdjacentHTML('beforeend', replacementText);
-      range.insertNode(n);
-    }
-  } else if (document.selection && document.selection.createRange) {
-    console.warn(
-      'You are using IE < 9, you are evil. Falling back to text not HTML.',
-    );
-    range = document.selection.createRange();
-    range.text = replacementText.replace(/<[^>]*>/g, '');
-  }
+	var sel, range;
+	if (window.getSelection) {
+		sel = window.getSelection();
+		if (sel.rangeCount) {
+			range = sel.getRangeAt(0);
+			range.deleteContents();
+			let n = document.createElement("span");
+			n.insertAdjacentHTML("beforeend", replacementText);
+			range.insertNode(n);
+		}
+	} else if (document.selection && document.selection.createRange) {
+		console.warn(
+			"You are using IE < 9, you are evil. Falling back to text not HTML.",
+		);
+		range = document.selection.createRange();
+		range.text = replacementText.replace(/<[^>]*>/g, "");
+	}
 };
 //#endregion Element

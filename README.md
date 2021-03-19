@@ -38,8 +38,8 @@ jsDelivr:
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"
-  type="module"
+	src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"
+	type="module"
 ></script>
 ```
 
@@ -47,8 +47,8 @@ UNPKG
 
 ```html
 <script
-  src="https://unpkg.com/bijou.js@latest/bijou.js"
-  type="module"
+	src="https://unpkg.com/bijou.js@latest/bijou.js"
+	type="module"
 ></script>
 ```
 
@@ -58,8 +58,8 @@ You can also import parts of bijou, for example only the uuid() function:
 
 ```html
 <script type="module">
-  import { uuid } from 'https://unpkg.com/bijou.js';
-  console.log(uuid()); //Same as _$.uuid() when importing the whole library.
+	import { uuid } from "https://unpkg.com/bijou.js";
+	console.log(uuid()); //Same as _$.uuid() when importing the whole library.
 </script>
 ```
 
@@ -67,8 +67,8 @@ or you can import the whole thing:
 
 ```html
 <script type="module">
-  import * as _$ from 'https://unpkg.com/bijou.js';
-  console.log(_$.uuid());
+	import * as _$ from "https://unpkg.com/bijou.js";
+	console.log(_$.uuid());
 </script>
 ```
 
@@ -89,7 +89,7 @@ yarn add bijou.js
 Then just require it in your code:
 
 ```js
-const _$ = require('bijou.js');
+const _$ = require("bijou.js");
 console.log(_$.uuid());
 ```
 

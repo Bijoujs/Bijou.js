@@ -1,125 +1,125 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <link rel="prefetch" href="index.html" />
-    <link rel="prerender" href="index.html" />
-    <title>404 | Bijou.js</title>
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="favicon.png"
-    />
-    <meta name="theme-color" content="#008080" />
-  </head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<link rel="prefetch" href="index.html" />
+		<link rel="prerender" href="index.html" />
+		<title>404 | Bijou.js</title>
+		<link
+			rel="shortcut icon"
+			type="image/x-icon"
+			href="favicon.png"
+		/>
+		<meta name="theme-color" content="#008080" />
+	</head>
 
-  <body>
-    <h1>404</h1>
-    <p>It looks like you're lost! <span id="newpage"></span></p>
-    <div class="buttons">
-      <a href="https://bijou.js.org" class="btn">Home</a>
-      <a href="" class="btn" onclick="history.back()">Back</a>
-    </div>
-  </body>
+	<body>
+		<h1>404</h1>
+		<p>It looks like you're lost! <span id="newpage"></span></p>
+		<div class="buttons">
+			<a href="https://bijou.js.org" class="btn">Home</a>
+			<a href="" class="btn" onclick="history.back()">Back</a>
+		</div>
+	</body>
 </html>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+	@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-  * {
-    font-family: 'Poppins', sans-serif;
-    color: #333;
-  }
+	* {
+		font-family: "Poppins", sans-serif;
+		color: #333;
+	}
 
-  body {
-    animation: fade-in 0.5s ease forwards;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+	body {
+		animation: fade-in 0.5s ease forwards;
+		display: flex;
+		height: 100vh;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
 
-  h1 {
-    font-size: 12vmin;
-    margin: 10px;
-  }
+	h1 {
+		font-size: 12vmin;
+		margin: 10px;
+	}
 
-  p {
-    margin: 0;
-    font-size: 4vmin;
-  }
+	p {
+		margin: 0;
+		font-size: 4vmin;
+	}
 
-  .buttons {
-    margin-top: 5vmin;
-  }
+	.buttons {
+		margin-top: 5vmin;
+	}
 
-  .btn {
-    font-size: 3vmin;
-    transition: box-shadow, 0.3s ease, background-color 0.3s ease,
-      color 0.3s ease;
-    padding: 8px 12px;
-    background: lightseagreen;
-    color: #eee;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-right: 0.5vmin;
-    margin-left: 0.5vmin;
-  }
+	.btn {
+		font-size: 3vmin;
+		transition: box-shadow, 0.3s ease, background-color 0.3s ease,
+			color 0.3s ease;
+		padding: 8px 12px;
+		background: lightseagreen;
+		color: #eee;
+		border-radius: 5px;
+		text-decoration: none;
+		margin-right: 0.5vmin;
+		margin-left: 0.5vmin;
+	}
 
-  .btn:hover {
-    background-color: rgb(26, 145, 139);
-  }
+	.btn:hover {
+		background-color: rgb(26, 145, 139);
+	}
 
-  a {
-    color: lightseagreen;
-  }
+	a {
+		color: lightseagreen;
+	}
 
-  @keyframes fade-in {
-    0% {
-      opacity: 0;
-    }
+	@keyframes fade-in {
+		0% {
+			opacity: 0;
+		}
 
-    100% {
-      opacity: 1;
-    }
-  }
+		100% {
+			opacity: 1;
+		}
+	}
 </style>
 <script defer type="module">
-  import { editDistance as e_dist } from 'https://unpkg.com/bijou.js@v6.1.0';
-  let path = window.location.pathname;
-  path = path.replace(/^\//, '');
-  let distance;
-  const closest = closestString(path);
-  document.getElementById(
-    'newpage',
-  ).innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
-  if (e_dist(closest, path) < 4) {
-    path = closest;
-  }
-  if (e_dist(closest, path) > 20) {
-    document.getElementById('newpage').innerHTML = '';
-  }
-  function parsePath(path) {
-    return path.match(/([^\/\.]+)(?:.html)$/)[1];
-  }
-  function closestString(string) {
-    let array = [
-      'index',
-      'try',
-      'docs',
-      'docs/bijou.ease',
-      'docs/bijou.js',
-      'docs/global',
-      'docs/bijou',
-      '404',
-    ];
-    return array.reduce((one, two) =>
-      e_dist(string, one) > e_dist(string, two) ? two : one,
-    );
-  }
+	import { editDistance as e_dist } from "https://unpkg.com/bijou.js@v6.1.0";
+	let path = window.location.pathname;
+	path = path.replace(/^\//, "");
+	let distance;
+	const closest = closestString(path);
+	document.getElementById(
+		"newpage",
+	).innerHTML = `Did you mean: <a href="${closest}">${closest}</a>?`;
+	if (e_dist(closest, path) < 4) {
+		path = closest;
+	}
+	if (e_dist(closest, path) > 20) {
+		document.getElementById("newpage").innerHTML = "";
+	}
+	function parsePath(path) {
+		return path.match(/([^\/\.]+)(?:.html)$/)[1];
+	}
+	function closestString(string) {
+		let array = [
+			"index",
+			"try",
+			"docs",
+			"docs/bijou.ease",
+			"docs/bijou.js",
+			"docs/global",
+			"docs/bijou",
+			"404",
+		];
+		return array.reduce((one, two) =>
+			e_dist(string, one) > e_dist(string, two) ? two : one,
+		);
+	}
 </script>

@@ -66,28 +66,28 @@ Contributors to Bijou.js:
 
 let isNode = false;
 if (
-  typeof window === 'undefined' ||
-  typeof document === 'undefined'
+	typeof window === "undefined" ||
+	typeof document === "undefined"
 ) {
-  isNode = true;
+	isNode = true;
 } else {
-  isNode = false;
+	isNode = false;
 }
 
 if (isNode) {
-  console.warn(
-    'There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.',
-  );
+	console.warn(
+		"There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.",
+	);
 }
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
  */
 let node = () => {
-  if (isNode) {
-    throw new Error(
-      'You are using Node.js, this function does not work in Node.js! Sorry!',
-    );
-  }
+	if (isNode) {
+		throw new Error(
+			"You are using Node.js, this function does not work in Node.js! Sorry!",
+		);
+	}
 };
 /*
   ____   ___  _   _ ____   ____ _____
@@ -148,15 +148,15 @@ let string_namespace = {};
 let utility_namespace = {};
 
 const req = (type, desc, condition = true) => {
-  if (!condition) return;
-  let err = 'Missing parameter';
-  if (type) {
-    err += ' of type ' + type;
-  }
-  if (desc) {
-    err = `Parameter ${desc} ${type ? `(${type})` : ''} required.`;
-  }
-  throw new Error(err);
+	if (!condition) return;
+	let err = "Missing parameter";
+	if (type) {
+		err += " of type " + type;
+	}
+	if (desc) {
+		err = `Parameter ${desc} ${type ? `(${type})` : ""} required.`;
+	}
+	throw new Error(err);
 };
 //#region bijou
 //#region Array
@@ -170,11 +170,11 @@ const req = (type, desc, condition = true) => {
  * _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 'e': 1}
  * @param {Array} arr The array to count items in.
  */
-export let count = (arr = req('array', 'array')) =>
-  arr.reduce((counts, item) => {
-    counts[item] = (counts[item] || 0) + 1;
-    return counts;
-  }, {});
+export let count = (arr = req("array", "array")) =>
+	arr.reduce((counts, item) => {
+		counts[item] = (counts[item] || 0) + 1;
+		return counts;
+	}, {});
 
 /**
  * Returns the difference between two arrays or strings.
@@ -187,25 +187,25 @@ export let count = (arr = req('array', 'array')) =>
  * @param {Array|String} a2 The 2nd array or string.
  */
 export let arrayDiff = (
-  a1 = req('array', 'array 1'),
-  a2 = req('array', 'array 2'),
+	a1 = req("array", "array 1"),
+	a2 = req("array", "array 2"),
 ) => {
-  var a = [],
-    diff = [];
-  for (var i = 0; i < a1.length; i++) {
-    a[a1[i]] = true;
-  }
-  for (var i = 0; i < a2.length; i++) {
-    if (a[a2[i]]) {
-      delete a[a2[i]];
-    } else {
-      a[a2[i]] = true;
-    }
-  }
-  for (var k in a) {
-    diff.push(k);
-  }
-  return diff;
+	var a = [],
+		diff = [];
+	for (var i = 0; i < a1.length; i++) {
+		a[a1[i]] = true;
+	}
+	for (var i = 0; i < a2.length; i++) {
+		if (a[a2[i]]) {
+			delete a[a2[i]];
+		} else {
+			a[a2[i]] = true;
+		}
+	}
+	for (var k in a) {
+		diff.push(k);
+	}
+	return diff;
 };
 
 /**
@@ -219,41 +219,41 @@ export let arrayDiff = (
  * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
  */
 export let diff = function (
-  text1 = req('string', 'Text 1'),
-  text2 = req('string', 'Text 2'),
+	text1 = req("string", "Text 1"),
+	text2 = req("string", "Text 2"),
 ) {
-  //Takes in two strings
-  //Returns an array of the span of the differences
-  //So if given:
-  // text1: "that is number 124"
-  // text2: "this is number 123"
-  //It will return:
-  // [[2,4],[17,18]]
-  //If the strings are of different lengths, it will check up to the end of text1
-  //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
-  var diffRange = [];
-  var currentRange = undefined;
-  for (var i = 0; i < text1.length; i++) {
-    if (text1[i] != text2[i]) {
-      //Found a diff!
-      if (currentRange == undefined) {
-        //Start a new range
-        currentRange = [i];
-      }
-    }
-    if (currentRange != undefined && text1[i] == text2[i]) {
-      //End of range!
-      currentRange.push(i);
-      diffRange.push(currentRange);
-      currentRange = undefined;
-    }
-  }
-  //Push any last range if there's still one at the end
-  if (currentRange != undefined) {
-    currentRange.push(i);
-    diffRange.push(currentRange);
-  }
-  return diffRange;
+	//Takes in two strings
+	//Returns an array of the span of the differences
+	//So if given:
+	// text1: "that is number 124"
+	// text2: "this is number 123"
+	//It will return:
+	// [[2,4],[17,18]]
+	//If the strings are of different lengths, it will check up to the end of text1
+	//If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
+	var diffRange = [];
+	var currentRange = undefined;
+	for (var i = 0; i < text1.length; i++) {
+		if (text1[i] != text2[i]) {
+			//Found a diff!
+			if (currentRange == undefined) {
+				//Start a new range
+				currentRange = [i];
+			}
+		}
+		if (currentRange != undefined && text1[i] == text2[i]) {
+			//End of range!
+			currentRange.push(i);
+			diffRange.push(currentRange);
+			currentRange = undefined;
+		}
+	}
+	//Push any last range if there's still one at the end
+	if (currentRange != undefined) {
+		currentRange.push(i);
+		diffRange.push(currentRange);
+	}
+	return diffRange;
 };
 
 /**
@@ -266,21 +266,21 @@ export let diff = function (
  * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
  */
 export let remove = (
-  array = req('array', 'array'),
-  item = req(undefined, 'item'),
+	array = req("array", "array"),
+	item = req(undefined, "item"),
 ) => {
-  if (typeof array === 'string') {
-    return array.replace(item, '');
-  }
-  if (typeof array === 'object') {
-    array[`${item}`] = undefined;
-    array = _$.clone(array, (itm) => itm !== undefined);
-    return array;
-  }
-  if (array.indexOf(item) > -1) {
-    array.splice(array.indexOf(item), 1);
-  }
-  return array;
+	if (typeof array === "string") {
+		return array.replace(item, "");
+	}
+	if (typeof array === "object") {
+		array[`${item}`] = undefined;
+		array = _$.clone(array, (itm) => itm !== undefined);
+		return array;
+	}
+	if (array.indexOf(item) > -1) {
+		array.splice(array.indexOf(item), 1);
+	}
+	return array;
 };
 /**
  * Splices an ArrayBuffer.
@@ -293,18 +293,18 @@ export let remove = (
  * @returns {Number} The hex representation of part of the ArrayBuffer.
  */
 export let spliceArrayBuffer = (
-  arr = req('ArrayBuffer'),
-  start = req('number'),
-  end = req('number'),
-  endian = false,
+	arr = req("ArrayBuffer"),
+	start = req("number"),
+	end = req("number"),
+	endian = false,
 ) => {
-  var direction = endian ? -1 : 1;
-  if (endian) [start, end] = [end, start];
-  start = Math.floor(start);
-  end = Math.floor(end) + direction;
-  for (var i = start, value = 0; i != end; i += direction)
-    value = 256 * value + arr[i];
-  return value;
+	var direction = endian ? -1 : 1;
+	if (endian) [start, end] = [end, start];
+	start = Math.floor(start);
+	end = Math.floor(end) + direction;
+	for (var i = start, value = 0; i != end; i += direction)
+		value = 256 * value + arr[i];
+	return value;
 };
 
 /**
@@ -317,12 +317,12 @@ export let spliceArrayBuffer = (
  * @param {Array} array The array to flatten.
  * @param {Number} [level=1] The number of iterations to flatten it.
  */
-export let flatten = (array = req('array', 'array'), level = 1) => {
-  var output = array;
-  _$.each(level, () => {
-    output = [].concat.apply([], array);
-  });
-  return output;
+export let flatten = (array = req("array", "array"), level = 1) => {
+	var output = array;
+	_$.each(level, () => {
+		output = [].concat.apply([], array);
+	});
+	return output;
 };
 
 /**
@@ -334,12 +334,12 @@ export let flatten = (array = req('array', 'array'), level = 1) => {
  * @example
  * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
  */
-export let nFlatten = (arr = req('array', 'array')) => {
-  return arr.reduce(function (flat, toFlatten) {
-    return flat.concat(
-      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
-    );
-  }, []);
+export let nFlatten = (arr = req("array", "array")) => {
+	return arr.reduce(function (flat, toFlatten) {
+		return flat.concat(
+			Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
+		);
+	}, []);
 };
 
 /**
@@ -352,8 +352,8 @@ export let nFlatten = (arr = req('array', 'array')) => {
  * console.log(_$.contains([1,2,3,4,5], 3)); // true
  * @returns {Boolean} True or false depending on if the array contains that item.
  */
-export let contains = (array = req('array'), item = req('string')) =>
-  array.includes(item);
+export let contains = (array = req("array"), item = req("string")) =>
+	array.includes(item);
 
 /**
  * Shuffles an array
@@ -365,8 +365,8 @@ export let contains = (array = req('array'), item = req('string')) =>
  * console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]
  * @returns {Array} The shuffled array.
  */
-export let shuffleArray = (array = req('array')) =>
-  array.sort(() => Math.random() - 0.5);
+export let shuffleArray = (array = req("array")) =>
+	array.sort(() => Math.random() - 0.5);
 
 /**
  * Splice but also for strings
@@ -381,19 +381,19 @@ export let shuffleArray = (array = req('array')) =>
  * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
  */
 export let splice = (
-  array = req('array', 'array'),
-  index = req('number', 'index'),
-  remove = 0,
-  item,
+	array = req("array", "array"),
+	index = req("number", "index"),
+	remove = 0,
+	item,
 ) => {
-  let args = Array.from(arguments);
-  args.shift();
-  return typeof array === 'string'
-    ? array
-        .split('')
-        .splice(...args)
-        .join('')
-    : array.splice(...args);
+	let args = Array.from(arguments);
+	args.shift();
+	return typeof array === "string"
+		? array
+				.split("")
+				.splice(...args)
+				.join("")
+		: array.splice(...args);
 };
 /**
  * Joins two arrays together and removes duplicate items.
@@ -406,17 +406,17 @@ export let splice = (
  * @returns {Array} The joined array from the two other arrays.
  */
 export let unionArrays = (
-  x = req('array', 'array1'),
-  y = req('array', 'array2'),
+	x = req("array", "array1"),
+	y = req("array", "array2"),
 ) => {
-  var obj = {};
-  for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
-  for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
-  var res = [];
-  for (var k in obj) {
-    if (obj.hasOwnProperty(k)) res.push(obj[k]);
-  }
-  return res;
+	var obj = {};
+	for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
+	for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
+	var res = [];
+	for (var k in obj) {
+		if (obj.hasOwnProperty(k)) res.push(obj[k]);
+	}
+	return res;
 };
 /**
  * averageBy
@@ -430,12 +430,12 @@ export let unionArrays = (
  * @returns {Number} The average of the array.
  */
 export let averageBy = (
-  arr = req('array', 'array'),
-  fn = req('function', 'callback'),
+	arr = req("array", "array"),
+	fn = req("function", "callback"),
 ) =>
-  arr
-    .map(typeof fn === 'function' ? fn : (val) => val[fn])
-    .reduce((acc, val) => acc + val, 0) / arr.length;
+	arr
+		.map(typeof fn === "function" ? fn : (val) => val[fn])
+		.reduce((acc, val) => acc + val, 0) / arr.length;
 
 /**
  * Removes duplicates from an array
@@ -446,8 +446,8 @@ export let averageBy = (
  * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
  * @returns {Array} The array with no duplicates.
  */
-export let uniqueArray = (array = req('array', 'array')) => [
-  ...new Set(array),
+export let uniqueArray = (array = req("array", "array")) => [
+	...new Set(array),
 ];
 /**
  * For each item in an array, run a callback with it.
@@ -466,18 +466,18 @@ export let uniqueArray = (array = req('array', 'array')) => [
  * @returns {undefined}
  */
 export let each = (
-  array = req('Array|Number|String', 'array'),
-  callback = req('function', 'callback'),
+	array = req("Array|Number|String", "array"),
+	callback = req("function", "callback"),
 ) => {
-  array =
-    typeof array === 'number'
-      ? _$.range(1, array)
-      : typeof array === 'string'
-      ? array.split('')
-      : array;
-  for (let i = 0; i < array.length; i++) {
-    callback(array[i], i, array);
-  }
+	array =
+		typeof array === "number"
+			? _$.range(1, array)
+			: typeof array === "string"
+			? array.split("")
+			: array;
+	for (let i = 0; i < array.length; i++) {
+		callback(array[i], i, array);
+	}
 };
 //#endregion Array
 //#region Color
@@ -490,19 +490,19 @@ export let each = (
  * @param {String} rgb The string of RGB colors.
  * @returns {String} The hex color.
  */
-export let rgbToHex = (rgb = req('string', 'RGB color')) => {
-  let sep = rgb.indexOf(',') > -1 ? ',' : ' ';
-  rgb = rgb.substr(4).split(')')[0].split(sep);
+export let rgbToHex = (rgb = req("string", "RGB color")) => {
+	let sep = rgb.indexOf(",") > -1 ? "," : " ";
+	rgb = rgb.substr(4).split(")")[0].split(sep);
 
-  let r = (+rgb[0]).toString(16),
-    g = (+rgb[1]).toString(16),
-    b = (+rgb[2]).toString(16);
+	let r = (+rgb[0]).toString(16),
+		g = (+rgb[1]).toString(16),
+		b = (+rgb[2]).toString(16);
 
-  if (r.length === 1) r = '0' + r;
-  if (g.length === 1) g = '0' + g;
-  if (b.length === 1) b = '0' + b;
+	if (r.length === 1) r = "0" + r;
+	if (g.length === 1) g = "0" + g;
+	if (b.length === 1) b = "0" + b;
 
-  return '#' + r + g + b;
+	return "#" + r + g + b;
 };
 /**
  * Converts a hex code to a RGB color.
@@ -513,39 +513,39 @@ export let rgbToHex = (rgb = req('string', 'RGB color')) => {
  * console.log(_$.rgbToHex("#ffffff")); // "rgb(255,255,255)"
  * @returns {String} The RGB color converted from the hex code.
  */
-export let hexToRGB = (hex = req('string', 'hex color')) => {
-  if (
-    ((hex.length - 1 === 6 ||
-      hex.length - 1 === 8 ||
-      hex.length - 1 === 4 ||
-      hex.length - 1 === 3) &&
-      hex.startsWith('#')) ||
-    ((hex.length === 6 ||
-      hex.length === 8 ||
-      hex.length === 4 ||
-      hex.length === 3) &&
-      !hex.startsWith('#'))
-  ) {
-  } else {
-    throw new Error('Invalid hex');
-  }
-  let alpha = false,
-    h = hex.slice(hex.startsWith('#') ? 1 : 0);
-  if (h.length === 3) h = [...h].map((x) => x + x).join('');
-  else if (h.length === 8) alpha = true;
-  h = parseInt(h, 16);
-  return (
-    'rgb' +
-    (alpha ? 'a' : '') +
-    '(' +
-    (h >>> (alpha ? 24 : 16)) +
-    ', ' +
-    ((h & (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
-    ', ' +
-    ((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
-    (alpha ? `, ${h & 0x000000ff}` : '') +
-    ')'
-  );
+export let hexToRGB = (hex = req("string", "hex color")) => {
+	if (
+		((hex.length - 1 === 6 ||
+			hex.length - 1 === 8 ||
+			hex.length - 1 === 4 ||
+			hex.length - 1 === 3) &&
+			hex.startsWith("#")) ||
+		((hex.length === 6 ||
+			hex.length === 8 ||
+			hex.length === 4 ||
+			hex.length === 3) &&
+			!hex.startsWith("#"))
+	) {
+	} else {
+		throw new Error("Invalid hex");
+	}
+	let alpha = false,
+		h = hex.slice(hex.startsWith("#") ? 1 : 0);
+	if (h.length === 3) h = [...h].map((x) => x + x).join("");
+	else if (h.length === 8) alpha = true;
+	h = parseInt(h, 16);
+	return (
+		"rgb" +
+		(alpha ? "a" : "") +
+		"(" +
+		(h >>> (alpha ? 24 : 16)) +
+		", " +
+		((h & (alpha ? 0x00ff0000 : 0x00ff00)) >>> (alpha ? 16 : 8)) +
+		", " +
+		((h & (alpha ? 0x0000ff00 : 0x0000ff)) >>> (alpha ? 8 : 0)) +
+		(alpha ? `, ${h & 0x000000ff}` : "") +
+		")"
+	);
 };
 /**
  * Blends two colors through additive blending by a percentage.
@@ -559,44 +559,44 @@ export let hexToRGB = (hex = req('string', 'hex color')) => {
  * @returns {String} The blended color (A hex code).
  */
 export let blendColors = (
-  color1 = req('string', 'color 1'),
-  color2 = req('string', 'color 2'),
-  percent = 50,
+	color1 = req("string", "color 1"),
+	color2 = req("string", "color 2"),
+	percent = 50,
 ) => {
-  const generateHex = (r, g, b) => {
-    let R = r.toString(16);
-    let G = g.toString(16);
-    let B = b.toString(16);
+	const generateHex = (r, g, b) => {
+		let R = r.toString(16);
+		let G = g.toString(16);
+		let B = b.toString(16);
 
-    while (R.length < 2) {
-      R = `0${R}`;
-    }
-    while (G.length < 2) {
-      G = `0${G}`;
-    }
-    while (B.length < 2) {
-      B = `0${B}`;
-    }
+		while (R.length < 2) {
+			R = `0${R}`;
+		}
+		while (G.length < 2) {
+			G = `0${G}`;
+		}
+		while (B.length < 2) {
+			B = `0${B}`;
+		}
 
-    return `#${R}${G}${B}`;
-  };
+		return `#${R}${G}${B}`;
+	};
 
-  const mix = (start, end, percent) =>
-    start + (percent / 100) * (end - start);
+	const mix = (start, end, percent) =>
+		start + (percent / 100) * (end - start);
 
-  const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
-  const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
-  const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16);
+	const red1 = parseInt(`${color1[1]}${color1[2]}`, 16);
+	const green1 = parseInt(`${color1[3]}${color1[4]}`, 16);
+	const blue1 = parseInt(`${color1[5]}${color1[6]}`, 16);
 
-  const red2 = parseInt(`${color2[1]}${color2[2]}`, 16);
-  const green2 = parseInt(`${color2[3]}${color2[4]}`, 16);
-  const blue2 = parseInt(`${color2[5]}${color2[6]}`, 16);
+	const red2 = parseInt(`${color2[1]}${color2[2]}`, 16);
+	const green2 = parseInt(`${color2[3]}${color2[4]}`, 16);
+	const blue2 = parseInt(`${color2[5]}${color2[6]}`, 16);
 
-  const red = Math.round(mix(red1, red2, percent));
-  const green = Math.round(mix(green1, green2, percent));
-  const blue = Math.round(mix(blue1, blue2, percent));
+	const red = Math.round(mix(red1, red2, percent));
+	const green = Math.round(mix(green1, green2, percent));
+	const blue = Math.round(mix(blue1, blue2, percent));
 
-  return generateHex(red, green, blue);
+	return generateHex(red, green, blue);
 };
 /**
  * Generates a random hex color.
@@ -607,7 +607,7 @@ export let blendColors = (
  * @returns {String} A random Hex color
  */
 export let randomColor = () =>
-  `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+	`#${Math.floor(Math.random() * 16777215).toString(16)}`;
 /**
  * Lighten or darken a color by a certain amount
  * @function
@@ -619,36 +619,36 @@ export let randomColor = () =>
  * @returns {String} The color lightened.
  */
 export let lightenColor = (
-  col = req('string', 'hex color'),
-  amt = req('number', 'amount'),
+	col = req("string", "hex color"),
+	amt = req("number", "amount"),
 ) => {
-  var usePound = false;
+	var usePound = false;
 
-  if (col[0] == '#') {
-    col = col.slice(1);
-    usePound = true;
-  }
+	if (col[0] == "#") {
+		col = col.slice(1);
+		usePound = true;
+	}
 
-  var num = parseInt(col, 16);
+	var num = parseInt(col, 16);
 
-  var r = (num >> 16) + amt;
+	var r = (num >> 16) + amt;
 
-  if (r > 255) r = 255;
-  else if (r < 0) r = 0;
+	if (r > 255) r = 255;
+	else if (r < 0) r = 0;
 
-  var b = ((num >> 8) & 0x00ff) + amt;
+	var b = ((num >> 8) & 0x00ff) + amt;
 
-  if (b > 255) b = 255;
-  else if (b < 0) b = 0;
+	if (b > 255) b = 255;
+	else if (b < 0) b = 0;
 
-  var g = (num & 0x0000ff) + amt;
+	var g = (num & 0x0000ff) + amt;
 
-  if (g > 255) g = 255;
-  else if (g < 0) g = 0;
+	if (g > 255) g = 255;
+	else if (g < 0) g = 0;
 
-  return (
-    (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16)
-  );
+	return (
+		(usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16)
+	);
 };
 /**
   * Tests if a color is light or dark and returns an object representation.
@@ -664,35 +664,35 @@ export let lightenColor = (
   * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
   */
 export let lightOrDark = (
-  color = req('string', 'hex or RGB color'),
+	color = req("string", "hex or RGB color"),
 ) => {
-  var r, g, b, hsp;
-  if (color.match(/^rgb/)) {
-    color = color.match(
-      /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
-    );
+	var r, g, b, hsp;
+	if (color.match(/^rgb/)) {
+		color = color.match(
+			/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
+		);
 
-    r = color[1];
-    g = color[2];
-    b = color[3];
-  } else {
-    color = +(
-      '0x' + color.slice(1).replace(color.length < 5 && /./g, '$&$&')
-    );
+		r = color[1];
+		g = color[2];
+		b = color[3];
+	} else {
+		color = +(
+			"0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&")
+		);
 
-    r = color >> 16;
-    g = (color >> 8) & 255;
-    b = color & 255;
-  }
+		r = color >> 16;
+		g = (color >> 8) & 255;
+		b = color & 255;
+	}
 
-  hsp = Math.sqrt(
-    0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b),
-  );
-  if (hsp > 127.5) {
-    return { lightOrDark: 'light', hsp: hsp };
-  } else {
-    return { lightOrDark: 'dark', hsp: hsp };
-  }
+	hsp = Math.sqrt(
+		0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b),
+	);
+	if (hsp > 127.5) {
+		return { lightOrDark: "light", hsp: hsp };
+	} else {
+		return { lightOrDark: "dark", hsp: hsp };
+	}
 };
 //#endregion Color
 //#region Date
@@ -706,10 +706,10 @@ export let lightOrDark = (
  * console.log(_$.dayName)); // e.g. "Friday"
  * @returns {String} The day name from the date.
  */
-export let dayName = (date = new Date(), locale = 'en-US') =>
-  date.toLocaleDateString(locale, {
-    weekday: 'long',
-  });
+export let dayName = (date = new Date(), locale = "en-US") =>
+	date.toLocaleDateString(locale, {
+		weekday: "long",
+	});
 
 /**
  * Formats a number of milliseconds
@@ -721,23 +721,23 @@ export let dayName = (date = new Date(), locale = 'en-US') =>
  * @returns {String} The string of formatted milliseconds.
  */
 export let formatMilliseconds = (
-  ms = req('number', 'milliseconds'),
+	ms = req("number", "milliseconds"),
 ) => {
-  ms = typeof ms === 'string' ? +ms : ms;
-  if (ms < 0) ms = -ms;
-  const time = {
-    century: Math.floor(ms / 1144800000000),
-    year: Math.floor(ms / 22896000000) % 50,
-    day: Math.floor(ms / 86400000) % 365,
-    hour: Math.floor(ms / 3600000) % 24,
-    minute: Math.floor(ms / 60000) % 60,
-    second: Math.floor(ms / 1000) % 60,
-    millisecond: Math.floor(ms) % 1000,
-  };
-  return Object.entries(time)
-    .filter((val) => val[1] !== 0)
-    .map(([key, val]) => `${val} ${key}${val !== 1 ? 's' : ''}`)
-    .join(', ');
+	ms = typeof ms === "string" ? +ms : ms;
+	if (ms < 0) ms = -ms;
+	const time = {
+		century: Math.floor(ms / 1144800000000),
+		year: Math.floor(ms / 22896000000) % 50,
+		day: Math.floor(ms / 86400000) % 365,
+		hour: Math.floor(ms / 3600000) % 24,
+		minute: Math.floor(ms / 60000) % 60,
+		second: Math.floor(ms / 1000) % 60,
+		millisecond: Math.floor(ms) % 1000,
+	};
+	return Object.entries(time)
+		.filter((val) => val[1] !== 0)
+		.map(([key, val]) => `${val} ${key}${val !== 1 ? "s" : ""}`)
+		.join(", ");
 };
 /**
  * Adds a certain number of minutes to a date object.
@@ -749,12 +749,12 @@ export let formatMilliseconds = (
  * @returns {Date} The date with minutes added.
  */
 export let addMinutesToDate = (
-  date = req('date', 'date or date string'),
-  n = req('number', 'minutes'),
+	date = req("date", "date or date string"),
+	n = req("number", "minutes"),
 ) => {
-  const d = new Date(date);
-  d.setTime(d.getTime() + n * 60000);
-  return d.toISOString().split('.')[0].replace('T', ' ');
+	const d = new Date(date);
+	d.setTime(d.getTime() + n * 60000);
+	return d.toISOString().split(".")[0].replace("T", " ");
 };
 /**
  * Validates a date from a string.
@@ -771,8 +771,8 @@ export let addMinutesToDate = (
  * @returns {Boolean} Returns if the date is valid or not.
  */
 export let isDateValid = (...val) => {
-  req('any', 'date arguments', ![...val].length);
-  return !Number.isNaN(new Date(...val).valueOf());
+	req("any", "date arguments", ![...val].length);
+	return !Number.isNaN(new Date(...val).valueOf());
 };
 /**
  * Adds a specified number of days to a date.
@@ -782,12 +782,12 @@ export let isDateValid = (...val) => {
  * @returns {Date} The date with the specified number of days added.
  */
 export let addDaysToDate = (
-  date = req('date', 'date or date string'),
-  n = req('number', 'days'),
+	date = req("date", "date or date string"),
+	n = req("number", "days"),
 ) => {
-  const d = new Date(date);
-  d.setDate(d.getDate() + n);
-  return d.toISOString().split('T')[0];
+	const d = new Date(date);
+	d.setDate(d.getDate() + n);
+	return d.toISOString().split("T")[0];
 };
 //#endregion Date
 //#region Element
@@ -810,8 +810,8 @@ export let addDaysToDate = (
  * @param {HTMLElement} child The child element to test.
  */
 export let elementContains = (
-  parent = req('HTMLElement', 'parent'),
-  child = req('HTMLElement', 'child'),
+	parent = req("HTMLElement", "parent"),
+	child = req("HTMLElement", "child"),
 ) => parent !== child && parent.contains(child);
 /**
  * Gets the parent elements of the element given.
@@ -833,12 +833,12 @@ export let elementContains = (
  * _$.parents(document.querySelector("img"));//[div#img, body, html]
  * @param {HTMLElement} el The element
  */
-export let parents = (el = req('element')) => [
-  ...(function* (e) {
-    while ((e = e.parentNode)) {
-      yield e;
-    }
-  })(el),
+export let parents = (el = req("element")) => [
+	...(function* (e) {
+		while ((e = e.parentNode)) {
+			yield e;
+		}
+	})(el),
 ];
 /**
  * Gets all the images that are children of the specified element.
@@ -854,13 +854,13 @@ export let parents = (el = req('element')) => [
  * @param {Boolean} [includeDuplicates=false] Whether to include duplicate images, defaults to false.
  */
 export let getImages = (
-  el = document.documentElement,
-  includeDuplicates = false,
+	el = document.documentElement,
+	includeDuplicates = false,
 ) => {
-  const images = [...el.getElementsByTagName('img')].map((img) =>
-    img.getAttribute('src'),
-  );
-  return includeDuplicates ? images : [...new Set(images)];
+	const images = [...el.getElementsByTagName("img")].map((img) =>
+		img.getAttribute("src"),
+	);
+	return includeDuplicates ? images : [...new Set(images)];
 };
 /**
  * Renders an HTML element from an object in the container specified.
@@ -880,29 +880,29 @@ export let getImages = (
  * @param {HTMLElement} container The html element to render it in.
  */
 export let renderElement = (
-  { type, props = {} } = req('object', 'options'),
-  container = req('HTMLElement', 'container'),
+	{ type, props = {} } = req("object", "options"),
+	container = req("HTMLElement", "container"),
 ) => {
-  const isTextElement = !type;
-  const element = isTextElement
-    ? document.createTextNode('')
-    : document.createElement(type);
+	const isTextElement = !type;
+	const element = isTextElement
+		? document.createTextNode("")
+		: document.createElement(type);
 
-  const isListener = (p) => p.startsWith('on');
-  const isAttribute = (p) => !isListener(p) && p !== 'children';
+	const isListener = (p) => p.startsWith("on");
+	const isAttribute = (p) => !isListener(p) && p !== "children";
 
-  Object.keys(props).forEach((p) => {
-    if (isAttribute(p)) element[p] = props[p];
-    if (!isTextElement && isListener(p))
-      element.addEventListener(p.toLowerCase().slice(2), props[p]);
-  });
+	Object.keys(props).forEach((p) => {
+		if (isAttribute(p)) element[p] = props[p];
+		if (!isTextElement && isListener(p))
+			element.addEventListener(p.toLowerCase().slice(2), props[p]);
+	});
 
-  if (!isTextElement && props.children && props.children.length)
-    props.children.forEach((childElement) =>
-      renderElement(childElement, element),
-    );
+	if (!isTextElement && props.children && props.children.length)
+		props.children.forEach((childElement) =>
+			renderElement(childElement, element),
+		);
 
-  container.appendChild(element);
+	container.appendChild(element);
 };
 /**
  * Create a DOM element from a querySelector with option to include content
@@ -916,51 +916,51 @@ export let renderElement = (
  * - createElement('span#my-id.my-class.second-class'); // <span id="my-id" class="my-class second-class">
  * - createElement('#my-id.my-class.second-class', 'text to insert', 12345); // <div id="my-id" class="my-class second-class">
  */
-export function create(querySelector = 'div', ...content) {
-  node();
-  let nodeType = querySelector.match(/^[a-z0-9]+/i);
-  let id = querySelector.match(/#([a-z]+[a-z0-9-]*)/gi);
-  let classes = querySelector.match(/\.([a-z]+[a-z0-9-]*)/gi);
-  let attributes = querySelector.match(
-    /\[([a-z][a-z-]+)(=['|"]?([^\]]*)['|"]?)?\]/gi,
-  );
-  let node = nodeType ? nodeType[0] : 'div';
+export function create(querySelector = "div", ...content) {
+	node();
+	let nodeType = querySelector.match(/^[a-z0-9]+/i);
+	let id = querySelector.match(/#([a-z]+[a-z0-9-]*)/gi);
+	let classes = querySelector.match(/\.([a-z]+[a-z0-9-]*)/gi);
+	let attributes = querySelector.match(
+		/\[([a-z][a-z-]+)(=['|"]?([^\]]*)['|"]?)?\]/gi,
+	);
+	let node = nodeType ? nodeType[0] : "div";
 
-  if (id && id.length > 1) {
-    throw new Error('only 1 ID is allowed');
-  }
+	if (id && id.length > 1) {
+		throw new Error("only 1 ID is allowed");
+	}
 
-  const elt = document.createElement(node);
+	const elt = document.createElement(node);
 
-  if (id) {
-    elt.id = id[0].replace('#', '');
-  }
+	if (id) {
+		elt.id = id[0].replace("#", "");
+	}
 
-  if (classes) {
-    const attrClasses = classes.join(' ').replace(/\./g, '');
-    elt.setAttribute('class', attrClasses);
-  }
+	if (classes) {
+		const attrClasses = classes.join(" ").replace(/\./g, "");
+		elt.setAttribute("class", attrClasses);
+	}
 
-  if (attributes) {
-    attributes.forEach((item) => {
-      item = item.slice(0, -1).slice(1);
-      let [label, value] = item.split('=');
-      if (value) {
-        value = value.replace(/^['"](.*)['"]$/, '$1');
-      }
-      elt.setAttribute(label, value || '');
-    });
-  }
+	if (attributes) {
+		attributes.forEach((item) => {
+			item = item.slice(0, -1).slice(1);
+			let [label, value] = item.split("=");
+			if (value) {
+				value = value.replace(/^['"](.*)['"]$/, "$1");
+			}
+			elt.setAttribute(label, value || "");
+		});
+	}
 
-  content.forEach((item) => {
-    if (typeof item === 'string' || typeof item === 'number') {
-      elt.appendChild(document.createTextNode(item));
-    } else if (item.nodeType === document.ELEMENT_NODE) {
-      elt.appendChild(item);
-    }
-  });
+	content.forEach((item) => {
+		if (typeof item === "string" || typeof item === "number") {
+			elt.appendChild(document.createTextNode(item));
+		} else if (item.nodeType === document.ELEMENT_NODE) {
+			elt.appendChild(item);
+		}
+	});
 
-  return elt;
+	return elt;
 }
 /**
  * Re-enables the use of &lt;menu&gt; and &lt;menuitem&gt; tags for corner clicking.
@@ -981,11 +981,11 @@ export function create(querySelector = 'div', ...content) {
  * @returns {undefined};
  */
 export let context = () => {
-  var menu = document.createElement('UL');
-  menu.id = 'contextMenu';
-  document.body.appendChild(menu);
-  let styles = document.createElement('STYLE');
-  styles.innerHTML = `#contextMenu {
+	var menu = document.createElement("UL");
+	menu.id = "contextMenu";
+	document.body.appendChild(menu);
+	let styles = document.createElement("STYLE");
+	styles.innerHTML = `#contextMenu {
        pointer-events: none;
        padding: 0;
        opacity: 0;
@@ -1019,60 +1019,60 @@ export let context = () => {
        cursor: pointer;
      }
      `;
-  document.body.appendChild(styles);
-  var elements = document.querySelectorAll('[contextmenu]');
-  for (let i = 0; i < elements.length; i++) {
-    window.addEventListener('contextmenu', (e) => {
-      menu.style.pointerEvents = 'auto';
-      let items;
-      try {
-        items = document.querySelectorAll(
-          `#${e.target
-            .closest('[contextmenu]')
-            .getAttribute('contextmenu')} menuitem`,
-        );
-        e.preventDefault();
-      } catch (e) {
-        return true;
-      }
-      menu.innerHTML = '';
-      for (let j = 0; j < items.length; j++) {
-        const contextMenu = items[j];
-        const liTag = document.createElement('li');
-        liTag.setAttribute(
-          'onclick',
-          contextMenu.getAttribute('onclick'),
-        );
-        liTag.addEventListener('click', () => {
-          menu.style.opacity = 0;
-          menu.style.pointerEvents = 'none';
-        });
-        liTag.textContent = contextMenu.getAttribute('label');
-        menu.innerHTML += liTag.outerHTML;
-      }
-      console.log(menu.innerHTML);
-      menu.style.top = `${e.clientY}px`;
-      menu.style.left = `${e.clientX}px`;
-      menu.style.opacity = 1;
-    });
-  }
-  var contextTimer = 0;
-  setInterval(() => {
-    contextTimer += 100;
-    if (contextTimer > 3000) {
-      menu.style.opacity = 0;
-      menu.style.pointerEvents = 'none';
-      contextTimer = 0;
-      return;
-    }
-  }, 100);
-  _$.addEventListeners(menu, ['mousemove', 'click', 'scroll'], () => {
-    contextTimer = 0;
-  });
-  _$.onOutsideClick(menu, () => {
-    menu.style.opacity = 0;
-    menu.style.pointerEvents = 'none';
-  });
+	document.body.appendChild(styles);
+	var elements = document.querySelectorAll("[contextmenu]");
+	for (let i = 0; i < elements.length; i++) {
+		window.addEventListener("contextmenu", (e) => {
+			menu.style.pointerEvents = "auto";
+			let items;
+			try {
+				items = document.querySelectorAll(
+					`#${e.target
+						.closest("[contextmenu]")
+						.getAttribute("contextmenu")} menuitem`,
+				);
+				e.preventDefault();
+			} catch (e) {
+				return true;
+			}
+			menu.innerHTML = "";
+			for (let j = 0; j < items.length; j++) {
+				const contextMenu = items[j];
+				const liTag = document.createElement("li");
+				liTag.setAttribute(
+					"onclick",
+					contextMenu.getAttribute("onclick"),
+				);
+				liTag.addEventListener("click", () => {
+					menu.style.opacity = 0;
+					menu.style.pointerEvents = "none";
+				});
+				liTag.textContent = contextMenu.getAttribute("label");
+				menu.innerHTML += liTag.outerHTML;
+			}
+			console.log(menu.innerHTML);
+			menu.style.top = `${e.clientY}px`;
+			menu.style.left = `${e.clientX}px`;
+			menu.style.opacity = 1;
+		});
+	}
+	var contextTimer = 0;
+	setInterval(() => {
+		contextTimer += 100;
+		if (contextTimer > 3000) {
+			menu.style.opacity = 0;
+			menu.style.pointerEvents = "none";
+			contextTimer = 0;
+			return;
+		}
+	}, 100);
+	_$.addEventListeners(menu, ["mousemove", "click", "scroll"], () => {
+		contextTimer = 0;
+	});
+	_$.onOutsideClick(menu, () => {
+		menu.style.opacity = 0;
+		menu.style.pointerEvents = "none";
+	});
 };
 
 /**
@@ -1085,25 +1085,25 @@ export let context = () => {
  * if (_$.inView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the element is completely in view.
  */
-export let inView = (el = req('HTMLElement', 'element')) => {
-  node();
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
+export let inView = (el = req("HTMLElement", "element")) => {
+	node();
+	var top = el.offsetTop;
+	var left = el.offsetLeft;
+	var width = el.offsetWidth;
+	var height = el.offsetHeight;
 
-  while (el.offsetParent) {
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
-  }
+	while (el.offsetParent) {
+		el = el.offsetParent;
+		top += el.offsetTop;
+		left += el.offsetLeft;
+	}
 
-  return (
-    top >= window.pageYOffset &&
-    left >= window.pageXOffset &&
-    top + height <= window.pageYOffset + window.innerHeight &&
-    left + width <= window.pageXOffset + window.innerWidth
-  );
+	return (
+		top >= window.pageYOffset &&
+		left >= window.pageXOffset &&
+		top + height <= window.pageYOffset + window.innerHeight &&
+		left + width <= window.pageXOffset + window.innerWidth
+	);
 };
 /**
  * Tests if the given DOM element is partially (or fully) in view.
@@ -1115,25 +1115,25 @@ export let inView = (el = req('HTMLElement', 'element')) => {
  * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the DOM element is partially in view.
  */
-export let inPartialView = (el = req('HTMLElement', 'element')) => {
-  node();
-  var top = el.offsetTop;
-  var left = el.offsetLeft;
-  var width = el.offsetWidth;
-  var height = el.offsetHeight;
+export let inPartialView = (el = req("HTMLElement", "element")) => {
+	node();
+	var top = el.offsetTop;
+	var left = el.offsetLeft;
+	var width = el.offsetWidth;
+	var height = el.offsetHeight;
 
-  while (el.offsetParent) {
-    el = el.offsetParent;
-    top += el.offsetTop;
-    left += el.offsetLeft;
-  }
+	while (el.offsetParent) {
+		el = el.offsetParent;
+		top += el.offsetTop;
+		left += el.offsetLeft;
+	}
 
-  return (
-    top < window.pageYOffset + window.innerHeight &&
-    left < window.pageXOffset + window.innerWidth &&
-    top + height > window.pageYOffset &&
-    left + width > window.pageXOffset
-  );
+	return (
+		top < window.pageYOffset + window.innerHeight &&
+		left < window.pageXOffset + window.innerWidth &&
+		top + height > window.pageYOffset &&
+		left + width > window.pageXOffset
+	);
 };
 
 /**
@@ -1148,13 +1148,13 @@ export let inPartialView = (el = req('HTMLElement', 'element')) => {
  * @returns {undefined}
  */
 export let replaceText = (
-  el = req('HTMLElement', 'element'),
-  callback = req('function', 'callback'),
+	el = req("HTMLElement", "element"),
+	callback = req("function", "callback"),
 ) => {
-  node();
-  _$.each(_$.textNodes(el), (node) => {
-    node.textContent = callback(node.textContent);
-  });
+	node();
+	_$.each(_$.textNodes(el), (node) => {
+		node.textContent = callback(node.textContent);
+	});
 };
 /**
  * Gets a list of all the text nodes in an element
@@ -1165,12 +1165,12 @@ export let replaceText = (
  * @example
  * _$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements
  */
-export let textNodes = (el = req('HTMLElement', 'element')) => {
-  return [...el.childNodes].filter((node) => {
-    return (
-      node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ''
-    );
-  });
+export let textNodes = (el = req("HTMLElement", "element")) => {
+	return [...el.childNodes].filter((node) => {
+		return (
+			node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ""
+		);
+	});
 };
 /**
  * Generates a querySelector for an element passed in.
@@ -1182,104 +1182,104 @@ export let textNodes = (el = req('HTMLElement', 'element')) => {
  * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
  * @returns {String} The generated querySelector.
  */
-export let querySelector = (elem = req('HTMLElement', 'element')) => {
-  node();
-  var element = elem;
-  var str = '';
+export let querySelector = (elem = req("HTMLElement", "element")) => {
+	node();
+	var element = elem;
+	var str = "";
 
-  function loop(element) {
-    if (
-      element.getAttribute('id') &&
-      document.querySelectorAll(`#${element.getAttribute('id')}`)
-        .length === 1
-    ) {
-      str = str.replace(/^/, ' #' + element.getAttribute('id'));
-      str = str.replace(/\s/, '');
-      str = str.replace(/\s/g, ' > ');
-      return str;
-    }
-    if (document.body === element) {
-      str = str.replace(/^/, ' body');
-      str = str.replace(/\s/, '');
-      str = str.replace(/\s/g, ' > ');
-      return str;
-    }
-    if (element.getAttribute('class')) {
-      var elemClasses = '.';
-      elemClasses += element.getAttribute('class');
-      elemClasses = elemClasses.replace(/\s/g, '.');
-      elemClasses = elemClasses.replace(/^/g, ' ');
-      var classNth = '';
-      var childrens = element.parentNode.children;
+	function loop(element) {
+		if (
+			element.getAttribute("id") &&
+			document.querySelectorAll(`#${element.getAttribute("id")}`)
+				.length === 1
+		) {
+			str = str.replace(/^/, " #" + element.getAttribute("id"));
+			str = str.replace(/\s/, "");
+			str = str.replace(/\s/g, " > ");
+			return str;
+		}
+		if (document.body === element) {
+			str = str.replace(/^/, " body");
+			str = str.replace(/\s/, "");
+			str = str.replace(/\s/g, " > ");
+			return str;
+		}
+		if (element.getAttribute("class")) {
+			var elemClasses = ".";
+			elemClasses += element.getAttribute("class");
+			elemClasses = elemClasses.replace(/\s/g, ".");
+			elemClasses = elemClasses.replace(/^/g, " ");
+			var classNth = "";
+			var childrens = element.parentNode.children;
 
-      if (childrens.length < 2) {
-        return;
-      }
+			if (childrens.length < 2) {
+				return;
+			}
 
-      var similarClasses = [];
+			var similarClasses = [];
 
-      for (var i = 0; i < childrens.length; i++) {
-        if (
-          element.getAttribute('class') ==
-          childrens[i].getAttribute('class')
-        ) {
-          similarClasses.push(childrens[i]);
-        }
-      }
+			for (var i = 0; i < childrens.length; i++) {
+				if (
+					element.getAttribute("class") ==
+					childrens[i].getAttribute("class")
+				) {
+					similarClasses.push(childrens[i]);
+				}
+			}
 
-      if (similarClasses.length > 1) {
-        for (var j = 0; j < similarClasses.length; j++) {
-          if (element === similarClasses[j]) {
-            j++;
-            classNth = ':nth-of-type(' + j + ')';
-            break;
-          }
-        }
-      }
+			if (similarClasses.length > 1) {
+				for (var j = 0; j < similarClasses.length; j++) {
+					if (element === similarClasses[j]) {
+						j++;
+						classNth = ":nth-of-type(" + j + ")";
+						break;
+					}
+				}
+			}
 
-      str = str.replace(/^/, elemClasses + classNth);
-    } else {
-      var name = element.nodeName;
-      name = name.toLowerCase();
-      var nodeNth = '';
+			str = str.replace(/^/, elemClasses + classNth);
+		} else {
+			var name = element.nodeName;
+			name = name.toLowerCase();
+			var nodeNth = "";
 
-      childrens = element.parentNode.children;
+			childrens = element.parentNode.children;
 
-      if (childrens.length > 2) {
-        var similarNodes = [];
+			if (childrens.length > 2) {
+				var similarNodes = [];
 
-        for (var i = 0; i < childrens.length; i++) {
-          if (element.nodeName == childrens[i].nodeName) {
-            similarNodes.push(childrens[i]);
-          }
-        }
+				for (var i = 0; i < childrens.length; i++) {
+					if (element.nodeName == childrens[i].nodeName) {
+						similarNodes.push(childrens[i]);
+					}
+				}
 
-        if (similarNodes.length > 1) {
-          for (var j = 0; j < similarNodes.length; j++) {
-            if (element === similarNodes[j]) {
-              j++;
-              nodeNth = ':nth-of-type(' + j + ')';
-              break;
-            }
-          }
-        }
-      }
+				if (similarNodes.length > 1) {
+					for (var j = 0; j < similarNodes.length; j++) {
+						if (element === similarNodes[j]) {
+							j++;
+							nodeNth = ":nth-of-type(" + j + ")";
+							break;
+						}
+					}
+				}
+			}
 
-      str = str.replace(/^/, ' ' + name + nodeNth);
-    }
+			str = str.replace(/^/, " " + name + nodeNth);
+		}
 
-    if (element.parentNode) {
-      loop(element.parentNode);
-    } else {
-      str = str.replace(/\s/g, ' > ');
-      str = str.replace(/\s/, '');
-      return str;
-    }
-  }
+		if (element.parentNode) {
+			loop(element.parentNode);
+		} else {
+			str = str.replace(/\s/g, " > ");
+			str = str.replace(/\s/, "");
+			return str;
+		}
+	}
 
-  loop(element);
+	loop(element);
 
-  return str;
+	return str;
 };
 /**
  * Removes comments from the element or string of code specified.
@@ -1291,17 +1291,17 @@ export let querySelector = (elem = req('HTMLElement', 'element')) => {
  * @returns {String|Element} The string removed of comments or the element removed of comments.
  */
 export let removeComments = (
-  el = req('String|HTMLElement', 'element or string'),
+	el = req("String|HTMLElement", "element or string"),
 ) => {
-  const isString = typeof el === 'string';
-  el = isString ? _$.parseHTML(el) : el.cloneNode(true);
-  for (const child of [...el.querySelectorAll('*'), el]) {
-    for (const grandchild of child.childNodes) {
-      if (grandchild instanceof Comment)
-        child.removeChild(grandchild);
-    }
-  }
-  return isString ? el.outerHTML : el;
+	const isString = typeof el === "string";
+	el = isString ? _$.parseHTML(el) : el.cloneNode(true);
+	for (const child of [...el.querySelectorAll("*"), el]) {
+		for (const grandchild of child.childNodes) {
+			if (grandchild instanceof Comment)
+				child.removeChild(grandchild);
+		}
+	}
+	return isString ? el.outerHTML : el;
 };
 /**
  * Parses the string of HTML specified and returns an HTML element of it.
@@ -1315,11 +1315,11 @@ export let removeComments = (
  * @returns {HTMLDocument} The HTML document element of the HTML string specified.
  */
 export let parseHTML = (
-  string = req('string', 'html string'),
-  mimeType = 'text/html',
+	string = req("string", "html string"),
+	mimeType = "text/html",
 ) => {
-  const domparser = new DOMParser();
-  return domparser.parseFromString(string, mimeType);
+	const domparser = new DOMParser();
+	return domparser.parseFromString(string, mimeType);
 };
 /**
  * Allows an element to be dragged and dropped.
@@ -1330,44 +1330,44 @@ export let parseHTML = (
  * _$.drag(document.querySelector('div')); // Allows the first <div> on the page to be dragged.
  * @returns {Element} The element.
  */
-export let drag = (el = req('HTMLElement', 'element')) => {
-  node();
-  var initX, initY, mousePressX, mousePressY;
-  el.addEventListener(
-    'mousedown',
-    function (event) {
-      var style = window.getComputedStyle(el);
-      el.style.top = style.getPropertyValue('top');
-      el.style.left = style.getPropertyValue('left');
-      el.style.right = style.getPropertyValue('right');
-      el.style.bottom = style.getPropertyValue('bottom');
-      this.style.position = 'absolute';
-      initX = this.offsetLeft;
-      initY = this.offsetTop;
-      mousePressX = event.clientX;
-      mousePressY = event.clientY;
-      this.addEventListener('mousemove', repositionElement, false);
+export let drag = (el = req("HTMLElement", "element")) => {
+	node();
+	var initX, initY, mousePressX, mousePressY;
+	el.addEventListener(
+		"mousedown",
+		function (event) {
+			var style = window.getComputedStyle(el);
+			el.style.top = style.getPropertyValue("top");
+			el.style.left = style.getPropertyValue("left");
+			el.style.right = style.getPropertyValue("right");
+			el.style.bottom = style.getPropertyValue("bottom");
+			this.style.position = "absolute";
+			initX = this.offsetLeft;
+			initY = this.offsetTop;
+			mousePressX = event.clientX;
+			mousePressY = event.clientY;
+			this.addEventListener("mousemove", repositionElement, false);
 
-      window.addEventListener(
-        'mouseup',
-        function () {
-          el.removeEventListener(
-            'mousemove',
-            repositionElement,
-            false,
-          );
-        },
-        false,
-      );
-    },
-    false,
-  );
+			window.addEventListener(
+				"mouseup",
+				function () {
+					el.removeEventListener(
+						"mousemove",
+						repositionElement,
+						false,
+					);
+				},
+				false,
+			);
+		},
+		false,
+	);
 
-  function repositionElement(event) {
-    this.style.left = initX + event.clientX - mousePressX + 'px';
-    this.style.top = initY + event.clientY - mousePressY + 'px';
-  }
-  return el;
+	function repositionElement(event) {
+		this.style.left = initX + event.clientX - mousePressX + "px";
+		this.style.top = initY + event.clientY - mousePressY + "px";
+	}
+	return el;
 };
 /**
  * Adds multiple event listeners with one callback to the element specified.
@@ -1390,26 +1390,26 @@ export let drag = (el = req('HTMLElement', 'element')) => {
  * @returns {undefined}
  */
 export let addEventListeners = (
-  element = req('HTMLElement', 'element'),
-  events = req('array', 'events'),
-  handler = {},
-  useCapture = false,
-  args = false,
+	element = req("HTMLElement", "element"),
+	events = req("array", "events"),
+	handler = {},
+	useCapture = false,
+	args = false,
 ) => {
-  if (!(events instanceof Array)) {
-    throw (
-      'addMultipleListeners: ' +
-      'please supply an array of eventstrings ' +
-      '(like ["click","mouseover"])'
-    );
-  }
-  //create a wrapper to be able to use additional arguments
-  var handlerFn = function (e) {
-    handler.apply(this, args && args instanceof Array ? args : []);
-  };
-  for (var i = 0; i < events.length; i += 1) {
-    element.addEventListener(events[i], handlerFn, useCapture);
-  }
+	if (!(events instanceof Array)) {
+		throw (
+			"addMultipleListeners: " +
+			"please supply an array of eventstrings " +
+			'(like ["click","mouseover"])'
+		);
+	}
+	//create a wrapper to be able to use additional arguments
+	var handlerFn = function (e) {
+		handler.apply(this, args && args instanceof Array ? args : []);
+	};
+	for (var i = 0; i < events.length; i += 1) {
+		element.addEventListener(events[i], handlerFn, useCapture);
+	}
 };
 /**
  * @memberOf element
@@ -1419,47 +1419,47 @@ export let addEventListeners = (
  * @param {HTMLTableElement} element The table to sort
  */
 export let sortTable = (
-  element = req('HTMLTableElement', 'table element'),
+	element = req("HTMLTableElement", "table element"),
 ) => {
-  var getCellValue = function (tr, idx) {
-    return tr.children[idx].innerText || tr.children[idx].textContent;
-  };
+	var getCellValue = function (tr, idx) {
+		return tr.children[idx].innerText || tr.children[idx].textContent;
+	};
 
-  var comparer = function (idx, asc) {
-    return function (a, b) {
-      return (function (v1, v2) {
-        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
-          ? v1 - v2
-          : v1.toString().localeCompare(v2);
-      })(
-        getCellValue(asc ? a : b, idx),
-        getCellValue(asc ? b : a, idx),
-      );
-    };
-  };
+	var comparer = function (idx, asc) {
+		return function (a, b) {
+			return (function (v1, v2) {
+				return v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
+					? v1 - v2
+					: v1.toString().localeCompare(v2);
+			})(
+				getCellValue(asc ? a : b, idx),
+				getCellValue(asc ? b : a, idx),
+			);
+		};
+	};
 
-  Array.prototype.slice
-    .call(element.querySelectorAll('th'))
-    .forEach(function (th) {
-      th.addEventListener('click', function () {
-        var table = th.parentNode;
-        while (table.tagName.toUpperCase() != 'TABLE')
-          table = table.parentNode;
-        Array.prototype.slice
-          .call(table.querySelectorAll('tr:nth-child(n+2)'))
-          .sort(
-            comparer(
-              Array.prototype.slice
-                .call(th.parentNode.children)
-                .indexOf(th),
-              (this.asc = !this.asc),
-            ),
-          )
-          .forEach(function (tr) {
-            table.appendChild(tr);
-          });
-      });
-    });
+	Array.prototype.slice
+		.call(element.querySelectorAll("th"))
+		.forEach(function (th) {
+			th.addEventListener("click", function () {
+				var table = th.parentNode;
+				while (table.tagName.toUpperCase() != "TABLE")
+					table = table.parentNode;
+				Array.prototype.slice
+					.call(table.querySelectorAll("tr:nth-child(n+2)"))
+					.sort(
+						comparer(
+							Array.prototype.slice
+								.call(th.parentNode.children)
+								.indexOf(th),
+							(this.asc = !this.asc),
+						),
+					)
+					.forEach(function (tr) {
+						table.appendChild(tr);
+					});
+			});
+		});
 };
 /**
  * Sorts a table by a <th> element.
@@ -1478,42 +1478,42 @@ export let sortTable = (
  * @param {Boolean} acending Whether to sort the table ascending or descending.
  */
 export let sortTableBy = (
-  th = req('HTMLTableElement', '<th> element'),
-  acending = req('boolean', 'ascending'),
+	th = req("HTMLTableElement", "<th> element"),
+	acending = req("boolean", "ascending"),
 ) => {
-  var getCellValue = function (tr, idx) {
-    return tr.children[idx].innerText || tr.children[idx].textContent;
-  };
+	var getCellValue = function (tr, idx) {
+		return tr.children[idx].innerText || tr.children[idx].textContent;
+	};
 
-  var comparer = function (idx, asc) {
-    return function (a, b) {
-      return (function (v1, v2) {
-        return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)
-          ? v1 - v2
-          : v1.toString().localeCompare(v2);
-      })(
-        getCellValue(asc ? a : b, idx),
-        getCellValue(asc ? b : a, idx),
-      );
-    };
-  };
+	var comparer = function (idx, asc) {
+		return function (a, b) {
+			return (function (v1, v2) {
+				return v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
+					? v1 - v2
+					: v1.toString().localeCompare(v2);
+			})(
+				getCellValue(asc ? a : b, idx),
+				getCellValue(asc ? b : a, idx),
+			);
+		};
+	};
 
-  var table = th.parentNode;
-  while (table.tagName.toUpperCase() != 'TABLE')
-    table = table.parentNode;
-  Array.prototype.slice
-    .call(table.querySelectorAll('tr:nth-child(n+2)'))
-    .sort(
-      comparer(
-        Array.prototype.slice
-          .call(th.parentNode.children)
-          .indexOf(th),
-        acending,
-      ),
-    )
-    .forEach(function (tr) {
-      table.appendChild(tr);
-    });
+	var table = th.parentNode;
+	while (table.tagName.toUpperCase() != "TABLE")
+		table = table.parentNode;
+	Array.prototype.slice
+		.call(table.querySelectorAll("tr:nth-child(n+2)"))
+		.sort(
+			comparer(
+				Array.prototype.slice
+					.call(th.parentNode.children)
+					.indexOf(th),
+				acending,
+			),
+		)
+		.forEach(function (tr) {
+			table.appendChild(tr);
+		});
 };
 /**
  * Adds the specified styles to the element specified.
@@ -1526,11 +1526,11 @@ export let sortTableBy = (
  * @returns {Object} the style object of the element.
  */
 export let addStyles = (
-  el = req('HTMLElement', 'element'),
-  styles = req('Object', 'styles'),
+	el = req("HTMLElement", "element"),
+	styles = req("Object", "styles"),
 ) => {
-  node();
-  return Object.assign(el.style, styles);
+	node();
+	return Object.assign(el.style, styles);
 };
 
 /**
@@ -1544,12 +1544,12 @@ export let addStyles = (
  * @returns {Element} The created element.
  */
 export let createElement = (
-  str = req('String', 'HTML element string'),
+	str = req("String", "HTML element string"),
 ) => {
-  node();
-  const el = document.createElement('div');
-  el.innerHTML = str;
-  return el.firstElementChild;
+	node();
+	const el = document.createElement("div");
+	el.innerHTML = str;
+	return el.firstElementChild;
 };
 /**
  * Gets a property from the computed style of an element.
@@ -1562,12 +1562,12 @@ export let createElement = (
  * @returns {String} The computed style property for the element specified.
  */
 export let compStyle = (
-  el = req('HTMLElement', 'element'),
-  prop = req('String', 'CSS property string'),
+	el = req("HTMLElement", "element"),
+	prop = req("String", "CSS property string"),
 ) => {
-  node();
-  var computedStyles = window.getComputedStyle(el);
-  return computedStyles.getPropertyValue(prop);
+	node();
+	var computedStyles = window.getComputedStyle(el);
+	return computedStyles.getPropertyValue(prop);
 };
 
 /**
@@ -1580,8 +1580,8 @@ export let compStyle = (
  * // Make every sibling of the first list item's background color white.
  * @returns {Element[]} The array of sibling elements.
  */
-export let elementSiblings = (n = req('HTMLElement', 'element')) =>
-  [...n.parentElement.children].filter((c) => c != n);
+export let elementSiblings = (n = req("HTMLElement", "element")) =>
+	[...n.parentElement.children].filter((c) => c != n);
 /**
  * Disables right click on the element spcified.
  * @function
@@ -1592,10 +1592,10 @@ export let elementSiblings = (n = req('HTMLElement', 'element')) =>
  * @returns {undefined}
  */
 export let disableRightClick = (
-  el = req('HTMLElement', 'element'),
+	el = req("HTMLElement", "element"),
 ) => {
-  node();
-  return (el.oncontextmenu = false);
+	node();
+	return (el.oncontextmenu = false);
 };
 /**
  * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
@@ -1606,13 +1606,13 @@ export let disableRightClick = (
  * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the <h1> element to inline using the style="___" attribute
  * @returns {undefined}
  */
-export let inlineCSS = (el = req('HTMLElement', 'element')) => {
-  var cs = getComputedStyle(el, null);
-  var i;
-  for (i = 0; i < cs.length; i++) {
-    var s = cs[i] + '';
-    el.style[s] = cs[s];
-  }
+export let inlineCSS = (el = req("HTMLElement", "element")) => {
+	var cs = getComputedStyle(el, null);
+	var i;
+	for (i = 0; i < cs.length; i++) {
+		var s = cs[i] + "";
+		el.style[s] = cs[s];
+	}
 };
 /**
  * Returns an array of objects representing the attributes of a passed element.
@@ -1624,21 +1624,21 @@ export let inlineCSS = (el = req('HTMLElement', 'element')) => {
  * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
  * @return {Array.<object>} The array of objects representing the attributes
  */
-export let attributes = (el = req('HTMLElement', 'element')) => {
-  node();
-  var output = [];
-  for (
-    var att, i = 0, atts = el.attributes, n = atts.length;
-    i < n;
-    i++
-  ) {
-    att = atts[i];
-    output.push({
-      name: att.nodeName,
-      value: att.nodeValue,
-    });
-  }
-  return output;
+export let attributes = (el = req("HTMLElement", "element")) => {
+	node();
+	var output = [];
+	for (
+		var att, i = 0, atts = el.attributes, n = atts.length;
+		i < n;
+		i++
+	) {
+		att = atts[i];
+		output.push({
+			name: att.nodeName,
+			value: att.nodeValue,
+		});
+	}
+	return output;
 };
 /**
  * Observes the mutations of the html element specified.
@@ -1652,28 +1652,28 @@ export let attributes = (el = req('HTMLElement', 'element')) => {
  * @returns {undefined}
  */
 export let observeMutations = (
-  element = req('HTMLElement', 'element'),
-  callback = req('function', 'callback'),
-  options = {},
+	element = req("HTMLElement", "element"),
+	callback = req("function", "callback"),
+	options = {},
 ) => {
-  const observer = new MutationObserver((mutations) =>
-    mutations.forEach((m) => callback(m)),
-  );
-  observer.observe(
-    element,
-    Object.assign(
-      {
-        childList: true,
-        attributes: true,
-        attributeOldValue: true,
-        characterData: true,
-        characterDataOldValue: true,
-        subtree: true,
-      },
-      options,
-    ),
-  );
-  return observer;
+	const observer = new MutationObserver((mutations) =>
+		mutations.forEach((m) => callback(m)),
+	);
+	observer.observe(
+		element,
+		Object.assign(
+			{
+				childList: true,
+				attributes: true,
+				attributeOldValue: true,
+				characterData: true,
+				characterDataOldValue: true,
+				subtree: true,
+			},
+			options,
+		),
+	);
+	return observer;
 };
 /**
  * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
@@ -1695,26 +1695,26 @@ export let observeMutations = (
  * }
  */
 export let tilt = (
-  el = req('HTMLElement', 'element'),
-  x = req('number', 'x'),
-  y = req('number', 'y'),
-  perspective = 500,
-  amount = 30,
+	el = req("HTMLElement", "element"),
+	x = req("number", "x"),
+	y = req("number", "y"),
+	perspective = 500,
+	amount = 30,
 ) => {
-  //Old code
-  /*  const xVal = x
+	//Old code
+	/*  const xVal = x
       const yVal = y
       const yRotation = amount * ((xVal - width / 2) / width)
       const xRotation = amount * -1 * ((yVal - height / 2) / height)
       const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
       el.style.transform = string */
 
-  //One liner
-  el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
-    amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
-  }deg) rotateY(${
-    amount * ((x - el.clientWidth / 2) / el.clientWidth)
-  }deg)`;
+	//One liner
+	el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
+		amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
+	}deg) rotateY(${
+		amount * ((x - el.clientWidth / 2) / el.clientWidth)
+	}deg)`;
 };
 /**
  * Enters fullscreen on an element.
@@ -1725,13 +1725,13 @@ export let tilt = (
  * @example
  * _$.fullScreen(document.documentElement); // Make the window fullscreen
  */
-export let fullScreen = (element = req('HTMLElement', 'element')) => {
-  return (
-    element.requestFullScreen ||
-    element.mozRequestFullScreen ||
-    element.webkitRequestFullScreen() ||
-    new Error('Fullscreen failed')
-  );
+export let fullScreen = (element = req("HTMLElement", "element")) => {
+	return (
+		element.requestFullScreen ||
+		element.mozRequestFullScreen ||
+		element.webkitRequestFullScreen() ||
+		new Error("Fullscreen failed")
+	);
 };
 /**
  * Replaces the selected text in a contentEditable div with the HTML given.
@@ -1746,25 +1746,25 @@ export let fullScreen = (element = req('HTMLElement', 'element')) => {
  * @param {String} replacementText The replacement HTML to replace with.
  */
 export let replaceSelection = (
-  replacementText = req('string', 'replacement text'),
+	replacementText = req("string", "replacement text"),
 ) => {
-  var sel, range;
-  if (window.getSelection) {
-    sel = window.getSelection();
-    if (sel.rangeCount) {
-      range = sel.getRangeAt(0);
-      range.deleteContents();
-      let n = document.createElement('span');
-      n.insertAdjacentHTML('beforeend', replacementText);
-      range.insertNode(n);
-    }
-  } else if (document.selection && document.selection.createRange) {
-    console.warn(
-      'You are using IE < 9, you are evil. Falling back to text not HTML.',
-    );
-    range = document.selection.createRange();
-    range.text = replacementText.replace(/<[^>]*>/g, '');
-  }
+	var sel, range;
+	if (window.getSelection) {
+		sel = window.getSelection();
+		if (sel.rangeCount) {
+			range = sel.getRangeAt(0);
+			range.deleteContents();
+			let n = document.createElement("span");
+			n.insertAdjacentHTML("beforeend", replacementText);
+			range.insertNode(n);
+		}
+	} else if (document.selection && document.selection.createRange) {
+		console.warn(
+			"You are using IE < 9, you are evil. Falling back to text not HTML.",
+		);
+		range = document.selection.createRange();
+		range.text = replacementText.replace(/<[^>]*>/g, "");
+	}
 };
 //#endregion Element
 //#region Event
@@ -1779,18 +1779,18 @@ export let replaceSelection = (
  * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
  */
 export let onOutsideClick = (
-  element = req('HTMLElement', 'element'),
-  callback = req('function', 'callback'),
+	element = req("HTMLElement", "element"),
+	callback = req("function", "callback"),
 ) => {
-  node();
-  return new Promise((resolve, reject) => {
-    document.addEventListener('click', (e) => {
-      if (!element.contains(e.target)) {
-        callback();
-        resolve();
-      }
-    });
-  });
+	node();
+	return new Promise((resolve, reject) => {
+		document.addEventListener("click", (e) => {
+			if (!element.contains(e.target)) {
+				callback();
+				resolve();
+			}
+		});
+	});
 };
 /**
  * Returns the callback when the user stops scrolling.
@@ -1803,24 +1803,24 @@ export let onOutsideClick = (
  * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
  */
 export let onScrollStop = (
-  callback = req('function', 'callback'),
-  time = 150,
+	callback = req("function", "callback"),
+	time = 150,
 ) => {
-  let isScrolling;
-  node();
-  return new Promise((resolve, reject) => {
-    window.addEventListener(
-      'scroll',
-      (e) => {
-        clearTimeout(isScrolling);
-        isScrolling = setTimeout(() => {
-          callback(e);
-          resolve(e);
-        }, time);
-      },
-      false,
-    );
-  });
+	let isScrolling;
+	node();
+	return new Promise((resolve, reject) => {
+		window.addEventListener(
+			"scroll",
+			(e) => {
+				clearTimeout(isScrolling);
+				isScrolling = setTimeout(() => {
+					callback(e);
+					resolve(e);
+				}, time);
+			},
+			false,
+		);
+	});
 };
 /**
  * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
@@ -1836,19 +1836,19 @@ export let onScrollStop = (
  * }, 2000)
  */
 export let hub = () => ({
-  hub: Object.create(null),
-  emit(event, data) {
-    (this.hub[event] || []).forEach((handler) => handler(data));
-  },
-  on(event, handler) {
-    if (!this.hub[event]) this.hub[event] = [];
-    this.hub[event].push(handler);
-  },
-  off(event, handler) {
-    const i = (this.hub[event] || []).findIndex((h) => h === handler);
-    if (i > -1) this.hub[event].splice(i, 1);
-    if (this.hub[event].length === 0) delete this.hub[event];
-  },
+	hub: Object.create(null),
+	emit(event, data) {
+		(this.hub[event] || []).forEach((handler) => handler(data));
+	},
+	on(event, handler) {
+		if (!this.hub[event]) this.hub[event] = [];
+		this.hub[event].push(handler);
+	},
+	off(event, handler) {
+		const i = (this.hub[event] || []).findIndex((h) => h === handler);
+		if (i > -1) this.hub[event].splice(i, 1);
+		if (this.hub[event].length === 0) delete this.hub[event];
+	},
 });
 /**
  * Dispatches an event of the type specified with custom arguments.
@@ -1863,15 +1863,15 @@ export let hub = () => ({
  * @returns {undefined}
  */
 export let dispatch = (
-  type = req('string', 'type'),
-  args = req('object', 'event properties'),
-  target = window,
+	type = req("string", "type"),
+	args = req("object", "event properties"),
+	target = window,
 ) => {
-  let e = new Event(type);
-  for (let o in args) {
-    e[o] = args[o];
-  }
-  target.dispatchEvent(e);
+	let e = new Event(type);
+	for (let o in args) {
+		e[o] = args[o];
+	}
+	target.dispatchEvent(e);
 };
 //#endregion Event
 //#region Function
@@ -1889,7 +1889,7 @@ export let dispatch = (
  * @param  {...function} fns The functions to call.
  */
 export let juxt = (...fns) => (...args) =>
-  [...fns].map((fn) => [...args].map(fn));
+	[...fns].map((fn) => [...args].map(fn));
 /**
  * Returns a promise after a specified number of milliseconds.
  * @returns {Promise}
@@ -1903,8 +1903,8 @@ export let juxt = (...fns) => (...args) =>
  * })
  * @param {Number} ms The milliseconds to sleep.
  */
-export let sleep = (ms = req('number', 'milliseconds')) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+export let sleep = (ms = req("number", "milliseconds")) =>
+	new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Limits the arguments that a given function takes to only the 1st n arguments.
@@ -1917,8 +1917,8 @@ export let sleep = (ms = req('number', 'milliseconds')) =>
  * @param {Number} n The number of arguments to accept.
  */
 export let limitArgs = (
-  fn = req('function', 'function'),
-  n = req('number', 'arguments'),
+	fn = req("function", "function"),
+	n = req("number", "arguments"),
 ) => (...args) => fn(...args.slice(0, n));
 /**
  * Returns the index of the fastest function in an array of functions.
@@ -1930,12 +1930,12 @@ export let limitArgs = (
  * @param {Number} [iterations=1000] How many times to execute the functions. (More is more reliable but takes longer.)
  */
 export let fastestFunction = (fns, iterations = 1000) => {
-  const times = fns.map((fn) => {
-    const before = performance.now();
-    for (let i = 0; i < iterations; i++) fn();
-    return performance.now() - before;
-  });
-  return times.indexOf(Math.min(...times));
+	const times = fns.map((fn) => {
+		const before = performance.now();
+		for (let i = 0; i < iterations; i++) fn();
+		return performance.now() - before;
+	});
+	return times.indexOf(Math.min(...times));
 };
 
 /**
@@ -1950,10 +1950,10 @@ export let fastestFunction = (fns, iterations = 1000) => {
   say(["Fred", "hi"]);//"Fred says hi"
  * @param {Function} fn The function to use
  */
-export let spread = (fn = req('function')) => {
-  return (args) => {
-    call_me.apply(this, args);
-  };
+export let spread = (fn = req("function")) => {
+	return (args) => {
+		call_me.apply(this, args);
+	};
 };
 /**
  * Memoizes a function, basically caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
@@ -1964,18 +1964,18 @@ export let spread = (fn = req('function')) => {
  * let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)
  * @returns {Function} The memoized function.
  */
-export let memoize = (fn = req('function')) => {
-  let cache = {};
-  return function () {
-    let args = JSON.stringify(Array.from(arguments));
-    let arg_array = Array.from(arguments);
-    if (cache[args]) {
-      return cache[args];
-    } else {
-      cache[args] = fn(...arg_array);
-      return cache[args];
-    }
-  };
+export let memoize = (fn = req("function")) => {
+	let cache = {};
+	return function () {
+		let args = JSON.stringify(Array.from(arguments));
+		let arg_array = Array.from(arguments);
+		if (cache[args]) {
+			return cache[args];
+		} else {
+			cache[args] = fn(...arg_array);
+			return cache[args];
+		}
+	};
 };
 /**
  * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
@@ -1989,8 +1989,8 @@ export let memoize = (fn = req('function')) => {
  * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  3 * 2 + 2
  */
 export let composeFunction = (...functions) => (args) => {
-  req('functions', 'function list', ![...functions].length);
-  return functions.reduceRight((arg, fn) => fn(arg), args);
+	req("functions", "function list", ![...functions].length);
+	return functions.reduceRight((arg, fn) => fn(arg), args);
 };
 /**
  * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
@@ -2005,13 +2005,13 @@ export let composeFunction = (...functions) => (args) => {
  * console.log(_$.curryFunction(fn, 4, 5)(4)(3)(2)); // 120 i.e. 5 * 4 * 3 * 2
  */
 export let curryFunction = (
-  fn = req('function'),
-  arity = fn.length,
-  ...args
+	fn = req("function"),
+	arity = fn.length,
+	...args
 ) =>
-  arity <= args.length
-    ? fn(...args)
-    : curryFunction.bind(null, fn, arity, ...args);
+	arity <= args.length
+		? fn(...args)
+		: curryFunction.bind(null, fn, arity, ...args);
 /**
  * Returns if the given function is async or not.
  * @memberOf function
@@ -2022,8 +2022,8 @@ export let curryFunction = (
  * const asyncFn = async (x) => x ** 3; // It's a silly function, but a good example
  * console.log(_$.isAsync(asyncFn)); // true
  */
-export let isAsync = (val = req('function')) =>
-  Object.prototype.toString.call(val) === '[object AsyncFunction]';
+export let isAsync = (val = req("function")) =>
+	Object.prototype.toString.call(val) === "[object AsyncFunction]";
 
 /**
  * Times the function passed.
@@ -2037,14 +2037,14 @@ export let isAsync = (val = req('function')) =>
  * @returns {undefined}
  */
 export let timeFunction = (
-  fn = req('function'),
-  name = '_$ function timer',
+	fn = req("function"),
+	name = "_$ function timer",
 ) => {
-  let startTime = performance.now();
-  console.time(name);
-  fn();
-  console.timeEnd(name);
-  return performance.now() - startTime;
+	let startTime = performance.now();
+	console.time(name);
+	fn();
+	console.timeEnd(name);
+	return performance.now() - startTime;
 };
 /**
  * Only runs the input function at MAX with the delay specified.
@@ -2059,39 +2059,39 @@ export let timeFunction = (
  * @returns {Function} The throttled function
  */
 export let throttle = (
-  func = req('function'),
-  wait = req('number', 'wait'),
-  options = {},
+	func = req("function"),
+	wait = req("number", "wait"),
+	options = {},
 ) => {
-  var context, args, result;
-  var timeout = null;
-  var previous = 0;
-  if (!options) options = {};
-  var later = function () {
-    previous = options.leading === false ? 0 : Date.now();
-    timeout = null;
-    result = func.apply(context, args);
-    if (!timeout) context = args = null;
-  };
-  return function () {
-    var now = Date.now();
-    if (!previous && options.leading === false) previous = now;
-    var remaining = wait - (now - previous);
-    context = this;
-    args = arguments;
-    if (remaining <= 0 || remaining > wait) {
-      if (timeout) {
-        clearTimeout(timeout);
-        timeout = null;
-      }
-      previous = now;
-      result = func.apply(context, args);
-      if (!timeout) context = args = null;
-    } else if (!timeout && options.trailing !== false) {
-      timeout = setTimeout(later, remaining);
-    }
-    return result;
-  };
+	var context, args, result;
+	var timeout = null;
+	var previous = 0;
+	if (!options) options = {};
+	var later = function () {
+		previous = options.leading === false ? 0 : Date.now();
+		timeout = null;
+		result = func.apply(context, args);
+		if (!timeout) context = args = null;
+	};
+	return function () {
+		var now = Date.now();
+		if (!previous && options.leading === false) previous = now;
+		var remaining = wait - (now - previous);
+		context = this;
+		args = arguments;
+		if (remaining <= 0 || remaining > wait) {
+			if (timeout) {
+				clearTimeout(timeout);
+				timeout = null;
+			}
+			previous = now;
+			result = func.apply(context, args);
+			if (!timeout) context = args = null;
+		} else if (!timeout && options.trailing !== false) {
+			timeout = setTimeout(later, remaining);
+		}
+		return result;
+	};
 };
 /**
  * Debounces a function
@@ -2104,49 +2104,49 @@ export let throttle = (
  * @param {Boolean} [immediate=false] Whether or not to run immediately, or after a group of executions.
  */
 export let debounce = (
-  func = req('function'),
-  wait = req('number', 'wait'),
-  immediate = false,
+	func = req("function"),
+	wait = req("number", "wait"),
+	immediate = false,
 ) => {
-  // 'private' variable for instance
-  // The returned function will be able to reference this due to closure.
-  // Each call to the returned function will share this common timer.
-  var timeout;
+	// 'private' variable for instance
+	// The returned function will be able to reference this due to closure.
+	// Each call to the returned function will share this common timer.
+	var timeout;
 
-  // Calling debounce returns a new anonymous function
-  return function () {
-    // reference the context and args for the setTimeout function
-    var context = this,
-      args = arguments;
+	// Calling debounce returns a new anonymous function
+	return function () {
+		// reference the context and args for the setTimeout function
+		var context = this,
+			args = arguments;
 
-    // Should the function be called now? If immediate is true
-    //   and not already in a timeout then the answer is: Yes
-    var callNow = immediate && !timeout;
+		// Should the function be called now? If immediate is true
+		//   and not already in a timeout then the answer is: Yes
+		var callNow = immediate && !timeout;
 
-    // This is the basic debounce behaviour where you can call this
-    //   function several times, but it will only execute once
-    //   [before or after imposing a delay].
-    //   Each time the returned function is called, the timer starts over.
-    clearTimeout(timeout);
+		// This is the basic debounce behaviour where you can call this
+		//   function several times, but it will only execute once
+		//   [before or after imposing a delay].
+		//   Each time the returned function is called, the timer starts over.
+		clearTimeout(timeout);
 
-    // Set the new timeout
-    timeout = setTimeout(function () {
-      // Inside the timeout function, clear the timeout variable
-      // which will let the next execution run when in 'immediate' mode
-      timeout = null;
+		// Set the new timeout
+		timeout = setTimeout(function () {
+			// Inside the timeout function, clear the timeout variable
+			// which will let the next execution run when in 'immediate' mode
+			timeout = null;
 
-      // Check if the function already ran with the immediate flag
-      if (!immediate) {
-        // Call the original function with apply
-        // apply lets you define the 'this' object as well as the arguments
-        //    (both captured before setTimeout)
-        func.apply(context, args);
-      }
-    }, wait);
+			// Check if the function already ran with the immediate flag
+			if (!immediate) {
+				// Call the original function with apply
+				// apply lets you define the 'this' object as well as the arguments
+				//    (both captured before setTimeout)
+				func.apply(context, args);
+			}
+		}, wait);
 
-    // Immediate mode and no wait timer? Execute the function..
-    if (callNow) func.apply(context, args);
-  };
+		// Immediate mode and no wait timer? Execute the function..
+		if (callNow) func.apply(context, args);
+	};
 };
 /**
  * Runs a function asynchronously in a web worker.
@@ -2157,20 +2157,20 @@ export let debounce = (
  * _$.runAsync(() =>  "hello world").then(console.log); // "hello world"
  * @returns {Promise} A promise that resolves into the return value of the function.
  */
-export let runAsync = (fn = req('function')) => {
-  const worker = new Worker(
-    URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
-      type: 'application/javascript; charset=utf-8',
-    }),
-  );
-  return new Promise((res, rej) => {
-    worker.onmessage = ({ data }) => {
-      res(data), worker.terminate();
-    };
-    worker.onerror = (err) => {
-      rej(err), worker.terminate();
-    };
-  });
+export let runAsync = (fn = req("function")) => {
+	const worker = new Worker(
+		URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
+			type: "application/javascript; charset=utf-8",
+		}),
+	);
+	return new Promise((res, rej) => {
+		worker.onmessage = ({ data }) => {
+			res(data), worker.terminate();
+		};
+		worker.onerror = (err) => {
+			rej(err), worker.terminate();
+		};
+	});
 };
 //#endregion Function
 //#region Object
@@ -2192,27 +2192,27 @@ export let runAsync = (fn = req('function')) => {
 * @param {Object} o The object to flatten
 * @returns {Object} The flattened object.
  */
-export let flattenObj = (o = req('object', 'object')) => {
-  return o !== Object(o) || Array.isArray(o)
-    ? {}
-    : Object.assign(
-        {},
-        ...(function leaves(o) {
-          return [].concat.apply(
-            [],
-            Object.entries(o).map(([k, v]) => {
-              return !v ||
-                typeof v !== 'object' ||
-                !Object.keys(v).some((key) =>
-                  v.hasOwnProperty(key),
-                ) ||
-                Array.isArray(v)
-                ? { [k]: v }
-                : leaves(v);
-            }),
-          );
-        })(o),
-      );
+export let flattenObj = (o = req("object", "object")) => {
+	return o !== Object(o) || Array.isArray(o)
+		? {}
+		: Object.assign(
+				{},
+				...(function leaves(o) {
+					return [].concat.apply(
+						[],
+						Object.entries(o).map(([k, v]) => {
+							return !v ||
+								typeof v !== "object" ||
+								!Object.keys(v).some((key) =>
+									v.hasOwnProperty(key),
+								) ||
+								Array.isArray(v)
+								? { [k]: v }
+								: leaves(v);
+						}),
+					);
+				})(o),
+		  );
 };
 /**
  * Deep clones an object
@@ -2225,47 +2225,47 @@ export let flattenObj = (o = req('object', 'object')) => {
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-export let clone = (item = req('object')) => {
-  if (!item) {
-    return item;
-  }
-  var types = [Number, String, Boolean],
-    result;
-  types.forEach(function (type) {
-    if (item instanceof type) {
-      result = type(item);
-    }
-  });
-  if (typeof result == 'undefined') {
-    if (Array.isArray(item)) {
-      result = [];
-      item.forEach(function (child, index, array) {
-        result[index] = clone(child);
-      });
-    } else if (typeof item == 'object') {
-      if (item.nodeType && typeof item.cloneNode == 'function') {
-        result = item.cloneNode(true);
-      } else if (!item.prototype) {
-        if (item instanceof Date) {
-          result = new Date(item);
-        } else {
-          result = {};
-          for (var i in item) {
-            result[i] = clone(item[i]);
-          }
-        }
-      } else {
-        if (false && item.constructor) {
-          result = new item.constructor();
-        } else {
-          result = item;
-        }
-      }
-    } else {
-      result = item;
-    }
-  }
-  return result;
+export let clone = (item = req("object")) => {
+	if (!item) {
+		return item;
+	}
+	var types = [Number, String, Boolean],
+		result;
+	types.forEach(function (type) {
+		if (item instanceof type) {
+			result = type(item);
+		}
+	});
+	if (typeof result == "undefined") {
+		if (Array.isArray(item)) {
+			result = [];
+			item.forEach(function (child, index, array) {
+				result[index] = clone(child);
+			});
+		} else if (typeof item == "object") {
+			if (item.nodeType && typeof item.cloneNode == "function") {
+				result = item.cloneNode(true);
+			} else if (!item.prototype) {
+				if (item instanceof Date) {
+					result = new Date(item);
+				} else {
+					result = {};
+					for (var i in item) {
+						result[i] = clone(item[i]);
+					}
+				}
+			} else {
+				if (false && item.constructor) {
+					result = new item.constructor();
+				} else {
+					result = item;
+				}
+			}
+		} else {
+			result = item;
+		}
+	}
+	return result;
 };
 /**
  * @memberOf object
@@ -2281,21 +2281,21 @@ export let clone = (item = req('object')) => {
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
 export let listen = (
-  obj = req('object'),
-  setCallback = () => null,
-  getCallback = () => null,
+	obj = req("object"),
+	setCallback = () => null,
+	getCallback = () => null,
 ) => {
-  return new Proxy(obj, {
-    set: function (target, key, value) {
-      setCallback(key, value);
-      target[key] = value;
-      return target[key];
-    },
-    get: function (target, key, value) {
-      getCallback(key, value);
-      return obj[key];
-    },
-  });
+	return new Proxy(obj, {
+		set: function (target, key, value) {
+			setCallback(key, value);
+			target[key] = value;
+			return target[key];
+		},
+		get: function (target, key, value) {
+			getCallback(key, value);
+			return obj[key];
+		},
+	});
 };
 /**
  * Merges two objects into one. Note that object 2 properties will overwrite those of object 2.
@@ -2308,24 +2308,24 @@ export let listen = (
  * console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}
  */
 export let merge = function MergeRecursive(
-  obj1 = req('object', 'object 1'),
-  obj2 = req('object', 'object 2'),
+	obj1 = req("object", "object 1"),
+	obj2 = req("object", "object 2"),
 ) {
-  for (var p in obj2) {
-    if (p in Object.prototype) continue;
-    try {
-      // Property in destination object set; update its value.
-      if (obj2[p].constructor == Object) {
-        obj1[p] = MergeRecursive(obj1[p], obj2[p]);
-      } else {
-        obj1[p] = obj2[p];
-      }
-    } catch (e) {
-      // Property in destination object not set; create it and set its value.
-      obj1[p] = obj2[p];
-    }
-  }
-  return obj1;
+	for (var p in obj2) {
+		if (p in Object.prototype) continue;
+		try {
+			// Property in destination object set; update its value.
+			if (obj2[p].constructor == Object) {
+				obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+			} else {
+				obj1[p] = obj2[p];
+			}
+		} catch (e) {
+			// Property in destination object not set; create it and set its value.
+			obj1[p] = obj2[p];
+		}
+	}
+	return obj1;
 };
 /**
  * Maps the keys of an object.
@@ -2339,22 +2339,22 @@ export let merge = function MergeRecursive(
  * @returns {Object} The new Object.
  */
 export let mapObjectKeys = (
-  obj = req('object'),
-  fn = req('function', 'callback'),
+	obj = req("object"),
+	fn = req("function", "callback"),
 ) =>
-  Array.isArray(obj)
-    ? obj.map((val) => _$.mapObjectKeys(val, fn))
-    : typeof obj === 'object'
-    ? Object.keys(obj).reduce((acc, current) => {
-        const key = fn(current);
-        const val = obj[current];
-        acc[key] =
-          val !== null && typeof val === 'object'
-            ? _$.mapObjectKeys(val, fn)
-            : val;
-        return acc;
-      }, {})
-    : obj;
+	Array.isArray(obj)
+		? obj.map((val) => _$.mapObjectKeys(val, fn))
+		: typeof obj === "object"
+		? Object.keys(obj).reduce((acc, current) => {
+				const key = fn(current);
+				const val = obj[current];
+				acc[key] =
+					val !== null && typeof val === "object"
+						? _$.mapObjectKeys(val, fn)
+						: val;
+				return acc;
+		  }, {})
+		: obj;
 /**
  * Maps an object's values.
  * @memberOf object
@@ -2366,13 +2366,13 @@ export let mapObjectKeys = (
  * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
  */
 export let mapObjectValues = (
-  obj = req('object', 'object'),
-  fn = req('function', 'callback'),
+	obj = req("object", "object"),
+	fn = req("function", "callback"),
 ) => {
-  Object.keys(obj).map(function (key, index) {
-    obj[key] = fn(obj[key], index);
-  });
-  return obj;
+	Object.keys(obj).map(function (key, index) {
+		obj[key] = fn(obj[key], index);
+	});
+	return obj;
 };
 /**
  * Converts a form to an Object.
@@ -2393,15 +2393,15 @@ export let mapObjectValues = (
  * console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }
  */
 export let formToObject = (
-  form = req('HTMLFormElement', 'the form'),
+	form = req("HTMLFormElement", "the form"),
 ) => {
-  node();
-  return Array.from(new FormData(form)).reduce(
-    (acc, [key, value]) => ({
-      ...acc,
-      [key]: value,
-    }),
-  );
+	node();
+	return Array.from(new FormData(form)).reduce(
+		(acc, [key, value]) => ({
+			...acc,
+			[key]: value,
+		}),
+	);
 };
 /**
  * Sorts an object alphabetically by its keys.
@@ -2413,13 +2413,13 @@ export let formToObject = (
  * // The object is now {anotherThing: "Another value!", testing: "A value"}
  * @returns {Object} The sorted object.
  */
-export let sortObj = (obj = req('object', 'object')) => {
-  return Object.keys(obj)
-    .sort()
-    .reduce(function (result, key) {
-      result[key] = obj[key];
-      return result;
-    }, {});
+export let sortObj = (obj = req("object", "object")) => {
+	return Object.keys(obj)
+		.sort()
+		.reduce(function (result, key) {
+			result[key] = obj[key];
+			return result;
+		}, {});
 };
 //#endregion Object
 //#region Math
@@ -2433,25 +2433,25 @@ export let sortObj = (obj = req('object', 'object')) => {
  * @param {...Number} arr The numbers to compare
  */
 export let gcd = function gcd(...arr) {
-  req('arguments', undefined, ![...arr].length);
-  const _gcd = (x, y) => (!y ? x : gcd(y, x % y));
-  return [...arr].reduce((a, b) => _gcd(a, b));
+	req("arguments", undefined, ![...arr].length);
+	const _gcd = (x, y) => (!y ? x : gcd(y, x % y));
+	return [...arr].reduce((a, b) => _gcd(a, b));
 };
 /**
  * Tests if two things are equal, like "thing === thing2" but it also works for dates and objects.
  * @param {*} a The first thing to test
  * @param {*} b The second thing to test
  */
-export let equals = (a = req('any', 'a'), b = req('any', 'b')) => {
-  if (a === b) return true;
-  if (a instanceof Date && b instanceof Date)
-    return a.getTime() === b.getTime();
-  if (!a || !b || (typeof a !== 'object' && typeof b !== 'object'))
-    return a === b;
-  if (a.prototype !== b.prototype) return false;
-  let keys = Object.keys(a);
-  if (keys.length !== Object.keys(b).length) return false;
-  return keys.every((k) => equals(a[k], b[k]));
+export let equals = (a = req("any", "a"), b = req("any", "b")) => {
+	if (a === b) return true;
+	if (a instanceof Date && b instanceof Date)
+		return a.getTime() === b.getTime();
+	if (!a || !b || (typeof a !== "object" && typeof b !== "object"))
+		return a === b;
+	if (a.prototype !== b.prototype) return false;
+	let keys = Object.keys(a);
+	if (keys.length !== Object.keys(b).length) return false;
+	return keys.every((k) => equals(a[k], b[k]));
 };
 /**
  * Tests if a given number is prime.
@@ -2462,10 +2462,10 @@ export let equals = (a = req('any', 'a'), b = req('any', 'b')) => {
  * _$.isPrime(10);//False
  * @param {Number} num The number to test.
  */
-export let isPrime = (num = req('number', 'number')) => {
-  const boundary = Math.floor(Math.sqrt(num));
-  for (let i = 2; i <= boundary; i++) if (num % i === 0) return false;
-  return num >= 2;
+export let isPrime = (num = req("number", "number")) => {
+	const boundary = Math.floor(Math.sqrt(num));
+	for (let i = 2; i <= boundary; i++) if (num % i === 0) return false;
+	return num >= 2;
 };
 /**
  * Gets the factorial of a number given.
@@ -2475,14 +2475,14 @@ export let isPrime = (num = req('number', 'number')) => {
  * @example
  * _$.factorial(3);//6
  */
-export let factorial = (n = req('number')) =>
-  n < 0
-    ? (() => {
-        throw new TypeError('Negative numbers are not allowed!');
-      })()
-    : n <= 1
-    ? 1
-    : n * factorial(n - 1);
+export let factorial = (n = req("number")) =>
+	n < 0
+		? (() => {
+				throw new TypeError("Negative numbers are not allowed!");
+		  })()
+		: n <= 1
+		? 1
+		: n * factorial(n - 1);
 /**
  * Performs the Luhn Check on a number, which is used to validate credit card numbers, IMEI numbers, National Provider Identifier numbers in the United States, Canadian Social Insurance Numbers, Israeli ID Numbers, South African ID Numbers, Greek Social Security Numbers (ΑΜΚΑ), and survey codes appearing on McDonald's, Taco Bell, and Tractor Supply Co. receipts.
  * @example
@@ -2492,19 +2492,19 @@ export let factorial = (n = req('number')) =>
  * @param {Number|String} num The number or string to check on.
  * @memberOf math
  */
-export let luhnCheck = (num = req('String|Number')) => {
-  let arr = (num + '')
-    .split('')
-    .reverse()
-    .map((x) => parseInt(x));
-  let lastDigit = arr.splice(0, 1)[0];
-  let sum = arr.reduce(
-    (acc, val, i) =>
-      i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9,
-    0,
-  );
-  sum += lastDigit;
-  return sum % 10 === 0;
+export let luhnCheck = (num = req("String|Number")) => {
+	let arr = (num + "")
+		.split("")
+		.reverse()
+		.map((x) => parseInt(x));
+	let lastDigit = arr.splice(0, 1)[0];
+	let sum = arr.reduce(
+		(acc, val, i) =>
+			i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9,
+		0,
+	);
+	sum += lastDigit;
+	return sum % 10 === 0;
 };
 /**
  * Animates a number from one value to another.
@@ -2546,12 +2546,12 @@ export let animate = (start = req("Number", "start"), end = req("Number", "end")
  * @returns {Array.<Number>} An array of whole numbers (inclusive) between the numbers specified.
  */
 export let range = (
-  start = req('number', 'start'),
-  end = req('number', 'end'),
+	start = req("number", "start"),
+	end = req("number", "end"),
 ) => {
-  return Array(end - start + 1)
-    .fill()
-    .map((_, idx) => start + idx);
+	return Array(end - start + 1)
+		.fill()
+		.map((_, idx) => start + idx);
 };
 /**
  * Generates a unique ID from a seed
@@ -2563,16 +2563,16 @@ export let range = (
  * @returns {String} The UUID
  */
 export let uuid = (seed = Math.random()) => {
-  //Magic. Do not touch.
-  if (typeof seed === 'string') {
-    // Convert string to a number between 0 and 1
-    seed = _temp.hashString(seed) / 10000000000000000;
-  }
-  function _p8(s) {
-    var p = (seed.toString(16) + '000000000').substr(2, 8);
-    return s ? '-' + p.substr(0, 4) + '-' + p.substr(4, 4) : p;
-  }
-  return _p8() + _p8(true) + _p8(true) + _p8();
+	//Magic. Do not touch.
+	if (typeof seed === "string") {
+		// Convert string to a number between 0 and 1
+		seed = _temp.hashString(seed) / 10000000000000000;
+	}
+	function _p8(s) {
+		var p = (seed.toString(16) + "000000000").substr(2, 8);
+		return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
+	}
+	return _p8() + _p8(true) + _p8(true) + _p8();
 };
 /**
  * Gives an array of prime numbers up to a certain one.
@@ -2583,18 +2583,18 @@ export let uuid = (seed = Math.random()) => {
  * console.log(_$.primesTo(10)); // [2, 3, 5, 7]
  * @returns {Array.<Number>} Returns an array of prime numbers up to the given number.
  */
-export let primesTo = (num = req('number', 'number')) => {
-  let arr = Array.from({
-      length: num - 1,
-    }).map((x, i) => i + 2),
-    sqroot = Math.floor(Math.sqrt(num)),
-    numsTillSqroot = Array.from({
-      length: sqroot - 1,
-    }).map((x, i) => i + 2);
-  numsTillSqroot.forEach(
-    (x) => (arr = arr.filter((y) => y % x !== 0 || y === x)),
-  );
-  return arr;
+export let primesTo = (num = req("number", "number")) => {
+	let arr = Array.from({
+			length: num - 1,
+		}).map((x, i) => i + 2),
+		sqroot = Math.floor(Math.sqrt(num)),
+		numsTillSqroot = Array.from({
+			length: sqroot - 1,
+		}).map((x, i) => i + 2);
+	numsTillSqroot.forEach(
+		(x) => (arr = arr.filter((y) => y % x !== 0 || y === x)),
+	);
+	return arr;
 };
 /**
  * Generates a random number between a minimum and maximum number
@@ -2609,16 +2609,16 @@ export let primesTo = (num = req('number', 'number')) => {
  * console.log(_$.random(0, 100)); // e.g. 47
  */
 export let random = (
-  min = req('number', 'min'),
-  max = req('number', 'max'),
-  round = true,
-  seed = Math.random(),
+	min = req("number", "min"),
+	max = req("number", "max"),
+	round = true,
+	seed = Math.random(),
 ) => {
-  if (round) {
-    return Math.floor(seed * (max - min + 1) + min);
-  } else {
-    return Math.random() * (max - min + 1) + min;
-  }
+	if (round) {
+		return Math.floor(seed * (max - min + 1) + min);
+	} else {
+		return Math.random() * (max - min + 1) + min;
+	}
 };
 /**
  * Get a random number from a seed.
@@ -2629,11 +2629,11 @@ export let random = (
  * console.log(_$.seedRandom(13)); // 0.5663226493634284
  * @returns {Number} The random number from the seed.
  */
-export let seedRandom = (seed = req('number', 'seed')) => {
-  var t = (seed += 0x6d2b79f5);
-  t = Math.imul(t ^ (t >>> 15), t | 1);
-  t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+export let seedRandom = (seed = req("number", "seed")) => {
+	var t = (seed += 0x6d2b79f5);
+	t = Math.imul(t ^ (t >>> 15), t | 1);
+	t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+	return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 };
 
 /**
@@ -2645,8 +2645,8 @@ export let seedRandom = (seed = req('number', 'seed')) => {
  * console.log(_$.formatNumber(100000000)); // "100,000,000"
  * @returns {String} The formatted string representation of the number.
  */
-export let formatNumber = (n = req('number', 'number')) =>
-  n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+export let formatNumber = (n = req("number", "number")) =>
+	n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 /**
  * Easing functions
  * @Object
@@ -2656,125 +2656,125 @@ export let formatNumber = (n = req('number', 'number')) =>
  * @returns {Function} The easing function.
  */
 export let ease = {
-  // no easing, no acceleration
-  linear: (t = req('number', 'percentage')) => t,
-  easeInSine: (t = req('number', 'percentage')) =>
-    1 - Math.cos((t * Math.PI) / 2),
-  easeOutSine: (t = req('number', 'percentage')) =>
-    Math.sin((t * Math.PI) / 2),
-  easeInOutSine: (t = req('number', 'percentage')) =>
-    -(Math.cos(Math.PI * t) - 1) / 2,
-  // accelerating from zero velocity
-  easeInQuad: (t = req('number', 'percentage')) => t * t,
-  // decelerating to zero velocity
-  easeOutQuad: (t = req('number', 'percentage')) => t * (2 - t),
-  // acceleration until halfway, then deceleration
-  easeInOutQuad: (t = req('number', 'percentage')) =>
-    t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
-  // accelerating from zero velocity
-  easeInCubic: (t = req('number', 'percentage')) => t * t * t,
-  // decelerating to zero velocity
-  easeOutCubic: (t = req('number', 'percentage')) => --t * t * t + 1,
-  // acceleration until halfway, then deceleration
-  easeInOutCubic: (t = req('number', 'percentage')) =>
-    t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
-  // accelerating from zero velocity
-  easeInQuart: (t = req('number', 'percentage')) => t * t * t * t,
-  // decelerating to zero velocity
-  easeOutQuart: (t = req('number', 'percentage')) =>
-    1 - --t * t * t * t,
-  // acceleration until halfway, then deceleration
-  easeInOutQuart: (t = req('number', 'percentage')) =>
-    t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
-  // accelerating from zero velocity
-  easeInQuint: (t = req('number', 'percentage')) => t * t * t * t * t,
-  // decelerating to zero velocity
-  easeOutQuint: (t = req('number', 'percentage')) =>
-    1 + --t * t * t * t * t,
-  // acceleration until halfway, then deceleration
-  easeInOutQuint: (t = req('number', 'percentage')) =>
-    t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
-  easeInExpo: (t = req('number', 'percentage')) =>
-    t === 0 ? 0 : Math.pow(2, 10 * t - 10),
-  easeOutExpo: (t = req('number', 'percentage')) =>
-    t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
-  easeIntOutExpo: (t = req('number', 'percentage')) =>
-    t === 0
-      ? 0
-      : t === 1
-      ? 1
-      : t < 0.5
-      ? Math.pow(2, 20 * t - 10) / 2
-      : (2 - Math.pow(2, -20 * t + 10)) / 2,
-  easeInCirc: (t = req('number', 'percentage')) =>
-    1 - Math.sqrt(1 - t * t),
-  easeOutCirc: (t = req('number', 'percentage')) =>
-    Math.sqrt(1 - (t - 1) * (t - 1)),
-  easeInOutCirc: (t = req('number', 'percentage')) =>
-    t < 0.5
-      ? 1 - Math.sqrt(1 - 4 * t * t) / 2
-      : (Math.sqrt(1 - Math.pow(-2 * t + 2, 2)) + 1) / 2,
-  easeInBack: (t = req('number', 'percentage')) =>
-    2.70158 * t * t * t - 1.70158 * t * t,
-  easeOutBack: (t = req('number', 'percentage')) =>
-    1 + 2.70158 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2),
-  easeInOutBack: (t) => {
-    const c = 2.5949095;
+	// no easing, no acceleration
+	linear: (t = req("number", "percentage")) => t,
+	easeInSine: (t = req("number", "percentage")) =>
+		1 - Math.cos((t * Math.PI) / 2),
+	easeOutSine: (t = req("number", "percentage")) =>
+		Math.sin((t * Math.PI) / 2),
+	easeInOutSine: (t = req("number", "percentage")) =>
+		-(Math.cos(Math.PI * t) - 1) / 2,
+	// accelerating from zero velocity
+	easeInQuad: (t = req("number", "percentage")) => t * t,
+	// decelerating to zero velocity
+	easeOutQuad: (t = req("number", "percentage")) => t * (2 - t),
+	// acceleration until halfway, then deceleration
+	easeInOutQuad: (t = req("number", "percentage")) =>
+		t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
+	// accelerating from zero velocity
+	easeInCubic: (t = req("number", "percentage")) => t * t * t,
+	// decelerating to zero velocity
+	easeOutCubic: (t = req("number", "percentage")) => --t * t * t + 1,
+	// acceleration until halfway, then deceleration
+	easeInOutCubic: (t = req("number", "percentage")) =>
+		t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
+	// accelerating from zero velocity
+	easeInQuart: (t = req("number", "percentage")) => t * t * t * t,
+	// decelerating to zero velocity
+	easeOutQuart: (t = req("number", "percentage")) =>
+		1 - --t * t * t * t,
+	// acceleration until halfway, then deceleration
+	easeInOutQuart: (t = req("number", "percentage")) =>
+		t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
+	// accelerating from zero velocity
+	easeInQuint: (t = req("number", "percentage")) => t * t * t * t * t,
+	// decelerating to zero velocity
+	easeOutQuint: (t = req("number", "percentage")) =>
+		1 + --t * t * t * t * t,
+	// acceleration until halfway, then deceleration
+	easeInOutQuint: (t = req("number", "percentage")) =>
+		t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
+	easeInExpo: (t = req("number", "percentage")) =>
+		t === 0 ? 0 : Math.pow(2, 10 * t - 10),
+	easeOutExpo: (t = req("number", "percentage")) =>
+		t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
+	easeIntOutExpo: (t = req("number", "percentage")) =>
+		t === 0
+			? 0
+			: t === 1
+			? 1
+			: t < 0.5
+			? Math.pow(2, 20 * t - 10) / 2
+			: (2 - Math.pow(2, -20 * t + 10)) / 2,
+	easeInCirc: (t = req("number", "percentage")) =>
+		1 - Math.sqrt(1 - t * t),
+	easeOutCirc: (t = req("number", "percentage")) =>
+		Math.sqrt(1 - (t - 1) * (t - 1)),
+	easeInOutCirc: (t = req("number", "percentage")) =>
+		t < 0.5
+			? 1 - Math.sqrt(1 - 4 * t * t) / 2
+			: (Math.sqrt(1 - Math.pow(-2 * t + 2, 2)) + 1) / 2,
+	easeInBack: (t = req("number", "percentage")) =>
+		2.70158 * t * t * t - 1.70158 * t * t,
+	easeOutBack: (t = req("number", "percentage")) =>
+		1 + 2.70158 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2),
+	easeInOutBack: (t) => {
+		const c = 2.5949095;
 
-    return t < 0.5
-      ? (4 * t * t * ((c + 1) * 2 * t - c)) / 2
-      : (Math.pow(2 * t - 2, 2) * ((c + 1) * (t * 2 - 2) + c) + 2) /
-          2;
-  },
-  easeInElastic: (t = req('number', 'percentage')) =>
-    t === 0
-      ? 0
-      : t === 1
-      ? 1
-      : -Math.pow(2, 10 * t - 10) *
-        Math.sin(((t * 10 - 10.75) * (2 * Math.PI)) / 3),
-  easeOutElastic: (t = req('number', 'percentage')) =>
-    t === 0
-      ? 0
-      : t === 1
-      ? 1
-      : Math.pow(2, -10 * t) *
-          Math.sin(((t * 10 - 0.75) * (2 * Math.PI)) / 3) +
-        1,
-  easeInOutElastic: (t = req('number', 'percentage')) =>
-    t === 0
-      ? 0
-      : t === 1
-      ? 1
-      : t < 0.5
-      ? -(
-          Math.pow(2, 20 * t - 10) *
-          Math.sin(((20 * t - 11.125) * (2 * Math.PI)) / 4.5)
-        ) / 2
-      : (Math.pow(2, -20 * t + 10) *
-          Math.sin(((20 * t - 11.125) * (2 * Math.PI)) / 4.5)) /
-          2 +
-        1,
-  easeInBounce: (t = req('number', 'percentage')) =>
-    1 - ease.easeOutBounce(1 - t),
-  easeOutBounce: (t = req('number', 'percentage')) => {
-    const n = 7.5625;
-    const d = 2.75;
+		return t < 0.5
+			? (4 * t * t * ((c + 1) * 2 * t - c)) / 2
+			: (Math.pow(2 * t - 2, 2) * ((c + 1) * (t * 2 - 2) + c) + 2) /
+					2;
+	},
+	easeInElastic: (t = req("number", "percentage")) =>
+		t === 0
+			? 0
+			: t === 1
+			? 1
+			: -Math.pow(2, 10 * t - 10) *
+			  Math.sin(((t * 10 - 10.75) * (2 * Math.PI)) / 3),
+	easeOutElastic: (t = req("number", "percentage")) =>
+		t === 0
+			? 0
+			: t === 1
+			? 1
+			: Math.pow(2, -10 * t) *
+					Math.sin(((t * 10 - 0.75) * (2 * Math.PI)) / 3) +
+			  1,
+	easeInOutElastic: (t = req("number", "percentage")) =>
+		t === 0
+			? 0
+			: t === 1
+			? 1
+			: t < 0.5
+			? -(
+					Math.pow(2, 20 * t - 10) *
+					Math.sin(((20 * t - 11.125) * (2 * Math.PI)) / 4.5)
+			  ) / 2
+			: (Math.pow(2, -20 * t + 10) *
+					Math.sin(((20 * t - 11.125) * (2 * Math.PI)) / 4.5)) /
+					2 +
+			  1,
+	easeInBounce: (t = req("number", "percentage")) =>
+		1 - ease.easeOutBounce(1 - t),
+	easeOutBounce: (t = req("number", "percentage")) => {
+		const n = 7.5625;
+		const d = 2.75;
 
-    if (t < 1 / d) {
-      return n * t * t;
-    } else if (t < 2 / d) {
-      return n * (t -= 1.5 / d) * t + 0.75;
-    } else if (t < 2.5 / d) {
-      return n * (t -= 2.25 / d) * t + 0.9375;
-    } else {
-      return n * (t -= 2.625 / d) * t + 0.984375;
-    }
-  },
-  easeInOutBounce: (t = req('number', 'percentage')) =>
-    t < 0.5
-      ? (1 - ease.easeOutBounce(1 - 2 * t)) / 2
-      : (1 + ease.easeOutBounce(2 * t - 1)) / 2,
+		if (t < 1 / d) {
+			return n * t * t;
+		} else if (t < 2 / d) {
+			return n * (t -= 1.5 / d) * t + 0.75;
+		} else if (t < 2.5 / d) {
+			return n * (t -= 2.25 / d) * t + 0.9375;
+		} else {
+			return n * (t -= 2.625 / d) * t + 0.984375;
+		}
+	},
+	easeInOutBounce: (t = req("number", "percentage")) =>
+		t < 0.5
+			? (1 - ease.easeOutBounce(1 - 2 * t)) / 2
+			: (1 + ease.easeOutBounce(2 * t - 1)) / 2,
 };
 
 //#endregion Math
@@ -2786,22 +2786,22 @@ export let ease = {
  * @param {String} prop The property to prefix.
  * @returns {String} The prefixed value (camelCased, instead of css-case, so mozAppearance instead of -moz-appearance).
  */
-export let prefixCSS = (prop = req('string', 'property')) => {
-  node();
-  const capitalizedProp =
-    prop.charAt(0).toUpperCase() + prop.slice(1);
-  const prefixes = ['', 'webkit', 'moz', 'ms', 'o'];
-  const i = prefixes.findIndex(
-    (prefix) =>
-      typeof document.body.style[
-        prefix ? prefix + capitalizedProp : prop
-      ] !== 'undefined',
-  );
-  return i !== -1
-    ? i === 0
-      ? prop
-      : prefixes[i] + capitalizedProp
-    : null;
+export let prefixCSS = (prop = req("string", "property")) => {
+	node();
+	const capitalizedProp =
+		prop.charAt(0).toUpperCase() + prop.slice(1);
+	const prefixes = ["", "webkit", "moz", "ms", "o"];
+	const i = prefixes.findIndex(
+		(prefix) =>
+			typeof document.body.style[
+				prefix ? prefix + capitalizedProp : prop
+			] !== "undefined",
+	);
+	return i !== -1
+		? i === 0
+			? prop
+			: prefixes[i] + capitalizedProp
+		: null;
 };
 
 /**
@@ -2811,16 +2811,16 @@ export let prefixCSS = (prop = req('string', 'property')) => {
  * _$.parseCookie("foo=bar; something=hello%20world");//Returns {foo: "bar", something: "hello world"};
  * @param {String} str The string to parse.
  */
-export let parseCookie = (str = req('string', 'cookie string')) =>
-  str
-    .split(';')
-    .map((v) => v.split('='))
-    .reduce((acc, v) => {
-      acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
-        v[1].trim(),
-      );
-      return acc;
-    }, {});
+export let parseCookie = (str = req("string", "cookie string")) =>
+	str
+		.split(";")
+		.map((v) => v.split("="))
+		.reduce((acc, v) => {
+			acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
+				v[1].trim(),
+			);
+			return acc;
+		}, {});
 /**
  * Hashes a string using the crypto api. 
  * @memberOf string
@@ -2832,19 +2832,19 @@ export let parseCookie = (str = req('string', 'cookie string')) =>
  * @param {String} val The string to hash
  * @returns {Promise} A promise that resolves into the hashed string.
  */
-export let hash = (val = req('string', 'input string')) => {
-  node();
-  return crypto.subtle
-    .digest('SHA-256', new TextEncoder('utf-8').encode(val))
-    .then((h) => {
-      let hexes = [],
-        view = new DataView(h);
-      for (let i = 0; i < view.byteLength; i += 4)
-        hexes.push(
-          ('00000000' + view.getUint32(i).toString(16)).slice(-8),
-        );
-      return hexes.join('');
-    });
+export let hash = (val = req("string", "input string")) => {
+	node();
+	return crypto.subtle
+		.digest("SHA-256", new TextEncoder("utf-8").encode(val))
+		.then((h) => {
+			let hexes = [],
+				view = new DataView(h);
+			for (let i = 0; i < view.byteLength; i += 4)
+				hexes.push(
+					("00000000" + view.getUint32(i).toString(16)).slice(-8),
+				);
+			return hexes.join("");
+		});
 };
 /**
  * Lets you use a for loop in template literals.
@@ -2858,10 +2858,10 @@ export let hash = (val = req('string', 'input string')) => {
  * @returns {String} String that has been for looped
  */
 export let forTemplateLiteral = (
-  arr = req('array', 'array'),
-  callback = req('function', 'callback'),
+	arr = req("array", "array"),
+	callback = req("function", "callback"),
 ) => {
-  return arr.map((item, i) => callback(item, i)).join``;
+	return arr.map((item, i) => callback(item, i)).join``;
 };
 /**
  * Maps a string like an array.
@@ -2871,9 +2871,9 @@ export let forTemplateLiteral = (
  * @param {Function} fn The callback function to run to map the string.
  */
 export let mapString = (
-  str = req('string', 'string'),
-  fn = req('function', 'callback'),
-) => Array.prototype.map.call(str, fn).join('');
+	str = req("string", "string"),
+	fn = req("function", "callback"),
+) => Array.prototype.map.call(str, fn).join("");
 /**
  * Removes the accents from a string.
  * @memberOf string
@@ -2883,8 +2883,8 @@ export let mapString = (
  * console.log(_$.decurr("déjà vu")); // "deja vu"
  * @param {String} str The string to use.
  */
-export let deburr = (str = req('string', 'string')) =>
-  str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+export let deburr = (str = req("string", "string")) =>
+	str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 /**
  * Removes tags from the HTML string specified.
@@ -2895,8 +2895,8 @@ export let deburr = (str = req('string', 'string')) =>
  * console.log(_$.removeTags("<div>Hello</div>")); // "Hello"
  * @returns {String} THe string of HTML without the tags.
  */
-export let removeTags = (html = req('string', 'html string')) =>
-  html.replace(/<[^>]*>/g, '');
+export let removeTags = (html = req("string", "html string")) =>
+	html.replace(/<[^>]*>/g, "");
 
 /**
  * Speaks the text given.
@@ -2914,27 +2914,27 @@ export let removeTags = (html = req('string', 'html string')) =>
  * @returns {undefined}
  */
 export let speak = (
-  text = req('string', 'text'),
-  lang = 'en',
-  volume = 1,
-  voice = 1,
-  pitch = 1,
-  rate = 1,
+	text = req("string", "text"),
+	lang = "en",
+	volume = 1,
+	voice = 1,
+	pitch = 1,
+	rate = 1,
 ) => {
-  var msg = new SpeechSynthesisUtterance();
-  var voices = window.speechSynthesis.getVoices();
-  let def = voices.filter((c) => c.default);
-  msg.voice = voice
-    ? typeof voice === 'number'
-      ? voices[voice]
-      : voice
-    : def;
-  msg.volume = volume; // From 0 to 1
-  msg.rate = rate; // From 0.1 to 10
-  msg.pitch = pitch; // From 0 to 2
-  msg.text = text;
-  msg.lang = lang;
-  speechSynthesis.speak(msg);
+	var msg = new SpeechSynthesisUtterance();
+	var voices = window.speechSynthesis.getVoices();
+	let def = voices.filter((c) => c.default);
+	msg.voice = voice
+		? typeof voice === "number"
+			? voices[voice]
+			: voice
+		: def;
+	msg.volume = volume; // From 0 to 1
+	msg.rate = rate; // From 0.1 to 10
+	msg.pitch = pitch; // From 0 to 2
+	msg.text = text;
+	msg.lang = lang;
+	speechSynthesis.speak(msg);
 };
 /**
  * Returns the last space in the string given replaced with "&nbsp;"
@@ -2946,18 +2946,18 @@ export let speak = (
  * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
  * @returns {String} The replaced string.
  */
-export let widows = (text = req('string', 'text')) => {
-  var wordArray = text.split(' ');
-  var finalTitle = '';
-  for (var i = 0; i <= wordArray.length - 1; i++) {
-    finalTitle += wordArray[i];
-    if (i == wordArray.length - 2) {
-      finalTitle += '&nbsp;';
-    } else {
-      finalTitle += ' ';
-    }
-  }
-  return finalTitle;
+export let widows = (text = req("string", "text")) => {
+	var wordArray = text.split(" ");
+	var finalTitle = "";
+	for (var i = 0; i <= wordArray.length - 1; i++) {
+		finalTitle += wordArray[i];
+		if (i == wordArray.length - 2) {
+			finalTitle += "&nbsp;";
+		} else {
+			finalTitle += " ";
+		}
+	}
+	return finalTitle;
 };
 
 /**
@@ -2969,13 +2969,13 @@ export let widows = (text = req('string', 'text')) => {
  * console.log(_$.unCamelCase("helloWorld")); // "Hello World"
  * @returns {String} The string of unCamelCased code.
  */
-export let unCamelCase = function (str = req('string', 'string')) {
-  return str
-    .replace(/([a-z])([A-Z])/g, '$1 $2')
-    .replace(/\b([A-Z]+)([A-Z])([a-z])/, '$1 $2$3')
-    .replace(/^./, function (s) {
-      return s.toUpperCase();
-    });
+export let unCamelCase = function (str = req("string", "string")) {
+	return str
+		.replace(/([a-z])([A-Z])/g, "$1 $2")
+		.replace(/\b([A-Z]+)([A-Z])([a-z])/, "$1 $2$3")
+		.replace(/^./, function (s) {
+			return s.toUpperCase();
+		});
 };
 
 /**
@@ -3006,730 +3006,730 @@ export let unCamelCase = function (str = req('string', 'string')) {
  * @returns {String} The highlighted string of code as HTML code.
  */
 export let syntaxHighlight = (
-  string = req('string', 'string'),
-  mode = 'html',
-  colors = {},
+	string = req("string", "string"),
+	mode = "html",
+	colors = {},
 ) => {
-  node();
-  //        .==.        .==.
-  //       //`^\\      //^`\\
-  //      // ^ ^\(\__/)/^ ^^\\
-  //     //^ ^^ ^/6  6\ ^^ ^ \\
-  //    //^ ^^ ^/( .. )\^ ^ ^ \\
-  //   // ^^ ^/\| v""v |/\^ ^ ^\\
-  //  // ^^/\/ /  `~~`  \ \/\^ ^\\
-  //  -----------------------------
-  /// HERE BE DRAGONS
-  let el = document.createElement('DIV');
-  el.innerText = string;
-  let highlightel = (elmnt, mode, colors = {}) => {
-    // Credit to w3schools for this
-    var lang = mode || 'html';
-    var elmntObj = document.getElementById(elmnt) || elmnt;
-    var elmntTxt = elmntObj.innerHTML;
-    var tagcolor = colors.tagColor || 'mediumblue';
-    var tagnamecolor = colors.tagNameColor || 'brown';
-    var attributecolor = colors.attributeColor || 'red';
-    var attributevaluecolor =
-      colors.attributeValueColor || 'mediumblue';
-    var commentcolor = colors.commentColor || 'green';
-    var cssselectorcolor = colors.cssSelectorColor || 'brown';
-    var csspropertycolor = colors.cssPropertyColor || 'red';
-    var csspropertyvaluecolor =
-      colors.cssPropertyValueColor || 'mediumblue';
-    var cssdelimitercolor = colors.cssLimiterColor || 'black';
-    var cssimportantcolor = colors.cssImportantColor || 'red';
-    var jscolor = colors.jsColor || 'black';
-    var jskeywordcolor = colors.jsKeywordColor || 'mediumblue';
-    var jsstringcolor = colors.jsStringColor || 'brown';
-    var jsnumbercolor = colors.jsNumberColor || 'red';
-    var jspropertycolor = colors.jsPropertyColor || 'black';
-    elmntObj.style.fontFamily =
-      colors.fontFamily || "Consolas,'Courier New', monospace";
-    if (!lang) {
-      lang = 'html';
-    }
-    if (lang == 'html') {
-      elmntTxt = htmlMode(elmntTxt);
-    }
-    if (lang == 'css') {
-      elmntTxt = cssMode(elmntTxt);
-    }
-    if (lang == 'js') {
-      elmntTxt = jsMode(elmntTxt);
-    }
-    elmntObj.innerHTML = elmntTxt;
+	node();
+	//        .==.        .==.
+	//       //`^\\      //^`\\
+	//      // ^ ^\(\__/)/^ ^^\\
+	//     //^ ^^ ^/6  6\ ^^ ^ \\
+	//    //^ ^^ ^/( .. )\^ ^ ^ \\
+	//   // ^^ ^/\| v""v |/\^ ^ ^\\
+	//  // ^^/\/ /  `~~`  \ \/\^ ^\\
+	//  -----------------------------
+	/// HERE BE DRAGONS
+	let el = document.createElement("DIV");
+	el.innerText = string;
+	let highlightel = (elmnt, mode, colors = {}) => {
+		// Credit to w3schools for this
+		var lang = mode || "html";
+		var elmntObj = document.getElementById(elmnt) || elmnt;
+		var elmntTxt = elmntObj.innerHTML;
+		var tagcolor = colors.tagColor || "mediumblue";
+		var tagnamecolor = colors.tagNameColor || "brown";
+		var attributecolor = colors.attributeColor || "red";
+		var attributevaluecolor =
+			colors.attributeValueColor || "mediumblue";
+		var commentcolor = colors.commentColor || "green";
+		var cssselectorcolor = colors.cssSelectorColor || "brown";
+		var csspropertycolor = colors.cssPropertyColor || "red";
+		var csspropertyvaluecolor =
+			colors.cssPropertyValueColor || "mediumblue";
+		var cssdelimitercolor = colors.cssLimiterColor || "black";
+		var cssimportantcolor = colors.cssImportantColor || "red";
+		var jscolor = colors.jsColor || "black";
+		var jskeywordcolor = colors.jsKeywordColor || "mediumblue";
+		var jsstringcolor = colors.jsStringColor || "brown";
+		var jsnumbercolor = colors.jsNumberColor || "red";
+		var jspropertycolor = colors.jsPropertyColor || "black";
+		elmntObj.style.fontFamily =
+			colors.fontFamily || "Consolas,'Courier New', monospace";
+		if (!lang) {
+			lang = "html";
+		}
+		if (lang == "html") {
+			elmntTxt = htmlMode(elmntTxt);
+		}
+		if (lang == "css") {
+			elmntTxt = cssMode(elmntTxt);
+		}
+		if (lang == "js") {
+			elmntTxt = jsMode(elmntTxt);
+		}
+		elmntObj.innerHTML = elmntTxt;
 
-    function extract(str, start, end, func, repl) {
-      var s,
-        e,
-        d = '',
-        a = [];
-      while (str.search(start) > -1) {
-        s = str.search(start);
-        e = str.indexOf(end, s);
-        if (e == -1) {
-          e = str.length;
-        }
-        if (repl) {
-          a.push(func(str.substring(s, e + end.length)));
-          str =
-            str.substring(0, s) + repl + str.substr(e + end.length);
-        } else {
-          d += str.substring(0, s);
-          d += func(str.substring(s, e + end.length));
-          str = str.substr(e + end.length);
-        }
-      }
-      this.rest = d + str;
-      this.arr = a;
-    }
-    function htmlMode(txt) {
-      var rest = txt,
-        done = '',
-        comment,
-        startpos,
-        endpos,
-        note,
-        i;
-      comment = new extract(
-        rest,
-        '&lt;!--',
-        '--&gt;',
-        commentMode,
-        'W3HTMLCOMMENTPOS',
-      );
-      rest = comment.rest;
-      while (rest.indexOf('&lt;') > -1) {
-        note = '';
-        startpos = rest.indexOf('&lt;');
-        if (rest.substr(startpos, 9).toUpperCase() == '&LT;STYLE') {
-          note = 'css';
-        }
-        if (rest.substr(startpos, 10).toUpperCase() == '&LT;SCRIPT') {
-          note = 'javascript';
-        }
-        endpos = rest.indexOf('&gt;', startpos);
-        if (endpos == -1) {
-          endpos = rest.length;
-        }
-        done += rest.substring(0, startpos);
-        done += tagMode(rest.substring(startpos, endpos + 4));
-        rest = rest.substr(endpos + 4);
-        if (note == 'css') {
-          endpos = rest.indexOf('&lt;/style&gt;');
-          if (endpos > -1) {
-            done += cssMode(rest.substring(0, endpos));
-            rest = rest.substr(endpos);
-          }
-        }
-        if (note == 'javascript') {
-          endpos = rest.indexOf('&lt;/script&gt;');
-          if (endpos > -1) {
-            done += jsMode(rest.substring(0, endpos));
-            rest = rest.substr(endpos);
-          }
-        }
-      }
-      rest = done + rest;
-      for (i = 0; i < comment.arr.length; i++) {
-        rest = rest.replace('W3HTMLCOMMENTPOS', comment.arr[i]);
-      }
-      return rest;
-    }
-    function tagMode(txt) {
-      var rest = txt,
-        done = '',
-        startpos,
-        endpos,
-        result;
-      while (rest.search(/(\s|<br>)/) > -1) {
-        startpos = rest.search(/(\s|<br>)/);
-        endpos = rest.indexOf('&gt;');
-        if (endpos == -1) {
-          endpos = rest.length;
-        }
-        done += rest.substring(0, startpos);
-        done += attributeMode(rest.substring(startpos, endpos));
-        rest = rest.substr(endpos);
-      }
-      result = done + rest;
-      result =
-        '<span style=color:' +
-        _$.escapeHTML(tagcolor) +
-        '>&lt;</span>' +
-        result.substring(4);
-      if (result.substr(result.length - 4, 4) == '&gt;') {
-        result =
-          result.substring(0, result.length - 4) +
-          '<span style=color:' +
-          _$.escapeHTML(tagcolor) +
-          '>&gt;</span>';
-      }
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(tagnamecolor) +
-        '>' +
-        result +
-        '</span>'
-      );
-    }
-    function attributeMode(txt) {
-      var rest = txt,
-        done = '',
-        startpos,
-        endpos,
-        singlefnuttpos,
-        doublefnuttpos,
-        spacepos;
-      while (rest.indexOf('=') > -1) {
-        endpos = -1;
-        startpos = rest.indexOf('=');
-        singlefnuttpos = rest.indexOf("'", startpos);
-        doublefnuttpos = rest.indexOf('"', startpos);
-        spacepos = rest.indexOf(' ', startpos + 2);
-        if (
-          spacepos > -1 &&
-          (spacepos < singlefnuttpos || singlefnuttpos == -1) &&
-          (spacepos < doublefnuttpos || doublefnuttpos == -1)
-        ) {
-          endpos = rest.indexOf(' ', startpos);
-        } else if (
-          doublefnuttpos > -1 &&
-          (doublefnuttpos < singlefnuttpos || singlefnuttpos == -1) &&
-          (doublefnuttpos < spacepos || spacepos == -1)
-        ) {
-          endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1);
-        } else if (
-          singlefnuttpos > -1 &&
-          (singlefnuttpos < doublefnuttpos || doublefnuttpos == -1) &&
-          (singlefnuttpos < spacepos || spacepos == -1)
-        ) {
-          endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1);
-        }
-        if (!endpos || endpos == -1 || endpos < startpos) {
-          endpos = rest.length;
-        }
-        done += rest.substring(0, startpos);
-        done += attributeValueMode(
-          rest.substring(startpos, endpos + 1),
-        );
-        rest = rest.substr(endpos + 1);
-      }
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(attributecolor) +
-        '>' +
-        done +
-        rest +
-        '</span>'
-      );
-    }
-    function attributeValueMode(txt) {
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(attributevaluecolor) +
-        '>' +
-        txt +
-        '</span>'
-      );
-    }
-    function commentMode(txt) {
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(commentcolor) +
-        '>' +
-        txt +
-        '</span>'
-      );
-    }
-    function cssMode(txt) {
-      var rest = txt,
-        done = '',
-        s,
-        e,
-        comment,
-        i,
-        midz,
-        c,
-        cc;
-      comment = new extract(
-        rest,
-        /\/\*/,
-        '*/',
-        commentMode,
-        'W3CSSCOMMENTPOS',
-      );
-      rest = comment.rest;
-      while (rest.search('{') > -1) {
-        s = rest.search('{');
-        midz = rest.substr(s + 1);
-        cc = 1;
-        c = 0;
-        for (i = 0; i < midz.length; i++) {
-          if (midz.substr(i, 1) == '{') {
-            cc++;
-            c++;
-          }
-          if (midz.substr(i, 1) == '}') {
-            cc--;
-          }
-          if (cc == 0) {
-            break;
-          }
-        }
-        if (cc != 0) {
-          c = 0;
-        }
-        e = s;
-        for (i = 0; i <= c; i++) {
-          e = rest.indexOf('}', e + 1);
-        }
-        if (e == -1) {
-          e = rest.length;
-        }
-        done += rest.substring(0, s + 1);
-        done += cssPropertyMode(rest.substring(s + 1, e));
-        rest = rest.substr(e);
-      }
-      rest = done + rest;
-      rest = rest.replace(
-        /{/g,
-        '<span style=color:' +
-          _$.escapeHTML(cssdelimitercolor) +
-          '>{</span>',
-      );
-      rest = rest.replace(
-        /}/g,
-        '<span style=color:' +
-          _$.escapeHTML(cssdelimitercolor) +
-          '>}</span>',
-      );
-      for (i = 0; i < comment.arr.length; i++) {
-        rest = rest.replace('W3CSSCOMMENTPOS', comment.arr[i]);
-      }
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(cssselectorcolor) +
-        '>' +
-        rest +
-        '</span>'
-      );
-    }
-    function cssPropertyMode(txt) {
-      var rest = txt,
-        done = '',
-        s,
-        e,
-        n,
-        loop;
-      if (rest.indexOf('{') > -1) {
-        return cssMode(rest);
-      }
-      while (rest.search(':') > -1) {
-        s = rest.search(':');
-        loop = true;
-        n = s;
-        while (loop == true) {
-          loop = false;
-          e = rest.indexOf(';', n);
-          if (rest.substring(e - 5, e + 1) == '&nbsp;') {
-            loop = true;
-            n = e + 1;
-          }
-        }
-        if (e == -1) {
-          e = rest.length;
-        }
-        done += rest.substring(0, s);
-        done += cssPropertyValueMode(rest.substring(s, e + 1));
-        rest = rest.substr(e + 1);
-      }
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(csspropertycolor) +
-        '>' +
-        done +
-        rest +
-        '</span>'
-      );
-    }
-    function cssPropertyValueMode(txt) {
-      var rest = txt,
-        done = '',
-        s;
-      rest =
-        '<span style=color:' +
-        _$.escapeHTML(cssdelimitercolor) +
-        '>:</span>' +
-        rest.substring(1);
-      while (rest.search(/!important/i) > -1) {
-        s = rest.search(/!important/i);
-        done += rest.substring(0, s);
-        done += cssImportantMode(rest.substring(s, s + 10));
-        rest = rest.substr(s + 10);
-      }
-      result = done + rest;
-      if (
-        result.substr(result.length - 1, 1) == ';' &&
-        result.substr(result.length - 6, 6) != '&nbsp;' &&
-        result.substr(result.length - 4, 4) != '&lt;' &&
-        result.substr(result.length - 4, 4) != '&gt;' &&
-        result.substr(result.length - 5, 5) != '&amp;'
-      ) {
-        result =
-          result.substring(0, result.length - 1) +
-          '<span style=color:' +
-          _$.escapeHTML(cssdelimitercolor) +
-          '>;</span>';
-      }
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(csspropertyvaluecolor) +
-        '>' +
-        result +
-        '</span>'
-      );
-    }
-    function cssImportantMode(txt) {
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(cssimportantcolor) +
-        ';font-weight:bold;>' +
-        txt +
-        '</span>'
-      );
-    }
-    function jsMode(txt) {
-      var rest = txt,
-        done = '',
-        esc = [],
-        i,
-        cc,
-        tt = '',
-        sfnuttpos,
-        dfnuttpos,
-        compos,
-        comlinepos,
-        keywordpos,
-        numpos,
-        mypos,
-        dotpos,
-        y;
-      for (i = 0; i < rest.length; i++) {
-        cc = rest.substr(i, 1);
-        if (cc == '\\') {
-          esc.push(rest.substr(i, 2));
-          cc = 'W3JSESCAPE';
-          i++;
-        }
-        tt += cc;
-      }
-      rest = tt;
-      y = 1;
-      while (y == 1) {
-        sfnuttpos = getPos(rest, "'", "'", jsStringMode);
-        dfnuttpos = getPos(rest, '"', '"', jsStringMode);
-        compos = getPos(rest, /\/\*/, '*/', commentMode);
-        comlinepos = getPos(rest, /\/\//, '<br>', commentMode);
-        numpos = getNumPos(rest, jsNumberMode);
-        keywordpos = getKeywordPos('js', rest, jsKeywordMode);
-        dotpos = getDotPos(rest, jsPropertyMode);
-        if (
-          Math.max(
-            numpos[0],
-            sfnuttpos[0],
-            dfnuttpos[0],
-            compos[0],
-            comlinepos[0],
-            keywordpos[0],
-            dotpos[0],
-          ) == -1
-        ) {
-          break;
-        }
-        mypos = getMinPos(
-          numpos,
-          sfnuttpos,
-          dfnuttpos,
-          compos,
-          comlinepos,
-          keywordpos,
-          dotpos,
-        );
-        if (mypos[0] == -1) {
-          break;
-        }
-        if (mypos[0] > -1) {
-          done += rest.substring(0, mypos[0]);
-          done += mypos[2](rest.substring(mypos[0], mypos[1]));
-          rest = rest.substr(mypos[1]);
-        }
-      }
-      rest = done + rest;
-      for (i = 0; i < esc.length; i++) {
-        rest = rest.replace('W3JSESCAPE', esc[i]);
-      }
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(jscolor) +
-        '>' +
-        rest +
-        '</span>'
-      );
-    }
-    function jsStringMode(txt) {
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(jsstringcolor) +
-        '>' +
-        txt +
-        '</span>'
-      );
-    }
-    function jsKeywordMode(txt) {
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(jskeywordcolor) +
-        '>' +
-        txt +
-        '</span>'
-      );
-    }
-    function jsNumberMode(txt) {
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(jsnumbercolor) +
-        '>' +
-        txt +
-        '</span>'
-      );
-    }
-    function jsPropertyMode(txt) {
-      return (
-        '<span style=color:' +
-        _$.escapeHTML(jspropertycolor) +
-        '>' +
-        txt +
-        '</span>'
-      );
-    }
-    function getDotPos(txt, func) {
-      var x,
-        i,
-        j,
-        s,
-        e,
-        arr = [
-          '.',
-          '<',
-          ' ',
-          ';',
-          '(',
-          '+',
-          ')',
-          '[',
-          ']',
-          ',',
-          '&',
-          ':',
-          '{',
-          '}',
-          '/',
-          '-',
-          '*',
-          '|',
-          '%',
-        ];
-      s = txt.indexOf('.');
-      if (s > -1) {
-        x = txt.substr(s + 1);
-        for (j = 0; j < x.length; j++) {
-          cc = x[j];
-          for (i = 0; i < arr.length; i++) {
-            if (cc.indexOf(arr[i]) > -1) {
-              e = j;
-              return [s + 1, e + s + 1, func];
-            }
-          }
-        }
-      }
-      return [-1, -1, func];
-    }
-    function getMinPos() {
-      var i,
-        arr = [];
-      for (i = 0; i < arguments.length; i++) {
-        if (arguments[i][0] > -1) {
-          if (arr.length == 0 || arguments[i][0] < arr[0]) {
-            arr = arguments[i];
-          }
-        }
-      }
-      if (arr.length == 0) {
-        arr = arguments[i];
-      }
-      return arr;
-    }
-    function getKeywordPos(typ, txt, func) {
-      var words,
-        i,
-        pos,
-        rpos = -1,
-        rpos2 = -1,
-        patt;
-      if (typ == 'js') {
-        words = [
-          'abstract',
-          'arguments',
-          'boolean',
-          'break',
-          'byte',
-          'case',
-          'catch',
-          'char',
-          'class',
-          'const',
-          'continue',
-          'debugger',
-          'default',
-          'delete',
-          'do',
-          'double',
-          'else',
-          'enum',
-          'eval',
-          'export',
-          'extends',
-          'false',
-          'final',
-          'finally',
-          'float',
-          'for',
-          'function',
-          'goto',
-          'if',
-          'implements',
-          'import',
-          'in',
-          'instanceof',
-          'int',
-          'interface',
-          'let',
-          'long',
-          'NaN',
-          'native',
-          'new',
-          'null',
-          'package',
-          'private',
-          'protected',
-          'public',
-          'return',
-          'short',
-          'static',
-          'super',
-          'switch',
-          'synchronized',
-          'this',
-          'throw',
-          'throws',
-          'transient',
-          'true',
-          'try',
-          'typeof',
-          'var',
-          'void',
-          'volatile',
-          'while',
-          'with',
-          'yield',
-        ];
-      }
-      for (i = 0; i < words.length; i++) {
-        pos = txt.indexOf(words[i]);
-        if (pos > -1) {
-          patt = /\W/g;
-          if (
-            txt.substr(pos + words[i].length, 1).match(patt) &&
-            txt.substr(pos - 1, 1).match(patt)
-          ) {
-            if (pos > -1 && (rpos == -1 || pos < rpos)) {
-              rpos = pos;
-              rpos2 = rpos + words[i].length;
-            }
-          }
-        }
-      }
-      return [rpos, rpos2, func];
-    }
-    function getPos(txt, start, end, func) {
-      var s, e;
-      s = txt.search(start);
-      e = txt.indexOf(end, s + end.length);
-      if (e == -1) {
-        e = txt.length;
-      }
-      return [s, e + end.length, func];
-    }
-    function getNumPos(txt, func) {
-      var arr = [
-          '<br>',
-          ' ',
-          ';',
-          '(',
-          '+',
-          ')',
-          '[',
-          ']',
-          ',',
-          '&',
-          ':',
-          '{',
-          '}',
-          '/',
-          '-',
-          '*',
-          '|',
-          '%',
-          '=',
-        ],
-        i,
-        j,
-        c,
-        startpos = 0,
-        endpos,
-        word;
-      for (i = 0; i < txt.length; i++) {
-        for (j = 0; j < arr.length; j++) {
-          c = txt.substr(i, arr[j].length);
-          if (c == arr[j]) {
-            if (
-              c == '-' &&
-              (txt.substr(i - 1, 1) == 'e' ||
-                txt.substr(i - 1, 1) == 'E')
-            ) {
-              continue;
-            }
-            endpos = i;
-            if (startpos < endpos) {
-              word = txt.substring(startpos, endpos);
-              if (!isNaN(word)) {
-                return [startpos, endpos, func];
-              }
-            }
-            i += arr[j].length;
-            startpos = i;
-            i -= 1;
-            break;
-          }
-        }
-      }
-      return [-1, -1, func];
-    }
-  };
-  highlightel(el, mode, colors);
-  return el.innerHTML;
+		function extract(str, start, end, func, repl) {
+			var s,
+				e,
+				d = "",
+				a = [];
+			while (str.search(start) > -1) {
+				s = str.search(start);
+				e = str.indexOf(end, s);
+				if (e == -1) {
+					e = str.length;
+				}
+				if (repl) {
+					a.push(func(str.substring(s, e + end.length)));
+					str =
+						str.substring(0, s) + repl + str.substr(e + end.length);
+				} else {
+					d += str.substring(0, s);
+					d += func(str.substring(s, e + end.length));
+					str = str.substr(e + end.length);
+				}
+			}
+			this.rest = d + str;
+			this.arr = a;
+		}
+		function htmlMode(txt) {
+			var rest = txt,
+				done = "",
+				comment,
+				startpos,
+				endpos,
+				note,
+				i;
+			comment = new extract(
+				rest,
+				"&lt;!--",
+				"--&gt;",
+				commentMode,
+				"W3HTMLCOMMENTPOS",
+			);
+			rest = comment.rest;
+			while (rest.indexOf("&lt;") > -1) {
+				note = "";
+				startpos = rest.indexOf("&lt;");
+				if (rest.substr(startpos, 9).toUpperCase() == "&LT;STYLE") {
+					note = "css";
+				}
+				if (rest.substr(startpos, 10).toUpperCase() == "&LT;SCRIPT") {
+					note = "javascript";
+				}
+				endpos = rest.indexOf("&gt;", startpos);
+				if (endpos == -1) {
+					endpos = rest.length;
+				}
+				done += rest.substring(0, startpos);
+				done += tagMode(rest.substring(startpos, endpos + 4));
+				rest = rest.substr(endpos + 4);
+				if (note == "css") {
+					endpos = rest.indexOf("&lt;/style&gt;");
+					if (endpos > -1) {
+						done += cssMode(rest.substring(0, endpos));
+						rest = rest.substr(endpos);
+					}
+				}
+				if (note == "javascript") {
+					endpos = rest.indexOf("&lt;/script&gt;");
+					if (endpos > -1) {
+						done += jsMode(rest.substring(0, endpos));
+						rest = rest.substr(endpos);
+					}
+				}
+			}
+			rest = done + rest;
+			for (i = 0; i < comment.arr.length; i++) {
+				rest = rest.replace("W3HTMLCOMMENTPOS", comment.arr[i]);
+			}
+			return rest;
+		}
+		function tagMode(txt) {
+			var rest = txt,
+				done = "",
+				startpos,
+				endpos,
+				result;
+			while (rest.search(/(\s|<br>)/) > -1) {
+				startpos = rest.search(/(\s|<br>)/);
+				endpos = rest.indexOf("&gt;");
+				if (endpos == -1) {
+					endpos = rest.length;
+				}
+				done += rest.substring(0, startpos);
+				done += attributeMode(rest.substring(startpos, endpos));
+				rest = rest.substr(endpos);
+			}
+			result = done + rest;
+			result =
+				"<span style=color:" +
+				_$.escapeHTML(tagcolor) +
+				">&lt;</span>" +
+				result.substring(4);
+			if (result.substr(result.length - 4, 4) == "&gt;") {
+				result =
+					result.substring(0, result.length - 4) +
+					"<span style=color:" +
+					_$.escapeHTML(tagcolor) +
+					">&gt;</span>";
+			}
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(tagnamecolor) +
+				">" +
+				result +
+				"</span>"
+			);
+		}
+		function attributeMode(txt) {
+			var rest = txt,
+				done = "",
+				startpos,
+				endpos,
+				singlefnuttpos,
+				doublefnuttpos,
+				spacepos;
+			while (rest.indexOf("=") > -1) {
+				endpos = -1;
+				startpos = rest.indexOf("=");
+				singlefnuttpos = rest.indexOf("'", startpos);
+				doublefnuttpos = rest.indexOf('"', startpos);
+				spacepos = rest.indexOf(" ", startpos + 2);
+				if (
+					spacepos > -1 &&
+					(spacepos < singlefnuttpos || singlefnuttpos == -1) &&
+					(spacepos < doublefnuttpos || doublefnuttpos == -1)
+				) {
+					endpos = rest.indexOf(" ", startpos);
+				} else if (
+					doublefnuttpos > -1 &&
+					(doublefnuttpos < singlefnuttpos || singlefnuttpos == -1) &&
+					(doublefnuttpos < spacepos || spacepos == -1)
+				) {
+					endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1);
+				} else if (
+					singlefnuttpos > -1 &&
+					(singlefnuttpos < doublefnuttpos || doublefnuttpos == -1) &&
+					(singlefnuttpos < spacepos || spacepos == -1)
+				) {
+					endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1);
+				}
+				if (!endpos || endpos == -1 || endpos < startpos) {
+					endpos = rest.length;
+				}
+				done += rest.substring(0, startpos);
+				done += attributeValueMode(
+					rest.substring(startpos, endpos + 1),
+				);
+				rest = rest.substr(endpos + 1);
+			}
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(attributecolor) +
+				">" +
+				done +
+				rest +
+				"</span>"
+			);
+		}
+		function attributeValueMode(txt) {
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(attributevaluecolor) +
+				">" +
+				txt +
+				"</span>"
+			);
+		}
+		function commentMode(txt) {
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(commentcolor) +
+				">" +
+				txt +
+				"</span>"
+			);
+		}
+		function cssMode(txt) {
+			var rest = txt,
+				done = "",
+				s,
+				e,
+				comment,
+				i,
+				midz,
+				c,
+				cc;
+			comment = new extract(
+				rest,
+				/\/\*/,
+				"*/",
+				commentMode,
+				"W3CSSCOMMENTPOS",
+			);
+			rest = comment.rest;
+			while (rest.search("{") > -1) {
+				s = rest.search("{");
+				midz = rest.substr(s + 1);
+				cc = 1;
+				c = 0;
+				for (i = 0; i < midz.length; i++) {
+					if (midz.substr(i, 1) == "{") {
+						cc++;
+						c++;
+					}
+					if (midz.substr(i, 1) == "}") {
+						cc--;
+					}
+					if (cc == 0) {
+						break;
+					}
+				}
+				if (cc != 0) {
+					c = 0;
+				}
+				e = s;
+				for (i = 0; i <= c; i++) {
+					e = rest.indexOf("}", e + 1);
+				}
+				if (e == -1) {
+					e = rest.length;
+				}
+				done += rest.substring(0, s + 1);
+				done += cssPropertyMode(rest.substring(s + 1, e));
+				rest = rest.substr(e);
+			}
+			rest = done + rest;
+			rest = rest.replace(
+				/{/g,
+				"<span style=color:" +
+					_$.escapeHTML(cssdelimitercolor) +
+					">{</span>",
+			);
+			rest = rest.replace(
+				/}/g,
+				"<span style=color:" +
+					_$.escapeHTML(cssdelimitercolor) +
+					">}</span>",
+			);
+			for (i = 0; i < comment.arr.length; i++) {
+				rest = rest.replace("W3CSSCOMMENTPOS", comment.arr[i]);
+			}
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(cssselectorcolor) +
+				">" +
+				rest +
+				"</span>"
+			);
+		}
+		function cssPropertyMode(txt) {
+			var rest = txt,
+				done = "",
+				s,
+				e,
+				n,
+				loop;
+			if (rest.indexOf("{") > -1) {
+				return cssMode(rest);
+			}
+			while (rest.search(":") > -1) {
+				s = rest.search(":");
+				loop = true;
+				n = s;
+				while (loop == true) {
+					loop = false;
+					e = rest.indexOf(";", n);
+					if (rest.substring(e - 5, e + 1) == "&nbsp;") {
+						loop = true;
+						n = e + 1;
+					}
+				}
+				if (e == -1) {
+					e = rest.length;
+				}
+				done += rest.substring(0, s);
+				done += cssPropertyValueMode(rest.substring(s, e + 1));
+				rest = rest.substr(e + 1);
+			}
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(csspropertycolor) +
+				">" +
+				done +
+				rest +
+				"</span>"
+			);
+		}
+		function cssPropertyValueMode(txt) {
+			var rest = txt,
+				done = "",
+				s;
+			rest =
+				"<span style=color:" +
+				_$.escapeHTML(cssdelimitercolor) +
+				">:</span>" +
+				rest.substring(1);
+			while (rest.search(/!important/i) > -1) {
+				s = rest.search(/!important/i);
+				done += rest.substring(0, s);
+				done += cssImportantMode(rest.substring(s, s + 10));
+				rest = rest.substr(s + 10);
+			}
+			result = done + rest;
+			if (
+				result.substr(result.length - 1, 1) == ";" &&
+				result.substr(result.length - 6, 6) != "&nbsp;" &&
+				result.substr(result.length - 4, 4) != "&lt;" &&
+				result.substr(result.length - 4, 4) != "&gt;" &&
+				result.substr(result.length - 5, 5) != "&amp;"
+			) {
+				result =
+					result.substring(0, result.length - 1) +
+					"<span style=color:" +
+					_$.escapeHTML(cssdelimitercolor) +
+					">;</span>";
+			}
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(csspropertyvaluecolor) +
+				">" +
+				result +
+				"</span>"
+			);
+		}
+		function cssImportantMode(txt) {
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(cssimportantcolor) +
+				";font-weight:bold;>" +
+				txt +
+				"</span>"
+			);
+		}
+		function jsMode(txt) {
+			var rest = txt,
+				done = "",
+				esc = [],
+				i,
+				cc,
+				tt = "",
+				sfnuttpos,
+				dfnuttpos,
+				compos,
+				comlinepos,
+				keywordpos,
+				numpos,
+				mypos,
+				dotpos,
+				y;
+			for (i = 0; i < rest.length; i++) {
+				cc = rest.substr(i, 1);
+				if (cc == "\\") {
+					esc.push(rest.substr(i, 2));
+					cc = "W3JSESCAPE";
+					i++;
+				}
+				tt += cc;
+			}
+			rest = tt;
+			y = 1;
+			while (y == 1) {
+				sfnuttpos = getPos(rest, "'", "'", jsStringMode);
+				dfnuttpos = getPos(rest, '"', '"', jsStringMode);
+				compos = getPos(rest, /\/\*/, "*/", commentMode);
+				comlinepos = getPos(rest, /\/\//, "<br>", commentMode);
+				numpos = getNumPos(rest, jsNumberMode);
+				keywordpos = getKeywordPos("js", rest, jsKeywordMode);
+				dotpos = getDotPos(rest, jsPropertyMode);
+				if (
+					Math.max(
+						numpos[0],
+						sfnuttpos[0],
+						dfnuttpos[0],
+						compos[0],
+						comlinepos[0],
+						keywordpos[0],
+						dotpos[0],
+					) == -1
+				) {
+					break;
+				}
+				mypos = getMinPos(
+					numpos,
+					sfnuttpos,
+					dfnuttpos,
+					compos,
+					comlinepos,
+					keywordpos,
+					dotpos,
+				);
+				if (mypos[0] == -1) {
+					break;
+				}
+				if (mypos[0] > -1) {
+					done += rest.substring(0, mypos[0]);
+					done += mypos[2](rest.substring(mypos[0], mypos[1]));
+					rest = rest.substr(mypos[1]);
+				}
+			}
+			rest = done + rest;
+			for (i = 0; i < esc.length; i++) {
+				rest = rest.replace("W3JSESCAPE", esc[i]);
+			}
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(jscolor) +
+				">" +
+				rest +
+				"</span>"
+			);
+		}
+		function jsStringMode(txt) {
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(jsstringcolor) +
+				">" +
+				txt +
+				"</span>"
+			);
+		}
+		function jsKeywordMode(txt) {
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(jskeywordcolor) +
+				">" +
+				txt +
+				"</span>"
+			);
+		}
+		function jsNumberMode(txt) {
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(jsnumbercolor) +
+				">" +
+				txt +
+				"</span>"
+			);
+		}
+		function jsPropertyMode(txt) {
+			return (
+				"<span style=color:" +
+				_$.escapeHTML(jspropertycolor) +
+				">" +
+				txt +
+				"</span>"
+			);
+		}
+		function getDotPos(txt, func) {
+			var x,
+				i,
+				j,
+				s,
+				e,
+				arr = [
+					".",
+					"<",
+					" ",
+					";",
+					"(",
+					"+",
+					")",
+					"[",
+					"]",
+					",",
+					"&",
+					":",
+					"{",
+					"}",
+					"/",
+					"-",
+					"*",
+					"|",
+					"%",
+				];
+			s = txt.indexOf(".");
+			if (s > -1) {
+				x = txt.substr(s + 1);
+				for (j = 0; j < x.length; j++) {
+					cc = x[j];
+					for (i = 0; i < arr.length; i++) {
+						if (cc.indexOf(arr[i]) > -1) {
+							e = j;
+							return [s + 1, e + s + 1, func];
+						}
+					}
+				}
+			}
+			return [-1, -1, func];
+		}
+		function getMinPos() {
+			var i,
+				arr = [];
+			for (i = 0; i < arguments.length; i++) {
+				if (arguments[i][0] > -1) {
+					if (arr.length == 0 || arguments[i][0] < arr[0]) {
+						arr = arguments[i];
+					}
+				}
+			}
+			if (arr.length == 0) {
+				arr = arguments[i];
+			}
+			return arr;
+		}
+		function getKeywordPos(typ, txt, func) {
+			var words,
+				i,
+				pos,
+				rpos = -1,
+				rpos2 = -1,
+				patt;
+			if (typ == "js") {
+				words = [
+					"abstract",
+					"arguments",
+					"boolean",
+					"break",
+					"byte",
+					"case",
+					"catch",
+					"char",
+					"class",
+					"const",
+					"continue",
+					"debugger",
+					"default",
+					"delete",
+					"do",
+					"double",
+					"else",
+					"enum",
+					"eval",
+					"export",
+					"extends",
+					"false",
+					"final",
+					"finally",
+					"float",
+					"for",
+					"function",
+					"goto",
+					"if",
+					"implements",
+					"import",
+					"in",
+					"instanceof",
+					"int",
+					"interface",
+					"let",
+					"long",
+					"NaN",
+					"native",
+					"new",
+					"null",
+					"package",
+					"private",
+					"protected",
+					"public",
+					"return",
+					"short",
+					"static",
+					"super",
+					"switch",
+					"synchronized",
+					"this",
+					"throw",
+					"throws",
+					"transient",
+					"true",
+					"try",
+					"typeof",
+					"var",
+					"void",
+					"volatile",
+					"while",
+					"with",
+					"yield",
+				];
+			}
+			for (i = 0; i < words.length; i++) {
+				pos = txt.indexOf(words[i]);
+				if (pos > -1) {
+					patt = /\W/g;
+					if (
+						txt.substr(pos + words[i].length, 1).match(patt) &&
+						txt.substr(pos - 1, 1).match(patt)
+					) {
+						if (pos > -1 && (rpos == -1 || pos < rpos)) {
+							rpos = pos;
+							rpos2 = rpos + words[i].length;
+						}
+					}
+				}
+			}
+			return [rpos, rpos2, func];
+		}
+		function getPos(txt, start, end, func) {
+			var s, e;
+			s = txt.search(start);
+			e = txt.indexOf(end, s + end.length);
+			if (e == -1) {
+				e = txt.length;
+			}
+			return [s, e + end.length, func];
+		}
+		function getNumPos(txt, func) {
+			var arr = [
+					"<br>",
+					" ",
+					";",
+					"(",
+					"+",
+					")",
+					"[",
+					"]",
+					",",
+					"&",
+					":",
+					"{",
+					"}",
+					"/",
+					"-",
+					"*",
+					"|",
+					"%",
+					"=",
+				],
+				i,
+				j,
+				c,
+				startpos = 0,
+				endpos,
+				word;
+			for (i = 0; i < txt.length; i++) {
+				for (j = 0; j < arr.length; j++) {
+					c = txt.substr(i, arr[j].length);
+					if (c == arr[j]) {
+						if (
+							c == "-" &&
+							(txt.substr(i - 1, 1) == "e" ||
+								txt.substr(i - 1, 1) == "E")
+						) {
+							continue;
+						}
+						endpos = i;
+						if (startpos < endpos) {
+							word = txt.substring(startpos, endpos);
+							if (!isNaN(word)) {
+								return [startpos, endpos, func];
+							}
+						}
+						i += arr[j].length;
+						startpos = i;
+						i -= 1;
+						break;
+					}
+				}
+			}
+			return [-1, -1, func];
+		}
+	};
+	highlightel(el, mode, colors);
+	return el.innerHTML;
 };
 /**
  * camelCases a string.
@@ -3740,12 +3740,12 @@ export let syntaxHighlight = (
  * console.log(_$.camelCase("Hello world")); // "helloWorld"
  * @returns {String} The camelCased string.
  */
-export let camelCase = (str = req('string', 'string')) => {
-  return str
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-      return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    })
-    .replace(/\s+/g, '');
+export let camelCase = (str = req("string", "string")) => {
+	return str
+		.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+			return index === 0 ? word.toLowerCase() : word.toUpperCase();
+		})
+		.replace(/\s+/g, "");
 };
 /**
  * Scrambles the order of characters in a string. Thanks to @\Touchcreator for the suggestion for this.
@@ -3756,17 +3756,17 @@ export let camelCase = (str = req('string', 'string')) => {
  * console.log(_$.scrambleString("Hello world")); // e.g. "owllH rdloe"
  * @returns {String} The scrambled text.
  */
-export let scrambleString = (str = req('string')) => {
-  var a = str.split(''),
-    n = a.length;
+export let scrambleString = (str = req("string")) => {
+	var a = str.split(""),
+		n = a.length;
 
-  for (var i = n - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var tmp = a[i];
-    a[i] = a[j];
-    a[j] = tmp;
-  }
-  return a.join('');
+	for (var i = n - 1; i > 0; i--) {
+		var j = Math.floor(Math.random() * (i + 1));
+		var tmp = a[i];
+		a[i] = a[j];
+		a[j] = tmp;
+	}
+	return a.join("");
 };
 /**
  * Hashes a string to a unique integer (This cannot be decrypted easily).
@@ -3778,21 +3778,21 @@ export let scrambleString = (str = req('string')) => {
  * console.log(_$.hashString("Hello world")); // 3494146707865688
  * @returns {Number} The hashed string.
  */
-export let hashString = (str = req('string'), seed = 0) => {
-  let h1 = 0xdeadbeef ^ seed,
-    h2 = 0x41c6ce57 ^ seed;
-  for (let i = 0, ch; i < str.length; i++) {
-    ch = str.charCodeAt(i);
-    h1 = Math.imul(h1 ^ ch, 2654435761);
-    h2 = Math.imul(h2 ^ ch, 1597334677);
-  }
-  h1 =
-    Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
-    Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-  h2 =
-    Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
-    Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-  return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+export let hashString = (str = req("string"), seed = 0) => {
+	let h1 = 0xdeadbeef ^ seed,
+		h2 = 0x41c6ce57 ^ seed;
+	for (let i = 0, ch; i < str.length; i++) {
+		ch = str.charCodeAt(i);
+		h1 = Math.imul(h1 ^ ch, 2654435761);
+		h2 = Math.imul(h2 ^ ch, 1597334677);
+	}
+	h1 =
+		Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
+		Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+	h2 =
+		Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
+		Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+	return 4294967296 * (2097151 & h2) + (h1 >>> 0);
 };
 
 /**
@@ -3806,44 +3806,44 @@ export let hashString = (str = req('string'), seed = 0) => {
  * @returns {Number} The edit distance between two strings
  */
 export let editDistance = (
-  a = req('string', 'string 1'),
-  b = req('string', 'string 2'),
+	a = req("string", "string 1"),
+	b = req("string", "string 2"),
 ) => {
-  if (a.length == 0) return b.length;
-  if (b.length == 0) return a.length;
+	if (a.length == 0) return b.length;
+	if (b.length == 0) return a.length;
 
-  var matrix = [];
+	var matrix = [];
 
-  // increment along the first column of each row
-  var i;
-  for (i = 0; i <= b.length; i++) {
-    matrix[i] = [i];
-  }
+	// increment along the first column of each row
+	var i;
+	for (i = 0; i <= b.length; i++) {
+		matrix[i] = [i];
+	}
 
-  // increment each column in the first row
-  var j;
-  for (j = 0; j <= a.length; j++) {
-    matrix[0][j] = j;
-  }
+	// increment each column in the first row
+	var j;
+	for (j = 0; j <= a.length; j++) {
+		matrix[0][j] = j;
+	}
 
-  // Fill in the rest of the matrix
-  for (i = 1; i <= b.length; i++) {
-    for (j = 1; j <= a.length; j++) {
-      if (b.charAt(i - 1) == a.charAt(j - 1)) {
-        matrix[i][j] = matrix[i - 1][j - 1];
-      } else {
-        matrix[i][j] = Math.min(
-          matrix[i - 1][j - 1] + 1, // substitution
-          Math.min(
-            matrix[i][j - 1] + 1, // insertion
-            matrix[i - 1][j] + 1,
-          ),
-        ); // deletion
-      }
-    }
-  }
+	// Fill in the rest of the matrix
+	for (i = 1; i <= b.length; i++) {
+		for (j = 1; j <= a.length; j++) {
+			if (b.charAt(i - 1) == a.charAt(j - 1)) {
+				matrix[i][j] = matrix[i - 1][j - 1];
+			} else {
+				matrix[i][j] = Math.min(
+					matrix[i - 1][j - 1] + 1, // substitution
+					Math.min(
+						matrix[i][j - 1] + 1, // insertion
+						matrix[i - 1][j] + 1,
+					),
+				); // deletion
+			}
+		}
+	}
 
-  return matrix[b.length][a.length];
+	return matrix[b.length][a.length];
 };
 /**
  * Returns the size of a string in bytes.
@@ -3854,8 +3854,8 @@ export let editDistance = (
  * console.log(_$.byteSize("Hello world")); 11
  * @returns {Number} The byte size of the string.
  */
-export let byteSize = (str = req('string', 'string')) =>
-  new Blob([str]).size;
+export let byteSize = (str = req("string", "string")) =>
+	new Blob([str]).size;
 
 /**
  * Finds and replace multiple values with multiple other values.
@@ -3868,14 +3868,14 @@ export let byteSize = (str = req('string', 'string')) =>
  * @returns {String} The replaced string
  */
 export let replaceMultiple = (
-  text = req('string', 'text'),
-  replace = req('object', 'replace key pairs'),
+	text = req("string", "text"),
+	replace = req("object", "replace key pairs"),
 ) => {
-  var re = new RegExp(Object.keys(replace).join('|'), 'gi');
-  text = text.replace(re, function (matched) {
-    return mapObj[matched];
-  });
-  return text;
+	var re = new RegExp(Object.keys(replace).join("|"), "gi");
+	text = text.replace(re, function (matched) {
+		return mapObj[matched];
+	});
+	return text;
 };
 /**
  * Returns the queries from a given url (Or just the current url)
@@ -3891,15 +3891,15 @@ export let replaceMultiple = (
  * @returns {String} The url query
  */
 export let urlQuery = (
-  query = req('string', 'query'),
-  url = window.location.href,
+	query = req("string", "query"),
+	url = window.location.href,
 ) => {
-  query = query.replace(/[\[\]]/g, '\\$&');
-  var regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`),
-    results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+	query = query.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return "";
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
 };
 
 /**
@@ -3914,151 +3914,151 @@ export let urlQuery = (
  * @returns {String} The sanitized HTML string.
  */
 export let sanitize = (
-  html = req('string', 'input html'),
-  tags = undefined,
-  attributes = undefined,
+	html = req("string", "input html"),
+	tags = undefined,
+	attributes = undefined,
 ) => {
-  node();
-  var attributes = attributes || [
-    { attribute: 'src', tags: '*', regex: /^(?:https|http|\/\/):/ },
-    { attribute: 'href', tags: '*', regex: /^(?:https|http|\/\/):/ },
-    { attribute: 'width', tags: '*', regex: /^[0-9]+$/ },
-    { attribute: 'height', tags: '*', regex: /^[0-9]+$/ },
-    { attribute: 'id', tags: '*', regex: /^[a-zA-Z]+$/ },
-    { attribute: 'class', tags: '*', regex: /^[a-zA-Z ]+$/ },
-    {
-      attribute: 'value',
-      tags: ['INPUT', 'TEXTAREA'],
-      regex: /^.+$/,
-    },
-    {
-      attribute: 'checked',
-      tags: ['INPUT'],
-      regex: /^(?:true|false)+$/,
-    },
-    {
-      attribute: 'placeholder',
-      tags: ['INPUT', 'TEXTAREA'],
-      regex: /^.+$/,
-    },
-    {
-      attribute: 'alt',
-      tags: ['IMG', 'AREA', 'INPUT'],
-      //"^" and "$" match beggining and end
-      regex: /^[0-9a-zA-Z]+$/,
-    },
-    {
-      attribute: 'autofocus',
-      tags: ['INPUT'],
-      regex: /^(?:true|false)+$/,
-    },
-    {
-      attribute: 'for',
-      tags: ['LABEL', 'OUTPUT'],
-      regex: /^[a-zA-Z0-9]+$/,
-    },
-  ];
-  var tags = tags || [
-    'I',
-    'P',
-    'B',
-    'BODY',
-    'HTML',
-    'DEL',
-    'INS',
-    'STRONG',
-    'SMALL',
-    'A',
-    'IMG',
-    'CITE',
-    'FIGCAPTION',
-    'ASIDE',
-    'ARTICLE',
-    'SUMMARY',
-    'DETAILS',
-    'NAV',
-    'TD',
-    'TH',
-    'TABLE',
-    'THEAD',
-    'TBODY',
-    'NAV',
-    'SPAN',
-    'BR',
-    'CODE',
-    'PRE',
-    'BLOCKQUOTE',
-    'EM',
-    'HR',
-    'H1',
-    'H2',
-    'H3',
-    'H4',
-    'H5',
-    'H6',
-    'DIV',
-    'MAIN',
-    'HEADER',
-    'FOOTER',
-    'SELECT',
-    'COL',
-    'AREA',
-    'ADDRESS',
-    'ABBR',
-    'BDI',
-    'BDO',
-  ];
+	node();
+	var attributes = attributes || [
+		{ attribute: "src", tags: "*", regex: /^(?:https|http|\/\/):/ },
+		{ attribute: "href", tags: "*", regex: /^(?:https|http|\/\/):/ },
+		{ attribute: "width", tags: "*", regex: /^[0-9]+$/ },
+		{ attribute: "height", tags: "*", regex: /^[0-9]+$/ },
+		{ attribute: "id", tags: "*", regex: /^[a-zA-Z]+$/ },
+		{ attribute: "class", tags: "*", regex: /^[a-zA-Z ]+$/ },
+		{
+			attribute: "value",
+			tags: ["INPUT", "TEXTAREA"],
+			regex: /^.+$/,
+		},
+		{
+			attribute: "checked",
+			tags: ["INPUT"],
+			regex: /^(?:true|false)+$/,
+		},
+		{
+			attribute: "placeholder",
+			tags: ["INPUT", "TEXTAREA"],
+			regex: /^.+$/,
+		},
+		{
+			attribute: "alt",
+			tags: ["IMG", "AREA", "INPUT"],
+			//"^" and "$" match beggining and end
+			regex: /^[0-9a-zA-Z]+$/,
+		},
+		{
+			attribute: "autofocus",
+			tags: ["INPUT"],
+			regex: /^(?:true|false)+$/,
+		},
+		{
+			attribute: "for",
+			tags: ["LABEL", "OUTPUT"],
+			regex: /^[a-zA-Z0-9]+$/,
+		},
+	];
+	var tags = tags || [
+		"I",
+		"P",
+		"B",
+		"BODY",
+		"HTML",
+		"DEL",
+		"INS",
+		"STRONG",
+		"SMALL",
+		"A",
+		"IMG",
+		"CITE",
+		"FIGCAPTION",
+		"ASIDE",
+		"ARTICLE",
+		"SUMMARY",
+		"DETAILS",
+		"NAV",
+		"TD",
+		"TH",
+		"TABLE",
+		"THEAD",
+		"TBODY",
+		"NAV",
+		"SPAN",
+		"BR",
+		"CODE",
+		"PRE",
+		"BLOCKQUOTE",
+		"EM",
+		"HR",
+		"H1",
+		"H2",
+		"H3",
+		"H4",
+		"H5",
+		"H6",
+		"DIV",
+		"MAIN",
+		"HEADER",
+		"FOOTER",
+		"SELECT",
+		"COL",
+		"AREA",
+		"ADDRESS",
+		"ABBR",
+		"BDI",
+		"BDO",
+	];
 
-  attributes = attributes.map((el) => {
-    if (typeof el === 'string') {
-      return { attribute: el, tags: '*', regex: /^.+$/ };
-    }
-    let output = el;
-    if (!el.hasOwnProperty('tags')) {
-      output.tags = '*';
-    }
-    if (!el.hasOwnProperty('regex')) {
-      output.regex = /^.+$/;
-    }
-    return output;
-  });
-  var el = new DOMParser().parseFromString(html, 'text/html');
-  var elements = el.querySelectorAll('*');
-  for (let i = 0; i < elements.length; i++) {
-    const current = elements[i];
-    let attr_list = get_attributes(current);
-    for (let j = 0; j < attr_list.length; j++) {
-      const attribute = attr_list[j];
-      if (!attribute_matches(current, attribute)) {
-        current.removeAttribute(attr_list[j]);
-      }
-    }
-    if (!tags.includes(current.tagName)) {
-      current.remove();
-    }
-  }
-  return el.documentElement.innerHTML;
-  function attribute_matches(element, attribute) {
-    let output = attributes.filter((attr) => {
-      let returnval =
-        attr.attribute === attribute &&
-        (attr.tags === '*' || attr.tags.includes(element.tagName)) &&
-        attr.regex.test(element.getAttribute(attribute));
-      return returnval;
-    });
+	attributes = attributes.map((el) => {
+		if (typeof el === "string") {
+			return { attribute: el, tags: "*", regex: /^.+$/ };
+		}
+		let output = el;
+		if (!el.hasOwnProperty("tags")) {
+			output.tags = "*";
+		}
+		if (!el.hasOwnProperty("regex")) {
+			output.regex = /^.+$/;
+		}
+		return output;
+	});
+	var el = new DOMParser().parseFromString(html, "text/html");
+	var elements = el.querySelectorAll("*");
+	for (let i = 0; i < elements.length; i++) {
+		const current = elements[i];
+		let attr_list = get_attributes(current);
+		for (let j = 0; j < attr_list.length; j++) {
+			const attribute = attr_list[j];
+			if (!attribute_matches(current, attribute)) {
+				current.removeAttribute(attr_list[j]);
+			}
+		}
+		if (!tags.includes(current.tagName)) {
+			current.remove();
+		}
+	}
+	return el.documentElement.innerHTML;
+	function attribute_matches(element, attribute) {
+		let output = attributes.filter((attr) => {
+			let returnval =
+				attr.attribute === attribute &&
+				(attr.tags === "*" || attr.tags.includes(element.tagName)) &&
+				attr.regex.test(element.getAttribute(attribute));
+			return returnval;
+		});
 
-    return output.length > 0;
-  }
-  function get_attributes(element) {
-    for (
-      var i = 0, atts = element.attributes, n = atts.length, arr = [];
-      i < n;
-      i++
-    ) {
-      arr.push(atts[i].nodeName);
-    }
-    return arr;
-  }
+		return output.length > 0;
+	}
+	function get_attributes(element) {
+		for (
+			var i = 0, atts = element.attributes, n = atts.length, arr = [];
+			i < n;
+			i++
+		) {
+			arr.push(atts[i].nodeName);
+		}
+		return arr;
+	}
 };
 /**
  * Converts markdown to HTML.
@@ -4069,208 +4069,208 @@ export let sanitize = (
  * console.log(_$.markdownToHTML("_Italic text_, **bold text**")); // "<em>Italic text</em>, <b>bold text</b>"
  * @returns {String} The string of HTML converted from the markdown input.
  */
-export let markdownToHTML = (src = req('string', 'input')) => {
-  var rx_lt = /</g;
-  var rx_gt = />/g;
-  var rx_space = /\t|\r|\uf8ff/g;
-  var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
-  var rx_hr = /^([*\-=_] *){3,}$/gm;
-  var rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g;
-  var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
-  var rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g;
-  var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
-  var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|(( {4}.*?\n)+))/g;
-  var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
-  var rx_table = /\n(( *\|.*?\| *\n)+)/g;
-  var rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
-  var rx_row = /.*\n/g;
-  var rx_cell = /\||(.*?[^\\])\|/g;
-  var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
-  var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
-  var rx_stash = /-\d+\uf8ff/g;
+export let markdownToHTML = (src = req("string", "input")) => {
+	var rx_lt = /</g;
+	var rx_gt = />/g;
+	var rx_space = /\t|\r|\uf8ff/g;
+	var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
+	var rx_hr = /^([*\-=_] *){3,}$/gm;
+	var rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g;
+	var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
+	var rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g;
+	var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
+	var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|(( {4}.*?\n)+))/g;
+	var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
+	var rx_table = /\n(( *\|.*?\| *\n)+)/g;
+	var rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
+	var rx_row = /.*\n/g;
+	var rx_cell = /\||(.*?[^\\])\|/g;
+	var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
+	var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
+	var rx_stash = /-\d+\uf8ff/g;
 
-  function replace(rex, fn) {
-    src = src.replace(rex, fn);
-  }
+	function replace(rex, fn) {
+		src = src.replace(rex, fn);
+	}
 
-  function element(tag, content) {
-    return '<' + tag + '>' + content + '</' + tag + '>';
-  }
+	function element(tag, content) {
+		return "<" + tag + ">" + content + "</" + tag + ">";
+	}
 
-  function blockquote(src) {
-    return src.replace(rx_blockquote, function (all, content) {
-      return element(
-        'blockquote',
-        blockquote(highlight(content.replace(/^ *&gt; */gm, ''))),
-      );
-    });
-  }
+	function blockquote(src) {
+		return src.replace(rx_blockquote, function (all, content) {
+			return element(
+				"blockquote",
+				blockquote(highlight(content.replace(/^ *&gt; */gm, ""))),
+			);
+		});
+	}
 
-  function list(src) {
-    return src.replace(
-      rx_list,
-      function (all, ind, ol, num, low, content) {
-        var entry = element(
-          'li',
-          highlight(
-            content
-              .split(
-                RegExp(
-                  '\n ?' +
-                    ind +
-                    '(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +',
-                  'g',
-                ),
-              )
-              .map(list)
-              .join('</li><li>'),
-          ),
-        );
+	function list(src) {
+		return src.replace(
+			rx_list,
+			function (all, ind, ol, num, low, content) {
+				var entry = element(
+					"li",
+					highlight(
+						content
+							.split(
+								RegExp(
+									"\n ?" +
+										ind +
+										"(?:(?:\\d+|[a-zA-Z])[.)]|[*\\-+]) +",
+									"g",
+								),
+							)
+							.map(list)
+							.join("</li><li>"),
+					),
+				);
 
-        return (
-          '\n' +
-          (ol
-            ? '<ol start="' +
-              (num
-                ? ol + '">'
-                : parseInt(ol, 36) -
-                  9 +
-                  '" style="list-style-type:' +
-                  (low ? 'low' : 'upp') +
-                  'er-alpha">') +
-              entry +
-              '</ol>'
-            : element('ul', entry))
-        );
-      },
-    );
-  }
+				return (
+					"\n" +
+					(ol
+						? '<ol start="' +
+						  (num
+								? ol + '">'
+								: parseInt(ol, 36) -
+								  9 +
+								  '" style="list-style-type:' +
+								  (low ? "low" : "upp") +
+								  'er-alpha">') +
+						  entry +
+						  "</ol>"
+						: element("ul", entry))
+				);
+			},
+		);
+	}
 
-  function highlight(src) {
-    return src.replace(
-      rx_highlight,
-      function (all, _, p1, emp, sub, sup, small, big, p2, content) {
-        return (
-          _ +
-          element(
-            emp
-              ? p2
-                ? 'strong'
-                : 'em'
-              : sub
-              ? p2
-                ? 's'
-                : 'sub'
-              : sup
-              ? 'sup'
-              : small
-              ? 'small'
-              : big
-              ? 'big'
-              : 'code',
-            highlight(content),
-          )
-        );
-      },
-    );
-  }
+	function highlight(src) {
+		return src.replace(
+			rx_highlight,
+			function (all, _, p1, emp, sub, sup, small, big, p2, content) {
+				return (
+					_ +
+					element(
+						emp
+							? p2
+								? "strong"
+								: "em"
+							: sub
+							? p2
+								? "s"
+								: "sub"
+							: sup
+							? "sup"
+							: small
+							? "small"
+							: big
+							? "big"
+							: "code",
+						highlight(content),
+					)
+				);
+			},
+		);
+	}
 
-  function unesc(str) {
-    return str.replace(rx_escape, '$1');
-  }
+	function unesc(str) {
+		return str.replace(rx_escape, "$1");
+	}
 
-  var stash = [];
-  var si = 0;
+	var stash = [];
+	var si = 0;
 
-  src = '\n' + src + '\n';
+	src = "\n" + src + "\n";
 
-  replace(rx_lt, '&lt;');
-  replace(rx_gt, '&gt;');
-  replace(rx_space, '  ');
+	replace(rx_lt, "&lt;");
+	replace(rx_gt, "&gt;");
+	replace(rx_space, "  ");
 
-  // blockquote
-  src = blockquote(src);
+	// blockquote
+	src = blockquote(src);
 
-  // horizontal rule
-  replace(rx_hr, '<hr/>');
+	// horizontal rule
+	replace(rx_hr, "<hr/>");
 
-  // list
-  src = list(src);
-  replace(rx_listjoin, '');
+	// list
+	src = list(src);
+	replace(rx_listjoin, "");
 
-  // code
-  replace(rx_code, function (all, p1, p2, p3, p4) {
-    stash[--si] = element(
-      'pre',
-      element('code', p3 || p4.replace(/^ {4}/gm, '')),
-    );
-    return si + '\uf8ff';
-  });
+	// code
+	replace(rx_code, function (all, p1, p2, p3, p4) {
+		stash[--si] = element(
+			"pre",
+			element("code", p3 || p4.replace(/^ {4}/gm, "")),
+		);
+		return si + "\uf8ff";
+	});
 
-  // link or image
-  replace(rx_link, function (all, p1, p2, p3, p4, p5, p6) {
-    stash[--si] = p6
-      ? p6
-      : p2
-      ? p4
-        ? '<img src="' +
-          _$.escapeHTML(p4) +
-          '" alt="' +
-          _$.escapeHTML(p3) +
-          '"/>'
-        : p1
-      : /^https?:\/\//g.test(p4)
-      ? '<a href="' +
-        _$.escapeHTML(p4) +
-        '">' +
-        unesc(highlight(p3)) +
-        '</a>'
-      : p1;
-    return si + '\uf8ff';
-  });
+	// link or image
+	replace(rx_link, function (all, p1, p2, p3, p4, p5, p6) {
+		stash[--si] = p6
+			? p6
+			: p2
+			? p4
+				? '<img src="' +
+				  _$.escapeHTML(p4) +
+				  '" alt="' +
+				  _$.escapeHTML(p3) +
+				  '"/>'
+				: p1
+			: /^https?:\/\//g.test(p4)
+			? '<a href="' +
+			  _$.escapeHTML(p4) +
+			  '">' +
+			  unesc(highlight(p3)) +
+			  "</a>"
+			: p1;
+		return si + "\uf8ff";
+	});
 
-  // table
-  replace(rx_table, function (all, table) {
-    var sep = table.match(rx_thead)[1];
-    return (
-      '\n' +
-      element(
-        'table',
-        table.replace(rx_row, function (row, ri) {
-          return row == sep
-            ? ''
-            : element(
-                'tr',
-                row.replace(rx_cell, function (all, cell, ci) {
-                  return ci
-                    ? element(
-                        sep && !ri ? 'th' : 'td',
-                        unesc(highlight(cell || '')),
-                      )
-                    : '';
-                }),
-              );
-        }),
-      )
-    );
-  });
+	// table
+	replace(rx_table, function (all, table) {
+		var sep = table.match(rx_thead)[1];
+		return (
+			"\n" +
+			element(
+				"table",
+				table.replace(rx_row, function (row, ri) {
+					return row == sep
+						? ""
+						: element(
+								"tr",
+								row.replace(rx_cell, function (all, cell, ci) {
+									return ci
+										? element(
+												sep && !ri ? "th" : "td",
+												unesc(highlight(cell || "")),
+										  )
+										: "";
+								}),
+						  );
+				}),
+			)
+		);
+	});
 
-  // heading
-  replace(rx_heading, function (all, _, p1, p2) {
-    return _ + element('h' + p1.length, unesc(highlight(p2)));
-  });
+	// heading
+	replace(rx_heading, function (all, _, p1, p2) {
+		return _ + element("h" + p1.length, unesc(highlight(p2)));
+	});
 
-  // paragraph
-  replace(rx_para, function (all, content) {
-    return element('p', unesc(highlight(content)));
-  });
+	// paragraph
+	replace(rx_para, function (all, content) {
+		return element("p", unesc(highlight(content)));
+	});
 
-  // stash
-  replace(rx_stash, function (all) {
-    return stash[parseInt(all)];
-  });
+	// stash
+	replace(rx_stash, function (all) {
+		return stash[parseInt(all)];
+	});
 
-  return src.trim();
+	return src.trim();
 };
 
 /**
@@ -4282,22 +4282,22 @@ export let markdownToHTML = (src = req('string', 'input')) => {
  * console.log(_$.syllables("Hello")); // 2
  * @returns {Number} The number of syllables in the specified word.
  */
-export let syllables = (word = req('string', 'word')) => {
-  word = word.toLowerCase();
-  var t_some = 0;
-  if (word.length > 3) {
-    if (word.substring(0, 4) == 'some') {
-      word = word.replace('some', '');
-      t_some++;
-    }
-  }
-  word = word.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/, '');
-  word = word.replace(/^y/, '');
-  var syl = word.match(/[aeiouy]{1,2}/g);
-  console.log(syl);
-  if (syl) {
-    return syl.length + t_some;
-  }
+export let syllables = (word = req("string", "word")) => {
+	word = word.toLowerCase();
+	var t_some = 0;
+	if (word.length > 3) {
+		if (word.substring(0, 4) == "some") {
+			word = word.replace("some", "");
+			t_some++;
+		}
+	}
+	word = word.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/, "");
+	word = word.replace(/^y/, "");
+	var syl = word.match(/[aeiouy]{1,2}/g);
+	console.log(syl);
+	if (syl) {
+		return syl.length + t_some;
+	}
 };
 /**
  * Converts a string to title case
@@ -4308,43 +4308,43 @@ export let syllables = (word = req('string', 'word')) => {
  * _$.titleCase("hello world");//Returns "Hello World"
  * @returns {String} The string in title case.
  */
-export let titleCase = (str = req('string', 'string')) =>
-  str
-    .toLowerCase()
-    .split(' ')
-    .map((word, index) =>
-      [
-        'at',
-        'by',
-        'for',
-        'in',
-        'of',
-        'off',
-        'on',
-        'out',
-        'to',
-        'up',
-        'as',
-        'if',
-        'but',
-        'per',
-        'via',
-        'for',
-        'and',
-        'nor',
-        'but',
-        'or',
-        'yet',
-        'so',
-        'the',
-        'a',
-        'an',
-      ].includes(word) && index != 0
-        ? word
-        : String.fromCodePoint(word.codePointAt(0)).toUpperCase() +
-          word.slice(word.codePointAt(0) > 0xffff ? 2 : 1),
-    )
-    .join(' ');
+export let titleCase = (str = req("string", "string")) =>
+	str
+		.toLowerCase()
+		.split(" ")
+		.map((word, index) =>
+			[
+				"at",
+				"by",
+				"for",
+				"in",
+				"of",
+				"off",
+				"on",
+				"out",
+				"to",
+				"up",
+				"as",
+				"if",
+				"but",
+				"per",
+				"via",
+				"for",
+				"and",
+				"nor",
+				"but",
+				"or",
+				"yet",
+				"so",
+				"the",
+				"a",
+				"an",
+			].includes(word) && index != 0
+				? word
+				: String.fromCodePoint(word.codePointAt(0)).toUpperCase() +
+				  word.slice(word.codePointAt(0) > 0xffff ? 2 : 1),
+		)
+		.join(" ");
 /**
  * Capitalizes the first letter of the string
  * @memberOf string
@@ -4354,9 +4354,9 @@ export let titleCase = (str = req('string', 'string')) =>
  * console.log(_$.capitalize("hello world")); // "Hello world"
  * @returns {String} The capitalized string.
  */
-export let capitalize = (str = req('string', 'string')) =>
-  String.fromCodePoint(str.codePointAt(0)).toUpperCase() +
-  str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
+export let capitalize = (str = req("string", "string")) =>
+	String.fromCodePoint(str.codePointAt(0)).toUpperCase() +
+	str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
 /**
  * Replaces between two indexes of a string.
  * @memberOf string
@@ -4370,10 +4370,10 @@ export let capitalize = (str = req('string', 'string')) =>
  * @returns {String} The replaced string
  */
 export let replaceBetween = (
-  string = req('string', 'string'),
-  start = req('number', 'start'),
-  end = req('number', 'end'),
-  what = req('string', 'replace with'),
+	string = req("string", "string"),
+	start = req("number", "start"),
+	end = req("number", "end"),
+	what = req("string", "replace with"),
 ) => string.substring(0, start) + what + string.substring(end);
 /**
  * Escapes a string of HTML
@@ -4384,18 +4384,18 @@ export let replaceBetween = (
  * console.log(_$.escapeHTML("<div>")); // "&lt;div&gt;"
  * @returns {String} The escaped HTML.
  */
-export let escapeHTML = (str = req('string')) =>
-  str.replace(
-    /[&<>'"]/g,
-    (tag) =>
-      ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        "'": '&#39;',
-        '"': '&quot;',
-      }[tag] || tag),
-  );
+export let escapeHTML = (str = req("string")) =>
+	str.replace(
+		/[&<>'"]/g,
+		(tag) =>
+			({
+				"&": "&amp;",
+				"<": "&lt;",
+				">": "&gt;",
+				"'": "&#39;",
+				'"': "&quot;",
+			}[tag] || tag),
+	);
 /**
  * Unescapes a string of HTML
  * @function
@@ -4405,18 +4405,18 @@ export let escapeHTML = (str = req('string')) =>
  * console.log(_$.unescapeHTML("&lt;div&gt;")); // "<div>"
  * @returns {String} The unescaped HTML.
  */
-export let unescapeHTML = (str = req('string')) =>
-  str.replace(
-    /&amp;|&lt;|&gt;|&#39;|&quot;/g,
-    (tag) =>
-      ({
-        '&amp;': '&',
-        '&lt;': '<',
-        '&gt;': '>',
-        '&#39;': "'",
-        '&quot;': '"',
-      }[tag] || tag),
-  );
+export let unescapeHTML = (str = req("string")) =>
+	str.replace(
+		/&amp;|&lt;|&gt;|&#39;|&quot;/g,
+		(tag) =>
+			({
+				"&amp;": "&",
+				"&lt;": "<",
+				"&gt;": ">",
+				"&#39;": "'",
+				"&quot;": '"',
+			}[tag] || tag),
+	);
 /**
  * Returns the previous page that the user visited.
  * @function
@@ -4426,8 +4426,8 @@ export let unescapeHTML = (str = req('string')) =>
  * @returns {String} The url of the previous page the user visited.
  */
 export let previousPage = () => {
-  node();
-  return document.referrer || window.location.href;
+	node();
+	return document.referrer || window.location.href;
 };
 //#endregion String
 //#region Utility
@@ -4455,13 +4455,13 @@ export let previousPage = () => {
  * @returns {HTMLElement} The CSS <style> element.
  * @param {String} css The CSS to inject.
  */
-export let injectCSS = (css = req('string', 'css')) => {
-  node();
-  let el = document.createElement('style');
-  el.setAttribute('type', 'text/css');
-  el.innerText = css;
-  document.head.appendChild(el);
-  return el;
+export let injectCSS = (css = req("string", "css")) => {
+	node();
+	let el = document.createElement("style");
+	el.setAttribute("type", "text/css");
+	el.innerText = css;
+	document.head.appendChild(el);
+	return el;
 };
 /**
  * Returns either "mobile" or "desktop" depending on which type of device the user is using.
@@ -4473,12 +4473,12 @@ export let injectCSS = (css = req('string', 'css')) => {
  * console.log(_$.mobileOrDesktop()); // e.g. "desktop"
  */
 export let mobileOrDesktop = () => {
-  node();
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent,
-  )
-    ? 'mobile'
-    : 'desktop';
+	node();
+	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+		navigator.userAgent,
+	)
+		? "mobile"
+		: "desktop";
 };
 /**
  * Plays a section of an audio file.
@@ -4492,19 +4492,19 @@ export let mobileOrDesktop = () => {
  * @returns {undefined}
  */
 export let playSection = (
-  audioObj = req('HTMLMediaElement', 'audio'),
-  start = req('number', 'start'),
-  stop = req('number', 'stop'),
+	audioObj = req("HTMLMediaElement", "audio"),
+	start = req("number", "start"),
+	stop = req("number", "stop"),
 ) => {
-  let audioObjNew = audioObj.cloneNode(true); //this is to prevent "play() request was interrupted" error.
-  audioObjNew.currentTime = start;
-  audioObjNew.play();
-  audioObjNew.int = setInterval(function () {
-    if (audioObjNew.currentTime > stop) {
-      audioObjNew.pause();
-      clearInterval(audioObjNew.int);
-    }
-  }, 10);
+	let audioObjNew = audioObj.cloneNode(true); //this is to prevent "play() request was interrupted" error.
+	audioObjNew.currentTime = start;
+	audioObjNew.play();
+	audioObjNew.int = setInterval(function () {
+		if (audioObjNew.currentTime > stop) {
+			audioObjNew.pause();
+			clearInterval(audioObjNew.int);
+		}
+	}, 10);
 };
 /**
  * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
@@ -4521,27 +4521,27 @@ export let playSection = (
    ```
  * @returns {String} The formatted string of HTML.
  */
-export let formatHTML = (html = req('string', 'html')) => {
-  var tab = '\t';
-  var result = '';
-  var indent = '';
+export let formatHTML = (html = req("string", "html")) => {
+	var tab = "\t";
+	var result = "";
+	var indent = "";
 
-  html.split(/>\s*</).forEach(function (element) {
-    if (element.match(/^\/\w/)) {
-      indent = indent.substring(tab.length);
-    }
+	html.split(/>\s*</).forEach(function (element) {
+		if (element.match(/^\/\w/)) {
+			indent = indent.substring(tab.length);
+		}
 
-    result += indent + '<' + element + '>\r\n';
+		result += indent + "<" + element + ">\r\n";
 
-    if (
-      element.match(/^<?\w[^>]*[^\/]$/) &&
-      !element.startsWith('input')
-    ) {
-      indent += tab;
-    }
-  });
+		if (
+			element.match(/^<?\w[^>]*[^\/]$/) &&
+			!element.startsWith("input")
+		) {
+			indent += tab;
+		}
+	});
 
-  return result.substring(1, result.length - 3);
+	return result.substring(1, result.length - 3);
 };
 /**
  * Gets JSON from a URL and performs a callback with it.
@@ -4554,22 +4554,22 @@ export let formatHTML = (html = req('string', 'html')) => {
  * @returns {Promise} A promise resolved when the JSON is fetched and parsed.
  */
 export let getJSON = (
-  url = req('string', 'url'),
-  callback = () => {},
+	url = req("string", "url"),
+	callback = () => {},
 ) => {
-  node();
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((json) => {
-        callback(json);
-        resolve(json);
-      })
-      .catch((error) => {
-        reject(error);
-        throw new Error(error.stack);
-      });
-  });
+	node();
+	return new Promise((resolve, reject) => {
+		fetch(url)
+			.then((res) => res.json())
+			.then((json) => {
+				callback(json);
+				resolve(json);
+			})
+			.catch((error) => {
+				reject(error);
+				throw new Error(error.stack);
+			});
+	});
 };
 /**
  * Gets HTML from a URL and performs a callback with it.
@@ -4583,22 +4583,22 @@ export let getJSON = (
  * @returns {Promise} A promise resolved when the HTML is fetched and parsed.
  */
 export let getHTML = (
-  url = req('string', 'url'),
-  callback = () => {},
+	url = req("string", "url"),
+	callback = () => {},
 ) => {
-  node();
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then((res) => res.text())
-      .then((html) => {
-        callback(_$.parseHTML(html));
-        resolve(_$.parseHTML(html));
-      })
-      .catch((error) => {
-        reject(error.stack);
-        throw new Error(error.stack);
-      });
-  });
+	node();
+	return new Promise((resolve, reject) => {
+		fetch(url)
+			.then((res) => res.text())
+			.then((html) => {
+				callback(_$.parseHTML(html));
+				resolve(_$.parseHTML(html));
+			})
+			.catch((error) => {
+				reject(error.stack);
+				throw new Error(error.stack);
+			});
+	});
 };
 
 /**
@@ -4611,12 +4611,12 @@ export let getHTML = (
  * @returns {undefined}
  */
 export let preloadImage = (...urls) => {
-  req('string', 'url arguments', ![...urls].length);
-  let images = [];
-  for (var i = 0; i < urls.length; i++) {
-    images[i] = new Image();
-    images[i].src = urls[i];
-  }
+	req("string", "url arguments", ![...urls].length);
+	let images = [];
+	for (var i = 0; i < urls.length; i++) {
+		images[i] = new Image();
+		images[i].src = urls[i];
+	}
 };
 
 /**
@@ -4630,19 +4630,19 @@ export let preloadImage = (...urls) => {
  * @returns {undefined}
  */
 export let saveBlob = (
-  blob = req('blob', 'blob'),
-  fileName = 'output.txt',
+	blob = req("blob", "blob"),
+	fileName = "output.txt",
 ) => {
-  node();
-  var a = document.createElement('a');
-  document.body.appendChild(a);
-  a.style = 'display: none';
+	node();
+	var a = document.createElement("a");
+	document.body.appendChild(a);
+	a.style = "display: none";
 
-  var url = window.URL.createObjectURL(blob);
-  a.href = url;
-  a.download = fileName;
-  a.click();
-  window.URL.revokeObjectURL(url);
+	var url = window.URL.createObjectURL(blob);
+	a.href = url;
+	a.download = fileName;
+	a.click();
+	window.URL.revokeObjectURL(url);
 };
 
 /**
@@ -4654,31 +4654,31 @@ export let saveBlob = (
  * @returns {Object}
  */
 export let requestInterval = function (
-  fn = req('function', 'function'),
-  delay = req('number', 'delay'),
+	fn = req("function", "function"),
+	delay = req("number", "delay"),
 ) {
-  node();
-  var requestAnimFrame = (function () {
-      return (
-        window.requestAnimationFrame ||
-        function (callback) {
-          window.setTimeout(callback, 1000 / 60);
-        }
-      );
-    })(),
-    start = new Date().getTime(),
-    handle = {};
-  function loop() {
-    handle.value = requestAnimFrame(loop);
-    var current = new Date().getTime(),
-      delta = current - start;
-    if (delta >= delay) {
-      fn.call();
-      start = new Date().getTime();
-    }
-  }
-  handle.value = requestAnimFrame(loop);
-  return handle;
+	node();
+	var requestAnimFrame = (function () {
+			return (
+				window.requestAnimationFrame ||
+				function (callback) {
+					window.setTimeout(callback, 1000 / 60);
+				}
+			);
+		})(),
+		start = new Date().getTime(),
+		handle = {};
+	function loop() {
+		handle.value = requestAnimFrame(loop);
+		var current = new Date().getTime(),
+			delta = current - start;
+		if (delta >= delay) {
+			fn.call();
+			start = new Date().getTime();
+		}
+	}
+	handle.value = requestAnimFrame(loop);
+	return handle;
 };
 
 /**
@@ -4692,39 +4692,39 @@ export let requestInterval = function (
  * @returns {Promise} A promise resolved once the script is loaded.
  */
 export let loadScript = (
-  url = req('string', 'url'),
-  callback = req('function', 'callback'),
-  options = {},
+	url = req("string", "url"),
+	callback = req("function", "callback"),
+	options = {},
 ) => {
-  node();
-  return new Promise((resolve, reject) => {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    let keys = Object.keys(options);
-    _$.each(keys, (key) => {
-      script.setAttribute(key, options[key]);
-    });
-    if (script.readyState) {
-      script.onreadystatechange = function () {
-        if (
-          script.readyState === 'loaded' ||
-          script.readyState === 'complete'
-        ) {
-          script.onreadystatechange = null;
-          callback();
-          resolve();
-        }
-      };
-    } else {
-      script.onload = function () {
-        callback();
-        resolve();
-      };
-    }
+	node();
+	return new Promise((resolve, reject) => {
+		var script = document.createElement("script");
+		script.type = "text/javascript";
+		let keys = Object.keys(options);
+		_$.each(keys, (key) => {
+			script.setAttribute(key, options[key]);
+		});
+		if (script.readyState) {
+			script.onreadystatechange = function () {
+				if (
+					script.readyState === "loaded" ||
+					script.readyState === "complete"
+				) {
+					script.onreadystatechange = null;
+					callback();
+					resolve();
+				}
+			};
+		} else {
+			script.onload = function () {
+				callback();
+				resolve();
+			};
+		}
 
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-  });
+		script.src = url;
+		document.getElementsByTagName("head")[0].appendChild(script);
+	});
 };
 
 /**
@@ -4743,20 +4743,20 @@ export let loadScript = (
  * @returns {Promise} A promise fulfulled when the image is loaded.
  */
 export let imageToData = async (
-  url = req('string', 'url'),
-  callback = () => {},
+	url = req("string", "url"),
+	callback = () => {},
 ) => {
-  node();
-  return new Promise(async (res, reject) => {
-    let blob = await fetch(url).then((r) => r.blob());
-    let dataUrl = await new Promise((resolve) => {
-      let reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.readAsDataURL(blob);
-    });
-    callback(dataUrl);
-    res(dataUrl);
-  });
+	node();
+	return new Promise(async (res, reject) => {
+		let blob = await fetch(url).then((r) => r.blob());
+		let dataUrl = await new Promise((resolve) => {
+			let reader = new FileReader();
+			reader.onload = () => resolve(reader.result);
+			reader.readAsDataURL(blob);
+		});
+		callback(dataUrl);
+		res(dataUrl);
+	});
 };
 /**
  * A set of functions to set and modify cookies.
@@ -4767,62 +4767,62 @@ export let imageToData = async (
  * @returns {Function} The function that the user wanted
  */
 export let cookies = {
-  /**
-   * Sets a cookie to a value
-   * @function
-   * @memberOf utility
-   * @param {String} name The name of the cookie to set
-   * @param {String} value The value of the cookie
-   * @param {Number} [days=1000] The days that the cookie should last.
-   * @returns {String} The value of the cookie
-   */
-  setItem: (
-    name = req('string', 'name'),
-    value = req('string', 'value'),
-    days = 1000,
-  ) => {
-    node();
-    var expires = '';
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-      expires = '; expires=' + date.toUTCString();
-    }
-    document.cookie =
-      name + '=' + (value || '') + expires + '; path=/';
-  },
-  /**
-   * Gets a cookie from its name.
-   * @function
-   * @memberOf utility
-   * @param {String} name The name of the cookie.
-   * @returns {String} The value of the cookie
-   */
-  getItem: (name = req('string', 'name')) => {
-    node();
+	/**
+	 * Sets a cookie to a value
+	 * @function
+	 * @memberOf utility
+	 * @param {String} name The name of the cookie to set
+	 * @param {String} value The value of the cookie
+	 * @param {Number} [days=1000] The days that the cookie should last.
+	 * @returns {String} The value of the cookie
+	 */
+	setItem: (
+		name = req("string", "name"),
+		value = req("string", "value"),
+		days = 1000,
+	) => {
+		node();
+		var expires = "";
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+			expires = "; expires=" + date.toUTCString();
+		}
+		document.cookie =
+			name + "=" + (value || "") + expires + "; path=/";
+	},
+	/**
+	 * Gets a cookie from its name.
+	 * @function
+	 * @memberOf utility
+	 * @param {String} name The name of the cookie.
+	 * @returns {String} The value of the cookie
+	 */
+	getItem: (name = req("string", "name")) => {
+		node();
 
-    var nameEQ = name + '=';
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) === 0)
-        return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  },
-  /**
-   * Deletes a cookie
-   * @memberOf utility
-   * @param {String} name The name of the cookie to delete.
-   * @returns {undefined}
-   */
-  removeItem: (name = req('string', 'name')) => {
-    node();
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(";");
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == " ") c = c.substring(1, c.length);
+			if (c.indexOf(nameEQ) === 0)
+				return c.substring(nameEQ.length, c.length);
+		}
+		return null;
+	},
+	/**
+	 * Deletes a cookie
+	 * @memberOf utility
+	 * @param {String} name The name of the cookie to delete.
+	 * @returns {undefined}
+	 */
+	removeItem: (name = req("string", "name")) => {
+		node();
 
-    document.cookie =
-      name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  },
+		document.cookie =
+			name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+	},
 };
 /**
  * A collection of regular expressions to validate and get common things from a page
@@ -4833,75 +4833,75 @@ export let cookies = {
  * @returns {Regexp} A regex
  */
 export let regex = {
-  /**
-   * Valid formats:
-   * (123) 456-7890
-   * (123)456-7890
-   * 123-456-7890
-   * 123.456.7890
-   * 1234567890
-   * +31636363634
-   * 075-63546725
-   */
-  phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-  /** Validates names, examples:
-   * John Smith
-   * John D'Largy
-   * John Doe-Smith
-   * John Doe Smith
-   * Hector Sausage-Hausen
-   * Mathias d'Arras
-   * Martin Luther King
-   * Ai Wong
-   * Chao Chang
-   * Alzbeta Bara
-   */
-  name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
-  /**
+	/**
+	 * Valid formats:
+	 * (123) 456-7890
+	 * (123)456-7890
+	 * 123-456-7890
+	 * 123.456.7890
+	 * 1234567890
+	 * +31636363634
+	 * 075-63546725
+	 */
+	phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+	/** Validates names, examples:
+	 * John Smith
+	 * John D'Largy
+	 * John Doe-Smith
+	 * John Doe Smith
+	 * Hector Sausage-Hausen
+	 * Mathias d'Arras
+	 * Martin Luther King
+	 * Ai Wong
+	 * Chao Chang
+	 * Alzbeta Bara
+	 */
+	name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
+	/**
       Validates email adresses
       */
-  email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-  /** Validates a link
-   */
-  link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
-  /**
-   * Tests for a strong password.
-   * Should have:
-   * 1 lowercase letter
-   * 1 uppercase letter
-   * 1 number
-   * 1 special character
-   * At least 8 characters long
-   */
-  strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
-  /**
-   * Tests for a moderate password.
-   * Should have:
-   * 1 lowercase letter
-   * 1 uppercase letter
-   * 1 number
-   * At least 8 characters long */
-  moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
-  /** Ip adresses */
-  /* Match IPv4 address */
-  ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
-  /* Match IPv6 address */
-  ipv6: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/,
-  /**Both ipv4 and ipv6 */
-  ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
-  /**Social security number */
-  socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
-  /**Hex color */
-  hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
-  /** Zip code */
-  zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
-  /**Phone */
-  simplePhone: /^\+?[\d\s]{3,}$/,
-  /**Credit cards */
-  visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
-  expressCredit: /^3[47][0–9]{13}$/,
-  mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
-  discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
+	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+	/** Validates a link
+	 */
+	link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
+	/**
+	 * Tests for a strong password.
+	 * Should have:
+	 * 1 lowercase letter
+	 * 1 uppercase letter
+	 * 1 number
+	 * 1 special character
+	 * At least 8 characters long
+	 */
+	strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
+	/**
+	 * Tests for a moderate password.
+	 * Should have:
+	 * 1 lowercase letter
+	 * 1 uppercase letter
+	 * 1 number
+	 * At least 8 characters long */
+	moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
+	/** Ip adresses */
+	/* Match IPv4 address */
+	ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
+	/* Match IPv6 address */
+	ipv6: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/,
+	/**Both ipv4 and ipv6 */
+	ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
+	/**Social security number */
+	socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
+	/**Hex color */
+	hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
+	/** Zip code */
+	zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
+	/**Phone */
+	simplePhone: /^\+?[\d\s]{3,}$/,
+	/**Credit cards */
+	visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
+	expressCredit: /^3[47][0–9]{13}$/,
+	mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
+	discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
 };
 /**
    * Converts JSON to a CSV string
@@ -4924,22 +4924,22 @@ export let regex = {
    * @returns {String} The string of comma separated values (CSV) created from the JSON.
    */
 export let jsonToCsv = (
-  arr = req('array', 'array'),
-  columns = req('number', 'columns'),
-  delimiter = ',',
+	arr = req("array", "array"),
+	columns = req("number", "columns"),
+	delimiter = ",",
 ) =>
-  [
-    columns.join(delimiter),
-    ...arr.map((obj) =>
-      columns.reduce(
-        (acc, key) =>
-          `${acc}${!acc.length ? '' : delimiter}"${
-            !obj[key] ? '' : obj[key]
-          }"`,
-        '',
-      ),
-    ),
-  ].join('\n');
+	[
+		columns.join(delimiter),
+		...arr.map((obj) =>
+			columns.reduce(
+				(acc, key) =>
+					`${acc}${!acc.length ? "" : delimiter}"${
+						!obj[key] ? "" : obj[key]
+					}"`,
+				"",
+			),
+		),
+	].join("\n");
 /**
  * Converts an array to CSV (Comma separated values) data.
  * @function
@@ -4951,16 +4951,16 @@ export let jsonToCsv = (
  * @returns {String} The comma separated array.
  */
 export let arrayToCSV = (
-  arr = req('array', 'array'),
-  delimiter = ',',
+	arr = req("array", "array"),
+	delimiter = ",",
 ) =>
-  arr
-    .map((v) =>
-      v
-        .map((x) => (isNaN(x) ? `"${x.replace(/"/g, '""')}"` : x))
-        .join(delimiter),
-    )
-    .join('\n');
+	arr
+		.map((v) =>
+			v
+				.map((x) => (isNaN(x) ? `"${x.replace(/"/g, '""')}"` : x))
+				.join(delimiter),
+		)
+		.join("\n");
 
 /**
  * Displays a desktop notification with the specified text.
@@ -4974,29 +4974,29 @@ export let arrayToCSV = (
  * @returns {undefined}
  */
 export let notify = (
-  text = req('string', 'text'),
-  body = req('string', 'body'),
-  icon = undefined,
+	text = req("string", "text"),
+	body = req("string", "body"),
+	icon = undefined,
 ) => {
-  node();
-  if (!window.Notification) {
-    console.log('Browser does not support notifications.');
-  } else {
-    if (Notification.permission === 'granted') {
-    } else {
-      Notification.requestPermission()
-        .then(function (p) {
-          if (p === 'granted') {
-          } else {
-            console.log('User blocked notifications.');
-          }
-        })
-        .catch(function (err) {
-          //Eat it.
-          console.error(err);
-        });
-    }
-  }
+	node();
+	if (!window.Notification) {
+		console.log("Browser does not support notifications.");
+	} else {
+		if (Notification.permission === "granted") {
+		} else {
+			Notification.requestPermission()
+				.then(function (p) {
+					if (p === "granted") {
+					} else {
+						console.log("User blocked notifications.");
+					}
+				})
+				.catch(function (err) {
+					//Eat it.
+					console.error(err);
+				});
+		}
+	}
 };
 /**
  * Copies the string inputted to the clipboard.
@@ -5007,26 +5007,26 @@ export let notify = (
  * _$.copy("Hello world");
  * @returns {String} The string copied.
  */
-export let copy = (str = req('string', 'string')) => {
-  node();
-  const el = document.createElement('textarea');
-  el.value = str;
-  el.setAttribute('readonly', '');
-  el.style.position = 'absolute';
-  el.style.left = '-9999px';
-  document.body.appendChild(el);
-  const selected =
-    document.getSelection().rangeCount > 0
-      ? document.getSelection().getRangeAt(0)
-      : false;
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
-  if (selected) {
-    document.getSelection().removeAllRanges();
-    document.getSelection().addRange(selected);
-  }
-  return str;
+export let copy = (str = req("string", "string")) => {
+	node();
+	const el = document.createElement("textarea");
+	el.value = str;
+	el.setAttribute("readonly", "");
+	el.style.position = "absolute";
+	el.style.left = "-9999px";
+	document.body.appendChild(el);
+	const selected =
+		document.getSelection().rangeCount > 0
+			? document.getSelection().getRangeAt(0)
+			: false;
+	el.select();
+	document.execCommand("copy");
+	document.body.removeChild(el);
+	if (selected) {
+		document.getSelection().removeAllRanges();
+		document.getSelection().addRange(selected);
+	}
+	return str;
 };
 /**
  * Returns the browser that the user is using.
@@ -5037,53 +5037,53 @@ export let copy = (str = req('string', 'string')) => {
  * @returns {String} A string of the browser name that the user is using.
  */
 export let browser = () => {
-  node();
-  var isOpera =
-    (!!window.opr && !!opr.addons) ||
-    !!window.opera ||
-    navigator.userAgent.indexOf(' OPR/') >= 0;
-  var isFirefox = typeof InstallTrigger !== 'undefined';
-  var isSafari =
-    /constructor/i.test(window.HTMLElement) ||
-    (function (p) {
-      return p.toString() === '[object SafariRemoteNotification]';
-    })(
-      !window['safari'] ||
-        (typeof safari !== 'undefined' &&
-          window['safari'].pushNotification),
-    );
-  var isIE = /*@cc_on!@*/ false || !!document.documentMode;
-  var isEdge = !isIE && !!window.StyleMedia;
-  var isChrome =
-    !!window.chrome &&
-    (!!window.chrome.webstore || !!window.chrome.runtime);
-  var isEdgeChromium =
-    isChrome && navigator.userAgent.indexOf('Edg') != -1;
-  var isBlink = (isChrome || isOpera) && !!window.CSS;
-  if (isOpera) {
-    return 'Opera';
-  }
-  if (isFirefox) {
-    return 'Firefox';
-  }
-  if (isSafari) {
-    return 'Safari';
-  }
-  if (isEdge) {
-    return 'Edge';
-  }
-  if (isIE) {
-    return 'Internet Explorer';
-  }
-  if (isChrome) {
-    return 'Chrome';
-  }
-  if (isEdgeChromium) {
-    return 'Edge Chromium';
-  }
-  if (isBlink) {
-    return 'Blink';
-  }
+	node();
+	var isOpera =
+		(!!window.opr && !!opr.addons) ||
+		!!window.opera ||
+		navigator.userAgent.indexOf(" OPR/") >= 0;
+	var isFirefox = typeof InstallTrigger !== "undefined";
+	var isSafari =
+		/constructor/i.test(window.HTMLElement) ||
+		(function (p) {
+			return p.toString() === "[object SafariRemoteNotification]";
+		})(
+			!window["safari"] ||
+				(typeof safari !== "undefined" &&
+					window["safari"].pushNotification),
+		);
+	var isIE = /*@cc_on!@*/ false || !!document.documentMode;
+	var isEdge = !isIE && !!window.StyleMedia;
+	var isChrome =
+		!!window.chrome &&
+		(!!window.chrome.webstore || !!window.chrome.runtime);
+	var isEdgeChromium =
+		isChrome && navigator.userAgent.indexOf("Edg") != -1;
+	var isBlink = (isChrome || isOpera) && !!window.CSS;
+	if (isOpera) {
+		return "Opera";
+	}
+	if (isFirefox) {
+		return "Firefox";
+	}
+	if (isSafari) {
+		return "Safari";
+	}
+	if (isEdge) {
+		return "Edge";
+	}
+	if (isIE) {
+		return "Internet Explorer";
+	}
+	if (isChrome) {
+		return "Chrome";
+	}
+	if (isEdgeChromium) {
+		return "Edge Chromium";
+	}
+	if (isBlink) {
+		return "Blink";
+	}
 };
 /**
  * Converts a form to URL queries using the name attribute.
@@ -5093,12 +5093,12 @@ export let browser = () => {
  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
  */
 export let serializeForm = (
-  form = req('HTMLFormElement', 'form'),
+	form = req("HTMLFormElement", "form"),
 ) => {
-  node();
-  return Array.from(new FormData(form), (field) =>
-    field.map(encodeURIComponent).join('='),
-  ).join('&');
+	node();
+	return Array.from(new FormData(form), (field) =>
+		field.map(encodeURIComponent).join("="),
+	).join("&");
 };
 //#endregion Utility
 //#endregion bijou
@@ -5108,152 +5108,152 @@ export let serializeForm = (
  * @author Explosion-Scratch, GrahamSH-LLK, Bijou.js contributors
  */
 let _temp = {
-  addDaysToDate: addDaysToDate,
-  addEventListeners: addEventListeners,
-  addMinutesToDate: addMinutesToDate,
-  addStyles: addStyles,
-  animate: animate,
-  arrayDiff: arrayDiff,
-  arrayToCSV: arrayToCSV,
-  attributes: attributes,
-  averageBy: averageBy,
-  blendColors: blendColors,
-  browser: browser,
-  byteSize: byteSize,
-  camelCase: camelCase,
-  capitalize: capitalize,
-  clone: clone,
-  compStyle: compStyle,
-  composeFunction: composeFunction,
-  contains: contains,
-  context: context,
-  cookies: cookies,
-  copy: copy,
-  count: count,
-  create: create,
-  createElement: createElement,
-  curryFunction: curryFunction,
-  dayName: dayName,
-  debounce: debounce,
-  deburr: deburr,
-  diff: diff,
-  disableRightClick: disableRightClick,
-  dispatch: dispatch,
-  drag: drag,
-  each: each,
-  ease: ease,
-  editDistance: editDistance,
-  elementSiblings: elementSiblings,
-  escapeHTML: escapeHTML,
-  factorial: factorial,
-  fastestFunction: fastestFunction,
-  flatten: flatten,
-  flattenObj: flattenObj,
-  forTemplateLiteral: forTemplateLiteral,
-  formToObject: formToObject,
-  formatHTML: formatHTML,
-  formatMilliseconds: formatMilliseconds,
-  formatNumber: formatNumber,
-  fullScreen: fullScreen,
-  getHTML: getHTML,
-  getImages: getImages,
-  getJSON: getJSON,
-  hash: hash,
-  hashString: hashString,
-  hexToRGB: hexToRGB,
-  hub: hub,
-  imageToData: imageToData,
-  inPartialView: inPartialView,
-  inView: inView,
-  injectCSS: injectCSS,
-  inlineCSS: inlineCSS,
-  isAsync: isAsync,
-  isDateValid: isDateValid,
-  isPrime: isPrime,
-  jsonToCsv: jsonToCsv,
-  juxt: juxt,
-  lightOrDark: lightOrDark,
-  lightenColor: lightenColor,
-  listen: listen,
-  loadScript: loadScript,
-  luhnCheck: luhnCheck,
-  mapObjectKeys: mapObjectKeys,
-  mapObjectValues: mapObjectValues,
-  mapString: mapString,
-  markdownToHTML: markdownToHTML,
-  memoize: memoize,
-  merge: merge,
-  mobileOrDesktop: mobileOrDesktop,
-  nFlatten: nFlatten,
-  notify: notify,
-  observeMutations: observeMutations,
-  onOutsideClick: onOutsideClick,
-  onScrollStop: onScrollStop,
-  parseCookie: parseCookie,
-  parseHTML: parseHTML,
-  playSection: playSection,
-  prefixCSS: prefixCSS,
-  preloadImage: preloadImage,
-  previousPage: previousPage,
-  primesTo: primesTo,
-  querySelector: querySelector,
-  random: random,
-  randomColor: randomColor,
-  range: range,
-  regex: regex,
-  remove: remove,
-  removeComments: removeComments,
-  removeTags: removeTags,
-  renderElement: renderElement,
-  replaceBetween: replaceBetween,
-  replaceMultiple: replaceMultiple,
-  replaceSelection: replaceSelection,
-  replaceText: replaceText,
-  requestInterval: requestInterval,
-  rgbToHex: rgbToHex,
-  runAsync: runAsync,
-  sanitize: sanitize,
-  saveBlob: saveBlob,
-  scrambleString: scrambleString,
-  seedRandom: seedRandom,
-  serializeForm: serializeForm,
-  shuffleArray: shuffleArray,
-  sleep: sleep,
-  sortObj: sortObj,
-  sortTable: sortTable,
-  sortTableBy: sortTableBy,
-  speak: speak,
-  splice: splice,
-  spliceArrayBuffer: spliceArrayBuffer,
-  spread: spread,
-  syllables: syllables,
-  syntaxHighlight: syntaxHighlight,
-  textNodes: textNodes,
-  throttle: throttle,
-  tilt: tilt,
-  timeFunction: timeFunction,
-  titleCase: titleCase,
-  unCamelCase: unCamelCase,
-  unescapeHTML: unescapeHTML,
-  unionArrays: unionArrays,
-  uniqueArray: uniqueArray,
-  urlQuery: urlQuery,
-  uuid: uuid,
-  widows: widows,
+	addDaysToDate: addDaysToDate,
+	addEventListeners: addEventListeners,
+	addMinutesToDate: addMinutesToDate,
+	addStyles: addStyles,
+	animate: animate,
+	arrayDiff: arrayDiff,
+	arrayToCSV: arrayToCSV,
+	attributes: attributes,
+	averageBy: averageBy,
+	blendColors: blendColors,
+	browser: browser,
+	byteSize: byteSize,
+	camelCase: camelCase,
+	capitalize: capitalize,
+	clone: clone,
+	compStyle: compStyle,
+	composeFunction: composeFunction,
+	contains: contains,
+	context: context,
+	cookies: cookies,
+	copy: copy,
+	count: count,
+	create: create,
+	createElement: createElement,
+	curryFunction: curryFunction,
+	dayName: dayName,
+	debounce: debounce,
+	deburr: deburr,
+	diff: diff,
+	disableRightClick: disableRightClick,
+	dispatch: dispatch,
+	drag: drag,
+	each: each,
+	ease: ease,
+	editDistance: editDistance,
+	elementSiblings: elementSiblings,
+	escapeHTML: escapeHTML,
+	factorial: factorial,
+	fastestFunction: fastestFunction,
+	flatten: flatten,
+	flattenObj: flattenObj,
+	forTemplateLiteral: forTemplateLiteral,
+	formToObject: formToObject,
+	formatHTML: formatHTML,
+	formatMilliseconds: formatMilliseconds,
+	formatNumber: formatNumber,
+	fullScreen: fullScreen,
+	getHTML: getHTML,
+	getImages: getImages,
+	getJSON: getJSON,
+	hash: hash,
+	hashString: hashString,
+	hexToRGB: hexToRGB,
+	hub: hub,
+	imageToData: imageToData,
+	inPartialView: inPartialView,
+	inView: inView,
+	injectCSS: injectCSS,
+	inlineCSS: inlineCSS,
+	isAsync: isAsync,
+	isDateValid: isDateValid,
+	isPrime: isPrime,
+	jsonToCsv: jsonToCsv,
+	juxt: juxt,
+	lightOrDark: lightOrDark,
+	lightenColor: lightenColor,
+	listen: listen,
+	loadScript: loadScript,
+	luhnCheck: luhnCheck,
+	mapObjectKeys: mapObjectKeys,
+	mapObjectValues: mapObjectValues,
+	mapString: mapString,
+	markdownToHTML: markdownToHTML,
+	memoize: memoize,
+	merge: merge,
+	mobileOrDesktop: mobileOrDesktop,
+	nFlatten: nFlatten,
+	notify: notify,
+	observeMutations: observeMutations,
+	onOutsideClick: onOutsideClick,
+	onScrollStop: onScrollStop,
+	parseCookie: parseCookie,
+	parseHTML: parseHTML,
+	playSection: playSection,
+	prefixCSS: prefixCSS,
+	preloadImage: preloadImage,
+	previousPage: previousPage,
+	primesTo: primesTo,
+	querySelector: querySelector,
+	random: random,
+	randomColor: randomColor,
+	range: range,
+	regex: regex,
+	remove: remove,
+	removeComments: removeComments,
+	removeTags: removeTags,
+	renderElement: renderElement,
+	replaceBetween: replaceBetween,
+	replaceMultiple: replaceMultiple,
+	replaceSelection: replaceSelection,
+	replaceText: replaceText,
+	requestInterval: requestInterval,
+	rgbToHex: rgbToHex,
+	runAsync: runAsync,
+	sanitize: sanitize,
+	saveBlob: saveBlob,
+	scrambleString: scrambleString,
+	seedRandom: seedRandom,
+	serializeForm: serializeForm,
+	shuffleArray: shuffleArray,
+	sleep: sleep,
+	sortObj: sortObj,
+	sortTable: sortTable,
+	sortTableBy: sortTableBy,
+	speak: speak,
+	splice: splice,
+	spliceArrayBuffer: spliceArrayBuffer,
+	spread: spread,
+	syllables: syllables,
+	syntaxHighlight: syntaxHighlight,
+	textNodes: textNodes,
+	throttle: throttle,
+	tilt: tilt,
+	timeFunction: timeFunction,
+	titleCase: titleCase,
+	unCamelCase: unCamelCase,
+	unescapeHTML: unescapeHTML,
+	unionArrays: unionArrays,
+	uniqueArray: uniqueArray,
+	urlQuery: urlQuery,
+	uuid: uuid,
+	widows: widows,
 };
 _temp = sortObj(_temp);
 // Imports and exports
 export default _temp;
 //Export so that when people do <script src="bijou" type="module"></script>
 if (!isNode) {
-  window._$ = _temp;
+	window._$ = _temp;
 }
 //So that we can use bijou in the source code.
 export const _$ = _temp;
 if (isNode) {
-  try {
-    module.exports = _temp;
-  } catch (err) {
-    console.error(err);
-  }
+	try {
+		module.exports = _temp;
+	} catch (err) {
+		console.error(err);
+	}
 }

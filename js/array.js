@@ -9,11 +9,11 @@
  * _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 'e': 1}
  * @param {Array} arr The array to count items in.
  */
-export let count = (arr = req('array', 'array')) =>
-  arr.reduce((counts, item) => {
-    counts[item] = (counts[item] || 0) + 1;
-    return counts;
-  }, {});
+export let count = (arr = req("array", "array")) =>
+	arr.reduce((counts, item) => {
+		counts[item] = (counts[item] || 0) + 1;
+		return counts;
+	}, {});
 
 /**
  * Returns the difference between two arrays or strings.
@@ -26,25 +26,25 @@ export let count = (arr = req('array', 'array')) =>
  * @param {Array|String} a2 The 2nd array or string.
  */
 export let arrayDiff = (
-  a1 = req('array', 'array 1'),
-  a2 = req('array', 'array 2'),
+	a1 = req("array", "array 1"),
+	a2 = req("array", "array 2"),
 ) => {
-  var a = [],
-    diff = [];
-  for (var i = 0; i < a1.length; i++) {
-    a[a1[i]] = true;
-  }
-  for (var i = 0; i < a2.length; i++) {
-    if (a[a2[i]]) {
-      delete a[a2[i]];
-    } else {
-      a[a2[i]] = true;
-    }
-  }
-  for (var k in a) {
-    diff.push(k);
-  }
-  return diff;
+	var a = [],
+		diff = [];
+	for (var i = 0; i < a1.length; i++) {
+		a[a1[i]] = true;
+	}
+	for (var i = 0; i < a2.length; i++) {
+		if (a[a2[i]]) {
+			delete a[a2[i]];
+		} else {
+			a[a2[i]] = true;
+		}
+	}
+	for (var k in a) {
+		diff.push(k);
+	}
+	return diff;
 };
 
 /**
@@ -58,41 +58,41 @@ export let arrayDiff = (
  * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
  */
 export let diff = function (
-  text1 = req('string', 'Text 1'),
-  text2 = req('string', 'Text 2'),
+	text1 = req("string", "Text 1"),
+	text2 = req("string", "Text 2"),
 ) {
-  //Takes in two strings
-  //Returns an array of the span of the differences
-  //So if given:
-  // text1: "that is number 124"
-  // text2: "this is number 123"
-  //It will return:
-  // [[2,4],[17,18]]
-  //If the strings are of different lengths, it will check up to the end of text1
-  //If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
-  var diffRange = [];
-  var currentRange = undefined;
-  for (var i = 0; i < text1.length; i++) {
-    if (text1[i] != text2[i]) {
-      //Found a diff!
-      if (currentRange == undefined) {
-        //Start a new range
-        currentRange = [i];
-      }
-    }
-    if (currentRange != undefined && text1[i] == text2[i]) {
-      //End of range!
-      currentRange.push(i);
-      diffRange.push(currentRange);
-      currentRange = undefined;
-    }
-  }
-  //Push any last range if there's still one at the end
-  if (currentRange != undefined) {
-    currentRange.push(i);
-    diffRange.push(currentRange);
-  }
-  return diffRange;
+	//Takes in two strings
+	//Returns an array of the span of the differences
+	//So if given:
+	// text1: "that is number 124"
+	// text2: "this is number 123"
+	//It will return:
+	// [[2,4],[17,18]]
+	//If the strings are of different lengths, it will check up to the end of text1
+	//If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
+	var diffRange = [];
+	var currentRange = undefined;
+	for (var i = 0; i < text1.length; i++) {
+		if (text1[i] != text2[i]) {
+			//Found a diff!
+			if (currentRange == undefined) {
+				//Start a new range
+				currentRange = [i];
+			}
+		}
+		if (currentRange != undefined && text1[i] == text2[i]) {
+			//End of range!
+			currentRange.push(i);
+			diffRange.push(currentRange);
+			currentRange = undefined;
+		}
+	}
+	//Push any last range if there's still one at the end
+	if (currentRange != undefined) {
+		currentRange.push(i);
+		diffRange.push(currentRange);
+	}
+	return diffRange;
 };
 
 /**
@@ -105,21 +105,21 @@ export let diff = function (
  * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
  */
 export let remove = (
-  array = req('array', 'array'),
-  item = req(undefined, 'item'),
+	array = req("array", "array"),
+	item = req(undefined, "item"),
 ) => {
-  if (typeof array === 'string') {
-    return array.replace(item, '');
-  }
-  if (typeof array === 'object') {
-    array[`${item}`] = undefined;
-    array = _$.clone(array, (itm) => itm !== undefined);
-    return array;
-  }
-  if (array.indexOf(item) > -1) {
-    array.splice(array.indexOf(item), 1);
-  }
-  return array;
+	if (typeof array === "string") {
+		return array.replace(item, "");
+	}
+	if (typeof array === "object") {
+		array[`${item}`] = undefined;
+		array = _$.clone(array, (itm) => itm !== undefined);
+		return array;
+	}
+	if (array.indexOf(item) > -1) {
+		array.splice(array.indexOf(item), 1);
+	}
+	return array;
 };
 /**
  * Splices an ArrayBuffer.
@@ -132,18 +132,18 @@ export let remove = (
  * @returns {Number} The hex representation of part of the ArrayBuffer.
  */
 export let spliceArrayBuffer = (
-  arr = req('ArrayBuffer'),
-  start = req('number'),
-  end = req('number'),
-  endian = false,
+	arr = req("ArrayBuffer"),
+	start = req("number"),
+	end = req("number"),
+	endian = false,
 ) => {
-  var direction = endian ? -1 : 1;
-  if (endian) [start, end] = [end, start];
-  start = Math.floor(start);
-  end = Math.floor(end) + direction;
-  for (var i = start, value = 0; i != end; i += direction)
-    value = 256 * value + arr[i];
-  return value;
+	var direction = endian ? -1 : 1;
+	if (endian) [start, end] = [end, start];
+	start = Math.floor(start);
+	end = Math.floor(end) + direction;
+	for (var i = start, value = 0; i != end; i += direction)
+		value = 256 * value + arr[i];
+	return value;
 };
 
 /**
@@ -156,12 +156,12 @@ export let spliceArrayBuffer = (
  * @param {Array} array The array to flatten.
  * @param {Number} [level=1] The number of iterations to flatten it.
  */
-export let flatten = (array = req('array', 'array'), level = 1) => {
-  var output = array;
-  _$.each(level, () => {
-    output = [].concat.apply([], array);
-  });
-  return output;
+export let flatten = (array = req("array", "array"), level = 1) => {
+	var output = array;
+	_$.each(level, () => {
+		output = [].concat.apply([], array);
+	});
+	return output;
 };
 
 /**
@@ -173,12 +173,12 @@ export let flatten = (array = req('array', 'array'), level = 1) => {
  * @example
  * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
  */
-export let nFlatten = (arr = req('array', 'array')) => {
-  return arr.reduce(function (flat, toFlatten) {
-    return flat.concat(
-      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
-    );
-  }, []);
+export let nFlatten = (arr = req("array", "array")) => {
+	return arr.reduce(function (flat, toFlatten) {
+		return flat.concat(
+			Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
+		);
+	}, []);
 };
 
 /**
@@ -191,8 +191,8 @@ export let nFlatten = (arr = req('array', 'array')) => {
  * console.log(_$.contains([1,2,3,4,5], 3)); // true
  * @returns {Boolean} True or false depending on if the array contains that item.
  */
-export let contains = (array = req('array'), item = req('string')) =>
-  array.includes(item);
+export let contains = (array = req("array"), item = req("string")) =>
+	array.includes(item);
 
 /**
  * Shuffles an array
@@ -204,8 +204,8 @@ export let contains = (array = req('array'), item = req('string')) =>
  * console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]
  * @returns {Array} The shuffled array.
  */
-export let shuffleArray = (array = req('array')) =>
-  array.sort(() => Math.random() - 0.5);
+export let shuffleArray = (array = req("array")) =>
+	array.sort(() => Math.random() - 0.5);
 
 /**
  * Splice but also for strings
@@ -220,19 +220,19 @@ export let shuffleArray = (array = req('array')) =>
  * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
  */
 export let splice = (
-  array = req('array', 'array'),
-  index = req('number', 'index'),
-  remove = 0,
-  item,
+	array = req("array", "array"),
+	index = req("number", "index"),
+	remove = 0,
+	item,
 ) => {
-  let args = Array.from(arguments);
-  args.shift();
-  return typeof array === 'string'
-    ? array
-        .split('')
-        .splice(...args)
-        .join('')
-    : array.splice(...args);
+	let args = Array.from(arguments);
+	args.shift();
+	return typeof array === "string"
+		? array
+				.split("")
+				.splice(...args)
+				.join("")
+		: array.splice(...args);
 };
 /**
  * Joins two arrays together and removes duplicate items.
@@ -245,17 +245,17 @@ export let splice = (
  * @returns {Array} The joined array from the two other arrays.
  */
 export let unionArrays = (
-  x = req('array', 'array1'),
-  y = req('array', 'array2'),
+	x = req("array", "array1"),
+	y = req("array", "array2"),
 ) => {
-  var obj = {};
-  for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
-  for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
-  var res = [];
-  for (var k in obj) {
-    if (obj.hasOwnProperty(k)) res.push(obj[k]);
-  }
-  return res;
+	var obj = {};
+	for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
+	for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
+	var res = [];
+	for (var k in obj) {
+		if (obj.hasOwnProperty(k)) res.push(obj[k]);
+	}
+	return res;
 };
 /**
  * averageBy
@@ -269,12 +269,12 @@ export let unionArrays = (
  * @returns {Number} The average of the array.
  */
 export let averageBy = (
-  arr = req('array', 'array'),
-  fn = req('function', 'callback'),
+	arr = req("array", "array"),
+	fn = req("function", "callback"),
 ) =>
-  arr
-    .map(typeof fn === 'function' ? fn : (val) => val[fn])
-    .reduce((acc, val) => acc + val, 0) / arr.length;
+	arr
+		.map(typeof fn === "function" ? fn : (val) => val[fn])
+		.reduce((acc, val) => acc + val, 0) / arr.length;
 
 /**
  * Removes duplicates from an array
@@ -285,8 +285,8 @@ export let averageBy = (
  * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
  * @returns {Array} The array with no duplicates.
  */
-export let uniqueArray = (array = req('array', 'array')) => [
-  ...new Set(array),
+export let uniqueArray = (array = req("array", "array")) => [
+	...new Set(array),
 ];
 /**
  * For each item in an array, run a callback with it.
@@ -305,17 +305,17 @@ export let uniqueArray = (array = req('array', 'array')) => [
  * @returns {undefined}
  */
 export let each = (
-  array = req('Array|Number|String', 'array'),
-  callback = req('function', 'callback'),
+	array = req("Array|Number|String", "array"),
+	callback = req("function", "callback"),
 ) => {
-  array =
-    typeof array === 'number'
-      ? _$.range(1, array)
-      : typeof array === 'string'
-      ? array.split('')
-      : array;
-  for (let i = 0; i < array.length; i++) {
-    callback(array[i], i, array);
-  }
+	array =
+		typeof array === "number"
+			? _$.range(1, array)
+			: typeof array === "string"
+			? array.split("")
+			: array;
+	for (let i = 0; i < array.length; i++) {
+		callback(array[i], i, array);
+	}
 };
 //#endregion Array

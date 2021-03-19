@@ -13,7 +13,7 @@
  * @param  {...function} fns The functions to call.
  */
 export let juxt = (...fns) => (...args) =>
-  [...fns].map((fn) => [...args].map(fn));
+	[...fns].map((fn) => [...args].map(fn));
 /**
  * Returns a promise after a specified number of milliseconds.
  * @returns {Promise}
@@ -27,8 +27,8 @@ export let juxt = (...fns) => (...args) =>
  * })
  * @param {Number} ms The milliseconds to sleep.
  */
-export let sleep = (ms = req('number', 'milliseconds')) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+export let sleep = (ms = req("number", "milliseconds")) =>
+	new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Limits the arguments that a given function takes to only the 1st n arguments.
@@ -41,8 +41,8 @@ export let sleep = (ms = req('number', 'milliseconds')) =>
  * @param {Number} n The number of arguments to accept.
  */
 export let limitArgs = (
-  fn = req('function', 'function'),
-  n = req('number', 'arguments'),
+	fn = req("function", "function"),
+	n = req("number", "arguments"),
 ) => (...args) => fn(...args.slice(0, n));
 /**
  * Returns the index of the fastest function in an array of functions.
@@ -54,12 +54,12 @@ export let limitArgs = (
  * @param {Number} [iterations=1000] How many times to execute the functions. (More is more reliable but takes longer.)
  */
 export let fastestFunction = (fns, iterations = 1000) => {
-  const times = fns.map((fn) => {
-    const before = performance.now();
-    for (let i = 0; i < iterations; i++) fn();
-    return performance.now() - before;
-  });
-  return times.indexOf(Math.min(...times));
+	const times = fns.map((fn) => {
+		const before = performance.now();
+		for (let i = 0; i < iterations; i++) fn();
+		return performance.now() - before;
+	});
+	return times.indexOf(Math.min(...times));
 };
 
 /**
@@ -74,10 +74,10 @@ export let fastestFunction = (fns, iterations = 1000) => {
   say(["Fred", "hi"]);//"Fred says hi"
  * @param {Function} fn The function to use
  */
-export let spread = (fn = req('function')) => {
-  return (args) => {
-    call_me.apply(this, args);
-  };
+export let spread = (fn = req("function")) => {
+	return (args) => {
+		call_me.apply(this, args);
+	};
 };
 /**
  * Memoizes a function, basically caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
@@ -88,18 +88,18 @@ export let spread = (fn = req('function')) => {
  * let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)
  * @returns {Function} The memoized function.
  */
-export let memoize = (fn = req('function')) => {
-  let cache = {};
-  return function () {
-    let args = JSON.stringify(Array.from(arguments));
-    let arg_array = Array.from(arguments);
-    if (cache[args]) {
-      return cache[args];
-    } else {
-      cache[args] = fn(...arg_array);
-      return cache[args];
-    }
-  };
+export let memoize = (fn = req("function")) => {
+	let cache = {};
+	return function () {
+		let args = JSON.stringify(Array.from(arguments));
+		let arg_array = Array.from(arguments);
+		if (cache[args]) {
+			return cache[args];
+		} else {
+			cache[args] = fn(...arg_array);
+			return cache[args];
+		}
+	};
 };
 /**
  * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
@@ -113,8 +113,8 @@ export let memoize = (fn = req('function')) => {
  * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  3 * 2 + 2
  */
 export let composeFunction = (...functions) => (args) => {
-  req('functions', 'function list', ![...functions].length);
-  return functions.reduceRight((arg, fn) => fn(arg), args);
+	req("functions", "function list", ![...functions].length);
+	return functions.reduceRight((arg, fn) => fn(arg), args);
 };
 /**
  * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
@@ -129,13 +129,13 @@ export let composeFunction = (...functions) => (args) => {
  * console.log(_$.curryFunction(fn, 4, 5)(4)(3)(2)); // 120 i.e. 5 * 4 * 3 * 2
  */
 export let curryFunction = (
-  fn = req('function'),
-  arity = fn.length,
-  ...args
+	fn = req("function"),
+	arity = fn.length,
+	...args
 ) =>
-  arity <= args.length
-    ? fn(...args)
-    : curryFunction.bind(null, fn, arity, ...args);
+	arity <= args.length
+		? fn(...args)
+		: curryFunction.bind(null, fn, arity, ...args);
 /**
  * Returns if the given function is async or not.
  * @memberOf function
@@ -146,8 +146,8 @@ export let curryFunction = (
  * const asyncFn = async (x) => x ** 3; // It's a silly function, but a good example
  * console.log(_$.isAsync(asyncFn)); // true
  */
-export let isAsync = (val = req('function')) =>
-  Object.prototype.toString.call(val) === '[object AsyncFunction]';
+export let isAsync = (val = req("function")) =>
+	Object.prototype.toString.call(val) === "[object AsyncFunction]";
 
 /**
  * Times the function passed.
@@ -161,14 +161,14 @@ export let isAsync = (val = req('function')) =>
  * @returns {undefined}
  */
 export let timeFunction = (
-  fn = req('function'),
-  name = '_$ function timer',
+	fn = req("function"),
+	name = "_$ function timer",
 ) => {
-  let startTime = performance.now();
-  console.time(name);
-  fn();
-  console.timeEnd(name);
-  return performance.now() - startTime;
+	let startTime = performance.now();
+	console.time(name);
+	fn();
+	console.timeEnd(name);
+	return performance.now() - startTime;
 };
 /**
  * Only runs the input function at MAX with the delay specified.
@@ -183,39 +183,39 @@ export let timeFunction = (
  * @returns {Function} The throttled function
  */
 export let throttle = (
-  func = req('function'),
-  wait = req('number', 'wait'),
-  options = {},
+	func = req("function"),
+	wait = req("number", "wait"),
+	options = {},
 ) => {
-  var context, args, result;
-  var timeout = null;
-  var previous = 0;
-  if (!options) options = {};
-  var later = function () {
-    previous = options.leading === false ? 0 : Date.now();
-    timeout = null;
-    result = func.apply(context, args);
-    if (!timeout) context = args = null;
-  };
-  return function () {
-    var now = Date.now();
-    if (!previous && options.leading === false) previous = now;
-    var remaining = wait - (now - previous);
-    context = this;
-    args = arguments;
-    if (remaining <= 0 || remaining > wait) {
-      if (timeout) {
-        clearTimeout(timeout);
-        timeout = null;
-      }
-      previous = now;
-      result = func.apply(context, args);
-      if (!timeout) context = args = null;
-    } else if (!timeout && options.trailing !== false) {
-      timeout = setTimeout(later, remaining);
-    }
-    return result;
-  };
+	var context, args, result;
+	var timeout = null;
+	var previous = 0;
+	if (!options) options = {};
+	var later = function () {
+		previous = options.leading === false ? 0 : Date.now();
+		timeout = null;
+		result = func.apply(context, args);
+		if (!timeout) context = args = null;
+	};
+	return function () {
+		var now = Date.now();
+		if (!previous && options.leading === false) previous = now;
+		var remaining = wait - (now - previous);
+		context = this;
+		args = arguments;
+		if (remaining <= 0 || remaining > wait) {
+			if (timeout) {
+				clearTimeout(timeout);
+				timeout = null;
+			}
+			previous = now;
+			result = func.apply(context, args);
+			if (!timeout) context = args = null;
+		} else if (!timeout && options.trailing !== false) {
+			timeout = setTimeout(later, remaining);
+		}
+		return result;
+	};
 };
 /**
  * Debounces a function
@@ -228,49 +228,49 @@ export let throttle = (
  * @param {Boolean} [immediate=false] Whether or not to run immediately, or after a group of executions.
  */
 export let debounce = (
-  func = req('function'),
-  wait = req('number', 'wait'),
-  immediate = false,
+	func = req("function"),
+	wait = req("number", "wait"),
+	immediate = false,
 ) => {
-  // 'private' variable for instance
-  // The returned function will be able to reference this due to closure.
-  // Each call to the returned function will share this common timer.
-  var timeout;
+	// 'private' variable for instance
+	// The returned function will be able to reference this due to closure.
+	// Each call to the returned function will share this common timer.
+	var timeout;
 
-  // Calling debounce returns a new anonymous function
-  return function () {
-    // reference the context and args for the setTimeout function
-    var context = this,
-      args = arguments;
+	// Calling debounce returns a new anonymous function
+	return function () {
+		// reference the context and args for the setTimeout function
+		var context = this,
+			args = arguments;
 
-    // Should the function be called now? If immediate is true
-    //   and not already in a timeout then the answer is: Yes
-    var callNow = immediate && !timeout;
+		// Should the function be called now? If immediate is true
+		//   and not already in a timeout then the answer is: Yes
+		var callNow = immediate && !timeout;
 
-    // This is the basic debounce behaviour where you can call this
-    //   function several times, but it will only execute once
-    //   [before or after imposing a delay].
-    //   Each time the returned function is called, the timer starts over.
-    clearTimeout(timeout);
+		// This is the basic debounce behaviour where you can call this
+		//   function several times, but it will only execute once
+		//   [before or after imposing a delay].
+		//   Each time the returned function is called, the timer starts over.
+		clearTimeout(timeout);
 
-    // Set the new timeout
-    timeout = setTimeout(function () {
-      // Inside the timeout function, clear the timeout variable
-      // which will let the next execution run when in 'immediate' mode
-      timeout = null;
+		// Set the new timeout
+		timeout = setTimeout(function () {
+			// Inside the timeout function, clear the timeout variable
+			// which will let the next execution run when in 'immediate' mode
+			timeout = null;
 
-      // Check if the function already ran with the immediate flag
-      if (!immediate) {
-        // Call the original function with apply
-        // apply lets you define the 'this' object as well as the arguments
-        //    (both captured before setTimeout)
-        func.apply(context, args);
-      }
-    }, wait);
+			// Check if the function already ran with the immediate flag
+			if (!immediate) {
+				// Call the original function with apply
+				// apply lets you define the 'this' object as well as the arguments
+				//    (both captured before setTimeout)
+				func.apply(context, args);
+			}
+		}, wait);
 
-    // Immediate mode and no wait timer? Execute the function..
-    if (callNow) func.apply(context, args);
-  };
+		// Immediate mode and no wait timer? Execute the function..
+		if (callNow) func.apply(context, args);
+	};
 };
 /**
  * Runs a function asynchronously in a web worker.
@@ -281,19 +281,19 @@ export let debounce = (
  * _$.runAsync(() =>  "hello world").then(console.log); // "hello world"
  * @returns {Promise} A promise that resolves into the return value of the function.
  */
-export let runAsync = (fn = req('function')) => {
-  const worker = new Worker(
-    URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
-      type: 'application/javascript; charset=utf-8',
-    }),
-  );
-  return new Promise((res, rej) => {
-    worker.onmessage = ({ data }) => {
-      res(data), worker.terminate();
-    };
-    worker.onerror = (err) => {
-      rej(err), worker.terminate();
-    };
-  });
+export let runAsync = (fn = req("function")) => {
+	const worker = new Worker(
+		URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
+			type: "application/javascript; charset=utf-8",
+		}),
+	);
+	return new Promise((res, rej) => {
+		worker.onmessage = ({ data }) => {
+			res(data), worker.terminate();
+		};
+		worker.onerror = (err) => {
+			rej(err), worker.terminate();
+		};
+	});
 };
 //#endregion Function
