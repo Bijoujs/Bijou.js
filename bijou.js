@@ -2789,6 +2789,7 @@ export let ease = {
 //#region String
 /**
  * Prefixes the given CSS property for the current browser.
+ * @memberOf string
  * @example
  * document.body.style[_$.prefix("appearance")] = "hidden";//Sets the document body's appearance property to "hidden".
  * @param {String} prop The property to prefix.
