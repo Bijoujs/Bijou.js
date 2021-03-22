@@ -46,7 +46,7 @@ export let limitArgs = (
 ) => (...args) => fn(...args.slice(0, n));
 /**
  * Returns the index of the fastest function in an array of functions.
- * @memberOf math
+ * @memberOf function
  * @returns {Number} The index of the fastest function in the array.
  * @example
  * _$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("<h1>Hello world</h1>", "html")]);//0, the first function.
@@ -152,7 +152,7 @@ export let isAsync = (val = req("function")) =>
 /**
  * Times the function passed.
  * @function
- * @memberOf utility
+ * @memberOf function
  * @param {Function} fn The function to run and time.
  * @param {String} [name=_$ function timer]
  * @example

@@ -1923,7 +1923,7 @@ export let limitArgs = (
 ) => (...args) => fn(...args.slice(0, n));
 /**
  * Returns the index of the fastest function in an array of functions.
- * @memberOf math
+ * @memberOf function
  * @returns {Number} The index of the fastest function in the array.
  * @example
  * _$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("<h1>Hello world</h1>", "html")]);//0, the first function.
@@ -2029,7 +2029,7 @@ export let isAsync = (val = req("function")) =>
 /**
  * Times the function passed.
  * @function
- * @memberOf utility
+ * @memberOf function
  * @param {Function} fn The function to run and time.
  * @param {String} [name=_$ function timer]
  * @example
@@ -4443,7 +4443,7 @@ export let syllables = (word = req("string", "word")) => {
 };
 /**
  * Converts a string to title case
- * @memberOf bijou
+ * @memberOf string
  * @function
  * @param {String} str The string to convert to title case.
  * @example
@@ -4608,7 +4608,7 @@ export let injectCSS = (css = req("string", "css")) => {
 /**
  * Returns either "mobile" or "desktop" depending on which type of device the user is using.
  * @function
- * @memberOf string
+ * @memberOf utility
  * @param
  * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
  * @example
@@ -5230,7 +5230,7 @@ export let browser = () => {
 /**
  * Converts a form to URL queries using the name attribute.
  * @function
- * @memberOf element
+ * @memberOf utility
  * @param {HTMLFormElement} form The form element.
  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
  */

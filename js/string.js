@@ -1655,7 +1655,7 @@ export let syllables = (word = req("string", "word")) => {
 };
 /**
  * Converts a string to title case
- * @memberOf bijou
+ * @memberOf string
  * @function
  * @param {String} str The string to convert to title case.
  * @example

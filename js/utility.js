@@ -34,7 +34,7 @@ export let injectCSS = (css = req("string", "css")) => {
 /**
  * Returns either "mobile" or "desktop" depending on which type of device the user is using.
  * @function
- * @memberOf string
+ * @memberOf utility
  * @param
  * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
  * @example
@@ -656,7 +656,7 @@ export let browser = () => {
 /**
  * Converts a form to URL queries using the name attribute.
  * @function
- * @memberOf element
+ * @memberOf utility
  * @param {HTMLFormElement} form The form element.
  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
  */
