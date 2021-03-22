@@ -677,7 +677,7 @@ export let serializeForm = (
 * _$.soundex("explosion");//"E214"
 * @memberOf utility
 */
-export let soundex = (s) => {
+export let soundex = (s = req("string", "word")) => {
      var a = s.toLowerCase().split(''),
          f = a.shift(),
          r = '',
