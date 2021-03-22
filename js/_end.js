@@ -137,7 +137,7 @@ let _temp = {
 	urlQuery: urlQuery,
 	uuid: uuid,
 	widows: widows,
-	soundex: soundex
+	soundex: soundex,
 };
 _temp = sortObj(_temp);
 // Imports and exports
