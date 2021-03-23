@@ -4,6 +4,7 @@
  * @type {Object}
  * @author Explosion-Scratch, GrahamSH-LLK, Bijou.js contributors
  */
+
 let _temp = {
 	addDaysToDate: addDaysToDate,
 	addEventListeners: addEventListeners,
