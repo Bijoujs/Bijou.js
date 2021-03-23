@@ -8,7 +8,7 @@
  * @param {String} a The first string
  * @param {String} b The second string
  */
-let jaroDistance = function (a, b) {
+export let jaroDistance = function (a, b) {
 	let adjustments = {
 		A: "E",
 		A: "I",

@@ -2796,7 +2796,7 @@ export let ease = {
  * @param {String} a The first string
  * @param {String} b The second string
  */
-let jaroDistance = function (a, b) {
+export let jaroDistance = function (a, b) {
 	let adjustments = {
 		A: "E",
 		A: "I",
@@ -5367,6 +5367,7 @@ let _temp = {
 	isAsync: isAsync,
 	isDateValid: isDateValid,
 	isPrime: isPrime,
+	jaroDistance: jaroDistance,
 	jsonToCsv: jsonToCsv,
 	juxt: juxt,
 	lightOrDark: lightOrDark,

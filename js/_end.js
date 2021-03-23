@@ -70,6 +70,7 @@ let _temp = {
 	isAsync: isAsync,
 	isDateValid: isDateValid,
 	isPrime: isPrime,
+	jaroDistance: jaroDistance,
 	jsonToCsv: jsonToCsv,
 	juxt: juxt,
 	lightOrDark: lightOrDark,
