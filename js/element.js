@@ -1,9 +1,10 @@
 //#region Element
 /**
  * Waits for an element satisfying selector to exist, then resolves promise with the element.
- *@param [parent=document.documentElement] The parent element to watch.
+ * @param [parent=document.documentElement] The parent element to watch.
  * @param selector The querySelector to watch for.
  * @returns {Promise} A promise resolved when the element exists.
+ * @memberOf element
  * @example
  * _$.elementReady("#text").then((e) => e.remove());//Wait for an element with an ID of "text" then removes it.
  */

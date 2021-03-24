@@ -1,5 +1,39 @@
 //#region Event
 /**
+ * Waits until a condition is met then resolves a promise.
+ * @returns {Promise} A promise resolved when the condition returned by the function is true.
+ * @memberOf event
+ * @example
+ * //Waits until the current second of the current minute is 10.
+ * _$.waitUntil(() => new Date().getSeconds === 10).then(() => console.log("Done"))
+ * @example
+ * //This DOES NOT work
+ * _$.waitUntil(() => Date.now() === Date.now() + 100);
+ * //Because it is evaluated many times, and the current date, is never ahead of itself. Therefore in this case the function will run infinitely.
+ * //To fix this problem and cancel the function after a certain amount of time,
+ * //you can pass another argument to the function
+ * _$.waitUntil(() => false, 10000);//Waits 10 seconds, because the function always returns false.
+ * @param {Function} condition The function which returns true when the condition is met
+ * @param {Number} [wait=Infinity] The wait time in milliseconds to cancel the function and reject the promise.
+ */
+export let waitUntil = async (
+	condition = req("function", "condition"),
+	wait = Infinity,
+) => {
+	return new Promise(async (resolve, reject) => {
+		let startTime = Date.now();
+		while (!condition()) {
+			if (Date.now() - startTime >= wait) {
+				reject(condition());
+				return;
+			}
+			await new Promise((res) => requestAnimationFrame(res));
+		}
+		resolve(condition());
+		return condition();
+	});
+};
+/**
  * Returns the callback when a a click is registered outside the selected element
  * @function
  * @memberOf event
