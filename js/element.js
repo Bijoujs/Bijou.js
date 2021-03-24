@@ -1,5 +1,37 @@
 //#region Element
 /**
+ * Waits for an element satisfying selector to exist, then resolves promise with the element.
+ *@param [parent=document.documentElement] The parent element to watch.
+ * @param selector The querySelector to watch for.
+ * @returns {Promise} A promise resolved when the element exists.
+ * @example
+ * _$.elementReady("#text").then((e) => e.remove());//Wait for an element with an ID of "text" then removes it.
+ */
+export function elementReady(
+	selector = req("string", "query selector"),
+	parent = document.documentElement,
+) {
+	return new Promise((resolve, reject) => {
+		const el = parent.querySelector(selector);
+		if (el) {
+			resolve(el);
+		}
+		new MutationObserver((mutationRecords, observer) => {
+			// Query for elements matching the specified selector
+			Array.from(parent.querySelectorAll(selector)).forEach(
+				(element) => {
+					resolve(element);
+					//Once we have resolved we don't need the observer anymore.
+					observer.disconnect();
+				},
+			);
+		}).observe(parent, {
+			childList: true,
+			subtree: true,
+		});
+	});
+}
+/**
  * Tests if an element is a child element of another element.
  * @returns {Boolean} If the element is a child or not
  * @memberOf element
