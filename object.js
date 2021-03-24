@@ -52,7 +52,7 @@ export let flattenObj = (o) => {
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
 export let clone = (obj, fn = () => true) => {
-	if (null == obj || "object" != typeof obj) return obj;
+	if (typeof)
 	var copy = obj.constructor();
 	for (var attr in obj) {
 		if (obj.hasOwnProperty(attr)) {
