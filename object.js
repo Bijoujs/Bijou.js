@@ -62,11 +62,23 @@ export let clone = function _clone(obj) {
 		}
 		return clone;
 	}
-	if (_$.typeof(obj) === "RegExp"){
+	if (_$.typeof(obj) === "RegExp") {
 		return new RegExp(obj.source, obj.flags);
 	}
-	if (_$.typeof(obj) === "String"){
-		
+	if (_$.typeof(obj) === "String") {
+		return (" " + obj).slice(1);
+	}
+	if (_$.typeof(obj) === "Function") {
+		var that = obj;
+		var temp = function temporary() {
+			return that.apply(obj, arguments);
+		};
+		for (var key in obj) {
+			if (t.hasOwnProperty(key)) {
+				temp[key] = obj[key];
+			}
+		}
+		return temp;
 	}
 	if (_$.typeof(obj) === "Object") {
 		var clone = {};
