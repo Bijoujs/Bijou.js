@@ -1,5 +1,20 @@
 //#region Utility
 /**
+ * Gets the type of something. This is more specific than the 'typeof' operator.
+ * @example
+ * _$.typeof("This is a string");//String
+ * typeof "This is a string";//Also string
+ * @example
+ * _$.typeof(/^[regex]$/i);//"regexp".
+ * typeof /^[regex]$/i;//"object"
+ * @example
+ * _$.typeof
+ * @param {*} e The thing to get the type of.
+ * @param {Boolean} lowerCase Whether to return the string lowercased or not.
+ */
+export let typeOf = (e = req("any", "any"), lowerCase = true) =>
+	Object.prototype.toString.call(e).split(" ")[1].replace(/]$/, "");
+/**
  * Injects CSS into the document head.
  * @memberOf utility
  * @example
