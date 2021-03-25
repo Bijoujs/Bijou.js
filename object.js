@@ -51,17 +51,33 @@ export let flattenObj = (o) => {
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-export let clone = (obj, fn = () => true) => {
-	if (typeof)
-	var copy = obj.constructor();
-	for (var attr in obj) {
-		if (obj.hasOwnProperty(attr)) {
-			if (fn(obj[attr])) {
-				copy[attr] = obj[attr];
-			}
-		}
+export let clone = function _clone(obj) {
+	if (_$.typeof(obj) === "Date") {
+		return new Date(obj.toString());
 	}
-	return copy;
+	if (_$.typeof(obj) === "Array") {
+		let clone = [];
+		for (let i = 0; i < obj.length; i++) {
+			clone.push(_clone(obj[i]));
+		}
+		return clone;
+	}
+	if (_$.typeof(obj) === "RegExp"){
+		return new RegExp(obj.source, obj.flags);
+	}
+	if (_$.typeof(obj) === "String"){
+		
+	}
+	if (_$.typeof(obj) === "Object") {
+		var clone = {};
+		for (var i in obj) {
+			if (typeof obj[i] == "object" && obj[i] != null)
+				clone[i] = _clone(obj[i]);
+			else clone[i] = obj[i];
+		}
+		return clone;
+	}
+	return obj;
 };
 /**
  * @memberOf bijou
