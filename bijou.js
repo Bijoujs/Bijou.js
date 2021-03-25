@@ -4641,6 +4641,50 @@ export let previousPage = () => {
 //#endregion String
 //#region Utility
 /**
+ * Times out a promise after a specified number of milliseconds.
+ * @returns {Promise} The promise that was inputted, but will time out after a specified time.
+ * @example
+ * //Attempts to fetch the date from jsontest.com, if the request is still pending after 2000 milliseconds cancel it and throw an error.
+ * let fetch_stuff = fetch("http://date.jsontest.com/");
+ * _$.race(fetch_stuff, 2000).then((res) => res.json()).then(console.log).catch(console.error)
+ * @example
+ * //Load my popup library, then prompt using it and after 4 seconds close and remove the popup.
+ * (async () => {
+ *  //Load the script, but check for duplicates! ;)
+ * 	await _$.loadScript("https://cdn.jsdelivr.net/gh/explosion-scratch/popup/popup.js", {}, true);
+ * 	_$.race(prompt("Enter something in the next 4 seconds!"), 4000).then(console.log).catch(() => {
+ * 		document.querySelector("#popup").remove();
+ * 		document.querySelector("#popup-bg").remove();
+ * 		console.log("User could not type fast enough -__-")
+ * 	})
+ * });
+ * @param {Function} fn The function to run that should return a promise, or the promise itself.
+ * @param {Number} timeout The timeout to cancel after.
+ * @param {Function} calcelCb The callback to run when cancelled, defaults to throwing an error.
+ */
+export let race = (
+	fn = req("function"),
+	timeout = req("number", "timeout"),
+	cancelCb = undefined,
+) => {
+	return Promise.race([
+		typeof fn === "function" ? fn() : fn,
+		new Promise((_, reject) =>
+			setTimeout(
+				() =>
+					cancelCb
+						? cancelCb
+						: reject(
+								new Error(
+									"Promise timed out (Bijou.js _$.race function)",
+								),
+						  ),
+				timeout,
+			),
+		),
+	]);
+};
+/**
  * Gets the type of something. This is more specific than the 'typeof' operator.
  * @example
  * _$.typeof("This is a string");//String
@@ -4917,10 +4961,16 @@ export let requestInterval = function (
  */
 export let loadScript = (
 	url = req("string", "url"),
-	callback = req("function", "callback"),
+	callback = () => {},
 	options = {},
+	dupeCheck = false,
 ) => {
 	node();
+	if (dupeCheck) {
+		if (document.querySelector(`script[src="${url}"]`)) {
+			return;
+		}
+	}
 	return new Promise((resolve, reject) => {
 		var script = document.createElement("script");
 		script.type = "text/javascript";
