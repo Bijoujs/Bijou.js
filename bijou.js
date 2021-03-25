@@ -4642,6 +4642,7 @@ export let previousPage = () => {
 //#region Utility
 /**
  * Times out a promise after a specified number of milliseconds.
+ * @memberOf utility
  * @returns {Promise} The promise that was inputted, but will time out after a specified time.
  * @example
  * //Attempts to fetch the date from jsontest.com, if the request is still pending after 2000 milliseconds cancel it and throw an error.
@@ -4686,14 +4687,16 @@ export let race = (
 };
 /**
  * Gets the type of something. This is more specific than the 'typeof' operator.
+ * @memberof utility
  * @example
- * _$.typeof("This is a string");//String
+ * _$.typeof("This is a string");//"String"
  * typeof "This is a string";//Also string
  * @example
- * _$.typeof(/^[regex]$/i);//"regexp".
+ * _$.typeof(/^[regex]$/i);//"RegExp".
  * typeof /^[regex]$/i;//"object"
  * @example
- * _$.typeof
+ * _$.typeof(new Date());//"Date"
+ * typeof new Date();//Object -__-
  * @param {*} e The thing to get the type of.
  * @param {Boolean} lowerCase Whether to return the string lowercased or not.
  */
@@ -5240,34 +5243,45 @@ export let arrayToCSV = (
  * Displays a desktop notification with the specified text.
  * @function
  * @memberOf utility
- * @param {String} text The title of the notification.
+ * @param {String} title The title of the notification.
  * @param {String} body The body of the notification.
  * @param {String} icon The url to the image for the icon of the notification.
  * @example
  * _$.notify("Hello", "Hi there! This is a notification!"); Notifies the user with the title "Hello" and the body text "Hi there! This is a notification!"
- * @returns {undefined}
+ * @returns {Promise} A promise that fulfills once the notification is sent, and is rejected when there is an error
  */
-export let notify = (
-	text = req("string", "text"),
+export let notify = async (
+	title = req("string", "text"),
 	body = req("string", "body"),
 	icon = undefined,
 ) => {
 	node();
 	if (!window.Notification) {
-		console.log("Browser does not support notifications.");
+		throw new Error("browser does not support notifications.");
 	} else {
 		if (Notification.permission === "granted") {
+			var notify = new Notification(title, {
+				body: body,
+				icon: icon,
+			});
+			return;
 		} else {
+			// request permission from user
 			Notification.requestPermission()
 				.then(function (p) {
 					if (p === "granted") {
+						// show notification here
+						var notify = new Notification(title, {
+							body: body,
+							icon: icon,
+						});
+						return;
 					} else {
-						console.log("User blocked notifications.");
+						throw new Error("User blocked notifications");
 					}
 				})
 				.catch(function (err) {
-					//Eat it.
-					console.error(err);
+					throw err;
 				});
 		}
 	}
