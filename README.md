@@ -129,7 +129,7 @@ Well, a few reasons:
 <small>(You can probably see I'm pretty desperate for people to use
 this.)</small>
 
-## Installation
+# Installation
 
 Bijou.js is available in NodeJS through yarn and NPM
 
@@ -139,7 +139,7 @@ or
 
 [Or through a CDN](#cdn-urls)
 
-## CDN Url's
+# CDN Url's
 
 ```
 https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.4.0/bijou.js
