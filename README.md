@@ -1,4 +1,4 @@
-<div align="center"><a href="https://bijou.js.org"><img width="700" src="https://user-images.githubusercontent.com/72760579/110570598-271dc400-8124-11eb-91be-2e7651d27797.gif"></a></div>
+<div align="center"><a href="https://bijou.js.org"><img width="700" src="https://bijou.js.org/bijou.png"></a></div>
 
 [![NPM Downloads](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
 [![GitHub stars](https://img.shields.io/github/stars/bijou-js/bijou.js?color=lightseagreen&style=for-the-badge)](https://github.com/bijou-js/bijou.js/stargazers)
@@ -33,7 +33,10 @@ isn't in Bijou.js, just submit an issue with the code!
 Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 
 ## CDN
-
+CDNJS
+```html
+<script src="https://notes-test.explosionscratc.repl.co/notes/view/605e4127793d611933164dbb" type="module"></script>
+```
 jsDelivr:
 
 ```html
@@ -58,7 +61,7 @@ You can also import parts of bijou, for example only the uuid() function:
 
 ```html
 <script type="module">
-	import { uuid } from "https://unpkg.com/bijou.js";
+	import { uuid } from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.4.0/bijou.js";
 	console.log(uuid()); //Same as _$.uuid() when importing the whole library.
 </script>
 ```
@@ -67,7 +70,7 @@ or you can import the whole thing:
 
 ```html
 <script type="module">
-	import * as _$ from "https://unpkg.com/bijou.js";
+	import * as _$ from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.4.0/bijou.js";
 	console.log(_$.uuid());
 </script>
 ```
@@ -134,10 +137,14 @@ Bijou.js is available in NodeJS through yarn and NPM
 or
 `yarn add bijou.js`
 
-Or through a CDN:
+[Or through a CDN](#cdn-urls)
+
+## CDN Url's
 
 ```
-https://unpkg.com/bijou.js
+https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.4.0/bijou.js
+https://esm.run/bijou.js
 https://cdn.jsdelivr.net/npm/bijou.js
+https://unpkg.com/bijou.js
 https://cdn.jsdelivr.net/gh/Bijou-js/bijou.js@latest/bijou.js
 ```
