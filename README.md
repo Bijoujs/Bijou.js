@@ -33,10 +33,16 @@ isn't in Bijou.js, just submit an issue with the code!
 Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 
 ## CDN
+
 CDNJS
+
 ```html
-<script src="https://notes-test.explosionscratc.repl.co/notes/view/605e4127793d611933164dbb" type="module"></script>
+<script
+	src="https://notes-test.explosionscratc.repl.co/notes/view/605e4127793d611933164dbb"
+	type="module"
+></script>
 ```
+
 jsDelivr:
 
 ```html
