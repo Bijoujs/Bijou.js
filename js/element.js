@@ -664,6 +664,7 @@ export let addEventListeners = (
  * @example
  * _$.sortTable(document.querySelector("table"), (i) => i.getAttribute("data-sort"));//Sorts the table by each cell's 'data-sort' attribute.
  */
+
 export let sortTable = (
 	element = req("HTMLTableElement", "table element"),
 	cellVal = undefined,
