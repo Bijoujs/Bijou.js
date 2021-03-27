@@ -1451,12 +1451,20 @@ export let addEventListeners = (
  * @returns {undefined}
  * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
  * @param {HTMLTableElement} element The table to sort
+ * @param {Function} [cellVal] The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell.
+ * @example
+ * _$.sortTable(document.querySelector("table"));//Done.
+ * @example
+ * _$.sortTable(document.querySelector("table"), (i) => i.getAttribute("data-sort"));//Sorts the table by each cell's 'data-sort' attribute.
  */
 export let sortTable = (
 	element = req("HTMLTableElement", "table element"),
+	cellVal = undefined,
 ) => {
 	var getCellValue = function (tr, idx) {
-		return tr.children[idx].innerText || tr.children[idx].textContent;
+		return cellVal
+			? cellVal(tr.children[idx], tr, idx)
+			: tr.children[idx].innerText || tr.children[idx].textContent;
 	};
 
 	var comparer = function (idx, asc) {
