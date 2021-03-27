@@ -1457,6 +1457,7 @@ export let addEventListeners = (
  * @example
  * _$.sortTable(document.querySelector("table"), (i) => i.getAttribute("data-sort"));//Sorts the table by each cell's 'data-sort' attribute.
  */
+
 export let sortTable = (
 	element = req("HTMLTableElement", "table element"),
 	cellVal = undefined,
@@ -4648,6 +4649,51 @@ export let previousPage = () => {
 };
 //#endregion String
 //#region Utility
+/**
+ * Converts a function that returns a promise into a callback based function
+ * @param {Function} fn The function to 'callbackify'.
+ * @memberOf utility
+ * @returns {Function} The callback based function.
+ * @example
+ * let getUUID = _$.callbackify((limit) =>
+ *    fetch(
+ *        `https://apis.explosionscratc.repl.co/uuid?limit=1${escape(parseInt(limit))}`
+ *    ).then(res => res.json()));
+ *
+ * getUUID(console.log, 500);//Get 500 uuid's from my API and log them to the console.
+ */
+let callbackify = (fn = req("function", "function")) => (
+	callback,
+	...args
+) =>
+	fn(...args)
+		.then(callback)
+		.catch(errCallback);
+/**
+ * Promisifies a function by converting a callback based function to return a promise.
+ * (assuming argIndex = -1)
+ * @param {Function} fn The function to run.
+ * @param {Number} [argIndex=0] The index of the argument that is the callback returned by the function.
+ * @returns {Function} The function promisified (now returns a promise).
+ * @memberOf utility
+ * @example
+ * let time = _$.promisify(setTimeout);
+ * (async () => {
+ * 	await time(2000);
+ * 	console.log("It's been 2 seconds.")
+ * })();
+ */
+let promisify = (fn = req("function"), argIndex = 0) => {
+	return (...args) =>
+		new Promise((resolve, reject) => {
+			try {
+				args.splice(argIndex, 0, resolve);
+				fn(...args);
+			} catch (e) {
+				reject(e);
+			}
+		});
+};
 /**
  * Times out a promise after a specified number of milliseconds.
  * @memberOf utility
