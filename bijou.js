@@ -2629,12 +2629,9 @@ export let animate = (start = req("Number", "start"), end = req("Number", "end")
  * console.log(_$.range(-2, 1)); // [-2, -1, 0, 1]
  * @returns {Array.<Number>} An array of whole numbers (inclusive) between the numbers specified.
  */
-export let range = (
-	start = req("number", "start"),
-	end = 0,
-) => {
-	if (start > end){
-		[start, end] = [end, start]
+export let range = (start = req("number", "start"), end = 0) => {
+	if (start > end) {
+		[start, end] = [end, start];
 	}
 	return Array(end - start + 1)
 		.fill()
@@ -2701,7 +2698,7 @@ export let random = (
 	round = true,
 	seed = Math.random(),
 ) => {
-	if (min > max){
+	if (min > max) {
 		[min, max] = [max, min];
 	}
 	if (round) {
@@ -5502,6 +5499,12 @@ export let soundex = (s = req("string", "word")) => {
 };
 //#endregion Utility
 //#endregion bijou
+
+/**
+ *Converts most of the functions of Bijou.js to prototype functions.
+ * Note that you have to call this function to add the prototypes.
+ * @param {Object} options The options to use, supports overwrite (boolean of whether to overwrite existing prototypes), and try, (boolean for whether to wrap in a try..catch)
+ */
 export let prototype = (options) => {
 	function proto(fn, thing, name) {
 		name = name || fn.name;
@@ -5555,6 +5558,96 @@ export let prototype = (options) => {
 	proto(_$.create, String);
 	proto(_$.createElement, String);
 	proto(_$.curryFunction, Function, "curry");
+	proto(_$.dayName, Date);
+	proto(_$.debounce, Function);
+	proto(_$.deburr, String);
+	proto(_$.disableRightClick, Element);
+	proto(_$.dispatch, Object);
+	proto(_$.drag, Element);
+	proto(_$.each, Array);
+	proto(_$.editDistance, String);
+	proto(_$.elementContains, Element, "contains");
+	proto(_$.equals, Date);
+	proto(_$.equals, Object);
+	proto(_$.escapeHTML, String);
+	proto(_$.factorial, Number);
+	proto(_$.fastestFunction, Array);
+	proto(_$.flatten, Array);
+	proto(_$.flattenObj, Object, "flatten");
+	proto(_$.forTemplateLiteral, Array);
+	proto(_$.formToObject, HTMLFormElement, "toObject");
+	proto(_$.formatHTML, String);
+	proto(_$.formatNumber, Number);
+	proto(_$.fullScreen, Element);
+	proto(_$.gcd, Array);
+	proto(_$.hash, String);
+	proto(_$.hashString, String);
+	proto(_$.imageToData, String);
+	proto(_$.inPartialView, Element);
+	proto(_$.inView, Element);
+	proto(_$.inlineCSS, Element);
+	proto(_$.isAsync, Function);
+	proto(_$.isDateValid, Date, "valid");
+	proto(_$.isPrime, Number);
+	proto(_$.jaroDistance, String);
+	proto(_$.juxt, Function);
+	proto(_$.lightOrDark, String);
+	proto(_$.lightenColor, String);
+	proto(_$.limitArgs, Function);
+	proto(_$.listen, Object);
+	proto(_$.luhnCheck, Number);
+	proto(_$.mapObjectKeys, Object, "mapKeys");
+	proto(_$.mapObjectValues, Object, "map");
+	proto(_$.mapString, String, "map");
+	proto(_$.markDownToHTML, String);
+	proto(_$.memoize, Function);
+	proto(_$.merge, Object);
+	proto(_$.nFlatten, Array);
+	proto(_$.observeMutations, HTMLElement, "observe");
+	proto(_$.onOutsideClick, Element);
+	proto(_$.onScrollStop, Element);
+	proto(_$.parents, Element);
+	proto(_$.parseHTML, String);
+	proto(_$.playSection, HTMLMediaElement);
+	proto(_$.prefixCSS, String);
+	proto(_$.preloadImage, String);
+	proto(_$.primesTo, Number);
+	proto(_$.querySelector, Element, "genQuerySelector");
+	proto(_$.random, Number);
+	proto(_$.range, Number);
+	proto(_$.remove, Array);
+	proto(_$.removeComments, String);
+	proto(_$.removeTags, String);
+	proto(_$.renderElement, Object);
+	proto(_$.replaceBetween, String);
+	proto(_$.replaceMultiple, Object);
+	proto(_$.replaceText, Element);
+	proto(_$.rgbToHex, String);
+	proto(_$.runAsync, Function);
+	proto(_$.sanitize, String);
+	proto(_$.saveBlob, Blob);
+	proto(_$.scrambleString, String, "scramble");
+	proto(_$.seedRandom, String);
+	proto(_$.serializeForm, HTMLFormElement, "serialize");
+	proto(_$.shuffleArray, Array, "shuffle");
+	proto(_$.sortObj, Object, "sort");
+	proto(_$.sortTable, HTMLTableElement, "sort");
+	proto(_$.sortTableBy, HTMLTableHeaderCellElement);
+	proto(_$.speak, String);
+	proto(_$.splice, String);
+	proto(_$.spread, Function);
+	proto(_$.syllables, String);
+	proto(_$.textNodes, Element);
+	proto(_$.throttle, Function);
+	proto(_$.tilt, HTMLImageElement);
+	proto(_$.timeFunction, Function);
+	proto(_$.titleCase, String);
+	proto(_$.unCamelCase, String);
+	proto(_$.unescapeHTML, String);
+	proto(_$.unionArrays, Array, "union");
+	proto(_$.uniqueArray, Array, "unique");
+	proto(_$.urlQuery, String);
+	proto(_$.widows, String);
 };
 /**
  * Bijou.js source documentation. In the `Bijou` namespace you will find the documentation for all of the functions in Bijou.js, if you have any questions, suggestions or bug reports pleast make an issue (here)[https://github.com/bijou-js/bijou.js/issues/new/choose]. Best of luck! Thanks for using Bijou.js! --Explosion--
