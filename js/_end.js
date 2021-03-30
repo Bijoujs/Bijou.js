@@ -1,4 +1,10 @@
 //#endregion bijou
+
+/**
+ *Converts most of the functions of Bijou.js to prototype functions.
+ * Note that you have to call this function to add the prototypes.
+ * @param {Object} options The options to use, supports overwrite (boolean of whether to overwrite existing prototypes), and try, (boolean for whether to wrap in a try..catch)
+ */
 export let prototype = (options) => {
 	function proto(fn, thing, name) {
 		name = name || fn.name;
