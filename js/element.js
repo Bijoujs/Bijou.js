@@ -523,16 +523,16 @@ export let querySelector = (elem = req("HTMLElement", "element")) => {
 	return str;
 };
 /**
- * Removes comments from the element or string of code specified.
+ * Removes comments from the element specified.
  * @function
  * @memberOf element
- * @param {Element|String} el The element or string or code to remove comments from.
+ * @param {Element} el The element to remove comments from.
  * @example
  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
- * @returns {String|Element} The string removed of comments or the element removed of comments.
+ * @returns {HTMLElement} The HTML element with the comments removed.
  */
 export let removeComments = (
-	el = req("String|HTMLElement", "element or string"),
+	el = req("HTMLElement", "HTMLElement"),
 ) => {
 	const isString = typeof el === "string";
 	el = isString ? _$.parseHTML(el) : el.cloneNode(true);

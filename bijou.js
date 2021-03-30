@@ -1316,16 +1316,16 @@ export let querySelector = (elem = req("HTMLElement", "element")) => {
 	return str;
 };
 /**
- * Removes comments from the element or string of code specified.
+ * Removes comments from the element specified.
  * @function
  * @memberOf element
- * @param {Element|String} el The element or string or code to remove comments from.
+ * @param {Element} el The element to remove comments from.
  * @example
  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
- * @returns {String|Element} The string removed of comments or the element removed of comments.
+ * @returns {HTMLElement} The HTML element with the comments removed.
  */
 export let removeComments = (
-	el = req("String|HTMLElement", "element or string"),
+	el = req("HTMLElement", "HTMLElement"),
 ) => {
 	const isString = typeof el === "string";
 	el = isString ? _$.parseHTML(el) : el.cloneNode(true);
@@ -2292,58 +2292,81 @@ export let flattenObj = (o = req("object", "object")) => {
 		  );
 };
 /**
- * Deep clones an object
+ * Deep clones an object (or anything else, like an array or string)
  * @function
  * @memberOf object
  * @param {Object} obj The object to clone.
- * @param {Function} [fn=() => true] The function to run to test if the value should be copied.
  * @returns {Object} The output cloned object.
  * @example
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-export let clone = (item = req("object")) => {
-	if (!item) {
-		return item;
+function clone(
+	src = req("object", "Object to clone"),
+	/* These params are internal */
+	_visited,
+	_copiesVisited,
+) {
+	var object_create = Object.create;
+	if (typeof object_create !== "function") {
+		object_create = function (o) {
+			function F() {}
+			F.prototype = o;
+			return new F();
+		};
 	}
-	var types = [Number, String, Boolean],
-		result;
-	types.forEach(function (type) {
-		if (item instanceof type) {
-			result = type(item);
-		}
-	});
-	if (typeof result == "undefined") {
-		if (Array.isArray(item)) {
-			result = [];
-			item.forEach(function (child, index, array) {
-				result[index] = clone(child);
-			});
-		} else if (typeof item == "object") {
-			if (item.nodeType && typeof item.cloneNode == "function") {
-				result = item.cloneNode(true);
-			} else if (!item.prototype) {
-				if (item instanceof Date) {
-					result = new Date(item);
-				} else {
-					result = {};
-					for (var i in item) {
-						result[i] = clone(item[i]);
-					}
-				}
-			} else {
-				if (false && item.constructor) {
-					result = new item.constructor();
-				} else {
-					result = item;
-				}
-			}
-		} else {
-			result = item;
+	if (src === null || typeof src !== "object") {
+		return src;
+	}
+	if (typeof src.clone == "function") {
+		return src.clone(true);
+	}
+	if (src instanceof Date) {
+		return new Date(src.getTime());
+	}
+	if (src instanceof RegExp) {
+		return new RegExp(src);
+	}
+	if (src.nodeType && typeof src.cloneNode == "function") {
+		return src.cloneNode(true);
+	}
+	if (_visited === undefined) {
+		_visited = [];
+		_copiesVisited = [];
+	}
+	var i,
+		len = _visited.length;
+	for (i = 0; i < len; i++) {
+		if (src === _visited[i]) {
+			return _copiesVisited[i];
 		}
 	}
-	return result;
-};
+	if (Object.prototype.toString.call(src) == "[object Array]") {
+		var ret = src.slice();
+		_visited.push(src);
+		_copiesVisited.push(ret);
+
+		var i = ret.length;
+		while (i--) {
+			ret[i] = clone(ret[i], _visited, _copiesVisited);
+		}
+		return ret;
+	}
+	var proto = Object.getPrototypeOf
+		? Object.getPrototypeOf(src)
+		: src.__proto__;
+	if (!proto) {
+		proto = src.constructor.prototype;
+	}
+	var dest = object_create(proto);
+	_visited.push(src);
+	_copiesVisited.push(dest);
+
+	for (var key in src) {
+		dest[key] = clone(src[key], _visited, _copiesVisited);
+	}
+	return dest;
+}
 /**
  * @memberOf object
  * @function
