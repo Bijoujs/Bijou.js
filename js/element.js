@@ -729,7 +729,7 @@ export let sortTable = (
  */
 export let sortTableBy = (
 	th = req("HTMLTableElement", "<th> element"),
-	acending = req("boolean", "ascending"),
+	acending = true,
 ) => {
 	var getCellValue = function (tr, idx) {
 		return tr.children[idx].innerText || tr.children[idx].textContent;

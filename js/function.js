@@ -76,7 +76,7 @@ export let fastestFunction = (fns, iterations = 1000) => {
  */
 export let spread = (fn = req("function")) => {
 	return (args) => {
-		call_me.apply(this, args);
+		fn.apply(this, args);
 	};
 };
 /**

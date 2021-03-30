@@ -1522,7 +1522,7 @@ export let sortTable = (
  */
 export let sortTableBy = (
 	th = req("HTMLTableElement", "<th> element"),
-	acending = req("boolean", "ascending"),
+	acending = true,
 ) => {
 	var getCellValue = function (tr, idx) {
 		return tr.children[idx].innerText || tr.children[idx].textContent;
@@ -2029,7 +2029,7 @@ export let fastestFunction = (fns, iterations = 1000) => {
  */
 export let spread = (fn = req("function")) => {
 	return (args) => {
-		call_me.apply(this, args);
+		fn.apply(this, args);
 	};
 };
 /**
@@ -2631,8 +2631,11 @@ export let animate = (start = req("Number", "start"), end = req("Number", "end")
  */
 export let range = (
 	start = req("number", "start"),
-	end = req("number", "end"),
+	end = 0,
 ) => {
+	if (start > end){
+		[start, end] = [end, start]
+	}
 	return Array(end - start + 1)
 		.fill()
 		.map((_, idx) => start + idx);
@@ -2694,10 +2697,13 @@ export let primesTo = (num = req("number", "number")) => {
  */
 export let random = (
 	min = req("number", "min"),
-	max = req("number", "max"),
+	max = 0,
 	round = true,
 	seed = Math.random(),
 ) => {
+	if (min > max){
+		[min, max] = [max, min];
+	}
 	if (round) {
 		return Math.floor(seed * (max - min + 1) + min);
 	} else {

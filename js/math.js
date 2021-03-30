@@ -128,10 +128,10 @@ export let animate = (start = req("Number", "start"), end = req("Number", "end")
  * console.log(_$.range(-2, 1)); // [-2, -1, 0, 1]
  * @returns {Array.<Number>} An array of whole numbers (inclusive) between the numbers specified.
  */
-export let range = (
-	start = req("number", "start"),
-	end = req("number", "end"),
-) => {
+export let range = (start = req("number", "start"), end = 0) => {
+	if (start > end) {
+		[start, end] = [end, start];
+	}
 	return Array(end - start + 1)
 		.fill()
 		.map((_, idx) => start + idx);
@@ -193,10 +193,13 @@ export let primesTo = (num = req("number", "number")) => {
  */
 export let random = (
 	min = req("number", "min"),
-	max = req("number", "max"),
+	max = 0,
 	round = true,
 	seed = Math.random(),
 ) => {
+	if (min > max) {
+		[min, max] = [max, min];
+	}
 	if (round) {
 		return Math.floor(seed * (max - min + 1) + min);
 	} else {
