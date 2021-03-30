@@ -5496,6 +5496,60 @@ export let soundex = (s = req("string", "word")) => {
 };
 //#endregion Utility
 //#endregion bijou
+export let prototype = (options) => {
+	function proto(fn, thing, name) {
+		name = name || fn.name;
+		if (!name) {
+			throw new Error("Function name expected");
+		}
+		if (
+			!thing.prototype[name] ||
+			(options.overwrite || options.write || options.overWrite) ===
+				true
+		) {
+			thing.prototype[name] = (...args) => {
+				if (
+					(options.try ||
+						options.tryCatch ||
+						options.catch ||
+						options.catchErrors) === true
+				) {
+					try {
+						let t = this;
+						return fn(t, ...args);
+					} catch (e) {
+						return e;
+					}
+				} else {
+					let t = this;
+					return fn(t, ...args);
+				}
+			};
+		}
+	}
+	proto(_$.addDaysToDate, Date, "addDays");
+	proto(_$.addEventListeners, HTMLElement);
+	proto(_$.addMinutesToDate, Date, "addMinutes");
+	proto(_$.addStyles, HTMLElement);
+	proto(_$.animate, Number);
+	proto(_$.arrayDiff, Array, "diff");
+	proto(_$.arrayToCSV, Array, "toCSV");
+	proto(_$.attributes, HTMLElement);
+	proto(_$.averageBy, Array);
+	proto(_$.blendColors, String);
+	proto(_$.byteSize, String);
+	proto(_$.camelCase, String);
+	proto(_$.capitalize, String);
+	proto(_$.clone, Object);
+	proto(_$.compStyle, HTMLElement);
+	proto(_$.composeFunction, Function, "compose");
+	proto(_$.contains, Array);
+	proto(_$.copy, String);
+	proto(_$.count, Array);
+	proto(_$.create, String);
+	proto(_$.createElement, String);
+	proto(_$.curryFunction, Function, "curry");
+};
 /**
  * Bijou.js source documentation. In the `Bijou` namespace you will find the documentation for all of the functions in Bijou.js, if you have any questions, suggestions or bug reports pleast make an issue (here)[https://github.com/bijou-js/bijou.js/issues/new/choose]. Best of luck! Thanks for using Bijou.js! --Explosion--
  * @type {Object}

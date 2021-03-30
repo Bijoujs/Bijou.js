@@ -17,7 +17,7 @@ function showSearchList() {
  * @param e
  */
 function checkClick(e) {
-    if ( e.target.id !== 'search-box') {
+    if ( e.target.id !== 'search-box-input') {
         setTimeout(function() {
             hideSearchList();
         }, 60);
@@ -54,7 +54,7 @@ function search(list, options, keys, searchKey) {
     searchUL.innerHTML = '';
 
     if (result.length === 0) {
-        searchUL.innerHTML += '<li> No Result Found </li>';
+        searchUL.innerHTML += '<li class="p-h-n"> No Result Found </li>';
     } else {
         result.forEach(function(item) {
             searchUL.innerHTML += '<li>' + item.link + '</li>';
@@ -64,7 +64,7 @@ function search(list, options, keys, searchKey) {
 
 /* eslint-disable-next-line */
 function setupSearch(list, options) {
-    var inputBox = document.getElementById('search-box');
+    var inputBox = document.getElementById('search-box-input');
     var keys = ['title'];
 
     inputBox.addEventListener('keyup', function() {
