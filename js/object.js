@@ -49,12 +49,12 @@ export let flattenObj = (o = req("object", "object")) => {
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-function clone(
+export let clone = (
 	src = req("object", "Object to clone"),
 	/* These params are internal */
 	_visited,
 	_copiesVisited,
-) {
+) => {
 	var object_create = Object.create;
 	if (typeof object_create !== "function") {
 		object_create = function (o) {
@@ -114,7 +114,7 @@ function clone(
 		dest[key] = clone(src[key], _visited, _copiesVisited);
 	}
 	return dest;
-}
+};
 /**
  * @memberOf object
  * @function

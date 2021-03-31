@@ -2301,12 +2301,12 @@ export let flattenObj = (o = req("object", "object")) => {
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-function clone(
+export let clone = (
 	src = req("object", "Object to clone"),
 	/* These params are internal */
 	_visited,
 	_copiesVisited,
-) {
+) => {
 	var object_create = Object.create;
 	if (typeof object_create !== "function") {
 		object_create = function (o) {
@@ -2366,7 +2366,7 @@ function clone(
 		dest[key] = clone(src[key], _visited, _copiesVisited);
 	}
 	return dest;
-}
+};
 /**
  * @memberOf object
  * @function
@@ -5715,6 +5715,7 @@ let _temp = {
 	ease: ease,
 	editDistance: editDistance,
 	elementContains: elementContains,
+	elementReady: elementReady,
 	elementSiblings: elementSiblings,
 	equals: equals,
 	escapeHTML: escapeHTML,
@@ -5773,7 +5774,9 @@ let _temp = {
 	preloadImage: preloadImage,
 	previousPage: previousPage,
 	primesTo: primesTo,
+	prototype: prototype,
 	querySelector: querySelector,
+	race: race,
 	random: random,
 	randomColor: randomColor,
 	range: range,
@@ -5811,12 +5814,14 @@ let _temp = {
 	tilt: tilt,
 	timeFunction: timeFunction,
 	titleCase: titleCase,
+	typeOf: typeOf,
 	unCamelCase: unCamelCase,
 	unescapeHTML: unescapeHTML,
 	unionArrays: unionArrays,
 	uniqueArray: uniqueArray,
 	urlQuery: urlQuery,
 	uuid: uuid,
+	waitUntil: waitUntil,
 	widows: widows,
 };
 _temp = sortObj(_temp);
