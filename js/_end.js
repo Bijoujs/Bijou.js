@@ -9,45 +9,47 @@ export let prototype = (
 	options = { overwrite: true, tryCatch: false },
 ) => {
 	function proto(fn, thing, name) {
-		let title = fn ? fn.name : undefined;
+		let title = name || fn ? fn.name : undefined;
 		title ||= "noNameLol";
 		let overwrite = options.overwrite ?? true;
-		if (!false) {
-			thing.prototype[title] = function (...args) {
-				if (
-					(options.try ||
-						options.tryCatch ||
-						options.catch ||
-						options.catchErrors) == true
-				) {
-					try {
+		if (!thing.prototype.hasOwnProperty(title) || overwrite) {
+			Object.defineProperty(thing.prototype, title, {
+				value: function (...args) {
+					if (
+						(options.try ||
+							options.tryCatch ||
+							options.catch ||
+							options.catchErrors) === true
+					) {
+						try {
+							let t = this;
+							return fn(t, ...args);
+						} catch (e) {
+							return e;
+						}
+					} else {
 						let t = this;
 						return fn(t, ...args);
-					} catch (e) {
-						return e;
 					}
-				} else {
-					let t = this;
-					return fn(t, ...args);
-				}
-			};
+				},
+			});
 		}
 	}
 	proto(_$.addDaysToDate, Date, "addDays");
-	proto(_$.addEventListeners, HTMLElement);
+	proto(_$.addEventListeners, Element);
 	proto(_$.addMinutesToDate, Date, "addMinutes");
-	proto(_$.addStyles, HTMLElement);
+	proto(_$.addStyles, Element);
 	proto(_$.animate, Number);
 	proto(_$.arrayDiff, Array, "diff");
 	proto(_$.arrayToCSV, Array, "toCSV");
-	proto(_$.attributes, HTMLElement);
+	proto(_$.attributes, Element);
 	proto(_$.averageBy, Array);
 	proto(_$.blendColors, String);
 	proto(_$.byteSize, String);
 	proto(_$.camelCase, String);
 	proto(_$.capitalize, String);
 	proto(_$.clone, Object);
-	proto(_$.compStyle, HTMLElement);
+	proto(_$.compStyle, Element);
 	proto(_$.composeFunction, Function, "compose");
 	proto(_$.contains, Array);
 	proto(_$.copy, String);
@@ -72,7 +74,7 @@ export let prototype = (
 	proto(_$.flatten, Array);
 	proto(_$.flattenObj, Object, "flatten");
 	proto(_$.forTemplateLiteral, Array);
-	proto(_$.formToObject, HTMLFormElement, "toObject");
+	proto(_$.formToObject, Element, "toObject");
 	proto(_$.formatHTML, String);
 	proto(_$.formatNumber, Number);
 	proto(_$.fullScreen, Element);
@@ -100,12 +102,12 @@ export let prototype = (
 	proto(_$.memoize, Function);
 	proto(_$.merge, Object);
 	proto(_$.nFlatten, Array);
-	proto(_$.observeMutations, HTMLElement, "observe");
+	proto(_$.observeMutations, Element, "observe");
 	proto(_$.onOutsideClick, Element);
 	proto(_$.onScrollStop, Element);
 	proto(_$.parents, Element);
 	proto(_$.parseHTML, String);
-	proto(_$.playSection, HTMLMediaElement);
+	proto(_$.playSection, Element);
 	proto(_$.prefixCSS, String);
 	proto(_$.preloadImage, String);
 	proto(_$.primesTo, Number);
@@ -125,18 +127,18 @@ export let prototype = (
 	proto(_$.saveBlob, Blob);
 	proto(_$.scrambleString, String, "scramble");
 	proto(_$.seedRandom, String);
-	proto(_$.serializeForm, HTMLFormElement, "serialize");
+	proto(_$.serializeForm, Element, "serialize");
 	proto(_$.shuffleArray, Array, "shuffle");
 	proto(_$.sortObj, Object, "sort");
-	proto(_$.sortTable, HTMLTableElement, "sort");
-	proto(_$.sortTableBy, HTMLElement);
+	proto(_$.sortTable, Element, "sort");
+	proto(_$.sortTableBy, Element);
 	proto(_$.speak, String);
 	proto(_$.splice, String);
 	proto(_$.spread, Function);
 	proto(_$.syllables, String);
 	proto(_$.textNodes, Element);
 	proto(_$.throttle, Function);
-	proto(_$.tilt, HTMLImageElement);
+	proto(_$.tilt, Element);
 	proto(_$.timeFunction, Function);
 	proto(_$.titleCase, String);
 	proto(_$.unCamelCase, String);

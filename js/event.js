@@ -61,6 +61,7 @@ export let onOutsideClick = (
  * Returns the callback when the user stops scrolling.
  * @function
  * @memberOf event
+ * @param {HTMLElement} [element=window] The HTML element to listen on for scroll stop.
  * @param {Function} callback The callback to call when the user stops scrolling.
  * @param {Number} [time=150]
  * @example
