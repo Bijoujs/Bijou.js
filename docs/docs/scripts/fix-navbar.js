@@ -1,5 +1,8 @@
 /* global document */
 (function() {
+    /**
+     *
+     */
     function setNavbarMainContentHeight() {
         var heading = document.querySelector('#navbar-heading');
         var searchBox = document.querySelector('#search-box');

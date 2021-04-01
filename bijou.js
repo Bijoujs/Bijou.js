@@ -1873,6 +1873,7 @@ export let onOutsideClick = (
  * Returns the callback when the user stops scrolling.
  * @function
  * @memberOf event
+ * @param {HTMLElement} [element=window] The HTML element to listen on for scroll stop.
  * @param {Function} callback The callback to call when the user stops scrolling.
  * @param {Number} [time=150]
  * @example
@@ -1880,13 +1881,14 @@ export let onOutsideClick = (
  * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
  */
 export let onScrollStop = (
+	element = window,
 	callback = req("function", "callback"),
 	time = 150,
 ) => {
 	let isScrolling;
 	node();
 	return new Promise((resolve, reject) => {
-		window.addEventListener(
+		element.addEventListener(
 			"scroll",
 			(e) => {
 				clearTimeout(isScrolling);
@@ -1940,8 +1942,8 @@ export let hub = () => ({
  * @returns {undefined}
  */
 export let dispatch = (
-	type = req("string", "type"),
 	args = req("object", "event properties"),
+	type = req("string", "type"),
 	target = window,
 ) => {
 	let e = new Event(type);
@@ -2111,7 +2113,7 @@ export let isAsync = (val = req("function")) =>
  * @example
  * // Times how long it took the user to enter their name.
  * _$.timeFunction(() => prompt("What's your name?"));
- * @returns {undefined}
+ * @returns {Object} An object with "time" and "function" properties, time being time in milliseconds, and function being the original function passed.
  */
 export let timeFunction = (
 	fn = req("function"),
@@ -2121,7 +2123,7 @@ export let timeFunction = (
 	console.time(name);
 	fn();
 	console.timeEnd(name);
-	return performance.now() - startTime;
+	return { function: fn, time: performance.now() - startTime };
 };
 /**
  * Only runs the input function at MAX with the delay specified.
@@ -5532,45 +5534,47 @@ export let prototype = (
 	options = { overwrite: true, tryCatch: false },
 ) => {
 	function proto(fn, thing, name) {
-		let title = fn ? fn.name : undefined;
+		let title = name || fn ? fn.name : undefined;
 		title ||= "noNameLol";
 		let overwrite = options.overwrite ?? true;
-		if (!false) {
-			thing.prototype[title] = function (...args) {
-				if (
-					(options.try ||
-						options.tryCatch ||
-						options.catch ||
-						options.catchErrors) == true
-				) {
-					try {
+		if (!thing.prototype.hasOwnProperty(title) || overwrite) {
+			Object.defineProperty(thing.prototype, title, {
+				value: function (...args) {
+					if (
+						(options.try ||
+							options.tryCatch ||
+							options.catch ||
+							options.catchErrors) === true
+					) {
+						try {
+							let t = this;
+							return fn(t, ...args);
+						} catch (e) {
+							return e;
+						}
+					} else {
 						let t = this;
 						return fn(t, ...args);
-					} catch (e) {
-						return e;
 					}
-				} else {
-					let t = this;
-					return fn(t, ...args);
-				}
-			};
+				},
+			});
 		}
 	}
 	proto(_$.addDaysToDate, Date, "addDays");
-	proto(_$.addEventListeners, HTMLElement);
+	proto(_$.addEventListeners, Element);
 	proto(_$.addMinutesToDate, Date, "addMinutes");
-	proto(_$.addStyles, HTMLElement);
+	proto(_$.addStyles, Element);
 	proto(_$.animate, Number);
 	proto(_$.arrayDiff, Array, "diff");
 	proto(_$.arrayToCSV, Array, "toCSV");
-	proto(_$.attributes, HTMLElement);
+	proto(_$.attributes, Element);
 	proto(_$.averageBy, Array);
 	proto(_$.blendColors, String);
 	proto(_$.byteSize, String);
 	proto(_$.camelCase, String);
 	proto(_$.capitalize, String);
 	proto(_$.clone, Object);
-	proto(_$.compStyle, HTMLElement);
+	proto(_$.compStyle, Element);
 	proto(_$.composeFunction, Function, "compose");
 	proto(_$.contains, Array);
 	proto(_$.copy, String);
@@ -5595,7 +5599,7 @@ export let prototype = (
 	proto(_$.flatten, Array);
 	proto(_$.flattenObj, Object, "flatten");
 	proto(_$.forTemplateLiteral, Array);
-	proto(_$.formToObject, HTMLFormElement, "toObject");
+	proto(_$.formToObject, Element, "toObject");
 	proto(_$.formatHTML, String);
 	proto(_$.formatNumber, Number);
 	proto(_$.fullScreen, Element);
@@ -5623,12 +5627,12 @@ export let prototype = (
 	proto(_$.memoize, Function);
 	proto(_$.merge, Object);
 	proto(_$.nFlatten, Array);
-	proto(_$.observeMutations, HTMLElement, "observe");
+	proto(_$.observeMutations, Element, "observe");
 	proto(_$.onOutsideClick, Element);
 	proto(_$.onScrollStop, Element);
 	proto(_$.parents, Element);
 	proto(_$.parseHTML, String);
-	proto(_$.playSection, HTMLMediaElement);
+	proto(_$.playSection, Element);
 	proto(_$.prefixCSS, String);
 	proto(_$.preloadImage, String);
 	proto(_$.primesTo, Number);
@@ -5648,18 +5652,18 @@ export let prototype = (
 	proto(_$.saveBlob, Blob);
 	proto(_$.scrambleString, String, "scramble");
 	proto(_$.seedRandom, String);
-	proto(_$.serializeForm, HTMLFormElement, "serialize");
+	proto(_$.serializeForm, Element, "serialize");
 	proto(_$.shuffleArray, Array, "shuffle");
 	proto(_$.sortObj, Object, "sort");
-	proto(_$.sortTable, HTMLTableElement, "sort");
-	proto(_$.sortTableBy, HTMLElement);
+	proto(_$.sortTable, Element, "sort");
+	proto(_$.sortTableBy, Element);
 	proto(_$.speak, String);
 	proto(_$.splice, String);
 	proto(_$.spread, Function);
 	proto(_$.syllables, String);
 	proto(_$.textNodes, Element);
 	proto(_$.throttle, Function);
-	proto(_$.tilt, HTMLImageElement);
+	proto(_$.tilt, Element);
 	proto(_$.timeFunction, Function);
 	proto(_$.titleCase, String);
 	proto(_$.unCamelCase, String);
