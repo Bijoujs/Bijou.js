@@ -135,7 +135,7 @@ export let curryFunction = (
 ) =>
 	arity <= args.length
 		? fn(...args)
-		: curryFunction.bind(null, fn, arity, ...args);
+		: _$.curryFunction.bind(null, fn, arity, ...args);
 /**
  * Returns if the given function is async or not.
  * @memberOf function
