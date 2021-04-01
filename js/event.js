@@ -68,13 +68,14 @@ export let onOutsideClick = (
  * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
  */
 export let onScrollStop = (
+	element = window,
 	callback = req("function", "callback"),
 	time = 150,
 ) => {
 	let isScrolling;
 	node();
 	return new Promise((resolve, reject) => {
-		window.addEventListener(
+		element.addEventListener(
 			"scroll",
 			(e) => {
 				clearTimeout(isScrolling);
