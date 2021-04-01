@@ -68,7 +68,7 @@
 
 
     <title>
-      object
+      js/element.js
     </title>
 
     <!--[if lt IE 9]>
@@ -138,7 +138,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        object
+        js/element.js
       </h1>
       
 
@@ -146,1297 +146,1031 @@
 
 
 
-
-<section>
-
-
-<header>
     
-        
-        <h2>
-        
-        object
-        
-        </h2>
-        
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The object namespace of Bijou.js, for stuff like flattening nested objects, cloning, merging, and even listening to changes to objects!</p></div>
-        
-
-        
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.clone">
-        <a href="#.exports.clone">#</a>
-        <span class="type-signature">(static) </span>exports.clone<span class="signature">(obj)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Deep clones an object (or anything else, like an array or string)</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to clone.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The output cloned object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>let obj = { hello: { puny: "earthlings" }};
-let cloned = _$.clone(obj); // cloned can be operated on without changing obj</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.flattenObj">
-        <a href="#.exports.flattenObj">#</a>
-        <span class="type-signature">(static) </span>exports.flattenObj<span class="signature">(o)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Flattens an object recursively into one.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>o</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to flatten</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The flattened object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.flattenObj({
-      hello: "world",
-      another: {
-          nested: "Value",
-          anotherNestedValue: {
-              "something": "A value"
-          },
-          "more Values!!": "lol"
-      }
-  }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.formToObject">
-        <a href="#.exports.formToObject">#</a>
-        <span class="type-signature">(static) </span>exports.formToObject<span class="signature">(form)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Converts a form to an Object.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>form</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">HTMLFormElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The form element.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The object of form data (The keys are the &quot;name&quot; attributes of the form inputs and the values are the value attributes of the form data.)</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>html:
-```
-&lt;form id="form">
-  &lt;input name"input" />
-  &lt;input name="input2" />
-&lt;/form>
-```
-js:
-const form = document.getElementById("form");
-console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.listen">
-        <a href="#.exports.listen">#</a>
-        <span class="type-signature">(static) </span>exports.listen<span class="signature">(obj, getCallback<span class="signature-attributes">opt</span>, setCallback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Proxy}</span>
-    </h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The object to listen to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>getCallback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    ()=>null
-                
-                </td>
-            
-
-            <td class="description last"><p>The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>setCallback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    ()=>null
-                
-                </td>
-            
-
-            <td class="description last"><p>The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>A proxy object that behaves like any other object but listens to changes.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Proxy</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>let obj = {something: "This is part of the object", anotherThing: "This is another!"};
-obj = _$.listen(obj, (k, v) => console.log(`set ${k} to ${v}`), () => console.log("Gotten"));
-obj.something; // Logs "Gotten" to the console!
-obj.anotherThing = "Hello world!"; // Logs "Set abotherThing to Hello world!" to the console!</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.mapObjectKeys">
-        <a href="#.exports.mapObjectKeys">#</a>
-        <span class="type-signature">(static) </span>exports.mapObjectKeys<span class="signature">(obj, fn)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Maps the keys of an object.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to map.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The function to run (passed the current key of the object) which returns the new value from that key.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The new Object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
-//Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.mapObjectValues">
-        <a href="#.exports.mapObjectValues">#</a>
-        <span class="type-signature">(static) </span>exports.mapObjectValues<span class="signature">(obj, fn)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Maps an object's values.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to map the values of.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The callback function to use.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The mapped object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.merge">
-        <a href="#.exports.merge">#</a>
-        <span class="type-signature">(static) </span>exports.merge<span class="signature">(obj1, obj2)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Merges two objects into one. Note that object 2 properties will overwrite those of object 2.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj1</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The 1st object to merge</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>obj2</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The 2nd object to merge.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The merged object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.sortObj">
-        <a href="#.exports.sortObj">#</a>
-        <span class="type-signature">(static) </span>exports.sortObj<span class="signature">(obj)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Sorts an object alphabetically by its keys.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to sort.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The sorted object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
-// The object is now {anotherThing: "Another value!", testing: "A value"}</code></pre>
-
-    </div>
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//#region Element
+/**
+ * Waits for an element satisfying selector to exist, then resolves promise with the element.
+ * @param [parent=document.documentElement] The parent element to watch.
+ * @param selector The querySelector to watch for.
+ * @returns {Promise} A promise resolved when the element exists.
+ * @memberOf element
+ * @example
+ * _$.elementReady("#text").then((e) => e.remove());//Wait for an element with an ID of "text" then removes it.
+ */
+export function elementReady(
+	selector = req("string", "query selector"),
+	parent = document.documentElement,
+) {
+	return new Promise((resolve, reject) => {
+		const el = parent.querySelector(selector);
+		if (el) {
+			resolve(el);
+		}
+		new MutationObserver((mutationRecords, observer) => {
+			// Query for elements matching the specified selector
+			Array.from(parent.querySelectorAll(selector)).forEach(
+				(element) => {
+					resolve(element);
+					//Once we have resolved we don't need the observer anymore.
+					observer.disconnect();
+				},
+			);
+		}).observe(parent, {
+			childList: true,
+			subtree: true,
+		});
+	});
+}
+/**
+ * Tests if an element is a child element of another element.
+ * @returns {Boolean} If the element is a child or not
+ * @memberOf element
+ * @example
+ * _$.elementContains(document.querySelector("#container"), document.querySelector("#img"));//If the element with an id of "img" is inside the #container element this will return true, otherwise it will return false
+ * @example
+ * //Note that the easiest way to do this would be to use _$.onOutsideClick(), but this is another way that demonstrates the use of this function.
+ * //Listen for a click outside of an element (in this case the div#popup element) then remove the popup element.
+ * document.querySelector("div#popup").addEventListener("click", (e) => {
+ *  let contains = _$.elementContains(document.querySelector("div#popup"), e.target);
+ *  if (!contains){
+ *    document.querySelector("div#popup".remove()
+ *  }
+ * })
+ * @param {HTMLElement} parent The parent element to test.
+ * @param {HTMLElement} child The child element to test.
+ */
+export let elementContains = (
+	parent = req("HTMLElement", "parent"),
+	child = req("HTMLElement", "child"),
+) => parent !== child &amp;&amp; parent.contains(child);
+/**
+ * Gets the parent elements of the element given.
+ * @returns {Array.&lt;HTMLElement>} An array of the parent elements from deepest to outermost.
+ * @memberOf element
+ * @example
+ * //Where the html is like so:
+ * ```
+ * &lt;html>
+ *  &lt;head>
+ *  &lt;/head>
+ *  &lt;body>
+ *    &lt;div id="img">
+ *     &lt;img src="https://example.com/example.png">
+ *    &lt;/div>
+ *  &lt;/body>
+ * &lt;/html>
+ * ```
+ * _$.parents(document.querySelector("img"));//[div#img, body, html]
+ * @param {HTMLElement} el The element
+ */
+export let parents = (el = req("element")) => [
+	...(function* (e) {
+		while ((e = e.parentNode)) {
+			yield e;
+		}
+	})(el),
+];
+/**
+ * Gets all the images that are children of the specified element.
+ * @returns {Array} The array of image urls.
+ * @memberOf element
+ * @example
+ * //Get all the images on the page and convert their url's to data urls then log that list to console.
+ * _$.getImages().forEach(image_url => {
+ *  image_data_list.push(_$.imageToData(image_url))
+ * })
+ * console.log(image_data_list);
+ * @param {HTMLElement} [el=document.documentElement] The element to get images from (e.g. document.body)
+ * @param {Boolean} [includeDuplicates=false] Whether to include duplicate images, defaults to false.
+ */
+export let getImages = (
+	el = document.documentElement,
+	includeDuplicates = false,
+) => {
+	const images = [...el.getElementsByTagName("img")].map((img) =>
+		img.getAttribute("src"),
+	);
+	return includeDuplicates ? images : [...new Set(images)];
+};
+/**
+ * Renders an HTML element from an object in the container specified.
+ * @memberOf element
+ * @example
+ * //Renders a button in the document body.
+ * _$.renderElement({
+  type: 'button',
+  props: {
+    type: 'button',
+    className: 'btn',
+    onClick: () => alert('Clicked'),
+    children: [{ props: { nodeValue: 'Click me' } }]
+  }
+}, document.body)
+ * @param {Object} param The type of object (the HTML tagName)
+ * @param {HTMLElement} container The html element to render it in.
+ */
+export let renderElement = (
+	{ type, props = {} } = req("object", "options"),
+	container = req("HTMLElement", "container"),
+) => {
+	const isTextElement = !type;
+	const element = isTextElement
+		? document.createTextNode("")
+		: document.createElement(type);
+
+	const isListener = (p) => p.startsWith("on");
+	const isAttribute = (p) => !isListener(p) &amp;&amp; p !== "children";
+
+	Object.keys(props).forEach((p) => {
+		if (isAttribute(p)) element[p] = props[p];
+		if (!isTextElement &amp;&amp; isListener(p))
+			element.addEventListener(p.toLowerCase().slice(2), props[p]);
+	});
+
+	if (!isTextElement &amp;&amp; props.children &amp;&amp; props.children.length)
+		props.children.forEach((childElement) =>
+			renderElement(childElement, element),
+		);
+
+	container.appendChild(element);
+};
+/**
+ * Create a DOM element from a querySelector with option to include content
+ * @memberOf element
+ * @param {String} querySelector (optional) default to div
+ * @param {...*} [content] (optional) String|Number|DOMElement
+ * @returns DOMElement
+ *
+ * @example
+ * - createElement(); // &lt;div>
+ * - createElement('span#my-id.my-class.second-class'); // &lt;span id="my-id" class="my-class second-class">
+ * - createElement('#my-id.my-class.second-class', 'text to insert', 12345); // &lt;div id="my-id" class="my-class second-class">
+ */
+export function create(querySelector = "div", ...content) {
+	node();
+	let nodeType = querySelector.match(/^[a-z0-9]+/i);
+	let id = querySelector.match(/#([a-z]+[a-z0-9-]*)/gi);
+	let classes = querySelector.match(/\.([a-z]+[a-z0-9-]*)/gi);
+	let attributes = querySelector.match(
+		/\[([a-z][a-z-]+)(=['|"]?([^\]]*)['|"]?)?\]/gi,
+	);
+	let node = nodeType ? nodeType[0] : "div";
+
+	if (id &amp;&amp; id.length > 1) {
+		throw new Error("only 1 ID is allowed");
+	}
+
+	const elt = document.createElement(node);
+
+	if (id) {
+		elt.id = id[0].replace("#", "");
+	}
+
+	if (classes) {
+		const attrClasses = classes.join(" ").replace(/\./g, "");
+		elt.setAttribute("class", attrClasses);
+	}
+
+	if (attributes) {
+		attributes.forEach((item) => {
+			item = item.slice(0, -1).slice(1);
+			let [label, value] = item.split("=");
+			if (value) {
+				value = value.replace(/^['"](.*)['"]$/, "$1");
+			}
+			elt.setAttribute(label, value || "");
+		});
+	}
+
+	content.forEach((item) => {
+		if (typeof item === "string" || typeof item === "number") {
+			elt.appendChild(document.createTextNode(item));
+		} else if (item.nodeType === document.ELEMENT_NODE) {
+			elt.appendChild(item);
+		}
+	});
+
+	return elt;
+}
+/**
+ * Re-enables the use of &amp;lt;menu&amp;gt; and &amp;lt;menuitem&amp;gt; tags for corner clicking.
+ * @memberOf element
+ * @function
+ * @example
+ * //HTML:
+ * ```
+ * &lt;h1 contextmenu="menu">Corner click me&lt;/h1>
+ * &lt;menu>
+ *  &lt;menuitem label="An item!">
+ *  &lt;menuitem label="Another item!">
+ * &lt;/menu>
+ * ```
+ * //JS
+ * _$.context();
+ * // Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
+ * @returns {undefined};
+ */
+export let context = () => {
+	var menu = document.createElement("UL");
+	menu.id = "contextMenu";
+	document.body.appendChild(menu);
+	let styles = document.createElement("STYLE");
+	styles.innerHTML = `#contextMenu {
+       pointer-events: none;
+       padding: 0;
+       opacity: 0;
+       transition: opacity .3s ease;
+       position: fixed;
+       padding-top: 3px;
+       padding-bottom: 3px;
+       max-height: 200px;
+       overflow-y: scroll;
+       overflow-x: hidden;
+       list-style: none;
+       z-index: 10000;
+       background: white;
+       color: #333;
+       font-family: sans-serif;
+       border-radius: 5px;
+       box-shadow: 2px 2px 5px #0004;
+       width: fit-content;
+       min-width: 50px;
+       max-width: 150px;
+     }
+     #contextMenu li {
+       transition: background-color .3s ease;
+       display: block;
+       min-width: 150px;
+       margin: 0;
+       padding: 10px;
+     }
+     #contextMenu li:hover {
+       background-color: #ddd;
+       cursor: pointer;
+     }
+     `;
+	document.body.appendChild(styles);
+	var elements = document.querySelectorAll("[contextmenu]");
+	for (let i = 0; i &lt; elements.length; i++) {
+		window.addEventListener("contextmenu", (e) => {
+			menu.style.pointerEvents = "auto";
+			let items;
+			try {
+				items = document.querySelectorAll(
+					`#${e.target
+						.closest("[contextmenu]")
+						.getAttribute("contextmenu")} menuitem`,
+				);
+				e.preventDefault();
+			} catch (e) {
+				return true;
+			}
+			menu.innerHTML = "";
+			for (let j = 0; j &lt; items.length; j++) {
+				const contextMenu = items[j];
+				const liTag = document.createElement("li");
+				liTag.setAttribute(
+					"onclick",
+					contextMenu.getAttribute("onclick"),
+				);
+				liTag.addEventListener("click", () => {
+					menu.style.opacity = 0;
+					menu.style.pointerEvents = "none";
+				});
+				liTag.textContent = contextMenu.getAttribute("label");
+				menu.innerHTML += liTag.outerHTML;
+			}
+			console.log(menu.innerHTML);
+			menu.style.top = `${e.clientY}px`;
+			menu.style.left = `${e.clientX}px`;
+			menu.style.opacity = 1;
+		});
+	}
+	var contextTimer = 0;
+	setInterval(() => {
+		contextTimer += 100;
+		if (contextTimer > 3000) {
+			menu.style.opacity = 0;
+			menu.style.pointerEvents = "none";
+			contextTimer = 0;
+			return;
+		}
+	}, 100);
+	_$.addEventListeners(menu, ["mousemove", "click", "scroll"], () => {
+		contextTimer = 0;
+	});
+	_$.onOutsideClick(menu, () => {
+		menu.style.opacity = 0;
+		menu.style.pointerEvents = "none";
+	});
+};
+
+/**
+ * Tests whether the specified element is fully in view.
+ * @function
+ * @memberOf element
+ * @param {Element} el The DOM element to test.
+ * @example
+ * // Alerts "In view!" if the first &lt;div> in the document is in view.
+ * if (_$.inView(document.querySelector("div"))) alert("In view!");
+ * @returns {Boolean} Whether the element is completely in view.
+ */
+export let inView = (el = req("HTMLElement", "element")) => {
+	node();
+	var top = el.offsetTop;
+	var left = el.offsetLeft;
+	var width = el.offsetWidth;
+	var height = el.offsetHeight;
+
+	while (el.offsetParent) {
+		el = el.offsetParent;
+		top += el.offsetTop;
+		left += el.offsetLeft;
+	}
+
+	return (
+		top >= window.pageYOffset &amp;&amp;
+		left >= window.pageXOffset &amp;&amp;
+		top + height &lt;= window.pageYOffset + window.innerHeight &amp;&amp;
+		left + width &lt;= window.pageXOffset + window.innerWidth
+	);
+};
+/**
+ * Tests if the given DOM element is partially (or fully) in view.
+ * @function
+ * @memberOf element
+ * @param {Element} el The element to test.
+ * @example
+ * // Alerts "In view!" if the first &lt;div> in the document is partially or fully view.
+ * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
+ * @returns {Boolean} Whether the DOM element is partially in view.
+ */
+export let inPartialView = (el = req("HTMLElement", "element")) => {
+	node();
+	var top = el.offsetTop;
+	var left = el.offsetLeft;
+	var width = el.offsetWidth;
+	var height = el.offsetHeight;
+
+	while (el.offsetParent) {
+		el = el.offsetParent;
+		top += el.offsetTop;
+		left += el.offsetLeft;
+	}
+
+	return (
+		top &lt; window.pageYOffset + window.innerHeight &amp;&amp;
+		left &lt; window.pageXOffset + window.innerWidth &amp;&amp;
+		top + height > window.pageYOffset &amp;&amp;
+		left + width > window.pageXOffset
+	);
+};
+
+/**
+ * Replaces the text in an element by running it through a callback.
+ * @function
+ * @memberOf element
+ * @param {Element} el The element to replace the text of.
+ * @param {Function} callback The callback to run (Gets passed the element's text).
+ * @example
+ * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
+ * // Converts the text of the first &lt;div> element to upperCase.
+ * @returns {undefined}
+ */
+export let replaceText = (
+	el = req("HTMLElement", "element"),
+	callback = req("function", "callback"),
+) => {
+	node();
+	_$.each(_$.textNodes(el), (node) => {
+		node.textContent = callback(node.textContent);
+	});
+};
+/**
+ * Gets a list of all the text nodes in an element
+ * @memberOf element
+ * @function
+ * @param {Element} el The element to get the text nodes of.
+ * @returns {Array} The text nodes.
+ * @example
+ * _$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements
+ */
+export let textNodes = (el = req("HTMLElement", "element")) => {
+	return [...el.childNodes].filter((node) => {
+		return (
+			node.nodeType === Node.TEXT_NODE &amp;&amp; node.nodeValue.trim() !== ""
+		);
+	});
+};
+/**
+ * Generates a querySelector for an element passed in.
+ * @function
+ * @memberOf element
+ * @param {Element} elem The element to generate the querySelector for.
+ * @example
+ * const textarea = document.getElementById('textarea');
+ * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
+ * @returns {String} The generated querySelector.
+ */
+export let querySelector = (elem = req("HTMLElement", "element")) => {
+	node();
+	var element = elem;
+	var str = "";
+
+	function loop(element) {
+		if (
+			element.getAttribute("id") &amp;&amp;
+			document.querySelectorAll(`#${element.getAttribute("id")}`)
+				.length === 1
+		) {
+			str = str.replace(/^/, " #" + element.getAttribute("id"));
+			str = str.replace(/\s/, "");
+			str = str.replace(/\s/g, " > ");
+			return str;
+		}
+		if (document.body === element) {
+			str = str.replace(/^/, " body");
+			str = str.replace(/\s/, "");
+			str = str.replace(/\s/g, " > ");
+			return str;
+		}
+		if (element.getAttribute("class")) {
+			var elemClasses = ".";
+			elemClasses += element.getAttribute("class");
+			elemClasses = elemClasses.replace(/\s/g, ".");
+			elemClasses = elemClasses.replace(/^/g, " ");
+			var classNth = "";
+			var childrens = element.parentNode.children;
+
+			if (childrens.length &lt; 2) {
+				return;
+			}
+
+			var similarClasses = [];
+
+			for (var i = 0; i &lt; childrens.length; i++) {
+				if (
+					element.getAttribute("class") ==
+					childrens[i].getAttribute("class")
+				) {
+					similarClasses.push(childrens[i]);
+				}
+			}
+
+			if (similarClasses.length > 1) {
+				for (var j = 0; j &lt; similarClasses.length; j++) {
+					if (element === similarClasses[j]) {
+						j++;
+						classNth = ":nth-of-type(" + j + ")";
+						break;
+					}
+				}
+			}
+
+			str = str.replace(/^/, elemClasses + classNth);
+		} else {
+			var name = element.nodeName;
+			name = name.toLowerCase();
+			var nodeNth = "";
+
+			childrens = element.parentNode.children;
+
+			if (childrens.length > 2) {
+				var similarNodes = [];
+
+				for (var i = 0; i &lt; childrens.length; i++) {
+					if (element.nodeName == childrens[i].nodeName) {
+						similarNodes.push(childrens[i]);
+					}
+				}
+
+				if (similarNodes.length > 1) {
+					for (var j = 0; j &lt; similarNodes.length; j++) {
+						if (element === similarNodes[j]) {
+							j++;
+							nodeNth = ":nth-of-type(" + j + ")";
+							break;
+						}
+					}
+				}
+			}
+
+			str = str.replace(/^/, " " + name + nodeNth);
+		}
+
+		if (element.parentNode) {
+			loop(element.parentNode);
+		} else {
+			str = str.replace(/\s/g, " > ");
+			str = str.replace(/\s/, "");
+			return str;
+		}
+	}
+
+	loop(element);
+
+	return str;
+};
+/**
+ * Removes comments from the element specified.
+ * @function
+ * @memberOf element
+ * @param {Element} el The element to remove comments from.
+ * @example
+ * _$.removeComments(document.documentElement);//Removes the comments from the document element.
+ * @returns {HTMLElement} The HTML element with the comments removed.
+ */
+export let removeComments = (
+	el = req("HTMLElement", "HTMLElement"),
+) => {
+	const isString = typeof el === "string";
+	el = isString ? _$.parseHTML(el) : el.cloneNode(true);
+	for (const child of [...el.querySelectorAll("*"), el]) {
+		for (const grandchild of child.childNodes) {
+			if (grandchild instanceof Comment)
+				child.removeChild(grandchild);
+		}
+	}
+	return isString ? el.outerHTML : el;
+};
+/**
+ * Parses the string of HTML specified and returns an HTML element of it.
+ * @function
+ * @memberOf element
+ * @param {String} string The HTML string to parse.
+ * @param {String} [mimeType="text/html"] The mimeType of the string.
+ * @example
+ * let html = _$.parseHTML("&lt;div id='hello'>&lt;textarea>&lt;/textarea>&lt;/div>");
+ * html.querySelector("textarea");//Returns the textarea!
+ * @returns {HTMLDocument} The HTML document element of the HTML string specified.
+ */
+export let parseHTML = (
+	string = req("string", "html string"),
+	mimeType = "text/html",
+) => {
+	const domparser = new DOMParser();
+	return domparser.parseFromString(string, mimeType);
+};
+/**
+ * Allows an element to be dragged and dropped.
+ * @function
+ * @memberOf element
+ * @param {Element} el The element to be dragged (And dropped :P ).
+ * @example
+ * _$.drag(document.querySelector('div')); // Allows the first &lt;div> on the page to be dragged.
+ * @returns {Element} The element.
+ */
+export let drag = (el = req("HTMLElement", "element")) => {
+	node();
+	var initX, initY, mousePressX, mousePressY;
+	el.addEventListener(
+		"mousedown",
+		function (event) {
+			var style = window.getComputedStyle(el);
+			el.style.top = style.getPropertyValue("top");
+			el.style.left = style.getPropertyValue("left");
+			el.style.right = style.getPropertyValue("right");
+			el.style.bottom = style.getPropertyValue("bottom");
+			this.style.position = "absolute";
+			initX = this.offsetLeft;
+			initY = this.offsetTop;
+			mousePressX = event.clientX;
+			mousePressY = event.clientY;
+			this.addEventListener("mousemove", repositionElement, false);
+
+			window.addEventListener(
+				"mouseup",
+				function () {
+					el.removeEventListener(
+						"mousemove",
+						repositionElement,
+						false,
+					);
+				},
+				false,
+			);
+		},
+		false,
+	);
+
+	function repositionElement(event) {
+		this.style.left = initX + event.clientX - mousePressX + "px";
+		this.style.top = initY + event.clientY - mousePressY + "px";
+	}
+	return el;
+};
+/**
+ * Adds multiple event listeners with one callback to the element specified.
+ * @memberOf element
+ * @function
+ * @param {Element} element The element to add the event listeners to.
+ * @param {Array.&lt;String>} events The array of events to listen for.
+ * @param {Function} handler The function to run when the events happen.
+ * @param {Boolean|Object} [useCapture=false] Whether to use capture, or an options object.
+ * @param {Array} [args=false] The arguments to use in the handler function.
+ * @example
+ * // Reset a timer every user interaction.
+ * let timer = 0;
+ * setInterval(() => timer++, 1);
+ * _$.addEventListeners(
+ *  document,
+ *  ["mousemove", "click", "scroll", "keypress"],
+ *  () => timer = 0,
+ * );
+ * @returns {undefined}
+ */
+export let addEventListeners = (
+	element = req("HTMLElement", "element"),
+	events = req("array", "events"),
+	handler = {},
+	useCapture = false,
+	args = false,
+) => {
+	if (!(events instanceof Array)) {
+		throw (
+			"addMultipleListeners: " +
+			"please supply an array of eventstrings " +
+			'(like ["click","mouseover"])'
+		);
+	}
+	//create a wrapper to be able to use additional arguments
+	var handlerFn = function (e) {
+		handler.apply(this, args &amp;&amp; args instanceof Array ? args : []);
+	};
+	for (var i = 0; i &lt; events.length; i += 1) {
+		element.addEventListener(events[i], handlerFn, useCapture);
+	}
+};
+/**
+ * @memberOf element
+ * @function
+ * @returns {undefined}
+ * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
+ * @param {HTMLTableElement} element The table to sort
+ * @param {Function} [cellVal] The callback function to run with the element to get the value of the cell. This is passed the cell (&lt;td>) element, and the row (&lt;tr>) element, and the index of the cell.
+ * @example
+ * _$.sortTable(document.querySelector("table"));//Done.
+ * @example
+ * _$.sortTable(document.querySelector("table"), (i) => i.getAttribute("data-sort"));//Sorts the table by each cell's 'data-sort' attribute.
+ */
+
+export let sortTable = (
+	element = req("HTMLTableElement", "table element"),
+	cellVal = undefined,
+) => {
+	var getCellValue = function (tr, idx) {
+		return cellVal
+			? cellVal(tr.children[idx], tr, idx)
+			: tr.children[idx].innerText || tr.children[idx].textContent;
+	};
+
+	var comparer = function (idx, asc) {
+		return function (a, b) {
+			return (function (v1, v2) {
+				return v1 !== "" &amp;&amp; v2 !== "" &amp;&amp; !isNaN(v1) &amp;&amp; !isNaN(v2)
+					? v1 - v2
+					: v1.toString().localeCompare(v2);
+			})(
+				getCellValue(asc ? a : b, idx),
+				getCellValue(asc ? b : a, idx),
+			);
+		};
+	};
+
+	Array.prototype.slice
+		.call(element.querySelectorAll("th"))
+		.forEach(function (th) {
+			th.addEventListener("click", function () {
+				var table = th.parentNode;
+				while (table.tagName.toUpperCase() != "TABLE")
+					table = table.parentNode;
+				Array.prototype.slice
+					.call(table.querySelectorAll("tr:nth-child(n+2)"))
+					.sort(
+						comparer(
+							Array.prototype.slice
+								.call(th.parentNode.children)
+								.indexOf(th),
+							(this.asc = !this.asc),
+						),
+					)
+					.forEach(function (tr) {
+						table.appendChild(tr);
+					});
+			});
+		});
+};
+/**
+ * Sorts a table by a &lt;th> element.
+ * @memberOf element
+ * @function
+ * @returns {undefined}
+ * @example
+ * //Note that this example pretty much recreates the _$ sortTable function, which is much more cross browser and good than this recreation. If sorting a whole table please use that.
+ * _$.each(document.querySelectorAll("#table th"), (th) => {
+ *  th.addEventListener("click", () => {
+ *    //Add event listeners to each of them.
+ *    _$.sortTableBy(th, th.asc = !th.asc);//Toggle the "asc" attribute on the th.
+ *  });
+ * })
+ * @param {HTMLTableElement} th The table header (&lt;th> element) to sort with.
+ * @param {Boolean} acending Whether to sort the table ascending or descending.
+ */
+export let sortTableBy = (
+	th = req("HTMLTableElement", "&lt;th> element"),
+	acending = true,
+) => {
+	var getCellValue = function (tr, idx) {
+		return tr.children[idx].innerText || tr.children[idx].textContent;
+	};
+
+	var comparer = function (idx, asc) {
+		return function (a, b) {
+			return (function (v1, v2) {
+				return v1 !== "" &amp;&amp; v2 !== "" &amp;&amp; !isNaN(v1) &amp;&amp; !isNaN(v2)
+					? v1 - v2
+					: v1.toString().localeCompare(v2);
+			})(
+				getCellValue(asc ? a : b, idx),
+				getCellValue(asc ? b : a, idx),
+			);
+		};
+	};
+
+	var table = th.parentNode;
+	while (table.tagName.toUpperCase() != "TABLE")
+		table = table.parentNode;
+	Array.prototype.slice
+		.call(table.querySelectorAll("tr:nth-child(n+2)"))
+		.sort(
+			comparer(
+				Array.prototype.slice
+					.call(th.parentNode.children)
+					.indexOf(th),
+				acending,
+			),
+		)
+		.forEach(function (tr) {
+			table.appendChild(tr);
+		});
+};
+/**
+ * Adds the specified styles to the element specified.
+ * @function
+ * @memberOf element
+ * @param {Element} el The element to add the styles to.
+ * @param {Object} styles An object that represents the styles to be added. (camelCased)
+ * @example
+ * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
+ * @returns {Object} the style object of the element.
+ */
+export let addStyles = (
+	el = req("HTMLElement", "element"),
+	styles = req("Object", "styles"),
+) => {
+	node();
+	return Object.assign(el.style, styles);
+};
+
+/**
+ * Creates an HTML element from the specified string.
+ * @function
+ * @memberOf element
+ * @param {String} str The string of the HTML element to create.
+ * @example
+ * //Returns a div with an id of "id_here" and innerText of "Testing!"
+ * _$.createElement("&lt;div id='id_here'>Testing!&lt;/div>");
+ * @returns {Element} The created element.
+ */
+export let createElement = (
+	str = req("String", "HTML element string"),
+) => {
+	node();
+	const el = document.createElement("div");
+	el.innerHTML = str;
+	return el.firstElementChild;
+};
+/**
+ * Gets a property from the computed style of an element.
+ * @function
+ * @memberOf element
+ * @param {Element} el The element whose styles to get.
+ * @param {String} prop The css-property value to get of the styles.
+ * @example
+ * console.log(_$.compStyle(document.documentElement, "background-color")); // logs the background colour of the document
+ * @returns {String} The computed style property for the element specified.
+ */
+export let compStyle = (
+	el = req("HTMLElement", "element"),
+	prop = req("String", "CSS property string"),
+) => {
+	node();
+	var computedStyles = window.getComputedStyle(el);
+	return computedStyles.getPropertyValue(prop);
+};
+
+/**
+ * Get the siblings of a DOM element
+ * @function
+ * @memberOf element
+ * @param {Element} n The element to get siblings of
+ * @example
+ * _$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.backgroundColor = 'white');
+ * // Make every sibling of the first list item's background color white.
+ * @returns {Element[]} The array of sibling elements.
+ */
+export let elementSiblings = (n = req("HTMLElement", "element")) =>
+	[...n.parentElement.children].filter((c) => c != n);
+/**
+ * Disables right click on the element spcified.
+ * @function
+ * @memberOf element
+ * @param {Element} el The element to disable right click on.
+ * @example
+ * _$.disableRightClick(document.documentElement)
+ * @returns {undefined}
+ */
+export let disableRightClick = (
+	el = req("HTMLElement", "element"),
+) => {
+	node();
+	return (el.oncontextmenu = false);
+};
+/**
+ * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
+ * @function
+ * @memberOf element
+ * @param {Element} el The element to convert.
+ * @example
+ * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the &lt;h1> element to inline using the style="___" attribute
+ * @returns {undefined}
+ */
+export let inlineCSS = (el = req("HTMLElement", "element")) => {
+	var cs = getComputedStyle(el, null);
+	var i;
+	for (i = 0; i &lt; cs.length; i++) {
+		var s = cs[i] + "";
+		el.style[s] = cs[s];
+	}
+};
+/**
+ * Returns an array of objects representing the attributes of a passed element.
+ * @param {Element} el The HMTL element to get attributes from.
+ * @function
+ * @memberOf element
+ * @example
+ * // Say the &lt;html> tag of the document was "&lt;html style='background-color: #101010;'>", then the function below would log "style," to the console.
+ * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
+ * @return {Array.&lt;object>} The array of objects representing the attributes
+ */
+export let attributes = (el = req("HTMLElement", "element")) => {
+	node();
+	var output = [];
+	for (
+		var att, i = 0, atts = el.attributes, n = atts.length;
+		i &lt; n;
+		i++
+	) {
+		att = atts[i];
+		output.push({
+			name: att.nodeName,
+			value: att.nodeValue,
+		});
+	}
+	return output;
+};
+/**
+ * Observes the mutations of the html element specified.
+ * @memberOf element
+ * @function
+ * @param {Element} element The element to observe
+ * @param {Function} callback The callback function to run when a mutation happens.
+ * @param {Object} options The options to use.
+ * @example
+ * _$.observeMutations(document, console.log); // Logs all the mutations that happen to the console.
+ * @returns {undefined}
+ */
+export let observeMutations = (
+	element = req("HTMLElement", "element"),
+	callback = req("function", "callback"),
+	options = {},
+) => {
+	const observer = new MutationObserver((mutations) =>
+		mutations.forEach((m) => callback(m)),
+	);
+	observer.observe(
+		element,
+		Object.assign(
+			{
+				childList: true,
+				attributes: true,
+				attributeOldValue: true,
+				characterData: true,
+				characterDataOldValue: true,
+				subtree: true,
+			},
+			options,
+		),
+	);
+	return observer;
+};
+/**
+ * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
+ * @memberOf element
+ * @function
+ * @param {Element} el The element to tilt.
+ * @param {Number} x The x value of the mouse
+ * @param {Number} y The y value of the mouse
+ * @param {Number} [perspective=500] The perspective
+ * @param {Number} [amount=30] The amount to tilt.
+ * @returns {undefined}
+ * @example
+ * // Tilt the first image in the document whenever the mouse moves.
+ * let el = document.querySelector("img");
+ * el.onmousemove = (e) => {
+ *  let x = e.layerX;
+ *  let y = e.layerY
+ *  _$.tilt(el, x, y);
+ * }
+ */
+export let tilt = (
+	el = req("HTMLElement", "element"),
+	x = req("number", "x"),
+	y = req("number", "y"),
+	perspective = 500,
+	amount = 30,
+) => {
+	//Old code
+	/*  const xVal = x
+      const yVal = y
+      const yRotation = amount * ((xVal - width / 2) / width)
+      const xRotation = amount * -1 * ((yVal - height / 2) / height)
+      const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
+      el.style.transform = string */
+
+	//One liner
+	el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
+		amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
+	}deg) rotateY(${
+		amount * ((x - el.clientWidth / 2) / el.clientWidth)
+	}deg)`;
+};
+/**
+ * Enters fullscreen on an element.
+ * @memberOf element
+ * @function
+ * @param {Element} element The element to enter full screen with.
+ * @returns {undefined}
+ * @example
+ * _$.fullScreen(document.documentElement); // Make the window fullscreen
+ */
+export let fullScreen = (element = req("HTMLElement", "element")) => {
+	return (
+		element.requestFullScreen ||
+		element.mozRequestFullScreen ||
+		element.webkitRequestFullScreen() ||
+		new Error("Fullscreen failed")
+	);
+};
+/**
+ * Replaces the selected text in a contentEditable div with the HTML given.
+ * @memberOf element
+ * @function
+ * @returns {undefined}
+ * @example
+ * // Add a simple contenteditable div to the page.
+ * document.appendChild(_$.createElement("&lt;div contenteditable id='text'>&lt;/div>"));
+ * _$.replaceSelection("&lt;b>BOLD TEXT&lt;/b> &lt;small>Bijou is awesome&lt;/small>&lt;h1>You need to use it&lt;/h1>");
+ * //Replaces the selection! =)
+ * @param {String} replacementText The replacement HTML to replace with.
+ */
+export let replaceSelection = (
+	replacementText = req("string", "replacement text"),
+) => {
+	var sel, range;
+	if (window.getSelection) {
+		sel = window.getSelection();
+		if (sel.rangeCount) {
+			range = sel.getRangeAt(0);
+			range.deleteContents();
+			let n = document.createElement("span");
+			n.insertAdjacentHTML("beforeend", replacementText);
+			range.insertNode(n);
+		}
+	} else if (document.selection &amp;&amp; document.selection.createRange) {
+		console.warn(
+			"You are using IE &lt; 9, you are evil. Falling back to text not HTML.",
+		);
+		range = document.selection.createRange();
+		range.text = replacementText.replace(/&lt;[^>]*>/g, "");
+	}
+};
+//#endregion Element
+</code></pre>
+        </article>
+    </section>
 
 
 

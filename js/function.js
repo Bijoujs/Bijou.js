@@ -158,7 +158,7 @@ export let isAsync = (val = req("function")) =>
  * @example
  * // Times how long it took the user to enter their name.
  * _$.timeFunction(() => prompt("What's your name?"));
- * @returns {undefined}
+ * @returns {Object} An object with "time" and "function" properties, time being time in milliseconds, and function being the original function passed.
  */
 export let timeFunction = (
 	fn = req("function"),
@@ -168,7 +168,7 @@ export let timeFunction = (
 	console.time(name);
 	fn();
 	console.timeEnd(name);
-	return performance.now() - startTime;
+	return { function: fn, time: performance.now() - startTime };
 };
 /**
  * Only runs the input function at MAX with the delay specified.

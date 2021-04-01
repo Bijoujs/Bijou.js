@@ -68,7 +68,7 @@
 
 
     <title>
-      object
+      js/event.js
     </title>
 
     <!--[if lt IE 9]>
@@ -138,7 +138,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        object
+        js/event.js
       </h1>
       
 
@@ -146,1297 +146,153 @@
 
 
 
-
-<section>
-
-
-<header>
     
-        
-        <h2>
-        
-        object
-        
-        </h2>
-        
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The object namespace of Bijou.js, for stuff like flattening nested objects, cloning, merging, and even listening to changes to objects!</p></div>
-        
-
-        
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.clone">
-        <a href="#.exports.clone">#</a>
-        <span class="type-signature">(static) </span>exports.clone<span class="signature">(obj)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Deep clones an object (or anything else, like an array or string)</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to clone.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The output cloned object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>let obj = { hello: { puny: "earthlings" }};
-let cloned = _$.clone(obj); // cloned can be operated on without changing obj</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.flattenObj">
-        <a href="#.exports.flattenObj">#</a>
-        <span class="type-signature">(static) </span>exports.flattenObj<span class="signature">(o)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Flattens an object recursively into one.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>o</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to flatten</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The flattened object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.flattenObj({
-      hello: "world",
-      another: {
-          nested: "Value",
-          anotherNestedValue: {
-              "something": "A value"
-          },
-          "more Values!!": "lol"
-      }
-  }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.formToObject">
-        <a href="#.exports.formToObject">#</a>
-        <span class="type-signature">(static) </span>exports.formToObject<span class="signature">(form)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Converts a form to an Object.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>form</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">HTMLFormElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The form element.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The object of form data (The keys are the &quot;name&quot; attributes of the form inputs and the values are the value attributes of the form data.)</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>html:
-```
-&lt;form id="form">
-  &lt;input name"input" />
-  &lt;input name="input2" />
-&lt;/form>
-```
-js:
-const form = document.getElementById("form");
-console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.listen">
-        <a href="#.exports.listen">#</a>
-        <span class="type-signature">(static) </span>exports.listen<span class="signature">(obj, getCallback<span class="signature-attributes">opt</span>, setCallback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Proxy}</span>
-    </h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The object to listen to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>getCallback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    ()=>null
-                
-                </td>
-            
-
-            <td class="description last"><p>The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>setCallback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    ()=>null
-                
-                </td>
-            
-
-            <td class="description last"><p>The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>A proxy object that behaves like any other object but listens to changes.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Proxy</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>let obj = {something: "This is part of the object", anotherThing: "This is another!"};
-obj = _$.listen(obj, (k, v) => console.log(`set ${k} to ${v}`), () => console.log("Gotten"));
-obj.something; // Logs "Gotten" to the console!
-obj.anotherThing = "Hello world!"; // Logs "Set abotherThing to Hello world!" to the console!</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.mapObjectKeys">
-        <a href="#.exports.mapObjectKeys">#</a>
-        <span class="type-signature">(static) </span>exports.mapObjectKeys<span class="signature">(obj, fn)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Maps the keys of an object.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to map.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The function to run (passed the current key of the object) which returns the new value from that key.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The new Object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
-//Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.mapObjectValues">
-        <a href="#.exports.mapObjectValues">#</a>
-        <span class="type-signature">(static) </span>exports.mapObjectValues<span class="signature">(obj, fn)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Maps an object's values.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to map the values of.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The callback function to use.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The mapped object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.merge">
-        <a href="#.exports.merge">#</a>
-        <span class="type-signature">(static) </span>exports.merge<span class="signature">(obj1, obj2)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Merges two objects into one. Note that object 2 properties will overwrite those of object 2.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj1</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The 1st object to merge</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>obj2</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The 2nd object to merge.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The merged object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.sortObj">
-        <a href="#.exports.sortObj">#</a>
-        <span class="type-signature">(static) </span>exports.sortObj<span class="signature">(obj)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Sorts an object alphabetically by its keys.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to sort.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The sorted object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
-// The object is now {anotherThing: "Another value!", testing: "A value"}</code></pre>
-
-    </div>
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//#region Event
+/**
+ * Waits until a condition is met then resolves a promise.
+ * @returns {Promise} A promise resolved when the condition returned by the function is true.
+ * @memberOf event
+ * @example
+ * //Waits until the current second of the current minute is 10.
+ * _$.waitUntil(() => new Date().getSeconds === 10).then(() => console.log("Done"))
+ * @example
+ * //This DOES NOT work
+ * _$.waitUntil(() => Date.now() === Date.now() + 100);
+ * //Because it is evaluated many times, and the current date, is never ahead of itself. Therefore in this case the function will run infinitely.
+ * //To fix this problem and cancel the function after a certain amount of time,
+ * //you can pass another argument to the function
+ * _$.waitUntil(() => false, 10000);//Waits 10 seconds, because the function always returns false.
+ * @param {Function} condition The function which returns true when the condition is met
+ * @param {Number} [wait=Infinity] The wait time in milliseconds to cancel the function and reject the promise.
+ */
+export let waitUntil = async (
+	condition = req("function", "condition"),
+	wait = Infinity,
+) => {
+	return new Promise(async (resolve, reject) => {
+		let startTime = Date.now();
+		while (!condition()) {
+			if (Date.now() - startTime >= wait) {
+				reject(condition());
+				return;
+			}
+			await new Promise((res) => requestAnimationFrame(res));
+		}
+		resolve(condition());
+		return condition();
+	});
+};
+/**
+ * Returns the callback when a a click is registered outside the selected element
+ * @function
+ * @memberOf event
+ * @param {Element} element The element to use as the outsideclick element.
+ * @param {Function} callback The function to run when a click is registered outside the specified element.
+ * @example
+ * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
+ * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
+ */
+export let onOutsideClick = (
+	element = req("HTMLElement", "element"),
+	callback = req("function", "callback"),
+) => {
+	node();
+	return new Promise((resolve, reject) => {
+		document.addEventListener("click", (e) => {
+			if (!element.contains(e.target)) {
+				callback();
+				resolve();
+			}
+		});
+	});
+};
+/**
+ * Returns the callback when the user stops scrolling.
+ * @function
+ * @memberOf event
+ * @param {Function} callback The callback to call when the user stops scrolling.
+ * @param {Number} [time=150]
+ * @example
+ * _$.onScrollStop(() => {alert("You stopped scrolling!")})
+ * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
+ */
+export let onScrollStop = (
+	callback = req("function", "callback"),
+	time = 150,
+) => {
+	let isScrolling;
+	node();
+	return new Promise((resolve, reject) => {
+		window.addEventListener(
+			"scroll",
+			(e) => {
+				clearTimeout(isScrolling);
+				isScrolling = setTimeout(() => {
+					callback(e);
+					resolve(e);
+				}, time);
+			},
+			false,
+		);
+	});
+};
+/**
+ * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
+ * @memberOf event
+ * @function
+ * @returns {Object} The object with the emit, on and off functions in it.
+ * @example
+ * let thing = _$.hub();
+ * // Log any new data to the console
+ * thing.on("data", (data) => console.log(data));
+ * setTimeout(() => {
+ *   thing.emit("data", "Yay! Some data!!"); // Logs "Yay! Some data!!" to the console after 2 seconds.
+ * }, 2000)
+ */
+export let hub = () => ({
+	hub: Object.create(null),
+	emit(event, data) {
+		(this.hub[event] || []).forEach((handler) => handler(data));
+	},
+	on(event, handler) {
+		if (!this.hub[event]) this.hub[event] = [];
+		this.hub[event].push(handler);
+	},
+	off(event, handler) {
+		const i = (this.hub[event] || []).findIndex((h) => h === handler);
+		if (i > -1) this.hub[event].splice(i, 1);
+		if (this.hub[event].length === 0) delete this.hub[event];
+	},
+});
+/**
+ * Dispatches an event of the type specified with custom arguments.
+ * @memberOf event
+ * @function
+ * @example
+ * //Dispatch a custom mouse move event to the window.
+ * _$.dispatch("mousemove", {clientX: 100, clientY: 150, target: document.documentElement}, window);
+ * @param {String} type The type of event to dispatch (E.g. "mousemove")
+ * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
+ * @param {EventTarget} [target=window] What to dispatch the event to.
+ * @returns {undefined}
+ */
+export let dispatch = (
+	type = req("string", "type"),
+	args = req("object", "event properties"),
+	target = window,
+) => {
+	let e = new Event(type);
+	for (let o in args) {
+		e[o] = args[o];
+	}
+	target.dispatchEvent(e);
+};
+//#endregion Event
+</code></pre>
+        </article>
+    </section>
 
 
 

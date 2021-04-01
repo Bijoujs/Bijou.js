@@ -68,7 +68,7 @@
 
 
     <title>
-      object
+      js/_copyright.js
     </title>
 
     <!--[if lt IE 9]>
@@ -138,7 +138,7 @@
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        object
+        js/_copyright.js
       </h1>
       
 
@@ -146,1297 +146,173 @@
 
 
 
-
-<section>
-
-
-<header>
     
-        
-        <h2>
-        
-        object
-        
-        </h2>
-        
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The object namespace of Bijou.js, for stuff like flattening nested objects, cloning, merging, and even listening to changes to objects!</p></div>
-        
-
-        
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.clone">
-        <a href="#.exports.clone">#</a>
-        <span class="type-signature">(static) </span>exports.clone<span class="signature">(obj)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Deep clones an object (or anything else, like an array or string)</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to clone.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The output cloned object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>let obj = { hello: { puny: "earthlings" }};
-let cloned = _$.clone(obj); // cloned can be operated on without changing obj</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.flattenObj">
-        <a href="#.exports.flattenObj">#</a>
-        <span class="type-signature">(static) </span>exports.flattenObj<span class="signature">(o)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Flattens an object recursively into one.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>o</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to flatten</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The flattened object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.flattenObj({
-      hello: "world",
-      another: {
-          nested: "Value",
-          anotherNestedValue: {
-              "something": "A value"
-          },
-          "more Values!!": "lol"
-      }
-  }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.formToObject">
-        <a href="#.exports.formToObject">#</a>
-        <span class="type-signature">(static) </span>exports.formToObject<span class="signature">(form)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Converts a form to an Object.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>form</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">HTMLFormElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The form element.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The object of form data (The keys are the &quot;name&quot; attributes of the form inputs and the values are the value attributes of the form data.)</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>html:
-```
-&lt;form id="form">
-  &lt;input name"input" />
-  &lt;input name="input2" />
-&lt;/form>
-```
-js:
-const form = document.getElementById("form");
-console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.listen">
-        <a href="#.exports.listen">#</a>
-        <span class="type-signature">(static) </span>exports.listen<span class="signature">(obj, getCallback<span class="signature-attributes">opt</span>, setCallback<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Proxy}</span>
-    </h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The object to listen to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>getCallback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    ()=>null
-                
-                </td>
-            
-
-            <td class="description last"><p>The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>setCallback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    ()=>null
-                
-                </td>
-            
-
-            <td class="description last"><p>The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>A proxy object that behaves like any other object but listens to changes.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Proxy</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>let obj = {something: "This is part of the object", anotherThing: "This is another!"};
-obj = _$.listen(obj, (k, v) => console.log(`set ${k} to ${v}`), () => console.log("Gotten"));
-obj.something; // Logs "Gotten" to the console!
-obj.anotherThing = "Hello world!"; // Logs "Set abotherThing to Hello world!" to the console!</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.mapObjectKeys">
-        <a href="#.exports.mapObjectKeys">#</a>
-        <span class="type-signature">(static) </span>exports.mapObjectKeys<span class="signature">(obj, fn)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Maps the keys of an object.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to map.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The function to run (passed the current key of the object) which returns the new value from that key.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The new Object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
-//Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.mapObjectValues">
-        <a href="#.exports.mapObjectValues">#</a>
-        <span class="type-signature">(static) </span>exports.mapObjectValues<span class="signature">(obj, fn)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Maps an object's values.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to map the values of.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="function.html">function</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The callback function to use.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The mapped object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.merge">
-        <a href="#.exports.merge">#</a>
-        <span class="type-signature">(static) </span>exports.merge<span class="signature">(obj1, obj2)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Merges two objects into one. Note that object 2 properties will overwrite those of object 2.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj1</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The 1st object to merge</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>obj2</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The 2nd object to merge.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The merged object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.sortObj">
-        <a href="#.exports.sortObj">#</a>
-        <span class="type-signature">(static) </span>exports.sortObj<span class="signature">(obj)</span><span class="type-signature"> &rarr; {Object}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Sorts an object alphabetically by its keys.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The object to sort.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The sorted object.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
-// The object is now {anotherThing: "Another value!", testing: "A value"}</code></pre>
-
-    </div>
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file bijou.js
+ * @author Explosion-Scratch, Bijou.js contributors
+ * @since v0.0.0
+ * @copyright © Explosion-Scratch and GrahamSH, All rights reserved.
+ */
+
+/* --------------------------------------------------------------------------|
+  ____ ___    _  ___  _   _   _     
+ | __ )_ _|  | |/ _ \| | | | (_)___ 
+ |  _ \| |_  | | | | | | | | | / __|
+ | |_) | | |_| | |_| | |_| | | \__ \
+ |____/___\___/ \___/ \___(_)/ |___/
+                           |__/     
+------------------------------------------------------------------------------|
+Bijou.js is copyrighted by Explosion-Scratch and GrahamSH-LLK of GitHub and released under the MIT license.
+This software comes with ABSOLUTELY NO WARRANTY and is provided "As is" (with the best intentions of Explosion-Scratch and contributors! =D )
+
+-----------------------------------------------------------------------------|
+   ____ ___  _   _ _____ ____  ___ ____  _   _ _____ ___  ____  ____
+  / ___/ _ \| \ | |_   _|  _ \|_ _| __ )| | | |_   _/ _ \|  _ \/ ___|
+ | |  | | | |  \| | | | | |_) || ||  _ \| | | | | || | | | |_) \___ \
+ | |__| |_| | |\  | | | |  _ &lt; | || |_) | |_| | | || |_| |  _ &lt; ___) |
+  \____\___/|_| \_| |_| |_| \_\___|____/ \___/  |_| \___/|_| \_\____/
+-----------------------------------------------------------------------------|
+Contributors to Bijou.js:
+╔═══════════════════╦════════════════════════════╗
+║ GITHUB USERNAME   ║ CONTRIBUTIONS              ║
+╠═══════════════════╬════════════════════════════╣
+║ Explosion-Scratch ║ Founder and creator of     ║
+║                   ║ Bijou.js, over 1500        ║
+║                   ║ commits to the source      ║
+║                   ║ repository.                ║
+╠═══════════════════╬════════════════════════════╣
+║ GrahamSH-LLK      ║ Great guy, contributed     ║
+║                   ║ a ton towards the          ║
+║                   ║ development of this        ║
+║                   ║ project. He fixed glitches ║
+║                   ║ suggested new features,    ║
+║                   ║ and helped publish this    ║
+║                   ║ to NPM and fix the GitHub  ║
+║                   ║ actions on the project.    ║
+╠═══════════════════╬════════════════════════════╣
+║ Touchcreator      ║ Pointed out several bugs   ║
+║                   ║ in Bijou.js and suggested  ║
+║                   ║ several new features.      ║
+╠═══════════════════╬════════════════════════════╣
+║ TheColaber        ║ Collaborated?? (lol)       ║
+║                   ║ Fixed tons of bugs         ║
+╠═══════════════════╬════════════════════════════╣
+║ Hans5958          ║ Helped fix glitches in the ║
+║                   ║ website and suggested      ║
+║                   ║ fixes for GitHub actions   ║
+║                   ║ glitches.                  ║
+╠═══════════════════╬════════════════════════════╣
+║ retronbv          ║ Suggested a lot of         ║
+║                   ║ features and bug fixes.    ║
+║═══════════════════║════════════════════════════║
+║ thecoder876       ║ Made some improvements.    ║
+╚═══════════════════╩════════════════════════════╝
+
+
+(c) 2021 Explosion-Scratch, all rights reserved.
+
+ */
+
+let isNode = false;
+if (
+	typeof window === "undefined" ||
+	typeof document === "undefined"
+) {
+	isNode = true;
+} else {
+	isNode = false;
+}
+
+if (isNode) {
+	console.warn(
+		"There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.",
+	);
+}
+/**
+ * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
+ */
+let node = () => {
+	if (isNode) {
+		throw new Error(
+			"You are using Node.js, this function does not work in Node.js! Sorry!",
+		);
+	}
+};
+/*
+  ____   ___  _   _ ____   ____ _____
+ / ___| / _ \| | | |  _ \ / ___| ____|
+ \___ \| | | | | | | |_) | |   |  _|
+  ___) | |_| | |_| |  _ &lt;| |___| |___
+ |____/ \___/ \___/|_| \_\\____|_____|
+*/
+/**
+ * The array namespace of Bijou.js
+ * @namespace array
+ */
+let array_namespace = {};
+/**
+ * The color namespace of Bijou.js
+ * @namespace color
+ */
+let color_namespace = {};
+/**
+ * The date namespace of Bijou.js, containing functions to format dates, do math with them and more!
+ * @namespace date
+ */
+let date_namespace = {};
+/**
+ * The element namespace of Bijou.js, containing functions to create elements from query selectors, enable custom right click options, test if an element is on screen, replace the text of an element without altering it's styling, and much more!
+ * @namespace element
+ */
+let element_namespace = {};
+/**
+ * The event namespace of Bijou.js, containing functions to listen and dispatch events, such as scroll stop, outside click, and multiple event listeners.
+ * @namespace event
+ */
+let event_namespace = {};
+/**
+ * The function namespace of Bijou.js, containing functions to work with functions themselves, such as debouncing, throttling, memoizing, currying, timing and much more!
+ * @namespace function
+ */
+let function_namespace = {};
+/**
+ * The math namespace of Bijou.js, containing functions to validate credit card numbers, animate with JavaScript, generate unique id's and much more!
+ * @namespace math
+ */
+let math_namespace = {};
+/**
+ * The object namespace of Bijou.js, for stuff like flattening nested objects, cloning, merging, and even listening to changes to objects!
+ * @namespace object
+ */
+let object_namespace = {};
+/**
+ * The string namespace of Bijou.js, containing functions to map strings, remove accents from strings, speak text, syntax highlight JS, HTML and CSS and much more!
+ * @namespace string
+ */
+let string_namespace = {};
+/**
+ * The utility namespace of Bijou.js, containing utilities to do many things, such as playing audio, fetching JSON, preloading images and much more.
+ * @namespace utility
+ */
+let utility_namespace = {};
+
+const req = (type, desc, condition = true) => {
+	if (!condition) return;
+	let err = "Missing parameter";
+	if (type) {
+		err += " of type " + type;
+	}
+	if (desc) {
+		err = `Parameter ${desc} ${type ? `(${type})` : ""} required.`;
+	}
+	throw new Error(err);
+};
+//#region bijou
+</code></pre>
+        </article>
+    </section>
 
 
 
