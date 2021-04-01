@@ -9,9 +9,12 @@ export let prototype = (
 	options = { overwrite: true, tryCatch: false },
 ) => {
 	function proto(fn, thing, name) {
-		let title = name || fn ? fn.name : undefined;
-		title ||= "noNameLol";
-		let overwrite = options.overwrite ?? true;
+		let title =
+			name || fn ? fn.name : "noNameHehe124672463467432376453";
+		let overwrite =
+			options.overwrite !== undefined && options.overwrite !== false
+				? true
+				: false;
 		if (!thing.prototype.hasOwnProperty(title) || overwrite) {
 			Object.defineProperty(thing.prototype, title, {
 				value: function (...args) {

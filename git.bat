@@ -1,5 +1,5 @@
 npm install;
-npm i -g eslint eslint-plugin-jsdoc jsdoc prettier terser figlet-cli @babel/core @babel/cli @babel/preset-env @babel/plugin-transform-modules-commonjs
+npm i -g rollup eslint eslint-plugin-jsdoc jsdoc prettier terser figlet-cli @babel/core @babel/cli @babel/preset-env @babel/plugin-transform-modules-commonjs
 npm install eslint-plugin-jsdoc @babel/plugin-transform-spread @babel/plugin-transform-template-literals @babel/preset-env babel @babel/plugin-transform-arrow-functions @babel/plugin-transform-sticky-regex @babel/plugin-transform-shorthand-properties
 
 function remove {
@@ -17,7 +17,7 @@ function commit {
   jsdoc -c jsdoc.json
   eslint --fix ./
   prettier --write -- .
-  babel --plugins=@babel/plugin-transform-modules-commonjs -o bijou_node.js -- bijou.js
+  rollup bijou.js --file bijou_node.js --format cjs
   terser --mangle --compress --comments false -o bijou_node.js -- bijou_node.js
   terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
   terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
