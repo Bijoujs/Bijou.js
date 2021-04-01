@@ -128,8 +128,8 @@ export let hub = () => ({
  * @returns {undefined}
  */
 export let dispatch = (
-	type = req("string", "type"),
 	args = req("object", "event properties"),
+	type = req("string", "type"),
 	target = window,
 ) => {
 	let e = new Event(type);
