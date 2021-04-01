@@ -5528,23 +5528,20 @@ export let soundex = (s = req("string", "word")) => {
  * Note that you have to call this function to add the prototypes.
  * @param {Object} options The options to use, supports overwrite (boolean of whether to overwrite existing prototypes), and try, (boolean for whether to wrap in a try..catch)
  */
-export let prototype = (options) => {
+export let prototype = (
+	options = { overwrite: true, tryCatch: false },
+) => {
 	function proto(fn, thing, name) {
-		name = name || fn.name;
-		if (!name) {
-			throw new Error("Function name expected");
-		}
-		if (
-			!thing.prototype[name] ||
-			(options.overwrite || options.write || options.overWrite) ===
-				true
-		) {
-			thing.prototype[name] = (...args) => {
+		let title = fn ? fn.name : undefined;
+		title ||= "noNameLol";
+		let overwrite = options.overwrite ?? true;
+		if (!false) {
+			thing.prototype[title] = function (...args) {
 				if (
 					(options.try ||
 						options.tryCatch ||
 						options.catch ||
-						options.catchErrors) === true
+						options.catchErrors) == true
 				) {
 					try {
 						let t = this;
@@ -5655,7 +5652,7 @@ export let prototype = (options) => {
 	proto(_$.shuffleArray, Array, "shuffle");
 	proto(_$.sortObj, Object, "sort");
 	proto(_$.sortTable, HTMLTableElement, "sort");
-	proto(_$.sortTableBy, HTMLTableHeaderCellElement);
+	proto(_$.sortTableBy, HTMLElement);
 	proto(_$.speak, String);
 	proto(_$.splice, String);
 	proto(_$.spread, Function);
