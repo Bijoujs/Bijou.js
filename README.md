@@ -17,17 +17,6 @@ yourself typing the same thing over and over again, copy pasting the same
 snippet as you did a few days ago, use Bijou.js! If the snippet you're using
 isn't in Bijou.js, just submit an issue with the code!
 
-### Table of contents
-
-- [How to use Bijou.js](#how-to-use-bijoujs)
-  - [CDN](#cdn)
-  - [Imports](#imports)
-  - [NodeJS](#nodejs)
-- [Usage](#usage)
-- [Who made Bijou.js?](#who-made-bijoujs)
-- [Why use Bijou?](#why-use-bijou)
-  - [Installation](#installation)
-
 # How to use Bijou.js
 
 Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
