@@ -21,7 +21,7 @@
 		"library"
 	],
 	"author": "Bijou.js contributors",
-	"license": "MIT",
+	"license": "GPL-3.0 License",
 	"bugs": {
 		"url": "https://github.com/bijou-js/bijou.js/issues"
 	},
