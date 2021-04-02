@@ -6,6 +6,7 @@ function remove {
   rm -f .git/index.lock
 }
 
+
 function commit {
   COMMIT=$(git status --porcelain)
   cd /workspace/Bijou.js
