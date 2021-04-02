@@ -18,7 +18,6 @@ function commit {
   eslint --fix ./
   prettier --write -- .
   rollup bijou.js --file bijou_node.js --format cjs
-  terser --mangle --compress --comments false -o bijou_node.js -- bijou_node.js
   terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
   terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
   if [[ ${#COMMIT} -ge 1 ]] ; then
