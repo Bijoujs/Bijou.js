@@ -793,6 +793,60 @@ export let addDaysToDate = (
 //#endregion Date
 //#region Element
 /**
+ * Applies a material design ripple effect to the element specified. Works best with buttons and similar elements.
+ * This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple
+ * @memberOf element
+ * @example
+ * _$.each(document.querySelectorAll("button"), _$.ripple)
+ * //Accepts attributes too!
+ * // data-time: The time in milliseconds that it takes the ripple to fade away
+ * // data-color: A CSS color that the ripple should have as it's color
+ * // data-opacity: The starting opacity of the ripple effect.
+ * // data-event: The event to listen for to apply the ripple.
+ * @param {HTMLElement} el The element to apply the ripple effect to.
+ */
+export let ripple = (el = req("element", "element")) => {
+	node();
+	const time = (+el.getAttribute("data-time") || 1000) * 3;
+	const color = el.getAttribute("data-color") || "currentColor";
+	const opacity = el.getAttribute("data-opacity") || ".3";
+	const event = el.getAttribute("data-event") || "click";
+	el.style.overflow = "hidden";
+	el.style.position = "relative";
+	el.addEventListener(event, (e) => {
+		var ripple_div = document.createElement("DIV");
+		ripple_div.style.position = "absolute";
+		ripple_div.style.background = `${color}`;
+		ripple_div.style.borderRadius = "50%";
+		var bx = el.getBoundingClientRect();
+		var largestdemensions;
+		if (bx.width > bx.height) {
+			largestdemensions = bx.width * 3;
+		} else {
+			largestdemensions = bx.height * 3;
+		}
+		ripple_div.style.pointerEvents = "none";
+		ripple_div.style.height = `${largestdemensions}px`;
+		ripple_div.style.width = `${largestdemensions}px`;
+		ripple_div.style.transform = `translate(-50%, -50%) scale(0)`;
+		ripple_div.style.top = `${e.pageY - (bx.top + window.scrollY)}px`;
+		ripple_div.style.left = `${
+			e.pageX - (bx.left + window.scrollX)
+		}px`;
+		ripple_div.style.transition = `opacity ${time}ms ease, transform ${time}ms ease`;
+		ripple_div.removeAttribute("data-ripple");
+		ripple_div.style.opacity = opacity;
+		el.appendChild(ripple_div);
+		setTimeout(() => {
+			ripple_div.style.transform = `translate(-50%, -50%) scale(1)`;
+			ripple_div.style.opacity = "0";
+			setTimeout(() => {
+				ripple_div.remove();
+			}, time);
+		}, 1);
+	});
+};
+/**
  * Waits for an element satisfying selector to exist, then resolves promise with the element.
  * @param [parent=document.documentElement] The parent element to watch.
  * @param selector The querySelector to watch for.
