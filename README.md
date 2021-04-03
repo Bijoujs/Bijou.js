@@ -5,6 +5,7 @@
 [![Website](https://img.shields.io/website?down_color=lightseagreen&down_message=Down%20%3A%27%28&label=Website%20status&style=for-the-badge&up_color=lightseagreen&up_message=Online%21&url=https%3A%2F%2Fbijou.js.org)](https://bijou.js.org)
 [![Discord](https://img.shields.io/discord/789662824678686720?style=for-the-badge&color=lightseagreen)](https://discord.gg/tApDpbyK2F)
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod&style=for-the-badge&color=lightseagreen)](https://gitpod.io/#https://github.com/bijou-js/bijou.js)
+[![Rate on Openbase](https://badges.openbase.com/js/rating/bijou.js.svg)](https://openbase.com/js/bijou.js?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge)
 
 <h1 align=center>Bijou.js</h1>
 
