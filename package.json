@@ -6,6 +6,7 @@
 	"jsdelivr": "bijou.js",
 	"unpkg": "bijou.js",
 	"browser": "bijou.js",
+	"runkitExampleFilename": "runkit_example.js",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/bijou-js/bijou.js.git"

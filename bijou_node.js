@@ -2534,11 +2534,28 @@ let sortObj = (obj = req("object", "object")) => {
  * _$.gcd(12, 4, 8);//Returns 4
  * @param {...Number} arr The numbers to compare
  */
-let gcd = function gcd(...arr) {
-	req("arguments", undefined, ![...arr].length);
-	const _gcd = (x, y) => (!y ? x : gcd(y, x % y));
-	return [...arr].reduce((a, b) => _gcd(a, b));
+let gcd = (...ary) => {
+	if (ary[0] instanceof Array) {
+		return getGCD(ary[0]);
+	} else {
+		return getGCD([...ary]);
+	}
+	function getGCD(arr) {
+		let min = Math.min(...arr);
+		let max = Math.max(...arr);
+		if (min == max) {
+			return min;
+		} else {
+			for (let i in arr) {
+				if (arr[i] > min) {
+					arr[i] = arr[i] - min;
+				}
+			}
+			return getGCD(arr);
+		}
+	}
 };
+
 /**
  * Tests if two things are equal, like "thing === thing2" but it also works for dates and objects.
  * @memberOf math
