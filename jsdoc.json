@@ -18,7 +18,7 @@
 		"template": "./node_modules/clean-jsdoc-theme",
 		"theme_opts": {
 			"theme": "light",
-			"create_style": "pre, pre * {font-family: monospace !important;} .tooltip * {color: black !important} nav {\r\n  background: linear-gradient(to right, #088, #0ca);\r\n  padding: 10px;\r\n}\r\nnav, nav * {\r\n  box-sizing: border-box;\r\n}\r\nnav * {\r\n  color: white;\r\n}\r\ndiv.search-box-input-container {\r\n  background: #fff4;\r\n  border-radius: 5px;\r\n}\r\nnav ::placeholder {\r\n  color: #ddd;\r\n}\r\nnav svg {\r\n  fill: white;\r\n}\r\n.methods {\r\n  background: #0001;\r\n}\r\n.accordion-content {\r\n  background: #fff1;\r\n}\r\ndiv.accordion-heading {\r\n  background: #fff3;\r\n}\r\n\r\n::-webkit-scrollbar {\r\n  width: 3px;\r\n}\r\n::-webkit-scrollbar-track{\r\n  background: #fff1;\r\n}\r\n\r\nnav ::-webkit-scrollbar-thumb{\r\n  border-radius: 1000px;\r\n  background: #fff3;\r\n}\r\n\r\n.page-title, header * {\r\n  border-color: #0ca5;\r\n}\r\narticle pre div, article pre div * {\r\n  background: white;\r\n  color: #333;\r\n}\r\n",
+			"create_style": "pre, pre * {font-family: monospace !important;} .tooltip * {color: black !important}",
 			"add_scripts": "setInterval(() => {\r\n  try {\r\n    document.querySelector('.os-content-arrange').remove();\r\n  } catch (e) {}\r\n\r\n  var els = Array.from(document.querySelectorAll('ul.accordion-content a')).filter(el => el.innerText.startsWith(\"exports.\"));\r\n  for (var i = 0; i < els.length; i++) {\r\n    els[i].innerText = els[i].innerText.replace(/^exports\\./, '');\r\n  }\r\n}, 100);\r\n",
 			"add_script_path": [
 				{
