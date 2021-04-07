@@ -1406,6 +1406,7 @@ export let parseHTML = (
 	string = req("string", "html string"),
 	mimeType = "text/html",
 ) => {
+	node();
 	const domparser = new DOMParser();
 	return domparser.parseFromString(string, mimeType);
 };
@@ -1413,50 +1414,76 @@ export let parseHTML = (
  * Allows an element to be dragged and dropped.
  * @function
  * @memberOf element
- * @param {Element} el The element to be dragged (And dropped :P ).
+ * @param {Element} dragHandle The element that when dragged should move the dragTarget.
+ * @param {Element} dragTarget The element that should be moved when the dragHandle is dragged.
  * @example
- * _$.drag(document.querySelector('div')); // Allows the first <div> on the page to be dragged.
+ * _$.drag('div span', 'div'); // Allows the first <div> on the page to be dragged by the <span> element inside it.
  * @returns {Element} The element.
  */
-export let drag = (el = req("HTMLElement", "element")) => {
+export let drag = (
+	dragHandle = req("String|Element", "drag handle"),
+	dragTarget = req("String|Element", "drag target"),
+) => {
 	node();
-	var initX, initY, mousePressX, mousePressY;
-	el.addEventListener(
-		"mousedown",
-		function (event) {
-			var style = window.getComputedStyle(el);
-			el.style.top = style.getPropertyValue("top");
-			el.style.left = style.getPropertyValue("left");
-			el.style.right = style.getPropertyValue("right");
-			el.style.bottom = style.getPropertyValue("bottom");
-			this.style.position = "absolute";
-			initX = this.offsetLeft;
-			initY = this.offsetTop;
-			mousePressX = event.clientX;
-			mousePressY = event.clientY;
-			this.addEventListener("mousemove", repositionElement, false);
+	let dragObj = null;
+	let xOffset = 0;
+	let yOffset = 0;
+	dragHandle =
+		typeof dragHandle === "string"
+			? document.querySelector(dragHandle)
+			: dragHandle;
 
-			window.addEventListener(
-				"mouseup",
-				function () {
-					el.removeEventListener(
-						"mousemove",
-						repositionElement,
-						false,
-					);
-				},
-				false,
-			);
-		},
-		false,
-	);
+	dragTarget =
+		typeof dragTarget === "string"
+			? document.querySelector(dragTarget)
+			: dragTarget;
 
-	function repositionElement(event) {
-		this.style.left = initX + event.clientX - mousePressX + "px";
-		this.style.top = initY + event.clientY - mousePressY + "px";
+	dragHandle.addEventListener("mousedown", startDrag, true);
+	dragHandle.addEventListener("touchstart", startDrag, true);
+
+	function startDrag(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		dragObj = dragTarget;
+		dragObj.style.position = "absolute";
+		let rect = dragObj.getBoundingClientRect();
+
+		if (e.type == "mousedown") {
+			xOffset = e.clientX - rect.left;
+			yOffset = e.clientY - rect.top;
+			window.addEventListener("mousemove", dragObject, true);
+		} else if (e.type == "touchstart") {
+			xOffset = e.targetTouches[0].clientX - rect.left;
+			yOffset = e.targetTouches[0].clientY - rect.top;
+			window.addEventListener("touchmove", dragObject, true);
+		}
 	}
-	return el;
+
+	function dragObject(e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		if (dragObj == null) {
+			return;
+		} else if (e.type == "mousemove") {
+			dragObj.style.left = e.clientX - xOffset + "px";
+			dragObj.style.top = e.clientY - yOffset + "px";
+		} else if (e.type == "touchmove") {
+			dragObj.style.left =
+				e.targetTouches[0].clientX - xOffset + "px";
+			dragObj.style.top = e.targetTouches[0].clientY - yOffset + "px";
+		}
+	}
+
+	document.onmouseup = function (e) {
+		if (dragObj) {
+			dragObj = null;
+			window.removeEventListener("mousemove", dragObject, true);
+			window.removeEventListener("touchmove", dragObject, true);
+		}
+	};
 };
+
 /**
  * Adds multiple event listeners with one callback to the element specified.
  * @memberOf element
