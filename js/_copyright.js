@@ -2,7 +2,7 @@
  * @file bijou.js
  * @author Explosion-Scratch, Bijou.js contributors
  * @since v0.0.0
- * @copyright © Explosion-Scratch and GrahamSH, All rights reserved.
+ * @copyright © Explosion-Scratch, All rights reserved.
  */
 
 /* --------------------------------------------------------------------------|
@@ -13,7 +13,7 @@
  |____/___\___/ \___/ \___(_)/ |___/
                            |__/     
 ------------------------------------------------------------------------------|
-Bijou.js is copyrighted by Explosion-Scratch and GrahamSH-LLK of GitHub and released under the MIT license.
+Bijou.js is copyrighted by Explosion-Scratch of GitHub and released under the GPL-3.0 License.
 This software comes with ABSOLUTELY NO WARRANTY and is provided "As is" (with the best intentions of Explosion-Scratch and contributors! =D )
 
 -----------------------------------------------------------------------------|
@@ -76,7 +76,6 @@ if (
 
 if (isNode) {
 	console.warn(
-		"There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.",
 	);
 }
 /**
