@@ -1,0 +1,883 @@
+<html lang="en">
+	<!-- Import stuff --><head>
+		<style type="text/css">
+			span.iconify,
+			i.iconify,
+			iconify-icon {
+				display: inline-block;
+				width: 1em;
+			}
+		</style>
+		<!-- Setup meta tags -->
+		<script>
+			window.location.href = "https://bijou.js.org";
+		</script>
+		<meta
+			name="google-site-verification"
+			content="b-DO3CH5J-EIt3-mVhwI2QpjIUPl6DrSjWm1sVtxaRA"
+		/>
+		<meta
+			name="title"
+			content="Bijou.js - Useful JS snippets and functions"
+		/>
+		<meta
+			name="description"
+			content="Bijou.js – Useful JS snippets, in one simple library: Easy to use, constantly updated, and full of functions."
+		/>
+		<meta
+			name="keywords"
+			content="Bijou.js, Library, Code, JavaScript, JS, HTML, CSS"
+		/>
+		<meta name="robots" content="index, follow" />
+		<meta
+			http-equiv="Content-Type"
+			content="text/html; charset=utf-8"
+		/>
+		<meta name="language" content="English" />
+		<meta name="revisit-after" content="1 days" />
+		<meta
+			name="author"
+			content="--Explosion--, GrahamSH-LLK, Bijou.js Contributors"
+		/>
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://bijou.js.org" />
+		<meta
+			property="og:title"
+			content="Bijou.js - Useful JS snippets and functions"
+		/>
+		<meta
+			property="og:description"
+			content="Bijou.js – Useful JS snippets in one simple library: Easy to use, constantly updated, and full of functions."
+		/>
+		<meta
+			property="og:image"
+			content="https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&amp;height=401"
+		/>
+		<meta content="Bijou.js" property="og:site_name" />
+		<link type="application/json+oembed" href="embeds.json" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://bijou.js.org" />
+		<meta
+			property="twitter:title"
+			content="Bijou.js - Useful JS snippets and functions"
+		/>
+		<meta
+			property="twitter:description"
+			content="Bijou.js – Useful JS snippets in one simple library: Easy to use, constantly updated, and full of functions."
+		/>
+		<meta
+			property="twitter:image"
+			content="https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&amp;height=401"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<!-- Nice theme color on mobile devices! -->
+		<meta name="theme-color" content="#008080" />
+		<!-- Import bijou.js -->
+		<link
+			rel="preload"
+			href="styles.css"
+			as="style"
+			onload="this.onload=null;this.rel='stylesheet'"
+		/>
+		<noscript><link rel="stylesheet" href="styles.css" /></noscript>
+		<!-- Import iconify (For buttons) -->
+		<link
+			rel="shortcut icon"
+			type="image/x-icon"
+			href="favicon.png"
+		/>
+		<!-- Title -->
+		<title>Bijou.js</title>
+		<!-- Use JS to load -->
+
+		<body>
+			<img
+				src="https://cool.explosionscratc.repl.co/bijou_home_static.png"
+				style="display: none; position: absolute"
+			/>
+			<!-- Top section -->
+			<section>
+				<p>
+					<!-- Header -->
+					<span id="header">Bijou</span
+					><span id="small-text"
+						><i
+							><span>/ˈbēZHo͞o,bēˈZHo͞o/</span> A Small and elegant
+							library of useful JavaScript</i
+						></span
+					>
+					<a id="big_button" href="https://bijou.js.org/docs">
+						View functions
+					</a>
+				</p>
+				<!-- Buttons (Using iconify)-->
+				<div class="btns">
+					<a href="https://github.com/bijou-js/bijou.js" class="btn">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink"
+							aria-hidden="true"
+							focusable="false"
+							width="1em"
+							height="1em"
+							preserveAspectRatio="xMidYMid meet"
+							viewBox="0 0 24 24"
+							class="iconify"
+							data-icon="akar-icons:github-fill"
+							data-inline="false"
+							style="transform: rotate(360deg)"
+						>
+							<g fill="none">
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+									fill="currentColor"
+								></path>
+							</g>
+						</svg>
+						<span id="btn-text">GitHub</span>
+					</a>
+					<a
+						href="mailto:explosionscratch@gmail.com?subject=Bijou.js"
+						class="btn"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink"
+							aria-hidden="true"
+							focusable="false"
+							width="1em"
+							height="1em"
+							preserveAspectRatio="xMidYMid meet"
+							viewBox="0 0 24 24"
+							class="iconify"
+							data-icon="eva:email-outline"
+							data-inline="false"
+							style="transform: rotate(360deg)"
+						>
+							<path
+								fill="currentColor"
+								d="M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75L5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2a1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z"
+							></path>
+						</svg>
+						<span id="btn-text">Email Me</span>
+					</a>
+					<a href="try.html" class="btn">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink"
+							aria-hidden="true"
+							focusable="false"
+							width="1em"
+							height="1em"
+							preserveAspectRatio="xMidYMid meet"
+							viewBox="0 0 20 20"
+							class="iconify"
+							data-icon="fluent:play-20-filled"
+							data-inline="false"
+							style="transform: rotate(360deg)"
+						>
+							<g fill="none">
+								<path
+									d="M17.222 8.685a1.5 1.5 0 0 1 0 2.628l-10 5.498A1.5 1.5 0 0 1 5 15.496V4.502a1.5 1.5 0 0 1 2.223-1.314l10 5.497z"
+									fill="currentColor"
+								></path>
+							</g>
+						</svg>
+						<span id="btn-text">Try Bijou.js</span>
+					</a>
+				</div>
+			</section>
+			<!-- Scroll down arrow -->
+			<a href="#readme" id="scroll-down-button">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink"
+					aria-hidden="true"
+					focusable="false"
+					width="1em"
+					height="1em"
+					preserveAspectRatio="xMidYMid meet"
+					viewBox="0 0 20 20"
+					class="iconify"
+					data-icon="fluent:caret-down-20-filled"
+					id="scroll-down-arrow"
+					style="vertical-align: -0.125em; transform: rotate(360deg)"
+				>
+					<g fill="none">
+						<path
+							d="M5.797 7a1 1 0 0 0-.778 1.628l3.814 4.723a1.5 1.5 0 0 0 2.334 0l3.815-4.723A1 1 0 0 0 14.204 7H5.797z"
+							fill="currentColor"
+						></path>
+					</g>
+				</svg>
+			</a>
+			<!-- Readme section (Filled in with JS fetch) -->
+			<section id="readme">
+				<div align="center"><a href="https://bijou.js.org"></a></div>
+				<p>
+					<a href="https://npmjs.com/bijou.js"></a>
+					<a
+						href="https://github.com/bijou-js/bijou.js/stargazers"
+					></a>
+					<a href="https://bijou.js.org"></a>
+					<a href="https://discord.gg/Ec5Wvp78w7"></a>
+					<a
+						href="https://gitpod.io/#https://github.com/bijou-js/bijou.js"
+					></a>
+				</p>
+				<h1 align="center">Bijou.js</h1>
+				<p>
+					Bijou.js is a library of super helpful JavaScript snippets!
+					It has a bunch of useful snippets for all your coding needs!
+					If there's something that's not in here currently but you
+					use frequently, feel free to submit an issue! I'd be happy
+					to add it! Bijou's goal is to eliminate the need to copy
+					paste the same thing from StackOverflow, another project or
+					anywhere else! So if you ever find yourself typing the same
+					thing over and over again, copy pasting the same snippet as
+					you did a few days ago, use Bijou.js! If the snippet you're
+					using isn't in Bijou.js, just submit an issue with the code!
+				</p>
+				<h3 id="table-of-contents">Table of contents</h3>
+				<ul>
+					<li>
+						<a href="#how-to-use-bijoujs">How to use Bijou.js</a>
+						<ul>
+							<li><a href="#cdn">CDN</a></li>
+							<li><a href="#imports">Imports</a></li>
+							<li><a href="#nodejs">NodeJS</a></li>
+						</ul>
+					</li>
+					<li><a href="#usage">Usage</a></li>
+					<li><a href="#who-made-bijoujs">Who made Bijou.js?</a></li>
+					<li>
+						<a href="#why-use-bijou">Why use Bijou?</a>
+						<ul>
+							<li><a href="#installation">Installation</a></li>
+						</ul>
+					</li>
+				</ul>
+				<h1 id="how-to-use-bijoujs">How to use Bijou.js</h1>
+				<p>
+					Thanks for using Bijou.js! It's pretty simple to use, but
+					here's a guide:
+				</p>
+				<h2 id="cdn">CDN</h2>
+				<p>jsDelivr:</p>
+				<pre><code class="html language-html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>
+  <span class="hljs-attr">src</span>=<span class="hljs-string">"https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"</span>
+  <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>
+&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+				<p>UNPKG</p>
+				<pre><code class="html language-html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>
+  <span class="hljs-attr">src</span>=<span class="hljs-string">"https://unpkg.com/bijou.js@latest/bijou.js"</span>
+  <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>
+&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+				<h2 id="imports">Imports</h2>
+				<p>
+					You can also import parts of bijou, for example only the
+					uuid() function:
+				</p>
+				<pre><code class="html language-html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">import</span> { uuid } <span class="hljs-keyword">from</span> <span class="hljs-string">'https://unpkg.com/bijou.js'</span>;
+  <span class="hljs-built_in">console</span>.log(uuid()); <span class="hljs-comment">//Same as _$.uuid() when importing the whole library.</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+				<p>or you can import the whole thing:</p>
+				<pre><code class="html language-html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> _$ <span class="hljs-keyword">from</span> <span class="hljs-string">'https://unpkg.com/bijou.js'</span>;
+  <span class="hljs-built_in">console</span>.log(_$.uuid());
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+				<h2 id="nodejs">NodeJS</h2>
+				<p>
+					Bijou.js is included in NodeJS through NPM and yarn!
+					Depending on the platform you're using you may have to
+					install it through npm or yarn:
+				</p>
+				<pre><code class="bash language-bash hljs">npm install bijou.js</code></pre>
+				<p>or</p>
+				<pre><code class="hljs csharp">yarn <span class="hljs-keyword">add</span> bijou.js</code></pre>
+				<p>Then just require it in your code:</p>
+				<pre><code class="js language-js hljs javascript"><span class="hljs-keyword">const</span> _$ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'bijou.js'</span>);
+<span class="hljs-built_in">console</span>.log(_$.uuid());</code></pre>
+				<h1 id="usage">Usage</h1>
+				<p>
+					To use Bijou.js simply call one of the many functions built
+					into it!
+				</p>
+				<pre><code class="js language-js hljs javascript">_$.anyFunction(); <span class="hljs-comment">//You can name bijou anything when using imports, or when using node you can name it using require();</span></code></pre>
+				<p>Such as this one!</p>
+				<pre><code class="js language-js hljs javascript">_$.uuid(); <span class="hljs-comment">//Results in something like this: c3435c88-0a20-491f-9391-3afde9c4a2d1</span></code></pre>
+				<p>
+					If you need to use a custom prefix than you can set a
+					variable that you want to use as Bijou.js to <code>_$</code>
+				</p>
+				<h1 id="who-made-bijoujs">Who made Bijou.js?</h1>
+				<p>
+					Me (@Explosion-Scratch) and my good friend
+					<a href="https://github.com/GrahamSH-LLK">@GrahamSH-LLK</a>
+					with a lot of help from other people such as retronbv and
+					TheColaber!
+				</p>
+				<h1 id="why-use-bijou">Why use Bijou?</h1>
+				<p>Well, a few reasons:</p>
+				<ol>
+					<li><s>I made it. 😛</s></li>
+					<li>
+						It's useful! (If it's not useful just tell me what you
+						want added in the issues tab! I'd be happy to add it!)
+					</li>
+					<li>
+						It's jam packed full of functions that are super useful
+						but hard to think of!
+					</li>
+					<li>
+						It's very easy to use, and I'm happy to add anything you
+						think of!
+					</li>
+				</ol>
+				<p>
+					<small
+						>(You can probably see I'm pretty desperate for people to
+						use this.)</small
+					>
+				</p>
+				<h2 id="installation">Installation</h2>
+				<p>Bijou.js is available in NodeJS through yarn and NPM</p>
+				<p>
+					<code>npm i bijou.js</code>
+					or
+					<code>yarn add bijou.js</code>
+				</p>
+				<p>Or through a CDN:</p>
+				<pre><code class="hljs css"><span class="hljs-selector-tag">https</span>://<span class="hljs-selector-tag">unpkg</span><span class="hljs-selector-class">.com</span>/<span class="hljs-selector-tag">bijou</span><span class="hljs-selector-class">.js</span>
+<span class="hljs-selector-tag">https</span>://<span class="hljs-selector-tag">cdn</span><span class="hljs-selector-class">.jsdelivr</span><span class="hljs-selector-class">.net</span>/<span class="hljs-selector-tag">npm</span>/<span class="hljs-selector-tag">bijou</span><span class="hljs-selector-class">.js</span>
+<span class="hljs-selector-tag">https</span>://<span class="hljs-selector-tag">cdn</span><span class="hljs-selector-class">.jsdelivr</span><span class="hljs-selector-class">.net</span>/<span class="hljs-selector-tag">gh</span>/<span class="hljs-selector-tag">Bijou-js</span>/<span class="hljs-selector-tag">bijou</span><span class="hljs-selector-class">.js</span><span class="hljs-keyword">@latest</span>/bijou.js</code></pre>
+			</section>
+			<style>
+				/* Import Titillium Web (One of my favorite fonts) */
+				@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;600;900&display=swap");
+
+				/* Initial styles */
+				* {
+					margin: 0;
+					box-sizing: border-box;
+					font-family: "Titillium Web", sans-serif;
+				}
+				section > ul {
+					background: #fff1;
+					border-radius: 7px;
+					padding-top: 5px;
+					padding-bottom: 5px;
+					margin: 5px;
+				}
+				#big_button {
+					transition: box-shadow 0.5s ease, background-color 0.3s ease,
+						transform 0.1s ease;
+					font-size: 15px;
+					text-decoration: none;
+					position: absolute;
+					left: 50%;
+					margin-top: 13px;
+					padding: 10px 20px;
+					text-transform: uppercase;
+					background: transparent;
+					border: 1px solid lightseagreen;
+					color: white;
+					border-radius: 5px;
+					cursor: pointer;
+					transform: translateX(-50%);
+					backdrop-filter: blur(5px);
+				}
+				#big_button:active {
+					transform: translateX(-50%) scale(0.95);
+				}
+				#big_button:hover {
+					background: rgb(21, 134, 129);
+					box-shadow: 0 0 0 4px #fff1;
+				}
+				/* Outline on focus */
+				*:focus {
+					outline: none;
+				}
+
+				/* Headers */
+				h1,
+				h2 {
+					padding: 4px;
+					margin: 4px;
+					filter: url(#turbulence-2);
+				}
+
+				/* Body styling */
+				body {
+					background: #101010;
+					width: 100vw;
+					height: fit-content;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: column;
+				}
+				body::after,
+				body::before {
+					content: "";
+					position: fixed;
+					width: 30vw;
+					height: 30vw;
+					filter: blur(10px);
+					z-index: -10000;
+					border-radius: 50%;
+					display: block;
+					background: rgb(12, 139, 133);
+					opacity: 0.5;
+					top: -10%;
+					left: -10%;
+				}
+				body::before {
+					top: 60%;
+					left: 90%;
+				}
+				/* Sections */
+				section {
+					font-size: 20px;
+					border-radius: 10px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: column;
+					padding: 20px 40px;
+					width: 80vw;
+					min-height: 100vh;
+					height: fit-content;
+					background: #0009;
+					color: white;
+					backdrop-filter: blur(10px);
+					max-width: 600px;
+				}
+
+				/* README styling */
+				p * {
+					text-align: center;
+					display: block;
+				}
+				#readme > ul:first-of-type::before {
+					content: "Table of contents";
+					font-size: 24px;
+					text-align: center;
+					width: max-content;
+					padding: 0;
+				}
+				/* Gradient <hr>'s */
+				hr {
+					display: block;
+					width: 100%;
+					height: 2px;
+					border: none;
+					outline: none;
+					background: linear-gradient(
+						to right,
+						transparent,
+						lightseagreen,
+						transparent
+					);
+				}
+
+				/* Top banner section header  */
+				p span#header {
+					font-weight: 900;
+					font-size: 20vmin;
+					color: white;
+					filter: url(#turbulence);
+				}
+
+				p span#header::selection {
+					background: transparent !important;
+				}
+
+				/* Small text subtitle */
+				#small-text i {
+					font-size: 15px;
+				}
+
+				/* Pronunciation */
+				#small-text i span {
+					font-style: none;
+					font-size: 14px;
+				}
+
+				/* Paragraphs which are not headers (For the readme) */
+				p span:not(#header) {
+					font-size: 5vmin;
+					color: white;
+				}
+
+				/* Details tags */
+				details {
+					width: 100%;
+					display: block;
+				}
+
+				/* Open */
+				details[open] {
+					padding: 10px 0px;
+				}
+
+				details[open] summary {
+					text-align: center;
+					font-size: 4vmin;
+					font-weight: 500;
+				}
+
+				/* Blobs (Most of the movement is done with JS) */
+				.blob {
+					will-change: height, width, top, left;
+					transition: all 3s ease;
+					z-index: -100;
+					border-radius: 50%;
+					position: fixed;
+				}
+
+				/* The container for the blobs */
+				.blobs {
+					top: 0;
+					left: 0;
+					filter: url(#goo);
+					position: fixed;
+					z-index: -100;
+				}
+
+				/* The first section */
+				section:first-of-type {
+					backdrop-filter: none;
+					background: transparent;
+				}
+
+				ul {
+					width: 100%;
+				}
+				a {
+					color: lightblue;
+				}
+				/* Button links */
+				.btn {
+					overflow: hidden;
+					height: 40px;
+					transition: filter 0.3s ease;
+					display: block;
+					padding: 5px;
+					background: transparent;
+					text-decoration: none;
+					color: white;
+					border-radius: 20px;
+					margin: 8px;
+				}
+				.btns {
+					position: fixed;
+					left: 0px;
+					top: 10px;
+					display: block;
+					width: 60px;
+					border-radius: 3px;
+					overflow: hidden;
+					transition: opacity 0.5s ease, width 0.3s ease,
+						background-color 0.3s ease, backdrop-filter 0.3s ease;
+				}
+				.btns #btn-text {
+					transition: opacity 0.3s ease;
+					color: transparent;
+				}
+				.btns:hover #btn-text {
+					color: white;
+				}
+				.btns:hover {
+					width: 200px;
+					backdrop-filter: blur(10px);
+					background-color: #0009;
+					color: white;
+				}
+				.btn #btn-text {
+					position: relative;
+					bottom: 8px;
+				}
+				a.iconify {
+					margin-right: 7px;
+				}
+				/* More link stuff */
+				a .iconify:hover {
+					filter: drop-shadow(0 0 5px #fff);
+				}
+
+				/* Hide the open sandbox button */
+				iframe {
+					visibility: hidden !important;
+					display: none !important;
+				}
+
+				/* Hide the extra <br>'s that showdown puts in */
+				section br {
+					display: none;
+				}
+
+				/* Icons */
+
+				.iconify {
+					transition: filter 0.3s ease;
+					font-size: 30px;
+				}
+
+				/* Scroll down arrow */
+				#scroll-down-button {
+					transition: opacity 0.3s ease;
+					position: absolute;
+					bottom: 20px;
+					left: 50%;
+					transform: translateX(-50%);
+					display: block;
+					width: fit-content;
+					animation: pulse 1s ease infinite;
+					color: white;
+					background: transparent;
+					border: none;
+				}
+
+				/* Hidden button */
+				#scroll-down-button.hidden {
+					opacity: 0;
+					pointer-events: none;
+				}
+
+				/* Pause animation on hover */
+				#scroll-down-button:hover {
+					cursor: pointer;
+					animation-play-state: paused;
+				}
+
+				/* Pulsing arrow keyframes */
+				@keyframes pulse {
+					0% {
+						bottom: 20px;
+					}
+
+					50% {
+						bottom: 40px;
+					}
+
+					100% {
+						bottom: 20px;
+					}
+				}
+
+				/* Pause animation on hover */
+				#scroll-down-arrow:hover {
+					animation: none;
+				}
+
+				#scroll-down-arrow > a {
+					color: white;
+				}
+
+				/* Selection color */
+				*::selection,
+				*::-moz-selection,
+				*::-webkit-selection,
+				*::-ms-selection,
+				*::-o-selection {
+					background: #0bb4 !important;
+					color: currentColor;
+				}
+				/*!
+ * GitHub.com style
+ *
+ * GitHub Light v0.5.0
+ * https://github.com/primer/github-syntax-light
+ */
+
+				.hljs,
+				code {
+					background: #222;
+					border-radius: 5px;
+					width: 60vw;
+					max-width: 450px !important;
+					overflow: scroll;
+					white-space: pre;
+					display: block;
+					overflow-x: auto;
+					padding: 0.5em;
+					color: #fff;
+				}
+				.hljs * {
+					font-family: monospace !important;
+				}
+				.hljs-keyword,
+				.hljs-doctag,
+				.hljs-meta-keyword,
+				.hljs-builtin-name,
+				.hljs-type,
+				.hljs-template-tag,
+				.hljs-template-variable {
+					color: #d73a49;
+				}
+
+				.hljs-title {
+					color: #b392f0;
+				}
+
+				.hljs-literal,
+				.hljs-number,
+				.hljs-attr,
+				.hljs-attrib,
+				.hljs-variab,
+				.hljs-selector-id,
+				.hljs-selector-class,
+				.hljs-selector-attr {
+					color: #0366d6;
+				}
+
+				.hljs-regexp,
+				.hljs-string,
+				.hljs-meta-string {
+					color: #79b8ff;
+				}
+
+				.hljs-built_in,
+				.hljs-symbol,
+				.hljs-class .hljs-title {
+					color: #e36209;
+				}
+
+				.hljs-comment,
+				.hljs-meta,
+				.hljs-code,
+				.hljs-formula {
+					color: #6a737d;
+				}
+
+				.hljs-section {
+					font-weight: bold;
+					color: #0366d6;
+				}
+
+				.hljs-name,
+				.hljs-quote,
+				.hljs-selector-tag,
+				.hljs-selector-pseudo {
+					color: #79b8ff;
+				}
+
+				.hljs-bullet {
+					color: #fb8532;
+				}
+
+				.hljs-emphasis {
+					font-style: italic;
+					color: #2f363d;
+				}
+
+				.hljs-strong {
+					font-weight: bold;
+					color: #2f363d;
+				}
+
+				.hljs-link {
+					text-decoration: underline;
+				}
+
+				.hljs-addition {
+					color: #aff5b4;
+					background-color: #033a16;
+				}
+
+				.hljs-deletion {
+					color: #ffdcd7;
+					background-color: #67060c;
+				}
+			</style>
+
+			<!-- End of doc -->
+
+			<svg style="display: none">
+				<filter id="turbulence-2">
+					<feTurbulence
+						id="turbulence-filter-2"
+						type="turbulence"
+						baseFrequency="0.05"
+						numOctaves="2"
+						result="turbulence-2"
+					></feTurbulence>
+					<feDisplacementMap
+						in2="turbulence-2"
+						in="SourceGraphic"
+						scale="2"
+						xChannelSelector="R"
+						yChannelSelector="G"
+					></feDisplacementMap>
+					<animate
+						xlink:href="#turbulence-filter-2"
+						attributeName="baseFrequency"
+						dur="10s"
+						keyTimes="0;0.5;1"
+						values="0.02 0.06;0.04 0.08;0.02 0.06"
+						repeatCount="indefinite"
+					></animate>
+				</filter>
+			</svg>
+			<svg
+				style="display: none"
+				xmlns="http://www.w3.org/2000/svg"
+				version="1.1"
+			>
+				<defs>
+					<filter id="goo">
+						<feGaussianBlur
+							in="SourceGraphic"
+							stdDeviation="10"
+							result="blur"
+						></feGaussianBlur>
+						<feColorMatrix
+							in="blur"
+							mode="matrix"
+							values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+							result="goo"
+						></feColorMatrix>
+						<feBlend in="SourceGraphic" in2="goo"></feBlend>
+					</filter>
+				</defs>
+			</svg>
+			<svg style="display: none">
+				<filter id="turbulence">
+					<feTurbulence
+						id="turbulence-filter"
+						type="turbulence"
+						baseFrequency="0.05"
+						numOctaves="2"
+						result="turbulence"
+					></feTurbulence>
+					<feDisplacementMap
+						in2="turbulence"
+						in="SourceGraphic"
+						scale="5"
+						xChannelSelector="R"
+						yChannelSelector="G"
+					></feDisplacementMap>
+					<animate
+						xlink:href="#turbulence-filter"
+						attributeName="baseFrequency"
+						dur="10s"
+						keyTimes="0;0.5;1"
+						values="0.02 0.06;0.04 0.08;0.02 0.06"
+						repeatCount="indefinite"
+					></animate>
+				</filter>
+			</svg>
+		</body>
+	</head>
+</html>

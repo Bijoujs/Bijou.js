@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Adding meta -->
+    
+    
+    <meta name="author" content="Explosion-Scratch" />
+    
+    <meta name="description" content="Bijou.js documentation: Everything function in Bijou.js documented!" />
+    
+    <meta name="keywords" content="Bijou.js, Docs, documentation, library, JS, HTML, CSS" />
+    
+    <meta name="theme-color" content="#008080" />
+    
+    <meta property="twitter:card" content="summary_large_image" />
+    
+    <meta property="twitter:url" content="https://bijou.js.org/docs" />
+    
+    <meta property="twitter:title" content="Bijou.js docs" />
+    
+    <meta property="og:title" content="Bijou.js docs" />
+    
+    <meta property="og:site_name" content="Bijou.js" />
+    
+    <meta property="og:description" content="Bijou.js documentation: Every function in Bijou.js is documented here!" />
+    
+    <meta property="og:image" content="https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401" />
+    
+    <meta property="twitter:image" content="https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401" />
+    
+    <meta property="twitter:description" content="Bijou.js documentation: Every function in Bijou.js is documented here!" />
+    
+    <meta name="language" content="English" />
+    
+    <meta name="revisit-after" content="1 days" />
+    
+    
+
+    <!-- Adding external script-->
+    
+    
+    <script href="https://unpkg.com/bijou.js@v6.2.0" type="module" ></script>
+    
+    
+
+    <!-- Adding external style-->
+    
+    
+    <link rel="shortcut icon" type="image/png" href="https://bijou.js.org/favicon.png" />
+    
+    
+
+    <!-- Adding scripts-->
+    
+
+    <!-- Adding style-->
+    
+
+    <!-- Adding overlay script-->
+    
+
+    <!-- Adding overlay style-->
+    
+
+
+    <title>
+      function
+    </title>
+
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/third-party/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/third-party/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/reset.css">
+    <link type="text/css" rel="stylesheet" href="styles/heading.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
+    
+    <style>
+      pre, pre * {font-family: monospace !important;} .tooltip * {color: white !important}
+
+nav {
+  background: linear-gradient(to right, #088, #0ca) !important;
+  padding: 10px !important;
+}
+nav, nav * {
+  box-sizing: border-box !important;
+}
+nav * {
+  color: white !important;
+}
+div.search-box-input-container {
+  background: #fff4 !important;
+  border-radius: 5px !important;
+}
+nav ::placeholder {
+  color: #ddd !important;
+}
+nav svg {
+  fill: white !important;
+}
+.methods {
+  background: #0001 !important;
+}
+.accordion-content {
+  background: #fff1 !important;
+}
+div.accordion-heading {
+  background: #fff3 !important;
+}
+
+::-webkit-scrollbar {
+  width: 3px !important;
+}
+::-webkit-scrollbar-track{
+  background: #0bb1 !important;
+}
+
+nav ::-webkit-scrollbar-thumb{
+  border-radius: 1000px !important;
+  background: #fff3 !important;
+}
+
+.page-title, header * {
+  border-color: #0ca5;
+}
+article pre * {
+  background: #111;
+}
+
+li.p-h-n {
+  color: #333 !important;
+}
+#search-item-ul * {
+  color: #333 !important;
+}
+#search-item-ul {
+  background: #fff9 !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 3px !important;
+}
+
+div.code-copy-icon-container:hover * {
+  color: white !important;
+  fill: white !important;
+}
+    </style>
+    
+    <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    style="display:none">
+    <defs>
+        <symbol id="copy-icon" viewbox="0 0 488.3 488.3">
+            <g>
+                <path
+                    d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z" />
+                <path
+                    d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6    V38.6C439.65,17.3,422.35,0,401.05,0z" />
+            </g>
+        </symbol>
+        <symbol id='search-icon' viewBox="0 0 512 512">
+            <g>
+                <g>
+                    <path
+                        d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474    c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323    c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848    S326.847,409.323,225.474,409.323z" />
+                </g>
+            </g>
+            <g>
+                <g>
+                    <path
+                        d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328    c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z" />
+                </g>
+            </g>
+        </symbol>
+        <symbol id="down-icon" viewBox="0 0 16 16">
+            <path 
+                fill-rule="evenodd" 
+                clip-rule="evenodd" 
+                d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"
+            >
+            </path>
+        </symbol>
+    </defs>
+</svg>
+  </head>
+
+  <body>
+
+    <nav class="navbar" id="navbar">
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://bijou.js.org' class=' menu-link' id='' target=''>Home</a></li><li class="menu-li"><a href='https://github.com/bijou-js/bijou.js' class=' menu-link' id='' target='_blank'>Github</a></li><li class="menu-li"><a href='https://bijou.js.org/docs/bijou.html' class=' menu-link' id='' target=''>Functions in Bijou</a></li></ul><div class="accordion collapsed" id="5070533" > <h3 class="accordion-heading">Namespaces<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=4338783><div class="accordion-heading child"><a href="array.html">array</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="array.html#.exports.arrayDiff">exports.arrayDiff</a></li><li data-type='method'><a href="array.html#.exports.averageBy">exports.averageBy</a></li><li data-type='method'><a href="array.html#.exports.contains">exports.contains</a></li><li data-type='method'><a href="array.html#.exports.diff">exports.diff</a></li><li data-type='method'><a href="array.html#.exports.each">exports.each</a></li><li data-type='method'><a href="array.html#.exports.flatten">exports.flatten</a></li><li data-type='method'><a href="array.html#.exports.nFlatten">exports.nFlatten</a></li><li data-type='method'><a href="array.html#.exports.remove">exports.remove</a></li><li data-type='method'><a href="array.html#.exports.shuffleArray">exports.shuffleArray</a></li><li data-type='method'><a href="array.html#.exports.splice">exports.splice</a></li><li data-type='method'><a href="array.html#.exports.spliceArrayBuffer">exports.spliceArrayBuffer</a></li><li data-type='method'><a href="array.html#.exports.unionArrays">exports.unionArrays</a></li><li data-type='method'><a href="array.html#.exports.uniqueArray">exports.uniqueArray</a></li></ul></li><li class="accordion collapsed child" id=1516619><div class="accordion-heading child"><a href="color.html">color</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="color.html#.exports.blendColors">exports.blendColors</a></li><li data-type='method'><a href="color.html#.exports.hexToRGB">exports.hexToRGB</a></li><li data-type='method'><a href="color.html#.exports.lightenColor">exports.lightenColor</a></li><li data-type='method'><a href="color.html#.exports.lightOrDark">exports.lightOrDark</a></li><li data-type='method'><a href="color.html#.exports.randomColor">exports.randomColor</a></li><li data-type='method'><a href="color.html#.exports.rgbToHex">exports.rgbToHex</a></li></ul></li><li class="accordion collapsed child" id=9480629><div class="accordion-heading child"><a href="date.html">date</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="date.html#.exports.dayName">exports.dayName</a></li><li data-type='method'><a href="date.html#.exports.formatMilliseconds">exports.formatMilliseconds</a></li></ul></li><li class="accordion collapsed child" id=2554974><div class="accordion-heading child"><a href="element.html">element</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="element.html#.exports.addEventListeners">exports.addEventListeners</a></li><li data-type='method'><a href="element.html#.exports.addStyles">exports.addStyles</a></li><li data-type='method'><a href="element.html#.exports.attributes">exports.attributes</a></li><li data-type='method'><a href="element.html#.exports.compStyle">exports.compStyle</a></li><li data-type='method'><a href="element.html#.exports.context">exports.context</a></li><li data-type='method'><a href="element.html#.exports.create">exports.create</a></li><li data-type='method'><a href="element.html#.exports.createElement">exports.createElement</a></li><li data-type='method'><a href="element.html#.exports.disableRightClick">exports.disableRightClick</a></li><li data-type='method'><a href="element.html#.exports.drag">exports.drag</a></li><li data-type='method'><a href="element.html#.exports.elementReady">exports.elementReady</a></li><li data-type='method'><a href="element.html#.exports.elementSiblings">exports.elementSiblings</a></li><li data-type='method'><a href="element.html#.exports.fullScreen">exports.fullScreen</a></li><li data-type='method'><a href="element.html#.exports.inlineCSS">exports.inlineCSS</a></li><li data-type='method'><a href="element.html#.exports.inPartialView">exports.inPartialView</a></li><li data-type='method'><a href="element.html#.exports.inView">exports.inView</a></li><li data-type='method'><a href="element.html#.exports.observeMutations">exports.observeMutations</a></li><li data-type='method'><a href="element.html#.exports.parseHTML">exports.parseHTML</a></li><li data-type='method'><a href="element.html#.exports.querySelector">exports.querySelector</a></li><li data-type='method'><a href="element.html#.exports.removeComments">exports.removeComments</a></li><li data-type='method'><a href="element.html#.exports.replaceSelection">exports.replaceSelection</a></li><li data-type='method'><a href="element.html#.exports.replaceText">exports.replaceText</a></li><li data-type='method'><a href="element.html#.exports.sortTable">exports.sortTable</a></li><li data-type='method'><a href="element.html#.exports.sortTableBy">exports.sortTableBy</a></li><li data-type='method'><a href="element.html#.exports.textNodes">exports.textNodes</a></li><li data-type='method'><a href="element.html#.exports.tilt">exports.tilt</a></li></ul></li><li class="accordion collapsed child" id=147333><div class="accordion-heading child"><a href="event.html">event</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="event.html#.exports.dispatch">exports.dispatch</a></li><li data-type='method'><a href="event.html#.exports.hub">exports.hub</a></li><li data-type='method'><a href="event.html#.exports.onOutsideClick">exports.onOutsideClick</a></li><li data-type='method'><a href="event.html#.exports.onScrollStop">exports.onScrollStop</a></li></ul></li><li class="accordion collapsed child" id=3847532><div class="accordion-heading child"><a href="function.html">function</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="function.html#.exports.composeFunction">exports.composeFunction</a></li><li data-type='method'><a href="function.html#.exports.curryFunction">exports.curryFunction</a></li><li data-type='method'><a href="function.html#.exports.debounce">exports.debounce</a></li><li data-type='method'><a href="function.html#.exports.isAsync">exports.isAsync</a></li><li data-type='method'><a href="function.html#.exports.memoize">exports.memoize</a></li><li data-type='method'><a href="function.html#.exports.runAsync">exports.runAsync</a></li><li data-type='method'><a href="function.html#.exports.spread">exports.spread</a></li><li data-type='method'><a href="function.html#.exports.throttle">exports.throttle</a></li><li data-type='method'><a href="function.html#.exports.timeFunction">exports.timeFunction</a></li></ul></li><li class="accordion collapsed child" id=8134312><div class="accordion-heading child"><a href="math.html">math</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="math.html#.exports.animate">exports.animate</a></li><li data-type='method'><a href="math.html#.exports.formatNumber">exports.formatNumber</a></li><li data-type='method'><a href="math.html#.exports.primesTo">exports.primesTo</a></li><li data-type='method'><a href="math.html#.exports.random">exports.random</a></li><li data-type='method'><a href="math.html#.exports.range">exports.range</a></li><li data-type='method'><a href="math.html#.exports.seedRandom">exports.seedRandom</a></li><li data-type='method'><a href="math.html#.exports.uuid">exports.uuid</a></li></ul></li><li class="accordion collapsed child" id=7519923><div class="accordion-heading child"><a href="object.html">object</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="object.html#.exports.clone">exports.clone</a></li><li data-type='method'><a href="object.html#.exports.flattenObj">exports.flattenObj</a></li><li data-type='method'><a href="object.html#.exports.formToObject">exports.formToObject</a></li><li data-type='method'><a href="object.html#.exports.listen">exports.listen</a></li><li data-type='method'><a href="object.html#.exports.mapObjectKeys">exports.mapObjectKeys</a></li><li data-type='method'><a href="object.html#.exports.mapObjectValues">exports.mapObjectValues</a></li><li data-type='method'><a href="object.html#.exports.merge">exports.merge</a></li><li data-type='method'><a href="object.html#.exports.sortObj">exports.sortObj</a></li></ul></li><li class="accordion collapsed child" id=8004436><div class="accordion-heading child"><a href="string.html">string</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="string.html#.exports.byteSize">exports.byteSize</a></li><li data-type='method'><a href="string.html#.exports.camelCase">exports.camelCase</a></li><li data-type='method'><a href="string.html#.exports.capitalize">exports.capitalize</a></li><li data-type='method'><a href="string.html#.exports.deburr">exports.deburr</a></li><li data-type='method'><a href="string.html#.exports.editDistance">exports.editDistance</a></li><li data-type='method'><a href="string.html#.exports.escapeHTML">exports.escapeHTML</a></li><li data-type='method'><a href="string.html#.exports.forTemplateLiteral">exports.forTemplateLiteral</a></li><li data-type='method'><a href="string.html#.exports.hashString">exports.hashString</a></li><li data-type='method'><a href="string.html#.exports.markdownToHTML">exports.markdownToHTML</a></li><li data-type='method'><a href="string.html#.exports.previousPage">exports.previousPage</a></li><li data-type='method'><a href="string.html#.exports.removeTags">exports.removeTags</a></li><li data-type='method'><a href="string.html#.exports.replaceBetween">exports.replaceBetween</a></li><li data-type='method'><a href="string.html#.exports.replaceMultiple">exports.replaceMultiple</a></li><li data-type='method'><a href="string.html#.exports.sanitize">exports.sanitize</a></li><li data-type='method'><a href="string.html#.exports.scrambleString">exports.scrambleString</a></li><li data-type='method'><a href="string.html#.exports.speak">exports.speak</a></li><li data-type='method'><a href="string.html#.exports.syllables">exports.syllables</a></li><li data-type='method'><a href="string.html#.exports.syntaxHighlight">exports.syntaxHighlight</a></li><li data-type='method'><a href="string.html#.exports.titleCase">exports.titleCase</a></li><li data-type='method'><a href="string.html#.exports.unCamelCase">exports.unCamelCase</a></li><li data-type='method'><a href="string.html#.exports.unescapeHTML">exports.unescapeHTML</a></li><li data-type='method'><a href="string.html#.exports.urlQuery">exports.urlQuery</a></li><li data-type='method'><a href="string.html#.exports.widows">exports.widows</a></li></ul></li><li class="accordion collapsed child" id=4277892><div class="accordion-heading child"><a href="utility.html">utility</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="utility.html#.callbackify">callbackify</a></li><li data-type='method'><a href="utility.html#.exports.arrayToCSV">exports.arrayToCSV</a></li><li data-type='method'><a href="utility.html#.exports.browser">exports.browser</a></li><li data-type='method'><a href="utility.html#.exports.copy">exports.copy</a></li><li data-type='method'><a href="utility.html#.exports.formatHTML">exports.formatHTML</a></li><li data-type='method'><a href="utility.html#.exports.getHTML">exports.getHTML</a></li><li data-type='method'><a href="utility.html#.exports.getJSON">exports.getJSON</a></li><li data-type='method'><a href="utility.html#.exports.imageToData">exports.imageToData</a></li><li data-type='method'><a href="utility.html#.exports.jsonToCsv">exports.jsonToCsv</a></li><li data-type='method'><a href="utility.html#.exports.loadScript">exports.loadScript</a></li><li data-type='method'><a href="utility.html#.exports.mobileOrDesktop">exports.mobileOrDesktop</a></li><li data-type='method'><a href="utility.html#.exports.notify">exports.notify</a></li><li data-type='method'><a href="utility.html#.exports.playSection">exports.playSection</a></li><li data-type='method'><a href="utility.html#.exports.preloadImage">exports.preloadImage</a></li><li data-type='method'><a href="utility.html#.exports.requestInterval">exports.requestInterval</a></li><li data-type='method'><a href="utility.html#.exports.saveBlob">exports.saveBlob</a></li><li data-type='method'><a href="utility.html#.exports.serializeForm">exports.serializeForm</a></li><li data-type='method'><a href="utility.html#.getItem">getItem</a></li><li data-type='method'><a href="utility.html#.promisify">promisify</a></li><li data-type='method'><a href="utility.html#.removeItem">removeItem</a></li><li data-type='method'><a href="utility.html#.setItem">setItem</a></li></ul></li></ul> </div><div class="accordion collapsed" id="1714212" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#_temp">_temp</a></li><li class="accordion-list" id=""><a href="global.html#node">node</a></li><li class="accordion-list" id=""><a href="global.html#prototype">prototype</a></li></ul> </div></div>
+    </nav>
+    <div class="navbar-ham" id="navbar-ham">
+      <div>
+        <div class="first"></div>
+        <div class="second"></div>
+        <div class="third"></div>
+      </div>
+    </div>
+
+    <div id="main" class="main-content">
+      
+      <h1 id='page-title' class="page-title">
+        function
+      </h1>
+      
+
+      
+
+
+
+
+<section>
+
+
+<header>
+    
+        
+        <h2>
+        
+        function
+        
+        </h2>
+        
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>The function namespace of Bijou.js, containing functions to work with functions themselves, such as debouncing, throttling, memoizing, currying, timing and much more!</p></div>
+        
+
+        
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".exports.fastestFunction">
+    <a href="#.exports.fastestFunction">#</a>
+    <span class="type-signature">(static) </span>exports.fastestFunction<span class="type-signature"></span>
+</h4>
+
+
+
+
+<div class="description">
+    <p>Returns the index of the fastest function in an array of functions.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>_$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("&lt;h1>Hello world&lt;/h1>", "html")]);//0, the first function.</code></pre>
+
+
+
+        
+            
+<h4 class="name" id=".exports.juxt">
+    <a href="#.exports.juxt">#</a>
+    <span class="type-signature">(static) </span>exports.juxt<span class="type-signature"></span>
+</h4>
+
+
+
+
+<div class="description">
+    <p>Runs a list of functions with a list of arguments.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>//It returns an array of outputs, each item in the base array is the output of one function, and each item in that array is the output for each argument.
+_$.juxt(
+    x => x + 1,
+    x => x - 1,
+    x => x * 10
+  )(1, 2, 3); // [[2, 3, 4], [0, 1, 2], [10, 20, 30]]</code></pre>
+
+
+
+        
+            
+<h4 class="name" id=".exports.limitArgs">
+    <a href="#.exports.limitArgs">#</a>
+    <span class="type-signature">(static) </span>exports.limitArgs<span class="type-signature"></span>
+</h4>
+
+
+
+
+<div class="description">
+    <p>Limits the arguments that a given function takes to only the 1st n arguments.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>//Now console can only log one item. How utterly useless but explanatory at the same time!
+console.log = _$.limitArgs(console.log, 1);</code></pre>
+
+
+
+        
+            
+<h4 class="name" id=".exports.sleep">
+    <a href="#.exports.sleep">#</a>
+    <span class="type-signature">(static) </span>exports.sleep<span class="type-signature"></span>
+</h4>
+
+
+
+
+<div class="description">
+    <p>Returns a promise after a specified number of milliseconds.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>(async () => {
+   while (true){
+    document.body.innerHTML = (await _$.getJSON("https://time.jsontest.com")).time
+    await _$.sleep(60000);//Wait one minute then loop.
+   }
+})</code></pre>
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.composeFunction">
+        <a href="#.exports.composeFunction">#</a>
+        <span class="type-signature">(static) </span>exports.composeFunction<span class="signature">(&hellip;The)</span><span class="type-signature"> &rarr; {<a href="function.html">function</a>}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>The</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>functions to be composed.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The composed function.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>const add2 = (x) => x + 2;
+const multiply2 = (x) => x * 2;
+console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  3 * 2 + 2</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.curryFunction">
+        <a href="#.exports.curryFunction">#</a>
+        <span class="type-signature">(static) </span>exports.curryFunction<span class="signature">(fn, arity<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="function.html">function</a>}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The function to curry.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>arity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    fn.length
+                
+                </td>
+            
+
+            <td class="description last"><p>The arity (number of params) of the function to curry.
+{...*} [args] Optional arguments to pass to the function being curried.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The curried version of the function.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>let fn = (x, y, z, w) => x * y * z * w;
+console.log(_$.curryFunction(fn, 4, 5)(4)(3)(2)); // 120 i.e. 5 * 4 * 3 * 2</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.debounce">
+        <a href="#.exports.debounce">#</a>
+        <span class="type-signature">(static) </span>exports.debounce<span class="signature">(func, wait, immediate<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Debounces a function</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>func</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The function to throttle.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>wait</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The milliseconds to wait between executions.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>immediate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Whether or not to run immediately, or after a group of executions.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>window.addEventListener("keyup", _$.debounce(expensiveFunction, 100));//Run the function expensiveFunction at most every 100ms.</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.isAsync">
+        <a href="#.exports.isAsync">#</a>
+        <span class="type-signature">(static) </span>exports.isAsync<span class="signature">(val)</span><span class="type-signature"> &rarr; {Boolean}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Returns if the given function is async or not.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The function to test.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>True if the function is async and false if not.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>const asyncFn = async (x) => x ** 3; // It's a silly function, but a good example
+console.log(_$.isAsync(asyncFn)); // true</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.memoize">
+        <a href="#.exports.memoize">#</a>
+        <span class="type-signature">(static) </span>exports.memoize<span class="signature">(fn)</span><span class="type-signature"> &rarr; {<a href="function.html">function</a>}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Memoizes a function, basically caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The function to memoize.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The memoized function.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.runAsync">
+        <a href="#.exports.runAsync">#</a>
+        <span class="type-signature">(static) </span>exports.runAsync<span class="signature">(fn)</span><span class="type-signature"> &rarr; {Promise}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Runs a function asynchronously in a web worker.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The function to run</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>A promise that resolves into the return value of the function.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.runAsync(() =>  "hello world").then(console.log); // "hello world"</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.spread">
+        <a href="#.exports.spread">#</a>
+        <span class="type-signature">(static) </span>exports.spread<span class="signature">(fn)</span><span class="type-signature"> &rarr; {<a href="function.html">function</a>}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Uses an array of arguments to make a function based on the one inputted.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The function to use</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>var say = _$.spread(function(who, what) {
+    return who + ' says ' + what;
+  });
+  say(["Fred", "hi"]);//"Fred says hi"</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.throttle">
+        <a href="#.exports.throttle">#</a>
+        <span class="type-signature">(static) </span>exports.throttle<span class="signature">(func, options, wait)</span><span class="type-signature"> &rarr; {<a href="function.html">function</a>}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Only runs the input function at MAX with the delay specified.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>func</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The function to run.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object.&lt;Boolean></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>wait</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The number of milliseconds to wait.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The throttled function</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>const alert_function = _$.throttle(() => {alert("hello")}, 5000)
+setInterval(alert_function, 1)</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.timeFunction">
+        <a href="#.exports.timeFunction">#</a>
+        <span class="type-signature">(static) </span>exports.timeFunction<span class="signature">(fn, name<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Times the function passed.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The function to run and time.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    _$ function timer
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>An object with &quot;time&quot; and &quot;function&quot; properties, time being time in milliseconds, and function being the original function passed.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>// Times how long it took the user to enter their name.
+_$.timeFunction(() => prompt("What's your name?"));</code></pre>
+
+    </div>
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    </div>
+
+    <footer class="footer" id="footer">
+      
+    </footer>
+
+    <script src="scripts/third-party/prettify.js"></script>
+    <script src="scripts/third-party/lang-css.js"></script>
+    <script src="scripts/search.js"></script>
+    <script src="scripts/third-party/fuse.js"></script>
+    <script type="text/javascript" src="scripts/misc.js"></script>
+
+    <script>prettyPrint();</script>
+    <script src="scripts/linenumber.js"></script>
+    <script src="scripts/fix-code-block.js"></script>
+    <script src="scripts/fix-navbar.js"></script>
+    <script>
+      var list = [{"title":"array","link":"<a href=\"array.html\">array</a>"},{"title":"array.exports.arrayDiff","link":"<a href=\"array.html#.exports.arrayDiff\">array.exports.arrayDiff &rtrif; undefined</a>"},{"title":"array.exports.averageBy","link":"<a href=\"array.html#.exports.averageBy\">array.exports.averageBy &rtrif; undefined</a>"},{"title":"array.exports.contains","link":"<a href=\"array.html#.exports.contains\">array.exports.contains &rtrif; undefined</a>"},{"title":"array.exports.diff","link":"<a href=\"array.html#.exports.diff\">array.exports.diff &rtrif; undefined</a>"},{"title":"array.exports.each","link":"<a href=\"array.html#.exports.each\">array.exports.each &rtrif; undefined</a>"},{"title":"array.exports.flatten","link":"<a href=\"array.html#.exports.flatten\">array.exports.flatten &rtrif; undefined</a>"},{"title":"array.exports.nFlatten","link":"<a href=\"array.html#.exports.nFlatten\">array.exports.nFlatten &rtrif; undefined</a>"},{"title":"array.exports.remove","link":"<a href=\"array.html#.exports.remove\">array.exports.remove &rtrif; undefined</a>"},{"title":"array.exports.shuffleArray","link":"<a href=\"array.html#.exports.shuffleArray\">array.exports.shuffleArray &rtrif; undefined</a>"},{"title":"array.exports.splice","link":"<a href=\"array.html#.exports.splice\">array.exports.splice &rtrif; undefined</a>"},{"title":"array.exports.spliceArrayBuffer","link":"<a href=\"array.html#.exports.spliceArrayBuffer\">array.exports.spliceArrayBuffer &rtrif; undefined</a>"},{"title":"array.exports.unionArrays","link":"<a href=\"array.html#.exports.unionArrays\">array.exports.unionArrays &rtrif; undefined</a>"},{"title":"array.exports.uniqueArray","link":"<a href=\"array.html#.exports.uniqueArray\">array.exports.uniqueArray &rtrif; undefined</a>"},{"title":"color","link":"<a href=\"color.html\">color</a>"},{"title":"color.exports.blendColors","link":"<a href=\"color.html#.exports.blendColors\">color.exports.blendColors &rtrif; undefined</a>"},{"title":"color.exports.hexToRGB","link":"<a href=\"color.html#.exports.hexToRGB\">color.exports.hexToRGB &rtrif; undefined</a>"},{"title":"color.exports.lightenColor","link":"<a href=\"color.html#.exports.lightenColor\">color.exports.lightenColor &rtrif; undefined</a>"},{"title":"color.exports.lightOrDark","link":"<a href=\"color.html#.exports.lightOrDark\">color.exports.lightOrDark &rtrif; undefined</a>"},{"title":"color.exports.randomColor","link":"<a href=\"color.html#.exports.randomColor\">color.exports.randomColor &rtrif; undefined</a>"},{"title":"color.exports.rgbToHex","link":"<a href=\"color.html#.exports.rgbToHex\">color.exports.rgbToHex &rtrif; undefined</a>"},{"title":"date","link":"<a href=\"date.html\">date</a>"},{"title":"date.exports.dayName","link":"<a href=\"date.html#.exports.dayName\">date.exports.dayName &rtrif; undefined</a>"},{"title":"date.exports.formatMilliseconds","link":"<a href=\"date.html#.exports.formatMilliseconds\">date.exports.formatMilliseconds &rtrif; undefined</a>"},{"title":"element","link":"<a href=\"element.html\">element</a>"},{"title":"element.exports.addEventListeners","link":"<a href=\"element.html#.exports.addEventListeners\">element.exports.addEventListeners &rtrif; undefined</a>"},{"title":"element.exports.addStyles","link":"<a href=\"element.html#.exports.addStyles\">element.exports.addStyles &rtrif; undefined</a>"},{"title":"element.exports.attributes","link":"<a href=\"element.html#.exports.attributes\">element.exports.attributes &rtrif; undefined</a>"},{"title":"element.exports.compStyle","link":"<a href=\"element.html#.exports.compStyle\">element.exports.compStyle &rtrif; undefined</a>"},{"title":"element.exports.context","link":"<a href=\"element.html#.exports.context\">element.exports.context &rtrif; undefined</a>"},{"title":"element.exports.create","link":"<a href=\"element.html#.exports.create\">element.exports.create &rtrif; undefined</a>"},{"title":"element.exports.createElement","link":"<a href=\"element.html#.exports.createElement\">element.exports.createElement &rtrif; undefined</a>"},{"title":"element.exports.disableRightClick","link":"<a href=\"element.html#.exports.disableRightClick\">element.exports.disableRightClick &rtrif; undefined</a>"},{"title":"element.exports.drag","link":"<a href=\"element.html#.exports.drag\">element.exports.drag &rtrif; undefined</a>"},{"title":"element.exports.elementReady","link":"<a href=\"element.html#.exports.elementReady\">element.exports.elementReady &rtrif; undefined</a>"},{"title":"element.exports.elementSiblings","link":"<a href=\"element.html#.exports.elementSiblings\">element.exports.elementSiblings &rtrif; undefined</a>"},{"title":"element.exports.fullScreen","link":"<a href=\"element.html#.exports.fullScreen\">element.exports.fullScreen &rtrif; undefined</a>"},{"title":"element.exports.inlineCSS","link":"<a href=\"element.html#.exports.inlineCSS\">element.exports.inlineCSS &rtrif; undefined</a>"},{"title":"element.exports.inPartialView","link":"<a href=\"element.html#.exports.inPartialView\">element.exports.inPartialView &rtrif; undefined</a>"},{"title":"element.exports.inView","link":"<a href=\"element.html#.exports.inView\">element.exports.inView &rtrif; undefined</a>"},{"title":"element.exports.observeMutations","link":"<a href=\"element.html#.exports.observeMutations\">element.exports.observeMutations &rtrif; undefined</a>"},{"title":"element.exports.parseHTML","link":"<a href=\"element.html#.exports.parseHTML\">element.exports.parseHTML &rtrif; undefined</a>"},{"title":"element.exports.querySelector","link":"<a href=\"element.html#.exports.querySelector\">element.exports.querySelector &rtrif; undefined</a>"},{"title":"element.exports.removeComments","link":"<a href=\"element.html#.exports.removeComments\">element.exports.removeComments &rtrif; undefined</a>"},{"title":"element.exports.replaceSelection","link":"<a href=\"element.html#.exports.replaceSelection\">element.exports.replaceSelection &rtrif; undefined</a>"},{"title":"element.exports.replaceText","link":"<a href=\"element.html#.exports.replaceText\">element.exports.replaceText &rtrif; undefined</a>"},{"title":"element.exports.sortTable","link":"<a href=\"element.html#.exports.sortTable\">element.exports.sortTable &rtrif; undefined</a>"},{"title":"element.exports.sortTableBy","link":"<a href=\"element.html#.exports.sortTableBy\">element.exports.sortTableBy &rtrif; undefined</a>"},{"title":"element.exports.textNodes","link":"<a href=\"element.html#.exports.textNodes\">element.exports.textNodes &rtrif; undefined</a>"},{"title":"element.exports.tilt","link":"<a href=\"element.html#.exports.tilt\">element.exports.tilt &rtrif; undefined</a>"},{"title":"event","link":"<a href=\"event.html\">event</a>"},{"title":"event.exports.dispatch","link":"<a href=\"event.html#.exports.dispatch\">event.exports.dispatch &rtrif; undefined</a>"},{"title":"event.exports.hub","link":"<a href=\"event.html#.exports.hub\">event.exports.hub &rtrif; undefined</a>"},{"title":"event.exports.onOutsideClick","link":"<a href=\"event.html#.exports.onOutsideClick\">event.exports.onOutsideClick &rtrif; undefined</a>"},{"title":"event.exports.onScrollStop","link":"<a href=\"event.html#.exports.onScrollStop\">event.exports.onScrollStop &rtrif; undefined</a>"},{"title":"function","link":"<a href=\"function.html\">function</a>"},{"title":"function.exports.composeFunction","link":"<a href=\"function.html#.exports.composeFunction\">function.exports.composeFunction &rtrif; undefined</a>"},{"title":"function.exports.curryFunction","link":"<a href=\"function.html#.exports.curryFunction\">function.exports.curryFunction &rtrif; undefined</a>"},{"title":"function.exports.debounce","link":"<a href=\"function.html#.exports.debounce\">function.exports.debounce &rtrif; undefined</a>"},{"title":"function.exports.isAsync","link":"<a href=\"function.html#.exports.isAsync\">function.exports.isAsync &rtrif; undefined</a>"},{"title":"function.exports.memoize","link":"<a href=\"function.html#.exports.memoize\">function.exports.memoize &rtrif; undefined</a>"},{"title":"function.exports.runAsync","link":"<a href=\"function.html#.exports.runAsync\">function.exports.runAsync &rtrif; undefined</a>"},{"title":"function.exports.spread","link":"<a href=\"function.html#.exports.spread\">function.exports.spread &rtrif; undefined</a>"},{"title":"function.exports.throttle","link":"<a href=\"function.html#.exports.throttle\">function.exports.throttle &rtrif; undefined</a>"},{"title":"function.exports.timeFunction","link":"<a href=\"function.html#.exports.timeFunction\">function.exports.timeFunction &rtrif; undefined</a>"},{"title":"math","link":"<a href=\"math.html\">math</a>"},{"title":"math.exports.animate","link":"<a href=\"math.html#.exports.animate\">math.exports.animate &rtrif; undefined</a>"},{"title":"math.exports.formatNumber","link":"<a href=\"math.html#.exports.formatNumber\">math.exports.formatNumber &rtrif; undefined</a>"},{"title":"math.exports.primesTo","link":"<a href=\"math.html#.exports.primesTo\">math.exports.primesTo &rtrif; undefined</a>"},{"title":"math.exports.random","link":"<a href=\"math.html#.exports.random\">math.exports.random &rtrif; undefined</a>"},{"title":"math.exports.range","link":"<a href=\"math.html#.exports.range\">math.exports.range &rtrif; undefined</a>"},{"title":"math.exports.seedRandom","link":"<a href=\"math.html#.exports.seedRandom\">math.exports.seedRandom &rtrif; undefined</a>"},{"title":"math.exports.uuid","link":"<a href=\"math.html#.exports.uuid\">math.exports.uuid &rtrif; undefined</a>"},{"title":"object","link":"<a href=\"object.html\">object</a>"},{"title":"object.exports.clone","link":"<a href=\"object.html#.exports.clone\">object.exports.clone &rtrif; undefined</a>"},{"title":"object.exports.flattenObj","link":"<a href=\"object.html#.exports.flattenObj\">object.exports.flattenObj &rtrif; undefined</a>"},{"title":"object.exports.formToObject","link":"<a href=\"object.html#.exports.formToObject\">object.exports.formToObject &rtrif; undefined</a>"},{"title":"object.exports.listen","link":"<a href=\"object.html#.exports.listen\">object.exports.listen &rtrif; undefined</a>"},{"title":"object.exports.mapObjectKeys","link":"<a href=\"object.html#.exports.mapObjectKeys\">object.exports.mapObjectKeys &rtrif; undefined</a>"},{"title":"object.exports.mapObjectValues","link":"<a href=\"object.html#.exports.mapObjectValues\">object.exports.mapObjectValues &rtrif; undefined</a>"},{"title":"object.exports.merge","link":"<a href=\"object.html#.exports.merge\">object.exports.merge &rtrif; undefined</a>"},{"title":"object.exports.sortObj","link":"<a href=\"object.html#.exports.sortObj\">object.exports.sortObj &rtrif; undefined</a>"},{"title":"string","link":"<a href=\"string.html\">string</a>"},{"title":"string.exports.byteSize","link":"<a href=\"string.html#.exports.byteSize\">string.exports.byteSize &rtrif; undefined</a>"},{"title":"string.exports.camelCase","link":"<a href=\"string.html#.exports.camelCase\">string.exports.camelCase &rtrif; undefined</a>"},{"title":"string.exports.capitalize","link":"<a href=\"string.html#.exports.capitalize\">string.exports.capitalize &rtrif; undefined</a>"},{"title":"string.exports.deburr","link":"<a href=\"string.html#.exports.deburr\">string.exports.deburr &rtrif; undefined</a>"},{"title":"string.exports.editDistance","link":"<a href=\"string.html#.exports.editDistance\">string.exports.editDistance &rtrif; undefined</a>"},{"title":"string.exports.escapeHTML","link":"<a href=\"string.html#.exports.escapeHTML\">string.exports.escapeHTML &rtrif; undefined</a>"},{"title":"string.exports.forTemplateLiteral","link":"<a href=\"string.html#.exports.forTemplateLiteral\">string.exports.forTemplateLiteral &rtrif; undefined</a>"},{"title":"string.exports.hashString","link":"<a href=\"string.html#.exports.hashString\">string.exports.hashString &rtrif; undefined</a>"},{"title":"string.exports.markdownToHTML","link":"<a href=\"string.html#.exports.markdownToHTML\">string.exports.markdownToHTML &rtrif; undefined</a>"},{"title":"string.exports.previousPage","link":"<a href=\"string.html#.exports.previousPage\">string.exports.previousPage &rtrif; undefined</a>"},{"title":"string.exports.removeTags","link":"<a href=\"string.html#.exports.removeTags\">string.exports.removeTags &rtrif; undefined</a>"},{"title":"string.exports.replaceBetween","link":"<a href=\"string.html#.exports.replaceBetween\">string.exports.replaceBetween &rtrif; undefined</a>"},{"title":"string.exports.replaceMultiple","link":"<a href=\"string.html#.exports.replaceMultiple\">string.exports.replaceMultiple &rtrif; undefined</a>"},{"title":"string.exports.sanitize","link":"<a href=\"string.html#.exports.sanitize\">string.exports.sanitize &rtrif; undefined</a>"},{"title":"string.exports.scrambleString","link":"<a href=\"string.html#.exports.scrambleString\">string.exports.scrambleString &rtrif; undefined</a>"},{"title":"string.exports.speak","link":"<a href=\"string.html#.exports.speak\">string.exports.speak &rtrif; undefined</a>"},{"title":"string.exports.syllables","link":"<a href=\"string.html#.exports.syllables\">string.exports.syllables &rtrif; undefined</a>"},{"title":"string.exports.syntaxHighlight","link":"<a href=\"string.html#.exports.syntaxHighlight\">string.exports.syntaxHighlight &rtrif; undefined</a>"},{"title":"string.exports.titleCase","link":"<a href=\"string.html#.exports.titleCase\">string.exports.titleCase &rtrif; undefined</a>"},{"title":"string.exports.unCamelCase","link":"<a href=\"string.html#.exports.unCamelCase\">string.exports.unCamelCase &rtrif; undefined</a>"},{"title":"string.exports.unescapeHTML","link":"<a href=\"string.html#.exports.unescapeHTML\">string.exports.unescapeHTML &rtrif; undefined</a>"},{"title":"string.exports.urlQuery","link":"<a href=\"string.html#.exports.urlQuery\">string.exports.urlQuery &rtrif; undefined</a>"},{"title":"string.exports.widows","link":"<a href=\"string.html#.exports.widows\">string.exports.widows &rtrif; undefined</a>"},{"title":"utility","link":"<a href=\"utility.html\">utility</a>"},{"title":"utility.callbackify","link":"<a href=\"utility.html#.callbackify\">utility.callbackify &rtrif; undefined</a>"},{"title":"utility.exports.arrayToCSV","link":"<a href=\"utility.html#.exports.arrayToCSV\">utility.exports.arrayToCSV &rtrif; undefined</a>"},{"title":"utility.exports.browser","link":"<a href=\"utility.html#.exports.browser\">utility.exports.browser &rtrif; undefined</a>"},{"title":"utility.exports.copy","link":"<a href=\"utility.html#.exports.copy\">utility.exports.copy &rtrif; undefined</a>"},{"title":"utility.exports.formatHTML","link":"<a href=\"utility.html#.exports.formatHTML\">utility.exports.formatHTML &rtrif; undefined</a>"},{"title":"utility.exports.getHTML","link":"<a href=\"utility.html#.exports.getHTML\">utility.exports.getHTML &rtrif; undefined</a>"},{"title":"utility.exports.getJSON","link":"<a href=\"utility.html#.exports.getJSON\">utility.exports.getJSON &rtrif; undefined</a>"},{"title":"utility.exports.imageToData","link":"<a href=\"utility.html#.exports.imageToData\">utility.exports.imageToData &rtrif; undefined</a>"},{"title":"utility.exports.jsonToCsv","link":"<a href=\"utility.html#.exports.jsonToCsv\">utility.exports.jsonToCsv &rtrif; undefined</a>"},{"title":"utility.exports.loadScript","link":"<a href=\"utility.html#.exports.loadScript\">utility.exports.loadScript &rtrif; undefined</a>"},{"title":"utility.exports.mobileOrDesktop","link":"<a href=\"utility.html#.exports.mobileOrDesktop\">utility.exports.mobileOrDesktop &rtrif; undefined</a>"},{"title":"utility.exports.notify","link":"<a href=\"utility.html#.exports.notify\">utility.exports.notify &rtrif; undefined</a>"},{"title":"utility.exports.playSection","link":"<a href=\"utility.html#.exports.playSection\">utility.exports.playSection &rtrif; undefined</a>"},{"title":"utility.exports.preloadImage","link":"<a href=\"utility.html#.exports.preloadImage\">utility.exports.preloadImage &rtrif; undefined</a>"},{"title":"utility.exports.requestInterval","link":"<a href=\"utility.html#.exports.requestInterval\">utility.exports.requestInterval &rtrif; undefined</a>"},{"title":"utility.exports.saveBlob","link":"<a href=\"utility.html#.exports.saveBlob\">utility.exports.saveBlob &rtrif; undefined</a>"},{"title":"utility.exports.serializeForm","link":"<a href=\"utility.html#.exports.serializeForm\">utility.exports.serializeForm &rtrif; undefined</a>"},{"title":"utility.getItem","link":"<a href=\"utility.html#.getItem\">utility.getItem &rtrif; undefined</a>"},{"title":"utility.promisify","link":"<a href=\"utility.html#.promisify\">utility.promisify &rtrif; undefined</a>"},{"title":"utility.removeItem","link":"<a href=\"utility.html#.removeItem\">utility.removeItem &rtrif; undefined</a>"},{"title":"utility.setItem","link":"<a href=\"utility.html#.setItem\">utility.setItem &rtrif; undefined</a>"},{"title":"_temp","link":"<a href=\"global.html#_temp\">_temp</a>"},{"title":"node","link":"<a href=\"global.html#node\">node</a>"},{"title":"prototype","link":"<a href=\"global.html#prototype\">prototype</a>"}];
+      var options = 
+        setupSearch(list, options)
+    </script>
+
+    
+    <script type="text/javascript">
+        setInterval(() => {
+  try {
+    document.querySelector('.os-content-arrange').remove();
+  } catch (e) {}
+
+  var els = Array.from(document.querySelectorAll('ul.accordion-content a')).filter(el => el.innerText.startsWith("exports."));
+  for (var i = 0; i < els.length; i++) {
+    els[i].innerText = els[i].innerText.replace(/^exports\./, '');
+  }
+}, 100);
+
+    </script>
+    
+
+    
+    <script type="text/javascript">
+    setInterval(() => {
+  try {
+    document.querySelector('.os-content-arrange').remove();
+  } catch (e) {}
+
+  var els = Array.from(document.querySelectorAll('ul.accordion-content a')).filter(el => el.innerText.startsWith("exports."));
+  for (var i = 0; i < els.length; i++) {
+    els[i].innerText = els[i].innerText.replace(/^exports\./, '');
+  }
+}, 100);
+
+    </script>
+    
+
+    
+
+
+  </body>
+
+</html>

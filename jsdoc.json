@@ -1,59 +1,115 @@
 {
-  "source": {
-    "include": ["./"],
-    "includePattern": ".js$",
-    "excludePattern": "(node_modules/|out/|.github/)"
-  },
-  "plugins": ["plugins/markdown"],
-  "templates": {
-    "cleverLinks": true,
-    "monospaceLinks": true
-  },
-  "opts": {
-    "encoding": "utf8",
-    "readme": "./README.md",
-    "destination": "docs/docs",
-    "recurse": true,
-    "verbose": true,
-    "template": "./node_modules/clean-jsdoc-theme",
-    "theme_opts": {
-      "theme": "light",
-      "create_style": "pre, pre * {font-family: monospace !important;} .tooltip * {color: black !important}",
-      "add_scripts": "document.querySelector(\"ul:nth-of-type(3)\").remove()\r\ndocument.querySelector(\"h3:nth-of-type(2)\").remove()\r\ndocument.querySelector(\".accordion-title\").remove()\r\ndocument.querySelector(\".accordion-content\").style.height = \"fit-content\";\r\nlet els = document.querySelectorAll(\"li[data-type='method'] a\");\r\nfor (let i = 0; i < els.length; i++){\r\n  els[i].innerText = els[i].innerText.replace(/^exports\\./, \"\")\r\n}\r\ndocument.querySelector(\"div.text\").innerText = \"Bijou.js Functions\"",
-      "overlay_scrollbar": {
-        "option": {}
-      },
-      "add_script_path": [
-        {
-          "href": "https://unpkg.com/bijou.js@v6.2.0",
-          "type": "module"
-        }
-      ],
-      "menu": [
-        {
-          "title": "Home",
-          "link": "https://bijou.js.org"
-        },
-        {
-          "title": "Github",
-          "link": "https://github.com/bijou-js/bijou.js",
-          "target": "_blank"
-        },
-        {
-          "title": "Functions in Bijou",
-          "link": "https://bijou.js.org/docs/bijou.html"
-        }
-      ],
-      "meta": [
-        {
-          "name": "author",
-          "content": "Explosion-Scratch"
-        },
-        {
-          "name": "description",
-          "content": "Bijou.js - Useful JS snippets, in one simple library"
-        }
-      ]
-    }
-  }
+	"source": {
+		"include": ["./"],
+		"includePattern": ".js$",
+		"excludePattern": "(node_modules/|out/|.github/|bijou.js)"
+	},
+	"plugins": ["plugins/markdown"],
+	"templates": {
+		"cleverLinks": true,
+		"monospaceLinks": true
+	},
+	"opts": {
+		"encoding": "utf8",
+		"readme": "./README.md",
+		"destination": "docs/docs",
+		"recurse": true,
+		"verbose": true,
+		"template": "./node_modules/clean-jsdoc-theme",
+		"theme_opts": {
+			"theme": "light",
+			"create_style": "pre, pre * {font-family: monospace !important;} .tooltip * {color: white !important}\r\n\r\nnav {\r\n  background: linear-gradient(to right, #088, #0ca) !important;\r\n  padding: 10px !important;\r\n}\r\nnav, nav * {\r\n  box-sizing: border-box !important;\r\n}\r\nnav * {\r\n  color: white !important;\r\n}\r\ndiv.search-box-input-container {\r\n  background: #fff4 !important;\r\n  border-radius: 5px !important;\r\n}\r\nnav ::placeholder {\r\n  color: #ddd !important;\r\n}\r\nnav svg {\r\n  fill: white !important;\r\n}\r\n.methods {\r\n  background: #0001 !important;\r\n}\r\n.accordion-content {\r\n  background: #fff1 !important;\r\n}\r\ndiv.accordion-heading {\r\n  background: #fff3 !important;\r\n}\r\n\r\n::-webkit-scrollbar {\r\n  width: 3px !important;\r\n}\r\n::-webkit-scrollbar-track{\r\n  background: #0bb1 !important;\r\n}\r\n\r\nnav ::-webkit-scrollbar-thumb{\r\n  border-radius: 1000px !important;\r\n  background: #fff3 !important;\r\n}\r\n\r\n.page-title, header * {\r\n  border-color: #0ca5;\r\n}\r\narticle pre * {\r\n  background: #111;\r\n}\r\n\r\nli.p-h-n {\r\n  color: #333 !important;\r\n}\r\n#search-item-ul * {\r\n  color: #333 !important;\r\n}\r\n#search-item-ul {\r\n  background: #fff9 !important;\r\n  backdrop-filter: blur(10px) !important;\r\n  border-radius: 3px !important;\r\n}\r\n\r\ndiv.code-copy-icon-container:hover * {\r\n  color: white !important;\r\n  fill: white !important;\r\n}",
+			"add_scripts": "setInterval(() => {\r\n  try {\r\n    document.querySelector('.os-content-arrange').remove();\r\n  } catch (e) {}\r\n\r\n  var els = Array.from(document.querySelectorAll('ul.accordion-content a')).filter(el => el.innerText.startsWith(\"exports.\"));\r\n  for (var i = 0; i < els.length; i++) {\r\n    els[i].innerText = els[i].innerText.replace(/^exports\\./, '');\r\n  }\r\n}, 100);\r\n",
+			"add_script_path": [
+				{
+					"href": "https://unpkg.com/bijou.js@v6.2.0",
+					"type": "module"
+				}
+			],
+			"menu": [
+				{
+					"title": "Home",
+					"link": "https://bijou.js.org"
+				},
+				{
+					"title": "Github",
+					"link": "https://github.com/bijou-js/bijou.js",
+					"target": "_blank"
+				},
+				{
+					"title": "Functions in Bijou",
+					"link": "https://bijou.js.org/docs/bijou.html"
+				}
+			],
+			"meta": [
+				{
+					"name": "author",
+					"content": "Explosion-Scratch"
+				},
+				{
+					"name": "description",
+					"content": "Bijou.js documentation: Everything function in Bijou.js documented!"
+				},
+				{
+					"name": "keywords",
+					"content": "Bijou.js, Docs, documentation, library, JS, HTML, CSS"
+				},
+				{
+					"name": "theme-color",
+					"content": "#008080"
+				},
+				{
+					"property": "twitter:card",
+					"content": "summary_large_image"
+				},
+				{
+					"property": "twitter:url",
+					"content": "https://bijou.js.org/docs"
+				},
+				{
+					"property": "twitter:title",
+					"content": "Bijou.js docs"
+				},
+				{
+					"property": "og:title",
+					"content": "Bijou.js docs"
+				},
+				{
+					"property": "og:site_name",
+					"content": "Bijou.js"
+				},
+				{
+					"property": "og:description",
+					"content": "Bijou.js documentation: Every function in Bijou.js is documented here!"
+				},
+				{
+					"property": "og:image",
+					"content": "https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401"
+				},
+				{
+					"property": "twitter:image",
+					"content": "https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401"
+				},
+				{
+					"property": "twitter:description",
+					"content": "Bijou.js documentation: Every function in Bijou.js is documented here!"
+				},
+				{
+					"name": "language",
+					"content": "English"
+				},
+				{
+					"name": "revisit-after",
+					"content": "1 days"
+				}
+			],
+			"add_style_path": [
+				{
+					"rel": "shortcut icon",
+					"type": "image/png",
+					"href": "https://bijou.js.org/favicon.png"
+				}
+			]
+		}
+	}
 }

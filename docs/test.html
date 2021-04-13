@@ -1,55 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>Testing!</title>
-  </head>
-  <body>
-    <img
-      contextmenu="menu"
-      src="https://image.flaticon.com/icons/png/512/2395/2395608.png"
-      alt="Something"
-    />
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Testing!</title>
+	</head>
+
+	<body>
+		<img
+			contextmenu="menu"
+			src="https://image.flaticon.com/icons/png/512/2395/2395608.png"
+			alt="Something"
+		/>
+	</body>
 </html>
-<menu id='menu'>
-  <menuitem label="FASTER!" onclick="document.querySelector('img').style.transitionDuration = `${prompt('Transition in MS')}ms`">
+<menu id="menu">
+	<menuitem
+		label="FASTER!"
+		onclick='document.querySelector("img").style.transitionDuration = prompt("Transition duration") + "ms"'
+	></menuitem>
 </menu>
 <style>
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  img {
-    transform-origin: center;
-    display: block;
-    width: 300px;
-    transform-style: preserve-3d;
-  }
-  img {
-    transition: transform 0.3s ease;
-  }
+	body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 100vh;
+	}
+
+	img {
+		transform-origin: center;
+		display: block;
+		width: 300px;
+		transform-style: preserve-3d;
+	}
+
+	img {
+		transition: transform 0.3s ease;
+	}
 </style>
 <script type="module">
-  import * as _$ from "./bijou.js";
-  console.log(Object.keys(_$).map(e => `${e}: ${e}`).join(", "));
+	import * as _$ from "./bijou.js";
+	console.log(
+		Object.keys(_$)
+			.filter((e) => e !== "default" && e !== "_$")
+			.map((e) => `${e}: ${e}`)
+			.join(", "),
+	);
 </script>
 <script type="module">
-  import {context, requestInterval, tilt, copy, memoize} from "./bijou.js"
-  context();
-  let mouse = { x: 0, y: 0 };
-  window.onmousemove = (e) =>
-    (mouse = {
-      x: e.clientX - window.innerWidth / 2,
-      y: e.clientY - window.innerHeight / 2,
-    });
-  requestInterval(() => {
-    tilt(document.querySelector('img'), mouse.x, mouse.y, 300, 30);
-  }, 1);
+	import { requestInterval, tilt, copy, memoize } from "./bijou.js";
+
+	context();
+	let mouse = { x: 0, y: 0 };
+	window.onmousemove = (e) =>
+		(mouse = {
+			x: e.clientX - window.innerWidth / 2,
+			y: e.clientY - window.innerHeight / 2,
+		});
+	requestInterval(() => {
+		tilt(document.querySelector("img"), mouse.x, mouse.y, 300, 30);
+	}, 1);
+</script>
+<script>
+	function context() {
+		var menu = document.createElement("UL");
+		menu.id = "contextMenu";
+		document.body.appendChild(menu);
+		let styles = document.createElement("STYLE");
+		styles.innerHTML = `#contextMenu {
+         pointer-events: none;
+         padding: 0;
+         opacity: 0;
+         transition: opacity .3s ease;
+         position: fixed;
+         padding-top: 3px;
+         padding-bottom: 3px;
+         max-height: 200px;
+         overflow-y: scroll;
+         overflow-x: hidden;
+         list-style: none;
+         z-index: 10000;
+         background: white;
+         color: #333;
+         font-family: sans-serif;
+         border-radius: 5px;
+         box-shadow: 2px 2px 5px #0004;
+         width: fit-content;
+         min-width: 50px;
+         max-width: 150px;
+       }
+       #contextMenu li {
+         transition: background-color .3s ease;
+         display: block;
+         min-width: 150px;
+         margin: 0;
+         padding: 10px;
+       }
+       #contextMenu li:hover {
+         background-color: #ddd;
+         cursor: pointer;
+       }
+       `;
+		document.body.appendChild(styles);
+		var elements = document.querySelectorAll("[contextmenu]");
+		for (let i = 0; i < elements.length; i++) {
+			window.addEventListener("contextmenu", (e) => {
+				menu.style.pointerEvents = "auto";
+				let items;
+				try {
+					items = document.querySelectorAll(
+						`#${e.target
+							.closest("[contextmenu]")
+							.getAttribute("contextmenu")} menuitem`,
+					);
+					e.preventDefault();
+				} catch (e) {
+					return true;
+				}
+				menu.innerHTML = "";
+				for (let j = 0; j < items.length; j++) {
+					const contextMenu = items[j];
+					const liTag = document.createElement("li");
+					liTag.setAttribute(
+						"onclick",
+						contextMenu.getAttribute("onclick"),
+					);
+					liTag.addEventListener("click", () => {
+						menu.style.opacity = 0;
+						menu.style.pointerEvents = "none";
+					});
+					liTag.textContent = contextMenu.getAttribute("label");
+					menu.innerHTML += liTag.outerHTML;
+				}
+				console.log(menu.innerHTML);
+				menu.style.top = `${e.clientY}px`;
+				menu.style.left = `${e.clientX}px`;
+				menu.style.opacity = 1;
+			});
+		}
+		var contextTimer = 0;
+		setInterval(() => {
+			contextTimer += 100;
+			if (contextTimer > 3000) {
+				menu.style.opacity = 0;
+				menu.style.pointerEvents = "none";
+				contextTimer = 0;
+				return;
+			}
+		}, 100);
+		_$.addEventListeners(
+			menu,
+			["mousemove", "click", "scroll"],
+			() => {
+				contextTimer = 0;
+			},
+		);
+		_$.onOutsideClick(menu, () => {
+			menu.style.opacity = 0;
+			menu.style.pointerEvents = "none";
+		});
+	}
 </script>

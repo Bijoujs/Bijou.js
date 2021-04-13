@@ -3,8 +3,9 @@
 [![NPM Downloads](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
 [![GitHub stars](https://img.shields.io/github/stars/bijou-js/bijou.js?color=lightseagreen&style=for-the-badge)](https://github.com/bijou-js/bijou.js/stargazers)
 [![Website](https://img.shields.io/website?down_color=lightseagreen&down_message=Down%20%3A%27%28&label=Website%20status&style=for-the-badge&up_color=lightseagreen&up_message=Online%21&url=https%3A%2F%2Fbijou.js.org)](https://bijou.js.org)
-[![Discord](https://img.shields.io/discord/789662824678686720?style=for-the-badge&color=lightseagreen)](https://discord.gg/Ec5Wvp78w7)
+[![Discord](https://img.shields.io/discord/789662824678686720?style=for-the-badge&color=lightseagreen)](https://discord.gg/tApDpbyK2F)
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod&style=for-the-badge&color=lightseagreen)](https://gitpod.io/#https://github.com/bijou-js/bijou.js)
+[![Rate on Openbase](https://badges.openbase.com/js/rating/bijou.js.svg)](https://openbase.com/js/bijou.js?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge)
 
 <h1 align=center>Bijou.js</h1>
 
@@ -17,29 +18,27 @@ yourself typing the same thing over and over again, copy pasting the same
 snippet as you did a few days ago, use Bijou.js! If the snippet you're using
 isn't in Bijou.js, just submit an issue with the code!
 
-### Table of contents
-
-- [How to use Bijou.js](#how-to-use-bijoujs)
-  - [CDN](#cdn)
-  - [Imports](#imports)
-  - [NodeJS](#nodejs)
-- [Usage](#usage)
-- [Who made Bijou.js?](#who-made-bijoujs)
-- [Why use Bijou?](#why-use-bijou)
-  - [Installation](#installation)
-
 # How to use Bijou.js
 
 Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 
 ## CDN
 
+CDNJS
+
+```html
+<script
+	src="https://notes-test.explosionscratc.repl.co/notes/view/605e4127793d611933164dbb"
+	type="module"
+></script>
+```
+
 jsDelivr:
 
 ```html
 <script
-  src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"
-  type="module"
+	src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"
+	type="module"
 ></script>
 ```
 
@@ -47,8 +46,8 @@ UNPKG
 
 ```html
 <script
-  src="https://unpkg.com/bijou.js@latest/bijou.js"
-  type="module"
+	src="https://unpkg.com/bijou.js@latest/bijou.js"
+	type="module"
 ></script>
 ```
 
@@ -58,8 +57,8 @@ You can also import parts of bijou, for example only the uuid() function:
 
 ```html
 <script type="module">
-  import { uuid } from 'https://unpkg.com/bijou.js';
-  console.log(uuid()); //Same as _$.uuid() when importing the whole library.
+	import { uuid } from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.4.0/bijou.js";
+	console.log(uuid()); //Same as _$.uuid() when importing the whole library.
 </script>
 ```
 
@@ -67,8 +66,8 @@ or you can import the whole thing:
 
 ```html
 <script type="module">
-  import * as _$ from 'https://unpkg.com/bijou.js';
-  console.log(_$.uuid());
+	import * as _$ from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.4.0/bijou.js";
+	console.log(_$.uuid());
 </script>
 ```
 
@@ -89,7 +88,7 @@ yarn add bijou.js
 Then just require it in your code:
 
 ```js
-const _$ = require('bijou.js');
+const _$ = require("bijou.js");
 console.log(_$.uuid());
 ```
 
@@ -126,7 +125,7 @@ Well, a few reasons:
 <small>(You can probably see I'm pretty desperate for people to use
 this.)</small>
 
-## Installation
+# Installation
 
 Bijou.js is available in NodeJS through yarn and NPM
 
@@ -134,10 +133,14 @@ Bijou.js is available in NodeJS through yarn and NPM
 or
 `yarn add bijou.js`
 
-Or through a CDN:
+[Or through a CDN](#cdn-urls)
+
+# CDN Url's
 
 ```
-https://unpkg.com/bijou.js
+https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.4.0/bijou.js
+https://esm.run/bijou.js
 https://cdn.jsdelivr.net/npm/bijou.js
+https://unpkg.com/bijou.js
 https://cdn.jsdelivr.net/gh/Bijou-js/bijou.js@latest/bijou.js
 ```
