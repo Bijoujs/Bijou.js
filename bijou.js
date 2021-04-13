@@ -58,7 +58,7 @@ Contributors to Bijou.js:
 ║═══════════════════║════════════════════════════║
 ║ thecoder876       ║ Made some improvements.    ║
 ╠═══════════════════╬════════════════════════════╣
-║ ampersandgd       ║   pretty stupid stuff      ║
+║ AwayFromKeyword   ║   pretty stupid stuff      ║
 ╚═══════════════════╩════════════════════════════╝
 
 
