@@ -3,6 +3,7 @@
  * Counts the items in an array, returning a separate count for each object.
  * @returns {Object}
  * @memberOf array
+ * @function
  * @example
  * _$.count(['a', 'b', 'c', 'd', 'e', 'f'])//{'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1}
  *
