@@ -44,6 +44,17 @@
         "ideas",
         "bug"
       ]
+    },
+    {
+      "login": "GrahamSH-LLK",
+      "name": "GrahamSH",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64214252?v=4",
+      "profile": "https://grahamsh.com",
+      "contributions": [
+        "bug",
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
