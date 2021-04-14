@@ -1,21 +1,12 @@
 /* global document */
-/**
- *
- */
 function hideSearchList() {
     document.getElementById('search-item-ul').style.display = 'none';
 }
 
-/**
- *
- */
 function showSearchList() {
     document.getElementById('search-item-ul').style.display = 'block';
 }
 
-/**
- * @param e
- */
 function checkClick(e) {
     if ( e.target.id !== 'search-box-input') {
         setTimeout(function() {
@@ -27,12 +18,6 @@ function checkClick(e) {
     }
 }
 
-/**
- * @param list
- * @param options
- * @param keys
- * @param searchKey
- */
 function search(list, options, keys, searchKey) {
     var defaultOptions = {
         shouldSort: true,
