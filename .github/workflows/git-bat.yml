@@ -11,7 +11,7 @@ jobs:
         uses: actions/setup-node@v2.1.4
       - run: ls
       - run: npm install
-      - run: npm i -g rollup eslint eslint-plugin-jsdoc jsdoc prettier terser figlet-cli @babel/core @babel/cli @babel/preset-env @babel/plugin-transform-modules-commonjs
+      - run: sudo npm i -g rollup eslint eslint-plugin-jsdoc jsdoc prettier terser figlet-cli @babel/core @babel/cli @babel/preset-env @babel/plugin-transform-modules-commonjs
       - run: npm install eslint-plugin-jsdoc @babel/plugin-transform-spread @babel/plugin-transform-template-literals @babel/preset-env babel @babel/plugin-transform-arrow-functions @babel/plugin-transform-sticky-regex @babel/plugin-transform-shorthand-properties
       - run: COMMIT=$(git status --porcelain)
       - run: rm bijou_node.js
