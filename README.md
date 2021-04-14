@@ -1,6 +1,6 @@
 <div align="center"><a href="https://bijou.js.org"><img width="700" src="https://bijou.js.org/bijou.png"></a></div>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![NPM Downloads](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
@@ -154,6 +154,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://retronbv.github.io"><img src="https://avatars.githubusercontent.com/u/49005044?v=4?s=100" width="100px;" alt=""/><br /><sub><b>retronbv</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/commits?author=retronbv" title="Code">💻</a> <a href="#ideas-retronbv" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3Aretronbv" title="Bug reports">🐛</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=retronbv" title="Documentation">📖</a></td>
     <td align="center"><a href="https://grahamsh.com"><img src="https://avatars.githubusercontent.com/u/64214252?v=4?s=100" width="100px;" alt=""/><br /><sub><b>GrahamSH</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3AGrahamSH-LLK" title="Bug reports">🐛</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=GrahamSH-LLK" title="Code">💻</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=GrahamSH-LLK" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/pufferfish101007"><img src="https://avatars.githubusercontent.com/u/50246616?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pufferfish101007</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3Apufferfish101007" title="Bug reports">🐛</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=pufferfish101007" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://Scratch.mit.edu/users/-Xanimation-"><img src="https://avatars.githubusercontent.com/u/57809064?v=4?s=100" width="100px;" alt=""/><br /><sub><b>-Xanimation-</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/commits?author=devxan" title="Documentation">📖</a> <a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3Adevxan" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
