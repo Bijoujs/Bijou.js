@@ -3,15 +3,16 @@
  * Resizes an image from a URL and returns a promise with it's data URL.
  * @memberOf utility
  * @param {String} url The URL of the image to resize.
- * @param {Number} width The target width of the new image
- * @param {Number} height The target height of the new image
+ * @param {Number} [width=Natural width of the image] The target width of the new image
+ * @param {Number} [height=Natural width of the image] The target height of the new image
  * @returns {Promise.<string>} A data URL of the resized image.
  */
 export let resize = async (
-	url = req("string", "url"),
+	url = req("string", "html"),
 	width,
 	height,
 ) => {
+	node();
 	url = url.replace(/^(?:http|https)\:\/\//, "");
 	let img = new Image();
 	img.src = await _$.imageToData(
@@ -20,10 +21,10 @@ export let resize = async (
 	await new Promise((res) => (img.onload = res));
 	let canvas = document.createElement("canvas");
 	let ctx = canvas.getContext("2d");
-	canvas.width = width || img.width;
-	canvas.height = height || img.height;
+	canvas.width = width < 1 || !width ? img.width : width;
+	canvas.height = height < 1 || !width ? img.height : height;
 	ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-	data = canvas.toDataURL(0, 0, canvas.width, canvas.height);
+	let data = canvas.toDataURL(0, 0, canvas.width, canvas.height);
 	return data;
 };
 /**
@@ -34,12 +35,13 @@ export let resize = async (
  * @param {Number} [opts.y=0] The y position of the text
  * @param {Number} [opts.width=300] The width of the output image.
  * @param {Number} [opts.height=400]  The height of the output image.
- * @returns
+ * @returns {Promise.<string>} A promise that resolves into the data URL string of the image.
  */
 export let htmlToImage = (
 	html = req("string", "html string"),
 	{ x = 0, y = 0, width = 300, height = 400 },
 ) => {
+	node();
 	let canvas = document.createElement("canvas");
 	canvas.width = width;
 	canvas.height = height;

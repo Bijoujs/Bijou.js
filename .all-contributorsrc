@@ -5,25 +5,7 @@
   "imageSize": 100,
   "commit": false,
   "contributors": [
-    {
-      "login": "AwayFromKeyword",
-      "name": "AFK",
-      "avatar_url": "https://avatars.githubusercontent.com/u/64666021?v=4",
-      "profile": "https://github.com/AwayFromKeyword",
-      "contributions": [
-        "bug"
-      ]
-    },
-    {
-      "login": "CubeyTheCube",
-      "name": "CubeyTheCube",
-      "avatar_url": "https://avatars.githubusercontent.com/u/72284516?v=4",
-      "profile": "https://github.com/CubeyTheCube",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
+        {
       "login": "Explosion-Scratch",
       "name": "--Explosion--",
       "avatar_url": "https://avatars.githubusercontent.com/u/61319150?v=4",
@@ -36,8 +18,7 @@
         "infra",
         "test"
       ]
-    },
-    {
+    },{
       "login": "retronbv",
       "name": "retronbv",
       "avatar_url": "https://avatars.githubusercontent.com/u/49005044?v=4",
@@ -71,6 +52,25 @@
         "test"
       ]
     },
+    {
+      "login": "AwayFromKeyword",
+      "name": "AFK",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64666021?v=4",
+      "profile": "https://github.com/AwayFromKeyword",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "CubeyTheCube",
+      "name": "CubeyTheCube",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72284516?v=4",
+      "profile": "https://github.com/CubeyTheCube",
+      "contributions": [
+        "code"
+      ]
+    },
+
     {
       "login": "devxan",
       "name": "-Xanimation-",
