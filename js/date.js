@@ -45,6 +45,7 @@ export let formatMilliseconds = (
 /**
  * Adds a certain number of minutes to a date object.
  * @memberof date
+ * @function
  * @example
  * _$.addMinutesToDate(new Date(), 4);//Create a date 4 minutes from now.
  * @param {Date|string} date The date to add minutes to.
@@ -62,6 +63,7 @@ export let addMinutesToDate = (
 /**
  * Validates a date from a string.
  * @memberOf date
+ * @function
  * @example
  *  _$.isDateValid('December 17, 1995 03:24:00'); // true
     _$.isDateValid('1995-12-17T03:24:00'); // true
@@ -80,6 +82,7 @@ export let isDateValid = (...val) => {
 /**
  * Adds a specified number of days to a date.
  * @memberOf date
+ * @function
  * @param {Date} date The date to add days to
  * @param {Number} n How many days to add to the date.
  * @returns {Date} The date with the specified number of days added.
