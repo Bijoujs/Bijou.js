@@ -10,7 +10,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.4
       - run: ls
-      - run: ./build.bat
+      - run: sudo ./build.bat
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
          commit_message: Applying automated CI items
