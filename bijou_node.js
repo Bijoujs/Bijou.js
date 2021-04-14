@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', { value: true });
+Object.defineProperty(exports, "__esModule", { value: true });
 
 /**
  * @file bijou.js
@@ -472,7 +472,8 @@ let hexToRGB = (hex = req("string", "hex color")) => {
 			hex.length === 4 ||
 			hex.length === 3) &&
 			!hex.startsWith("#"))
-	) ; else {
+	);
+	else {
 		throw new Error("Invalid hex");
 	}
 	let alpha = false,
@@ -609,9 +610,7 @@ let lightenColor = (
   }
   * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
   */
-let lightOrDark = (
-	color = req("string", "hex or RGB color"),
-) => {
+let lightOrDark = (color = req("string", "hex or RGB color")) => {
 	var r, g, b, hsp;
 	if (color.match(/^rgb/)) {
 		color = color.match(
@@ -666,9 +665,7 @@ let dayName = (date = new Date(), locale = "en-US") =>
  * console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"
  * @returns {String} The string of formatted milliseconds.
  */
-let formatMilliseconds = (
-	ms = req("number", "milliseconds"),
-) => {
+let formatMilliseconds = (ms = req("number", "milliseconds")) => {
 	ms = typeof ms === "string" ? +ms : ms;
 	if (ms < 0) ms = -ms;
 	const time = {
@@ -1333,9 +1330,7 @@ let querySelector = (elem = req("HTMLElement", "element")) => {
  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
  * @returns {HTMLElement} The HTML element with the comments removed.
  */
-let removeComments = (
-	el = req("HTMLElement", "HTMLElement"),
-) => {
+let removeComments = (el = req("HTMLElement", "HTMLElement")) => {
 	const isString = typeof el === "string";
 	el = isString ? _$.parseHTML(el) : el.cloneNode(true);
 	for (const child of [...el.querySelectorAll("*"), el]) {
@@ -1622,9 +1617,7 @@ let addStyles = (
  * _$.createElement("<div id='id_here'>Testing!</div>");
  * @returns {Element} The created element.
  */
-let createElement = (
-	str = req("String", "HTML element string"),
-) => {
+let createElement = (str = req("String", "HTML element string")) => {
 	node();
 	const el = document.createElement("div");
 	el.innerHTML = str;
@@ -1670,9 +1663,7 @@ let elementSiblings = (n = req("HTMLElement", "element")) =>
  * _$.disableRightClick(document.documentElement)
  * @returns {undefined}
  */
-let disableRightClick = (
-	el = req("HTMLElement", "element"),
-) => {
+let disableRightClick = (el = req("HTMLElement", "element")) => {
 	node();
 	return (el.oncontextmenu = false);
 };
@@ -2530,9 +2521,7 @@ let mapObjectValues = (
  * const form = document.getElementById("form");
  * console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }
  */
-let formToObject = (
-	form = req("HTMLFormElement", "the form"),
-) => {
+let formToObject = (form = req("HTMLFormElement", "the form")) => {
 	node();
 	return Array.from(new FormData(form)).reduce(
 		(acc, [key, value]) => ({
@@ -3996,11 +3985,7 @@ let previousPage = () => {
  * @param {Number} [height=Natural width of the image] The target height of the new image
  * @returns {Promise.<string>} A data URL of the resized image.
  */
-let resize = async (
-	url = req("string", "html"),
-	width,
-	height,
-) => {
+let resize = async (url = req("string", "html"), width, height) => {
 	node();
 	url = url.replace(/^(?:http|https)\:\/\//, "");
 	let img = new Image();
@@ -4247,10 +4232,7 @@ let formatHTML = (html = req("string", "html")) => {
  * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
  * @returns {Promise} A promise resolved when the JSON is fetched and parsed.
  */
-let getJSON = (
-	url = req("string", "url"),
-	callback = () => {},
-) => {
+let getJSON = (url = req("string", "url"), callback = () => {}) => {
 	node();
 	return new Promise((resolve, reject) => {
 		fetch(url)
@@ -4276,10 +4258,7 @@ let getJSON = (
  * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
  * @returns {Promise} A promise resolved when the HTML is fetched and parsed.
  */
-let getHTML = (
-	url = req("string", "url"),
-	callback = () => {},
-) => {
+let getHTML = (url = req("string", "url"), callback = () => {}) => {
 	node();
 	return new Promise((resolve, reject) => {
 		fetch(url)
@@ -4650,10 +4629,7 @@ let jsonToCsv = (
  * console.log(_$.arrayToCSV([1,2,3,4])); // "1,2,3,4"
  * @returns {String} The comma separated array.
  */
-let arrayToCSV = (
-	arr = req("array", "array"),
-	delimiter = ",",
-) =>
+let arrayToCSV = (arr = req("array", "array"), delimiter = ",") =>
 	arr
 		.map((v) =>
 			v
@@ -4803,9 +4779,7 @@ let browser = () => {
  * @param {HTMLFormElement} form The form element.
  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
  */
-let serializeForm = (
-	form = req("HTMLFormElement", "form"),
-) => {
+let serializeForm = (form = req("HTMLFormElement", "form")) => {
 	node();
 	return Array.from(new FormData(form), (field) =>
 		field.map(encodeURIComponent).join("="),
@@ -4872,9 +4846,7 @@ let soundex = (s = req("string", "word")) => {
  * Note that you have to call this function to add the prototypes.
  * @param {Object} options The options to use, supports overwrite (boolean of whether to overwrite existing prototypes), and try, (boolean for whether to wrap in a try..catch)
  */
-let prototype = (
-	options = { overwrite: true, tryCatch: false },
-) => {
+let prototype = (options = { overwrite: true, tryCatch: false }) => {
 	function proto(fn, thing, name) {
 		let title =
 			name || fn ? fn.name : "noNameHehe124672463467432376453";
