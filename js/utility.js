@@ -1,5 +1,76 @@
 //#region Utility
 /**
+ * Resizes an image from a URL and returns a promise with it's data URL.
+ * @memberOf utility
+ * @param {String} url The URL of the image to resize.
+ * @param {Number} [width=Natural width of the image] The target width of the new image
+ * @param {Number} [height=Natural width of the image] The target height of the new image
+ * @returns {Promise.<string>} A data URL of the resized image.
+ */
+export let resize = async (
+	url = req("string", "html"),
+	width,
+	height,
+) => {
+	node();
+	url = url.replace(/^(?:http|https)\:\/\//, "");
+	let img = new Image();
+	img.src = await _$.imageToData(
+		"https://cors.explosionscratc.repl.co/" + url,
+	);
+	await new Promise((res) => (img.onload = res));
+	let canvas = document.createElement("canvas");
+	let ctx = canvas.getContext("2d");
+	canvas.width = width < 1 || !width ? img.width : width;
+	canvas.height = height < 1 || !width ? img.height : height;
+	ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+	let data = canvas.toDataURL(0, 0, canvas.width, canvas.height);
+	return data;
+};
+/**
+ * Converts a string of HTML to an image (!!)
+ * @param {String} html The HTML string to transform into an image
+ * @param {Object.<string>} [opts={x: 0, y: 0, width: 300, height: 400}] The object with options.
+ * @param {Number} [opts.x=0] The x position of the text
+ * @param {Number} [opts.y=0] The y position of the text
+ * @param {Number} [opts.width=300] The width of the output image.
+ * @param {Number} [opts.height=400]  The height of the output image.
+ * @returns {Promise.<string>} A promise that resolves into the data URL string of the image.
+ */
+export let htmlToImage = (
+	html = req("string", "html string"),
+	{ x = 0, y = 0, width = 300, height = 400 },
+) => {
+	node();
+	let canvas = document.createElement("canvas");
+	canvas.width = width;
+	canvas.height = height;
+	var ctx = canvas.getContext("2d");
+	return new Promise((res) => {
+		var xml = toXML(html);
+		xml = xml.replace(/\#/g, "%23");
+		var data = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><foreignObject width="100%" height="100%">${xml}</foreignObject></svg>`;
+
+		var img = new Image();
+		img.onload = function () {
+			ctx.drawImage(img, x, y, width, height);
+			res(canvas.toDataURL());
+		};
+		img.src = data;
+	});
+	function toXML(html) {
+		var doc = document.implementation.createHTMLDocument("");
+		doc.write(html);
+		doc.documentElement.setAttribute(
+			"xmlns",
+			doc.documentElement.namespaceURI,
+		);
+		html = new XMLSerializer().serializeToString(doc.body);
+		return html;
+	}
+};
+
+/**
  * Converts a function that returns a promise into a callback based function
  * @param {Function} fn The function to 'callbackify'.
  * @memberOf utility

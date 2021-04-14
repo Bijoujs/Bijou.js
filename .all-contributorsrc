@@ -1,0 +1,129 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Explosion-Scratch",
+      "name": "--Explosion--",
+      "avatar_url": "https://avatars.githubusercontent.com/u/61319150?v=4",
+      "profile": "http://chrome://crash",
+      "contributions": [
+        "code",
+        "design",
+        "bug",
+        "doc",
+        "infra",
+        "test"
+      ]
+    },
+    {
+      "login": "retronbv",
+      "name": "retronbv",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49005044?v=4",
+      "profile": "https://retronbv.github.io",
+      "contributions": [
+        "code",
+        "ideas",
+        "bug",
+        "doc"
+      ]
+    },
+    {
+      "login": "GrahamSH-LLK",
+      "name": "GrahamSH",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64214252?v=4",
+      "profile": "https://grahamsh.com",
+      "contributions": [
+        "bug",
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "pufferfish101007",
+      "name": "Pufferfish101007",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50246616?v=4",
+      "profile": "https://github.com/pufferfish101007",
+      "contributions": [
+        "bug",
+        "doc",
+        "test"
+      ]
+    },
+    {
+      "login": "AwayFromKeyword",
+      "name": "AFK",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64666021?v=4",
+      "profile": "https://github.com/AwayFromKeyword",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "CubeyTheCube",
+      "name": "CubeyTheCube",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72284516?v=4",
+      "profile": "https://github.com/CubeyTheCube",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "devxan",
+      "name": "-Xanimation-",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57809064?v=4",
+      "profile": "http://Scratch.mit.edu/users/-Xanimation-",
+      "contributions": [
+        "doc",
+        "bug"
+      ]
+    },
+    {
+      "login": "apple502j",
+      "name": "apple502j",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33279053?v=4",
+      "profile": "https://github.com/apple502j",
+      "contributions": [
+        "security"
+      ]
+    },
+    {
+      "login": "Touchcreator",
+      "name": "TouchIsNotAGoodCoder",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64277067?v=4",
+      "profile": "http://touchcreator.github.io",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "TheColaber",
+      "name": "TheColaber",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72760579?v=4",
+      "profile": "https://scratch.mit.edu/users/TheColaber/",
+      "contributions": [
+        "bug",
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "thecoder876",
+      "name": "thecoder876",
+      "avatar_url": "https://avatars.githubusercontent.com/u/76265544?v=4",
+      "profile": "https://thecoder876.github.io",
+      "contributions": [
+        "bug"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "Bijou.js",
+  "projectOwner": "Bijou-js",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

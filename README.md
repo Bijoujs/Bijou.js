@@ -1,5 +1,9 @@
 <div align="center"><a href="https://bijou.js.org"><img width="700" src="https://bijou.js.org/bijou.png"></a></div>
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 [![NPM Downloads](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
 [![GitHub stars](https://img.shields.io/github/stars/bijou-js/bijou.js?color=lightseagreen&style=for-the-badge)](https://github.com/bijou-js/bijou.js/stargazers)
 [![Website](https://img.shields.io/website?down_color=lightseagreen&down_message=Down%20%3A%27%28&label=Website%20status&style=for-the-badge&up_color=lightseagreen&up_message=Online%21&url=https%3A%2F%2Fbijou.js.org)](https://bijou.js.org)
@@ -28,7 +32,7 @@ CDNJS
 
 ```html
 <script
-	src="https://notes-test.explosionscratc.repl.co/notes/view/605e4127793d611933164dbb"
+	src="https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js"
 	type="module"
 ></script>
 ```
@@ -57,7 +61,7 @@ You can also import parts of bijou, for example only the uuid() function:
 
 ```html
 <script type="module">
-	import { uuid } from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.4.0/bijou.js";
+	import { uuid } from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js";
 	console.log(uuid()); //Same as _$.uuid() when importing the whole library.
 </script>
 ```
@@ -66,7 +70,7 @@ or you can import the whole thing:
 
 ```html
 <script type="module">
-	import * as _$ from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.4.0/bijou.js";
+	import * as _$ from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js";
 	console.log(_$.uuid());
 </script>
 ```
@@ -138,9 +142,41 @@ or
 # CDN Url's
 
 ```
-https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.4.0/bijou.js
+https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js
 https://esm.run/bijou.js
 https://cdn.jsdelivr.net/npm/bijou.js
 https://unpkg.com/bijou.js
 https://cdn.jsdelivr.net/gh/Bijou-js/bijou.js@latest/bijou.js
 ```
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="http://chrome://crash"><img src="https://avatars.githubusercontent.com/u/61319150?v=4?s=100" width="100px;" alt=""/><br /><sub><b>--Explosion--</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/commits?author=Explosion-Scratch" title="Code">💻</a> <a href="#design-Explosion-Scratch" title="Design">🎨</a> <a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3AExplosion-Scratch" title="Bug reports">🐛</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=Explosion-Scratch" title="Documentation">📖</a> <a href="#infra-Explosion-Scratch" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=Explosion-Scratch" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://retronbv.github.io"><img src="https://avatars.githubusercontent.com/u/49005044?v=4?s=100" width="100px;" alt=""/><br /><sub><b>retronbv</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/commits?author=retronbv" title="Code">💻</a> <a href="#ideas-retronbv" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3Aretronbv" title="Bug reports">🐛</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=retronbv" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://grahamsh.com"><img src="https://avatars.githubusercontent.com/u/64214252?v=4?s=100" width="100px;" alt=""/><br /><sub><b>GrahamSH</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3AGrahamSH-LLK" title="Bug reports">🐛</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=GrahamSH-LLK" title="Code">💻</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=GrahamSH-LLK" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/pufferfish101007"><img src="https://avatars.githubusercontent.com/u/50246616?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Pufferfish101007</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3Apufferfish101007" title="Bug reports">🐛</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=pufferfish101007" title="Documentation">📖</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=pufferfish101007" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/AwayFromKeyword"><img src="https://avatars.githubusercontent.com/u/64666021?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AFK</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3AAwayFromKeyword" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/CubeyTheCube"><img src="https://avatars.githubusercontent.com/u/72284516?v=4?s=100" width="100px;" alt=""/><br /><sub><b>CubeyTheCube</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/commits?author=CubeyTheCube" title="Code">💻</a></td>
+    <td align="center"><a href="http://Scratch.mit.edu/users/-Xanimation-"><img src="https://avatars.githubusercontent.com/u/57809064?v=4?s=100" width="100px;" alt=""/><br /><sub><b>-Xanimation-</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/commits?author=devxan" title="Documentation">📖</a> <a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3Adevxan" title="Bug reports">🐛</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/apple502j"><img src="https://avatars.githubusercontent.com/u/33279053?v=4?s=100" width="100px;" alt=""/><br /><sub><b>apple502j</b></sub></a><br /><a href="#security-apple502j" title="Security">🛡️</a></td>
+    <td align="center"><a href="http://touchcreator.github.io"><img src="https://avatars.githubusercontent.com/u/64277067?v=4?s=100" width="100px;" alt=""/><br /><sub><b>TouchIsNotAGoodCoder</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3ATouchcreator" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://scratch.mit.edu/users/TheColaber/"><img src="https://avatars.githubusercontent.com/u/72760579?v=4?s=100" width="100px;" alt=""/><br /><sub><b>TheColaber</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3ATheColaber" title="Bug reports">🐛</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=TheColaber" title="Code">💻</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=TheColaber" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://thecoder876.github.io"><img src="https://avatars.githubusercontent.com/u/76265544?v=4?s=100" width="100px;" alt=""/><br /><sub><b>thecoder876</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3Athecoder876" title="Bug reports">🐛</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

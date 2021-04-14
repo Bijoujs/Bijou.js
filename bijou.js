@@ -2,7 +2,7 @@
  * @file bijou.js
  * @author Explosion-Scratch, Bijou.js contributors
  * @since v0.0.0
- * @copyright © Explosion-Scratch and GrahamSH, All rights reserved.
+ * @copyright © Explosion-Scratch, All rights reserved.
  */
 
 /* --------------------------------------------------------------------------|
@@ -13,7 +13,7 @@
  |____/___\___/ \___/ \___(_)/ |___/
                            |__/     
 ------------------------------------------------------------------------------|
-Bijou.js is copyrighted by Explosion-Scratch and GrahamSH-LLK of GitHub and released under the MIT license.
+Bijou.js is copyrighted by Explosion-Scratch of GitHub and released under the GPL-3.0 License.
 This software comes with ABSOLUTELY NO WARRANTY and is provided "As is" (with the best intentions of Explosion-Scratch and contributors! =D )
 
 -----------------------------------------------------------------------------|
@@ -77,9 +77,7 @@ if (
 }
 
 if (isNode) {
-	console.warn(
-		"There is no document element in Node, some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.",
-	);
+	console.warn();
 }
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
@@ -3325,759 +3323,6 @@ export let unCamelCase = function (str = req("string", "string")) {
 };
 
 /**
- * Syntax highlights a string of code.
- * @function
- * @memberOf string
- * @param {String} string The string of HTML to highlight.
- * @param {String} [mode=html] The mode to use for highlighting. (CSS, JS or HTML).
- * @param {Object} [colors={}] The colors to use for highlighting.
- * @param {String} [colors.tagNameColor='mediumblue'] The color to use for HTML tags.
- * @param {String} [colors.tagColor='brown'] The color to use for HTML tag names.
- * @param {String} [colors.attributeColor='red'] The color to use for HTML attributes.
- * @param {String} [colors.attributeValueColor='mediumblue'] The color to use for HTML attribute values.
- * @param {String} [colors.commentColor='green'] The color to use for comments.
- * @param {String} [colors.cssSelectorColor='brown'] The color to use for CSS selectors.
- * @param {String} [colors.cssPropertyColor='red'] The color to use for CSS properties.
- * @param {String} [colors.cssPropertyValueColor='mediumblue'] The color to use for CSS propertie values.
- * @param {String} [colors.cssLimiterColor='black'] The color to use for css limiters.
- * @param {String} [colors.cssImportantColor='red'] The color to use for `!important` in CSS.
- * @param {String} [colors.jsColor='black'] The color to use for the majority of javascript.
- * @param {String} [colors.jsKeywordColor='black'] The color to use for javascript keywords.
- * @param {String} [colors.jsStringColor='brown'] The color to use for javascript strings.
- * @param {String} [colors.jsNumberColor='black'] The color to use for javascript numbers.
- * @param {String} [colors.jsPropertyColor='black'] The color to use for javascript properties.
- * @param {String} [colors.fontFamily="Consolas,'Courier New', monospace"] The font to use for syntax highlighting.
- * @example
- * _$.syntaxHighlight('alert(\"Hello\")', 'js'); // <span style="color:black">alert(<span style="color:brown">"Hello"</span>)</span>
- * @returns {String} The highlighted string of code as HTML code.
- */
-export let syntaxHighlight = (
-	string = req("string", "string"),
-	mode = "html",
-	colors = {},
-) => {
-	node();
-	//        .==.        .==.
-	//       //`^\\      //^`\\
-	//      // ^ ^\(\__/)/^ ^^\\
-	//     //^ ^^ ^/6  6\ ^^ ^ \\
-	//    //^ ^^ ^/( .. )\^ ^ ^ \\
-	//   // ^^ ^/\| v""v |/\^ ^ ^\\
-	//  // ^^/\/ /  `~~`  \ \/\^ ^\\
-	//  -----------------------------
-	/// HERE BE DRAGONS
-	let el = document.createElement("DIV");
-	el.innerText = string;
-	let highlightel = (elmnt, mode, colors = {}) => {
-		// Credit to w3schools for this
-		var lang = mode || "html";
-		var elmntObj = document.getElementById(elmnt) || elmnt;
-		var elmntTxt = elmntObj.innerHTML;
-		var tagcolor = colors.tagColor || "mediumblue";
-		var tagnamecolor = colors.tagNameColor || "brown";
-		var attributecolor = colors.attributeColor || "red";
-		var attributevaluecolor =
-			colors.attributeValueColor || "mediumblue";
-		var commentcolor = colors.commentColor || "green";
-		var cssselectorcolor = colors.cssSelectorColor || "brown";
-		var csspropertycolor = colors.cssPropertyColor || "red";
-		var csspropertyvaluecolor =
-			colors.cssPropertyValueColor || "mediumblue";
-		var cssdelimitercolor = colors.cssLimiterColor || "black";
-		var cssimportantcolor = colors.cssImportantColor || "red";
-		var jscolor = colors.jsColor || "black";
-		var jskeywordcolor = colors.jsKeywordColor || "mediumblue";
-		var jsstringcolor = colors.jsStringColor || "brown";
-		var jsnumbercolor = colors.jsNumberColor || "red";
-		var jspropertycolor = colors.jsPropertyColor || "black";
-		elmntObj.style.fontFamily =
-			colors.fontFamily || "Consolas,'Courier New', monospace";
-		if (!lang) {
-			lang = "html";
-		}
-		if (lang == "html") {
-			elmntTxt = htmlMode(elmntTxt);
-		}
-		if (lang == "css") {
-			elmntTxt = cssMode(elmntTxt);
-		}
-		if (lang == "js") {
-			elmntTxt = jsMode(elmntTxt);
-		}
-		elmntObj.innerHTML = elmntTxt;
-
-		function extract(str, start, end, func, repl) {
-			var s,
-				e,
-				d = "",
-				a = [];
-			while (str.search(start) > -1) {
-				s = str.search(start);
-				e = str.indexOf(end, s);
-				if (e == -1) {
-					e = str.length;
-				}
-				if (repl) {
-					a.push(func(str.substring(s, e + end.length)));
-					str =
-						str.substring(0, s) + repl + str.substr(e + end.length);
-				} else {
-					d += str.substring(0, s);
-					d += func(str.substring(s, e + end.length));
-					str = str.substr(e + end.length);
-				}
-			}
-			this.rest = d + str;
-			this.arr = a;
-		}
-		function htmlMode(txt) {
-			var rest = txt,
-				done = "",
-				comment,
-				startpos,
-				endpos,
-				note,
-				i;
-			comment = new extract(
-				rest,
-				"&lt;!--",
-				"--&gt;",
-				commentMode,
-				"W3HTMLCOMMENTPOS",
-			);
-			rest = comment.rest;
-			while (rest.indexOf("&lt;") > -1) {
-				note = "";
-				startpos = rest.indexOf("&lt;");
-				if (rest.substr(startpos, 9).toUpperCase() == "&LT;STYLE") {
-					note = "css";
-				}
-				if (rest.substr(startpos, 10).toUpperCase() == "&LT;SCRIPT") {
-					note = "javascript";
-				}
-				endpos = rest.indexOf("&gt;", startpos);
-				if (endpos == -1) {
-					endpos = rest.length;
-				}
-				done += rest.substring(0, startpos);
-				done += tagMode(rest.substring(startpos, endpos + 4));
-				rest = rest.substr(endpos + 4);
-				if (note == "css") {
-					endpos = rest.indexOf("&lt;/style&gt;");
-					if (endpos > -1) {
-						done += cssMode(rest.substring(0, endpos));
-						rest = rest.substr(endpos);
-					}
-				}
-				if (note == "javascript") {
-					endpos = rest.indexOf("&lt;/script&gt;");
-					if (endpos > -1) {
-						done += jsMode(rest.substring(0, endpos));
-						rest = rest.substr(endpos);
-					}
-				}
-			}
-			rest = done + rest;
-			for (i = 0; i < comment.arr.length; i++) {
-				rest = rest.replace("W3HTMLCOMMENTPOS", comment.arr[i]);
-			}
-			return rest;
-		}
-		function tagMode(txt) {
-			var rest = txt,
-				done = "",
-				startpos,
-				endpos,
-				result;
-			while (rest.search(/(\s|<br>)/) > -1) {
-				startpos = rest.search(/(\s|<br>)/);
-				endpos = rest.indexOf("&gt;");
-				if (endpos == -1) {
-					endpos = rest.length;
-				}
-				done += rest.substring(0, startpos);
-				done += attributeMode(rest.substring(startpos, endpos));
-				rest = rest.substr(endpos);
-			}
-			result = done + rest;
-			result =
-				"<span style=color:" +
-				_$.escapeHTML(tagcolor) +
-				">&lt;</span>" +
-				result.substring(4);
-			if (result.substr(result.length - 4, 4) == "&gt;") {
-				result =
-					result.substring(0, result.length - 4) +
-					"<span style=color:" +
-					_$.escapeHTML(tagcolor) +
-					">&gt;</span>";
-			}
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(tagnamecolor) +
-				">" +
-				result +
-				"</span>"
-			);
-		}
-		function attributeMode(txt) {
-			var rest = txt,
-				done = "",
-				startpos,
-				endpos,
-				singlefnuttpos,
-				doublefnuttpos,
-				spacepos;
-			while (rest.indexOf("=") > -1) {
-				endpos = -1;
-				startpos = rest.indexOf("=");
-				singlefnuttpos = rest.indexOf("'", startpos);
-				doublefnuttpos = rest.indexOf('"', startpos);
-				spacepos = rest.indexOf(" ", startpos + 2);
-				if (
-					spacepos > -1 &&
-					(spacepos < singlefnuttpos || singlefnuttpos == -1) &&
-					(spacepos < doublefnuttpos || doublefnuttpos == -1)
-				) {
-					endpos = rest.indexOf(" ", startpos);
-				} else if (
-					doublefnuttpos > -1 &&
-					(doublefnuttpos < singlefnuttpos || singlefnuttpos == -1) &&
-					(doublefnuttpos < spacepos || spacepos == -1)
-				) {
-					endpos = rest.indexOf('"', rest.indexOf('"', startpos) + 1);
-				} else if (
-					singlefnuttpos > -1 &&
-					(singlefnuttpos < doublefnuttpos || doublefnuttpos == -1) &&
-					(singlefnuttpos < spacepos || spacepos == -1)
-				) {
-					endpos = rest.indexOf("'", rest.indexOf("'", startpos) + 1);
-				}
-				if (!endpos || endpos == -1 || endpos < startpos) {
-					endpos = rest.length;
-				}
-				done += rest.substring(0, startpos);
-				done += attributeValueMode(
-					rest.substring(startpos, endpos + 1),
-				);
-				rest = rest.substr(endpos + 1);
-			}
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(attributecolor) +
-				">" +
-				done +
-				rest +
-				"</span>"
-			);
-		}
-		function attributeValueMode(txt) {
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(attributevaluecolor) +
-				">" +
-				txt +
-				"</span>"
-			);
-		}
-		function commentMode(txt) {
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(commentcolor) +
-				">" +
-				txt +
-				"</span>"
-			);
-		}
-		function cssMode(txt) {
-			var rest = txt,
-				done = "",
-				s,
-				e,
-				comment,
-				i,
-				midz,
-				c,
-				cc;
-			comment = new extract(
-				rest,
-				/\/\*/,
-				"*/",
-				commentMode,
-				"W3CSSCOMMENTPOS",
-			);
-			rest = comment.rest;
-			while (rest.search("{") > -1) {
-				s = rest.search("{");
-				midz = rest.substr(s + 1);
-				cc = 1;
-				c = 0;
-				for (i = 0; i < midz.length; i++) {
-					if (midz.substr(i, 1) == "{") {
-						cc++;
-						c++;
-					}
-					if (midz.substr(i, 1) == "}") {
-						cc--;
-					}
-					if (cc == 0) {
-						break;
-					}
-				}
-				if (cc != 0) {
-					c = 0;
-				}
-				e = s;
-				for (i = 0; i <= c; i++) {
-					e = rest.indexOf("}", e + 1);
-				}
-				if (e == -1) {
-					e = rest.length;
-				}
-				done += rest.substring(0, s + 1);
-				done += cssPropertyMode(rest.substring(s + 1, e));
-				rest = rest.substr(e);
-			}
-			rest = done + rest;
-			rest = rest.replace(
-				/{/g,
-				"<span style=color:" +
-					_$.escapeHTML(cssdelimitercolor) +
-					">{</span>",
-			);
-			rest = rest.replace(
-				/}/g,
-				"<span style=color:" +
-					_$.escapeHTML(cssdelimitercolor) +
-					">}</span>",
-			);
-			for (i = 0; i < comment.arr.length; i++) {
-				rest = rest.replace("W3CSSCOMMENTPOS", comment.arr[i]);
-			}
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(cssselectorcolor) +
-				">" +
-				rest +
-				"</span>"
-			);
-		}
-		function cssPropertyMode(txt) {
-			var rest = txt,
-				done = "",
-				s,
-				e,
-				n,
-				loop;
-			if (rest.indexOf("{") > -1) {
-				return cssMode(rest);
-			}
-			while (rest.search(":") > -1) {
-				s = rest.search(":");
-				loop = true;
-				n = s;
-				while (loop == true) {
-					loop = false;
-					e = rest.indexOf(";", n);
-					if (rest.substring(e - 5, e + 1) == "&nbsp;") {
-						loop = true;
-						n = e + 1;
-					}
-				}
-				if (e == -1) {
-					e = rest.length;
-				}
-				done += rest.substring(0, s);
-				done += cssPropertyValueMode(rest.substring(s, e + 1));
-				rest = rest.substr(e + 1);
-			}
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(csspropertycolor) +
-				">" +
-				done +
-				rest +
-				"</span>"
-			);
-		}
-		function cssPropertyValueMode(txt) {
-			var rest = txt,
-				done = "",
-				s;
-			rest =
-				"<span style=color:" +
-				_$.escapeHTML(cssdelimitercolor) +
-				">:</span>" +
-				rest.substring(1);
-			while (rest.search(/!important/i) > -1) {
-				s = rest.search(/!important/i);
-				done += rest.substring(0, s);
-				done += cssImportantMode(rest.substring(s, s + 10));
-				rest = rest.substr(s + 10);
-			}
-			result = done + rest;
-			if (
-				result.substr(result.length - 1, 1) == ";" &&
-				result.substr(result.length - 6, 6) != "&nbsp;" &&
-				result.substr(result.length - 4, 4) != "&lt;" &&
-				result.substr(result.length - 4, 4) != "&gt;" &&
-				result.substr(result.length - 5, 5) != "&amp;"
-			) {
-				result =
-					result.substring(0, result.length - 1) +
-					"<span style=color:" +
-					_$.escapeHTML(cssdelimitercolor) +
-					">;</span>";
-			}
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(csspropertyvaluecolor) +
-				">" +
-				result +
-				"</span>"
-			);
-		}
-		function cssImportantMode(txt) {
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(cssimportantcolor) +
-				";font-weight:bold;>" +
-				txt +
-				"</span>"
-			);
-		}
-		function jsMode(txt) {
-			var rest = txt,
-				done = "",
-				esc = [],
-				i,
-				cc,
-				tt = "",
-				sfnuttpos,
-				dfnuttpos,
-				compos,
-				comlinepos,
-				keywordpos,
-				numpos,
-				mypos,
-				dotpos,
-				y;
-			for (i = 0; i < rest.length; i++) {
-				cc = rest.substr(i, 1);
-				if (cc == "\\") {
-					esc.push(rest.substr(i, 2));
-					cc = "W3JSESCAPE";
-					i++;
-				}
-				tt += cc;
-			}
-			rest = tt;
-			y = 1;
-			while (y == 1) {
-				sfnuttpos = getPos(rest, "'", "'", jsStringMode);
-				dfnuttpos = getPos(rest, '"', '"', jsStringMode);
-				compos = getPos(rest, /\/\*/, "*/", commentMode);
-				comlinepos = getPos(rest, /\/\//, "<br>", commentMode);
-				numpos = getNumPos(rest, jsNumberMode);
-				keywordpos = getKeywordPos("js", rest, jsKeywordMode);
-				dotpos = getDotPos(rest, jsPropertyMode);
-				if (
-					Math.max(
-						numpos[0],
-						sfnuttpos[0],
-						dfnuttpos[0],
-						compos[0],
-						comlinepos[0],
-						keywordpos[0],
-						dotpos[0],
-					) == -1
-				) {
-					break;
-				}
-				mypos = getMinPos(
-					numpos,
-					sfnuttpos,
-					dfnuttpos,
-					compos,
-					comlinepos,
-					keywordpos,
-					dotpos,
-				);
-				if (mypos[0] == -1) {
-					break;
-				}
-				if (mypos[0] > -1) {
-					done += rest.substring(0, mypos[0]);
-					done += mypos[2](rest.substring(mypos[0], mypos[1]));
-					rest = rest.substr(mypos[1]);
-				}
-			}
-			rest = done + rest;
-			for (i = 0; i < esc.length; i++) {
-				rest = rest.replace("W3JSESCAPE", esc[i]);
-			}
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(jscolor) +
-				">" +
-				rest +
-				"</span>"
-			);
-		}
-		function jsStringMode(txt) {
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(jsstringcolor) +
-				">" +
-				txt +
-				"</span>"
-			);
-		}
-		function jsKeywordMode(txt) {
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(jskeywordcolor) +
-				">" +
-				txt +
-				"</span>"
-			);
-		}
-		function jsNumberMode(txt) {
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(jsnumbercolor) +
-				">" +
-				txt +
-				"</span>"
-			);
-		}
-		function jsPropertyMode(txt) {
-			return (
-				"<span style=color:" +
-				_$.escapeHTML(jspropertycolor) +
-				">" +
-				txt +
-				"</span>"
-			);
-		}
-		function getDotPos(txt, func) {
-			var x,
-				i,
-				j,
-				s,
-				e,
-				arr = [
-					".",
-					"<",
-					" ",
-					";",
-					"(",
-					"+",
-					")",
-					"[",
-					"]",
-					",",
-					"&",
-					":",
-					"{",
-					"}",
-					"/",
-					"-",
-					"*",
-					"|",
-					"%",
-				];
-			s = txt.indexOf(".");
-			if (s > -1) {
-				x = txt.substr(s + 1);
-				for (j = 0; j < x.length; j++) {
-					cc = x[j];
-					for (i = 0; i < arr.length; i++) {
-						if (cc.indexOf(arr[i]) > -1) {
-							e = j;
-							return [s + 1, e + s + 1, func];
-						}
-					}
-				}
-			}
-			return [-1, -1, func];
-		}
-		function getMinPos() {
-			var i,
-				arr = [];
-			for (i = 0; i < arguments.length; i++) {
-				if (arguments[i][0] > -1) {
-					if (arr.length == 0 || arguments[i][0] < arr[0]) {
-						arr = arguments[i];
-					}
-				}
-			}
-			if (arr.length == 0) {
-				arr = arguments[i];
-			}
-			return arr;
-		}
-		function getKeywordPos(typ, txt, func) {
-			var words,
-				i,
-				pos,
-				rpos = -1,
-				rpos2 = -1,
-				patt;
-			if (typ == "js") {
-				words = [
-					"abstract",
-					"arguments",
-					"boolean",
-					"break",
-					"byte",
-					"case",
-					"catch",
-					"char",
-					"class",
-					"const",
-					"continue",
-					"debugger",
-					"default",
-					"delete",
-					"do",
-					"double",
-					"else",
-					"enum",
-					"eval",
-					"export",
-					"extends",
-					"false",
-					"final",
-					"finally",
-					"float",
-					"for",
-					"function",
-					"goto",
-					"if",
-					"implements",
-					"import",
-					"in",
-					"instanceof",
-					"int",
-					"interface",
-					"let",
-					"long",
-					"NaN",
-					"native",
-					"new",
-					"null",
-					"package",
-					"private",
-					"protected",
-					"public",
-					"return",
-					"short",
-					"static",
-					"super",
-					"switch",
-					"synchronized",
-					"this",
-					"throw",
-					"throws",
-					"transient",
-					"true",
-					"try",
-					"typeof",
-					"var",
-					"void",
-					"volatile",
-					"while",
-					"with",
-					"yield",
-				];
-			}
-			for (i = 0; i < words.length; i++) {
-				pos = txt.indexOf(words[i]);
-				if (pos > -1) {
-					patt = /\W/g;
-					if (
-						txt.substr(pos + words[i].length, 1).match(patt) &&
-						txt.substr(pos - 1, 1).match(patt)
-					) {
-						if (pos > -1 && (rpos == -1 || pos < rpos)) {
-							rpos = pos;
-							rpos2 = rpos + words[i].length;
-						}
-					}
-				}
-			}
-			return [rpos, rpos2, func];
-		}
-		function getPos(txt, start, end, func) {
-			var s, e;
-			s = txt.search(start);
-			e = txt.indexOf(end, s + end.length);
-			if (e == -1) {
-				e = txt.length;
-			}
-			return [s, e + end.length, func];
-		}
-		function getNumPos(txt, func) {
-			var arr = [
-					"<br>",
-					" ",
-					";",
-					"(",
-					"+",
-					")",
-					"[",
-					"]",
-					",",
-					"&",
-					":",
-					"{",
-					"}",
-					"/",
-					"-",
-					"*",
-					"|",
-					"%",
-					"=",
-				],
-				i,
-				j,
-				c,
-				startpos = 0,
-				endpos,
-				word;
-			for (i = 0; i < txt.length; i++) {
-				for (j = 0; j < arr.length; j++) {
-					c = txt.substr(i, arr[j].length);
-					if (c == arr[j]) {
-						if (
-							c == "-" &&
-							(txt.substr(i - 1, 1) == "e" ||
-								txt.substr(i - 1, 1) == "E")
-						) {
-							continue;
-						}
-						endpos = i;
-						if (startpos < endpos) {
-							word = txt.substring(startpos, endpos);
-							if (!isNaN(word)) {
-								return [startpos, endpos, func];
-							}
-						}
-						i += arr[j].length;
-						startpos = i;
-						i -= 1;
-						break;
-					}
-				}
-			}
-			return [-1, -1, func];
-		}
-	};
-	highlightel(el, mode, colors);
-	return el.innerHTML;
-};
-/**
  * camelCases a string.
  * @function
  * @memberOf string
@@ -4777,6 +4022,77 @@ export let previousPage = () => {
 };
 //#endregion String
 //#region Utility
+/**
+ * Resizes an image from a URL and returns a promise with it's data URL.
+ * @memberOf utility
+ * @param {String} url The URL of the image to resize.
+ * @param {Number} [width=Natural width of the image] The target width of the new image
+ * @param {Number} [height=Natural width of the image] The target height of the new image
+ * @returns {Promise.<string>} A data URL of the resized image.
+ */
+export let resize = async (
+	url = req("string", "html"),
+	width,
+	height,
+) => {
+	node();
+	url = url.replace(/^(?:http|https)\:\/\//, "");
+	let img = new Image();
+	img.src = await _$.imageToData(
+		"https://cors.explosionscratc.repl.co/" + url,
+	);
+	await new Promise((res) => (img.onload = res));
+	let canvas = document.createElement("canvas");
+	let ctx = canvas.getContext("2d");
+	canvas.width = width < 1 || !width ? img.width : width;
+	canvas.height = height < 1 || !width ? img.height : height;
+	ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+	let data = canvas.toDataURL(0, 0, canvas.width, canvas.height);
+	return data;
+};
+/**
+ * Converts a string of HTML to an image (!!)
+ * @param {String} html The HTML string to transform into an image
+ * @param {Object.<string>} [opts={x: 0, y: 0, width: 300, height: 400}] The object with options.
+ * @param {Number} [opts.x=0] The x position of the text
+ * @param {Number} [opts.y=0] The y position of the text
+ * @param {Number} [opts.width=300] The width of the output image.
+ * @param {Number} [opts.height=400]  The height of the output image.
+ * @returns {Promise.<string>} A promise that resolves into the data URL string of the image.
+ */
+export let htmlToImage = (
+	html = req("string", "html string"),
+	{ x = 0, y = 0, width = 300, height = 400 },
+) => {
+	node();
+	let canvas = document.createElement("canvas");
+	canvas.width = width;
+	canvas.height = height;
+	var ctx = canvas.getContext("2d");
+	return new Promise((res) => {
+		var xml = toXML(html);
+		xml = xml.replace(/\#/g, "%23");
+		var data = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><foreignObject width="100%" height="100%">${xml}</foreignObject></svg>`;
+
+		var img = new Image();
+		img.onload = function () {
+			ctx.drawImage(img, x, y, width, height);
+			res(canvas.toDataURL());
+		};
+		img.src = data;
+	});
+	function toXML(html) {
+		var doc = document.implementation.createHTMLDocument("");
+		doc.write(html);
+		doc.documentElement.setAttribute(
+			"xmlns",
+			doc.documentElement.namespaceURI,
+		);
+		html = new XMLSerializer().serializeToString(doc.body);
+		return html;
+	}
+};
+
 /**
  * Converts a function that returns a promise into a callback based function
  * @param {Function} fn The function to 'callbackify'.
