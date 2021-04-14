@@ -4,6 +4,7 @@
  * Gets the greatest common divisor of a list of numbers.
  * @returns {Number} The greatest common divisor
  * @memberOf math
+ * @function
  * @example
  * _$.gcd(12, 4, 8);//Returns 4
  * @param {...Number} arr The numbers to compare
@@ -33,6 +34,7 @@ export let gcd = (...ary) => {
 /**
  * Tests if two things are equal, like "thing === thing2" but it also works for dates and objects.
  * @memberOf math
+ * @function
  * @example
  * console.assert(new Date() === new Date());//Not equal
  * console.assert(_$.equals(new Date(), new Date()));//Equal!
@@ -57,6 +59,7 @@ export let equals = (a = req("any", "a"), b = req("any", "b")) => {
  * Tests if a given number is prime.
  * @returns {boolean} Whether the number is prime
  * @memberOf math
+ * @function
  * @example
  * _$.isPrime(11);//True
  * _$.isPrime(10);//False
@@ -70,6 +73,7 @@ export let isPrime = (num = req("number", "number")) => {
 /**
  * Gets the factorial of a number given.
  * @memberOf math
+ * @function
  * @param {Number} n The number to get the factorial of.
  * @returns {Number}
  * @example
@@ -91,6 +95,7 @@ export let factorial = (n = req("number")) =>
     - _$.luhnCheck(123456789); // false
  * @param {Number|String} num The number or string to check on.
  * @memberOf math
+ * @function
  */
 export let luhnCheck = (num = req("String|Number")) => {
 	let arr = (num + "")

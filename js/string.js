@@ -2,6 +2,7 @@
 /**
  * Compares two strings using the Jaro-Winkler Distance algorithm.
  * @memberOf string
+ * @function
  * @example
  * _$.jaroDistance('test', 'tes');//0.9416666666666667
  * @returns {Number} A number representing how similar the two strings are, where 1 is exactly the same and 0 is totally different
@@ -134,6 +135,7 @@ export let jaroDistance = function (a, b) {
 /**
  * Prefixes the given CSS property for the current browser.
  * @memberOf string
+ * @function
  * @example
  * document.body.style[_$.prefix("appearance")] = "hidden";//Sets the document body's appearance property to "hidden".
  * @param {String} prop The property to prefix.
@@ -160,6 +162,7 @@ export let prefixCSS = (prop = req("string", "property")) => {
 /**
  * Parses a cookie string into object and value pairs.
  * @memberOf string
+ * @function
  * @example
  * _$.parseCookie("foo=bar; something=hello%20world");//Returns {foo: "bar", something: "hello world"};
  * @param {String} str The string to parse.
@@ -177,6 +180,7 @@ export let parseCookie = (str = req("string", "cookie string")) =>
 /**
  * Hashes a string using the crypto api. 
  * @memberOf string
+ * @function
  * @example
  * _$.hash(
     JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
@@ -219,6 +223,7 @@ export let forTemplateLiteral = (
 /**
  * Maps a string like an array.
  * @memberOf string
+ * @function
  * @example
  * _$.mapString("Hello world", (e) => e.toUpperCase());//Returns "HELLO WORLD"
  * @param {String} str The string to map

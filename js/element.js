@@ -3,6 +3,7 @@
  * Applies a material design ripple effect to the element specified. Works best with buttons and similar elements.
  * This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple
  * @memberOf element
+ * @function
  * @example
  * _$.each(document.querySelectorAll("button"), _$.ripple)
  * //Accepts attributes too!
@@ -59,6 +60,7 @@ export let ripple = (el = req("element", "element")) => {
  * @param selector The querySelector to watch for.
  * @returns {Promise} A promise resolved when the element exists.
  * @memberOf element
+ * @function
  * @example
  * _$.elementReady("#text").then((e) => e.remove());//Wait for an element with an ID of "text" then removes it.
  */
@@ -90,6 +92,7 @@ export function elementReady(
  * Tests if an element is a child element of another element.
  * @returns {Boolean} If the element is a child or not
  * @memberOf element
+ * @function
  * @example
  * _$.elementContains(document.querySelector("#container"), document.querySelector("#img"));//If the element with an id of "img" is inside the #container element this will return true, otherwise it will return false
  * @example
@@ -112,6 +115,7 @@ export let elementContains = (
  * Gets the parent elements of the element given.
  * @returns {Array.<HTMLElement>} An array of the parent elements from deepest to outermost.
  * @memberOf element
+ * @function
  * @example
  * //Where the html is like so:
  * ```
@@ -139,6 +143,7 @@ export let parents = (el = req("element")) => [
  * Gets all the images that are children of the specified element.
  * @returns {Array} The array of image urls.
  * @memberOf element
+ * @function
  * @example
  * //Get all the images on the page and convert their url's to data urls then log that list to console.
  * _$.getImages().forEach(image_url => {
@@ -160,6 +165,7 @@ export let getImages = (
 /**
  * Renders an HTML element from an object in the container specified.
  * @memberOf element
+ * @function
  * @example
  * //Renders a button in the document body.
  * _$.renderElement({
@@ -202,6 +208,7 @@ export let renderElement = (
 /**
  * Create a DOM element from a querySelector with option to include content
  * @memberOf element
+ * @function
  * @param {String} querySelector (optional) default to div
  * @param {...*} [content] (optional) String|Number|DOMElement
  * @returns DOMElement
@@ -273,7 +280,7 @@ export function create(querySelector = "div", ...content) {
  * //JS
  * _$.context();
  * // Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
- * @returns {undefined};
+ * @returns {undefined}
  */
 export let context = () => {
 	var menu = document.createElement("UL");
