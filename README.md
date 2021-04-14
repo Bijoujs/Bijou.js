@@ -1,7 +1,7 @@
 <div align="center"><a href="https://bijou.js.org"><img width="700" src="https://bijou.js.org/bijou.png"></a></div>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![NPM Downloads](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
@@ -159,6 +159,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/apple502j"><img src="https://avatars.githubusercontent.com/u/33279053?v=4?s=100" width="100px;" alt=""/><br /><sub><b>apple502j</b></sub></a><br /><a href="#security-apple502j" title="Security">🛡️</a></td>
+    <td align="center"><a href="http://touchcreator.github.io"><img src="https://avatars.githubusercontent.com/u/64277067?v=4?s=100" width="100px;" alt=""/><br /><sub><b>TouchIsNotAGoodCoder</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3ATouchcreator" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
