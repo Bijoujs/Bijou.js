@@ -2,6 +2,7 @@
 /**
  * Resizes an image from a URL and returns a promise with it's data URL.
  * @memberOf utility
+ * @function
  * @param {String} url The URL of the image to resize.
  * @param {Number} [width=Natural width of the image] The target width of the new image
  * @param {Number} [height=Natural width of the image] The target height of the new image
@@ -29,6 +30,8 @@ export let resize = async (
 };
 /**
  * Converts a string of HTML to an image (!!)
+ * @memberOf utility
+ * @function
  * @param {String} html The HTML string to transform into an image
  * @param {Object.<string>} [opts={x: 0, y: 0, width: 300, height: 400}] The object with options.
  * @param {Number} [opts.x=0] The x position of the text
@@ -74,6 +77,7 @@ export let htmlToImage = (
  * Converts a function that returns a promise into a callback based function
  * @param {Function} fn The function to 'callbackify'.
  * @memberOf utility
+ * @function
  * @returns {Function} The callback based function.
  * @example
  * let getUUID = _$.callbackify((limit) =>
@@ -97,6 +101,7 @@ let callbackify = (fn = req("function", "function")) => (
  * @param {Number} [argIndex=0] The index of the argument that is the callback returned by the function.
  * @returns {Function} The function promisified (now returns a promise).
  * @memberOf utility
+ * @function
  * @example
  * let time = _$.promisify(setTimeout);
  * (async () => {
@@ -118,6 +123,7 @@ let promisify = (fn = req("function"), argIndex = 0) => {
 /**
  * Times out a promise after a specified number of milliseconds.
  * @memberOf utility
+ * @function
  * @returns {Promise} The promise that was inputted, but will time out after a specified time.
  * @example
  * //Attempts to fetch the date from jsontest.com, if the request is still pending after 2000 milliseconds cancel it and throw an error.
@@ -163,6 +169,7 @@ export let race = (
 /**
  * Gets the type of something. This is more specific than the 'typeof' operator.
  * @memberof utility
+ * @function
  * @example
  * _$.typeof("This is a string");//"String"
  * typeof "This is a string";//Also string
@@ -180,6 +187,7 @@ export let typeOf = (e = req("any", "any"), lowerCase = true) =>
 /**
  * Injects CSS into the document head.
  * @memberOf utility
+ * @function
  * @example
  * //Makes the body's background a dark charcoal color.
  * _$.injectCSS("body {background: #101010; color: white;}");
@@ -871,6 +879,7 @@ export let serializeForm = (
  * _$.soundex("ekxplohsin");//"E214"
  * _$.soundex("explosion");//"E214"
  * @memberOf utility
+ * @function
  */
 export let soundex = (s = req("string", "word")) => {
 	var a = s.toLowerCase().split(""),
