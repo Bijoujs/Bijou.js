@@ -59,8 +59,9 @@ Contributors to Bijou.js:
 ║ thecoder876       ║ Made some improvements.    ║
 ╠═══════════════════╬════════════════════════════╣
 ║ AwayFromKeyword   ║   pretty stupid stuff      ║
+╠═══════════════════╬════════════════════════════╣
+║ ZL-Youtuber       ║  Bug Fixes                 ║
 ╚═══════════════════╩════════════════════════════╝
-
 
 (c) 2021 Explosion-Scratch, all rights reserved.
 
