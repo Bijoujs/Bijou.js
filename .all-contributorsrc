@@ -32,7 +32,9 @@
         "code",
         "design",
         "bug",
-        "doc"
+        "doc",
+        "infra",
+        "test"
       ]
     },
     {
