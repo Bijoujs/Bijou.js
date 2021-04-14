@@ -20,7 +20,6 @@ jobs:
       - run: rm -r docs/docs
              && rm bijou-min.js
       - run: jsdoc -c jsdoc.json
-             && eslint --fix ./
              && prettier --write -- .
       - run: rollup bijou.js --file bijou_node.js --format cjs
              && terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
