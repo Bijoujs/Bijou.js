@@ -5,7 +5,7 @@
   "imageSize": 100,
   "commit": false,
   "contributors": [
-        {
+    {
       "login": "Explosion-Scratch",
       "name": "--Explosion--",
       "avatar_url": "https://avatars.githubusercontent.com/u/61319150?v=4",
@@ -18,7 +18,8 @@
         "infra",
         "test"
       ]
-    },{
+    },
+    {
       "login": "retronbv",
       "name": "retronbv",
       "avatar_url": "https://avatars.githubusercontent.com/u/49005044?v=4",
@@ -70,7 +71,6 @@
         "code"
       ]
     },
-
     {
       "login": "devxan",
       "name": "-Xanimation-",
@@ -97,6 +97,17 @@
       "profile": "http://touchcreator.github.io",
       "contributions": [
         "bug"
+      ]
+    },
+    {
+      "login": "TheColaber",
+      "name": "TheColaber",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72760579?v=4",
+      "profile": "https://scratch.mit.edu/users/TheColaber/",
+      "contributions": [
+        "bug",
+        "code",
+        "doc"
       ]
     }
   ],
