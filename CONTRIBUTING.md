@@ -29,7 +29,9 @@ export let functionName = (str = req("string", "input")) => {
 };
 
 //  For recursive functions:
-export let functionName = function _recurse(str = req("string", "input")) {
+export let functionName = function _recurse(
+	str = req("string", "input"),
+) {
 	//Do whatever
 	return _recurse(str);
 };

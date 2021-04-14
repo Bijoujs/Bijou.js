@@ -109,6 +109,7 @@ const req = (type, desc, condition = true) => {
  * Counts the items in an array, returning a separate count for each object.
  * @returns {Object}
  * @memberOf array
+ * @function
  * @example
  * _$.count(['a', 'b', 'c', 'd', 'e', 'f'])//{'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1}
  *
@@ -687,6 +688,7 @@ let formatMilliseconds = (
 /**
  * Adds a certain number of minutes to a date object.
  * @memberof date
+ * @function
  * @example
  * _$.addMinutesToDate(new Date(), 4);//Create a date 4 minutes from now.
  * @param {Date|string} date The date to add minutes to.
@@ -704,6 +706,7 @@ let addMinutesToDate = (
 /**
  * Validates a date from a string.
  * @memberOf date
+ * @function
  * @example
  *  _$.isDateValid('December 17, 1995 03:24:00'); // true
     _$.isDateValid('1995-12-17T03:24:00'); // true
@@ -722,6 +725,7 @@ let isDateValid = (...val) => {
 /**
  * Adds a specified number of days to a date.
  * @memberOf date
+ * @function
  * @param {Date} date The date to add days to
  * @param {Number} n How many days to add to the date.
  * @returns {Date} The date with the specified number of days added.
@@ -740,6 +744,7 @@ let addDaysToDate = (
  * Applies a material design ripple effect to the element specified. Works best with buttons and similar elements.
  * This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple
  * @memberOf element
+ * @function
  * @example
  * _$.each(document.querySelectorAll("button"), _$.ripple)
  * //Accepts attributes too!
@@ -796,6 +801,7 @@ let ripple = (el = req("element", "element")) => {
  * @param selector The querySelector to watch for.
  * @returns {Promise} A promise resolved when the element exists.
  * @memberOf element
+ * @function
  * @example
  * _$.elementReady("#text").then((e) => e.remove());//Wait for an element with an ID of "text" then removes it.
  */
@@ -827,6 +833,7 @@ function elementReady(
  * Tests if an element is a child element of another element.
  * @returns {Boolean} If the element is a child or not
  * @memberOf element
+ * @function
  * @example
  * _$.elementContains(document.querySelector("#container"), document.querySelector("#img"));//If the element with an id of "img" is inside the #container element this will return true, otherwise it will return false
  * @example
@@ -849,6 +856,7 @@ let elementContains = (
  * Gets the parent elements of the element given.
  * @returns {Array.<HTMLElement>} An array of the parent elements from deepest to outermost.
  * @memberOf element
+ * @function
  * @example
  * //Where the html is like so:
  * ```
@@ -876,6 +884,7 @@ let parents = (el = req("element")) => [
  * Gets all the images that are children of the specified element.
  * @returns {Array} The array of image urls.
  * @memberOf element
+ * @function
  * @example
  * //Get all the images on the page and convert their url's to data urls then log that list to console.
  * _$.getImages().forEach(image_url => {
@@ -897,6 +906,7 @@ let getImages = (
 /**
  * Renders an HTML element from an object in the container specified.
  * @memberOf element
+ * @function
  * @example
  * //Renders a button in the document body.
  * _$.renderElement({
@@ -939,6 +949,7 @@ let renderElement = (
 /**
  * Create a DOM element from a querySelector with option to include content
  * @memberOf element
+ * @function
  * @param {String} querySelector (optional) default to div
  * @param {...*} [content] (optional) String|Number|DOMElement
  * @returns DOMElement
@@ -1010,7 +1021,7 @@ function create(querySelector = "div", ...content) {
  * //JS
  * _$.context();
  * // Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
- * @returns {undefined};
+ * @returns {undefined}
  */
 let context = () => {
 	var menu = document.createElement("UL");
@@ -2555,6 +2566,7 @@ let sortObj = (obj = req("object", "object")) => {
  * Gets the greatest common divisor of a list of numbers.
  * @returns {Number} The greatest common divisor
  * @memberOf math
+ * @function
  * @example
  * _$.gcd(12, 4, 8);//Returns 4
  * @param {...Number} arr The numbers to compare
@@ -2584,6 +2596,7 @@ let gcd = (...ary) => {
 /**
  * Tests if two things are equal, like "thing === thing2" but it also works for dates and objects.
  * @memberOf math
+ * @function
  * @example
  * console.assert(new Date() === new Date());//Not equal
  * console.assert(_$.equals(new Date(), new Date()));//Equal!
@@ -2608,6 +2621,7 @@ let equals = (a = req("any", "a"), b = req("any", "b")) => {
  * Tests if a given number is prime.
  * @returns {boolean} Whether the number is prime
  * @memberOf math
+ * @function
  * @example
  * _$.isPrime(11);//True
  * _$.isPrime(10);//False
@@ -2621,6 +2635,7 @@ let isPrime = (num = req("number", "number")) => {
 /**
  * Gets the factorial of a number given.
  * @memberOf math
+ * @function
  * @param {Number} n The number to get the factorial of.
  * @returns {Number}
  * @example
@@ -2642,6 +2657,7 @@ let factorial = (n = req("number")) =>
     - _$.luhnCheck(123456789); // false
  * @param {Number|String} num The number or string to check on.
  * @memberOf math
+ * @function
  */
 let luhnCheck = (num = req("String|Number")) => {
 	let arr = (num + "")
@@ -2852,7 +2868,7 @@ let ease = {
 		t === 0 ? 0 : Math.pow(2, 10 * t - 10),
 	easeOutExpo: (t = req("number", "percentage")) =>
 		t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
-	easeIntOutExpo: (t = req("number", "percentage")) =>
+	easeInOutExpo: (t = req("number", "percentage")) =>
 		t === 0
 			? 0
 			: t === 1
@@ -2936,6 +2952,7 @@ let ease = {
 /**
  * Compares two strings using the Jaro-Winkler Distance algorithm.
  * @memberOf string
+ * @function
  * @example
  * _$.jaroDistance('test', 'tes');//0.9416666666666667
  * @returns {Number} A number representing how similar the two strings are, where 1 is exactly the same and 0 is totally different
@@ -3068,6 +3085,7 @@ let jaroDistance = function (a, b) {
 /**
  * Prefixes the given CSS property for the current browser.
  * @memberOf string
+ * @function
  * @example
  * document.body.style[_$.prefix("appearance")] = "hidden";//Sets the document body's appearance property to "hidden".
  * @param {String} prop The property to prefix.
@@ -3094,6 +3112,7 @@ let prefixCSS = (prop = req("string", "property")) => {
 /**
  * Parses a cookie string into object and value pairs.
  * @memberOf string
+ * @function
  * @example
  * _$.parseCookie("foo=bar; something=hello%20world");//Returns {foo: "bar", something: "hello world"};
  * @param {String} str The string to parse.
@@ -3111,6 +3130,7 @@ let parseCookie = (str = req("string", "cookie string")) =>
 /**
  * Hashes a string using the crypto api. 
  * @memberOf string
+ * @function
  * @example
  * _$.hash(
     JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
@@ -3153,6 +3173,7 @@ let forTemplateLiteral = (
 /**
  * Maps a string like an array.
  * @memberOf string
+ * @function
  * @example
  * _$.mapString("Hello world", (e) => e.toUpperCase());//Returns "HELLO WORLD"
  * @param {String} str The string to map
@@ -3969,6 +3990,7 @@ let previousPage = () => {
 /**
  * Resizes an image from a URL and returns a promise with it's data URL.
  * @memberOf utility
+ * @function
  * @param {String} url The URL of the image to resize.
  * @param {Number} [width=Natural width of the image] The target width of the new image
  * @param {Number} [height=Natural width of the image] The target height of the new image
@@ -3996,6 +4018,8 @@ let resize = async (
 };
 /**
  * Converts a string of HTML to an image (!!)
+ * @memberOf utility
+ * @function
  * @param {String} html The HTML string to transform into an image
  * @param {Object.<string>} [opts={x: 0, y: 0, width: 300, height: 400}] The object with options.
  * @param {Number} [opts.x=0] The x position of the text
@@ -4039,6 +4063,7 @@ let htmlToImage = (
 /**
  * Times out a promise after a specified number of milliseconds.
  * @memberOf utility
+ * @function
  * @returns {Promise} The promise that was inputted, but will time out after a specified time.
  * @example
  * //Attempts to fetch the date from jsontest.com, if the request is still pending after 2000 milliseconds cancel it and throw an error.
@@ -4084,6 +4109,7 @@ let race = (
 /**
  * Gets the type of something. This is more specific than the 'typeof' operator.
  * @memberof utility
+ * @function
  * @example
  * _$.typeof("This is a string");//"String"
  * typeof "This is a string";//Also string
@@ -4101,6 +4127,7 @@ let typeOf = (e = req("any", "any"), lowerCase = true) =>
 /**
  * Injects CSS into the document head.
  * @memberOf utility
+ * @function
  * @example
  * //Makes the body's background a dark charcoal color.
  * _$.injectCSS("body {background: #101010; color: white;}");
@@ -4792,6 +4819,7 @@ let serializeForm = (
  * _$.soundex("ekxplohsin");//"E214"
  * _$.soundex("explosion");//"E214"
  * @memberOf utility
+ * @function
  */
 let soundex = (s = req("string", "word")) => {
 	var a = s.toLowerCase().split(""),
