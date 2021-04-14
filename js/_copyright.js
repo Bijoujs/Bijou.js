@@ -75,8 +75,7 @@ if (
 }
 
 if (isNode) {
-	console.warn(
-	);
+	console.warn();
 }
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.

@@ -1,31 +1,52 @@
-# CONTRIBUTING GUIDELINES
+# Contributing to Bijou.js
 
-<h6 align="center">By contributing to Bijou.js in any way you agree to these guidelines.</h6>
+Contributing to Bijou.js is simple! Follow the steps below:
 
-### Be patient and courteous.
+## I want to add a new function to Bijou
 
-### Be inclusive.
+Follow this template:
+**IMPORTANT**: Do NOT put your function in the main `bijou.js` file, it will get removed as soon as someone compiles and your work will be lost. MAKE SURE it is in the `/js` folder in the file that matches it's category.
 
-We welcome and support people of all backgrounds and identities. This includes, but is not limited to members of any sexual orientation, gender identity and expression, race, ethnicity, culture, national origin, social and economic class, educational level, color, immigration status, sex, age, size, family status, political belief, religion, and mental and physical ability.
+```js
+//In the right /js/file.js file for your function (e.g. /js/utility.js)
 
-### Be considerate.
+/**
+ * Description
+ * @param String str A string parameter
+ * @returns {String} What it returns
+ * @example
+ * //A full, working example
+ * @example
+ * //Multiple examples are also great!
+ * @memberOf utility (This should be whatever category your new function is in, without the ".js" at the end, e.g. "utility", "function", "string", "array" etc)
+ * @author (whomever you are)
+ */
 
-We all depend on each other to produce the best work we can as a company. Your decisions will affect clients and colleagues, and you should take those consequences into account when making decisions.
+// req throws an error if a parameter is missing, the first param for it is the type that should be given, and the second is a ~one word description of what it is.
+export let functionName = (str = req("string", "input")) => {
+	//  Use an arrow function, then place any code here.
+};
 
-###
+//  For recursive functions:
+export let functionName = (str = req("string", "input")) => {
+	function _recurse(str) {
+		//Do whatever
+		_recurse(str);
+	}
+	return _recurse(str);
+};
+```
 
-Be respectful. We won't all agree all the time, but disagreement is no excuse for disrespectful behavior. We will all experience frustration from time to time, but we cannot allow that frustration to become personal attacks. An environment where people feel uncomfortable or threatened is not a productive or creative one.
+Now you need to compile the code so the function actually gets added, so run `./git.bat` in terminal. If you don't want to do this just wait until someone else does once your PR is merged.
 
-### Choose your words carefully.
+## I found a bug, I want to fix it
 
-Always conduct yourself professionally. Be kind to others. Do not insult or put down others. Harassment and exclusionary behavior aren't acceptable. This includes, but is not limited to: - Threats of violence. - Discriminatory jokes and language. - Sharing sexually explicit or violent material via electronic devices or other means. - Personal insults, especially those using racist or sexist terms. - Unwelcome sexual attention. - Advocating for, or encouraging, any of the above behavior.
+Find the function that the bug is in _in the /js folder_ then fix it in that function. Don't alter any other functions. Then commit and make a PR and an issue for it.
 
-### Do not harass others.
+## I want to help with the website
 
-In general, if someone asks you to stop something, then stop. When we disagree, try to understand why. Differences of opinion and disagreements are mostly unavoidable. What is important is that we resolve disagreements and differing views constructively.
+Simple! Just edit in the /docs folder (which is the website because GitHub can only publish from a folder with that name -\_\_-)
 
-### Our differences can be our strengths.
+## I have a suggestion but I don't know how to code it
 
-We can find strength in diversity. Different people have different perspectives on issues, and that can be valuable for solving problems or generating new ideas. Being unable to understand why someone holds a viewpoint doesn’t mean that they’re wrong. Don’t forget that we all make mistakes, and blaming each other doesn’t get us anywhere.
-
-Instead, focus on resolving issues and learning from mistakes.
+Great! [Make an issue!](https://github.com/Bijou-js/Bijou.js/issues/new/choose)

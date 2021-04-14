@@ -1,7 +1,9 @@
 <div align="center"><a href="https://bijou.js.org"><img width="700" src="https://bijou.js.org/bijou.png"></a></div>
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![NPM Downloads](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
@@ -31,19 +33,28 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 CDNJS
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js" type="module"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js"
+	type="module"
+></script>
 ```
 
 jsDelivr:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js" type="module"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"
+	type="module"
+></script>
 ```
 
 UNPKG
 
 ```html
-<script src="https://unpkg.com/bijou.js@latest/bijou.js" type="module"></script>
+<script
+	src="https://unpkg.com/bijou.js@latest/bijou.js"
+	type="module"
+></script>
 ```
 
 ## Imports
