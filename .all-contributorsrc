@@ -109,6 +109,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "thecoder876",
+      "name": "thecoder876",
+      "avatar_url": "https://avatars.githubusercontent.com/u/76265544?v=4",
+      "profile": "https://thecoder876.github.io",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
