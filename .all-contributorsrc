@@ -57,6 +57,16 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "pufferfish101007",
+      "name": "Pufferfish101007",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50246616?v=4",
+      "profile": "https://github.com/pufferfish101007",
+      "contributions": [
+        "bug",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
