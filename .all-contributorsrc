@@ -33,6 +33,17 @@
         "design",
         "bug"
       ]
+    },
+    {
+      "login": "retronbv",
+      "name": "retronbv",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49005044?v=4",
+      "profile": "https://retronbv.github.io",
+      "contributions": [
+        "code",
+        "ideas",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
