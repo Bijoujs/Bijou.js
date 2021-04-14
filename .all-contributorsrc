@@ -13,6 +13,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "CubeyTheCube",
+      "name": "CubeyTheCube",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72284516?v=4",
+      "profile": "https://github.com/CubeyTheCube",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
