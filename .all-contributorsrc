@@ -30,7 +30,8 @@
       "profile": "http://chrome://crash",
       "contributions": [
         "code",
-        "design"
+        "design",
+        "bug"
       ]
     }
   ],
