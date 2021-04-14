@@ -77,6 +77,15 @@
         "doc",
         "bug"
       ]
+    },
+    {
+      "login": "apple502j",
+      "name": "apple502j",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33279053?v=4",
+      "profile": "https://github.com/apple502j",
+      "contributions": [
+        "security"
+      ]
     }
   ],
   "contributorsPerLine": 7,
