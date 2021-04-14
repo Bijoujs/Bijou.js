@@ -10,7 +10,21 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.4
       - run: ls
-      - run: sudo ./build.bat
+      - run: npm install
+      - run: npm i -g rollup eslint eslint-plugin-jsdoc jsdoc prettier terser figlet-cli @babel/core @babel/cli @babel/preset-env @babel/plugin-transform-modules-commonjs
+      - run: npm install eslint-plugin-jsdoc @babel/plugin-transform-spread @babel/plugin-transform-template-literals @babel/preset-env babel @babel/plugin-transform-arrow-functions @babel/plugin-transform-sticky-regex @babel/plugin-transform-shorthand-properties
+      - run: COMMIT=$(git status --porcelain)
+      - run: rm bijou_node.js
+             rm bijou.js
+      - run: cat ./js/_copyright.js ./js/array.js ./js/color.js ./js/date.js ./js/element.js ./js/event.js ./js/function.js ./js/object.js ./js/math.js ./js/string.js ./js/utility.js ./js/_end.js > bijou.js
+      - run: rm -r docs/docs
+             rm bijou-min.js
+      - run: jsdoc -c jsdoc.json
+              eslint --fix ./
+              prettier --write -- .
+      - run: rollup bijou.js --file bijou_node.js --format cjs
+              terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
+              terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
          commit_message: Applying automated CI items
