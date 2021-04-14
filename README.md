@@ -27,25 +27,19 @@ Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
 CDNJS
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js" type="module" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js" type="module"></script>
 ```
 
 jsDelivr:
 
 ```html
-<script
-	src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js"
-	type="module"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/bijou.js@latest/bijou.js" type="module"></script>
 ```
 
 UNPKG
 
 ```html
-<script
-	src="https://unpkg.com/bijou.js@latest/bijou.js"
-	type="module"
-></script>
+<script src="https://unpkg.com/bijou.js@latest/bijou.js" type="module"></script>
 ```
 
 ## Imports
