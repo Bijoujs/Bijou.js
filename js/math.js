@@ -301,7 +301,7 @@ export let ease = {
 		t === 0 ? 0 : Math.pow(2, 10 * t - 10),
 	easeOutExpo: (t = req("number", "percentage")) =>
 		t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
-	easeIntOutExpo: (t = req("number", "percentage")) =>
+	easeInOutExpo: (t = req("number", "percentage")) =>
 		t === 0
 			? 0
 			: t === 1
