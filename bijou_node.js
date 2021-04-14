@@ -5126,7 +5126,6 @@ let _temp = {
 	spliceArrayBuffer: spliceArrayBuffer,
 	spread: spread,
 	syllables: syllables,
-	syntaxHighlight: syntaxHighlight,
 	textNodes: textNodes,
 	throttle: throttle,
 	tilt: tilt,
