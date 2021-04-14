@@ -1,7 +1,8 @@
 //#region Element
 /**
  * Applies a material design ripple effect to the element specified. Works best with buttons and similar elements.
- * This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple
+ * This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple.
+ *
  * @memberOf element
  * @function
  * @example
@@ -11,7 +12,7 @@
  * // data-color: A CSS color that the ripple should have as it's color
  * // data-opacity: The starting opacity of the ripple effect.
  * // data-event: The event to listen for to apply the ripple.
- * @param {HTMLElement} el The element to apply the ripple effect to.
+ * @param {HTMLElement} el - The element to apply the ripple effect to.
  */
 export let ripple = (el = req("element", "element")) => {
 	node();
@@ -56,6 +57,7 @@ export let ripple = (el = req("element", "element")) => {
 };
 /**
  * Waits for an element satisfying selector to exist, then resolves promise with the element.
+ *
  * @param [parent=document.documentElement] The parent element to watch.
  * @param selector The querySelector to watch for.
  * @returns {Promise} A promise resolved when the element exists.
@@ -90,7 +92,8 @@ export function elementReady(
 }
 /**
  * Tests if an element is a child element of another element.
- * @returns {Boolean} If the element is a child or not
+ *
+ * @returns {boolean} If the element is a child or not.
  * @memberOf element
  * @function
  * @example
@@ -104,8 +107,8 @@ export function elementReady(
  *    document.querySelector("div#popup".remove()
  *  }
  * })
- * @param {HTMLElement} parent The parent element to test.
- * @param {HTMLElement} child The child element to test.
+ * @param {HTMLElement} parent - The parent element to test.
+ * @param {HTMLElement} child - The child element to test.
  */
 export let elementContains = (
 	parent = req("HTMLElement", "parent"),
@@ -113,6 +116,7 @@ export let elementContains = (
 ) => parent !== child && parent.contains(child);
 /**
  * Gets the parent elements of the element given.
+ *
  * @returns {Array.<HTMLElement>} An array of the parent elements from deepest to outermost.
  * @memberOf element
  * @function
@@ -130,7 +134,7 @@ export let elementContains = (
  * </html>
  * ```
  * _$.parents(document.querySelector("img"));//[div#img, body, html]
- * @param {HTMLElement} el The element
+ * @param {HTMLElement} el - The element.
  */
 export let parents = (el = req("element")) => [
 	...(function* (e) {
@@ -141,6 +145,7 @@ export let parents = (el = req("element")) => [
 ];
 /**
  * Gets all the images that are children of the specified element.
+ *
  * @returns {Array} The array of image urls.
  * @memberOf element
  * @function
@@ -150,8 +155,8 @@ export let parents = (el = req("element")) => [
  *  image_data_list.push(_$.imageToData(image_url))
  * })
  * console.log(image_data_list);
- * @param {HTMLElement} [el=document.documentElement] The element to get images from (e.g. document.body)
- * @param {Boolean} [includeDuplicates=false] Whether to include duplicate images, defaults to false.
+ * @param {HTMLElement} [el=document.documentElement] - The element to get images from (e.g. Document.body).
+ * @param {boolean} [includeDuplicates=false] - Whether to include duplicate images, defaults to false.
  */
 export let getImages = (
 	el = document.documentElement,
@@ -164,6 +169,7 @@ export let getImages = (
 };
 /**
  * Renders an HTML element from an object in the container specified.
+ *
  * @memberOf element
  * @function
  * @example
@@ -177,8 +183,10 @@ export let getImages = (
     children: [{ props: { nodeValue: 'Click me' } }]
   }
 }, document.body)
- * @param {Object} param The type of object (the HTML tagName)
- * @param {HTMLElement} container The html element to render it in.
+ * @param {object} param - The type of object (the HTML tagName).
+ * @param param.props
+ * @param param.type
+ * @param {HTMLElement} container - The html element to render it in.
  */
 export let renderElement = (
 	{ type, props = {} } = req("object", "options"),
@@ -205,8 +213,9 @@ export let renderElement = (
 
 	container.appendChild(element);
 };
-/**
+/**.
  * Create a DOM element from a querySelector with option to include content
+ *
  * @memberOf element
  * @function
  * @param {String} querySelector (optional) default to div
@@ -266,6 +275,7 @@ export function create(querySelector = "div", ...content) {
 }
 /**
  * Re-enables the use of &lt;menu&gt; and &lt;menuitem&gt; tags for corner clicking.
+ *
  * @memberOf element
  * @function
  * @example
@@ -379,13 +389,14 @@ export let context = () => {
 
 /**
  * Tests whether the specified element is fully in view.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The DOM element to test.
+ * @param {Element} el - The DOM element to test.
  * @example
  * // Alerts "In view!" if the first <div> in the document is in view.
  * if (_$.inView(document.querySelector("div"))) alert("In view!");
- * @returns {Boolean} Whether the element is completely in view.
+ * @returns {boolean} Whether the element is completely in view.
  */
 export let inView = (el = req("HTMLElement", "element")) => {
 	node();
@@ -409,13 +420,14 @@ export let inView = (el = req("HTMLElement", "element")) => {
 };
 /**
  * Tests if the given DOM element is partially (or fully) in view.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element to test.
+ * @param {Element} el - The element to test.
  * @example
  * // Alerts "In view!" if the first <div> in the document is partially or fully view.
  * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
- * @returns {Boolean} Whether the DOM element is partially in view.
+ * @returns {boolean} Whether the DOM element is partially in view.
  */
 export let inPartialView = (el = req("HTMLElement", "element")) => {
 	node();
@@ -440,10 +452,11 @@ export let inPartialView = (el = req("HTMLElement", "element")) => {
 
 /**
  * Replaces the text in an element by running it through a callback.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element to replace the text of.
- * @param {Function} callback The callback to run (Gets passed the element's text).
+ * @param {Element} el - The element to replace the text of.
+ * @param {Function} callback - The callback to run (Gets passed the element's text).
  * @example
  * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
  * // Converts the text of the first <div> element to upperCase.
@@ -458,8 +471,9 @@ export let replaceText = (
 		node.textContent = callback(node.textContent);
 	});
 };
-/**
+/**.
  * Gets a list of all the text nodes in an element
+ *
  * @memberOf element
  * @function
  * @param {Element} el The element to get the text nodes of.
@@ -476,19 +490,24 @@ export let textNodes = (el = req("HTMLElement", "element")) => {
 };
 /**
  * Generates a querySelector for an element passed in.
+ *
  * @function
  * @memberOf element
- * @param {Element} elem The element to generate the querySelector for.
+ * @param {Element} elem - The element to generate the querySelector for.
  * @example
  * const textarea = document.getElementById('textarea');
  * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
- * @returns {String} The generated querySelector.
+ * @returns {string} The generated querySelector.
  */
 export let querySelector = (elem = req("HTMLElement", "element")) => {
 	node();
 	var element = elem;
 	var str = "";
 
+	/**
+	 * @param element
+	 * @example
+	 */
 	function loop(element) {
 		if (
 			element.getAttribute("id") &&
@@ -585,9 +604,10 @@ export let querySelector = (elem = req("HTMLElement", "element")) => {
 };
 /**
  * Removes comments from the element specified.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element to remove comments from.
+ * @param {Element} el - The element to remove comments from.
  * @example
  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
  * @returns {HTMLElement} The HTML element with the comments removed.
@@ -607,10 +627,11 @@ export let removeComments = (
 };
 /**
  * Parses the string of HTML specified and returns an HTML element of it.
+ *
  * @function
  * @memberOf element
- * @param {String} string The HTML string to parse.
- * @param {String} [mimeType="text/html"] The mimeType of the string.
+ * @param {string} string - The HTML string to parse.
+ * @param {string} [mimeType="text/html"] - The mimeType of the string.
  * @example
  * let html = _$.parseHTML("<div id='hello'><textarea></textarea></div>");
  * html.querySelector("textarea");//Returns the textarea!
@@ -626,10 +647,11 @@ export let parseHTML = (
 };
 /**
  * Allows an element to be dragged and dropped.
+ *
  * @function
  * @memberOf element
- * @param {Element} dragHandle The element that when dragged should move the dragTarget.
- * @param {Element} dragTarget The element that should be moved when the dragHandle is dragged.
+ * @param {Element} dragHandle - The element that when dragged should move the dragTarget.
+ * @param {Element} dragTarget - The element that should be moved when the dragHandle is dragged.
  * @example
  * _$.drag('div span', 'div'); // Allows the first <div> on the page to be dragged by the <span> element inside it.
  * @returns {Element} The element.
@@ -655,6 +677,10 @@ export let drag = (
 	dragHandle.addEventListener("mousedown", startDrag, true);
 	dragHandle.addEventListener("touchstart", startDrag, true);
 
+	/**
+	 * @param e
+	 * @example
+	 */
 	function startDrag(e) {
 		e.preventDefault();
 		e.stopPropagation();
@@ -673,6 +699,10 @@ export let drag = (
 		}
 	}
 
+	/**
+	 * @param e
+	 * @example
+	 */
 	function dragObject(e) {
 		e.preventDefault();
 		e.stopPropagation();
@@ -700,13 +730,14 @@ export let drag = (
 
 /**
  * Adds multiple event listeners with one callback to the element specified.
+ *
  * @memberOf element
  * @function
- * @param {Element} element The element to add the event listeners to.
- * @param {Array.<String>} events The array of events to listen for.
- * @param {Function} handler The function to run when the events happen.
- * @param {Boolean|Object} [useCapture=false] Whether to use capture, or an options object.
- * @param {Array} [args=false] The arguments to use in the handler function.
+ * @param {Element} element - The element to add the event listeners to.
+ * @param {Array.<string>} events - The array of events to listen for.
+ * @param {Function} handler - The function to run when the events happen.
+ * @param {boolean | object} [useCapture=false] - Whether to use capture, or an options object.
+ * @param {Array} [args=false] - The arguments to use in the handler function.
  * @example
  * // Reset a timer every user interaction.
  * let timer = 0;
@@ -745,8 +776,8 @@ export let addEventListeners = (
  * @function
  * @returns {undefined}
  * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
- * @param {HTMLTableElement} element The table to sort
- * @param {Function} [cellVal] The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell.
+ * @param {HTMLTableElement} element - The table to sort.
+ * @param {Function} [cellVal] - The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell.
  * @example
  * _$.sortTable(document.querySelector("table"));//Done.
  * @example
@@ -801,6 +832,7 @@ export let sortTable = (
 };
 /**
  * Sorts a table by a <th> element.
+ *
  * @memberOf element
  * @function
  * @returns {undefined}
@@ -812,8 +844,8 @@ export let sortTable = (
  *    _$.sortTableBy(th, th.asc = !th.asc);//Toggle the "asc" attribute on the th.
  *  });
  * })
- * @param {HTMLTableElement} th The table header (<th> element) to sort with.
- * @param {Boolean} acending Whether to sort the table ascending or descending.
+ * @param {HTMLTableElement} th - The table header (<th> element) to sort with.
+ * @param {boolean} acending - Whether to sort the table ascending or descending.
  */
 export let sortTableBy = (
 	th = req("HTMLTableElement", "<th> element"),
@@ -855,13 +887,14 @@ export let sortTableBy = (
 };
 /**
  * Adds the specified styles to the element specified.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element to add the styles to.
- * @param {Object} styles An object that represents the styles to be added. (camelCased)
+ * @param {Element} el - The element to add the styles to.
+ * @param {object} styles - An object that represents the styles to be added. (camelCased).
  * @example
  * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
- * @returns {Object} the style object of the element.
+ * @returns {object} The style object of the element.
  */
 export let addStyles = (
 	el = req("HTMLElement", "element"),
@@ -873,9 +906,10 @@ export let addStyles = (
 
 /**
  * Creates an HTML element from the specified string.
+ *
  * @function
  * @memberOf element
- * @param {String} str The string of the HTML element to create.
+ * @param {string} str - The string of the HTML element to create.
  * @example
  * //Returns a div with an id of "id_here" and innerText of "Testing!"
  * _$.createElement("<div id='id_here'>Testing!</div>");
@@ -891,13 +925,14 @@ export let createElement = (
 };
 /**
  * Gets a property from the computed style of an element.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element whose styles to get.
- * @param {String} prop The css-property value to get of the styles.
+ * @param {Element} el - The element whose styles to get.
+ * @param {string} prop - The css-property value to get of the styles.
  * @example
  * console.log(_$.compStyle(document.documentElement, "background-color")); // logs the background colour of the document
- * @returns {String} The computed style property for the element specified.
+ * @returns {string} The computed style property for the element specified.
  */
 export let compStyle = (
 	el = req("HTMLElement", "element"),
@@ -908,8 +943,9 @@ export let compStyle = (
 	return computedStyles.getPropertyValue(prop);
 };
 
-/**
+/**.
  * Get the siblings of a DOM element
+ *
  * @function
  * @memberOf element
  * @param {Element} n The element to get siblings of
@@ -922,9 +958,10 @@ export let elementSiblings = (n = req("HTMLElement", "element")) =>
 	[...n.parentElement.children].filter((c) => c != n);
 /**
  * Disables right click on the element spcified.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element to disable right click on.
+ * @param {Element} el - The element to disable right click on.
  * @example
  * _$.disableRightClick(document.documentElement)
  * @returns {undefined}
@@ -935,8 +972,9 @@ export let disableRightClick = (
 	node();
 	return (el.oncontextmenu = false);
 };
-/**
+/**.
  * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
+ *
  * @function
  * @memberOf element
  * @param {Element} el The element to convert.
@@ -954,13 +992,14 @@ export let inlineCSS = (el = req("HTMLElement", "element")) => {
 };
 /**
  * Returns an array of objects representing the attributes of a passed element.
- * @param {Element} el The HMTL element to get attributes from.
+ *
+ * @param {Element} el - The HMTL element to get attributes from.
  * @function
  * @memberOf element
  * @example
  * // Say the <html> tag of the document was "<html style='background-color: #101010;'>", then the function below would log "style," to the console.
  * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
- * @return {Array.<object>} The array of objects representing the attributes
+ * @returns {Array.<object>} The array of objects representing the attributes.
  */
 export let attributes = (el = req("HTMLElement", "element")) => {
 	node();
@@ -980,11 +1019,12 @@ export let attributes = (el = req("HTMLElement", "element")) => {
 };
 /**
  * Observes the mutations of the html element specified.
+ *
  * @memberOf element
  * @function
- * @param {Element} element The element to observe
- * @param {Function} callback The callback function to run when a mutation happens.
- * @param {Object} options The options to use.
+ * @param {Element} element - The element to observe.
+ * @param {Function} callback - The callback function to run when a mutation happens.
+ * @param {object} options - The options to use.
  * @example
  * _$.observeMutations(document, console.log); // Logs all the mutations that happen to the console.
  * @returns {undefined}
@@ -1015,12 +1055,13 @@ export let observeMutations = (
 };
 /**
  * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
+ *
  * @memberOf element
  * @function
- * @param {Element} el The element to tilt.
- * @param {Number} x The x value of the mouse
- * @param {Number} y The y value of the mouse
- * @param {Number} [perspective=500] The perspective
+ * @param {Element} el - The element to tilt.
+ * @param {number} x - The x value of the mouse.
+ * @param {number} y - The y value of the mouse.
+ * @param {number} [perspective=500] The perspective.
  * @param {Number} [amount=30] The amount to tilt.
  * @returns {undefined}
  * @example
@@ -1056,9 +1097,10 @@ export let tilt = (
 };
 /**
  * Enters fullscreen on an element.
+ *
  * @memberOf element
  * @function
- * @param {Element} element The element to enter full screen with.
+ * @param {Element} element - The element to enter full screen with.
  * @returns {undefined}
  * @example
  * _$.fullScreen(document.documentElement); // Make the window fullscreen
@@ -1073,6 +1115,7 @@ export let fullScreen = (element = req("HTMLElement", "element")) => {
 };
 /**
  * Replaces the selected text in a contentEditable div with the HTML given.
+ *
  * @memberOf element
  * @function
  * @returns {undefined}
@@ -1081,7 +1124,7 @@ export let fullScreen = (element = req("HTMLElement", "element")) => {
  * document.appendChild(_$.createElement("<div contenteditable id='text'></div>"));
  * _$.replaceSelection("<b>BOLD TEXT</b> <small>Bijou is awesome</small><h1>You need to use it</h1>");
  * //Replaces the selection! =)
- * @param {String} replacementText The replacement HTML to replace with.
+ * @param {string} replacementText - The replacement HTML to replace with.
  */
 export let replaceSelection = (
 	replacementText = req("string", "replacement text"),

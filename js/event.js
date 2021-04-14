@@ -1,6 +1,7 @@
 //#region Event
 /**
  * Waits until a condition is met then resolves a promise.
+ *
  * @returns {Promise} A promise resolved when the condition returned by the function is true.
  * @memberOf event
  * @example
@@ -13,8 +14,8 @@
  * //To fix this problem and cancel the function after a certain amount of time,
  * //you can pass another argument to the function
  * _$.waitUntil(() => false, 10000);//Waits 10 seconds, because the function always returns false.
- * @param {Function} condition The function which returns true when the condition is met
- * @param {Number} [wait=Infinity] The wait time in milliseconds to cancel the function and reject the promise.
+ * @param {Function} condition - The function which returns true when the condition is met.
+ * @param {number} [wait=Infinity] - The wait time in milliseconds to cancel the function and reject the promise.
  */
 export let waitUntil = async (
 	condition = req("function", "condition"),
@@ -33,8 +34,9 @@ export let waitUntil = async (
 		return condition();
 	});
 };
-/**
+/**.
  * Returns the callback when a a click is registered outside the selected element
+ *
  * @function
  * @memberOf event
  * @param {Element} element The element to use as the outsideclick element.
@@ -59,11 +61,12 @@ export let onOutsideClick = (
 };
 /**
  * Returns the callback when the user stops scrolling.
+ *
  * @function
  * @memberOf event
- * @param {HTMLElement} [element=window] The HTML element to listen on for scroll stop.
- * @param {Function} callback The callback to call when the user stops scrolling.
- * @param {Number} [time=150]
+ * @param {HTMLElement} [element=window] - The HTML element to listen on for scroll stop.
+ * @param {Function} callback - The callback to call when the user stops scrolling.
+ * @param {number} [time=150]
  * @example
  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
  * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
@@ -89,8 +92,9 @@ export let onScrollStop = (
 		);
 	});
 };
-/**
+/**.
  * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
+ *
  * @memberOf event
  * @function
  * @returns {Object} The object with the emit, on and off functions in it.
@@ -119,14 +123,15 @@ export let hub = () => ({
 });
 /**
  * Dispatches an event of the type specified with custom arguments.
+ *
  * @memberOf event
  * @function
  * @example
  * //Dispatch a custom mouse move event to the window.
  * _$.dispatch("mousemove", {clientX: 100, clientY: 150, target: document.documentElement}, window);
- * @param {String} type The type of event to dispatch (E.g. "mousemove")
- * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
- * @param {EventTarget} [target=window] What to dispatch the event to.
+ * @param {string} type - The type of event to dispatch (E.g. "mousemove").
+ * @param {object} args - The argument representing the event, e.g. {clientX: 100, clientY: 150}.
+ * @param {EventTarget} [target=window] - What to dispatch the event to.
  * @returns {undefined}
  */
 export let dispatch = (

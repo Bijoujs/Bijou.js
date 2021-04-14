@@ -1,6 +1,7 @@
 //#region Object
 /**
  * Flattens an object recursively into one. 
+ *
  * @memberOf object
  * @function
  * @example 
@@ -14,8 +15,8 @@
           "more Values!!": "lol"
       }
   }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }
-* @param {Object} o The object to flatten
-* @returns {Object} The flattened object.
+ * @param {object} o - The object to flatten.
+ * @returns {object} The flattened object.
  */
 export let flattenObj = (o = req("object", "object")) => {
 	return o !== Object(o) || Array.isArray(o)
@@ -39,9 +40,13 @@ export let flattenObj = (o = req("object", "object")) => {
 				})(o),
 		  );
 };
-/**
+/**.
  * Deep clones an object (or anything else, like an array or string)
+ *
  * @function
+ * @param src
+ * @param _visited
+ * @param _copiesVisited
  * @memberOf object
  * @param {Object} obj The object to clone.
  * @returns {Object} The output cloned object.
@@ -58,6 +63,9 @@ export let clone = (
 	var object_create = Object.create;
 	if (typeof object_create !== "function") {
 		object_create = function (o) {
+			/**
+			 * @example
+			 */
 			function F() {}
 			F.prototype = o;
 			return new F();
@@ -118,9 +126,9 @@ export let clone = (
 /**
  * @memberOf object
  * @function
- * @param {Object} obj The object to listen to.
- * @param {Function} [getCallback=()=>null] The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).
- * @param {Function} [setCallback=()=>null] The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).
+ * @param {object} obj - The object to listen to.
+ * @param {Function} [getCallback=()=>null] - The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).
+ * @param {Function} [setCallback=()=>null] - The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).
  * @example
  * let obj = {something: "This is part of the object", anotherThing: "This is another!"};
  * obj = _$.listen(obj, (k, v) => console.log(`set ${k} to ${v}`), () => console.log("Gotten"));
@@ -147,11 +155,12 @@ export let listen = (
 };
 /**
  * Merges two objects into one. Note that object 2 properties will overwrite those of object 2.
+ *
  * @memberOf object
  * @function
- * @param {Object} obj1 The 1st object to merge
- * @param {Object} obj2 The 2nd object to merge.
- * @returns {Object} The merged object.
+ * @param {object} obj1 - The 1st object to merge.
+ * @param {object} obj2 - The 2nd object to merge.
+ * @returns {object} The merged object.
  * @example
  * console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}
  */
@@ -177,14 +186,15 @@ export let merge = function MergeRecursive(
 };
 /**
  * Maps the keys of an object.
+ *
  * @function
  * @memberOf object
- * @param {Object} obj The object to map.
- * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
+ * @param {object} obj - The object to map.
+ * @param {Function} fn - The function to run (passed the current key of the object) which returns the new value from that key.
  * @example
  * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
  * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
- * @returns {Object} The new Object.
+ * @returns {object} The new Object.
  */
 export let mapObjectKeys = (
 	obj = req("object"),
@@ -205,11 +215,12 @@ export let mapObjectKeys = (
 		: obj;
 /**
  * Maps an object's values.
+ *
  * @memberOf object
  * @function
- * @param {Object} obj The object to map the values of.
- * @param {Function} fn The callback function to use.
- * @returns {Object} The mapped object.
+ * @param {object} obj - The object to map the values of.
+ * @param {Function} fn - The callback function to use.
+ * @returns {object} The mapped object.
  * @example
  * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
  */
@@ -224,10 +235,11 @@ export let mapObjectValues = (
 };
 /**
  * Converts a form to an Object.
+ *
  * @function
  * @memberOf object
- * @param {HTMLFormElement} form The form element.
- * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
+ * @param {HTMLFormElement} form - The form element.
+ * @returns {object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.).
  * @example
  * html:
  * ```
@@ -253,13 +265,14 @@ export let formToObject = (
 };
 /**
  * Sorts an object alphabetically by its keys.
+ *
  * @function
  * @memberOf object
- * @param {Object} obj The object to sort.
+ * @param {object} obj - The object to sort.
  * @example
  * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
  * // The object is now {anotherThing: "Another value!", testing: "A value"}
- * @returns {Object} The sorted object.
+ * @returns {object} The sorted object.
  */
 export let sortObj = (obj = req("object", "object")) => {
 	return Object.keys(obj)

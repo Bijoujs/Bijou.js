@@ -1,5 +1,5 @@
 /**
- * @file bijou.js
+ * @file Bijou.js.
  * @author Explosion-Scratch, Bijou.js contributors
  * @since v0.0.0
  * @copyright © Explosion-Scratch, All rights reserved.
@@ -79,6 +79,7 @@ if (isNode) {
 }
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
+ * @example
  */
 let node = () => {
 	if (isNode) {
@@ -94,53 +95,63 @@ let node = () => {
   ___) | |_| | |_| |  _ <| |___| |___
  |____/ \___/ \___/|_| \_\\____|_____|
 */
-/**
+/**.
  * The array namespace of Bijou.js
+ *
  * @namespace array
  */
 let array_namespace = {};
-/**
+/**.
  * The color namespace of Bijou.js
+ *
  * @namespace color
  */
 let color_namespace = {};
 /**
  * The date namespace of Bijou.js, containing functions to format dates, do math with them and more!
+ *
  * @namespace date
  */
 let date_namespace = {};
 /**
  * The element namespace of Bijou.js, containing functions to create elements from query selectors, enable custom right click options, test if an element is on screen, replace the text of an element without altering it's styling, and much more!
+ *
  * @namespace element
  */
 let element_namespace = {};
 /**
  * The event namespace of Bijou.js, containing functions to listen and dispatch events, such as scroll stop, outside click, and multiple event listeners.
+ *
  * @namespace event
  */
 let event_namespace = {};
 /**
  * The function namespace of Bijou.js, containing functions to work with functions themselves, such as debouncing, throttling, memoizing, currying, timing and much more!
+ *
  * @namespace function
  */
 let function_namespace = {};
 /**
  * The math namespace of Bijou.js, containing functions to validate credit card numbers, animate with JavaScript, generate unique id's and much more!
+ *
  * @namespace math
  */
 let math_namespace = {};
 /**
  * The object namespace of Bijou.js, for stuff like flattening nested objects, cloning, merging, and even listening to changes to objects!
+ *
  * @namespace object
  */
 let object_namespace = {};
 /**
  * The string namespace of Bijou.js, containing functions to map strings, remove accents from strings, speak text, syntax highlight JS, HTML and CSS and much more!
+ *
  * @namespace string
  */
 let string_namespace = {};
 /**
  * The utility namespace of Bijou.js, containing utilities to do many things, such as playing audio, fetching JSON, preloading images and much more.
+ *
  * @namespace utility
  */
 let utility_namespace = {};
@@ -160,14 +171,15 @@ const req = (type, desc, condition = true) => {
 //#region Array
 /**
  * Counts the items in an array, returning a separate count for each object.
- * @returns {Object}
+ *
+ * @returns
  * @memberOf array
  * @example
  * _$.count(['a', 'b', 'c', 'd', 'e', 'f'])//{'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1}
  *
  * //But if you have multiple items:
  * _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 'e': 1}
- * @param {Array} arr The array to count items in.
+ * @param arr - The array to count items in.
  */
 export let count = (arr = req("array", "array")) =>
 	arr.reduce((counts, item) => {
@@ -177,12 +189,13 @@ export let count = (arr = req("array", "array")) =>
 
 /**
  * Returns the difference between two arrays or strings.
+ *
  * @memberOf array
  * @function
- * @returns {Array|String} The difference between two arrays or strings.
+ * @returns The difference between two arrays or strings.
  * @example
  * console.log(_$.arrayDiff(['a', 'b'], ['a', 'b', 'c', 'd'])); // ["c", "d"]
- * @param {Array|String} a1 The first array or string
+ * @param a1 - The first array or string.
  * @param {Array|String} a2 The 2nd array or string.
  */
 export let arrayDiff = (
@@ -209,9 +222,10 @@ export let arrayDiff = (
 
 /**
  * Gets the difference between two strings.
+ *
  * @memberOf array
  * @function
- * @param {String} text1 The 1st text to compare
+ * @param text1 - The 1st text to compare.
  * @param {String} text2 The 2nd text to compare with the 1st one.
  * @example
  * console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]
@@ -257,9 +271,10 @@ export let diff = function (
 
 /**
  * Removes an item from the array specified.
+ *
  * @memberOf array
  * @function
- * @param {Array} array The array to remove the item from.
+ * @param array - The array to remove the item from.
  * @param {*} item The item to remove.
  * @example
  * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
@@ -283,13 +298,15 @@ export let remove = (
 };
 /**
  * Splices an ArrayBuffer.
+ *
  * @function
  * @memberOf array
- * @param {ArrayBuffer|Buffer} arr The ArrayBuffer to splice.
+ * @param arr - The ArrayBuffer to splice.
  * @param {Number} start The start index.
  * @param {Number} end The end index.
  * @param {Boolean} [endian=false] Whether to use big endian or not.
  * @returns {Number} The hex representation of part of the ArrayBuffer.
+ * @example
  */
 export let spliceArrayBuffer = (
 	arr = req("ArrayBuffer"),
@@ -308,12 +325,13 @@ export let spliceArrayBuffer = (
 
 /**
  * Flattens an array `level` times.
+ *
  * @memberOf array
  * @function
- * @returns {Array} The flattened array.
+ * @returns The flattened array.
  * @example
  * console.log(_$.flatten(['a', 'b', ['c', 'd']])); // ['a', 'b', 'c', 'd'];
- * @param {Array} array The array to flatten.
+ * @param array - The array to flatten.
  * @param {Number} [level=1] The number of iterations to flatten it.
  */
 export let flatten = (array = req("array", "array"), level = 1) => {
@@ -326,9 +344,10 @@ export let flatten = (array = req("array", "array"), level = 1) => {
 
 /**
  * Flattens an array recursively.
+ *
  * @function
  * @memberOf array
- * @param {Array} arr The array to flatten.
+ * @param arr - The array to flatten.
  * @returns {Array} The flattened array.
  * @example
  * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
@@ -343,9 +362,10 @@ export let nFlatten = (arr = req("array", "array")) => {
 
 /**
  * Returns whether the specified array or string contains the item given.
+ *
  * @memberOf array
  * @function
- * @param {Array} array The array to test with.
+ * @param array - The array to test with.
  * @param {String} item The item to see if the array contains.
  * @example
  * console.log(_$.contains([1,2,3,4,5], 3)); // true
@@ -354,28 +374,30 @@ export let nFlatten = (arr = req("array", "array")) => {
 export let contains = (array = req("array"), item = req("string")) =>
 	array.includes(item);
 
-/**
+/**.
  * Shuffles an array
+ *
  * @function
  * @memberOf array
- * @param {Array} array The array to shuffle.
+ * @param array The array to shuffle.
  * @example
  * let array = [1,2,3,4,5];
  * console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]
- * @returns {Array} The shuffled array.
+ * @returns The shuffled array.
  */
 export let shuffleArray = (array = req("array")) =>
 	array.sort(() => Math.random() - 0.5);
 
-/**
+/**.
  * Splice but also for strings
+ *
  * @memberOf array
  * @function
- * @param {String|Array} array The array or string to operate on
- * @param {Number} index The index to splice
- * @param {*} item The item
- * @param {Number} [remove=0] How many to remove.
- * @returns {String|Array} the spliced array or string
+ * @param array The array or string to operate on
+ * @param index The index to splice
+ * @param item The item
+ * @param [remove] How many to remove.
+ * @returns the spliced array or string
  * @example
  * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
  */
@@ -396,9 +418,10 @@ export let splice = (
 };
 /**
  * Joins two arrays together and removes duplicate items.
+ *
  * @function
  * @memberOf array
- * @param {Array} x The first array to join.
+ * @param x - The first array to join.
  * @param {Array} y The second array to join.
  * @example
  * console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]
@@ -417,16 +440,17 @@ export let unionArrays = (
 	}
 	return res;
 };
-/**
- * averageBy
+/**.
+ * AverageBy
+ *
  * @function
  * @memberOf array
- * @param {Array.<number>} arr The array to average
- * @param {Function} fn The function to apply to each item of the array.
+ * @param arr The array to average
+ * @param fn The function to apply to each item of the array.
  * @example
  * Logs the average of the first 4 square numbers:
  * console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5
- * @returns {Number} The average of the array.
+ * @returns The average of the array.
  */
 export let averageBy = (
 	arr = req("array", "array"),
@@ -436,23 +460,25 @@ export let averageBy = (
 		.map(typeof fn === "function" ? fn : (val) => val[fn])
 		.reduce((acc, val) => acc + val, 0) / arr.length;
 
-/**
+/**.
  * Removes duplicates from an array
+ *
  * @function
  * @memberOf array
- * @param {Array} array The array to remove duplicates from.
+ * @param array The array to remove duplicates from.
  * @example
  * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
- * @returns {Array} The array with no duplicates.
+ * @returns The array with no duplicates.
  */
 export let uniqueArray = (array = req("array", "array")) => [
 	...new Set(array),
 ];
 /**
  * For each item in an array, run a callback with it.
+ *
  * @function
  * @memberOf array
- * @param {Array|String|Number} array The array, string or number to run the callback with.
+ * @param array - The array, string or number to run the callback with.
  * @param {Function} callback The callback function to run on the array items.
  * @example
  * _$.each(new Array(6), (array_item, i) => console.log(i));
@@ -482,11 +508,12 @@ export let each = (
 //#region Color
 /**
  * Converts a rgb(a) color to hex.
+ *
  * @memberOf color
  * @function
  * @example
  * console.log(_$.rgbToHex("rgb(255,255,255)")); // "#ffffff"
- * @param {String} rgb The string of RGB colors.
+ * @param rgb - The string of RGB colors.
  * @returns {String} The hex color.
  */
 export let rgbToHex = (rgb = req("string", "RGB color")) => {
@@ -505,9 +532,10 @@ export let rgbToHex = (rgb = req("string", "RGB color")) => {
 };
 /**
  * Converts a hex code to a RGB color.
+ *
  * @function
  * @memberOf color
- * @param {String} hex The hex code to convert.
+ * @param hex - The hex code to convert.
  * @example
  * console.log(_$.rgbToHex("#ffffff")); // "rgb(255,255,255)"
  * @returns {String} The RGB color converted from the hex code.
@@ -548,9 +576,10 @@ export let hexToRGB = (hex = req("string", "hex color")) => {
 };
 /**
  * Blends two colors through additive blending by a percentage.
+ *
  * @function
  * @memberOf color
- * @param {String} color1 The hex code of the first color to be blended
+ * @param color1 - The hex code of the first color to be blended.
  * @param {String} color2 The hex code of the second color to be blended.
  * @param {Number} [percent=50] A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
  * @example
@@ -599,23 +628,26 @@ export let blendColors = (
 };
 /**
  * Generates a random hex color.
+ *
  * @function
  * @memberOf color
  * @example
  * console.log(_$.randomColor()); // e.g. #5bf462
- * @returns {String} A random Hex color
+ * @returns A random Hex color.
  */
 export let randomColor = () =>
 	`#${Math.floor(Math.random() * 16777215).toString(16)}`;
-/**
+/**.
  * Lighten or darken a color by a certain amount
+ *
  * @function
  * @memberOf color
- * @param {String} color The color to lighten/darken
- * @param {Number} amt The amount to lighten the color (out of 255).
+ * @param color The color to lighten/darken
+ * @param col
+ * @param amt The amount to lighten the color (out of 255).
  * @example
  * _$.lightenColor("#000000", 50); // #323232
- * @returns {String} The color lightened.
+ * @returns The color lightened.
  */
 export let lightenColor = (
 	col = req("string", "hex color"),
@@ -650,18 +682,19 @@ export let lightenColor = (
 	);
 };
 /**
-  * Tests if a color is light or dark and returns an object representation.
-  * @function
-  * @memberOf color
-  * @param {string} color The hex color to test.
-  * @example
-  * if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
+ * Tests if a color is light or dark and returns an object representation.
+ *
+ * @function
+ * @memberOf color
+ * @param color - The hex color to test.
+ * @example
+ * if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
     document.querySelector("DIV").style.color = "white";
   } else {
       document.querySelector("DIV").style.color = "black";
   }
-  * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
-  */
+ * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
+ */
 export let lightOrDark = (
 	color = req("string", "hex or RGB color"),
 ) => {
@@ -697,9 +730,10 @@ export let lightOrDark = (
 //#region Date
 /**
  * Returns the name of the weekday from the Date object specified.
+ *
  * @function
  * @memberOf date
- * @param {Date} [date=new Date()] The date object to use.
+ * @param [date] - The date object to use.
  * @param {String} [locale=en-US] The locale to use.
  * @example
  * console.log(_$.dayName)); // e.g. "Friday"
@@ -710,14 +744,15 @@ export let dayName = (date = new Date(), locale = "en-US") =>
 		weekday: "long",
 	});
 
-/**
+/**.
  * Formats a number of milliseconds
+ *
  * @function
  * @memberOf date
- * @param {Number|String} ms The number of milliseconds to format to a string.
+ * @param ms The number of milliseconds to format to a string.
  * @example
  * console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"
- * @returns {String} The string of formatted milliseconds.
+ * @returns The string of formatted milliseconds.
  */
 export let formatMilliseconds = (
 	ms = req("number", "milliseconds"),
@@ -740,10 +775,11 @@ export let formatMilliseconds = (
 };
 /**
  * Adds a certain number of minutes to a date object.
+ *
  * @memberof date
  * @example
  * _$.addMinutesToDate(new Date(), 4);//Create a date 4 minutes from now.
- * @param {Date|string} date The date to add minutes to.
+ * @param date - The date to add minutes to.
  * @param {Number} n How many minutes to add to the date.
  * @returns {Date} The date with minutes added.
  */
@@ -757,6 +793,7 @@ export let addMinutesToDate = (
 };
 /**
  * Validates a date from a string.
+ *
  * @memberOf date
  * @example
  *  _$.isDateValid('December 17, 1995 03:24:00'); // true
@@ -766,7 +803,7 @@ export let addMinutesToDate = (
     _$.isDateValid(1995, 11, 17); // true
     _$.isDateValid(1995, 11, 17, 'Duck'); // false
     _$.isDateValid({}); // false
- * @param  {...any} val The arguments of the date to validate.
+ * @param val - The arguments of the date to validate.
  * @returns {Boolean} Returns if the date is valid or not.
  */
 export let isDateValid = (...val) => {
@@ -775,10 +812,12 @@ export let isDateValid = (...val) => {
 };
 /**
  * Adds a specified number of days to a date.
+ *
  * @memberOf date
- * @param {Date} date The date to add days to
+ * @param date - The date to add days to.
  * @param {Number} n How many days to add to the date.
  * @returns {Date} The date with the specified number of days added.
+ * @example
  */
 export let addDaysToDate = (
 	date = req("date", "date or date string"),
@@ -792,7 +831,8 @@ export let addDaysToDate = (
 //#region Element
 /**
  * Applies a material design ripple effect to the element specified. Works best with buttons and similar elements.
- * This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple
+ * This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple.
+ *
  * @memberOf element
  * @example
  * _$.each(document.querySelectorAll("button"), _$.ripple)
@@ -801,7 +841,7 @@ export let addDaysToDate = (
  * // data-color: A CSS color that the ripple should have as it's color
  * // data-opacity: The starting opacity of the ripple effect.
  * // data-event: The event to listen for to apply the ripple.
- * @param {HTMLElement} el The element to apply the ripple effect to.
+ * @param el - The element to apply the ripple effect to.
  */
 export let ripple = (el = req("element", "element")) => {
 	node();
@@ -846,6 +886,7 @@ export let ripple = (el = req("element", "element")) => {
 };
 /**
  * Waits for an element satisfying selector to exist, then resolves promise with the element.
+ *
  * @param [parent=document.documentElement] The parent element to watch.
  * @param selector The querySelector to watch for.
  * @returns {Promise} A promise resolved when the element exists.
@@ -879,7 +920,8 @@ export function elementReady(
 }
 /**
  * Tests if an element is a child element of another element.
- * @returns {Boolean} If the element is a child or not
+ *
+ * @returns If the element is a child or not.
  * @memberOf element
  * @example
  * _$.elementContains(document.querySelector("#container"), document.querySelector("#img"));//If the element with an id of "img" is inside the #container element this will return true, otherwise it will return false
@@ -892,7 +934,7 @@ export function elementReady(
  *    document.querySelector("div#popup".remove()
  *  }
  * })
- * @param {HTMLElement} parent The parent element to test.
+ * @param parent - The parent element to test.
  * @param {HTMLElement} child The child element to test.
  */
 export let elementContains = (
@@ -901,7 +943,8 @@ export let elementContains = (
 ) => parent !== child && parent.contains(child);
 /**
  * Gets the parent elements of the element given.
- * @returns {Array.<HTMLElement>} An array of the parent elements from deepest to outermost.
+ *
+ * @returns An array of the parent elements from deepest to outermost.
  * @memberOf element
  * @example
  * //Where the html is like so:
@@ -917,7 +960,7 @@ export let elementContains = (
  * </html>
  * ```
  * _$.parents(document.querySelector("img"));//[div#img, body, html]
- * @param {HTMLElement} el The element
+ * @param el - The element.
  */
 export let parents = (el = req("element")) => [
 	...(function* (e) {
@@ -928,7 +971,8 @@ export let parents = (el = req("element")) => [
 ];
 /**
  * Gets all the images that are children of the specified element.
- * @returns {Array} The array of image urls.
+ *
+ * @returns The array of image urls.
  * @memberOf element
  * @example
  * //Get all the images on the page and convert their url's to data urls then log that list to console.
@@ -936,7 +980,7 @@ export let parents = (el = req("element")) => [
  *  image_data_list.push(_$.imageToData(image_url))
  * })
  * console.log(image_data_list);
- * @param {HTMLElement} [el=document.documentElement] The element to get images from (e.g. document.body)
+ * @param [el] - The element to get images from (e.g. Document.body).
  * @param {Boolean} [includeDuplicates=false] Whether to include duplicate images, defaults to false.
  */
 export let getImages = (
@@ -950,6 +994,7 @@ export let getImages = (
 };
 /**
  * Renders an HTML element from an object in the container specified.
+ *
  * @memberOf element
  * @example
  * //Renders a button in the document body.
@@ -962,7 +1007,9 @@ export let getImages = (
     children: [{ props: { nodeValue: 'Click me' } }]
   }
 }, document.body)
- * @param {Object} param The type of object (the HTML tagName)
+ * @param param - The type of object (the HTML tagName).
+ * @param param.props
+ * @param param.type
  * @param {HTMLElement} container The html element to render it in.
  */
 export let renderElement = (
@@ -990,11 +1037,12 @@ export let renderElement = (
 
 	container.appendChild(element);
 };
-/**
+/**.
  * Create a DOM element from a querySelector with option to include content
+ *
  * @memberOf element
- * @param {String} querySelector (optional) default to div
- * @param {...*} [content] (optional) String|Number|DOMElement
+ * @param querySelector (optional) default to div
+ * @param [content] (optional) String|Number|DOMElement
  * @returns DOMElement
  *
  * @example
@@ -1050,6 +1098,7 @@ export function create(querySelector = "div", ...content) {
 }
 /**
  * Re-enables the use of &lt;menu&gt; and &lt;menuitem&gt; tags for corner clicking.
+ *
  * @memberOf element
  * @function
  * @example
@@ -1062,9 +1111,9 @@ export function create(querySelector = "div", ...content) {
  * </menu>
  * ```
  * //JS
- * _$.context();
+ * _$.context();.
  * // Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
- * @returns {undefined};
+ * @returns;.
  */
 export let context = () => {
 	var menu = document.createElement("UL");
@@ -1163,9 +1212,10 @@ export let context = () => {
 
 /**
  * Tests whether the specified element is fully in view.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The DOM element to test.
+ * @param el - The DOM element to test.
  * @example
  * // Alerts "In view!" if the first <div> in the document is in view.
  * if (_$.inView(document.querySelector("div"))) alert("In view!");
@@ -1193,9 +1243,10 @@ export let inView = (el = req("HTMLElement", "element")) => {
 };
 /**
  * Tests if the given DOM element is partially (or fully) in view.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element to test.
+ * @param el - The element to test.
  * @example
  * // Alerts "In view!" if the first <div> in the document is partially or fully view.
  * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
@@ -1224,9 +1275,10 @@ export let inPartialView = (el = req("HTMLElement", "element")) => {
 
 /**
  * Replaces the text in an element by running it through a callback.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element to replace the text of.
+ * @param el - The element to replace the text of.
  * @param {Function} callback The callback to run (Gets passed the element's text).
  * @example
  * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
@@ -1242,12 +1294,13 @@ export let replaceText = (
 		node.textContent = callback(node.textContent);
 	});
 };
-/**
+/**.
  * Gets a list of all the text nodes in an element
+ *
  * @memberOf element
  * @function
- * @param {Element} el The element to get the text nodes of.
- * @returns {Array} The text nodes.
+ * @param el The element to get the text nodes of.
+ * @returns The text nodes.
  * @example
  * _$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements
  */
@@ -1260,9 +1313,10 @@ export let textNodes = (el = req("HTMLElement", "element")) => {
 };
 /**
  * Generates a querySelector for an element passed in.
+ *
  * @function
  * @memberOf element
- * @param {Element} elem The element to generate the querySelector for.
+ * @param elem - The element to generate the querySelector for.
  * @example
  * const textarea = document.getElementById('textarea');
  * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
@@ -1273,6 +1327,10 @@ export let querySelector = (elem = req("HTMLElement", "element")) => {
 	var element = elem;
 	var str = "";
 
+	/**
+	 * @param element
+	 * @example
+	 */
 	function loop(element) {
 		if (
 			element.getAttribute("id") &&
@@ -1369,9 +1427,10 @@ export let querySelector = (elem = req("HTMLElement", "element")) => {
 };
 /**
  * Removes comments from the element specified.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element to remove comments from.
+ * @param el - The element to remove comments from.
  * @example
  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
  * @returns {HTMLElement} The HTML element with the comments removed.
@@ -1391,9 +1450,10 @@ export let removeComments = (
 };
 /**
  * Parses the string of HTML specified and returns an HTML element of it.
+ *
  * @function
  * @memberOf element
- * @param {String} string The HTML string to parse.
+ * @param string - The HTML string to parse.
  * @param {String} [mimeType="text/html"] The mimeType of the string.
  * @example
  * let html = _$.parseHTML("<div id='hello'><textarea></textarea></div>");
@@ -1410,9 +1470,10 @@ export let parseHTML = (
 };
 /**
  * Allows an element to be dragged and dropped.
+ *
  * @function
  * @memberOf element
- * @param {Element} dragHandle The element that when dragged should move the dragTarget.
+ * @param dragHandle - The element that when dragged should move the dragTarget.
  * @param {Element} dragTarget The element that should be moved when the dragHandle is dragged.
  * @example
  * _$.drag('div span', 'div'); // Allows the first <div> on the page to be dragged by the <span> element inside it.
@@ -1439,6 +1500,10 @@ export let drag = (
 	dragHandle.addEventListener("mousedown", startDrag, true);
 	dragHandle.addEventListener("touchstart", startDrag, true);
 
+	/**
+	 * @param e
+	 * @example
+	 */
 	function startDrag(e) {
 		e.preventDefault();
 		e.stopPropagation();
@@ -1457,6 +1522,10 @@ export let drag = (
 		}
 	}
 
+	/**
+	 * @param e
+	 * @example
+	 */
 	function dragObject(e) {
 		e.preventDefault();
 		e.stopPropagation();
@@ -1484,9 +1553,10 @@ export let drag = (
 
 /**
  * Adds multiple event listeners with one callback to the element specified.
+ *
  * @memberOf element
  * @function
- * @param {Element} element The element to add the event listeners to.
+ * @param element - The element to add the event listeners to.
  * @param {Array.<String>} events The array of events to listen for.
  * @param {Function} handler The function to run when the events happen.
  * @param {Boolean|Object} [useCapture=false] Whether to use capture, or an options object.
@@ -1529,8 +1599,8 @@ export let addEventListeners = (
  * @function
  * @returns {undefined}
  * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
- * @param {HTMLTableElement} element The table to sort
- * @param {Function} [cellVal] The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell.
+ * @param {HTMLTableElement} element - The table to sort.
+ * @param {Function} [cellVal] - The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell.
  * @example
  * _$.sortTable(document.querySelector("table"));//Done.
  * @example
@@ -1585,9 +1655,10 @@ export let sortTable = (
 };
 /**
  * Sorts a table by a <th> element.
+ *
  * @memberOf element
  * @function
- * @returns {undefined}
+ * @returns
  * @example
  * //Note that this example pretty much recreates the _$ sortTable function, which is much more cross browser and good than this recreation. If sorting a whole table please use that.
  * _$.each(document.querySelectorAll("#table th"), (th) => {
@@ -1596,7 +1667,7 @@ export let sortTable = (
  *    _$.sortTableBy(th, th.asc = !th.asc);//Toggle the "asc" attribute on the th.
  *  });
  * })
- * @param {HTMLTableElement} th The table header (<th> element) to sort with.
+ * @param th - The table header (<th> element) to sort with.
  * @param {Boolean} acending Whether to sort the table ascending or descending.
  */
 export let sortTableBy = (
@@ -1639,9 +1710,10 @@ export let sortTableBy = (
 };
 /**
  * Adds the specified styles to the element specified.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element to add the styles to.
+ * @param el - The element to add the styles to.
  * @param {Object} styles An object that represents the styles to be added. (camelCased)
  * @example
  * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
@@ -1657,9 +1729,10 @@ export let addStyles = (
 
 /**
  * Creates an HTML element from the specified string.
+ *
  * @function
  * @memberOf element
- * @param {String} str The string of the HTML element to create.
+ * @param str - The string of the HTML element to create.
  * @example
  * //Returns a div with an id of "id_here" and innerText of "Testing!"
  * _$.createElement("<div id='id_here'>Testing!</div>");
@@ -1675,9 +1748,10 @@ export let createElement = (
 };
 /**
  * Gets a property from the computed style of an element.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element whose styles to get.
+ * @param el - The element whose styles to get.
  * @param {String} prop The css-property value to get of the styles.
  * @example
  * console.log(_$.compStyle(document.documentElement, "background-color")); // logs the background colour of the document
@@ -1692,23 +1766,25 @@ export let compStyle = (
 	return computedStyles.getPropertyValue(prop);
 };
 
-/**
+/**.
  * Get the siblings of a DOM element
+ *
  * @function
  * @memberOf element
- * @param {Element} n The element to get siblings of
+ * @param n The element to get siblings of
  * @example
  * _$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.backgroundColor = 'white');
  * // Make every sibling of the first list item's background color white.
- * @returns {Element[]} The array of sibling elements.
+ * @returns The array of sibling elements.
  */
 export let elementSiblings = (n = req("HTMLElement", "element")) =>
 	[...n.parentElement.children].filter((c) => c != n);
 /**
  * Disables right click on the element spcified.
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element to disable right click on.
+ * @param el - The element to disable right click on.
  * @example
  * _$.disableRightClick(document.documentElement)
  * @returns {undefined}
@@ -1719,14 +1795,15 @@ export let disableRightClick = (
 	node();
 	return (el.oncontextmenu = false);
 };
-/**
+/**.
  * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
+ *
  * @function
  * @memberOf element
- * @param {Element} el The element to convert.
+ * @param el The element to convert.
  * @example
  * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the <h1> element to inline using the style="___" attribute
- * @returns {undefined}
+ * @returns
  */
 export let inlineCSS = (el = req("HTMLElement", "element")) => {
 	var cs = getComputedStyle(el, null);
@@ -1738,7 +1815,8 @@ export let inlineCSS = (el = req("HTMLElement", "element")) => {
 };
 /**
  * Returns an array of objects representing the attributes of a passed element.
- * @param {Element} el The HMTL element to get attributes from.
+ *
+ * @param el - The HMTL element to get attributes from.
  * @function
  * @memberOf element
  * @example
@@ -1764,9 +1842,10 @@ export let attributes = (el = req("HTMLElement", "element")) => {
 };
 /**
  * Observes the mutations of the html element specified.
+ *
  * @memberOf element
  * @function
- * @param {Element} element The element to observe
+ * @param element - The element to observe.
  * @param {Function} callback The callback function to run when a mutation happens.
  * @param {Object} options The options to use.
  * @example
@@ -1799,9 +1878,10 @@ export let observeMutations = (
 };
 /**
  * Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
+ *
  * @memberOf element
  * @function
- * @param {Element} el The element to tilt.
+ * @param el - The element to tilt.
  * @param {Number} x The x value of the mouse
  * @param {Number} y The y value of the mouse
  * @param {Number} [perspective=500] The perspective
@@ -1840,9 +1920,10 @@ export let tilt = (
 };
 /**
  * Enters fullscreen on an element.
+ *
  * @memberOf element
  * @function
- * @param {Element} element The element to enter full screen with.
+ * @param element - The element to enter full screen with.
  * @returns {undefined}
  * @example
  * _$.fullScreen(document.documentElement); // Make the window fullscreen
@@ -1857,15 +1938,16 @@ export let fullScreen = (element = req("HTMLElement", "element")) => {
 };
 /**
  * Replaces the selected text in a contentEditable div with the HTML given.
+ *
  * @memberOf element
  * @function
- * @returns {undefined}
+ * @returns
  * @example
  * // Add a simple contenteditable div to the page.
  * document.appendChild(_$.createElement("<div contenteditable id='text'></div>"));
  * _$.replaceSelection("<b>BOLD TEXT</b> <small>Bijou is awesome</small><h1>You need to use it</h1>");
  * //Replaces the selection! =)
- * @param {String} replacementText The replacement HTML to replace with.
+ * @param replacementText - The replacement HTML to replace with.
  */
 export let replaceSelection = (
 	replacementText = req("string", "replacement text"),
@@ -1892,7 +1974,8 @@ export let replaceSelection = (
 //#region Event
 /**
  * Waits until a condition is met then resolves a promise.
- * @returns {Promise} A promise resolved when the condition returned by the function is true.
+ *
+ * @returns A promise resolved when the condition returned by the function is true.
  * @memberOf event
  * @example
  * //Waits until the current second of the current minute is 10.
@@ -1904,7 +1987,7 @@ export let replaceSelection = (
  * //To fix this problem and cancel the function after a certain amount of time,
  * //you can pass another argument to the function
  * _$.waitUntil(() => false, 10000);//Waits 10 seconds, because the function always returns false.
- * @param {Function} condition The function which returns true when the condition is met
+ * @param condition - The function which returns true when the condition is met.
  * @param {Number} [wait=Infinity] The wait time in milliseconds to cancel the function and reject the promise.
  */
 export let waitUntil = async (
@@ -1924,15 +2007,16 @@ export let waitUntil = async (
 		return condition();
 	});
 };
-/**
+/**.
  * Returns the callback when a a click is registered outside the selected element
+ *
  * @function
  * @memberOf event
- * @param {Element} element The element to use as the outsideclick element.
- * @param {Function} callback The function to run when a click is registered outside the specified element.
+ * @param element The element to use as the outsideclick element.
+ * @param callback The function to run when a click is registered outside the specified element.
  * @example
  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
- * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
+ * @returns A promise that is resolved when the user clicks outside the specified element.
  */
 export let onOutsideClick = (
 	element = req("HTMLElement", "element"),
@@ -1950,9 +2034,10 @@ export let onOutsideClick = (
 };
 /**
  * Returns the callback when the user stops scrolling.
+ *
  * @function
  * @memberOf event
- * @param {HTMLElement} [element=window] The HTML element to listen on for scroll stop.
+ * @param [element] - The HTML element to listen on for scroll stop.
  * @param {Function} callback The callback to call when the user stops scrolling.
  * @param {Number} [time=150]
  * @example
@@ -1980,11 +2065,12 @@ export let onScrollStop = (
 		);
 	});
 };
-/**
+/**.
  * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
+ *
  * @memberOf event
  * @function
- * @returns {Object} The object with the emit, on and off functions in it.
+ * @returns The object with the emit, on and off functions in it.
  * @example
  * let thing = _$.hub();
  * // Log any new data to the console
@@ -2010,12 +2096,13 @@ export let hub = () => ({
 });
 /**
  * Dispatches an event of the type specified with custom arguments.
+ *
  * @memberOf event
  * @function
  * @example
  * //Dispatch a custom mouse move event to the window.
  * _$.dispatch("mousemove", {clientX: 100, clientY: 150, target: document.documentElement}, window);
- * @param {String} type The type of event to dispatch (E.g. "mousemove")
+ * @param type - The type of event to dispatch (E.g. "mousemove").
  * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
  * @param {EventTarget} [target=window] What to dispatch the event to.
  * @returns {undefined}
@@ -2035,7 +2122,8 @@ export let dispatch = (
 //#region Function
 /**
  * Runs a list of functions with a list of arguments.
- * @returns {Array.<array>} The list of outputs.
+ *
+ * @returns The list of outputs.
  * @memberOf function
  * @example
  * //It returns an array of outputs, each item in the base array is the output of one function, and each item in that array is the output for each argument.
@@ -2044,13 +2132,14 @@ export let dispatch = (
     x => x - 1,
     x => x * 10
   )(1, 2, 3); // [[2, 3, 4], [0, 1, 2], [10, 20, 30]]
- * @param  {...function} fns The functions to call.
+ * @param fns - The functions to call.
  */
 export let juxt = (...fns) => (...args) =>
 	[...fns].map((fn) => [...args].map(fn));
 /**
  * Returns a promise after a specified number of milliseconds.
- * @returns {Promise}
+ *
+ * @returns
  * @memberOf function
  * @example
  * (async () => {
@@ -2059,19 +2148,20 @@ export let juxt = (...fns) => (...args) =>
  *     await _$.sleep(60000);//Wait one minute then loop.
  *    }
  * })
- * @param {Number} ms The milliseconds to sleep.
+ * @param ms - The milliseconds to sleep.
  */
 export let sleep = (ms = req("number", "milliseconds")) =>
 	new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Limits the arguments that a given function takes to only the 1st n arguments.
+ *
  * @example
  * //Now console can only log one item. How utterly useless but explanatory at the same time!
  * console.log = _$.limitArgs(console.log, 1);
  * @memberOf function
- * @returns {Function} The new function that only takes the 1st n arguments.
- * @param {Function} fn The function to call.
+ * @returns The new function that only takes the 1st n arguments.
+ * @param fn - The function to call.
  * @param {Number} n The number of arguments to accept.
  */
 export let limitArgs = (
@@ -2080,11 +2170,12 @@ export let limitArgs = (
 ) => (...args) => fn(...args.slice(0, n));
 /**
  * Returns the index of the fastest function in an array of functions.
+ *
  * @memberOf function
- * @returns {Number} The index of the fastest function in the array.
+ * @returns The index of the fastest function in the array.
  * @example
  * _$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("<h1>Hello world</h1>", "html")]);//0, the first function.
- * @param {Array} fns The array of functions to execute.
+ * @param fns - The array of functions to execute.
  * @param {Number} [iterations=1000] How many times to execute the functions. (More is more reliable but takes longer.)
  */
 export let fastestFunction = (fns, iterations = 1000) => {
@@ -2098,15 +2189,16 @@ export let fastestFunction = (fns, iterations = 1000) => {
 
 /**
  * Uses an array of arguments to make a function based on the one inputted.
+ *
  * @memberOf function
  * @function
- * @returns {Function}
+ * @returns
  * @example
  * var say = _$.spread(function(who, what) {
     return who + ' says ' + what;
   });
   say(["Fred", "hi"]);//"Fred says hi"
- * @param {Function} fn The function to use
+ * @param fn - The function to use.
  */
 export let spread = (fn = req("function")) => {
 	return (args) => {
@@ -2115,9 +2207,10 @@ export let spread = (fn = req("function")) => {
 };
 /**
  * Memoizes a function, basically caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
+ *
  * @function
  * @memberOf function
- * @param {Function} fn The function to memoize.
+ * @param fn - The function to memoize.
  * @example
  * let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)
  * @returns {Function} The memoized function.
@@ -2135,12 +2228,14 @@ export let memoize = (fn = req("function")) => {
 		}
 	};
 };
-/**
+/**.
  * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
+ *
  * @function
+ * @param functions
  * @memberOf function
- * @param {...Function} The functions to be composed.
- * @returns {Function} The composed function.
+ * @param The functions to be composed.
+ * @returns The composed function.
  * @example
  * const add2 = (x) => x + 2;
  * const multiply2 = (x) => x * 2;
@@ -2150,14 +2245,16 @@ export let composeFunction = (...functions) => (args) => {
 	req("functions", "function list", ![...functions].length);
 	return functions.reduceRight((arg, fn) => fn(arg), args);
 };
-/**
+/**.
  * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
+ *
  * @function
  * @memberOf function
- * @param {Function} fn The function to curry.
- * @param {Number} [arity=fn.length] The arity (number of params) of the function to curry.
+ * @param fn The function to curry.
+ * @param args
+ * @param [arity] The arity (number of params) of the function to curry.
  * {...*} [args] Optional arguments to pass to the function being curried.
- * @returns {Function} The curried version of the function.
+ * @returns The curried version of the function.
  * @example
  * let fn = (x, y, z, w) => x * y * z * w;
  * console.log(_$.curryFunction(fn, 4, 5)(4)(3)(2)); // 120 i.e. 5 * 4 * 3 * 2
@@ -2172,9 +2269,10 @@ export let curryFunction = (
 		: _$.curryFunction.bind(null, fn, arity, ...args);
 /**
  * Returns if the given function is async or not.
+ *
  * @memberOf function
  * @function
- * @param {Function} val The function to test.
+ * @param val - The function to test.
  * @returns {Boolean} True if the function is async and false if not.
  * @example
  * const asyncFn = async (x) => x ** 3; // It's a silly function, but a good example
@@ -2185,9 +2283,10 @@ export let isAsync = (val = req("function")) =>
 
 /**
  * Times the function passed.
+ *
  * @function
  * @memberOf function
- * @param {Function} fn The function to run and time.
+ * @param fn - The function to run and time.
  * @param {String} [name=_$ function timer]
  * @example
  * // Times how long it took the user to enter their name.
@@ -2206,9 +2305,10 @@ export let timeFunction = (
 };
 /**
  * Only runs the input function at MAX with the delay specified.
+ *
  * @function
  * @memberOf function
- * @param {Function} func The function to run.
+ * @param func - The function to run.
  * @param {Object.<Boolean>} options The options.
  * @param {Number} wait The number of milliseconds to wait.
  * @example
@@ -2251,15 +2351,16 @@ export let throttle = (
 		return result;
 	};
 };
-/**
+/**.
  * Debounces a function
+ *
  * @memberOf function
  * @function
  * @example
  * window.addEventListener("keyup", _$.debounce(expensiveFunction, 100));//Run the function expensiveFunction at most every 100ms.
- * @param {Function} func The function to throttle.
- * @param {Number} wait The milliseconds to wait between executions.
- * @param {Boolean} [immediate=false] Whether or not to run immediately, or after a group of executions.
+ * @param func The function to throttle.
+ * @param wait The milliseconds to wait between executions.
+ * @param [immediate] Whether or not to run immediately, or after a group of executions.
  */
 export let debounce = (
 	func = req("function"),
@@ -2308,9 +2409,10 @@ export let debounce = (
 };
 /**
  * Runs a function asynchronously in a web worker.
+ *
  * @function
  * @memberOf function
- * @param {Function} fn The function to run
+ * @param fn - The function to run.
  * @example
  * _$.runAsync(() =>  "hello world").then(console.log); // "hello world"
  * @returns {Promise} A promise that resolves into the return value of the function.
@@ -2334,6 +2436,7 @@ export let runAsync = (fn = req("function")) => {
 //#region Object
 /**
  * Flattens an object recursively into one. 
+ *
  * @memberOf object
  * @function
  * @example 
@@ -2347,8 +2450,8 @@ export let runAsync = (fn = req("function")) => {
           "more Values!!": "lol"
       }
   }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }
-* @param {Object} o The object to flatten
-* @returns {Object} The flattened object.
+ * @param o - The object to flatten.
+ * @returns {Object} The flattened object.
  */
 export let flattenObj = (o = req("object", "object")) => {
 	return o !== Object(o) || Array.isArray(o)
@@ -2372,12 +2475,16 @@ export let flattenObj = (o = req("object", "object")) => {
 				})(o),
 		  );
 };
-/**
+/**.
  * Deep clones an object (or anything else, like an array or string)
+ *
  * @function
+ * @param src
+ * @param _visited
+ * @param _copiesVisited
  * @memberOf object
- * @param {Object} obj The object to clone.
- * @returns {Object} The output cloned object.
+ * @param obj The object to clone.
+ * @returns The output cloned object.
  * @example
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
@@ -2391,6 +2498,9 @@ export let clone = (
 	var object_create = Object.create;
 	if (typeof object_create !== "function") {
 		object_create = function (o) {
+			/**
+			 * @example
+			 */
 			function F() {}
 			F.prototype = o;
 			return new F();
@@ -2451,7 +2561,7 @@ export let clone = (
 /**
  * @memberOf object
  * @function
- * @param {Object} obj The object to listen to.
+ * @param obj - The object to listen to.
  * @param {Function} [getCallback=()=>null] The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).
  * @param {Function} [setCallback=()=>null] The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).
  * @example
@@ -2480,9 +2590,10 @@ export let listen = (
 };
 /**
  * Merges two objects into one. Note that object 2 properties will overwrite those of object 2.
+ *
  * @memberOf object
  * @function
- * @param {Object} obj1 The 1st object to merge
+ * @param obj1 - The 1st object to merge.
  * @param {Object} obj2 The 2nd object to merge.
  * @returns {Object} The merged object.
  * @example
@@ -2510,9 +2621,10 @@ export let merge = function MergeRecursive(
 };
 /**
  * Maps the keys of an object.
+ *
  * @function
  * @memberOf object
- * @param {Object} obj The object to map.
+ * @param obj - The object to map.
  * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
  * @example
  * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
@@ -2538,9 +2650,10 @@ export let mapObjectKeys = (
 		: obj;
 /**
  * Maps an object's values.
+ *
  * @memberOf object
  * @function
- * @param {Object} obj The object to map the values of.
+ * @param obj - The object to map the values of.
  * @param {Function} fn The callback function to use.
  * @returns {Object} The mapped object.
  * @example
@@ -2557,9 +2670,10 @@ export let mapObjectValues = (
 };
 /**
  * Converts a form to an Object.
+ *
  * @function
  * @memberOf object
- * @param {HTMLFormElement} form The form element.
+ * @param form - The form element.
  * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
  * @example
  * html:
@@ -2586,9 +2700,10 @@ export let formToObject = (
 };
 /**
  * Sorts an object alphabetically by its keys.
+ *
  * @function
  * @memberOf object
- * @param {Object} obj The object to sort.
+ * @param obj - The object to sort.
  * @example
  * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
  * // The object is now {anotherThing: "Another value!", testing: "A value"}
@@ -2607,11 +2722,13 @@ export let sortObj = (obj = req("object", "object")) => {
 
 /**
  * Gets the greatest common divisor of a list of numbers.
- * @returns {Number} The greatest common divisor
+ *
+ * @returns The greatest common divisor.
+ * @param ary
  * @memberOf math
  * @example
  * _$.gcd(12, 4, 8);//Returns 4
- * @param {...Number} arr The numbers to compare
+ * @param arr - The numbers to compare.
  */
 export let gcd = (...ary) => {
 	if (ary[0] instanceof Array) {
@@ -2619,6 +2736,10 @@ export let gcd = (...ary) => {
 	} else {
 		return getGCD([...ary]);
 	}
+	/**
+	 * @param arr
+	 * @example
+	 */
 	function getGCD(arr) {
 		let min = Math.min(...arr);
 		let max = Math.max(...arr);
@@ -2637,6 +2758,7 @@ export let gcd = (...ary) => {
 
 /**
  * Tests if two things are equal, like "thing === thing2" but it also works for dates and objects.
+ *
  * @memberOf math
  * @example
  * console.assert(new Date() === new Date());//Not equal
@@ -2644,7 +2766,7 @@ export let gcd = (...ary) => {
  * @example
  * console.assert({thing: "Thing!"} === {thing: "Thing!"});//Not equal;
  * console.assert(_$.equals({thing: "Thing!"}, {thing: "Thing!"}))
- * @param {*} a The first thing to test
+ * @param a - The first thing to test.
  * @param {*} b The second thing to test
  */
 export let equals = (a = req("any", "a"), b = req("any", "b")) => {
@@ -2660,12 +2782,13 @@ export let equals = (a = req("any", "a"), b = req("any", "b")) => {
 };
 /**
  * Tests if a given number is prime.
- * @returns {boolean} Whether the number is prime
+ *
+ * @returns Whether the number is prime.
  * @memberOf math
  * @example
  * _$.isPrime(11);//True
  * _$.isPrime(10);//False
- * @param {Number} num The number to test.
+ * @param num - The number to test.
  */
 export let isPrime = (num = req("number", "number")) => {
 	const boundary = Math.floor(Math.sqrt(num));
@@ -2674,8 +2797,9 @@ export let isPrime = (num = req("number", "number")) => {
 };
 /**
  * Gets the factorial of a number given.
+ *
  * @memberOf math
- * @param {Number} n The number to get the factorial of.
+ * @param n - The number to get the factorial of.
  * @returns {Number}
  * @example
  * _$.factorial(3);//6
@@ -2688,13 +2812,14 @@ export let factorial = (n = req("number")) =>
 		: n <= 1
 		? 1
 		: n * factorial(n - 1);
-/**
- * Performs the Luhn Check on a number, which is used to validate credit card numbers, IMEI numbers, National Provider Identifier numbers in the United States, Canadian Social Insurance Numbers, Israeli ID Numbers, South African ID Numbers, Greek Social Security Numbers (ΑΜΚΑ), and survey codes appearing on McDonald's, Taco Bell, and Tractor Supply Co. receipts.
+/**.
+ * Performs the Luhn Check on a number, which is used to validate credit card numbers, IMEI numbers, National Provider Identifier numbers in the United States, Canadian Social Insurance Numbers, Israeli ID Numbers, South African ID Numbers, Greek Social Security Numbers (ΑΜΚΑ), and survey codes appearing on McDonald's, Taco Bell, and Tractor Supply Co. Receipts.
+ *
  * @example
  *  - _$.luhnCheck('4485275742308327'); // true
     - _$.luhnCheck(6011329933655299); //  false
     - _$.luhnCheck(123456789); // false
- * @param {Number|String} num The number or string to check on.
+ * @param num The number or string to check on.
  * @memberOf math
  */
 export let luhnCheck = (num = req("String|Number")) => {
@@ -2713,9 +2838,10 @@ export let luhnCheck = (num = req("String|Number")) => {
 };
 /**
  * Animates a number from one value to another.
+ *
  * @function
  * @memberOf math
- * @param {Number} start The initial value of the number in the animation
+ * @param start - The initial value of the number in the animation.
  * @param {Number} end The final value of the number in the animation
  * @param {Number} duration The duration of the animation in milliseconds
  * @param {Function} callback The callback function to run with the number and the percentage (Between 0 and 1) of the animation.
@@ -2742,9 +2868,10 @@ export let animate = (start = req("Number", "start"), end = req("Number", "end")
 }
 /**
  * Returns an array of the whole numbers (inclusive) between the numbers specified.
+ *
  * @memberOf math
  * @function
- * @param {Number} start The start value of the array.
+ * @param start - The start value of the array.
  * @param {Number} end The end value of the array.
  * @example
  * console.log(_$.range(-2, 1)); // [-2, -1, 0, 1]
@@ -2758,14 +2885,15 @@ export let range = (start = req("number", "start"), end = 0) => {
 		.fill()
 		.map((_, idx) => start + idx);
 };
-/**
+/**.
  * Generates a unique ID from a seed
+ *
  * @function
  * @memberOf math
- * @param {Number|String} [seed=Math.random()] The seed to use.
+ * @param [seed] The seed to use.
  * @example
  * console.log(_$.uuid()); // e.g. "863d0193-863d-0193-863d-0193863d0193"
- * @returns {String} The UUID
+ * @returns The UUID
  */
 export let uuid = (seed = Math.random()) => {
 	//Magic. Do not touch.
@@ -2773,6 +2901,10 @@ export let uuid = (seed = Math.random()) => {
 		// Convert string to a number between 0 and 1
 		seed = _temp.hashString(seed) / 10000000000000000;
 	}
+	/**
+	 * @param s
+	 * @example
+	 */
 	function _p8(s) {
 		var p = (seed.toString(16) + "000000000").substr(2, 8);
 		return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
@@ -2781,9 +2913,10 @@ export let uuid = (seed = Math.random()) => {
 };
 /**
  * Gives an array of prime numbers up to a certain one.
+ *
  * @function
  * @memberOf math
- * @param {Number} num - The number to give primes to.
+ * @param num - The number to give primes to.
  * @example
  * console.log(_$.primesTo(10)); // [2, 3, 5, 7]
  * @returns {Array.<Number>} Returns an array of prime numbers up to the given number.
@@ -2801,15 +2934,16 @@ export let primesTo = (num = req("number", "number")) => {
 	);
 	return arr;
 };
-/**
+/**.
  * Generates a random number between a minimum and maximum number
+ *
  * @function
  * @memberOf math
- * @param {Number} min The lowest number that the random value generated can be.
- * @param {Number} max The highest number that the random value generated can be.
- * @param {Boolean} [round=true] Weather to round the generated number
- * @param {Number} [seed=Math.random()] The seed for the generated number (Between 0 and 1).
- * @returns {Number} The random number generated.
+ * @param min The lowest number that the random value generated can be.
+ * @param max The highest number that the random value generated can be.
+ * @param [round] Weather to round the generated number
+ * @param [seed] The seed for the generated number (Between 0 and 1).
+ * @returns The random number generated.
  * @example
  * console.log(_$.random(0, 100)); // e.g. 47
  */
@@ -2830,9 +2964,10 @@ export let random = (
 };
 /**
  * Get a random number from a seed.
+ *
  * @function
  * @memberOf math
- * @param {number} seed The seed to use to generate random numbers.
+ * @param seed - The seed to use to generate random numbers.
  * @example
  * console.log(_$.seedRandom(13)); // 0.5663226493634284
  * @returns {Number} The random number from the seed.
@@ -2846,17 +2981,19 @@ export let seedRandom = (seed = req("number", "seed")) => {
 
 /**
  * Formats a number by adding commas to it.
+ *
  * @function
  * @memberOf math
- * @param {Number} n The number to format.
+ * @param n - The number to format.
  * @example
  * console.log(_$.formatNumber(100000000)); // "100,000,000"
  * @returns {String} The formatted string representation of the number.
  */
 export let formatNumber = (n = req("number", "number")) =>
 	n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-/**
+/**.
  * Easing functions
+ *
  * @Object
  * @memberOf math
  * @example
@@ -2989,11 +3126,12 @@ export let ease = {
 //#region String
 /**
  * Compares two strings using the Jaro-Winkler Distance algorithm.
+ *
  * @memberOf string
  * @example
  * _$.jaroDistance('test', 'tes');//0.9416666666666667
- * @returns {Number} A number representing how similar the two strings are, where 1 is exactly the same and 0 is totally different
- * @param {String} a The first string
+ * @returns A number representing how similar the two strings are, where 1 is exactly the same and 0 is totally different.
+ * @param a - The first string.
  * @param {String} b The second string
  */
 export let jaroDistance = function (a, b) {
@@ -3121,10 +3259,11 @@ export let jaroDistance = function (a, b) {
 };
 /**
  * Prefixes the given CSS property for the current browser.
+ *
  * @memberOf string
  * @example
  * document.body.style[_$.prefix("appearance")] = "hidden";//Sets the document body's appearance property to "hidden".
- * @param {String} prop The property to prefix.
+ * @param prop - The property to prefix.
  * @returns {String} The prefixed value (camelCased, instead of css-case, so mozAppearance instead of -moz-appearance).
  */
 export let prefixCSS = (prop = req("string", "property")) => {
@@ -3147,10 +3286,11 @@ export let prefixCSS = (prop = req("string", "property")) => {
 
 /**
  * Parses a cookie string into object and value pairs.
+ *
  * @memberOf string
  * @example
  * _$.parseCookie("foo=bar; something=hello%20world");//Returns {foo: "bar", something: "hello world"};
- * @param {String} str The string to parse.
+ * @param str - The string to parse.
  */
 export let parseCookie = (str = req("string", "cookie string")) =>
 	str
@@ -3164,13 +3304,14 @@ export let parseCookie = (str = req("string", "cookie string")) =>
 		}, {});
 /**
  * Hashes a string using the crypto api. 
+ *
  * @memberOf string
  * @example
  * _$.hash(
     JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
   ).then(console.log);
   // '04aa106279f5977f59f9067fa9712afc4aedc6f5862a8defc34552d8c7206393'
- * @param {String} val The string to hash
+ * @param val - The string to hash.
  * @returns {Promise} A promise that resolves into the hashed string.
  */
 export let hash = (val = req("string", "input string")) => {
@@ -3189,9 +3330,12 @@ export let hash = (val = req("string", "input string")) => {
 };
 /**
  * Lets you use a for loop in template literals.
+ *
  * @function
  * @memberOf string
- * @param {arr} The array to loop.
+ * @param arr
+ * @param callback
+ * @param The - Array to loop.
  * @param {callback} Callback to return strings
  * @example
  * console.log(`Things: ${_$.forTemplateLiteral(["apple", "orange"], (item, i) => {return `an ${item}`})}`)
@@ -3206,10 +3350,11 @@ export let forTemplateLiteral = (
 };
 /**
  * Maps a string like an array.
+ *
  * @memberOf string
  * @example
  * _$.mapString("Hello world", (e) => e.toUpperCase());//Returns "HELLO WORLD"
- * @param {String} str The string to map
+ * @param str - The string to map.
  * @param {Function} fn The callback function to run to map the string.
  */
 export let mapString = (
@@ -3218,21 +3363,23 @@ export let mapString = (
 ) => Array.prototype.map.call(str, fn).join("");
 /**
  * Removes the accents from a string.
+ *
  * @memberOf string
  * @function
- * @returns {String} The string without accents.
+ * @returns The string without accents.
  * @example
  * console.log(_$.decurr("déjà vu")); // "deja vu"
- * @param {String} str The string to use.
+ * @param str - The string to use.
  */
 export let deburr = (str = req("string", "string")) =>
 	str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 /**
  * Removes tags from the HTML string specified.
+ *
  * @function
  * @memberOf string
- * @param {String} html The string of HTML to remove tags from.
+ * @param html - The string of HTML to remove tags from.
  * @example
  * console.log(_$.removeTags("<div>Hello</div>")); // "Hello"
  * @returns {String} THe string of HTML without the tags.
@@ -3242,9 +3389,10 @@ export let removeTags = (html = req("string", "html string")) =>
 
 /**
  * Speaks the text given.
+ *
  * @memberOf string
  * @function
- * @param {String} text The text to split
+ * @param text - The text to split.
  * @param {String} [lang=en-US] The language to speak with.
  * @param {Number} [volume=1] The volume
  * @param {String|Number} [voice=1] The voice to use.
@@ -3278,15 +3426,16 @@ export let speak = (
 	msg.lang = lang;
 	speechSynthesis.speak(msg);
 };
-/**
+/**.
  * Returns the last space in the string given replaced with "&nbsp;"
+ *
  * @function
  * @memberOf string
- * @param {String} text The string to replace
+ * @param text The string to replace
  * @example
  * document.querySelector("h1").innerHTML = _$.widows(document.querySelector("h1").innerHTML);
  * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
- * @returns {String} The replaced string.
+ * @returns The replaced string.
  */
 export let widows = (text = req("string", "text")) => {
 	var wordArray = text.split(" ");
@@ -3304,9 +3453,10 @@ export let widows = (text = req("string", "text")) => {
 
 /**
  * Undoes camelCase.
+ *
  * @function
  * @memberOf string
- * @param {String} str The string to unCamelCase.
+ * @param str - The string to unCamelCase.
  * @example
  * console.log(_$.unCamelCase("helloWorld")); // "Hello World"
  * @returns {String} The string of unCamelCased code.
@@ -3320,14 +3470,15 @@ export let unCamelCase = function (str = req("string", "string")) {
 		});
 };
 
-/**
- * camelCases a string.
+/**.
+ * CamelCases a string.
+ *
  * @function
  * @memberOf string
- * @param {String} str The string of non-camelCased text.
+ * @param str The string of non-camelCased text.
  * @example
  * console.log(_$.camelCase("Hello world")); // "helloWorld"
- * @returns {String} The camelCased string.
+ * @returns The camelCased string.
  */
 export let camelCase = (str = req("string", "string")) => {
 	return str
@@ -3338,9 +3489,10 @@ export let camelCase = (str = req("string", "string")) => {
 };
 /**
  * Scrambles the order of characters in a string. Thanks to @\Touchcreator for the suggestion for this.
+ *
  * @function
  * @memberOf string
- * @param {String} str The string to be scrambled
+ * @param str - The string to be scrambled.
  * @example
  * console.log(_$.scrambleString("Hello world")); // e.g. "owllH rdloe"
  * @returns {String} The scrambled text.
@@ -3359,9 +3511,10 @@ export let scrambleString = (str = req("string")) => {
 };
 /**
  * Hashes a string to a unique integer (This cannot be decrypted easily).
+ *
  * @function
  * @memberOf string
- * @param {String} str The String to hash.
+ * @param str - The String to hash.
  * @param {Number} [seed=0] The seed of the hash.
  * @example
  * console.log(_$.hashString("Hello world")); // 3494146707865688
@@ -3386,9 +3539,10 @@ export let hashString = (str = req("string"), seed = 0) => {
 
 /**
  * Gets the edit distance between two strings.
+ *
  * @function
  * @memberOf string
- * @param {String} a The first string
+ * @param a - The first string.
  * @param {String} b The seconds string
  * @example
  * console.log(_$.editDistance("hello", "Hello")); // 1
@@ -3436,21 +3590,23 @@ export let editDistance = (
 };
 /**
  * Returns the size of a string in bytes.
+ *
  * @function
  * @memberOf string
- * @param {String} str
+ * @param str
  * @example
  * console.log(_$.byteSize("Hello world")); 11
- * @returns {Number} The byte size of the string.
+ * @returns The byte size of the string.
  */
 export let byteSize = (str = req("string", "string")) =>
 	new Blob([str]).size;
 
 /**
  * Finds and replace multiple values with multiple other values.
+ *
  * @function
  * @memberOf string
- * @param {String} text The text to operate the replace on.
+ * @param text - The text to operate the replace on.
  * @param {Object} replace The object with find and replace values.
  * @example
  * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
@@ -3466,18 +3622,19 @@ export let replaceMultiple = (
 	});
 	return text;
 };
-/**
+/**.
  * Returns the queries from a given url (Or just the current url)
+ *
  * @function
  * @memberOf string
- * @param {String} query The url query to get.
- * @param {String} [url=window.location.href] The url to find the query in. (By default this is the current url)
+ * @param query The url query to get.
+ * @param [url] The url to find the query in. (By default this is the current url)
  * @example
  * // If the website adress of the current page was "https://example.com/?q=hello&hello=world"
  * console.log(_$.urlQuery("hello")); // "world"
  * // Or on a custom url:
  * console.log(_$.urlQuery("q", "https://google.com/search?q=something")); // "something"
- * @returns {String} The url query
+ * @returns The url query
  */
 export let urlQuery = (
 	query = req("string", "query"),
@@ -3491,16 +3648,17 @@ export let urlQuery = (
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
 };
 
-/**
+/**.
  * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
+ *
  * @function
  * @memberOf string
- * @param {String} html The input string to sanitize.
- * @param {Array} [tags=undefined] The array of tags to allow, there is a default list though.
- * @param {Array} [attributes=undefined] The array of attributes to allow. By default only allows "href" and "src" attributes.
+ * @param html The input string to sanitize.
+ * @param [tags] The array of tags to allow, there is a default list though.
+ * @param [attributes] The array of attributes to allow. By default only allows "href" and "src" attributes.
  * @example
  * console.log(_$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>")); // "<b>A normal tag</b>"
- * @returns {String} The sanitized HTML string.
+ * @returns The sanitized HTML string.
  */
 export let sanitize = (
 	html = req("string", "input html"),
@@ -3627,6 +3785,11 @@ export let sanitize = (
 		}
 	}
 	return el.documentElement.innerHTML;
+	/**
+	 * @param element
+	 * @param attribute
+	 * @example
+	 */
 	function attribute_matches(element, attribute) {
 		let output = attributes.filter((attr) => {
 			let returnval =
@@ -3638,6 +3801,10 @@ export let sanitize = (
 
 		return output.length > 0;
 	}
+	/**
+	 * @param element
+	 * @example
+	 */
 	function get_attributes(element) {
 		for (
 			var i = 0, atts = element.attributes, n = atts.length, arr = [];
@@ -3651,7 +3818,8 @@ export let sanitize = (
 };
 /**
  * Converts markdown to HTML.
- * @param {String} src The markdown to convert to HTML.
+ *
+ * @param src - The markdown to convert to HTML.
  * @memberOf string
  * @function
  * @example
@@ -3678,14 +3846,28 @@ export let markdownToHTML = (src = req("string", "input")) => {
 	var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
 	var rx_stash = /-\d+\uf8ff/g;
 
+	/**
+	 * @param rex
+	 * @param fn
+	 * @example
+	 */
 	function replace(rex, fn) {
 		src = src.replace(rex, fn);
 	}
 
+	/**
+	 * @param tag
+	 * @param content
+	 * @example
+	 */
 	function element(tag, content) {
 		return "<" + tag + ">" + content + "</" + tag + ">";
 	}
 
+	/**
+	 * @param src
+	 * @example
+	 */
 	function blockquote(src) {
 		return src.replace(rx_blockquote, function (all, content) {
 			return element(
@@ -3695,6 +3877,10 @@ export let markdownToHTML = (src = req("string", "input")) => {
 		});
 	}
 
+	/**
+	 * @param src
+	 * @example
+	 */
 	function list(src) {
 		return src.replace(
 			rx_list,
@@ -3735,6 +3921,10 @@ export let markdownToHTML = (src = req("string", "input")) => {
 		);
 	}
 
+	/**
+	 * @param src
+	 * @example
+	 */
 	function highlight(src) {
 		return src.replace(
 			rx_highlight,
@@ -3764,6 +3954,10 @@ export let markdownToHTML = (src = req("string", "input")) => {
 		);
 	}
 
+	/**
+	 * @param str
+	 * @example
+	 */
 	function unesc(str) {
 		return str.replace(rx_escape, "$1");
 	}
@@ -3864,9 +4058,10 @@ export let markdownToHTML = (src = req("string", "input")) => {
 
 /**
  * Counts the syllables in the word given.
+ *
  * @memberOf string
  * @function
- * @param {String} word The word to count syllables of
+ * @param word - The word to count syllables of.
  * @example
  * console.log(_$.syllables("Hello")); // 2
  * @returns {Number} The number of syllables in the specified word.
@@ -3888,14 +4083,15 @@ export let syllables = (word = req("string", "word")) => {
 		return syl.length + t_some;
 	}
 };
-/**
+/**.
  * Converts a string to title case
+ *
  * @memberOf string
  * @function
- * @param {String} str The string to convert to title case.
+ * @param str The string to convert to title case.
  * @example
  * _$.titleCase("hello world");//Returns "Hello World"
- * @returns {String} The string in title case.
+ * @returns The string in title case.
  */
 export let titleCase = (str = req("string", "string")) =>
 	str
@@ -3934,25 +4130,27 @@ export let titleCase = (str = req("string", "string")) =>
 				  word.slice(word.codePointAt(0) > 0xffff ? 2 : 1),
 		)
 		.join(" ");
-/**
+/**.
  * Capitalizes the first letter of the string
+ *
  * @memberOf string
  * @function
- * @param {String} str The string to capitalize.
+ * @param str The string to capitalize.
  * @example
  * console.log(_$.capitalize("hello world")); // "Hello world"
- * @returns {String} The capitalized string.
+ * @returns The capitalized string.
  */
 export let capitalize = (str = req("string", "string")) =>
 	String.fromCodePoint(str.codePointAt(0)).toUpperCase() +
 	str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
 /**
  * Replaces between two indexes of a string.
+ *
  * @memberOf string
  * @function
  * @example
  * console.log(_$.replaceBetween("Hello world", 6, 11, "earthlings")); // "Hello earthlings"
- * @param {String} string The string to operate on.
+ * @param string - The string to operate on.
  * @param {Number} start The start index
  * @param {Number} end The end index
  * @param {String} what What to replace with.
@@ -3964,14 +4162,15 @@ export let replaceBetween = (
 	end = req("number", "end"),
 	what = req("string", "replace with"),
 ) => string.substring(0, start) + what + string.substring(end);
-/**
+/**.
  * Escapes a string of HTML
+ *
  * @function
  * @memberOf string
- * @param {String} str The string of HTML to escape.
+ * @param str The string of HTML to escape.
  * @example
  * console.log(_$.escapeHTML("<div>")); // "&lt;div&gt;"
- * @returns {String} The escaped HTML.
+ * @returns The escaped HTML.
  */
 export let escapeHTML = (str = req("string")) =>
 	str.replace(
@@ -3985,14 +4184,15 @@ export let escapeHTML = (str = req("string")) =>
 				'"': "&quot;",
 			}[tag] || tag),
 	);
-/**
+/**.
  * Unescapes a string of HTML
+ *
  * @function
  * @memberOf string
- * @param {String} str The string of HTML to unescape.
+ * @param str The string of HTML to unescape.
  * @example
  * console.log(_$.unescapeHTML("&lt;div&gt;")); // "<div>"
- * @returns {String} The unescaped HTML.
+ * @returns The unescaped HTML.
  */
 export let unescapeHTML = (str = req("string")) =>
 	str.replace(
@@ -4008,11 +4208,12 @@ export let unescapeHTML = (str = req("string")) =>
 	);
 /**
  * Returns the previous page that the user visited.
+ *
  * @function
  * @memberOf string
  * @example
  * console.log(_$.previousPage()); // e.g. "https://bijou.js.org"
- * @returns {String} The url of the previous page the user visited.
+ * @returns The url of the previous page the user visited.
  */
 export let previousPage = () => {
 	node();
@@ -4022,11 +4223,13 @@ export let previousPage = () => {
 //#region Utility
 /**
  * Resizes an image from a URL and returns a promise with it's data URL.
+ *
  * @memberOf utility
- * @param {String} url The URL of the image to resize.
+ * @param url - The URL of the image to resize.
  * @param {Number} [width=Natural width of the image] The target width of the new image
  * @param {Number} [height=Natural width of the image] The target height of the new image
  * @returns {Promise.<string>} A data URL of the resized image.
+ * @example
  */
 export let resize = async (
 	url = req("string", "html"),
@@ -4048,15 +4251,17 @@ export let resize = async (
 	let data = canvas.toDataURL(0, 0, canvas.width, canvas.height);
 	return data;
 };
-/**
+/**.
  * Converts a string of HTML to an image (!!)
- * @param {String} html The HTML string to transform into an image
- * @param {Object.<string>} [opts={x: 0, y: 0, width: 300, height: 400}] The object with options.
- * @param {Number} [opts.x=0] The x position of the text
- * @param {Number} [opts.y=0] The y position of the text
+ *
+ * @param html The HTML string to transform into an image
+ * @param [opts] The object with options.
+ * @param [opts.x] The x position of the text
+ * @param [opts.y] The y position of the text
  * @param {Number} [opts.width=300] The width of the output image.
  * @param {Number} [opts.height=400]  The height of the output image.
  * @returns {Promise.<string>} A promise that resolves into the data URL string of the image.
+ * @example
  */
 export let htmlToImage = (
 	html = req("string", "html string"),
@@ -4079,6 +4284,10 @@ export let htmlToImage = (
 		};
 		img.src = data;
 	});
+	/**
+	 * @param html
+	 * @example
+	 */
 	function toXML(html) {
 		var doc = document.implementation.createHTMLDocument("");
 		doc.write(html);
@@ -4091,11 +4300,12 @@ export let htmlToImage = (
 	}
 };
 
-/**
+/**.
  * Converts a function that returns a promise into a callback based function
- * @param {Function} fn The function to 'callbackify'.
+ *
+ * @param fn The function to 'callbackify'.
  * @memberOf utility
- * @returns {Function} The callback based function.
+ * @returns The callback based function.
  * @example
  * let getUUID = _$.callbackify((limit) =>
  *    fetch(
@@ -4113,8 +4323,9 @@ let callbackify = (fn = req("function", "function")) => (
 		.catch(errCallback);
 /**
  * Promisifies a function by converting a callback based function to return a promise.
- * (assuming argIndex = -1)
- * @param {Function} fn The function to run.
+ * (assuming argIndex = -1).
+ *
+ * @param fn - The function to run.
  * @param {Number} [argIndex=0] The index of the argument that is the callback returned by the function.
  * @returns {Function} The function promisified (now returns a promise).
  * @memberOf utility
@@ -4138,12 +4349,14 @@ let promisify = (fn = req("function"), argIndex = 0) => {
 };
 /**
  * Times out a promise after a specified number of milliseconds.
+ *
  * @memberOf utility
- * @returns {Promise} The promise that was inputted, but will time out after a specified time.
+ * @returns The promise that was inputted, but will time out after a specified time.
  * @example
+ * @param cancelCb
  * //Attempts to fetch the date from jsontest.com, if the request is still pending after 2000 milliseconds cancel it and throw an error.
  * let fetch_stuff = fetch("http://date.jsontest.com/");
- * _$.race(fetch_stuff, 2000).then((res) => res.json()).then(console.log).catch(console.error)
+ * _$.race(fetch_stuff, 2000).then((res) => res.json()).then(console.log).catch(console.error).
  * @example
  * //Load my popup library, then prompt using it and after 4 seconds close and remove the popup.
  * (async () => {
@@ -4183,6 +4396,7 @@ export let race = (
 };
 /**
  * Gets the type of something. This is more specific than the 'typeof' operator.
+ *
  * @memberof utility
  * @example
  * _$.typeof("This is a string");//"String"
@@ -4193,13 +4407,14 @@ export let race = (
  * @example
  * _$.typeof(new Date());//"Date"
  * typeof new Date();//Object -__-
- * @param {*} e The thing to get the type of.
+ * @param e - The thing to get the type of.
  * @param {Boolean} lowerCase Whether to return the string lowercased or not.
  */
 export let typeOf = (e = req("any", "any"), lowerCase = true) =>
 	Object.prototype.toString.call(e).split(" ")[1].replace(/]$/, "");
 /**
  * Injects CSS into the document head.
+ *
  * @memberOf utility
  * @example
  * //Makes the body's background a dark charcoal color.
@@ -4219,8 +4434,8 @@ export let typeOf = (e = req("any", "any"), lowerCase = true) =>
  *      }
  *    `)
  * }
- * @returns {HTMLElement} The CSS <style> element.
- * @param {String} css The CSS to inject.
+ * @returns The CSS <style> element.
+ * @param css - The CSS to inject.
  */
 export let injectCSS = (css = req("string", "css")) => {
 	node();
@@ -4232,10 +4447,11 @@ export let injectCSS = (css = req("string", "css")) => {
 };
 /**
  * Returns either "mobile" or "desktop" depending on which type of device the user is using.
+ *
  * @function
  * @memberOf utility
  * @param
- * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
+ * @returns Either "mobile" or "desktop" depending on which type of device the user is using.
  * @example
  * console.log(_$.mobileOrDesktop()); // e.g. "desktop"
  */
@@ -4249,7 +4465,8 @@ export let mobileOrDesktop = () => {
 };
 /**
  * Plays a section of an audio file.
- * @param {HTMLMediaElement} audioObj The audio object to play. (Needs to be created from "new Audio()")
+ *
+ * @param audioObj - The audio object to play. (Needs to be created from "new Audio()").
  * @param {Number} start The time to start playing.
  * @param {Number} stop The time to stop playing.
  * @memberOf utility
@@ -4275,9 +4492,10 @@ export let playSection = (
 };
 /**
  * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
+ *
  * @memberOf utility
  * @function
- * @param {String} html The string of HTML to format.
+ * @param html - The string of HTML to format.
  * @example
  * console.log(_$.formatHTML("<h1>moo</h1><div id="hi">hello <span>world</span></div>"));
  * Logs the following to the console:
@@ -4312,9 +4530,10 @@ export let formatHTML = (html = req("string", "html")) => {
 };
 /**
  * Gets JSON from a URL and performs a callback with it.
+ *
  * @function
  * @memberOf utility
- * @param {String} url The url of the JSON to be fetched.
+ * @param url - The url of the JSON to be fetched.
  * @param {Function} callback The function to be run with the JSON code.
  * @example
  * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
@@ -4340,9 +4559,10 @@ export let getJSON = (
 };
 /**
  * Gets HTML from a URL and performs a callback with it.
+ *
  * @function
  * @memberOf utility
- * @param {String} url The url of the HTML to be fetched.
+ * @param url - The url of the HTML to be fetched.
  * @param {Function} callback The function to be run with the HTML code.
  * @example
  * // Logs the HTML of wikipedia.org to the console.
@@ -4368,14 +4588,15 @@ export let getHTML = (
 	});
 };
 
-/**
+/**.
  * Preloads all of the image urls given in the arguments
+ *
  * @function
  * @memberOf utility
- * @param {...String} urls The urls of the images to be preloaded.
+ * @param urls The urls of the images to be preloaded.
  * @example
  * _$.preloadImage("https://unsplash.com/some_huge_image.png"); // Preloads the unsplash image "some_huge_image.png" :P
- * @returns {undefined}
+ * @returns
  */
 export let preloadImage = (...urls) => {
 	req("string", "url arguments", ![...urls].length);
@@ -4388,9 +4609,10 @@ export let preloadImage = (...urls) => {
 
 /**
  * Saves a blob as a file!
+ *
  * @function
  * @memberOf utility
- * @param {Blob} blob The blob to save as a file.
+ * @param blob - The blob to save as a file.
  * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
  * @example
  * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
@@ -4414,11 +4636,13 @@ export let saveBlob = (
 
 /**
  * Works exactly like setInterval but instead uses requestAnimationFrame.
+ *
  * @memberOf utility
  * @function
- * @param {Function} fn The function to run repeatedly every delay seconds.
+ * @param fn - The function to run repeatedly every delay seconds.
  * @param {Number} delay The delay time in milliseconds to run the function.
  * @returns {Object}
+ * @example
  */
 export let requestInterval = function (
 	fn = req("function", "function"),
@@ -4435,6 +4659,9 @@ export let requestInterval = function (
 		})(),
 		start = new Date().getTime(),
 		handle = {};
+	/**
+	 * @example
+	 */
 	function loop() {
 		handle.value = requestAnimFrame(loop);
 		var current = new Date().getTime(),
@@ -4450,9 +4677,12 @@ export let requestInterval = function (
 
 /**
  * Loads a script from a url (Can be to a local file or to a url) then runs a callback once it's loaded.
+ *
  * @memberOf utility
  * @function
- * @param {String} url The url to load the script from.
+ * @param options
+ * @param dupeCheck
+ * @param url - The url to load the script from.
  * @param {Function} callback The callback to run when the script is loaded.
  * @example
  * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
@@ -4502,9 +4732,10 @@ export let loadScript = (
 
 /**
  * Fetches an image and runs the callback with the data url of the image.
+ *
  * @memberOf utility
  * @function
- * @param {String} url The url of the image to load.
+ * @param url - The url of the image to load.
  * @param {Function} callback The callback function.
  * @example
  * //Replaces every image's url with its respective data url.
@@ -4533,21 +4764,24 @@ export let imageToData = async (
 };
 /**
  * A set of functions to set and modify cookies.
+ *
  * @memberOf utility
  * @Object
  * @example
  * _$.cookies.setItem("a_cookie", "Hello world!", 1); // Set a_cookie to "Hello world" and have it expire in a day.
- * @returns {Function} The function that the user wanted
+ * @returns {Function} The function that the user wanted.
  */
 export let cookies = {
-	/**
+	/**.
 	 * Sets a cookie to a value
+	 *
 	 * @function
 	 * @memberOf utility
-	 * @param {String} name The name of the cookie to set
-	 * @param {String} value The value of the cookie
-	 * @param {Number} [days=1000] The days that the cookie should last.
-	 * @returns {String} The value of the cookie
+	 * @param name The name of the cookie to set
+	 * @param value The value of the cookie
+	 * @param [days] The days that the cookie should last.
+	 * @returns The value of the cookie
+	 * @example
 	 */
 	setItem: (
 		name = req("string", "name"),
@@ -4566,10 +4800,12 @@ export let cookies = {
 	},
 	/**
 	 * Gets a cookie from its name.
+	 *
 	 * @function
 	 * @memberOf utility
-	 * @param {String} name The name of the cookie.
+	 * @param name - The name of the cookie.
 	 * @returns {String} The value of the cookie
+	 * @example
 	 */
 	getItem: (name = req("string", "name")) => {
 		node();
@@ -4584,11 +4820,13 @@ export let cookies = {
 		}
 		return null;
 	},
-	/**
+	/**.
 	 * Deletes a cookie
+	 *
 	 * @memberOf utility
-	 * @param {String} name The name of the cookie to delete.
-	 * @returns {undefined}
+	 * @param name The name of the cookie to delete.
+	 * @returns
+	 * @example
 	 */
 	removeItem: (name = req("string", "name")) => {
 		node();
@@ -4597,8 +4835,9 @@ export let cookies = {
 			name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 	},
 };
-/**
+/**.
  * A collection of regular expressions to validate and get common things from a page
+ *
  * @memberOf utility
  * @Object
  * @example
@@ -4614,7 +4853,7 @@ export let regex = {
 	 * 123.456.7890
 	 * 1234567890
 	 * +31636363634
-	 * 075-63546725
+	 * 075-63546725.
 	 */
 	phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
 	/** Validates names, examples:
@@ -4627,14 +4866,14 @@ export let regex = {
 	 * Martin Luther King
 	 * Ai Wong
 	 * Chao Chang
-	 * Alzbeta Bara
+	 * Alzbeta Bara.
 	 */
 	name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
 	/**
-      Validates email adresses
-      */
+      Validates email adresses.
+	 */
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	/** Validates a link
+	/** Validates a link.
 	 */
 	link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
 	/**
@@ -4644,7 +4883,7 @@ export let regex = {
 	 * 1 uppercase letter
 	 * 1 number
 	 * 1 special character
-	 * At least 8 characters long
+	 * At least 8 characters long.
 	 */
 	strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
 	/**
@@ -4652,7 +4891,7 @@ export let regex = {
 	 * Should have:
 	 * 1 lowercase letter
 	 * 1 uppercase letter
-	 * 1 number
+	 * 1 number.
 	 * At least 8 characters long */
 	moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
 	/** Ip adresses */
@@ -4676,26 +4915,27 @@ export let regex = {
 	mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
 	discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
 };
-/**
-   * Converts JSON to a CSV string
-   * @function
-   * @memberOf utility
-   * @param {Array} arr The array of objects to convert to CSV.
-   * @param {Array} columns The columns to use.
-   * @param {String} [delimiter=","] The delimiter between cells, by default this is a comma.
-   * @example
-   * _$.jsonToCsv(
+/**.
+ * Converts JSON to a CSV string
+ *
+ * @function
+ * @memberOf utility
+ * @param arr The array of objects to convert to CSV.
+ * @param columns The columns to use.
+ * @param [delimiter] The delimiter between cells, by default this is a comma.
+ * @example
+ * _$.jsonToCsv(
     [{ a: 1, b: 2 }, { a: 3, b: 4, c: 5 }, { a: 6 }, { b: 7 }],
     ['a', 'b']
   );
-  * //
+ * //
    a,b
   "1","2"
   "3","4"
   "6",""
   "","7"
-   * @returns {String} The string of comma separated values (CSV) created from the JSON.
-   */
+ * @returns The string of comma separated values (CSV) created from the JSON.
+ */
 export let jsonToCsv = (
 	arr = req("array", "array"),
 	columns = req("number", "columns"),
@@ -4715,9 +4955,10 @@ export let jsonToCsv = (
 	].join("\n");
 /**
  * Converts an array to CSV (Comma separated values) data.
+ *
  * @function
  * @memberOf utility
- * @param {Array} arr The array to convert.
+ * @param arr - The array to convert.
  * @param {String} [delimiter=,] The separator (By default this is a comma.)
  * @example
  * console.log(_$.arrayToCSV([1,2,3,4])); // "1,2,3,4"
@@ -4737,9 +4978,10 @@ export let arrayToCSV = (
 
 /**
  * Displays a desktop notification with the specified text.
+ *
  * @function
  * @memberOf utility
- * @param {String} title The title of the notification.
+ * @param title - The title of the notification.
  * @param {String} body The body of the notification.
  * @param {String} icon The url to the image for the icon of the notification.
  * @example
@@ -4784,9 +5026,10 @@ export let notify = async (
 };
 /**
  * Copies the string inputted to the clipboard.
+ *
  * @function
  * @memberOf utility
- * @param {String} str The string to copy.
+ * @param str - The string to copy.
  * @example
  * _$.copy("Hello world");
  * @returns {String} The string copied.
@@ -4814,11 +5057,12 @@ export let copy = (str = req("string", "string")) => {
 };
 /**
  * Returns the browser that the user is using.
+ *
  * @function
  * @memberOf utility
  * @example
  * _$.browser(); // For me this (correctly) returns "Chrome"
- * @returns {String} A string of the browser name that the user is using.
+ * @returns A string of the browser name that the user is using.
  */
 export let browser = () => {
 	node();
@@ -4836,7 +5080,7 @@ export let browser = () => {
 				(typeof safari !== "undefined" &&
 					window["safari"].pushNotification),
 		);
-	var isIE = /*@cc_on!@*/ false || !!document.documentMode;
+	var isIE = /**@cc_on!@*/ false || !!document.documentMode;
 	var isEdge = !isIE && !!window.StyleMedia;
 	var isChrome =
 		!!window.chrome &&
@@ -4871,10 +5115,12 @@ export let browser = () => {
 };
 /**
  * Converts a form to URL queries using the name attribute.
+ *
  * @function
  * @memberOf utility
- * @param {HTMLFormElement} form The form element.
+ * @param form - The form element.
  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
+ * @example
  */
 export let serializeForm = (
 	form = req("HTMLFormElement", "form"),
@@ -4886,8 +5132,9 @@ export let serializeForm = (
 };
 /**
  * An implementation of the soundex algorithm in JavaScript, used to test if two words sound the same.
- * @returns {String} The soundex of the given string
- * @param {String} s The word to get the soundex of.
+ *
+ * @returns The soundex of the given string.
+ * @param s - The word to get the soundex of.
  * @example
  * _$.soundex("ekxplohsin");//"E214"
  * _$.soundex("explosion");//"E214"
@@ -4942,11 +5189,20 @@ export let soundex = (s = req("string", "word")) => {
 /**
  *Converts most of the functions of Bijou.js to prototype functions.
  * Note that you have to call this function to add the prototypes.
- * @param {Object} options The options to use, supports overwrite (boolean of whether to overwrite existing prototypes), and try, (boolean for whether to wrap in a try..catch)
+ *
+ * @param options - The options to use, supports overwrite (boolean of whether to overwrite existing prototypes), and try, (boolean for whether to wrap in a try..catch).
+ * @example
  */
 export let prototype = (
 	options = { overwrite: true, tryCatch: false },
 ) => {
+	/**
+	 * @param fn The function to make into a prototype.
+	 * @param thing The JS object to add it to (e.g. the String global object)
+	 * @param name The name of the new function
+	 * @example
+	 * 	proto(_$.addDaysToDate, Date, "addDays");
+	 */
 	function proto(fn, thing, name) {
 		let title =
 			name || fn ? fn.name : "noNameHehe124672463467432376453";
@@ -5090,8 +5346,9 @@ export let prototype = (
 	proto(_$.urlQuery, String);
 	proto(_$.widows, String);
 };
-/**
+/**.
  * Bijou.js source documentation. In the `Bijou` namespace you will find the documentation for all of the functions in Bijou.js, if you have any questions, suggestions or bug reports pleast make an issue (here)[https://github.com/bijou-js/bijou.js/issues/new/choose]. Best of luck! Thanks for using Bijou.js! --Explosion--
+ *
  * @type {Object}
  * @author Explosion-Scratch, GrahamSH-LLK, Bijou.js contributors
  */

@@ -1,7 +1,8 @@
 //#region Array
 /**
  * Counts the items in an array, returning a separate count for each object.
- * @returns {Object}
+ *
+ * @returns {object}
  * @memberOf array
  * @function
  * @example
@@ -9,7 +10,7 @@
  *
  * //But if you have multiple items:
  * _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 'e': 1}
- * @param {Array} arr The array to count items in.
+ * @param {Array} arr - The array to count items in.
  */
 export let count = (arr = req("array", "array")) =>
 	arr.reduce((counts, item) => {
@@ -19,13 +20,14 @@ export let count = (arr = req("array", "array")) =>
 
 /**
  * Returns the difference between two arrays or strings.
+ *
  * @memberOf array
  * @function
- * @returns {Array|String} The difference between two arrays or strings.
+ * @returns {Array | string} The difference between two arrays or strings.
  * @example
  * console.log(_$.arrayDiff(['a', 'b'], ['a', 'b', 'c', 'd'])); // ["c", "d"]
- * @param {Array|String} a1 The first array or string
- * @param {Array|String} a2 The 2nd array or string.
+ * @param {Array | string} a1 - The first array or string.
+ * @param {Array | string} a2 - The 2nd array or string.
  */
 export let arrayDiff = (
 	a1 = req("array", "array 1"),
@@ -51,10 +53,11 @@ export let arrayDiff = (
 
 /**
  * Gets the difference between two strings.
+ *
  * @memberOf array
  * @function
- * @param {String} text1 The 1st text to compare
- * @param {String} text2 The 2nd text to compare with the 1st one.
+ * @param {string} text1 - The 1st text to compare.
+ * @param {string} text2 - The 2nd text to compare with the 1st one.
  * @example
  * console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]
  * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
@@ -99,10 +102,11 @@ export let diff = function (
 
 /**
  * Removes an item from the array specified.
+ *
  * @memberOf array
  * @function
- * @param {Array} array The array to remove the item from.
- * @param {*} item The item to remove.
+ * @param {Array} array - The array to remove the item from.
+ * @param {*} item - The item to remove.
  * @example
  * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
  */
@@ -125,13 +129,15 @@ export let remove = (
 };
 /**
  * Splices an ArrayBuffer.
+ *
  * @function
  * @memberOf array
- * @param {ArrayBuffer|Buffer} arr The ArrayBuffer to splice.
- * @param {Number} start The start index.
- * @param {Number} end The end index.
- * @param {Boolean} [endian=false] Whether to use big endian or not.
- * @returns {Number} The hex representation of part of the ArrayBuffer.
+ * @param {ArrayBuffer|Buffer} arr - The ArrayBuffer to splice.
+ * @param {number} start - The start index.
+ * @param {number} end - The end index.
+ * @param {boolean} [endian=false] - Whether to use big endian or not.
+ * @returns {number} The hex representation of part of the ArrayBuffer.
+ * @example
  */
 export let spliceArrayBuffer = (
 	arr = req("ArrayBuffer"),
@@ -150,13 +156,14 @@ export let spliceArrayBuffer = (
 
 /**
  * Flattens an array `level` times.
+ *
  * @memberOf array
  * @function
  * @returns {Array} The flattened array.
  * @example
  * console.log(_$.flatten(['a', 'b', ['c', 'd']])); // ['a', 'b', 'c', 'd'];
- * @param {Array} array The array to flatten.
- * @param {Number} [level=1] The number of iterations to flatten it.
+ * @param {Array} array - The array to flatten.
+ * @param {number} [level=1] - The number of iterations to flatten it.
  */
 export let flatten = (array = req("array", "array"), level = 1) => {
 	var output = array;
@@ -168,9 +175,10 @@ export let flatten = (array = req("array", "array"), level = 1) => {
 
 /**
  * Flattens an array recursively.
+ *
  * @function
  * @memberOf array
- * @param {Array} arr The array to flatten.
+ * @param {Array} arr - The array to flatten.
  * @returns {Array} The flattened array.
  * @example
  * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
@@ -185,19 +193,21 @@ export let nFlatten = (arr = req("array", "array")) => {
 
 /**
  * Returns whether the specified array or string contains the item given.
+ *
  * @memberOf array
  * @function
- * @param {Array} array The array to test with.
- * @param {String} item The item to see if the array contains.
+ * @param {Array} array - The array to test with.
+ * @param {string} item - The item to see if the array contains.
  * @example
  * console.log(_$.contains([1,2,3,4,5], 3)); // true
- * @returns {Boolean} True or false depending on if the array contains that item.
+ * @returns {boolean} True or false depending on if the array contains that item.
  */
 export let contains = (array = req("array"), item = req("string")) =>
 	array.includes(item);
 
-/**
+/**.
  * Shuffles an array
+ *
  * @function
  * @memberOf array
  * @param {Array} array The array to shuffle.
@@ -209,8 +219,9 @@ export let contains = (array = req("array"), item = req("string")) =>
 export let shuffleArray = (array = req("array")) =>
 	array.sort(() => Math.random() - 0.5);
 
-/**
+/**.
  * Splice but also for strings
+ *
  * @memberOf array
  * @function
  * @param {String|Array} array The array or string to operate on
@@ -238,10 +249,11 @@ export let splice = (
 };
 /**
  * Joins two arrays together and removes duplicate items.
+ *
  * @function
  * @memberOf array
- * @param {Array} x The first array to join.
- * @param {Array} y The second array to join.
+ * @param {Array} x - The first array to join.
+ * @param {Array} y - The second array to join.
  * @example
  * console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]
  * @returns {Array} The joined array from the two other arrays.
@@ -259,8 +271,9 @@ export let unionArrays = (
 	}
 	return res;
 };
-/**
- * averageBy
+/**.
+ * AverageBy
+ *
  * @function
  * @memberOf array
  * @param {Array.<number>} arr The array to average
@@ -278,8 +291,9 @@ export let averageBy = (
 		.map(typeof fn === "function" ? fn : (val) => val[fn])
 		.reduce((acc, val) => acc + val, 0) / arr.length;
 
-/**
+/**.
  * Removes duplicates from an array
+ *
  * @function
  * @memberOf array
  * @param {Array} array The array to remove duplicates from.
@@ -292,10 +306,11 @@ export let uniqueArray = (array = req("array", "array")) => [
 ];
 /**
  * For each item in an array, run a callback with it.
+ *
  * @function
  * @memberOf array
- * @param {Array|String|Number} array The array, string or number to run the callback with.
- * @param {Function} callback The callback function to run on the array items.
+ * @param {Array | string | number} array - The array, string or number to run the callback with.
+ * @param {Function} callback - The callback function to run on the array items.
  * @example
  * _$.each(new Array(6), (array_item, i) => console.log(i));
  * // 0

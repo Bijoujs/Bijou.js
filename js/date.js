@@ -1,21 +1,23 @@
 //#region Date
 /**
  * Returns the name of the weekday from the Date object specified.
+ *
  * @function
  * @memberOf date
- * @param {Date} [date=new Date()] The date object to use.
- * @param {String} [locale=en-US] The locale to use.
+ * @param {Date} [date=new Date()] - The date object to use.
+ * @param {string} [locale=en-US] - The locale to use.
  * @example
  * console.log(_$.dayName)); // e.g. "Friday"
- * @returns {String} The day name from the date.
+ * @returns {string} The day name from the date.
  */
 export let dayName = (date = new Date(), locale = "en-US") =>
 	date.toLocaleDateString(locale, {
 		weekday: "long",
 	});
 
-/**
+/**.
  * Formats a number of milliseconds
+ *
  * @function
  * @memberOf date
  * @param {Number|String} ms The number of milliseconds to format to a string.
@@ -44,12 +46,13 @@ export let formatMilliseconds = (
 };
 /**
  * Adds a certain number of minutes to a date object.
+ *
  * @memberof date
  * @function
  * @example
  * _$.addMinutesToDate(new Date(), 4);//Create a date 4 minutes from now.
- * @param {Date|string} date The date to add minutes to.
- * @param {Number} n How many minutes to add to the date.
+ * @param {Date|string} date - The date to add minutes to.
+ * @param {number} n - How many minutes to add to the date.
  * @returns {Date} The date with minutes added.
  */
 export let addMinutesToDate = (
@@ -62,6 +65,7 @@ export let addMinutesToDate = (
 };
 /**
  * Validates a date from a string.
+ *
  * @memberOf date
  * @function
  * @example
@@ -72,8 +76,8 @@ export let addMinutesToDate = (
     _$.isDateValid(1995, 11, 17); // true
     _$.isDateValid(1995, 11, 17, 'Duck'); // false
     _$.isDateValid({}); // false
- * @param  {...any} val The arguments of the date to validate.
- * @returns {Boolean} Returns if the date is valid or not.
+ * @param {...any} val - The arguments of the date to validate.
+ * @returns {boolean} Returns if the date is valid or not.
  */
 export let isDateValid = (...val) => {
 	req("any", "date arguments", ![...val].length);
@@ -81,11 +85,13 @@ export let isDateValid = (...val) => {
 };
 /**
  * Adds a specified number of days to a date.
+ *
  * @memberOf date
  * @function
- * @param {Date} date The date to add days to
- * @param {Number} n How many days to add to the date.
+ * @param {Date} date - The date to add days to.
+ * @param {number} n - How many days to add to the date.
  * @returns {Date} The date with the specified number of days added.
+ * @example
  */
 export let addDaysToDate = (
 	date = req("date", "date or date string"),

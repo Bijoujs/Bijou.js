@@ -1,8 +1,9 @@
 //#region Function
 /**
  * Runs a list of functions with a list of arguments.
- * @returns {Array.<array>} The list of outputs.
- * @memberOf function
+ *
+ * @returns {Array.<Array>} The list of outputs.
+ * @memberof function
  * @example
  * //It returns an array of outputs, each item in the base array is the output of one function, and each item in that array is the output for each argument.
  * _$.juxt(
@@ -10,14 +11,15 @@
     x => x - 1,
     x => x * 10
   )(1, 2, 3); // [[2, 3, 4], [0, 1, 2], [10, 20, 30]]
- * @param  {...function} fns The functions to call.
+ * @param {...Function} fns - The functions to call.
  */
 export let juxt = (...fns) => (...args) =>
 	[...fns].map((fn) => [...args].map(fn));
 /**
  * Returns a promise after a specified number of milliseconds.
+ *
  * @returns {Promise}
- * @memberOf function
+ * @memberof function
  * @example
  * (async () => {
  *    while (true){
@@ -25,20 +27,21 @@ export let juxt = (...fns) => (...args) =>
  *     await _$.sleep(60000);//Wait one minute then loop.
  *    }
  * })
- * @param {Number} ms The milliseconds to sleep.
+ * @param {number} ms - The milliseconds to sleep.
  */
 export let sleep = (ms = req("number", "milliseconds")) =>
 	new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Limits the arguments that a given function takes to only the 1st n arguments.
+ *
  * @example
  * //Now console can only log one item. How utterly useless but explanatory at the same time!
  * console.log = _$.limitArgs(console.log, 1);
- * @memberOf function
+ * @memberof function
  * @returns {Function} The new function that only takes the 1st n arguments.
- * @param {Function} fn The function to call.
- * @param {Number} n The number of arguments to accept.
+ * @param {Function} fn - The function to call.
+ * @param {number} n - The number of arguments to accept.
  */
 export let limitArgs = (
 	fn = req("function", "function"),
@@ -46,12 +49,13 @@ export let limitArgs = (
 ) => (...args) => fn(...args.slice(0, n));
 /**
  * Returns the index of the fastest function in an array of functions.
- * @memberOf function
- * @returns {Number} The index of the fastest function in the array.
+ *
+ * @memberof function
+ * @returns {number} The index of the fastest function in the array.
  * @example
  * _$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("<h1>Hello world</h1>", "html")]);//0, the first function.
- * @param {Array} fns The array of functions to execute.
- * @param {Number} [iterations=1000] How many times to execute the functions. (More is more reliable but takes longer.)
+ * @param {Array} fns - The array of functions to execute.
+ * @param {number} [iterations=1000] - How many times to execute the functions. (More is more reliable but takes longer.).
  */
 export let fastestFunction = (fns, iterations = 1000) => {
 	const times = fns.map((fn) => {
@@ -64,7 +68,8 @@ export let fastestFunction = (fns, iterations = 1000) => {
 
 /**
  * Uses an array of arguments to make a function based on the one inputted.
- * @memberOf function
+ *
+ * @memberof function
  * @function
  * @returns {Function}
  * @example
@@ -72,7 +77,7 @@ export let fastestFunction = (fns, iterations = 1000) => {
     return who + ' says ' + what;
   });
   say(["Fred", "hi"]);//"Fred says hi"
- * @param {Function} fn The function to use
+ * @param {Function} fn - The function to use.
  */
 export let spread = (fn = req("function")) => {
 	return (args) => {
@@ -81,9 +86,10 @@ export let spread = (fn = req("function")) => {
 };
 /**
  * Memoizes a function, basically caching the result of past operations so that if the exact same thing is called again it will return the same value instantly.
+ *
  * @function
- * @memberOf function
- * @param {Function} fn The function to memoize.
+ * @memberof function
+ * @param {Function} fn - The function to memoize.
  * @example
  * let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)
  * @returns {Function} The memoized function.
@@ -101,10 +107,12 @@ export let memoize = (fn = req("function")) => {
 		}
 	};
 };
-/**
+/**.
  * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
+ *
  * @function
- * @memberOf function
+ * @param {...any} functions
+ * @memberof function
  * @param {...Function} The functions to be composed.
  * @returns {Function} The composed function.
  * @example
@@ -116,11 +124,13 @@ export let composeFunction = (...functions) => (args) => {
 	req("functions", "function list", ![...functions].length);
 	return functions.reduceRight((arg, fn) => fn(arg), args);
 };
-/**
+/**.
  * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
+ *
  * @function
- * @memberOf function
+ * @memberof function
  * @param {Function} fn The function to curry.
+ * @param {...any} args
  * @param {Number} [arity=fn.length] The arity (number of params) of the function to curry.
  * {...*} [args] Optional arguments to pass to the function being curried.
  * @returns {Function} The curried version of the function.
@@ -138,10 +148,11 @@ export let curryFunction = (
 		: _$.curryFunction.bind(null, fn, arity, ...args);
 /**
  * Returns if the given function is async or not.
- * @memberOf function
+ *
+ * @memberof function
  * @function
- * @param {Function} val The function to test.
- * @returns {Boolean} True if the function is async and false if not.
+ * @param {Function} val - The function to test.
+ * @returns {boolean} True if the function is async and false if not.
  * @example
  * const asyncFn = async (x) => x ** 3; // It's a silly function, but a good example
  * console.log(_$.isAsync(asyncFn)); // true
@@ -151,14 +162,15 @@ export let isAsync = (val = req("function")) =>
 
 /**
  * Times the function passed.
+ *
  * @function
- * @memberOf function
- * @param {Function} fn The function to run and time.
- * @param {String} [name=_$ function timer]
+ * @memberof function
+ * @param {Function} fn - The function to run and time.
+ * @param {string} [name=_$ function timer]
  * @example
  * // Times how long it took the user to enter their name.
  * _$.timeFunction(() => prompt("What's your name?"));
- * @returns {Object} An object with "time" and "function" properties, time being time in milliseconds, and function being the original function passed.
+ * @returns {object} An object with "time" and "function" properties, time being time in milliseconds, and function being the original function passed.
  */
 export let timeFunction = (
 	fn = req("function"),
@@ -172,15 +184,16 @@ export let timeFunction = (
 };
 /**
  * Only runs the input function at MAX with the delay specified.
+ *
  * @function
- * @memberOf function
- * @param {Function} func The function to run.
- * @param {Object.<Boolean>} options The options.
- * @param {Number} wait The number of milliseconds to wait.
+ * @memberof function
+ * @param {Function} func - The function to run.
+ * @param {object.<boolean>} options - The options.
+ * @param {number} wait - The number of milliseconds to wait.
  * @example
  * const alert_function = _$.throttle(() => {alert("hello")}, 5000)
  * setInterval(alert_function, 1)
- * @returns {Function} The throttled function
+ * @returns {Function} The throttled function.
  */
 export let throttle = (
 	func = req("function"),
@@ -217,9 +230,10 @@ export let throttle = (
 		return result;
 	};
 };
-/**
+/**.
  * Debounces a function
- * @memberOf function
+ *
+ * @memberof function
  * @function
  * @example
  * window.addEventListener("keyup", _$.debounce(expensiveFunction, 100));//Run the function expensiveFunction at most every 100ms.
@@ -274,9 +288,10 @@ export let debounce = (
 };
 /**
  * Runs a function asynchronously in a web worker.
+ *
  * @function
- * @memberOf function
- * @param {Function} fn The function to run
+ * @memberof function
+ * @param {Function} fn - The function to run.
  * @example
  * _$.runAsync(() =>  "hello world").then(console.log); // "hello world"
  * @returns {Promise} A promise that resolves into the return value of the function.

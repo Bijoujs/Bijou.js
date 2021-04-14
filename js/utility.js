@@ -1,12 +1,14 @@
 //#region Utility
 /**
  * Resizes an image from a URL and returns a promise with it's data URL.
+ *
  * @memberOf utility
  * @function
- * @param {String} url The URL of the image to resize.
- * @param {Number} [width=Natural width of the image] The target width of the new image
- * @param {Number} [height=Natural width of the image] The target height of the new image
+ * @param {string} url - The URL of the image to resize.
+ * @param {number} [width=Natural width of the image] - The target width of the new image.
+ * @param {number} [height=Natural width of the image] - The target height of the new image.
  * @returns {Promise.<string>} A data URL of the resized image.
+ * @example
  */
 export let resize = async (
 	url = req("string", "html"),
@@ -28,8 +30,9 @@ export let resize = async (
 	let data = canvas.toDataURL(0, 0, canvas.width, canvas.height);
 	return data;
 };
-/**
+/**.
  * Converts a string of HTML to an image (!!)
+ *
  * @memberOf utility
  * @function
  * @param {String} html The HTML string to transform into an image
@@ -39,6 +42,7 @@ export let resize = async (
  * @param {Number} [opts.width=300] The width of the output image.
  * @param {Number} [opts.height=400]  The height of the output image.
  * @returns {Promise.<string>} A promise that resolves into the data URL string of the image.
+ * @example
  */
 export let htmlToImage = (
 	html = req("string", "html string"),
@@ -61,6 +65,10 @@ export let htmlToImage = (
 		};
 		img.src = data;
 	});
+	/**
+	 * @param html
+	 * @example
+	 */
 	function toXML(html) {
 		var doc = document.implementation.createHTMLDocument("");
 		doc.write(html);
@@ -73,8 +81,9 @@ export let htmlToImage = (
 	}
 };
 
-/**
+/**.
  * Converts a function that returns a promise into a callback based function
+ *
  * @param {Function} fn The function to 'callbackify'.
  * @memberOf utility
  * @function
@@ -96,9 +105,10 @@ let callbackify = (fn = req("function", "function")) => (
 		.catch(errCallback);
 /**
  * Promisifies a function by converting a callback based function to return a promise.
- * (assuming argIndex = -1)
- * @param {Function} fn The function to run.
- * @param {Number} [argIndex=0] The index of the argument that is the callback returned by the function.
+ * (assuming argIndex = -1).
+ *
+ * @param {Function} fn - The function to run.
+ * @param {number} [argIndex=0] - The index of the argument that is the callback returned by the function.
  * @returns {Function} The function promisified (now returns a promise).
  * @memberOf utility
  * @function
@@ -122,9 +132,11 @@ let promisify = (fn = req("function"), argIndex = 0) => {
 };
 /**
  * Times out a promise after a specified number of milliseconds.
+ *
  * @memberOf utility
  * @function
  * @returns {Promise} The promise that was inputted, but will time out after a specified time.
+ * @param cancelCb
  * @example
  * //Attempts to fetch the date from jsontest.com, if the request is still pending after 2000 milliseconds cancel it and throw an error.
  * let fetch_stuff = fetch("http://date.jsontest.com/");
@@ -140,9 +152,9 @@ let promisify = (fn = req("function"), argIndex = 0) => {
  * 		console.log("User could not type fast enough -__-")
  * 	})
  * });
- * @param {Function} fn The function to run that should return a promise, or the promise itself.
- * @param {Number} timeout The timeout to cancel after.
- * @param {Function} calcelCb The callback to run when cancelled, defaults to throwing an error.
+ * @param {Function} fn - The function to run that should return a promise, or the promise itself.
+ * @param {number} timeout - The timeout to cancel after.
+ * @param {Function} calcelCb - The callback to run when cancelled, defaults to throwing an error.
  */
 export let race = (
 	fn = req("function"),
@@ -168,6 +180,7 @@ export let race = (
 };
 /**
  * Gets the type of something. This is more specific than the 'typeof' operator.
+ *
  * @memberof utility
  * @function
  * @example
@@ -179,13 +192,14 @@ export let race = (
  * @example
  * _$.typeof(new Date());//"Date"
  * typeof new Date();//Object -__-
- * @param {*} e The thing to get the type of.
- * @param {Boolean} lowerCase Whether to return the string lowercased or not.
+ * @param {*} e - The thing to get the type of.
+ * @param {boolean} lowerCase - Whether to return the string lowercased or not.
  */
 export let typeOf = (e = req("any", "any"), lowerCase = true) =>
 	Object.prototype.toString.call(e).split(" ")[1].replace(/]$/, "");
 /**
  * Injects CSS into the document head.
+ *
  * @memberOf utility
  * @function
  * @example
@@ -207,7 +221,7 @@ export let typeOf = (e = req("any", "any"), lowerCase = true) =>
  *    `)
  * }
  * @returns {HTMLElement} The CSS <style> element.
- * @param {String} css The CSS to inject.
+ * @param {string} css - The CSS to inject.
  */
 export let injectCSS = (css = req("string", "css")) => {
 	node();
@@ -219,10 +233,11 @@ export let injectCSS = (css = req("string", "css")) => {
 };
 /**
  * Returns either "mobile" or "desktop" depending on which type of device the user is using.
+ *
  * @function
  * @memberOf utility
  * @param
- * @returns {String} Either "mobile" or "desktop" depending on which type of device the user is using.
+ * @returns {string} Either "mobile" or "desktop" depending on which type of device the user is using.
  * @example
  * console.log(_$.mobileOrDesktop()); // e.g. "desktop"
  */
@@ -236,9 +251,10 @@ export let mobileOrDesktop = () => {
 };
 /**
  * Plays a section of an audio file.
- * @param {HTMLMediaElement} audioObj The audio object to play. (Needs to be created from "new Audio()")
- * @param {Number} start The time to start playing.
- * @param {Number} stop The time to stop playing.
+ *
+ * @param {HTMLMediaElement} audioObj - The audio object to play. (Needs to be created from "new Audio()").
+ * @param {number} start - The time to start playing.
+ * @param {number} stop - The time to stop playing.
  * @memberOf utility
  * @function
  * @example
@@ -262,9 +278,10 @@ export let playSection = (
 };
 /**
  * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
+ *
  * @memberOf utility
  * @function
- * @param {String} html The string of HTML to format.
+ * @param {string} html - The string of HTML to format.
  * @example
  * console.log(_$.formatHTML("<h1>moo</h1><div id="hi">hello <span>world</span></div>"));
  * Logs the following to the console:
@@ -273,7 +290,7 @@ export let playSection = (
    <div id='hi'>hello <span>world</span>
    </div>
    ```
- * @returns {String} The formatted string of HTML.
+ * @returns {string} The formatted string of HTML.
  */
 export let formatHTML = (html = req("string", "html")) => {
 	var tab = "\t";
@@ -299,10 +316,11 @@ export let formatHTML = (html = req("string", "html")) => {
 };
 /**
  * Gets JSON from a URL and performs a callback with it.
+ *
  * @function
  * @memberOf utility
- * @param {String} url The url of the JSON to be fetched.
- * @param {Function} callback The function to be run with the JSON code.
+ * @param {string} url - The url of the JSON to be fetched.
+ * @param {Function} callback - The function to be run with the JSON code.
  * @example
  * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
  * @returns {Promise} A promise resolved when the JSON is fetched and parsed.
@@ -327,10 +345,11 @@ export let getJSON = (
 };
 /**
  * Gets HTML from a URL and performs a callback with it.
+ *
  * @function
  * @memberOf utility
- * @param {String} url The url of the HTML to be fetched.
- * @param {Function} callback The function to be run with the HTML code.
+ * @param {string} url - The url of the HTML to be fetched.
+ * @param {Function} callback - The function to be run with the HTML code.
  * @example
  * // Logs the HTML of wikipedia.org to the console.
  * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
@@ -355,8 +374,9 @@ export let getHTML = (
 	});
 };
 
-/**
+/**.
  * Preloads all of the image urls given in the arguments
+ *
  * @function
  * @memberOf utility
  * @param {...String} urls The urls of the images to be preloaded.
@@ -375,10 +395,11 @@ export let preloadImage = (...urls) => {
 
 /**
  * Saves a blob as a file!
+ *
  * @function
  * @memberOf utility
- * @param {Blob} blob The blob to save as a file.
- * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
+ * @param {Blob} blob - The blob to save as a file.
+ * @param {string} [fileName=output.txt] - The name of the output file (Must include the extension.).
  * @example
  * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
  * @returns {undefined}
@@ -401,11 +422,13 @@ export let saveBlob = (
 
 /**
  * Works exactly like setInterval but instead uses requestAnimationFrame.
+ *
  * @memberOf utility
  * @function
- * @param {Function} fn The function to run repeatedly every delay seconds.
- * @param {Number} delay The delay time in milliseconds to run the function.
- * @returns {Object}
+ * @param {Function} fn - The function to run repeatedly every delay seconds.
+ * @param {number} delay - The delay time in milliseconds to run the function.
+ * @returns {object}
+ * @example
  */
 export let requestInterval = function (
 	fn = req("function", "function"),
@@ -422,6 +445,9 @@ export let requestInterval = function (
 		})(),
 		start = new Date().getTime(),
 		handle = {};
+	/**
+	 * @example
+	 */
 	function loop() {
 		handle.value = requestAnimFrame(loop);
 		var current = new Date().getTime(),
@@ -437,10 +463,13 @@ export let requestInterval = function (
 
 /**
  * Loads a script from a url (Can be to a local file or to a url) then runs a callback once it's loaded.
+ *
  * @memberOf utility
  * @function
- * @param {String} url The url to load the script from.
- * @param {Function} callback The callback to run when the script is loaded.
+ * @param options
+ * @param dupeCheck
+ * @param {string} url - The url to load the script from.
+ * @param {Function} callback - The callback to run when the script is loaded.
  * @example
  * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
  * @returns {Promise} A promise resolved once the script is loaded.
@@ -489,10 +518,11 @@ export let loadScript = (
 
 /**
  * Fetches an image and runs the callback with the data url of the image.
+ *
  * @memberOf utility
  * @function
- * @param {String} url The url of the image to load.
- * @param {Function} callback The callback function.
+ * @param {string} url - The url of the image to load.
+ * @param {Function} callback - The callback function.
  * @example
  * //Replaces every image's url with its respective data url.
  * _$.each(document.querySelectorAll('img'), (img) => {
@@ -520,21 +550,24 @@ export let imageToData = async (
 };
 /**
  * A set of functions to set and modify cookies.
+ *
  * @memberOf utility
  * @Object
  * @example
  * _$.cookies.setItem("a_cookie", "Hello world!", 1); // Set a_cookie to "Hello world" and have it expire in a day.
- * @returns {Function} The function that the user wanted
+ * @returns {Function} The function that the user wanted.
  */
 export let cookies = {
-	/**
+	/**.
 	 * Sets a cookie to a value
+	 *
 	 * @function
 	 * @memberOf utility
 	 * @param {String} name The name of the cookie to set
 	 * @param {String} value The value of the cookie
 	 * @param {Number} [days=1000] The days that the cookie should last.
 	 * @returns {String} The value of the cookie
+	 * @example
 	 */
 	setItem: (
 		name = req("string", "name"),
@@ -553,10 +586,12 @@ export let cookies = {
 	},
 	/**
 	 * Gets a cookie from its name.
+	 *
 	 * @function
 	 * @memberOf utility
-	 * @param {String} name The name of the cookie.
-	 * @returns {String} The value of the cookie
+	 * @param {string} name - The name of the cookie.
+	 * @returns {string} The value of the cookie.
+	 * @example
 	 */
 	getItem: (name = req("string", "name")) => {
 		node();
@@ -571,11 +606,13 @@ export let cookies = {
 		}
 		return null;
 	},
-	/**
+	/**.
 	 * Deletes a cookie
+	 *
 	 * @memberOf utility
 	 * @param {String} name The name of the cookie to delete.
 	 * @returns {undefined}
+	 * @example
 	 */
 	removeItem: (name = req("string", "name")) => {
 		node();
@@ -584,8 +621,9 @@ export let cookies = {
 			name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 	},
 };
-/**
+/**.
  * A collection of regular expressions to validate and get common things from a page
+ *
  * @memberOf utility
  * @Object
  * @example
@@ -601,7 +639,7 @@ export let regex = {
 	 * 123.456.7890
 	 * 1234567890
 	 * +31636363634
-	 * 075-63546725
+	 * 075-63546725.
 	 */
 	phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
 	/** Validates names, examples:
@@ -614,14 +652,14 @@ export let regex = {
 	 * Martin Luther King
 	 * Ai Wong
 	 * Chao Chang
-	 * Alzbeta Bara
+	 * Alzbeta Bara.
 	 */
 	name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
 	/**
-      Validates email adresses
-      */
+      Validates email adresses.
+	 */
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	/** Validates a link
+	/** Validates a link.
 	 */
 	link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
 	/**
@@ -631,7 +669,7 @@ export let regex = {
 	 * 1 uppercase letter
 	 * 1 number
 	 * 1 special character
-	 * At least 8 characters long
+	 * At least 8 characters long.
 	 */
 	strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
 	/**
@@ -639,7 +677,7 @@ export let regex = {
 	 * Should have:
 	 * 1 lowercase letter
 	 * 1 uppercase letter
-	 * 1 number
+	 * 1 number.
 	 * At least 8 characters long */
 	moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
 	/** Ip adresses */
@@ -663,26 +701,27 @@ export let regex = {
 	mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
 	discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
 };
-/**
-   * Converts JSON to a CSV string
-   * @function
-   * @memberOf utility
-   * @param {Array} arr The array of objects to convert to CSV.
-   * @param {Array} columns The columns to use.
-   * @param {String} [delimiter=","] The delimiter between cells, by default this is a comma.
-   * @example
-   * _$.jsonToCsv(
+/**.
+ * Converts JSON to a CSV string
+ *
+ * @function
+ * @memberOf utility
+ * @param {Array} arr The array of objects to convert to CSV.
+ * @param {Array} columns The columns to use.
+ * @param {String} [delimiter=","] The delimiter between cells, by default this is a comma.
+ * @example
+ * _$.jsonToCsv(
     [{ a: 1, b: 2 }, { a: 3, b: 4, c: 5 }, { a: 6 }, { b: 7 }],
     ['a', 'b']
   );
-  * //
+ * //
    a,b
   "1","2"
   "3","4"
   "6",""
   "","7"
-   * @returns {String} The string of comma separated values (CSV) created from the JSON.
-   */
+ * @returns {String} The string of comma separated values (CSV) created from the JSON.
+ */
 export let jsonToCsv = (
 	arr = req("array", "array"),
 	columns = req("number", "columns"),
@@ -702,13 +741,14 @@ export let jsonToCsv = (
 	].join("\n");
 /**
  * Converts an array to CSV (Comma separated values) data.
+ *
  * @function
  * @memberOf utility
- * @param {Array} arr The array to convert.
- * @param {String} [delimiter=,] The separator (By default this is a comma.)
+ * @param {Array} arr - The array to convert.
+ * @param {string} [delimiter=,] - The separator (By default this is a comma.).
  * @example
  * console.log(_$.arrayToCSV([1,2,3,4])); // "1,2,3,4"
- * @returns {String} The comma separated array.
+ * @returns {string} The comma separated array.
  */
 export let arrayToCSV = (
 	arr = req("array", "array"),
@@ -724,14 +764,15 @@ export let arrayToCSV = (
 
 /**
  * Displays a desktop notification with the specified text.
+ *
  * @function
  * @memberOf utility
- * @param {String} title The title of the notification.
- * @param {String} body The body of the notification.
- * @param {String} icon The url to the image for the icon of the notification.
+ * @param {string} title - The title of the notification.
+ * @param {string} body - The body of the notification.
+ * @param {string} icon - The url to the image for the icon of the notification.
  * @example
  * _$.notify("Hello", "Hi there! This is a notification!"); Notifies the user with the title "Hello" and the body text "Hi there! This is a notification!"
- * @returns {Promise} A promise that fulfills once the notification is sent, and is rejected when there is an error
+ * @returns {Promise} A promise that fulfills once the notification is sent, and is rejected when there is an error.
  */
 export let notify = async (
 	title = req("string", "text"),
@@ -771,12 +812,13 @@ export let notify = async (
 };
 /**
  * Copies the string inputted to the clipboard.
+ *
  * @function
  * @memberOf utility
- * @param {String} str The string to copy.
+ * @param {string} str - The string to copy.
  * @example
  * _$.copy("Hello world");
- * @returns {String} The string copied.
+ * @returns {string} The string copied.
  */
 export let copy = (str = req("string", "string")) => {
 	node();
@@ -801,11 +843,12 @@ export let copy = (str = req("string", "string")) => {
 };
 /**
  * Returns the browser that the user is using.
+ *
  * @function
  * @memberOf utility
  * @example
  * _$.browser(); // For me this (correctly) returns "Chrome"
- * @returns {String} A string of the browser name that the user is using.
+ * @returns {string} A string of the browser name that the user is using.
  */
 export let browser = () => {
 	node();
@@ -858,10 +901,12 @@ export let browser = () => {
 };
 /**
  * Converts a form to URL queries using the name attribute.
+ *
  * @function
  * @memberOf utility
- * @param {HTMLFormElement} form The form element.
- * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
+ * @param {HTMLFormElement} form - The form element.
+ * @returns {string} The string of url queries (Excluding the hostname and path) of the form data.
+ * @example
  */
 export let serializeForm = (
 	form = req("HTMLFormElement", "form"),
@@ -873,8 +918,9 @@ export let serializeForm = (
 };
 /**
  * An implementation of the soundex algorithm in JavaScript, used to test if two words sound the same.
- * @returns {String} The soundex of the given string
- * @param {String} s The word to get the soundex of.
+ *
+ * @returns {string} The soundex of the given string.
+ * @param {string} s - The word to get the soundex of.
  * @example
  * _$.soundex("ekxplohsin");//"E214"
  * _$.soundex("explosion");//"E214"

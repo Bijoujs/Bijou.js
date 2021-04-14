@@ -1,13 +1,14 @@
 //#region String
 /**
  * Compares two strings using the Jaro-Winkler Distance algorithm.
+ *
  * @memberOf string
  * @function
  * @example
  * _$.jaroDistance('test', 'tes');//0.9416666666666667
- * @returns {Number} A number representing how similar the two strings are, where 1 is exactly the same and 0 is totally different
- * @param {String} a The first string
- * @param {String} b The second string
+ * @returns {number} A number representing how similar the two strings are, where 1 is exactly the same and 0 is totally different.
+ * @param {string} a - The first string.
+ * @param {string} b - The second string.
  */
 export let jaroDistance = function (a, b) {
 	let adjustments = {
@@ -134,12 +135,13 @@ export let jaroDistance = function (a, b) {
 };
 /**
  * Prefixes the given CSS property for the current browser.
+ *
  * @memberOf string
  * @function
  * @example
  * document.body.style[_$.prefix("appearance")] = "hidden";//Sets the document body's appearance property to "hidden".
- * @param {String} prop The property to prefix.
- * @returns {String} The prefixed value (camelCased, instead of css-case, so mozAppearance instead of -moz-appearance).
+ * @param {string} prop - The property to prefix.
+ * @returns {string} The prefixed value (camelCased, instead of css-case, so mozAppearance instead of -moz-appearance).
  */
 export let prefixCSS = (prop = req("string", "property")) => {
 	node();
@@ -161,11 +163,12 @@ export let prefixCSS = (prop = req("string", "property")) => {
 
 /**
  * Parses a cookie string into object and value pairs.
+ *
  * @memberOf string
  * @function
  * @example
  * _$.parseCookie("foo=bar; something=hello%20world");//Returns {foo: "bar", something: "hello world"};
- * @param {String} str The string to parse.
+ * @param {string} str - The string to parse.
  */
 export let parseCookie = (str = req("string", "cookie string")) =>
 	str
@@ -179,6 +182,7 @@ export let parseCookie = (str = req("string", "cookie string")) =>
 		}, {});
 /**
  * Hashes a string using the crypto api. 
+ *
  * @memberOf string
  * @function
  * @example
@@ -186,7 +190,7 @@ export let parseCookie = (str = req("string", "cookie string")) =>
     JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
   ).then(console.log);
   // '04aa106279f5977f59f9067fa9712afc4aedc6f5862a8defc34552d8c7206393'
- * @param {String} val The string to hash
+ * @param {string} val - The string to hash.
  * @returns {Promise} A promise that resolves into the hashed string.
  */
 export let hash = (val = req("string", "input string")) => {
@@ -205,14 +209,17 @@ export let hash = (val = req("string", "input string")) => {
 };
 /**
  * Lets you use a for loop in template literals.
+ *
  * @function
  * @memberOf string
- * @param {arr} The array to loop.
- * @param {callback} Callback to return strings
+ * @param arr
+ * @param callback
+ * @param {arr} The - Array to loop.
+ * @param {callback} Callback - To return strings.
  * @example
  * console.log(`Things: ${_$.forTemplateLiteral(["apple", "orange"], (item, i) => {return `an ${item}`})}`)
  * // "Things: an apple an orange
- * @returns {String} String that has been for looped
+ * @returns {string} String that has been for looped.
  */
 export let forTemplateLiteral = (
 	arr = req("array", "array"),
@@ -222,12 +229,13 @@ export let forTemplateLiteral = (
 };
 /**
  * Maps a string like an array.
+ *
  * @memberOf string
  * @function
  * @example
  * _$.mapString("Hello world", (e) => e.toUpperCase());//Returns "HELLO WORLD"
- * @param {String} str The string to map
- * @param {Function} fn The callback function to run to map the string.
+ * @param {string} str - The string to map.
+ * @param {Function} fn - The callback function to run to map the string.
  */
 export let mapString = (
 	str = req("string", "string"),
@@ -235,36 +243,39 @@ export let mapString = (
 ) => Array.prototype.map.call(str, fn).join("");
 /**
  * Removes the accents from a string.
+ *
  * @memberOf string
  * @function
- * @returns {String} The string without accents.
+ * @returns {string} The string without accents.
  * @example
  * console.log(_$.decurr("déjà vu")); // "deja vu"
- * @param {String} str The string to use.
+ * @param {string} str - The string to use.
  */
 export let deburr = (str = req("string", "string")) =>
 	str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 /**
  * Removes tags from the HTML string specified.
+ *
  * @function
  * @memberOf string
- * @param {String} html The string of HTML to remove tags from.
+ * @param {string} html - The string of HTML to remove tags from.
  * @example
  * console.log(_$.removeTags("<div>Hello</div>")); // "Hello"
- * @returns {String} THe string of HTML without the tags.
+ * @returns {string} THe string of HTML without the tags.
  */
 export let removeTags = (html = req("string", "html string")) =>
 	html.replace(/<[^>]*>/g, "");
 
 /**
  * Speaks the text given.
+ *
  * @memberOf string
  * @function
- * @param {String} text The text to split
- * @param {String} [lang=en-US] The language to speak with.
- * @param {Number} [volume=1] The volume
- * @param {String|Number} [voice=1] The voice to use.
+ * @param {string} text - The text to split.
+ * @param {string} [lang=en-US] - The language to speak with.
+ * @param {number} [volume=1] - The volume.
+ * @param {string | number} [voice=1] The voice to use.
  * @param {Number} [pitch=1] The pitch
  * @param {Number} [volume=1] The volume
  * @param {Number} [rate=1] The speed.
@@ -295,8 +306,9 @@ export let speak = (
 	msg.lang = lang;
 	speechSynthesis.speak(msg);
 };
-/**
+/**.
  * Returns the last space in the string given replaced with "&nbsp;"
+ *
  * @function
  * @memberOf string
  * @param {String} text The string to replace
@@ -321,12 +333,13 @@ export let widows = (text = req("string", "text")) => {
 
 /**
  * Undoes camelCase.
+ *
  * @function
  * @memberOf string
- * @param {String} str The string to unCamelCase.
+ * @param {string} str - The string to unCamelCase.
  * @example
  * console.log(_$.unCamelCase("helloWorld")); // "Hello World"
- * @returns {String} The string of unCamelCased code.
+ * @returns {string} The string of unCamelCased code.
  */
 export let unCamelCase = function (str = req("string", "string")) {
 	return str
@@ -337,8 +350,9 @@ export let unCamelCase = function (str = req("string", "string")) {
 		});
 };
 
-/**
- * camelCases a string.
+/**.
+ * CamelCases a string.
+ *
  * @function
  * @memberOf string
  * @param {String} str The string of non-camelCased text.
@@ -355,12 +369,13 @@ export let camelCase = (str = req("string", "string")) => {
 };
 /**
  * Scrambles the order of characters in a string. Thanks to @\Touchcreator for the suggestion for this.
+ *
  * @function
  * @memberOf string
- * @param {String} str The string to be scrambled
+ * @param {string} str - The string to be scrambled.
  * @example
  * console.log(_$.scrambleString("Hello world")); // e.g. "owllH rdloe"
- * @returns {String} The scrambled text.
+ * @returns {string} The scrambled text.
  */
 export let scrambleString = (str = req("string")) => {
 	var a = str.split(""),
@@ -376,13 +391,14 @@ export let scrambleString = (str = req("string")) => {
 };
 /**
  * Hashes a string to a unique integer (This cannot be decrypted easily).
+ *
  * @function
  * @memberOf string
- * @param {String} str The String to hash.
- * @param {Number} [seed=0] The seed of the hash.
+ * @param {string} str - The String to hash.
+ * @param {number} [seed=0] - The seed of the hash.
  * @example
  * console.log(_$.hashString("Hello world")); // 3494146707865688
- * @returns {Number} The hashed string.
+ * @returns {number} The hashed string.
  */
 export let hashString = (str = req("string"), seed = 0) => {
 	let h1 = 0xdeadbeef ^ seed,
@@ -403,13 +419,14 @@ export let hashString = (str = req("string"), seed = 0) => {
 
 /**
  * Gets the edit distance between two strings.
+ *
  * @function
  * @memberOf string
- * @param {String} a The first string
- * @param {String} b The seconds string
+ * @param {string} a - The first string.
+ * @param {string} b - The seconds string.
  * @example
  * console.log(_$.editDistance("hello", "Hello")); // 1
- * @returns {Number} The edit distance between two strings
+ * @returns {number} The edit distance between two strings.
  */
 export let editDistance = (
 	a = req("string", "string 1"),
@@ -453,25 +470,27 @@ export let editDistance = (
 };
 /**
  * Returns the size of a string in bytes.
+ *
  * @function
  * @memberOf string
- * @param {String} str
+ * @param {string} str
  * @example
  * console.log(_$.byteSize("Hello world")); 11
- * @returns {Number} The byte size of the string.
+ * @returns {number} The byte size of the string.
  */
 export let byteSize = (str = req("string", "string")) =>
 	new Blob([str]).size;
 
 /**
  * Finds and replace multiple values with multiple other values.
+ *
  * @function
  * @memberOf string
- * @param {String} text The text to operate the replace on.
- * @param {Object} replace The object with find and replace values.
+ * @param {string} text - The text to operate the replace on.
+ * @param {object} replace - The object with find and replace values.
  * @example
  * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
- * @returns {String} The replaced string
+ * @returns {string} The replaced string.
  */
 export let replaceMultiple = (
 	text = req("string", "text"),
@@ -483,8 +502,9 @@ export let replaceMultiple = (
 	});
 	return text;
 };
-/**
+/**.
  * Returns the queries from a given url (Or just the current url)
+ *
  * @function
  * @memberOf string
  * @param {String} query The url query to get.
@@ -508,8 +528,9 @@ export let urlQuery = (
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
 };
 
-/**
+/**.
  * Sanitizes an HTML string. It is quite possible that this is not production ready so use with caution. (I did my best though >=( )
+ *
  * @function
  * @memberOf string
  * @param {String} html The input string to sanitize.
@@ -644,6 +665,11 @@ export let sanitize = (
 		}
 	}
 	return el.documentElement.innerHTML;
+	/**
+	 * @param element
+	 * @param attribute
+	 * @example
+	 */
 	function attribute_matches(element, attribute) {
 		let output = attributes.filter((attr) => {
 			let returnval =
@@ -655,6 +681,10 @@ export let sanitize = (
 
 		return output.length > 0;
 	}
+	/**
+	 * @param element
+	 * @example
+	 */
 	function get_attributes(element) {
 		for (
 			var i = 0, atts = element.attributes, n = atts.length, arr = [];
@@ -668,12 +698,13 @@ export let sanitize = (
 };
 /**
  * Converts markdown to HTML.
- * @param {String} src The markdown to convert to HTML.
+ *
+ * @param {string} src - The markdown to convert to HTML.
  * @memberOf string
  * @function
  * @example
  * console.log(_$.markdownToHTML("_Italic text_, **bold text**")); // "<em>Italic text</em>, <b>bold text</b>"
- * @returns {String} The string of HTML converted from the markdown input.
+ * @returns {string} The string of HTML converted from the markdown input.
  */
 export let markdownToHTML = (src = req("string", "input")) => {
 	var rx_lt = /</g;
@@ -695,14 +726,28 @@ export let markdownToHTML = (src = req("string", "input")) => {
 	var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
 	var rx_stash = /-\d+\uf8ff/g;
 
+	/**
+	 * @param rex
+	 * @param fn
+	 * @example
+	 */
 	function replace(rex, fn) {
 		src = src.replace(rex, fn);
 	}
 
+	/**
+	 * @param tag
+	 * @param content
+	 * @example
+	 */
 	function element(tag, content) {
 		return "<" + tag + ">" + content + "</" + tag + ">";
 	}
 
+	/**
+	 * @param src
+	 * @example
+	 */
 	function blockquote(src) {
 		return src.replace(rx_blockquote, function (all, content) {
 			return element(
@@ -712,6 +757,10 @@ export let markdownToHTML = (src = req("string", "input")) => {
 		});
 	}
 
+	/**
+	 * @param src
+	 * @example
+	 */
 	function list(src) {
 		return src.replace(
 			rx_list,
@@ -752,6 +801,10 @@ export let markdownToHTML = (src = req("string", "input")) => {
 		);
 	}
 
+	/**
+	 * @param src
+	 * @example
+	 */
 	function highlight(src) {
 		return src.replace(
 			rx_highlight,
@@ -781,6 +834,10 @@ export let markdownToHTML = (src = req("string", "input")) => {
 		);
 	}
 
+	/**
+	 * @param str
+	 * @example
+	 */
 	function unesc(str) {
 		return str.replace(rx_escape, "$1");
 	}
@@ -881,12 +938,13 @@ export let markdownToHTML = (src = req("string", "input")) => {
 
 /**
  * Counts the syllables in the word given.
+ *
  * @memberOf string
  * @function
- * @param {String} word The word to count syllables of
+ * @param {string} word - The word to count syllables of.
  * @example
  * console.log(_$.syllables("Hello")); // 2
- * @returns {Number} The number of syllables in the specified word.
+ * @returns {number} The number of syllables in the specified word.
  */
 export let syllables = (word = req("string", "word")) => {
 	word = word.toLowerCase();
@@ -905,8 +963,9 @@ export let syllables = (word = req("string", "word")) => {
 		return syl.length + t_some;
 	}
 };
-/**
+/**.
  * Converts a string to title case
+ *
  * @memberOf string
  * @function
  * @param {String} str The string to convert to title case.
@@ -951,8 +1010,9 @@ export let titleCase = (str = req("string", "string")) =>
 				  word.slice(word.codePointAt(0) > 0xffff ? 2 : 1),
 		)
 		.join(" ");
-/**
+/**.
  * Capitalizes the first letter of the string
+ *
  * @memberOf string
  * @function
  * @param {String} str The string to capitalize.
@@ -965,14 +1025,15 @@ export let capitalize = (str = req("string", "string")) =>
 	str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
 /**
  * Replaces between two indexes of a string.
+ *
  * @memberOf string
  * @function
  * @example
  * console.log(_$.replaceBetween("Hello world", 6, 11, "earthlings")); // "Hello earthlings"
- * @param {String} string The string to operate on.
- * @param {Number} start The start index
- * @param {Number} end The end index
- * @param {String} what What to replace with.
+ * @param {string} string - The string to operate on.
+ * @param {number} start - The start index.
+ * @param {number} end - The end index.
+ * @param {string} what What to replace with.
  * @returns {String} The replaced string
  */
 export let replaceBetween = (
@@ -981,8 +1042,9 @@ export let replaceBetween = (
 	end = req("number", "end"),
 	what = req("string", "replace with"),
 ) => string.substring(0, start) + what + string.substring(end);
-/**
+/**.
  * Escapes a string of HTML
+ *
  * @function
  * @memberOf string
  * @param {String} str The string of HTML to escape.
@@ -1002,8 +1064,9 @@ export let escapeHTML = (str = req("string")) =>
 				'"': "&quot;",
 			}[tag] || tag),
 	);
-/**
+/**.
  * Unescapes a string of HTML
+ *
  * @function
  * @memberOf string
  * @param {String} str The string of HTML to unescape.
@@ -1025,11 +1088,12 @@ export let unescapeHTML = (str = req("string")) =>
 	);
 /**
  * Returns the previous page that the user visited.
+ *
  * @function
  * @memberOf string
  * @example
  * console.log(_$.previousPage()); // e.g. "https://bijou.js.org"
- * @returns {String} The url of the previous page the user visited.
+ * @returns {string} The url of the previous page the user visited.
  */
 export let previousPage = () => {
 	node();

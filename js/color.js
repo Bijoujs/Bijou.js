@@ -1,12 +1,13 @@
 //#region Color
 /**
  * Converts a rgb(a) color to hex.
+ *
  * @memberOf color
  * @function
  * @example
  * console.log(_$.rgbToHex("rgb(255,255,255)")); // "#ffffff"
- * @param {String} rgb The string of RGB colors.
- * @returns {String} The hex color.
+ * @param {string} rgb - The string of RGB colors.
+ * @returns {string} The hex color.
  */
 export let rgbToHex = (rgb = req("string", "RGB color")) => {
 	let sep = rgb.indexOf(",") > -1 ? "," : " ";
@@ -24,12 +25,13 @@ export let rgbToHex = (rgb = req("string", "RGB color")) => {
 };
 /**
  * Converts a hex code to a RGB color.
+ *
  * @function
  * @memberOf color
- * @param {String} hex The hex code to convert.
+ * @param {string} hex - The hex code to convert.
  * @example
  * console.log(_$.rgbToHex("#ffffff")); // "rgb(255,255,255)"
- * @returns {String} The RGB color converted from the hex code.
+ * @returns {string} The RGB color converted from the hex code.
  */
 export let hexToRGB = (hex = req("string", "hex color")) => {
 	if (
@@ -67,14 +69,15 @@ export let hexToRGB = (hex = req("string", "hex color")) => {
 };
 /**
  * Blends two colors through additive blending by a percentage.
+ *
  * @function
  * @memberOf color
- * @param {String} color1 The hex code of the first color to be blended
- * @param {String} color2 The hex code of the second color to be blended.
- * @param {Number} [percent=50] A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
+ * @param {string} color1 - The hex code of the first color to be blended.
+ * @param {string} color2 - The hex code of the second color to be blended.
+ * @param {number} [percent=50] - A number between 0 and 100 of the percentage to blend the two colors, 0 being completely the first color and 100 being completely the second color.
  * @example
  * console.log(_$.blendColors("#ffffff", "#000000", 80)); // #333333
- * @returns {String} The blended color (A hex code).
+ * @returns {string} The blended color (A hex code).
  */
 export let blendColors = (
 	color1 = req("string", "color 1"),
@@ -118,19 +121,22 @@ export let blendColors = (
 };
 /**
  * Generates a random hex color.
+ *
  * @function
  * @memberOf color
  * @example
  * console.log(_$.randomColor()); // e.g. #5bf462
- * @returns {String} A random Hex color
+ * @returns {string} A random Hex color.
  */
 export let randomColor = () =>
 	`#${Math.floor(Math.random() * 16777215).toString(16)}`;
-/**
+/**.
  * Lighten or darken a color by a certain amount
+ *
  * @function
  * @memberOf color
  * @param {String} color The color to lighten/darken
+ * @param col
  * @param {Number} amt The amount to lighten the color (out of 255).
  * @example
  * _$.lightenColor("#000000", 50); // #323232
@@ -169,18 +175,19 @@ export let lightenColor = (
 	);
 };
 /**
-  * Tests if a color is light or dark and returns an object representation.
-  * @function
-  * @memberOf color
-  * @param {string} color The hex color to test.
-  * @example
-  * if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
+ * Tests if a color is light or dark and returns an object representation.
+ *
+ * @function
+ * @memberOf color
+ * @param {string} color - The hex color to test.
+ * @example
+ * if (_$.lightOrDark("#333333").lightOrDark === 'dark'){
     document.querySelector("DIV").style.color = "white";
   } else {
       document.querySelector("DIV").style.color = "black";
   }
-  * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
-  */
+ * @returns {object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
+ */
 export let lightOrDark = (
 	color = req("string", "hex or RGB color"),
 ) => {

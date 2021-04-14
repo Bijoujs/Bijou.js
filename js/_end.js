@@ -3,11 +3,19 @@
 /**
  *Converts most of the functions of Bijou.js to prototype functions.
  * Note that you have to call this function to add the prototypes.
- * @param {Object} options The options to use, supports overwrite (boolean of whether to overwrite existing prototypes), and try, (boolean for whether to wrap in a try..catch)
+ *
+ * @param {object} options - The options to use, supports overwrite (boolean of whether to overwrite existing prototypes), and try, (boolean for whether to wrap in a try..catch).
+ * @example
  */
 export let prototype = (
 	options = { overwrite: true, tryCatch: false },
 ) => {
+	/**
+	 * @param fn
+	 * @param thing
+	 * @param name
+	 * @example
+	 */
 	function proto(fn, thing, name) {
 		let title =
 			name || fn ? fn.name : "noNameHehe124672463467432376453";
@@ -151,8 +159,9 @@ export let prototype = (
 	proto(_$.urlQuery, String);
 	proto(_$.widows, String);
 };
-/**
+/**.
  * Bijou.js source documentation. In the `Bijou` namespace you will find the documentation for all of the functions in Bijou.js, if you have any questions, suggestions or bug reports pleast make an issue (here)[https://github.com/bijou-js/bijou.js/issues/new/choose]. Best of luck! Thanks for using Bijou.js! --Explosion--
+ *
  * @type {Object}
  * @author Explosion-Scratch, GrahamSH-LLK, Bijou.js contributors
  */
