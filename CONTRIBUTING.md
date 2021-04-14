@@ -12,6 +12,7 @@ Follow this template:
 
 /**
  * Description
+ * @function
  * @param String str A string parameter
  * @returns {String} What it returns
  * @example
@@ -28,11 +29,8 @@ export let functionName = (str = req("string", "input")) => {
 };
 
 //  For recursive functions:
-export let functionName = (str = req("string", "input")) => {
-	function _recurse(str) {
-		//Do whatever
-		_recurse(str);
-	}
+export let functionName = function _recurse(str = req("string", "input")) {
+	//Do whatever
 	return _recurse(str);
 };
 ```
