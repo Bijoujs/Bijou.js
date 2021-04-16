@@ -1,0 +1,12 @@
+version = 1
+
+exclude_patterns = [
+    "docs/docs",
+    "bijou-min.js",
+    "bijou_node.js",
+    "bijou.js"
+]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
