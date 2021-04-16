@@ -1,4 +1,4 @@
-//#region Function
+// #region Function
 /**
  * Runs a list of functions with a list of arguments.
  * @returns {Array.<array>} The list of outputs.
@@ -12,7 +12,7 @@
   )(1, 2, 3); // [[2, 3, 4], [0, 1, 2], [10, 20, 30]]
  * @param  {...function} fns The functions to call.
  */
-export let juxt = (...fns) => (...args) =>
+export const juxt = (...fns) => (...args) =>
 	[...fns].map((fn) => [...args].map(fn));
 /**
  * Returns a promise after a specified number of milliseconds.
@@ -27,7 +27,7 @@ export let juxt = (...fns) => (...args) =>
  * })
  * @param {Number} ms The milliseconds to sleep.
  */
-export let sleep = (ms = req("number", "milliseconds")) =>
+export const sleep = (ms = req("number", "milliseconds")) =>
 	new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
@@ -40,7 +40,7 @@ export let sleep = (ms = req("number", "milliseconds")) =>
  * @param {Function} fn The function to call.
  * @param {Number} n The number of arguments to accept.
  */
-export let limitArgs = (
+export const limitArgs = (
 	fn = req("function", "function"),
 	n = req("number", "arguments"),
 ) => (...args) => fn(...args.slice(0, n));
@@ -53,7 +53,7 @@ export let limitArgs = (
  * @param {Array} fns The array of functions to execute.
  * @param {Number} [iterations=1000] How many times to execute the functions. (More is more reliable but takes longer.)
  */
-export let fastestFunction = (fns, iterations = 1000) => {
+export const fastestFunction = (fns, iterations = 1000) => {
 	const times = fns.map((fn) => {
 		const before = performance.now();
 		for (let i = 0; i < iterations; i++) fn();
@@ -74,7 +74,7 @@ export let fastestFunction = (fns, iterations = 1000) => {
   say(["Fred", "hi"]);//"Fred says hi"
  * @param {Function} fn The function to use
  */
-export let spread = (fn = req("function")) => {
+export const spread = (fn = req("function")) => {
 	return (args) => {
 		fn.apply(globalThis, args);
 	};
@@ -88,11 +88,11 @@ export let spread = (fn = req("function")) => {
  * let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)
  * @returns {Function} The memoized function.
  */
-export let memoize = (fn = req("function")) => {
-	let cache = {};
+export const memoize = (fn = req("function")) => {
+	const cache = {};
 	return function () {
-		let args = JSON.stringify(Array.from(arguments));
-		let arg_array = Array.from(arguments);
+		const args = JSON.stringify(Array.from(arguments));
+		const arg_array = Array.from(arguments);
 		if (cache[args]) {
 			return cache[args];
 		} else {
@@ -112,7 +112,7 @@ export let memoize = (fn = req("function")) => {
  * const multiply2 = (x) => x * 2;
  * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  3 * 2 + 2
  */
-export let composeFunction = (...functions) => (args) => {
+export const composeFunction = (...functions) => (args) => {
 	req("functions", "function list", ![...functions].length);
 	return functions.reduceRight((arg, fn) => fn(arg), args);
 };
@@ -128,7 +128,7 @@ export let composeFunction = (...functions) => (args) => {
  * let fn = (x, y, z, w) => x * y * z * w;
  * console.log(_$.curryFunction(fn, 4, 5)(4)(3)(2)); // 120 i.e. 5 * 4 * 3 * 2
  */
-export let curryFunction = (
+export const curryFunction = (
 	fn = req("function"),
 	arity = fn.length,
 	...args
@@ -146,7 +146,7 @@ export let curryFunction = (
  * const asyncFn = async (x) => x ** 3; // It's a silly function, but a good example
  * console.log(_$.isAsync(asyncFn)); // true
  */
-export let isAsync = (val = req("function")) =>
+export const isAsync = (val = req("function")) =>
 	Object.prototype.toString.call(val) === "[object AsyncFunction]";
 
 /**
@@ -160,11 +160,11 @@ export let isAsync = (val = req("function")) =>
  * _$.timeFunction(() => prompt("What's your name?"));
  * @returns {Object} An object with "time" and "function" properties, time being time in milliseconds, and function being the original function passed.
  */
-export let timeFunction = (
+export const timeFunction = (
 	fn = req("function"),
 	name = "_$ function timer",
 ) => {
-	let startTime = performance.now();
+	const startTime = performance.now();
 	console.time(name);
 	fn();
 	console.timeEnd(name);
@@ -182,25 +182,25 @@ export let timeFunction = (
  * setInterval(alert_function, 1)
  * @returns {Function} The throttled function
  */
-export let throttle = (
+export const throttle = (
 	func = req("function"),
 	wait = req("number", "wait"),
 	options = {},
 ) => {
-	var context, args, result;
-	var timeout = null;
-	var previous = 0;
+	let context, args, result;
+	let timeout = null;
+	let previous = 0;
 	if (!options) options = {};
-	var later = function () {
+	const later = function () {
 		previous = options.leading === false ? 0 : Date.now();
 		timeout = null;
 		result = func.apply(context, args);
 		if (!timeout) context = args = null;
 	};
 	return function () {
-		var now = Date.now();
+		const now = Date.now();
 		if (!previous && options.leading === false) previous = now;
-		var remaining = wait - (now - previous);
+		const remaining = wait - (now - previous);
 		context = this;
 		args = arguments;
 		if (remaining <= 0 || remaining > wait) {
@@ -227,7 +227,7 @@ export let throttle = (
  * @param {Number} wait The milliseconds to wait between executions.
  * @param {Boolean} [immediate=false] Whether or not to run immediately, or after a group of executions.
  */
-export let debounce = (
+export const debounce = (
 	func = req("function"),
 	wait = req("number", "wait"),
 	immediate = false,
@@ -235,17 +235,17 @@ export let debounce = (
 	// 'private' variable for instance
 	// The returned function will be able to reference this due to closure.
 	// Each call to the returned function will share this common timer.
-	var timeout;
+	let timeout;
 
 	// Calling debounce returns a new anonymous function
 	return function () {
 		// reference the context and args for the setTimeout function
-		var context = this,
-			args = arguments;
+		const context = this;
+		const args = arguments;
 
 		// Should the function be called now? If immediate is true
 		//   and not already in a timeout then the answer is: Yes
-		var callNow = immediate && !timeout;
+		const callNow = immediate && !timeout;
 
 		// This is the basic debounce behaviour where you can call this
 		//   function several times, but it will only execute once
@@ -281,7 +281,7 @@ export let debounce = (
  * _$.runAsync(() =>  "hello world").then(console.log); // "hello world"
  * @returns {Promise} A promise that resolves into the return value of the function.
  */
-export let runAsync = (fn = req("function")) => {
+export const runAsync = (fn = req("function")) => {
 	const worker = new Worker(
 		URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
 			type: "application/javascript; charset=utf-8",
@@ -296,4 +296,4 @@ export let runAsync = (fn = req("function")) => {
 		};
 	});
 };
-//#endregion Function
+// #endregion Function

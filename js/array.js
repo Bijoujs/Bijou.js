@@ -1,4 +1,4 @@
-//#region Array
+// #region Array
 /**
  * Counts the items in an array, returning a separate count for each object.
  * @returns {Object}
@@ -11,7 +11,7 @@
  * _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 'e': 1}
  * @param {Array} arr The array to count items in.
  */
-export let count = (arr = req("array", "array")) =>
+export const count = (arr = req("array", "array")) =>
 	arr.reduce((counts, item) => {
 		counts[item] = (counts[item] || 0) + 1;
 		return counts;
@@ -27,12 +27,12 @@ export let count = (arr = req("array", "array")) =>
  * @param {Array|String} a1 The first array or string
  * @param {Array|String} a2 The 2nd array or string.
  */
-export let arrayDiff = (
+export const arrayDiff = (
 	a1 = req("array", "array 1"),
 	a2 = req("array", "array 2"),
 ) => {
-	var a = [],
-		diff = [];
+	const a = [];
+	const diff = [];
 	for (var i = 0; i < a1.length; i++) {
 		a[a1[i]] = true;
 	}
@@ -43,7 +43,7 @@ export let arrayDiff = (
 			a[a2[i]] = true;
 		}
 	}
-	for (var k in a) {
+	for (const k in a) {
 		diff.push(k);
 	}
 	return diff;
@@ -59,37 +59,37 @@ export let arrayDiff = (
  * console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]
  * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
  */
-export let diff = function (
+export const diff = function (
 	text1 = req("string", "Text 1"),
 	text2 = req("string", "Text 2"),
 ) {
-	//Takes in two strings
-	//Returns an array of the span of the differences
-	//So if given:
+	// Takes in two strings
+	// Returns an array of the span of the differences
+	// So if given:
 	// text1: "that is number 124"
 	// text2: "this is number 123"
-	//It will return:
+	// It will return:
 	// [[2,4],[17,18]]
-	//If the strings are of different lengths, it will check up to the end of text1
-	//If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
-	var diffRange = [];
-	var currentRange = undefined;
+	// If the strings are of different lengths, it will check up to the end of text1
+	// If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
+	const diffRange = [];
+	let currentRange;
 	for (var i = 0; i < text1.length; i++) {
 		if (text1[i] != text2[i]) {
-			//Found a diff!
+			// Found a diff!
 			if (currentRange == undefined) {
-				//Start a new range
+				// Start a new range
 				currentRange = [i];
 			}
 		}
 		if (currentRange != undefined && text1[i] == text2[i]) {
-			//End of range!
+			// End of range!
 			currentRange.push(i);
 			diffRange.push(currentRange);
 			currentRange = undefined;
 		}
 	}
-	//Push any last range if there's still one at the end
+	// Push any last range if there's still one at the end
 	if (currentRange != undefined) {
 		currentRange.push(i);
 		diffRange.push(currentRange);
@@ -106,7 +106,7 @@ export let diff = function (
  * @example
  * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
  */
-export let remove = (
+export const remove = (
 	array = req("array", "array"),
 	item = req(undefined, "item"),
 ) => {
@@ -133,18 +133,19 @@ export let remove = (
  * @param {Boolean} [endian=false] Whether to use big endian or not.
  * @returns {Number} The hex representation of part of the ArrayBuffer.
  */
-export let spliceArrayBuffer = (
+export const spliceArrayBuffer = (
 	arr = req("ArrayBuffer"),
 	start = req("number"),
 	end = req("number"),
 	endian = false,
 ) => {
-	var direction = endian ? -1 : 1;
+	const direction = endian ? -1 : 1;
 	if (endian) [start, end] = [end, start];
 	start = Math.floor(start);
 	end = Math.floor(end) + direction;
-	for (var i = start, value = 0; i != end; i += direction)
+	for (var i = start, value = 0; i != end; i += direction) {
 		value = 256 * value + arr[i];
+	}
 	return value;
 };
 
@@ -158,8 +159,8 @@ export let spliceArrayBuffer = (
  * @param {Array} array The array to flatten.
  * @param {Number} [level=1] The number of iterations to flatten it.
  */
-export let flatten = (array = req("array", "array"), level = 1) => {
-	var output = array;
+export const flatten = (array = req("array", "array"), level = 1) => {
+	let output = array;
 	_$.each(level, () => {
 		output = [].concat.apply([], array);
 	});
@@ -175,7 +176,7 @@ export let flatten = (array = req("array", "array"), level = 1) => {
  * @example
  * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
  */
-export let nFlatten = (arr = req("array", "array")) => {
+export const nFlatten = (arr = req("array", "array")) => {
 	return arr.reduce(function (flat, toFlatten) {
 		return flat.concat(
 			Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
@@ -193,8 +194,10 @@ export let nFlatten = (arr = req("array", "array")) => {
  * console.log(_$.contains([1,2,3,4,5], 3)); // true
  * @returns {Boolean} True or false depending on if the array contains that item.
  */
-export let contains = (array = req("array"), item = req("string")) =>
-	array.includes(item);
+export const contains = (
+	array = req("array"),
+	item = req("string"),
+) => array.includes(item);
 
 /**
  * Shuffles an array
@@ -206,7 +209,7 @@ export let contains = (array = req("array"), item = req("string")) =>
  * console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]
  * @returns {Array} The shuffled array.
  */
-export let shuffleArray = (array = req("array")) =>
+export const shuffleArray = (array = req("array")) =>
 	array.sort(() => Math.random() - 0.5);
 
 /**
@@ -221,13 +224,13 @@ export let shuffleArray = (array = req("array")) =>
  * @example
  * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
  */
-export let splice = (
+export const splice = (
 	array = req("array", "array"),
 	index = req("number", "index"),
 	remove = 0,
 	item,
 ) => {
-	let args = Array.from(arguments);
+	const args = Array.from(arguments);
 	args.shift();
 	return typeof array === "string"
 		? array
@@ -246,15 +249,15 @@ export let splice = (
  * console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]
  * @returns {Array} The joined array from the two other arrays.
  */
-export let unionArrays = (
+export const unionArrays = (
 	x = req("array", "array1"),
 	y = req("array", "array2"),
 ) => {
-	var obj = {};
+	const obj = {};
 	for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
 	for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
-	var res = [];
-	for (var k in obj) {
+	const res = [];
+	for (const k in obj) {
 		if (obj.hasOwnProperty(k)) res.push(obj[k]);
 	}
 	return res;
@@ -270,7 +273,7 @@ export let unionArrays = (
  * console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5
  * @returns {Number} The average of the array.
  */
-export let averageBy = (
+export const averageBy = (
 	arr = req("array", "array"),
 	fn = req("function", "callback"),
 ) =>
@@ -287,7 +290,7 @@ export let averageBy = (
  * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
  * @returns {Array} The array with no duplicates.
  */
-export let uniqueArray = (array = req("array", "array")) => [
+export const uniqueArray = (array = req("array", "array")) => [
 	...new Set(array),
 ];
 /**
@@ -306,7 +309,7 @@ export let uniqueArray = (array = req("array", "array")) => [
  * // 5
  * @returns {undefined}
  */
-export let each = (
+export const each = (
 	array = req("Array|Number|String", "array"),
 	callback = req("function", "callback"),
 ) => {
@@ -320,4 +323,4 @@ export let each = (
 		callback(array[i], i, array);
 	}
 };
-//#endregion Array
+// #endregion Array

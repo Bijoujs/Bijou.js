@@ -1,4 +1,4 @@
-//#region Color
+// #region Color
 /**
  * Converts a rgb(a) color to hex.
  * @memberOf color
@@ -8,13 +8,13 @@
  * @param {String} rgb The string of RGB colors.
  * @returns {String} The hex color.
  */
-export let rgbToHex = (rgb = req("string", "RGB color")) => {
-	let sep = rgb.indexOf(",") > -1 ? "," : " ";
+export const rgbToHex = (rgb = req("string", "RGB color")) => {
+	const sep = rgb.indexOf(",") > -1 ? "," : " ";
 	rgb = rgb.substr(4).split(")")[0].split(sep);
 
-	let r = (+rgb[0]).toString(16),
-		g = (+rgb[1]).toString(16),
-		b = (+rgb[2]).toString(16);
+	let r = (+rgb[0]).toString(16);
+	let g = (+rgb[1]).toString(16);
+	let b = (+rgb[2]).toString(16);
 
 	if (r.length === 1) r = "0" + r;
 	if (g.length === 1) g = "0" + g;
@@ -31,7 +31,7 @@ export let rgbToHex = (rgb = req("string", "RGB color")) => {
  * console.log(_$.rgbToHex("#ffffff")); // "rgb(255,255,255)"
  * @returns {String} The RGB color converted from the hex code.
  */
-export let hexToRGB = (hex = req("string", "hex color")) => {
+export const hexToRGB = (hex = req("string", "hex color")) => {
 	if (
 		((hex.length - 1 === 6 ||
 			hex.length - 1 === 8 ||
@@ -47,8 +47,8 @@ export let hexToRGB = (hex = req("string", "hex color")) => {
 	} else {
 		throw new Error("Invalid hex");
 	}
-	let alpha = false,
-		h = hex.slice(hex.startsWith("#") ? 1 : 0);
+	let alpha = false;
+	let h = hex.slice(hex.startsWith("#") ? 1 : 0);
 	if (h.length === 3) h = [...h].map((x) => x + x).join("");
 	else if (h.length === 8) alpha = true;
 	h = parseInt(h, 16);
@@ -76,7 +76,7 @@ export let hexToRGB = (hex = req("string", "hex color")) => {
  * console.log(_$.blendColors("#ffffff", "#000000", 80)); // #333333
  * @returns {String} The blended color (A hex code).
  */
-export let blendColors = (
+export const blendColors = (
 	color1 = req("string", "color 1"),
 	color2 = req("string", "color 2"),
 	percent = 50,
@@ -124,7 +124,7 @@ export let blendColors = (
  * console.log(_$.randomColor()); // e.g. #5bf462
  * @returns {String} A random Hex color
  */
-export let randomColor = () =>
+export const randomColor = () =>
 	`#${Math.floor(Math.random() * 16777215).toString(16)}`;
 /**
  * Lighten or darken a color by a certain amount
@@ -136,30 +136,30 @@ export let randomColor = () =>
  * _$.lightenColor("#000000", 50); // #323232
  * @returns {String} The color lightened.
  */
-export let lightenColor = (
+export const lightenColor = (
 	col = req("string", "hex color"),
 	amt = req("number", "amount"),
 ) => {
-	var usePound = false;
+	let usePound = false;
 
 	if (col[0] == "#") {
 		col = col.slice(1);
 		usePound = true;
 	}
 
-	var num = parseInt(col, 16);
+	const num = parseInt(col, 16);
 
-	var r = (num >> 16) + amt;
+	let r = (num >> 16) + amt;
 
 	if (r > 255) r = 255;
 	else if (r < 0) r = 0;
 
-	var b = ((num >> 8) & 0x00ff) + amt;
+	let b = ((num >> 8) & 0x00ff) + amt;
 
 	if (b > 255) b = 255;
 	else if (b < 0) b = 0;
 
-	var g = (num & 0x0000ff) + amt;
+	let g = (num & 0x0000ff) + amt;
 
 	if (g > 255) g = 255;
 	else if (g < 0) g = 0;
@@ -181,10 +181,10 @@ export let lightenColor = (
   }
   * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
   */
-export let lightOrDark = (
+export const lightOrDark = (
 	color = req("string", "hex or RGB color"),
 ) => {
-	var r, g, b, hsp;
+	let r, g, b, hsp;
 	if (color.match(/^rgb/)) {
 		color = color.match(
 			/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
@@ -212,4 +212,4 @@ export let lightOrDark = (
 		return { lightOrDark: "dark", hsp: hsp };
 	}
 };
-//#endregion Color
+// #endregion Color

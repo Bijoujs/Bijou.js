@@ -1,4 +1,4 @@
-//#region String
+// #region String
 /**
  * Compares two strings using the Jaro-Winkler Distance algorithm.
  * @memberOf string
@@ -9,8 +9,8 @@
  * @param {String} a The first string
  * @param {String} b The second string
  */
-export let jaroDistance = function (a, b) {
-	let adjustments = {
+export const jaroDistance = function (a, b) {
+	const adjustments = {
 		A: "E",
 		A: "I",
 		A: "O",
@@ -56,17 +56,17 @@ export let jaroDistance = function (a, b) {
 	}
 	a = a.trim().toUpperCase();
 	b = b.trim().toUpperCase();
-	var a_len = a.length;
-	var b_len = b.length;
-	var a_flag = [];
-	var b_flag = [];
-	var search_range = Math.floor(Math.max(a_len, b_len) / 2) - 1;
-	var minv = Math.min(a_len, b_len);
-	var Num_com = 0;
-	var yl1 = b_len - 1;
+	const a_len = a.length;
+	const b_len = b.length;
+	const a_flag = [];
+	const b_flag = [];
+	const search_range = Math.floor(Math.max(a_len, b_len) / 2) - 1;
+	const minv = Math.min(a_len, b_len);
+	let Num_com = 0;
+	const yl1 = b_len - 1;
 	for (var i = 0; i < a_len; i++) {
-		var lowlim = i >= search_range ? i - search_range : 0;
-		var hilim = i + search_range <= yl1 ? i + search_range : yl1;
+		const lowlim = i >= search_range ? i - search_range : 0;
+		const hilim = i + search_range <= yl1 ? i + search_range : yl1;
 		for (var j = lowlim; j <= hilim; j++) {
 			if (b_flag[j] !== 1 && a[j] === b[i]) {
 				a_flag[j] = 1;
@@ -79,8 +79,8 @@ export let jaroDistance = function (a, b) {
 	if (Num_com === 0) {
 		return 0.0;
 	}
-	var k = 0;
-	var N_trans = 0;
+	let k = 0;
+	let N_trans = 0;
 	for (var i = 0; i < a_len; i++) {
 		if (a_flag[i] === 1) {
 			var j;
@@ -96,8 +96,8 @@ export let jaroDistance = function (a, b) {
 		}
 	}
 	N_trans = Math.floor(N_trans / 2);
-	var N_simi = 0;
-	var adjwt = adjustments;
+	let N_simi = 0;
+	const adjwt = adjustments;
 	if (minv > Num_com) {
 		for (var i = 0; i < a_len; i++) {
 			if (!a_flag[i]) {
@@ -113,8 +113,8 @@ export let jaroDistance = function (a, b) {
 			}
 		}
 	}
-	var Num_sim = N_simi / 10.0 + Num_com;
-	var weight =
+	const Num_sim = N_simi / 10.0 + Num_com;
+	let weight =
 		Num_sim / a_len + Num_sim / b_len + (Num_com - N_trans) / Num_com;
 	weight = weight / 3;
 	if (weight > 0.7) {
@@ -141,7 +141,7 @@ export let jaroDistance = function (a, b) {
  * @param {String} prop The property to prefix.
  * @returns {String} The prefixed value (camelCased, instead of css-case, so mozAppearance instead of -moz-appearance).
  */
-export let prefixCSS = (prop = req("string", "property")) => {
+export const prefixCSS = (prop = req("string", "property")) => {
 	node();
 	const capitalizedProp =
 		prop.charAt(0).toUpperCase() + prop.slice(1);
@@ -167,7 +167,7 @@ export let prefixCSS = (prop = req("string", "property")) => {
  * _$.parseCookie("foo=bar; something=hello%20world");//Returns {foo: "bar", something: "hello world"};
  * @param {String} str The string to parse.
  */
-export let parseCookie = (str = req("string", "cookie string")) =>
+export const parseCookie = (str = req("string", "cookie string")) =>
 	str
 		.split(";")
 		.map((v) => v.split("="))
@@ -178,7 +178,7 @@ export let parseCookie = (str = req("string", "cookie string")) =>
 			return acc;
 		}, {});
 /**
- * Hashes a string using the crypto api. 
+ * Hashes a string using the crypto api.
  * @memberOf string
  * @function
  * @example
@@ -189,17 +189,18 @@ export let parseCookie = (str = req("string", "cookie string")) =>
  * @param {String} val The string to hash
  * @returns {Promise} A promise that resolves into the hashed string.
  */
-export let hash = (val = req("string", "input string")) => {
+export const hash = (val = req("string", "input string")) => {
 	node();
 	return crypto.subtle
 		.digest("SHA-256", new TextEncoder("utf-8").encode(val))
 		.then((h) => {
-			let hexes = [],
-				view = new DataView(h);
-			for (let i = 0; i < view.byteLength; i += 4)
+			const hexes = [];
+			const view = new DataView(h);
+			for (let i = 0; i < view.byteLength; i += 4) {
 				hexes.push(
 					("00000000" + view.getUint32(i).toString(16)).slice(-8),
 				);
+			}
 			return hexes.join("");
 		});
 };
@@ -214,7 +215,7 @@ export let hash = (val = req("string", "input string")) => {
  * // "Things: an apple an orange
  * @returns {String} String that has been for looped
  */
-export let forTemplateLiteral = (
+export const forTemplateLiteral = (
 	arr = req("array", "array"),
 	callback = req("function", "callback"),
 ) => {
@@ -229,7 +230,7 @@ export let forTemplateLiteral = (
  * @param {String} str The string to map
  * @param {Function} fn The callback function to run to map the string.
  */
-export let mapString = (
+export const mapString = (
 	str = req("string", "string"),
 	fn = req("function", "callback"),
 ) => Array.prototype.map.call(str, fn).join("");
@@ -242,7 +243,7 @@ export let mapString = (
  * console.log(_$.decurr("déjà vu")); // "deja vu"
  * @param {String} str The string to use.
  */
-export let deburr = (str = req("string", "string")) =>
+export const deburr = (str = req("string", "string")) =>
 	str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 /**
@@ -254,7 +255,7 @@ export let deburr = (str = req("string", "string")) =>
  * console.log(_$.removeTags("<div>Hello</div>")); // "Hello"
  * @returns {String} THe string of HTML without the tags.
  */
-export let removeTags = (html = req("string", "html string")) =>
+export const removeTags = (html = req("string", "html string")) =>
 	html.replace(/<[^>]*>/g, "");
 
 /**
@@ -272,7 +273,7 @@ export let removeTags = (html = req("string", "html string")) =>
  * _$.speak("Bijou is awesome!"); // speaks "Bijou is awesome!"
  * @returns {undefined}
  */
-export let speak = (
+export const speak = (
 	text = req("string", "text"),
 	lang = "en",
 	volume = 1,
@@ -280,9 +281,9 @@ export let speak = (
 	pitch = 1,
 	rate = 1,
 ) => {
-	var msg = new SpeechSynthesisUtterance();
-	var voices = window.speechSynthesis.getVoices();
-	let def = voices.filter((c) => c.default);
+	const msg = new SpeechSynthesisUtterance();
+	const voices = window.speechSynthesis.getVoices();
+	const def = voices.filter((c) => c.default);
 	msg.voice = voice
 		? typeof voice === "number"
 			? voices[voice]
@@ -305,10 +306,10 @@ export let speak = (
  * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
  * @returns {String} The replaced string.
  */
-export let widows = (text = req("string", "text")) => {
-	var wordArray = text.split(" ");
-	var finalTitle = "";
-	for (var i = 0; i <= wordArray.length - 1; i++) {
+export const widows = (text = req("string", "text")) => {
+	const wordArray = text.split(" ");
+	let finalTitle = "";
+	for (let i = 0; i <= wordArray.length - 1; i++) {
 		finalTitle += wordArray[i];
 		if (i == wordArray.length - 2) {
 			finalTitle += "&nbsp;";
@@ -328,7 +329,7 @@ export let widows = (text = req("string", "text")) => {
  * console.log(_$.unCamelCase("helloWorld")); // "Hello World"
  * @returns {String} The string of unCamelCased code.
  */
-export let unCamelCase = function (str = req("string", "string")) {
+export const unCamelCase = function (str = req("string", "string")) {
 	return str
 		.replace(/([a-z])([A-Z])/g, "$1 $2")
 		.replace(/\b([A-Z]+)([A-Z])([a-z])/, "$1 $2$3")
@@ -346,7 +347,7 @@ export let unCamelCase = function (str = req("string", "string")) {
  * console.log(_$.camelCase("Hello world")); // "helloWorld"
  * @returns {String} The camelCased string.
  */
-export let camelCase = (str = req("string", "string")) => {
+export const camelCase = (str = req("string", "string")) => {
 	return str
 		.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
 			return index === 0 ? word.toLowerCase() : word.toUpperCase();
@@ -362,13 +363,13 @@ export let camelCase = (str = req("string", "string")) => {
  * console.log(_$.scrambleString("Hello world")); // e.g. "owllH rdloe"
  * @returns {String} The scrambled text.
  */
-export let scrambleString = (str = req("string")) => {
-	var a = str.split(""),
-		n = a.length;
+export const scrambleString = (str = req("string")) => {
+	const a = str.split("");
+	const n = a.length;
 
-	for (var i = n - 1; i > 0; i--) {
-		var j = Math.floor(Math.random() * (i + 1));
-		var tmp = a[i];
+	for (let i = n - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		const tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
 	}
@@ -384,9 +385,9 @@ export let scrambleString = (str = req("string")) => {
  * console.log(_$.hashString("Hello world")); // 3494146707865688
  * @returns {Number} The hashed string.
  */
-export let hashString = (str = req("string"), seed = 0) => {
-	let h1 = 0xdeadbeef ^ seed,
-		h2 = 0x41c6ce57 ^ seed;
+export const hashString = (str = req("string"), seed = 0) => {
+	let h1 = 0xdeadbeef ^ seed;
+	let h2 = 0x41c6ce57 ^ seed;
 	for (let i = 0, ch; i < str.length; i++) {
 		ch = str.charCodeAt(i);
 		h1 = Math.imul(h1 ^ ch, 2654435761);
@@ -411,23 +412,23 @@ export let hashString = (str = req("string"), seed = 0) => {
  * console.log(_$.editDistance("hello", "Hello")); // 1
  * @returns {Number} The edit distance between two strings
  */
-export let editDistance = (
+export const editDistance = (
 	a = req("string", "string 1"),
 	b = req("string", "string 2"),
 ) => {
 	if (a.length == 0) return b.length;
 	if (b.length == 0) return a.length;
 
-	var matrix = [];
+	const matrix = [];
 
 	// increment along the first column of each row
-	var i;
+	let i;
 	for (i = 0; i <= b.length; i++) {
 		matrix[i] = [i];
 	}
 
 	// increment each column in the first row
-	var j;
+	let j;
 	for (j = 0; j <= a.length; j++) {
 		matrix[0][j] = j;
 	}
@@ -460,7 +461,7 @@ export let editDistance = (
  * console.log(_$.byteSize("Hello world")); 11
  * @returns {Number} The byte size of the string.
  */
-export let byteSize = (str = req("string", "string")) =>
+export const byteSize = (str = req("string", "string")) =>
 	new Blob([str]).size;
 
 /**
@@ -473,11 +474,11 @@ export let byteSize = (str = req("string", "string")) =>
  * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
  * @returns {String} The replaced string
  */
-export let replaceMultiple = (
+export const replaceMultiple = (
 	text = req("string", "text"),
 	replace = req("object", "replace key pairs"),
 ) => {
-	var re = new RegExp(Object.keys(replace).join("|"), "gi");
+	const re = new RegExp(Object.keys(replace).join("|"), "gi");
 	text = text.replace(re, function (matched) {
 		return mapObj[matched];
 	});
@@ -496,13 +497,13 @@ export let replaceMultiple = (
  * console.log(_$.urlQuery("q", "https://google.com/search?q=something")); // "something"
  * @returns {String} The url query
  */
-export let urlQuery = (
+export const urlQuery = (
 	query = req("string", "query"),
 	url = window.location.href,
 ) => {
 	query = query.replace(/[\[\]]/g, "\\$&");
-	var regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`),
-		results = regex.exec(url);
+	const regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`);
+	const results = regex.exec(url);
 	if (!results) return null;
 	if (!results[2]) return "";
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
@@ -519,7 +520,7 @@ export let urlQuery = (
  * console.log(_$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>")); // "<b>A normal tag</b>"
  * @returns {String} The sanitized HTML string.
  */
-export let sanitize = (
+export const sanitize = (
 	html = req("string", "input html"),
 	tags = undefined,
 	attributes = undefined,
@@ -550,7 +551,7 @@ export let sanitize = (
 		{
 			attribute: "alt",
 			tags: ["IMG", "AREA", "INPUT"],
-			//"^" and "$" match beggining and end
+			// "^" and "$" match beggining and end
 			regex: /^[0-9a-zA-Z]+$/,
 		},
 		{
@@ -619,7 +620,7 @@ export let sanitize = (
 		if (typeof el === "string") {
 			return { attribute: el, tags: "*", regex: /^.+$/ };
 		}
-		let output = el;
+		const output = el;
 		if (!el.hasOwnProperty("tags")) {
 			output.tags = "*";
 		}
@@ -628,11 +629,11 @@ export let sanitize = (
 		}
 		return output;
 	});
-	var el = new DOMParser().parseFromString(html, "text/html");
-	var elements = el.querySelectorAll("*");
+	const el = new DOMParser().parseFromString(html, "text/html");
+	const elements = el.querySelectorAll("*");
 	for (let i = 0; i < elements.length; i++) {
 		const current = elements[i];
-		let attr_list = get_attributes(current);
+		const attr_list = get_attributes(current);
 		for (let j = 0; j < attr_list.length; j++) {
 			const attribute = attr_list[j];
 			if (!attribute_matches(current, attribute)) {
@@ -645,8 +646,8 @@ export let sanitize = (
 	}
 	return el.documentElement.innerHTML;
 	function attribute_matches(element, attribute) {
-		let output = attributes.filter((attr) => {
-			let returnval =
+		const output = attributes.filter((attr) => {
+			const returnval =
 				attr.attribute === attribute &&
 				(attr.tags === "*" || attr.tags.includes(element.tagName)) &&
 				attr.regex.test(element.getAttribute(attribute));
@@ -675,25 +676,25 @@ export let sanitize = (
  * console.log(_$.markdownToHTML("_Italic text_, **bold text**")); // "<em>Italic text</em>, <b>bold text</b>"
  * @returns {String} The string of HTML converted from the markdown input.
  */
-export let markdownToHTML = (src = req("string", "input")) => {
-	var rx_lt = /</g;
-	var rx_gt = />/g;
-	var rx_space = /\t|\r|\uf8ff/g;
-	var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
-	var rx_hr = /^([*\-=_] *){3,}$/gm;
-	var rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g;
-	var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
-	var rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g;
-	var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
-	var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|(( {4}.*?\n)+))/g;
-	var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
-	var rx_table = /\n(( *\|.*?\| *\n)+)/g;
-	var rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
-	var rx_row = /.*\n/g;
-	var rx_cell = /\||(.*?[^\\])\|/g;
-	var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
-	var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
-	var rx_stash = /-\d+\uf8ff/g;
+export const markdownToHTML = (src = req("string", "input")) => {
+	const rx_lt = /</g;
+	const rx_gt = />/g;
+	const rx_space = /\t|\r|\uf8ff/g;
+	const rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
+	const rx_hr = /^([*\-=_] *){3,}$/gm;
+	const rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g;
+	const rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
+	const rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g;
+	const rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
+	const rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|(( {4}.*?\n)+))/g;
+	const rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
+	const rx_table = /\n(( *\|.*?\| *\n)+)/g;
+	const rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
+	const rx_row = /.*\n/g;
+	const rx_cell = /\||(.*?[^\\])\|/g;
+	const rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
+	const rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
+	const rx_stash = /-\d+\uf8ff/g;
 
 	function replace(rex, fn) {
 		src = src.replace(rex, fn);
@@ -716,7 +717,7 @@ export let markdownToHTML = (src = req("string", "input")) => {
 		return src.replace(
 			rx_list,
 			function (all, ind, ol, num, low, content) {
-				var entry = element(
+				const entry = element(
 					"li",
 					highlight(
 						content
@@ -785,8 +786,8 @@ export let markdownToHTML = (src = req("string", "input")) => {
 		return str.replace(rx_escape, "$1");
 	}
 
-	var stash = [];
-	var si = 0;
+	const stash = [];
+	let si = 0;
 
 	src = "\n" + src + "\n";
 
@@ -815,29 +816,29 @@ export let markdownToHTML = (src = req("string", "input")) => {
 
 	// link or image
 	replace(rx_link, function (all, p1, p2, p3, p4, p5, p6) {
-		stash[--si] = p6
-			? p6
-			: p2
-			? p4
-				? '<img src="' +
+		stash[--si] =
+			p6 ||
+			(p2
+				? p4
+					? '<img src="' +
+					  _$.escapeHTML(p4) +
+					  '" alt="' +
+					  _$.escapeHTML(p3) +
+					  '"/>'
+					: p1
+				: /^https?:\/\//g.test(p4)
+				? '<a href="' +
 				  _$.escapeHTML(p4) +
-				  '" alt="' +
-				  _$.escapeHTML(p3) +
-				  '"/>'
-				: p1
-			: /^https?:\/\//g.test(p4)
-			? '<a href="' +
-			  _$.escapeHTML(p4) +
-			  '">' +
-			  unesc(highlight(p3)) +
-			  "</a>"
-			: p1;
+				  '">' +
+				  unesc(highlight(p3)) +
+				  "</a>"
+				: p1);
 		return si + "\uf8ff";
 	});
 
 	// table
 	replace(rx_table, function (all, table) {
-		var sep = table.match(rx_thead)[1];
+		const sep = table.match(rx_thead)[1];
 		return (
 			"\n" +
 			element(
@@ -888,9 +889,9 @@ export let markdownToHTML = (src = req("string", "input")) => {
  * console.log(_$.syllables("Hello")); // 2
  * @returns {Number} The number of syllables in the specified word.
  */
-export let syllables = (word = req("string", "word")) => {
+export const syllables = (word = req("string", "word")) => {
 	word = word.toLowerCase();
-	var t_some = 0;
+	let t_some = 0;
 	if (word.length > 3) {
 		if (word.substring(0, 4) == "some") {
 			word = word.replace("some", "");
@@ -899,7 +900,7 @@ export let syllables = (word = req("string", "word")) => {
 	}
 	word = word.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/, "");
 	word = word.replace(/^y/, "");
-	var syl = word.match(/[aeiouy]{1,2}/g);
+	const syl = word.match(/[aeiouy]{1,2}/g);
 	console.log(syl);
 	if (syl) {
 		return syl.length + t_some;
@@ -914,7 +915,7 @@ export let syllables = (word = req("string", "word")) => {
  * _$.titleCase("hello world");//Returns "Hello World"
  * @returns {String} The string in title case.
  */
-export let titleCase = (str = req("string", "string")) =>
+export const titleCase = (str = req("string", "string")) =>
 	str
 		.toLowerCase()
 		.split(" ")
@@ -960,7 +961,7 @@ export let titleCase = (str = req("string", "string")) =>
  * console.log(_$.capitalize("hello world")); // "Hello world"
  * @returns {String} The capitalized string.
  */
-export let capitalize = (str = req("string", "string")) =>
+export const capitalize = (str = req("string", "string")) =>
 	String.fromCodePoint(str.codePointAt(0)).toUpperCase() +
 	str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
 /**
@@ -975,7 +976,7 @@ export let capitalize = (str = req("string", "string")) =>
  * @param {String} what What to replace with.
  * @returns {String} The replaced string
  */
-export let replaceBetween = (
+export const replaceBetween = (
 	string = req("string", "string"),
 	start = req("number", "start"),
 	end = req("number", "end"),
@@ -990,7 +991,7 @@ export let replaceBetween = (
  * console.log(_$.escapeHTML("<div>")); // "&lt;div&gt;"
  * @returns {String} The escaped HTML.
  */
-export let escapeHTML = (str = req("string")) =>
+export const escapeHTML = (str = req("string")) =>
 	str.replace(
 		/[&<>'"]/g,
 		(tag) =>
@@ -1011,7 +1012,7 @@ export let escapeHTML = (str = req("string")) =>
  * console.log(_$.unescapeHTML("&lt;div&gt;")); // "<div>"
  * @returns {String} The unescaped HTML.
  */
-export let unescapeHTML = (str = req("string")) =>
+export const unescapeHTML = (str = req("string")) =>
 	str.replace(
 		/&amp;|&lt;|&gt;|&#39;|&quot;/g,
 		(tag) =>
@@ -1031,8 +1032,8 @@ export let unescapeHTML = (str = req("string")) =>
  * console.log(_$.previousPage()); // e.g. "https://bijou.js.org"
  * @returns {String} The url of the previous page the user visited.
  */
-export let previousPage = () => {
+export const previousPage = () => {
 	node();
 	return document.referrer || window.location.href;
 };
-//#endregion String
+// #endregion String

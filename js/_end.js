@@ -1,20 +1,19 @@
-//#endregion bijou
+// #endregion bijou
 
 /**
  *Converts most of the functions of Bijou.js to prototype functions.
  * Note that you have to call this function to add the prototypes.
  * @param {Object} options The options to use, supports overwrite (boolean of whether to overwrite existing prototypes), and try, (boolean for whether to wrap in a try..catch)
  */
-export let prototype = (
+export const prototype = (
 	options = { overwrite: true, tryCatch: false },
 ) => {
 	function proto(fn, thing, name) {
-		let title =
+		const title =
 			name || fn ? fn.name : "noNameHehe124672463467432376453";
-		let overwrite =
+		const overwrite = !!(
 			options.overwrite !== undefined && options.overwrite !== false
-				? true
-				: false;
+		);
 		if (!thing.prototype.hasOwnProperty(title) || overwrite) {
 			Object.defineProperty(thing.prototype, title, {
 				value: function (...args) {
@@ -25,13 +24,13 @@ export let prototype = (
 							options.catchErrors) === true
 					) {
 						try {
-							let t = this;
+							const t = this;
 							return fn(t, ...args);
 						} catch (e) {
 							return e;
 						}
 					} else {
-						let t = this;
+						const t = this;
 						return fn(t, ...args);
 					}
 				},
@@ -308,11 +307,11 @@ let _temp = {
 _temp = sortObj(_temp);
 // Imports and exports
 export default _temp;
-//Export so that when people do <script src="bijou" type="module"></script>
+// Export so that when people do <script src="bijou" type="module"></script>
 if (!isNode) {
 	window._$ = _temp;
 }
-//So that we can use bijou in the source code.
+// So that we can use bijou in the source code.
 export const _$ = _temp;
 if (isNode) {
 	try {

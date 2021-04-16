@@ -1,4 +1,4 @@
-//#region Utility
+// #region Utility
 /**
  * Resizes an image from a URL and returns a promise with it's data URL.
  * @memberOf utility
@@ -8,24 +8,24 @@
  * @param {Number} [height=Natural width of the image] The target height of the new image
  * @returns {Promise.<string>} A data URL of the resized image.
  */
-export let resize = async (
+export const resize = async (
 	url = req("string", "html"),
 	width,
 	height,
 ) => {
 	node();
 	url = url.replace(/^(?:http|https)\:\/\//, "");
-	let img = new Image();
+	const img = new Image();
 	img.src = await _$.imageToData(
 		"https://cors.explosionscratc.repl.co/" + url,
 	);
 	await new Promise((res) => (img.onload = res));
-	let canvas = document.createElement("canvas");
-	let ctx = canvas.getContext("2d");
+	const canvas = document.createElement("canvas");
+	const ctx = canvas.getContext("2d");
 	canvas.width = width < 1 || !width ? img.width : width;
 	canvas.height = height < 1 || !width ? img.height : height;
 	ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-	let data = canvas.toDataURL(0, 0, canvas.width, canvas.height);
+	const data = canvas.toDataURL(0, 0, canvas.width, canvas.height);
 	return data;
 };
 /**
@@ -40,21 +40,21 @@ export let resize = async (
  * @param {Number} [opts.height=400]  The height of the output image.
  * @returns {Promise.<string>} A promise that resolves into the data URL string of the image.
  */
-export let htmlToImage = (
+export const htmlToImage = (
 	html = req("string", "html string"),
 	{ x = 0, y = 0, width = 300, height = 400 },
 ) => {
 	node();
-	let canvas = document.createElement("canvas");
+	const canvas = document.createElement("canvas");
 	canvas.width = width;
 	canvas.height = height;
-	var ctx = canvas.getContext("2d");
+	const ctx = canvas.getContext("2d");
 	return new Promise((res) => {
-		var xml = toXML(html);
+		let xml = toXML(html);
 		xml = xml.replace(/\#/g, "%23");
-		var data = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><foreignObject width="100%" height="100%">${xml}</foreignObject></svg>`;
+		const data = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><foreignObject width="100%" height="100%">${xml}</foreignObject></svg>`;
 
-		var img = new Image();
+		const img = new Image();
 		img.onload = function () {
 			ctx.drawImage(img, x, y, width, height);
 			res(canvas.toDataURL());
@@ -62,7 +62,7 @@ export let htmlToImage = (
 		img.src = data;
 	});
 	function toXML(html) {
-		var doc = document.implementation.createHTMLDocument("");
+		const doc = document.implementation.createHTMLDocument("");
 		doc.write(html);
 		doc.documentElement.setAttribute(
 			"xmlns",
@@ -87,7 +87,7 @@ export let htmlToImage = (
  *
  * getUUID(console.log, 500);//Get 500 uuid's from my API and log them to the console.
  */
-let callbackify = (fn = req("function", "function")) => (
+const callbackify = (fn = req("function", "function")) => (
 	callback,
 	...args
 ) =>
@@ -109,7 +109,7 @@ let callbackify = (fn = req("function", "function")) => (
  * 	console.log("It's been 2 seconds.")
  * })();
  */
-let promisify = (fn = req("function"), argIndex = 0) => {
+const promisify = (fn = req("function"), argIndex = 0) => {
 	return (...args) =>
 		new Promise((resolve, reject) => {
 			try {
@@ -144,7 +144,7 @@ let promisify = (fn = req("function"), argIndex = 0) => {
  * @param {Number} timeout The timeout to cancel after.
  * @param {Function} calcelCb The callback to run when cancelled, defaults to throwing an error.
  */
-export let race = (
+export const race = (
 	fn = req("function"),
 	timeout = req("number", "timeout"),
 	cancelCb = undefined,
@@ -154,13 +154,12 @@ export let race = (
 		new Promise((_, reject) =>
 			setTimeout(
 				() =>
-					cancelCb
-						? cancelCb
-						: reject(
-								new Error(
-									"Promise timed out (Bijou.js _$.race function)",
-								),
-						  ),
+					cancelCb ||
+					reject(
+						new Error(
+							"Promise timed out (Bijou.js _$.race function)",
+						),
+					),
 				timeout,
 			),
 		),
@@ -182,7 +181,7 @@ export let race = (
  * @param {*} e The thing to get the type of.
  * @param {Boolean} lowerCase Whether to return the string lowercased or not.
  */
-export let typeOf = (e = req("any", "any"), lowerCase = true) =>
+export const typeOf = (e = req("any", "any"), lowerCase = true) =>
 	Object.prototype.toString.call(e).split(" ")[1].replace(/]$/, "");
 /**
  * Injects CSS into the document head.
@@ -209,9 +208,9 @@ export let typeOf = (e = req("any", "any"), lowerCase = true) =>
  * @returns {HTMLElement} The CSS <style> element.
  * @param {String} css The CSS to inject.
  */
-export let injectCSS = (css = req("string", "css")) => {
+export const injectCSS = (css = req("string", "css")) => {
 	node();
-	let el = document.createElement("style");
+	const el = document.createElement("style");
 	el.setAttribute("type", "text/css");
 	el.innerText = css;
 	document.head.appendChild(el);
@@ -226,7 +225,7 @@ export let injectCSS = (css = req("string", "css")) => {
  * @example
  * console.log(_$.mobileOrDesktop()); // e.g. "desktop"
  */
-export let mobileOrDesktop = () => {
+export const mobileOrDesktop = () => {
 	node();
 	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
 		navigator.userAgent,
@@ -245,12 +244,12 @@ export let mobileOrDesktop = () => {
  * _$.playSection(new Audio("file.mp3"), 5, 20.5); // Plays file.mp3, starting with second 5 and ending at 20.5 seconds into the file.
  * @returns {undefined}
  */
-export let playSection = (
+export const playSection = (
 	audioObj = req("HTMLMediaElement", "audio"),
 	start = req("number", "start"),
 	stop = req("number", "stop"),
 ) => {
-	let audioObjNew = audioObj.cloneNode(true); //this is to prevent "play() request was interrupted" error.
+	const audioObjNew = audioObj.cloneNode(true); // this is to prevent "play() request was interrupted" error.
 	audioObjNew.currentTime = start;
 	audioObjNew.play();
 	audioObjNew.int = setInterval(function () {
@@ -275,10 +274,10 @@ export let playSection = (
    ```
  * @returns {String} The formatted string of HTML.
  */
-export let formatHTML = (html = req("string", "html")) => {
-	var tab = "\t";
-	var result = "";
-	var indent = "";
+export const formatHTML = (html = req("string", "html")) => {
+	const tab = "\t";
+	let result = "";
+	let indent = "";
 
 	html.split(/>\s*</).forEach(function (element) {
 		if (element.match(/^\/\w/)) {
@@ -307,7 +306,7 @@ export let formatHTML = (html = req("string", "html")) => {
  * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
  * @returns {Promise} A promise resolved when the JSON is fetched and parsed.
  */
-export let getJSON = (
+export const getJSON = (
 	url = req("string", "url"),
 	callback = () => {},
 ) => {
@@ -336,7 +335,7 @@ export let getJSON = (
  * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
  * @returns {Promise} A promise resolved when the HTML is fetched and parsed.
  */
-export let getHTML = (
+export const getHTML = (
 	url = req("string", "url"),
 	callback = () => {},
 ) => {
@@ -364,10 +363,10 @@ export let getHTML = (
  * _$.preloadImage("https://unsplash.com/some_huge_image.png"); // Preloads the unsplash image "some_huge_image.png" :P
  * @returns {undefined}
  */
-export let preloadImage = (...urls) => {
+export const preloadImage = (...urls) => {
 	req("string", "url arguments", ![...urls].length);
-	let images = [];
-	for (var i = 0; i < urls.length; i++) {
+	const images = [];
+	for (let i = 0; i < urls.length; i++) {
 		images[i] = new Image();
 		images[i].src = urls[i];
 	}
@@ -383,16 +382,16 @@ export let preloadImage = (...urls) => {
  * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
  * @returns {undefined}
  */
-export let saveBlob = (
+export const saveBlob = (
 	blob = req("blob", "blob"),
 	fileName = "output.txt",
 ) => {
 	node();
-	var a = document.createElement("a");
+	const a = document.createElement("a");
 	document.body.appendChild(a);
 	a.style = "display: none";
 
-	var url = window.URL.createObjectURL(blob);
+	const url = window.URL.createObjectURL(blob);
 	a.href = url;
 	a.download = fileName;
 	a.click();
@@ -407,25 +406,25 @@ export let saveBlob = (
  * @param {Number} delay The delay time in milliseconds to run the function.
  * @returns {Object}
  */
-export let requestInterval = function (
+export const requestInterval = function (
 	fn = req("function", "function"),
 	delay = req("number", "delay"),
 ) {
 	node();
-	var requestAnimFrame = (function () {
-			return (
-				window.requestAnimationFrame ||
-				function (callback) {
-					window.setTimeout(callback, 1000 / 60);
-				}
-			);
-		})(),
-		start = new Date().getTime(),
-		handle = {};
+	const requestAnimFrame = (function () {
+		return (
+			window.requestAnimationFrame ||
+			function (callback) {
+				window.setTimeout(callback, 1000 / 60);
+			}
+		);
+	})();
+	let start = new Date().getTime();
+	const handle = {};
 	function loop() {
 		handle.value = requestAnimFrame(loop);
-		var current = new Date().getTime(),
-			delta = current - start;
+		const current = new Date().getTime();
+		const delta = current - start;
 		if (delta >= delay) {
 			fn.call();
 			start = new Date().getTime();
@@ -445,7 +444,7 @@ export let requestInterval = function (
  * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
  * @returns {Promise} A promise resolved once the script is loaded.
  */
-export let loadScript = (
+export const loadScript = (
 	url = req("string", "url"),
 	callback = () => {},
 	options = {},
@@ -458,9 +457,9 @@ export let loadScript = (
 		}
 	}
 	return new Promise((resolve, reject) => {
-		var script = document.createElement("script");
+		const script = document.createElement("script");
 		script.type = "text/javascript";
-		let keys = Object.keys(options);
+		const keys = Object.keys(options);
 		_$.each(keys, (key) => {
 			script.setAttribute(key, options[key]);
 		});
@@ -502,15 +501,15 @@ export let loadScript = (
  * })
  * @returns {Promise} A promise fulfulled when the image is loaded.
  */
-export let imageToData = async (
+export const imageToData = async (
 	url = req("string", "url"),
 	callback = () => {},
 ) => {
 	node();
 	return new Promise(async (res, reject) => {
-		let blob = await fetch(url).then((r) => r.blob());
-		let dataUrl = await new Promise((resolve) => {
-			let reader = new FileReader();
+		const blob = await fetch(url).then((r) => r.blob());
+		const dataUrl = await new Promise((resolve) => {
+			const reader = new FileReader();
 			reader.onload = () => resolve(reader.result);
 			reader.readAsDataURL(blob);
 		});
@@ -526,7 +525,7 @@ export let imageToData = async (
  * _$.cookies.setItem("a_cookie", "Hello world!", 1); // Set a_cookie to "Hello world" and have it expire in a day.
  * @returns {Function} The function that the user wanted
  */
-export let cookies = {
+export const cookies = {
 	/**
 	 * Sets a cookie to a value
 	 * @function
@@ -542,9 +541,9 @@ export let cookies = {
 		days = 1000,
 	) => {
 		node();
-		var expires = "";
+		let expires = "";
 		if (days) {
-			var date = new Date();
+			const date = new Date();
 			date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
 			expires = "; expires=" + date.toUTCString();
 		}
@@ -561,13 +560,14 @@ export let cookies = {
 	getItem: (name = req("string", "name")) => {
 		node();
 
-		var nameEQ = name + "=";
-		var ca = document.cookie.split(";");
-		for (var i = 0; i < ca.length; i++) {
-			var c = ca[i];
+		const nameEQ = name + "=";
+		const ca = document.cookie.split(";");
+		for (let i = 0; i < ca.length; i++) {
+			let c = ca[i];
 			while (c.charAt(0) == " ") c = c.substring(1, c.length);
-			if (c.indexOf(nameEQ) === 0)
+			if (c.indexOf(nameEQ) === 0) {
 				return c.substring(nameEQ.length, c.length);
+			}
 		}
 		return null;
 	},
@@ -592,7 +592,7 @@ export let cookies = {
  * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
  * @returns {Regexp} A regex
  */
-export let regex = {
+export const regex = {
 	/**
 	 * Valid formats:
 	 * (123) 456-7890
@@ -647,17 +647,17 @@ export let regex = {
 	ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
 	/* Match IPv6 address */
 	ipv6: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/,
-	/**Both ipv4 and ipv6 */
+	/** Both ipv4 and ipv6 */
 	ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
-	/**Social security number */
+	/** Social security number */
 	socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
-	/**Hex color */
+	/** Hex color */
 	hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
 	/** Zip code */
 	zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
-	/**Phone */
+	/** Phone */
 	simplePhone: /^\+?[\d\s]{3,}$/,
-	/**Credit cards */
+	/** Credit cards */
 	visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
 	expressCredit: /^3[47][0–9]{13}$/,
 	mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
@@ -683,7 +683,7 @@ export let regex = {
   "","7"
    * @returns {String} The string of comma separated values (CSV) created from the JSON.
    */
-export let jsonToCsv = (
+export const jsonToCsv = (
 	arr = req("array", "array"),
 	columns = req("number", "columns"),
 	delimiter = ",",
@@ -710,7 +710,7 @@ export let jsonToCsv = (
  * console.log(_$.arrayToCSV([1,2,3,4])); // "1,2,3,4"
  * @returns {String} The comma separated array.
  */
-export let arrayToCSV = (
+export const arrayToCSV = (
 	arr = req("array", "array"),
 	delimiter = ",",
 ) =>
@@ -733,7 +733,7 @@ export let arrayToCSV = (
  * _$.notify("Hello", "Hi there! This is a notification!"); Notifies the user with the title "Hello" and the body text "Hi there! This is a notification!"
  * @returns {Promise} A promise that fulfills once the notification is sent, and is rejected when there is an error
  */
-export let notify = async (
+export const notify = async (
 	title = req("string", "text"),
 	body = req("string", "body"),
 	icon = undefined,
@@ -743,22 +743,20 @@ export let notify = async (
 		throw new Error("browser does not support notifications.");
 	} else {
 		if (Notification.permission === "granted") {
-			var notify = new Notification(title, {
+			const notify = new Notification(title, {
 				body: body,
 				icon: icon,
 			});
-			return;
 		} else {
 			// request permission from user
 			Notification.requestPermission()
 				.then(function (p) {
 					if (p === "granted") {
 						// show notification here
-						var notify = new Notification(title, {
+						const notify = new Notification(title, {
 							body: body,
 							icon: icon,
 						});
-						return;
 					} else {
 						throw new Error("User blocked notifications");
 					}
@@ -778,7 +776,7 @@ export let notify = async (
  * _$.copy("Hello world");
  * @returns {String} The string copied.
  */
-export let copy = (str = req("string", "string")) => {
+export const copy = (str = req("string", "string")) => {
 	node();
 	const el = document.createElement("textarea");
 	el.value = str;
@@ -807,30 +805,30 @@ export let copy = (str = req("string", "string")) => {
  * _$.browser(); // For me this (correctly) returns "Chrome"
  * @returns {String} A string of the browser name that the user is using.
  */
-export let browser = () => {
+export const browser = () => {
 	node();
-	var isOpera =
+	const isOpera =
 		(!!window.opr && !!opr.addons) ||
 		!!window.opera ||
 		navigator.userAgent.indexOf(" OPR/") >= 0;
-	var isFirefox = typeof InstallTrigger !== "undefined";
-	var isSafari =
+	const isFirefox = typeof InstallTrigger !== "undefined";
+	const isSafari =
 		/constructor/i.test(window.HTMLElement) ||
 		(function (p) {
 			return p.toString() === "[object SafariRemoteNotification]";
 		})(
-			!window["safari"] ||
+			!window.safari ||
 				(typeof safari !== "undefined" &&
-					window["safari"].pushNotification),
+					window.safari.pushNotification),
 		);
-	var isIE = /*@cc_on!@*/ false || !!document.documentMode;
-	var isEdge = !isIE && !!window.StyleMedia;
-	var isChrome =
+	const isIE = /* @cc_on!@ */ false || !!document.documentMode;
+	const isEdge = !isIE && !!window.StyleMedia;
+	const isChrome =
 		!!window.chrome &&
 		(!!window.chrome.webstore || !!window.chrome.runtime);
-	var isEdgeChromium =
+	const isEdgeChromium =
 		isChrome && navigator.userAgent.indexOf("Edg") != -1;
-	var isBlink = (isChrome || isOpera) && !!window.CSS;
+	const isBlink = (isChrome || isOpera) && !!window.CSS;
 	if (isOpera) {
 		return "Opera";
 	}
@@ -863,7 +861,7 @@ export let browser = () => {
  * @param {HTMLFormElement} form The form element.
  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
  */
-export let serializeForm = (
+export const serializeForm = (
 	form = req("HTMLFormElement", "form"),
 ) => {
 	node();
@@ -881,35 +879,35 @@ export let serializeForm = (
  * @memberOf utility
  * @function
  */
-export let soundex = (s = req("string", "word")) => {
-	var a = s.toLowerCase().split(""),
-		f = a.shift(),
-		r = "",
-		codes = {
-			a: "",
-			e: "",
-			i: "",
-			o: "",
-			u: "",
-			b: 1,
-			f: 1,
-			p: 1,
-			v: 1,
-			c: 2,
-			g: 2,
-			j: 2,
-			k: 2,
-			q: 2,
-			s: 2,
-			x: 2,
-			z: 2,
-			d: 3,
-			t: 3,
-			l: 4,
-			m: 5,
-			n: 5,
-			r: 6,
-		};
+export const soundex = (s = req("string", "word")) => {
+	const a = s.toLowerCase().split("");
+	const f = a.shift();
+	let r = "";
+	const codes = {
+		a: "",
+		e: "",
+		i: "",
+		o: "",
+		u: "",
+		b: 1,
+		f: 1,
+		p: 1,
+		v: 1,
+		c: 2,
+		g: 2,
+		j: 2,
+		k: 2,
+		q: 2,
+		s: 2,
+		x: 2,
+		z: 2,
+		d: 3,
+		t: 3,
+		l: 4,
+		m: 5,
+		n: 5,
+		r: 6,
+	};
 
 	r =
 		f +
@@ -924,4 +922,4 @@ export let soundex = (s = req("string", "word")) => {
 
 	return (r + "000").slice(0, 4).toUpperCase();
 };
-//#endregion Utility
+// #endregion Utility

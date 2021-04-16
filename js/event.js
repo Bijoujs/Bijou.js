@@ -1,4 +1,4 @@
-//#region Event
+// #region Event
 /**
  * Waits until a condition is met then resolves a promise.
  * @returns {Promise} A promise resolved when the condition returned by the function is true.
@@ -16,12 +16,12 @@
  * @param {Function} condition The function which returns true when the condition is met
  * @param {Number} [wait=Infinity] The wait time in milliseconds to cancel the function and reject the promise.
  */
-export let waitUntil = async (
+export const waitUntil = async (
 	condition = req("function", "condition"),
 	wait = Infinity,
 ) => {
 	return new Promise(async (resolve, reject) => {
-		let startTime = Date.now();
+		const startTime = Date.now();
 		while (!condition()) {
 			if (Date.now() - startTime >= wait) {
 				reject(condition());
@@ -43,7 +43,7 @@ export let waitUntil = async (
  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
  * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
  */
-export let onOutsideClick = (
+export const onOutsideClick = (
 	element = req("HTMLElement", "element"),
 	callback = req("function", "callback"),
 ) => {
@@ -68,7 +68,7 @@ export let onOutsideClick = (
  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
  * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
  */
-export let onScrollStop = (
+export const onScrollStop = (
 	element = window,
 	callback = req("function", "callback"),
 	time = 150,
@@ -102,7 +102,7 @@ export let onScrollStop = (
  *   thing.emit("data", "Yay! Some data!!"); // Logs "Yay! Some data!!" to the console after 2 seconds.
  * }, 2000)
  */
-export let hub = () => ({
+export const hub = () => ({
 	hub: Object.create(null),
 	emit(event, data) {
 		(this.hub[event] || []).forEach((handler) => handler(data));
@@ -129,15 +129,15 @@ export let hub = () => ({
  * @param {EventTarget} [target=window] What to dispatch the event to.
  * @returns {undefined}
  */
-export let dispatch = (
+export const dispatch = (
 	args = req("object", "event properties"),
 	type = req("string", "type"),
 	target = window,
 ) => {
-	let e = new Event(type);
-	for (let o in args) {
+	const e = new Event(type);
+	for (const o in args) {
 		e[o] = args[o];
 	}
 	target.dispatchEvent(e);
 };
-//#endregion Event
+// #endregion Event

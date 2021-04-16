@@ -1,9 +1,9 @@
-//#region Object
+// #region Object
 /**
- * Flattens an object recursively into one. 
+ * Flattens an object recursively into one.
  * @memberOf object
  * @function
- * @example 
+ * @example
  * _$.flattenObj({
       hello: "world",
       another: {
@@ -17,7 +17,7 @@
 * @param {Object} o The object to flatten
 * @returns {Object} The flattened object.
  */
-export let flattenObj = (o = req("object", "object")) => {
+export const flattenObj = (o = req("object", "object")) => {
 	return o !== Object(o) || Array.isArray(o)
 		? {}
 		: Object.assign(
@@ -49,13 +49,13 @@ export let flattenObj = (o = req("object", "object")) => {
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-export let clone = (
+export const clone = (
 	src = req("object", "Object to clone"),
 	/* These params are internal */
 	_visited,
 	_copiesVisited,
 ) => {
-	var object_create = Object.create;
+	let object_create = Object.create;
 	if (typeof object_create !== "function") {
 		object_create = function (o) {
 			function F() {}
@@ -66,7 +66,7 @@ export let clone = (
 	if (src === null || typeof src !== "object") {
 		return src;
 	}
-	if (typeof src.clone == "function") {
+	if (typeof src.clone === "function") {
 		return src.clone(true);
 	}
 	if (src instanceof Date) {
@@ -75,22 +75,22 @@ export let clone = (
 	if (src instanceof RegExp) {
 		return new RegExp(src);
 	}
-	if (src.nodeType && typeof src.cloneNode == "function") {
+	if (src.nodeType && typeof src.cloneNode === "function") {
 		return src.cloneNode(true);
 	}
 	if (_visited === undefined) {
 		_visited = [];
 		_copiesVisited = [];
 	}
-	var i,
-		len = _visited.length;
+	var i;
+	const len = _visited.length;
 	for (i = 0; i < len; i++) {
 		if (src === _visited[i]) {
 			return _copiesVisited[i];
 		}
 	}
 	if (Object.prototype.toString.call(src) == "[object Array]") {
-		var ret = src.slice();
+		const ret = src.slice();
 		_visited.push(src);
 		_copiesVisited.push(ret);
 
@@ -100,17 +100,17 @@ export let clone = (
 		}
 		return ret;
 	}
-	var proto = Object.getPrototypeOf
+	let proto = Object.getPrototypeOf
 		? Object.getPrototypeOf(src)
 		: src.__proto__;
 	if (!proto) {
 		proto = src.constructor.prototype;
 	}
-	var dest = object_create(proto);
+	const dest = object_create(proto);
 	_visited.push(src);
 	_copiesVisited.push(dest);
 
-	for (var key in src) {
+	for (const key in src) {
 		dest[key] = clone(src[key], _visited, _copiesVisited);
 	}
 	return dest;
@@ -128,7 +128,7 @@ export let clone = (
  * obj.anotherThing = "Hello world!"; // Logs "Set abotherThing to Hello world!" to the console!
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
-export let listen = (
+export const listen = (
 	obj = req("object"),
 	setCallback = () => null,
 	getCallback = () => null,
@@ -155,11 +155,11 @@ export let listen = (
  * @example
  * console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}
  */
-export let merge = function MergeRecursive(
+export const merge = function MergeRecursive(
 	obj1 = req("object", "object 1"),
 	obj2 = req("object", "object 2"),
 ) {
-	for (var p in obj2) {
+	for (const p in obj2) {
 		if (p in Object.prototype) continue;
 		try {
 			// Property in destination object set; update its value.
@@ -186,7 +186,7 @@ export let merge = function MergeRecursive(
  * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
  * @returns {Object} The new Object.
  */
-export let mapObjectKeys = (
+export const mapObjectKeys = (
 	obj = req("object"),
 	fn = req("function", "callback"),
 ) =>
@@ -213,7 +213,7 @@ export let mapObjectKeys = (
  * @example
  * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
  */
-export let mapObjectValues = (
+export const mapObjectValues = (
 	obj = req("object", "object"),
 	fn = req("function", "callback"),
 ) => {
@@ -240,7 +240,7 @@ export let mapObjectValues = (
  * const form = document.getElementById("form");
  * console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }
  */
-export let formToObject = (
+export const formToObject = (
 	form = req("HTMLFormElement", "the form"),
 ) => {
 	node();
@@ -261,7 +261,7 @@ export let formToObject = (
  * // The object is now {anotherThing: "Another value!", testing: "A value"}
  * @returns {Object} The sorted object.
  */
-export let sortObj = (obj = req("object", "object")) => {
+export const sortObj = (obj = req("object", "object")) => {
 	return Object.keys(obj)
 		.sort()
 		.reduce(function (result, key) {
@@ -269,4 +269,4 @@ export let sortObj = (obj = req("object", "object")) => {
 			return result;
 		}, {});
 };
-//#endregion Object
+// #endregion Object

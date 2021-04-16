@@ -1,4 +1,4 @@
-//#region Math
+// #region Math
 
 /**
  * Gets the greatest common divisor of a list of numbers.
@@ -9,19 +9,19 @@
  * _$.gcd(12, 4, 8);//Returns 4
  * @param {...Number} arr The numbers to compare
  */
-export let gcd = (...ary) => {
+export const gcd = (...ary) => {
 	if (ary[0] instanceof Array) {
 		return getGCD(ary[0]);
 	} else {
 		return getGCD([...ary]);
 	}
 	function getGCD(arr) {
-		let min = Math.min(...arr);
-		let max = Math.max(...arr);
+		const min = Math.min(...arr);
+		const max = Math.max(...arr);
 		if (min == max) {
 			return min;
 		} else {
-			for (let i in arr) {
+			for (const i in arr) {
 				if (arr[i] > min) {
 					arr[i] = arr[i] - min;
 				}
@@ -44,14 +44,16 @@ export let gcd = (...ary) => {
  * @param {*} a The first thing to test
  * @param {*} b The second thing to test
  */
-export let equals = (a = req("any", "a"), b = req("any", "b")) => {
+export const equals = (a = req("any", "a"), b = req("any", "b")) => {
 	if (a === b) return true;
-	if (a instanceof Date && b instanceof Date)
+	if (a instanceof Date && b instanceof Date) {
 		return a.getTime() === b.getTime();
-	if (!a || !b || (typeof a !== "object" && typeof b !== "object"))
+	}
+	if (!a || !b || (typeof a !== "object" && typeof b !== "object")) {
 		return a === b;
+	}
 	if (a.prototype !== b.prototype) return false;
-	let keys = Object.keys(a);
+	const keys = Object.keys(a);
 	if (keys.length !== Object.keys(b).length) return false;
 	return keys.every((k) => equals(a[k], b[k]));
 };
@@ -65,7 +67,7 @@ export let equals = (a = req("any", "a"), b = req("any", "b")) => {
  * _$.isPrime(10);//False
  * @param {Number} num The number to test.
  */
-export let isPrime = (num = req("number", "number")) => {
+export const isPrime = (num = req("number", "number")) => {
 	const boundary = Math.floor(Math.sqrt(num));
 	for (let i = 2; i <= boundary; i++) if (num % i === 0) return false;
 	return num >= 2;
@@ -79,7 +81,7 @@ export let isPrime = (num = req("number", "number")) => {
  * @example
  * _$.factorial(3);//6
  */
-export let factorial = (n = req("number")) =>
+export const factorial = (n = req("number")) =>
 	n < 0
 		? (() => {
 				throw new TypeError("Negative numbers are not allowed!");
@@ -97,12 +99,12 @@ export let factorial = (n = req("number")) =>
  * @memberOf math
  * @function
  */
-export let luhnCheck = (num = req("String|Number")) => {
-	let arr = (num + "")
+export const luhnCheck = (num = req("String|Number")) => {
+	const arr = (num + "")
 		.split("")
 		.reverse()
 		.map((x) => parseInt(x));
-	let lastDigit = arr.splice(0, 1)[0];
+	const lastDigit = arr.splice(0, 1)[0];
 	let sum = arr.reduce(
 		(acc, val, i) =>
 			i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9,
@@ -127,18 +129,17 @@ export let luhnCheck = (num = req("String|Number")) => {
  * @returns {undefined}
  */
 // prettier-ignore
-export let animate = (start = req("Number", "start"), end = req("Number", "end"), duration=req("number", "duration"), callback = req("function", "callback"), interval = 20, num = (num) => num) => {
-    var value = start;
-    var start_time = Date.now();
-    let update = setInterval(() => {
-        value = num((Date.now() - start_time) / duration) * (end - start) + start;
-        callback(value, num((Date.now() - start_time) / duration));
-    }, interval);
-    setTimeout(() => {
-        clearInterval(update);
-        callback(end, 1);
-        return;
-    }, duration);
+export const animate = (start = req('Number', 'start'), end = req('Number', 'end'), duration = req('number', 'duration'), callback = req('function', 'callback'), interval = 20, num = (num) => num) => {
+  let value = start
+  const start_time = Date.now()
+  const update = setInterval(() => {
+    value = num((Date.now() - start_time) / duration) * (end - start) + start
+    callback(value, num((Date.now() - start_time) / duration))
+  }, interval)
+  setTimeout(() => {
+    clearInterval(update)
+    callback(end, 1)
+  }, duration)
 }
 /**
  * Returns an array of the whole numbers (inclusive) between the numbers specified.
@@ -150,7 +151,7 @@ export let animate = (start = req("Number", "start"), end = req("Number", "end")
  * console.log(_$.range(-2, 1)); // [-2, -1, 0, 1]
  * @returns {Array.<Number>} An array of whole numbers (inclusive) between the numbers specified.
  */
-export let range = (start = req("number", "start"), end = 0) => {
+export const range = (start = req("number", "start"), end = 0) => {
 	if (start > end) {
 		[start, end] = [end, start];
 	}
@@ -167,14 +168,14 @@ export let range = (start = req("number", "start"), end = 0) => {
  * console.log(_$.uuid()); // e.g. "863d0193-863d-0193-863d-0193863d0193"
  * @returns {String} The UUID
  */
-export let uuid = (seed = Math.random()) => {
-	//Magic. Do not touch.
+export const uuid = (seed = Math.random()) => {
+	// Magic. Do not touch.
 	if (typeof seed === "string") {
 		// Convert string to a number between 0 and 1
 		seed = _temp.hashString(seed) / 10000000000000000;
 	}
 	function _p8(s) {
-		var p = (seed.toString(16) + "000000000").substr(2, 8);
+		const p = (seed.toString(16) + "000000000").substr(2, 8);
 		return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
 	}
 	return _p8() + _p8(true) + _p8(true) + _p8();
@@ -188,14 +189,14 @@ export let uuid = (seed = Math.random()) => {
  * console.log(_$.primesTo(10)); // [2, 3, 5, 7]
  * @returns {Array.<Number>} Returns an array of prime numbers up to the given number.
  */
-export let primesTo = (num = req("number", "number")) => {
+export const primesTo = (num = req("number", "number")) => {
 	let arr = Array.from({
-			length: num - 1,
-		}).map((x, i) => i + 2),
-		sqroot = Math.floor(Math.sqrt(num)),
-		numsTillSqroot = Array.from({
-			length: sqroot - 1,
-		}).map((x, i) => i + 2);
+		length: num - 1,
+	}).map((x, i) => i + 2);
+	const sqroot = Math.floor(Math.sqrt(num));
+	const numsTillSqroot = Array.from({
+		length: sqroot - 1,
+	}).map((x, i) => i + 2);
 	numsTillSqroot.forEach(
 		(x) => (arr = arr.filter((y) => y % x !== 0 || y === x)),
 	);
@@ -213,7 +214,7 @@ export let primesTo = (num = req("number", "number")) => {
  * @example
  * console.log(_$.random(0, 100)); // e.g. 47
  */
-export let random = (
+export const random = (
 	min = req("number", "min"),
 	max = 0,
 	round = true,
@@ -237,8 +238,8 @@ export let random = (
  * console.log(_$.seedRandom(13)); // 0.5663226493634284
  * @returns {Number} The random number from the seed.
  */
-export let seedRandom = (seed = req("number", "seed")) => {
-	var t = (seed += 0x6d2b79f5);
+export const seedRandom = (seed = req("number", "seed")) => {
+	let t = (seed += 0x6d2b79f5);
 	t = Math.imul(t ^ (t >>> 15), t | 1);
 	t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
 	return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
@@ -253,7 +254,7 @@ export let seedRandom = (seed = req("number", "seed")) => {
  * console.log(_$.formatNumber(100000000)); // "100,000,000"
  * @returns {String} The formatted string representation of the number.
  */
-export let formatNumber = (n = req("number", "number")) =>
+export const formatNumber = (n = req("number", "number")) =>
 	n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 /**
  * Easing functions
@@ -263,7 +264,7 @@ export let formatNumber = (n = req("number", "number")) =>
  * console.log(_$.ease.easeInOutQuad(.3)); // 0.18 - the eased point of about 1/3 along the animation.
  * @returns {Function} The easing function.
  */
-export let ease = {
+export const ease = {
 	// no easing, no acceleration
 	linear: (t = req("number", "percentage")) => t,
 	easeInSine: (t = req("number", "percentage")) =>
@@ -385,4 +386,4 @@ export let ease = {
 			: (1 + ease.easeOutBounce(2 * t - 1)) / 2,
 };
 
-//#endregion Math
+// #endregion Math

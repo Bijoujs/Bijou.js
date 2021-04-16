@@ -1,4 +1,4 @@
-//#region Date
+// #region Date
 /**
  * Returns the name of the weekday from the Date object specified.
  * @function
@@ -9,7 +9,7 @@
  * console.log(_$.dayName)); // e.g. "Friday"
  * @returns {String} The day name from the date.
  */
-export let dayName = (date = new Date(), locale = "en-US") =>
+export const dayName = (date = new Date(), locale = "en-US") =>
 	date.toLocaleDateString(locale, {
 		weekday: "long",
 	});
@@ -23,7 +23,7 @@ export let dayName = (date = new Date(), locale = "en-US") =>
  * console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"
  * @returns {String} The string of formatted milliseconds.
  */
-export let formatMilliseconds = (
+export const formatMilliseconds = (
 	ms = req("number", "milliseconds"),
 ) => {
 	ms = typeof ms === "string" ? +ms : ms;
@@ -52,7 +52,7 @@ export let formatMilliseconds = (
  * @param {Number} n How many minutes to add to the date.
  * @returns {Date} The date with minutes added.
  */
-export let addMinutesToDate = (
+export const addMinutesToDate = (
 	date = req("date", "date or date string"),
 	n = req("number", "minutes"),
 ) => {
@@ -75,7 +75,7 @@ export let addMinutesToDate = (
  * @param  {...any} val The arguments of the date to validate.
  * @returns {Boolean} Returns if the date is valid or not.
  */
-export let isDateValid = (...val) => {
+export const isDateValid = (...val) => {
 	req("any", "date arguments", ![...val].length);
 	return !Number.isNaN(new Date(...val).valueOf());
 };
@@ -87,7 +87,7 @@ export let isDateValid = (...val) => {
  * @param {Number} n How many days to add to the date.
  * @returns {Date} The date with the specified number of days added.
  */
-export let addDaysToDate = (
+export const addDaysToDate = (
 	date = req("date", "date or date string"),
 	n = req("number", "days"),
 ) => {
@@ -95,4 +95,4 @@ export let addDaysToDate = (
 	d.setDate(d.getDate() + n);
 	return d.toISOString().split("T")[0];
 };
-//#endregion Date
+// #endregion Date
