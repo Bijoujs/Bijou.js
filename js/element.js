@@ -1012,7 +1012,7 @@ export let observeMutations = (
 	callback = req("function", "callback"),
 	options = {},
 ) => {
-	nodd();
+	node();
 	const observer = new MutationObserver((mutations) =>
 		mutations.forEach((m) => callback(m)),
 	);
