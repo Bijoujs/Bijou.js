@@ -1,7 +1,5 @@
 npm install;
-npm i -g rollup eslint eslint-plugin-jsdoc jsdoc prettier terser figlet-cli @babel/core @babel/cli @babel/preset-env @babel/plugin-transform-modules-commonjs
-npm install eslint-plugin-jsdoc @babel/plugin-transform-spread @babel/plugin-transform-template-literals @babel/preset-env babel @babel/plugin-transform-arrow-functions @babel/plugin-transform-sticky-regex @babel/plugin-transform-shorthand-properties
-
+npm i -g eslint prettier terser jsdoc rollup
 function remove {
   rm -f .git/index.lock
 }

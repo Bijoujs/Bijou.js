@@ -1,6 +1,6 @@
 {
-	"extends": ["prettier", "plugin:jsdoc/recommended"],
-	"plugins": ["prettier", "jsdoc"],
+	"extends": ["prettier"],
+	"plugins": ["prettier"],
 	"rules": {
 		"prettier/prettier": ["error"]
 	}

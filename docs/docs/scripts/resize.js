@@ -23,9 +23,6 @@ var NAVBAR_OPTIONS = {};
 
     var navbarSlider = document.querySelector('#navbar-resize');
 
-    /**
-     * @param event
-     */
     function resizeNavbar(event) {
         var pageX = event.pageX,
             pageXPlusPx = event.pageX + 'px',
@@ -52,9 +49,6 @@ var NAVBAR_OPTIONS = {};
     }
 
 
-    /**
-     *
-     */
     function setupEventListeners() {
         // eslint-disable-next-line no-undef
         window.addEventListener('mousemove', resizeNavbar);
@@ -62,9 +56,6 @@ var NAVBAR_OPTIONS = {};
         window.addEventListener('touchmove', resizeNavbar);
     }
 
-    /**
-     *
-     */
     function afterRemovingEventListeners() {
         // eslint-disable-next-line no-undef
         localStorage.setItem(NAVBAR_RESIZE_LOCAL_STORAGE_KEY, JSON.stringify({
@@ -72,9 +63,6 @@ var NAVBAR_OPTIONS = {};
         }));
     }
 
-    /**
-     *
-     */
     function removeEventListeners() {
         // eslint-disable-next-line no-undef
         window.removeEventListener('mousemove', resizeNavbar);
@@ -92,9 +80,6 @@ var NAVBAR_OPTIONS = {};
 
 
 // eslint-disable-next-line no-unused-vars
-/**
- * @param options
- */
 function setupResizeOptions(options) {
     NAVBAR_OPTIONS = options;
 }
