@@ -1,0 +1,4986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Adding meta -->
+    
+    
+    <meta name="author" content="Explosion-Scratch" />
+    
+    <meta name="description" content="Bijou.js documentation: Everything function in Bijou.js documented!" />
+    
+    <meta name="keywords" content="Bijou.js, Docs, documentation, library, JS, HTML, CSS" />
+    
+    <meta name="theme-color" content="#008080" />
+    
+    <meta property="twitter:card" content="summary_large_image" />
+    
+    <meta property="twitter:url" content="https://bijou.js.org/docs" />
+    
+    <meta property="twitter:title" content="Bijou.js docs" />
+    
+    <meta property="og:title" content="Bijou.js docs" />
+    
+    <meta property="og:site_name" content="Bijou.js" />
+    
+    <meta property="og:description" content="Bijou.js documentation: Every function in Bijou.js is documented here!" />
+    
+    <meta property="og:image" content="https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401" />
+    
+    <meta property="twitter:image" content="https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401" />
+    
+    <meta property="twitter:description" content="Bijou.js documentation: Every function in Bijou.js is documented here!" />
+    
+    <meta name="language" content="English" />
+    
+    <meta name="revisit-after" content="1 days" />
+    
+    
+
+    <!-- Adding external script-->
+    
+    
+    <script href="https://unpkg.com/bijou.js@v6.2.0" type="module" ></script>
+    
+    
+
+    <!-- Adding external style-->
+    
+    
+    <link rel="shortcut icon" type="image/png" href="https://bijou.js.org/favicon.png" />
+    
+    
+
+    <!-- Adding scripts-->
+    
+
+    <!-- Adding style-->
+    
+
+    <!-- Adding overlay script-->
+    
+
+    <!-- Adding overlay style-->
+    
+
+
+    <title>
+      element
+    </title>
+
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/third-party/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/third-party/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/reset.css">
+    <link type="text/css" rel="stylesheet" href="styles/heading.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
+    
+    <style>
+      pre, pre * {font-family: monospace !important;} .tooltip * {color: white !important}
+
+nav {
+  background: linear-gradient(to right, #088, #0ca) !important;
+  padding: 10px !important;
+}
+nav, nav * {
+  box-sizing: border-box !important;
+}
+nav * {
+  color: white !important;
+}
+div.search-box-input-container {
+  background: #fff4 !important;
+  border-radius: 5px !important;
+}
+nav ::placeholder {
+  color: #ddd !important;
+}
+nav svg {
+  fill: white !important;
+}
+.methods {
+  background: #0001 !important;
+}
+.accordion-content {
+  background: #fff1 !important;
+}
+div.accordion-heading {
+  background: #fff3 !important;
+}
+
+::-webkit-scrollbar {
+  width: 3px !important;
+}
+::-webkit-scrollbar-track{
+  background: #0bb1 !important;
+}
+
+nav ::-webkit-scrollbar-thumb{
+  border-radius: 1000px !important;
+  background: #fff3 !important;
+}
+
+.page-title, header * {
+  border-color: #0ca5;
+}
+article pre * {
+  background: #111;
+}
+
+li.p-h-n {
+  color: #333 !important;
+}
+#search-item-ul * {
+  color: #333 !important;
+}
+#search-item-ul {
+  background: #fff9 !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 3px !important;
+}
+
+div.code-copy-icon-container:hover * {
+  color: white !important;
+  fill: white !important;
+}
+    </style>
+    
+    <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    style="display:none">
+    <defs>
+        <symbol id="copy-icon" viewbox="0 0 488.3 488.3">
+            <g>
+                <path
+                    d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z" />
+                <path
+                    d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6    V38.6C439.65,17.3,422.35,0,401.05,0z" />
+            </g>
+        </symbol>
+        <symbol id='search-icon' viewBox="0 0 512 512">
+            <g>
+                <g>
+                    <path
+                        d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474    c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323    c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848    S326.847,409.323,225.474,409.323z" />
+                </g>
+            </g>
+            <g>
+                <g>
+                    <path
+                        d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328    c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z" />
+                </g>
+            </g>
+        </symbol>
+        <symbol id="down-icon" viewBox="0 0 16 16">
+            <path 
+                fill-rule="evenodd" 
+                clip-rule="evenodd" 
+                d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"
+            >
+            </path>
+        </symbol>
+    </defs>
+</svg>
+  </head>
+
+  <body>
+
+    <nav class="navbar" id="navbar">
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://bijou.js.org' class=' menu-link' id='' target=''>Home</a></li><li class="menu-li"><a href='https://github.com/bijou-js/bijou.js' class=' menu-link' id='' target='_blank'>Github</a></li><li class="menu-li"><a href='https://bijou.js.org/docs/bijou.html' class=' menu-link' id='' target=''>Functions in Bijou</a></li></ul><div class="accordion collapsed" id="2438312" > <h3 class="accordion-heading">Namespaces<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=7956182><div class="accordion-heading child"><a href="array.html">array</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="array.html#.exports.arrayDiff">exports.arrayDiff</a></li><li data-type='method'><a href="array.html#.exports.averageBy">exports.averageBy</a></li><li data-type='method'><a href="array.html#.exports.contains">exports.contains</a></li><li data-type='method'><a href="array.html#.exports.count">exports.count</a></li><li data-type='method'><a href="array.html#.exports.diff">exports.diff</a></li><li data-type='method'><a href="array.html#.exports.each">exports.each</a></li><li data-type='method'><a href="array.html#.exports.flatten">exports.flatten</a></li><li data-type='method'><a href="array.html#.exports.nFlatten">exports.nFlatten</a></li><li data-type='method'><a href="array.html#.exports.remove">exports.remove</a></li><li data-type='method'><a href="array.html#.exports.shuffleArray">exports.shuffleArray</a></li><li data-type='method'><a href="array.html#.exports.splice">exports.splice</a></li><li data-type='method'><a href="array.html#.exports.spliceArrayBuffer">exports.spliceArrayBuffer</a></li><li data-type='method'><a href="array.html#.exports.unionArrays">exports.unionArrays</a></li><li data-type='method'><a href="array.html#.exports.uniqueArray">exports.uniqueArray</a></li></ul></li><li class="accordion collapsed child" id=7580045><div class="accordion-heading child"><a href="color.html">color</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="color.html#.exports.blendColors">exports.blendColors</a></li><li data-type='method'><a href="color.html#.exports.hexToRGB">exports.hexToRGB</a></li><li data-type='method'><a href="color.html#.exports.lightenColor">exports.lightenColor</a></li><li data-type='method'><a href="color.html#.exports.lightOrDark">exports.lightOrDark</a></li><li data-type='method'><a href="color.html#.exports.randomColor">exports.randomColor</a></li><li data-type='method'><a href="color.html#.exports.rgbToHex">exports.rgbToHex</a></li></ul></li><li class="accordion collapsed child" id=1268006><div class="accordion-heading child"><a href="date.html">date</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="date.html#.exports.addDaysToDate">exports.addDaysToDate</a></li><li data-type='method'><a href="date.html#.exports.addMinutesToDate">exports.addMinutesToDate</a></li><li data-type='method'><a href="date.html#.exports.dayName">exports.dayName</a></li><li data-type='method'><a href="date.html#.exports.formatMilliseconds">exports.formatMilliseconds</a></li><li data-type='method'><a href="date.html#.exports.isDateValid">exports.isDateValid</a></li></ul></li><li class="accordion collapsed child" id=3510956><div class="accordion-heading child"><a href="element.html">element</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="element.html#.exports.addEventListeners">exports.addEventListeners</a></li><li data-type='method'><a href="element.html#.exports.addStyles">exports.addStyles</a></li><li data-type='method'><a href="element.html#.exports.attributes">exports.attributes</a></li><li data-type='method'><a href="element.html#.exports.compStyle">exports.compStyle</a></li><li data-type='method'><a href="element.html#.exports.context">exports.context</a></li><li data-type='method'><a href="element.html#.exports.create">exports.create</a></li><li data-type='method'><a href="element.html#.exports.createElement">exports.createElement</a></li><li data-type='method'><a href="element.html#.exports.disableRightClick">exports.disableRightClick</a></li><li data-type='method'><a href="element.html#.exports.drag">exports.drag</a></li><li data-type='method'><a href="element.html#.exports.elementContains">exports.elementContains</a></li><li data-type='method'><a href="element.html#.exports.elementReady">exports.elementReady</a></li><li data-type='method'><a href="element.html#.exports.elementSiblings">exports.elementSiblings</a></li><li data-type='method'><a href="element.html#.exports.fullScreen">exports.fullScreen</a></li><li data-type='method'><a href="element.html#.exports.getImages">exports.getImages</a></li><li data-type='method'><a href="element.html#.exports.inlineCSS">exports.inlineCSS</a></li><li data-type='method'><a href="element.html#.exports.inPartialView">exports.inPartialView</a></li><li data-type='method'><a href="element.html#.exports.inView">exports.inView</a></li><li data-type='method'><a href="element.html#.exports.observeMutations">exports.observeMutations</a></li><li data-type='method'><a href="element.html#.exports.parents">exports.parents</a></li><li data-type='method'><a href="element.html#.exports.parseHTML">exports.parseHTML</a></li><li data-type='method'><a href="element.html#.exports.querySelector">exports.querySelector</a></li><li data-type='method'><a href="element.html#.exports.removeComments">exports.removeComments</a></li><li data-type='method'><a href="element.html#.exports.renderElement">exports.renderElement</a></li><li data-type='method'><a href="element.html#.exports.replaceSelection">exports.replaceSelection</a></li><li data-type='method'><a href="element.html#.exports.replaceText">exports.replaceText</a></li><li data-type='method'><a href="element.html#.exports.ripple">exports.ripple</a></li><li data-type='method'><a href="element.html#.exports.sortTable">exports.sortTable</a></li><li data-type='method'><a href="element.html#.exports.sortTableBy">exports.sortTableBy</a></li><li data-type='method'><a href="element.html#.exports.textNodes">exports.textNodes</a></li><li data-type='method'><a href="element.html#.exports.tilt">exports.tilt</a></li></ul></li><li class="accordion collapsed child" id=931011><div class="accordion-heading child"><a href="event.html">event</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="event.html#.exports.dispatch">exports.dispatch</a></li><li data-type='method'><a href="event.html#.exports.hub">exports.hub</a></li><li data-type='method'><a href="event.html#.exports.onOutsideClick">exports.onOutsideClick</a></li><li data-type='method'><a href="event.html#.exports.onScrollStop">exports.onScrollStop</a></li></ul></li><li class="accordion collapsed child" id=3103653><div class="accordion-heading child"><a href="function.html">function</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="function.html#.exports.composeFunction">exports.composeFunction</a></li><li data-type='method'><a href="function.html#.exports.curryFunction">exports.curryFunction</a></li><li data-type='method'><a href="function.html#.exports.debounce">exports.debounce</a></li><li data-type='method'><a href="function.html#.exports.isAsync">exports.isAsync</a></li><li data-type='method'><a href="function.html#.exports.memoize">exports.memoize</a></li><li data-type='method'><a href="function.html#.exports.runAsync">exports.runAsync</a></li><li data-type='method'><a href="function.html#.exports.spread">exports.spread</a></li><li data-type='method'><a href="function.html#.exports.throttle">exports.throttle</a></li><li data-type='method'><a href="function.html#.exports.timeFunction">exports.timeFunction</a></li></ul></li><li class="accordion collapsed child" id=8138186><div class="accordion-heading child"><a href="math.html">math</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="math.html#.exports.animate">exports.animate</a></li><li data-type='method'><a href="math.html#.exports.equals">exports.equals</a></li><li data-type='method'><a href="math.html#.exports.factorial">exports.factorial</a></li><li data-type='method'><a href="math.html#.exports.formatNumber">exports.formatNumber</a></li><li data-type='method'><a href="math.html#.exports.gcd">exports.gcd</a></li><li data-type='method'><a href="math.html#.exports.isPrime">exports.isPrime</a></li><li data-type='method'><a href="math.html#.exports.luhnCheck">exports.luhnCheck</a></li><li data-type='method'><a href="math.html#.exports.primesTo">exports.primesTo</a></li><li data-type='method'><a href="math.html#.exports.random">exports.random</a></li><li data-type='method'><a href="math.html#.exports.range">exports.range</a></li><li data-type='method'><a href="math.html#.exports.seedRandom">exports.seedRandom</a></li><li data-type='method'><a href="math.html#.exports.uuid">exports.uuid</a></li></ul></li><li class="accordion collapsed child" id=1433463><div class="accordion-heading child"><a href="object.html">object</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="object.html#.exports.clone">exports.clone</a></li><li data-type='method'><a href="object.html#.exports.flattenObj">exports.flattenObj</a></li><li data-type='method'><a href="object.html#.exports.formToObject">exports.formToObject</a></li><li data-type='method'><a href="object.html#.exports.listen">exports.listen</a></li><li data-type='method'><a href="object.html#.exports.mapObjectKeys">exports.mapObjectKeys</a></li><li data-type='method'><a href="object.html#.exports.mapObjectValues">exports.mapObjectValues</a></li><li data-type='method'><a href="object.html#.exports.merge">exports.merge</a></li><li data-type='method'><a href="object.html#.exports.sortObj">exports.sortObj</a></li></ul></li><li class="accordion collapsed child" id=9506342><div class="accordion-heading child"><a href="string.html">string</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="string.html#.exports.byteSize">exports.byteSize</a></li><li data-type='method'><a href="string.html#.exports.camelCase">exports.camelCase</a></li><li data-type='method'><a href="string.html#.exports.capitalize">exports.capitalize</a></li><li data-type='method'><a href="string.html#.exports.deburr">exports.deburr</a></li><li data-type='method'><a href="string.html#.exports.editDistance">exports.editDistance</a></li><li data-type='method'><a href="string.html#.exports.escapeHTML">exports.escapeHTML</a></li><li data-type='method'><a href="string.html#.exports.forTemplateLiteral">exports.forTemplateLiteral</a></li><li data-type='method'><a href="string.html#.exports.hash">exports.hash</a></li><li data-type='method'><a href="string.html#.exports.hashString">exports.hashString</a></li><li data-type='method'><a href="string.html#.exports.jaroDistance">exports.jaroDistance</a></li><li data-type='method'><a href="string.html#.exports.mapString">exports.mapString</a></li><li data-type='method'><a href="string.html#.exports.markdownToHTML">exports.markdownToHTML</a></li><li data-type='method'><a href="string.html#.exports.parseCookie">exports.parseCookie</a></li><li data-type='method'><a href="string.html#.exports.prefixCSS">exports.prefixCSS</a></li><li data-type='method'><a href="string.html#.exports.previousPage">exports.previousPage</a></li><li data-type='method'><a href="string.html#.exports.removeTags">exports.removeTags</a></li><li data-type='method'><a href="string.html#.exports.replaceBetween">exports.replaceBetween</a></li><li data-type='method'><a href="string.html#.exports.replaceMultiple">exports.replaceMultiple</a></li><li data-type='method'><a href="string.html#.exports.sanitize">exports.sanitize</a></li><li data-type='method'><a href="string.html#.exports.scrambleString">exports.scrambleString</a></li><li data-type='method'><a href="string.html#.exports.speak">exports.speak</a></li><li data-type='method'><a href="string.html#.exports.syllables">exports.syllables</a></li><li data-type='method'><a href="string.html#.exports.titleCase">exports.titleCase</a></li><li data-type='method'><a href="string.html#.exports.unCamelCase">exports.unCamelCase</a></li><li data-type='method'><a href="string.html#.exports.unescapeHTML">exports.unescapeHTML</a></li><li data-type='method'><a href="string.html#.exports.urlQuery">exports.urlQuery</a></li><li data-type='method'><a href="string.html#.exports.widows">exports.widows</a></li></ul></li><li class="accordion collapsed child" id=3463350><div class="accordion-heading child"><a href="utility.html">utility</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="utility.html#.callbackify">callbackify</a></li><li data-type='method'><a href="utility.html#.exports.arrayToCSV">exports.arrayToCSV</a></li><li data-type='method'><a href="utility.html#.exports.browser">exports.browser</a></li><li data-type='method'><a href="utility.html#.exports.copy">exports.copy</a></li><li data-type='method'><a href="utility.html#.exports.formatHTML">exports.formatHTML</a></li><li data-type='method'><a href="utility.html#.exports.getHTML">exports.getHTML</a></li><li data-type='method'><a href="utility.html#.exports.getJSON">exports.getJSON</a></li><li data-type='method'><a href="utility.html#.exports.htmlToImage">exports.htmlToImage</a></li><li data-type='method'><a href="utility.html#.exports.imageToData">exports.imageToData</a></li><li data-type='method'><a href="utility.html#.exports.injectCSS">exports.injectCSS</a></li><li data-type='method'><a href="utility.html#.exports.jsonToCsv">exports.jsonToCsv</a></li><li data-type='method'><a href="utility.html#.exports.loadScript">exports.loadScript</a></li><li data-type='method'><a href="utility.html#.exports.mobileOrDesktop">exports.mobileOrDesktop</a></li><li data-type='method'><a href="utility.html#.exports.notify">exports.notify</a></li><li data-type='method'><a href="utility.html#.exports.playSection">exports.playSection</a></li><li data-type='method'><a href="utility.html#.exports.preloadImage">exports.preloadImage</a></li><li data-type='method'><a href="utility.html#.exports.race">exports.race</a></li><li data-type='method'><a href="utility.html#.exports.requestInterval">exports.requestInterval</a></li><li data-type='method'><a href="utility.html#.exports.resize">exports.resize</a></li><li data-type='method'><a href="utility.html#.exports.saveBlob">exports.saveBlob</a></li><li data-type='method'><a href="utility.html#.exports.serializeForm">exports.serializeForm</a></li><li data-type='method'><a href="utility.html#.exports.soundex">exports.soundex</a></li><li data-type='method'><a href="utility.html#.exports.typeOf">exports.typeOf</a></li><li data-type='method'><a href="utility.html#.getItem">getItem</a></li><li data-type='method'><a href="utility.html#.promisify">promisify</a></li><li data-type='method'><a href="utility.html#.removeItem">removeItem</a></li><li data-type='method'><a href="utility.html#.setItem">setItem</a></li></ul></li></ul> </div><div class="accordion collapsed" id="603273" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#_temp">_temp</a></li><li class="accordion-list" id=""><a href="global.html#node">node</a></li><li class="accordion-list" id=""><a href="global.html#prototype">prototype</a></li></ul> </div></div>
+      
+
+    </nav>
+    <div class="navbar-ham" id="navbar-ham">
+      <div>
+        <div class="first"></div>
+        <div class="second"></div>
+        <div class="third"></div>
+      </div>
+    </div>
+
+    <div id="main" class="main-content">
+      
+      <h1 id='page-title' class="page-title">
+        element
+      </h1>
+      
+
+      
+
+
+
+
+<section>
+
+
+<header>
+    
+        
+        <h2>
+        
+        element
+        
+        </h2>
+        
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>The element namespace of Bijou.js, containing functions to create elements from query selectors, enable custom right click options, test if an element is on screen, replace the text of an element without altering it's styling, and much more!</p></div>
+        
+
+        
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.addEventListeners">
+        <a href="#.exports.addEventListeners">#</a>
+        <span class="type-signature">(static) </span>exports.addEventListeners<span class="signature">(element, events, handler, useCapture<span class="signature-attributes">opt</span>, args<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {undefined}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Adds multiple event listeners with one callback to the element specified.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The element to add the event listeners to.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>events</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;String></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The array of events to listen for.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>handler</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The function to run when the events happen.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>useCapture</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+|
+
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Whether to use capture, or an options object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>The arguments to use in the handler function.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>// Reset a timer every user interaction.
+let timer = 0;
+setInterval(() => timer++, 1);
+_$.addEventListeners(
+ document,
+ ["mousemove", "click", "scroll", "keypress"],
+ () => timer = 0,
+);</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.addStyles">
+        <a href="#.exports.addStyles">#</a>
+        <span class="type-signature">(static) </span>exports.addStyles<span class="signature">(el, styles)</span><span class="type-signature"> &rarr; {Object}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Adds the specified styles to the element specified.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to add the styles to.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>styles</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An object that represents the styles to be added. (camelCased)</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>the style object of the element.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.attributes">
+        <a href="#.exports.attributes">#</a>
+        <span class="type-signature">(static) </span>exports.attributes<span class="signature">(el)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="object.html">object</a>>}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Returns an array of objects representing the attributes of a passed element.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The HMTL element to get attributes from.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The array of objects representing the attributes</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;<a href="object.html">object</a>></span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>// Say the &lt;html> tag of the document was "&lt;html style='background-color: #101010;'>", then the function below would log "style," to the console.
+console.log(Object.keys(_$.attributes(document.documentElement).join(", "));</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.compStyle">
+        <a href="#.exports.compStyle">#</a>
+        <span class="type-signature">(static) </span>exports.compStyle<span class="signature">(el, prop)</span><span class="type-signature"> &rarr; {String}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Gets a property from the computed style of an element.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element whose styles to get.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>prop</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The css-property value to get of the styles.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The computed style property for the element specified.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>console.log(_$.compStyle(document.documentElement, "background-color")); // logs the background colour of the document</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.context">
+        <a href="#.exports.context">#</a>
+        <span class="type-signature">(static) </span>exports.context<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Re-enables the use of &lt;menu&gt; and &lt;menuitem&gt; tags for corner clicking.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>//HTML:
+```
+&lt;h1 contextmenu="menu">Corner click me&lt;/h1>
+&lt;menu>
+ &lt;menuitem label="An item!">
+ &lt;menuitem label="Another item!">
+&lt;/menu>
+```
+//JS
+_$.context();
+// Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.create">
+        <a href="#.exports.create">#</a>
+        <span class="type-signature">(static) </span>exports.create<span class="signature">(querySelector, &hellip;content<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Create a DOM element from a querySelector with option to include content</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>querySelector</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>(optional) default to div</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>content</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>(optional) String|Number|DOMElement</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>DOMElement</p>
+</div>
+
+
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>- createElement(); // &lt;div>
+- createElement('span#my-id.my-class.second-class'); // &lt;span id="my-id" class="my-class second-class">
+- createElement('#my-id.my-class.second-class', 'text to insert', 12345); // &lt;div id="my-id" class="my-class second-class"></code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.createElement">
+        <a href="#.exports.createElement">#</a>
+        <span class="type-signature">(static) </span>exports.createElement<span class="signature">(str)</span><span class="type-signature"> &rarr; {Element}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Creates an HTML element from the specified string.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The string of the HTML element to create.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The created element.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Element</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>//Returns a div with an id of "id_here" and innerText of "Testing!"
+_$.createElement("&lt;div id='id_here'>Testing!&lt;/div>");</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.disableRightClick">
+        <a href="#.exports.disableRightClick">#</a>
+        <span class="type-signature">(static) </span>exports.disableRightClick<span class="signature">(el)</span><span class="type-signature"> &rarr; {undefined}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Disables right click on the element spcified.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to disable right click on.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.disableRightClick(document.documentElement)</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.drag">
+        <a href="#.exports.drag">#</a>
+        <span class="type-signature">(static) </span>exports.drag<span class="signature">(dragHandle, dragTarget)</span><span class="type-signature"> &rarr; {Element}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Allows an element to be dragged and dropped.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dragHandle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element that when dragged should move the dragTarget.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dragTarget</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element that should be moved when the dragHandle is dragged.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The element.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Element</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.drag('div span', 'div'); // Allows the first &lt;div> on the page to be dragged by the &lt;span> element inside it.</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.elementContains">
+        <a href="#.exports.elementContains">#</a>
+        <span class="type-signature">(static) </span>exports.elementContains<span class="signature">(parent, child)</span><span class="type-signature"> &rarr; {Boolean}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Tests if an element is a child element of another element.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>parent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The parent element to test.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>child</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The child element to test.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>If the element is a child or not</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Examples</strong>
+        
+    <pre class="prettyprint"><code>_$.elementContains(document.querySelector("#container"), document.querySelector("#img"));//If the element with an id of "img" is inside the #container element this will return true, otherwise it will return false</code></pre>
+
+    <pre class="prettyprint"><code>//Note that the easiest way to do this would be to use _$.onOutsideClick(), but this is another way that demonstrates the use of this function.
+//Listen for a click outside of an element (in this case the div#popup element) then remove the popup element.
+document.querySelector("div#popup").addEventListener("click", (e) => {
+ let contains = _$.elementContains(document.querySelector("div#popup"), e.target);
+ if (!contains){
+   document.querySelector("div#popup".remove()
+ }
+})</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.elementReady">
+        <a href="#.exports.elementReady">#</a>
+        <span class="type-signature">(static) </span>exports.elementReady<span class="signature">(parent<span class="signature-attributes">opt</span>, selector)</span><span class="type-signature"> &rarr; {Promise}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Waits for an element satisfying selector to exist, then resolves promise with the element.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>parent</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    document.documentElement
+                
+                </td>
+            
+
+            <td class="description last"><p>The parent element to watch.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>selector</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The querySelector to watch for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>A promise resolved when the element exists.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.elementReady("#text").then((e) => e.remove());//Wait for an element with an ID of "text" then removes it.</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.elementSiblings">
+        <a href="#.exports.elementSiblings">#</a>
+        <span class="type-signature">(static) </span>exports.elementSiblings<span class="signature">(n)</span><span class="type-signature"> &rarr; {Array.&lt;Element>}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Get the siblings of a DOM element</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>n</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to get siblings of</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The array of sibling elements.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;Element></span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.backgroundColor = 'white');
+// Make every sibling of the first list item's background color white.</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.fullScreen">
+        <a href="#.exports.fullScreen">#</a>
+        <span class="type-signature">(static) </span>exports.fullScreen<span class="signature">(element)</span><span class="type-signature"> &rarr; {undefined}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Enters fullscreen on an element.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to enter full screen with.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.fullScreen(document.documentElement); // Make the window fullscreen</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.getImages">
+        <a href="#.exports.getImages">#</a>
+        <span class="type-signature">(static) </span>exports.getImages<span class="signature">(el<span class="signature-attributes">opt</span>, includeDuplicates<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Gets all the images that are children of the specified element.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    document.documentElement
+                
+                </td>
+            
+
+            <td class="description last"><p>The element to get images from (e.g. document.body)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>includeDuplicates</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last"><p>Whether to include duplicate images, defaults to false.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The array of image urls.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>//Get all the images on the page and convert their url's to data urls then log that list to console.
+_$.getImages().forEach(image_url => {
+ image_data_list.push(_$.imageToData(image_url))
+})
+console.log(image_data_list);</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.inlineCSS">
+        <a href="#.exports.inlineCSS">#</a>
+        <span class="type-signature">(static) </span>exports.inlineCSS<span class="signature">(el)</span><span class="type-signature"> &rarr; {undefined}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to convert.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.inlineCSS(document.querySelector("h1")); // Converts the styles for the &lt;h1> element to inline using the style="___" attribute</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.inPartialView">
+        <a href="#.exports.inPartialView">#</a>
+        <span class="type-signature">(static) </span>exports.inPartialView<span class="signature">(el)</span><span class="type-signature"> &rarr; {Boolean}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Tests if the given DOM element is partially (or fully) in view.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to test.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>Whether the DOM element is partially in view.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>// Alerts "In view!" if the first &lt;div> in the document is partially or fully view.
+if (_$.inPartialView(document.querySelector("div"))) alert("In view!");</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.inView">
+        <a href="#.exports.inView">#</a>
+        <span class="type-signature">(static) </span>exports.inView<span class="signature">(el)</span><span class="type-signature"> &rarr; {Boolean}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Tests whether the specified element is fully in view.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The DOM element to test.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>Whether the element is completely in view.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>// Alerts "In view!" if the first &lt;div> in the document is in view.
+if (_$.inView(document.querySelector("div"))) alert("In view!");</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.observeMutations">
+        <a href="#.exports.observeMutations">#</a>
+        <span class="type-signature">(static) </span>exports.observeMutations<span class="signature">(element, callback, options)</span><span class="type-signature"> &rarr; {undefined}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Observes the mutations of the html element specified.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to observe</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The callback function to run when a mutation happens.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The options to use.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.observeMutations(document, console.log); // Logs all the mutations that happen to the console.</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.parents">
+        <a href="#.exports.parents">#</a>
+        <span class="type-signature">(static) </span>exports.parents<span class="signature">(el)</span><span class="type-signature"> &rarr; {Array.&lt;HTMLElement>}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Gets the parent elements of the element given.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>An array of the parent elements from deepest to outermost.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array.&lt;HTMLElement></span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>//Where the html is like so:
+```
+&lt;html>
+ &lt;head>
+ &lt;/head>
+ &lt;body>
+   &lt;div id="img">
+    &lt;img src="https://example.com/example.png">
+   &lt;/div>
+ &lt;/body>
+&lt;/html>
+```
+_$.parents(document.querySelector("img"));//[div#img, body, html]</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.parseHTML">
+        <a href="#.exports.parseHTML">#</a>
+        <span class="type-signature">(static) </span>exports.parseHTML<span class="signature">(string, mimeType<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {HTMLDocument}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Parses the string of HTML specified and returns an HTML element of it.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>string</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The HTML string to parse.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mimeType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "text/html"
+                
+                </td>
+            
+
+            <td class="description last"><p>The mimeType of the string.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The HTML document element of the HTML string specified.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">HTMLDocument</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>let html = _$.parseHTML("&lt;div id='hello'>&lt;textarea>&lt;/textarea>&lt;/div>");
+html.querySelector("textarea");//Returns the textarea!</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.querySelector">
+        <a href="#.exports.querySelector">#</a>
+        <span class="type-signature">(static) </span>exports.querySelector<span class="signature">(elem)</span><span class="type-signature"> &rarr; {String}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Generates a querySelector for an element passed in.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elem</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to generate the querySelector for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The generated querySelector.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>const textarea = document.getElementById('textarea');
+console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.removeComments">
+        <a href="#.exports.removeComments">#</a>
+        <span class="type-signature">(static) </span>exports.removeComments<span class="signature">(el)</span><span class="type-signature"> &rarr; {HTMLElement}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Removes comments from the element specified.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to remove comments from.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The HTML element with the comments removed.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">HTMLElement</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.removeComments(document.documentElement);//Removes the comments from the document element.</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.renderElement">
+        <a href="#.exports.renderElement">#</a>
+        <span class="type-signature">(static) </span>exports.renderElement<span class="signature">(param, container)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Renders an HTML element from an object in the container specified.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>param</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The type of object (the HTML tagName)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>container</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The html element to render it in.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>//Renders a button in the document body.
+_$.renderElement({
+  type: 'button',
+  props: {
+    type: 'button',
+    className: 'btn',
+    onClick: () => alert('Clicked'),
+    children: [{ props: { nodeValue: 'Click me' } }]
+  }
+}, document.body)</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.replaceSelection">
+        <a href="#.exports.replaceSelection">#</a>
+        <span class="type-signature">(static) </span>exports.replaceSelection<span class="signature">(replacementText)</span><span class="type-signature"> &rarr; {undefined}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Replaces the selected text in a contentEditable div with the HTML given.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>replacementText</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The replacement HTML to replace with.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>// Add a simple contenteditable div to the page.
+document.appendChild(_$.createElement("&lt;div contenteditable id='text'>&lt;/div>"));
+_$.replaceSelection("&lt;b>BOLD TEXT&lt;/b> &lt;small>Bijou is awesome&lt;/small>&lt;h1>You need to use it&lt;/h1>");
+//Replaces the selection! =)</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.replaceText">
+        <a href="#.exports.replaceText">#</a>
+        <span class="type-signature">(static) </span>exports.replaceText<span class="signature">(el, callback)</span><span class="type-signature"> &rarr; {undefined}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Replaces the text in an element by running it through a callback.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to replace the text of.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The callback to run (Gets passed the element's text).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
+// Converts the text of the first &lt;div> element to upperCase.</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.ripple">
+        <a href="#.exports.ripple">#</a>
+        <span class="type-signature">(static) </span>exports.ripple<span class="signature">(el)</span><span class="type-signature"></span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Applies a material design ripple effect to the element specified. Works best with buttons and similar elements.
+This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to apply the ripple effect to.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.each(document.querySelectorAll("button"), _$.ripple)
+//Accepts attributes too!
+// data-time: The time in milliseconds that it takes the ripple to fade away
+// data-color: A CSS color that the ripple should have as it's color
+// data-opacity: The starting opacity of the ripple effect.
+// data-event: The event to listen for to apply the ripple.</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.sortTable">
+        <a href="#.exports.sortTable">#</a>
+        <span class="type-signature">(static) </span>exports.sortTable<span class="signature">(element, cellVal<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {undefined}</span>
+    </h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLTableElement</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The table to sort</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cellVal</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="function.html">function</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>Sorts a table using JavaScript. This appends click listeners to every TH in the table.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Examples</strong>
+        
+    <pre class="prettyprint"><code>_$.sortTable(document.querySelector("table"));//Done.</code></pre>
+
+    <pre class="prettyprint"><code>_$.sortTable(document.querySelector("table"), (i) => i.getAttribute("data-sort"));//Sorts the table by each cell's 'data-sort' attribute.</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.sortTableBy">
+        <a href="#.exports.sortTableBy">#</a>
+        <span class="type-signature">(static) </span>exports.sortTableBy<span class="signature">(th, acending)</span><span class="type-signature"> &rarr; {undefined}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Sorts a table by a <th> element.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>th</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLTableElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The table header (<th> element) to sort with.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>acending</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether to sort the table ascending or descending.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>//Note that this example pretty much recreates the _$ sortTable function, which is much more cross browser and good than this recreation. If sorting a whole table please use that.
+_$.each(document.querySelectorAll("#table th"), (th) => {
+ th.addEventListener("click", () => {
+   //Add event listeners to each of them.
+   _$.sortTableBy(th, th.asc = !th.asc);//Toggle the "asc" attribute on the th.
+ });
+})</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.textNodes">
+        <a href="#.exports.textNodes">#</a>
+        <span class="type-signature">(static) </span>exports.textNodes<span class="signature">(el)</span><span class="type-signature"> &rarr; {Array}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Gets a list of all the text nodes in an element</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element to get the text nodes of.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+<div class="param-desc">
+    <p>The text nodes.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>_$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements</code></pre>
+
+    </div>
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".exports.tilt">
+        <a href="#.exports.tilt">#</a>
+        <span class="type-signature">(static) </span>exports.tilt<span class="signature">(el, x, y, perspective<span class="signature-attributes">opt</span>, amount<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {undefined}</span>
+    </h4>
+
+    
+
+
+
+    <div class="description">
+        <p>Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Parameters:</strong>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>el</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The element to tilt.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The x value of the mouse</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>The y value of the mouse</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>perspective</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    500
+                
+                </td>
+            
+
+            <td class="description last"><p>The perspective</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>amount</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    30
+                
+                </td>
+            
+
+            <td class="description last"><p>The amount to tilt.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="method-member-container mt-20">
+    <strong>Returns:</strong>
+        
+            
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">undefined</span>
+
+
+    </dd>
+</dl>
+
+            
+    </div>
+
+
+
+    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
+        <strong>Example</strong>
+        
+    <pre class="prettyprint"><code>// Tilt the first image in the document whenever the mouse moves.
+let el = document.querySelector("img");
+el.onmousemove = (e) => {
+ let x = e.layerX;
+ let y = e.layerY
+ _$.tilt(el, x, y);
+}</code></pre>
+
+    </div>
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    </div>
+
+    <footer class="footer" id="footer">
+      
+    </footer>
+
+    <script src="scripts/third-party/prettify.js"></script>
+    <script src="scripts/third-party/lang-css.js"></script>
+    <script type="text/javascript" src="scripts/misc.js"></script>
+
+    <script>prettyPrint();</script>
+    <script src="scripts/linenumber.js"></script>
+    <script src="scripts/fix-code-block.js"></script>
+    <script src="scripts/fix-navbar.js"></script>
+    
+      <script src="scripts/search.js"></script>
+      <script src="scripts/third-party/fuse.js"></script>
+      <script>
+        var list = [{"title":"array","link":"<a href=\"array.html\">array</a>"},{"title":"array.exports.arrayDiff","link":"<a href=\"array.html#.exports.arrayDiff\">array.exports.arrayDiff &rtrif; undefined</a>"},{"title":"array.exports.averageBy","link":"<a href=\"array.html#.exports.averageBy\">array.exports.averageBy &rtrif; undefined</a>"},{"title":"array.exports.contains","link":"<a href=\"array.html#.exports.contains\">array.exports.contains &rtrif; undefined</a>"},{"title":"array.exports.count","link":"<a href=\"array.html#.exports.count\">array.exports.count &rtrif; undefined</a>"},{"title":"array.exports.diff","link":"<a href=\"array.html#.exports.diff\">array.exports.diff &rtrif; undefined</a>"},{"title":"array.exports.each","link":"<a href=\"array.html#.exports.each\">array.exports.each &rtrif; undefined</a>"},{"title":"array.exports.flatten","link":"<a href=\"array.html#.exports.flatten\">array.exports.flatten &rtrif; undefined</a>"},{"title":"array.exports.nFlatten","link":"<a href=\"array.html#.exports.nFlatten\">array.exports.nFlatten &rtrif; undefined</a>"},{"title":"array.exports.remove","link":"<a href=\"array.html#.exports.remove\">array.exports.remove &rtrif; undefined</a>"},{"title":"array.exports.shuffleArray","link":"<a href=\"array.html#.exports.shuffleArray\">array.exports.shuffleArray &rtrif; undefined</a>"},{"title":"array.exports.splice","link":"<a href=\"array.html#.exports.splice\">array.exports.splice &rtrif; undefined</a>"},{"title":"array.exports.spliceArrayBuffer","link":"<a href=\"array.html#.exports.spliceArrayBuffer\">array.exports.spliceArrayBuffer &rtrif; undefined</a>"},{"title":"array.exports.unionArrays","link":"<a href=\"array.html#.exports.unionArrays\">array.exports.unionArrays &rtrif; undefined</a>"},{"title":"array.exports.uniqueArray","link":"<a href=\"array.html#.exports.uniqueArray\">array.exports.uniqueArray &rtrif; undefined</a>"},{"title":"color","link":"<a href=\"color.html\">color</a>"},{"title":"color.exports.blendColors","link":"<a href=\"color.html#.exports.blendColors\">color.exports.blendColors &rtrif; undefined</a>"},{"title":"color.exports.hexToRGB","link":"<a href=\"color.html#.exports.hexToRGB\">color.exports.hexToRGB &rtrif; undefined</a>"},{"title":"color.exports.lightenColor","link":"<a href=\"color.html#.exports.lightenColor\">color.exports.lightenColor &rtrif; undefined</a>"},{"title":"color.exports.lightOrDark","link":"<a href=\"color.html#.exports.lightOrDark\">color.exports.lightOrDark &rtrif; undefined</a>"},{"title":"color.exports.randomColor","link":"<a href=\"color.html#.exports.randomColor\">color.exports.randomColor &rtrif; undefined</a>"},{"title":"color.exports.rgbToHex","link":"<a href=\"color.html#.exports.rgbToHex\">color.exports.rgbToHex &rtrif; undefined</a>"},{"title":"date","link":"<a href=\"date.html\">date</a>"},{"title":"date.exports.addDaysToDate","link":"<a href=\"date.html#.exports.addDaysToDate\">date.exports.addDaysToDate &rtrif; undefined</a>"},{"title":"date.exports.addMinutesToDate","link":"<a href=\"date.html#.exports.addMinutesToDate\">date.exports.addMinutesToDate &rtrif; undefined</a>"},{"title":"date.exports.dayName","link":"<a href=\"date.html#.exports.dayName\">date.exports.dayName &rtrif; undefined</a>"},{"title":"date.exports.formatMilliseconds","link":"<a href=\"date.html#.exports.formatMilliseconds\">date.exports.formatMilliseconds &rtrif; undefined</a>"},{"title":"date.exports.isDateValid","link":"<a href=\"date.html#.exports.isDateValid\">date.exports.isDateValid &rtrif; undefined</a>"},{"title":"element","link":"<a href=\"element.html\">element</a>"},{"title":"element.exports.addEventListeners","link":"<a href=\"element.html#.exports.addEventListeners\">element.exports.addEventListeners &rtrif; undefined</a>"},{"title":"element.exports.addStyles","link":"<a href=\"element.html#.exports.addStyles\">element.exports.addStyles &rtrif; undefined</a>"},{"title":"element.exports.attributes","link":"<a href=\"element.html#.exports.attributes\">element.exports.attributes &rtrif; undefined</a>"},{"title":"element.exports.compStyle","link":"<a href=\"element.html#.exports.compStyle\">element.exports.compStyle &rtrif; undefined</a>"},{"title":"element.exports.context","link":"<a href=\"element.html#.exports.context\">element.exports.context &rtrif; undefined</a>"},{"title":"element.exports.create","link":"<a href=\"element.html#.exports.create\">element.exports.create &rtrif; undefined</a>"},{"title":"element.exports.createElement","link":"<a href=\"element.html#.exports.createElement\">element.exports.createElement &rtrif; undefined</a>"},{"title":"element.exports.disableRightClick","link":"<a href=\"element.html#.exports.disableRightClick\">element.exports.disableRightClick &rtrif; undefined</a>"},{"title":"element.exports.drag","link":"<a href=\"element.html#.exports.drag\">element.exports.drag &rtrif; undefined</a>"},{"title":"element.exports.elementContains","link":"<a href=\"element.html#.exports.elementContains\">element.exports.elementContains &rtrif; undefined</a>"},{"title":"element.exports.elementReady","link":"<a href=\"element.html#.exports.elementReady\">element.exports.elementReady &rtrif; undefined</a>"},{"title":"element.exports.elementSiblings","link":"<a href=\"element.html#.exports.elementSiblings\">element.exports.elementSiblings &rtrif; undefined</a>"},{"title":"element.exports.fullScreen","link":"<a href=\"element.html#.exports.fullScreen\">element.exports.fullScreen &rtrif; undefined</a>"},{"title":"element.exports.getImages","link":"<a href=\"element.html#.exports.getImages\">element.exports.getImages &rtrif; undefined</a>"},{"title":"element.exports.inlineCSS","link":"<a href=\"element.html#.exports.inlineCSS\">element.exports.inlineCSS &rtrif; undefined</a>"},{"title":"element.exports.inPartialView","link":"<a href=\"element.html#.exports.inPartialView\">element.exports.inPartialView &rtrif; undefined</a>"},{"title":"element.exports.inView","link":"<a href=\"element.html#.exports.inView\">element.exports.inView &rtrif; undefined</a>"},{"title":"element.exports.observeMutations","link":"<a href=\"element.html#.exports.observeMutations\">element.exports.observeMutations &rtrif; undefined</a>"},{"title":"element.exports.parents","link":"<a href=\"element.html#.exports.parents\">element.exports.parents &rtrif; undefined</a>"},{"title":"element.exports.parseHTML","link":"<a href=\"element.html#.exports.parseHTML\">element.exports.parseHTML &rtrif; undefined</a>"},{"title":"element.exports.querySelector","link":"<a href=\"element.html#.exports.querySelector\">element.exports.querySelector &rtrif; undefined</a>"},{"title":"element.exports.removeComments","link":"<a href=\"element.html#.exports.removeComments\">element.exports.removeComments &rtrif; undefined</a>"},{"title":"element.exports.renderElement","link":"<a href=\"element.html#.exports.renderElement\">element.exports.renderElement &rtrif; undefined</a>"},{"title":"element.exports.replaceSelection","link":"<a href=\"element.html#.exports.replaceSelection\">element.exports.replaceSelection &rtrif; undefined</a>"},{"title":"element.exports.replaceText","link":"<a href=\"element.html#.exports.replaceText\">element.exports.replaceText &rtrif; undefined</a>"},{"title":"element.exports.ripple","link":"<a href=\"element.html#.exports.ripple\">element.exports.ripple &rtrif; undefined</a>"},{"title":"element.exports.sortTable","link":"<a href=\"element.html#.exports.sortTable\">element.exports.sortTable &rtrif; undefined</a>"},{"title":"element.exports.sortTableBy","link":"<a href=\"element.html#.exports.sortTableBy\">element.exports.sortTableBy &rtrif; undefined</a>"},{"title":"element.exports.textNodes","link":"<a href=\"element.html#.exports.textNodes\">element.exports.textNodes &rtrif; undefined</a>"},{"title":"element.exports.tilt","link":"<a href=\"element.html#.exports.tilt\">element.exports.tilt &rtrif; undefined</a>"},{"title":"event","link":"<a href=\"event.html\">event</a>"},{"title":"event.exports.dispatch","link":"<a href=\"event.html#.exports.dispatch\">event.exports.dispatch &rtrif; undefined</a>"},{"title":"event.exports.hub","link":"<a href=\"event.html#.exports.hub\">event.exports.hub &rtrif; undefined</a>"},{"title":"event.exports.onOutsideClick","link":"<a href=\"event.html#.exports.onOutsideClick\">event.exports.onOutsideClick &rtrif; undefined</a>"},{"title":"event.exports.onScrollStop","link":"<a href=\"event.html#.exports.onScrollStop\">event.exports.onScrollStop &rtrif; undefined</a>"},{"title":"function","link":"<a href=\"function.html\">function</a>"},{"title":"function.exports.composeFunction","link":"<a href=\"function.html#.exports.composeFunction\">function.exports.composeFunction &rtrif; undefined</a>"},{"title":"function.exports.curryFunction","link":"<a href=\"function.html#.exports.curryFunction\">function.exports.curryFunction &rtrif; undefined</a>"},{"title":"function.exports.debounce","link":"<a href=\"function.html#.exports.debounce\">function.exports.debounce &rtrif; undefined</a>"},{"title":"function.exports.isAsync","link":"<a href=\"function.html#.exports.isAsync\">function.exports.isAsync &rtrif; undefined</a>"},{"title":"function.exports.memoize","link":"<a href=\"function.html#.exports.memoize\">function.exports.memoize &rtrif; undefined</a>"},{"title":"function.exports.runAsync","link":"<a href=\"function.html#.exports.runAsync\">function.exports.runAsync &rtrif; undefined</a>"},{"title":"function.exports.spread","link":"<a href=\"function.html#.exports.spread\">function.exports.spread &rtrif; undefined</a>"},{"title":"function.exports.throttle","link":"<a href=\"function.html#.exports.throttle\">function.exports.throttle &rtrif; undefined</a>"},{"title":"function.exports.timeFunction","link":"<a href=\"function.html#.exports.timeFunction\">function.exports.timeFunction &rtrif; undefined</a>"},{"title":"math","link":"<a href=\"math.html\">math</a>"},{"title":"math.exports.animate","link":"<a href=\"math.html#.exports.animate\">math.exports.animate &rtrif; undefined</a>"},{"title":"math.exports.equals","link":"<a href=\"math.html#.exports.equals\">math.exports.equals &rtrif; undefined</a>"},{"title":"math.exports.factorial","link":"<a href=\"math.html#.exports.factorial\">math.exports.factorial &rtrif; undefined</a>"},{"title":"math.exports.formatNumber","link":"<a href=\"math.html#.exports.formatNumber\">math.exports.formatNumber &rtrif; undefined</a>"},{"title":"math.exports.gcd","link":"<a href=\"math.html#.exports.gcd\">math.exports.gcd &rtrif; undefined</a>"},{"title":"math.exports.isPrime","link":"<a href=\"math.html#.exports.isPrime\">math.exports.isPrime &rtrif; undefined</a>"},{"title":"math.exports.luhnCheck","link":"<a href=\"math.html#.exports.luhnCheck\">math.exports.luhnCheck &rtrif; undefined</a>"},{"title":"math.exports.primesTo","link":"<a href=\"math.html#.exports.primesTo\">math.exports.primesTo &rtrif; undefined</a>"},{"title":"math.exports.random","link":"<a href=\"math.html#.exports.random\">math.exports.random &rtrif; undefined</a>"},{"title":"math.exports.range","link":"<a href=\"math.html#.exports.range\">math.exports.range &rtrif; undefined</a>"},{"title":"math.exports.seedRandom","link":"<a href=\"math.html#.exports.seedRandom\">math.exports.seedRandom &rtrif; undefined</a>"},{"title":"math.exports.uuid","link":"<a href=\"math.html#.exports.uuid\">math.exports.uuid &rtrif; undefined</a>"},{"title":"object","link":"<a href=\"object.html\">object</a>"},{"title":"object.exports.clone","link":"<a href=\"object.html#.exports.clone\">object.exports.clone &rtrif; undefined</a>"},{"title":"object.exports.flattenObj","link":"<a href=\"object.html#.exports.flattenObj\">object.exports.flattenObj &rtrif; undefined</a>"},{"title":"object.exports.formToObject","link":"<a href=\"object.html#.exports.formToObject\">object.exports.formToObject &rtrif; undefined</a>"},{"title":"object.exports.listen","link":"<a href=\"object.html#.exports.listen\">object.exports.listen &rtrif; undefined</a>"},{"title":"object.exports.mapObjectKeys","link":"<a href=\"object.html#.exports.mapObjectKeys\">object.exports.mapObjectKeys &rtrif; undefined</a>"},{"title":"object.exports.mapObjectValues","link":"<a href=\"object.html#.exports.mapObjectValues\">object.exports.mapObjectValues &rtrif; undefined</a>"},{"title":"object.exports.merge","link":"<a href=\"object.html#.exports.merge\">object.exports.merge &rtrif; undefined</a>"},{"title":"object.exports.sortObj","link":"<a href=\"object.html#.exports.sortObj\">object.exports.sortObj &rtrif; undefined</a>"},{"title":"string","link":"<a href=\"string.html\">string</a>"},{"title":"string.exports.byteSize","link":"<a href=\"string.html#.exports.byteSize\">string.exports.byteSize &rtrif; undefined</a>"},{"title":"string.exports.camelCase","link":"<a href=\"string.html#.exports.camelCase\">string.exports.camelCase &rtrif; undefined</a>"},{"title":"string.exports.capitalize","link":"<a href=\"string.html#.exports.capitalize\">string.exports.capitalize &rtrif; undefined</a>"},{"title":"string.exports.deburr","link":"<a href=\"string.html#.exports.deburr\">string.exports.deburr &rtrif; undefined</a>"},{"title":"string.exports.editDistance","link":"<a href=\"string.html#.exports.editDistance\">string.exports.editDistance &rtrif; undefined</a>"},{"title":"string.exports.escapeHTML","link":"<a href=\"string.html#.exports.escapeHTML\">string.exports.escapeHTML &rtrif; undefined</a>"},{"title":"string.exports.forTemplateLiteral","link":"<a href=\"string.html#.exports.forTemplateLiteral\">string.exports.forTemplateLiteral &rtrif; undefined</a>"},{"title":"string.exports.hash","link":"<a href=\"string.html#.exports.hash\">string.exports.hash &rtrif; undefined</a>"},{"title":"string.exports.hashString","link":"<a href=\"string.html#.exports.hashString\">string.exports.hashString &rtrif; undefined</a>"},{"title":"string.exports.jaroDistance","link":"<a href=\"string.html#.exports.jaroDistance\">string.exports.jaroDistance &rtrif; undefined</a>"},{"title":"string.exports.mapString","link":"<a href=\"string.html#.exports.mapString\">string.exports.mapString &rtrif; undefined</a>"},{"title":"string.exports.markdownToHTML","link":"<a href=\"string.html#.exports.markdownToHTML\">string.exports.markdownToHTML &rtrif; undefined</a>"},{"title":"string.exports.parseCookie","link":"<a href=\"string.html#.exports.parseCookie\">string.exports.parseCookie &rtrif; undefined</a>"},{"title":"string.exports.prefixCSS","link":"<a href=\"string.html#.exports.prefixCSS\">string.exports.prefixCSS &rtrif; undefined</a>"},{"title":"string.exports.previousPage","link":"<a href=\"string.html#.exports.previousPage\">string.exports.previousPage &rtrif; undefined</a>"},{"title":"string.exports.removeTags","link":"<a href=\"string.html#.exports.removeTags\">string.exports.removeTags &rtrif; undefined</a>"},{"title":"string.exports.replaceBetween","link":"<a href=\"string.html#.exports.replaceBetween\">string.exports.replaceBetween &rtrif; undefined</a>"},{"title":"string.exports.replaceMultiple","link":"<a href=\"string.html#.exports.replaceMultiple\">string.exports.replaceMultiple &rtrif; undefined</a>"},{"title":"string.exports.sanitize","link":"<a href=\"string.html#.exports.sanitize\">string.exports.sanitize &rtrif; undefined</a>"},{"title":"string.exports.scrambleString","link":"<a href=\"string.html#.exports.scrambleString\">string.exports.scrambleString &rtrif; undefined</a>"},{"title":"string.exports.speak","link":"<a href=\"string.html#.exports.speak\">string.exports.speak &rtrif; undefined</a>"},{"title":"string.exports.syllables","link":"<a href=\"string.html#.exports.syllables\">string.exports.syllables &rtrif; undefined</a>"},{"title":"string.exports.titleCase","link":"<a href=\"string.html#.exports.titleCase\">string.exports.titleCase &rtrif; undefined</a>"},{"title":"string.exports.unCamelCase","link":"<a href=\"string.html#.exports.unCamelCase\">string.exports.unCamelCase &rtrif; undefined</a>"},{"title":"string.exports.unescapeHTML","link":"<a href=\"string.html#.exports.unescapeHTML\">string.exports.unescapeHTML &rtrif; undefined</a>"},{"title":"string.exports.urlQuery","link":"<a href=\"string.html#.exports.urlQuery\">string.exports.urlQuery &rtrif; undefined</a>"},{"title":"string.exports.widows","link":"<a href=\"string.html#.exports.widows\">string.exports.widows &rtrif; undefined</a>"},{"title":"utility","link":"<a href=\"utility.html\">utility</a>"},{"title":"utility.callbackify","link":"<a href=\"utility.html#.callbackify\">utility.callbackify &rtrif; undefined</a>"},{"title":"utility.exports.arrayToCSV","link":"<a href=\"utility.html#.exports.arrayToCSV\">utility.exports.arrayToCSV &rtrif; undefined</a>"},{"title":"utility.exports.browser","link":"<a href=\"utility.html#.exports.browser\">utility.exports.browser &rtrif; undefined</a>"},{"title":"utility.exports.copy","link":"<a href=\"utility.html#.exports.copy\">utility.exports.copy &rtrif; undefined</a>"},{"title":"utility.exports.formatHTML","link":"<a href=\"utility.html#.exports.formatHTML\">utility.exports.formatHTML &rtrif; undefined</a>"},{"title":"utility.exports.getHTML","link":"<a href=\"utility.html#.exports.getHTML\">utility.exports.getHTML &rtrif; undefined</a>"},{"title":"utility.exports.getJSON","link":"<a href=\"utility.html#.exports.getJSON\">utility.exports.getJSON &rtrif; undefined</a>"},{"title":"utility.exports.htmlToImage","link":"<a href=\"utility.html#.exports.htmlToImage\">utility.exports.htmlToImage &rtrif; undefined</a>"},{"title":"utility.exports.imageToData","link":"<a href=\"utility.html#.exports.imageToData\">utility.exports.imageToData &rtrif; undefined</a>"},{"title":"utility.exports.injectCSS","link":"<a href=\"utility.html#.exports.injectCSS\">utility.exports.injectCSS &rtrif; undefined</a>"},{"title":"utility.exports.jsonToCsv","link":"<a href=\"utility.html#.exports.jsonToCsv\">utility.exports.jsonToCsv &rtrif; undefined</a>"},{"title":"utility.exports.loadScript","link":"<a href=\"utility.html#.exports.loadScript\">utility.exports.loadScript &rtrif; undefined</a>"},{"title":"utility.exports.mobileOrDesktop","link":"<a href=\"utility.html#.exports.mobileOrDesktop\">utility.exports.mobileOrDesktop &rtrif; undefined</a>"},{"title":"utility.exports.notify","link":"<a href=\"utility.html#.exports.notify\">utility.exports.notify &rtrif; undefined</a>"},{"title":"utility.exports.playSection","link":"<a href=\"utility.html#.exports.playSection\">utility.exports.playSection &rtrif; undefined</a>"},{"title":"utility.exports.preloadImage","link":"<a href=\"utility.html#.exports.preloadImage\">utility.exports.preloadImage &rtrif; undefined</a>"},{"title":"utility.exports.race","link":"<a href=\"utility.html#.exports.race\">utility.exports.race &rtrif; undefined</a>"},{"title":"utility.exports.requestInterval","link":"<a href=\"utility.html#.exports.requestInterval\">utility.exports.requestInterval &rtrif; undefined</a>"},{"title":"utility.exports.resize","link":"<a href=\"utility.html#.exports.resize\">utility.exports.resize &rtrif; undefined</a>"},{"title":"utility.exports.saveBlob","link":"<a href=\"utility.html#.exports.saveBlob\">utility.exports.saveBlob &rtrif; undefined</a>"},{"title":"utility.exports.serializeForm","link":"<a href=\"utility.html#.exports.serializeForm\">utility.exports.serializeForm &rtrif; undefined</a>"},{"title":"utility.exports.soundex","link":"<a href=\"utility.html#.exports.soundex\">utility.exports.soundex &rtrif; undefined</a>"},{"title":"utility.exports.typeOf","link":"<a href=\"utility.html#.exports.typeOf\">utility.exports.typeOf &rtrif; undefined</a>"},{"title":"utility.getItem","link":"<a href=\"utility.html#.getItem\">utility.getItem &rtrif; undefined</a>"},{"title":"utility.promisify","link":"<a href=\"utility.html#.promisify\">utility.promisify &rtrif; undefined</a>"},{"title":"utility.removeItem","link":"<a href=\"utility.html#.removeItem\">utility.removeItem &rtrif; undefined</a>"},{"title":"utility.setItem","link":"<a href=\"utility.html#.setItem\">utility.setItem &rtrif; undefined</a>"},{"title":"_temp","link":"<a href=\"global.html#_temp\">_temp</a>"},{"title":"node","link":"<a href=\"global.html#node\">node</a>"},{"title":"prototype","link":"<a href=\"global.html#prototype\">prototype</a>"}];
+        var options = 
+          setupSearch(list, options)
+      </script>
+    
+
+    
+    <script type="text/javascript">
+        setInterval(() => {
+  try {
+    document.querySelector('.os-content-arrange').remove();
+  } catch (e) {}
+
+  var els = Array.from(document.querySelectorAll('ul.accordion-content a')).filter(el => el.innerText.startsWith("exports."));
+  for (var i = 0; i < els.length; i++) {
+    els[i].innerText = els[i].innerText.replace(/^exports\./, '');
+  }
+}, 100);
+
+    </script>
+    
+
+    
+
+    
+    <script type="text/javascript">
+    setInterval(() => {
+  try {
+    document.querySelector('.os-content-arrange').remove();
+  } catch (e) {}
+
+  var els = Array.from(document.querySelectorAll('ul.accordion-content a')).filter(el => el.innerText.startsWith("exports."));
+  for (var i = 0; i < els.length; i++) {
+    els[i].innerText = els[i].innerText.replace(/^exports\./, '');
+  }
+}, 100);
+
+    </script>
+    
+
+    
+
+
+  </body>
+
+</html>
