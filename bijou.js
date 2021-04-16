@@ -6,12 +6,12 @@
  */
 
 /* --------------------------------------------------------------------------|
-  ____ ___    _  ___  _   _   _     
- | __ )_ _|  | |/ _ \| | | | (_)___ 
+  ____ ___    _  ___  _   _   _
+ | __ )_ _|  | |/ _ \| | | | (_)___
  |  _ \| |_  | | | | | | | | | / __|
  | |_) | | |_| | |_| | |_| | | \__ \
  |____/___\___/ \___/ \___(_)/ |___/
-                           |__/     
+                           |__/
 ------------------------------------------------------------------------------|
 Bijou.js is copyrighted by Explosion-Scratch of GitHub and released under the GPL-3.0 License.
 This software comes with ABSOLUTELY NO WARRANTY and is provided "As is" (with the best intentions of Explosion-Scratch and contributors! =D )
@@ -59,7 +59,6 @@ Contributors to Bijou.js:
 ║ thecoder876       ║ Made some improvements.    ║
 ╚═══════════════════╩════════════════════════════╝
 
-
 (c) 2021 Explosion-Scratch, all rights reserved.
 
  */
@@ -80,7 +79,7 @@ if (isNode) {
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
  */
-let node = () => {
+const node = () => {
 	if (isNode) {
 		throw new Error(
 			"You are using Node.js, this function does not work in Node.js! Sorry!",
@@ -98,52 +97,52 @@ let node = () => {
  * The array namespace of Bijou.js
  * @namespace array
  */
-let array_namespace = {};
+const array_namespace = {};
 /**
  * The color namespace of Bijou.js
  * @namespace color
  */
-let color_namespace = {};
+const color_namespace = {};
 /**
  * The date namespace of Bijou.js, containing functions to format dates, do math with them and more!
  * @namespace date
  */
-let date_namespace = {};
+const date_namespace = {};
 /**
  * The element namespace of Bijou.js, containing functions to create elements from query selectors, enable custom right click options, test if an element is on screen, replace the text of an element without altering it's styling, and much more!
  * @namespace element
  */
-let element_namespace = {};
+const element_namespace = {};
 /**
  * The event namespace of Bijou.js, containing functions to listen and dispatch events, such as scroll stop, outside click, and multiple event listeners.
  * @namespace event
  */
-let event_namespace = {};
+const event_namespace = {};
 /**
  * The function namespace of Bijou.js, containing functions to work with functions themselves, such as debouncing, throttling, memoizing, currying, timing and much more!
  * @namespace function
  */
-let function_namespace = {};
+const function_namespace = {};
 /**
  * The math namespace of Bijou.js, containing functions to validate credit card numbers, animate with JavaScript, generate unique id's and much more!
  * @namespace math
  */
-let math_namespace = {};
+const math_namespace = {};
 /**
  * The object namespace of Bijou.js, for stuff like flattening nested objects, cloning, merging, and even listening to changes to objects!
  * @namespace object
  */
-let object_namespace = {};
+const object_namespace = {};
 /**
  * The string namespace of Bijou.js, containing functions to map strings, remove accents from strings, speak text, syntax highlight JS, HTML and CSS and much more!
  * @namespace string
  */
-let string_namespace = {};
+const string_namespace = {};
 /**
  * The utility namespace of Bijou.js, containing utilities to do many things, such as playing audio, fetching JSON, preloading images and much more.
  * @namespace utility
  */
-let utility_namespace = {};
+const utility_namespace = {};
 
 const req = (type, desc, condition = true) => {
 	if (!condition) return;
@@ -156,8 +155,8 @@ const req = (type, desc, condition = true) => {
 	}
 	throw new Error(err);
 };
-//#region bijou
-//#region Array
+// #region bijou
+// #region Array
 /**
  * Counts the items in an array, returning a separate count for each object.
  * @returns {Object}
@@ -170,7 +169,7 @@ const req = (type, desc, condition = true) => {
  * _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 'e': 1}
  * @param {Array} arr The array to count items in.
  */
-export let count = (arr = req("array", "array")) =>
+export const count = (arr = req("array", "array")) =>
 	arr.reduce((counts, item) => {
 		counts[item] = (counts[item] || 0) + 1;
 		return counts;
@@ -186,12 +185,12 @@ export let count = (arr = req("array", "array")) =>
  * @param {Array|String} a1 The first array or string
  * @param {Array|String} a2 The 2nd array or string.
  */
-export let arrayDiff = (
+export const arrayDiff = (
 	a1 = req("array", "array 1"),
 	a2 = req("array", "array 2"),
 ) => {
-	var a = [],
-		diff = [];
+	const a = [];
+	const diff = [];
 	for (var i = 0; i < a1.length; i++) {
 		a[a1[i]] = true;
 	}
@@ -202,7 +201,7 @@ export let arrayDiff = (
 			a[a2[i]] = true;
 		}
 	}
-	for (var k in a) {
+	for (const k in a) {
 		diff.push(k);
 	}
 	return diff;
@@ -218,37 +217,37 @@ export let arrayDiff = (
  * console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]
  * @returns {Array.<Array.<number>>} An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.
  */
-export let diff = function (
+export const diff = function (
 	text1 = req("string", "Text 1"),
 	text2 = req("string", "Text 2"),
 ) {
-	//Takes in two strings
-	//Returns an array of the span of the differences
-	//So if given:
+	// Takes in two strings
+	// Returns an array of the span of the differences
+	// So if given:
 	// text1: "that is number 124"
 	// text2: "this is number 123"
-	//It will return:
+	// It will return:
 	// [[2,4],[17,18]]
-	//If the strings are of different lengths, it will check up to the end of text1
-	//If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
-	var diffRange = [];
-	var currentRange = undefined;
+	// If the strings are of different lengths, it will check up to the end of text1
+	// If you want it to do case-insensitive difference, just convert the texts to lowercase before passing them in
+	const diffRange = [];
+	let currentRange;
 	for (var i = 0; i < text1.length; i++) {
 		if (text1[i] != text2[i]) {
-			//Found a diff!
+			// Found a diff!
 			if (currentRange == undefined) {
-				//Start a new range
+				// Start a new range
 				currentRange = [i];
 			}
 		}
 		if (currentRange != undefined && text1[i] == text2[i]) {
-			//End of range!
+			// End of range!
 			currentRange.push(i);
 			diffRange.push(currentRange);
 			currentRange = undefined;
 		}
 	}
-	//Push any last range if there's still one at the end
+	// Push any last range if there's still one at the end
 	if (currentRange != undefined) {
 		currentRange.push(i);
 		diffRange.push(currentRange);
@@ -265,7 +264,7 @@ export let diff = function (
  * @example
  * console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]
  */
-export let remove = (
+export const remove = (
 	array = req("array", "array"),
 	item = req(undefined, "item"),
 ) => {
@@ -292,18 +291,19 @@ export let remove = (
  * @param {Boolean} [endian=false] Whether to use big endian or not.
  * @returns {Number} The hex representation of part of the ArrayBuffer.
  */
-export let spliceArrayBuffer = (
+export const spliceArrayBuffer = (
 	arr = req("ArrayBuffer"),
 	start = req("number"),
 	end = req("number"),
 	endian = false,
 ) => {
-	var direction = endian ? -1 : 1;
+	const direction = endian ? -1 : 1;
 	if (endian) [start, end] = [end, start];
 	start = Math.floor(start);
 	end = Math.floor(end) + direction;
-	for (var i = start, value = 0; i != end; i += direction)
+	for (var i = start, value = 0; i != end; i += direction) {
 		value = 256 * value + arr[i];
+	}
 	return value;
 };
 
@@ -317,8 +317,8 @@ export let spliceArrayBuffer = (
  * @param {Array} array The array to flatten.
  * @param {Number} [level=1] The number of iterations to flatten it.
  */
-export let flatten = (array = req("array", "array"), level = 1) => {
-	var output = array;
+export const flatten = (array = req("array", "array"), level = 1) => {
+	let output = array;
 	_$.each(level, () => {
 		output = [].concat.apply([], array);
 	});
@@ -334,7 +334,7 @@ export let flatten = (array = req("array", "array"), level = 1) => {
  * @example
  * console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]
  */
-export let nFlatten = (arr = req("array", "array")) => {
+export const nFlatten = (arr = req("array", "array")) => {
 	return arr.reduce(function (flat, toFlatten) {
 		return flat.concat(
 			Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
@@ -352,8 +352,10 @@ export let nFlatten = (arr = req("array", "array")) => {
  * console.log(_$.contains([1,2,3,4,5], 3)); // true
  * @returns {Boolean} True or false depending on if the array contains that item.
  */
-export let contains = (array = req("array"), item = req("string")) =>
-	array.includes(item);
+export const contains = (
+	array = req("array"),
+	item = req("string"),
+) => array.includes(item);
 
 /**
  * Shuffles an array
@@ -365,7 +367,7 @@ export let contains = (array = req("array"), item = req("string")) =>
  * console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]
  * @returns {Array} The shuffled array.
  */
-export let shuffleArray = (array = req("array")) =>
+export const shuffleArray = (array = req("array")) =>
 	array.sort(() => Math.random() - 0.5);
 
 /**
@@ -380,13 +382,13 @@ export let shuffleArray = (array = req("array")) =>
  * @example
  * console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"
  */
-export let splice = (
+export const splice = (
 	array = req("array", "array"),
 	index = req("number", "index"),
 	remove = 0,
 	item,
 ) => {
-	let args = Array.from(arguments);
+	const args = Array.from(arguments);
 	args.shift();
 	return typeof array === "string"
 		? array
@@ -405,15 +407,15 @@ export let splice = (
  * console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]
  * @returns {Array} The joined array from the two other arrays.
  */
-export let unionArrays = (
+export const unionArrays = (
 	x = req("array", "array1"),
 	y = req("array", "array2"),
 ) => {
-	var obj = {};
+	const obj = {};
 	for (var i = x.length - 1; i >= 0; --i) obj[x[i]] = x[i];
 	for (var i = y.length - 1; i >= 0; --i) obj[y[i]] = y[i];
-	var res = [];
-	for (var k in obj) {
+	const res = [];
+	for (const k in obj) {
 		if (obj.hasOwnProperty(k)) res.push(obj[k]);
 	}
 	return res;
@@ -429,7 +431,7 @@ export let unionArrays = (
  * console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5
  * @returns {Number} The average of the array.
  */
-export let averageBy = (
+export const averageBy = (
 	arr = req("array", "array"),
 	fn = req("function", "callback"),
 ) =>
@@ -446,7 +448,7 @@ export let averageBy = (
  * console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
  * @returns {Array} The array with no duplicates.
  */
-export let uniqueArray = (array = req("array", "array")) => [
+export const uniqueArray = (array = req("array", "array")) => [
 	...new Set(array),
 ];
 /**
@@ -465,7 +467,7 @@ export let uniqueArray = (array = req("array", "array")) => [
  * // 5
  * @returns {undefined}
  */
-export let each = (
+export const each = (
 	array = req("Array|Number|String", "array"),
 	callback = req("function", "callback"),
 ) => {
@@ -479,8 +481,8 @@ export let each = (
 		callback(array[i], i, array);
 	}
 };
-//#endregion Array
-//#region Color
+// #endregion Array
+// #region Color
 /**
  * Converts a rgb(a) color to hex.
  * @memberOf color
@@ -490,13 +492,13 @@ export let each = (
  * @param {String} rgb The string of RGB colors.
  * @returns {String} The hex color.
  */
-export let rgbToHex = (rgb = req("string", "RGB color")) => {
-	let sep = rgb.indexOf(",") > -1 ? "," : " ";
+export const rgbToHex = (rgb = req("string", "RGB color")) => {
+	const sep = rgb.indexOf(",") > -1 ? "," : " ";
 	rgb = rgb.substr(4).split(")")[0].split(sep);
 
-	let r = (+rgb[0]).toString(16),
-		g = (+rgb[1]).toString(16),
-		b = (+rgb[2]).toString(16);
+	let r = (+rgb[0]).toString(16);
+	let g = (+rgb[1]).toString(16);
+	let b = (+rgb[2]).toString(16);
 
 	if (r.length === 1) r = "0" + r;
 	if (g.length === 1) g = "0" + g;
@@ -513,7 +515,7 @@ export let rgbToHex = (rgb = req("string", "RGB color")) => {
  * console.log(_$.rgbToHex("#ffffff")); // "rgb(255,255,255)"
  * @returns {String} The RGB color converted from the hex code.
  */
-export let hexToRGB = (hex = req("string", "hex color")) => {
+export const hexToRGB = (hex = req("string", "hex color")) => {
 	if (
 		((hex.length - 1 === 6 ||
 			hex.length - 1 === 8 ||
@@ -529,8 +531,8 @@ export let hexToRGB = (hex = req("string", "hex color")) => {
 	} else {
 		throw new Error("Invalid hex");
 	}
-	let alpha = false,
-		h = hex.slice(hex.startsWith("#") ? 1 : 0);
+	let alpha = false;
+	let h = hex.slice(hex.startsWith("#") ? 1 : 0);
 	if (h.length === 3) h = [...h].map((x) => x + x).join("");
 	else if (h.length === 8) alpha = true;
 	h = parseInt(h, 16);
@@ -558,7 +560,7 @@ export let hexToRGB = (hex = req("string", "hex color")) => {
  * console.log(_$.blendColors("#ffffff", "#000000", 80)); // #333333
  * @returns {String} The blended color (A hex code).
  */
-export let blendColors = (
+export const blendColors = (
 	color1 = req("string", "color 1"),
 	color2 = req("string", "color 2"),
 	percent = 50,
@@ -606,7 +608,7 @@ export let blendColors = (
  * console.log(_$.randomColor()); // e.g. #5bf462
  * @returns {String} A random Hex color
  */
-export let randomColor = () =>
+export const randomColor = () =>
 	`#${Math.floor(Math.random() * 16777215).toString(16)}`;
 /**
  * Lighten or darken a color by a certain amount
@@ -618,30 +620,30 @@ export let randomColor = () =>
  * _$.lightenColor("#000000", 50); // #323232
  * @returns {String} The color lightened.
  */
-export let lightenColor = (
+export const lightenColor = (
 	col = req("string", "hex color"),
 	amt = req("number", "amount"),
 ) => {
-	var usePound = false;
+	let usePound = false;
 
 	if (col[0] == "#") {
 		col = col.slice(1);
 		usePound = true;
 	}
 
-	var num = parseInt(col, 16);
+	const num = parseInt(col, 16);
 
-	var r = (num >> 16) + amt;
+	let r = (num >> 16) + amt;
 
 	if (r > 255) r = 255;
 	else if (r < 0) r = 0;
 
-	var b = ((num >> 8) & 0x00ff) + amt;
+	let b = ((num >> 8) & 0x00ff) + amt;
 
 	if (b > 255) b = 255;
 	else if (b < 0) b = 0;
 
-	var g = (num & 0x0000ff) + amt;
+	let g = (num & 0x0000ff) + amt;
 
 	if (g > 255) g = 255;
 	else if (g < 0) g = 0;
@@ -663,10 +665,10 @@ export let lightenColor = (
   }
   * @returns {Object} An object that represents if the color is light or dark and how much. The object key "hsp" represents a value out of 255 of how light the color is and the object's key "lightOrDark" is a string (Either "light" or "dark") of whether the color is light or dark.
   */
-export let lightOrDark = (
+export const lightOrDark = (
 	color = req("string", "hex or RGB color"),
 ) => {
-	var r, g, b, hsp;
+	let r, g, b, hsp;
 	if (color.match(/^rgb/)) {
 		color = color.match(
 			/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/,
@@ -694,8 +696,8 @@ export let lightOrDark = (
 		return { lightOrDark: "dark", hsp: hsp };
 	}
 };
-//#endregion Color
-//#region Date
+// #endregion Color
+// #region Date
 /**
  * Returns the name of the weekday from the Date object specified.
  * @function
@@ -706,7 +708,7 @@ export let lightOrDark = (
  * console.log(_$.dayName)); // e.g. "Friday"
  * @returns {String} The day name from the date.
  */
-export let dayName = (date = new Date(), locale = "en-US") =>
+export const dayName = (date = new Date(), locale = "en-US") =>
 	date.toLocaleDateString(locale, {
 		weekday: "long",
 	});
@@ -720,7 +722,7 @@ export let dayName = (date = new Date(), locale = "en-US") =>
  * console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"
  * @returns {String} The string of formatted milliseconds.
  */
-export let formatMilliseconds = (
+export const formatMilliseconds = (
 	ms = req("number", "milliseconds"),
 ) => {
 	ms = typeof ms === "string" ? +ms : ms;
@@ -749,7 +751,7 @@ export let formatMilliseconds = (
  * @param {Number} n How many minutes to add to the date.
  * @returns {Date} The date with minutes added.
  */
-export let addMinutesToDate = (
+export const addMinutesToDate = (
 	date = req("date", "date or date string"),
 	n = req("number", "minutes"),
 ) => {
@@ -772,7 +774,7 @@ export let addMinutesToDate = (
  * @param  {...any} val The arguments of the date to validate.
  * @returns {Boolean} Returns if the date is valid or not.
  */
-export let isDateValid = (...val) => {
+export const isDateValid = (...val) => {
 	req("any", "date arguments", ![...val].length);
 	return !Number.isNaN(new Date(...val).valueOf());
 };
@@ -784,7 +786,7 @@ export let isDateValid = (...val) => {
  * @param {Number} n How many days to add to the date.
  * @returns {Date} The date with the specified number of days added.
  */
-export let addDaysToDate = (
+export const addDaysToDate = (
 	date = req("date", "date or date string"),
 	n = req("number", "days"),
 ) => {
@@ -792,8 +794,8 @@ export let addDaysToDate = (
 	d.setDate(d.getDate() + n);
 	return d.toISOString().split("T")[0];
 };
-//#endregion Date
-//#region Element
+// #endregion Date
+// #region Element
 /**
  * Applies a material design ripple effect to the element specified. Works best with buttons and similar elements.
  * This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple
@@ -808,7 +810,7 @@ export let addDaysToDate = (
  * // data-event: The event to listen for to apply the ripple.
  * @param {HTMLElement} el The element to apply the ripple effect to.
  */
-export let ripple = (el = req("element", "element")) => {
+export const ripple = (el = req("element", "element")) => {
 	node();
 	const time = (+el.getAttribute("data-time") || 1000) * 3;
 	const color = el.getAttribute("data-color") || "currentColor";
@@ -817,12 +819,12 @@ export let ripple = (el = req("element", "element")) => {
 	el.style.overflow = "hidden";
 	el.style.position = "relative";
 	el.addEventListener(event, (e) => {
-		var ripple_div = document.createElement("DIV");
+		const ripple_div = document.createElement("DIV");
 		ripple_div.style.position = "absolute";
 		ripple_div.style.background = `${color}`;
 		ripple_div.style.borderRadius = "50%";
-		var bx = el.getBoundingClientRect();
-		var largestdemensions;
+		const bx = el.getBoundingClientRect();
+		let largestdemensions;
 		if (bx.width > bx.height) {
 			largestdemensions = bx.width * 3;
 		} else {
@@ -831,7 +833,7 @@ export let ripple = (el = req("element", "element")) => {
 		ripple_div.style.pointerEvents = "none";
 		ripple_div.style.height = `${largestdemensions}px`;
 		ripple_div.style.width = `${largestdemensions}px`;
-		ripple_div.style.transform = `translate(-50%, -50%) scale(0)`;
+		ripple_div.style.transform = "translate(-50%, -50%) scale(0)";
 		ripple_div.style.top = `${e.pageY - (bx.top + window.scrollY)}px`;
 		ripple_div.style.left = `${
 			e.pageX - (bx.left + window.scrollX)
@@ -841,7 +843,7 @@ export let ripple = (el = req("element", "element")) => {
 		ripple_div.style.opacity = opacity;
 		el.appendChild(ripple_div);
 		setTimeout(() => {
-			ripple_div.style.transform = `translate(-50%, -50%) scale(1)`;
+			ripple_div.style.transform = "translate(-50%, -50%) scale(1)";
 			ripple_div.style.opacity = "0";
 			setTimeout(() => {
 				ripple_div.remove();
@@ -873,7 +875,7 @@ export function elementReady(
 			Array.from(parent.querySelectorAll(selector)).forEach(
 				(element) => {
 					resolve(element);
-					//Once we have resolved we don't need the observer anymore.
+					// Once we have resolved we don't need the observer anymore.
 					observer.disconnect();
 				},
 			);
@@ -902,7 +904,7 @@ export function elementReady(
  * @param {HTMLElement} parent The parent element to test.
  * @param {HTMLElement} child The child element to test.
  */
-export let elementContains = (
+export const elementContains = (
 	parent = req("HTMLElement", "parent"),
 	child = req("HTMLElement", "child"),
 ) => parent !== child && parent.contains(child);
@@ -927,7 +929,7 @@ export let elementContains = (
  * _$.parents(document.querySelector("img"));//[div#img, body, html]
  * @param {HTMLElement} el The element
  */
-export let parents = (el = req("element")) => [
+export const parents = (el = req("element")) => [
 	...(function* (e) {
 		while ((e = e.parentNode)) {
 			yield e;
@@ -948,7 +950,7 @@ export let parents = (el = req("element")) => [
  * @param {HTMLElement} [el=document.documentElement] The element to get images from (e.g. document.body)
  * @param {Boolean} [includeDuplicates=false] Whether to include duplicate images, defaults to false.
  */
-export let getImages = (
+export const getImages = (
 	el = document.documentElement,
 	includeDuplicates = false,
 ) => {
@@ -975,7 +977,7 @@ export let getImages = (
  * @param {Object} param The type of object (the HTML tagName)
  * @param {HTMLElement} container The html element to render it in.
  */
-export let renderElement = (
+export const renderElement = (
 	{ type, props = {} } = req("object", "options"),
 	container = req("HTMLElement", "container"),
 ) => {
@@ -989,14 +991,16 @@ export let renderElement = (
 
 	Object.keys(props).forEach((p) => {
 		if (isAttribute(p)) element[p] = props[p];
-		if (!isTextElement && isListener(p))
+		if (!isTextElement && isListener(p)) {
 			element.addEventListener(p.toLowerCase().slice(2), props[p]);
+		}
 	});
 
-	if (!isTextElement && props.children && props.children.length)
+	if (!isTextElement && props.children && props.children.length) {
 		props.children.forEach((childElement) =>
 			renderElement(childElement, element),
 		);
+	}
 
 	container.appendChild(element);
 };
@@ -1015,13 +1019,13 @@ export let renderElement = (
  */
 export function create(querySelector = "div", ...content) {
 	node();
-	let nodeType = querySelector.match(/^[a-z0-9]+/i);
-	let id = querySelector.match(/#([a-z]+[a-z0-9-]*)/gi);
-	let classes = querySelector.match(/\.([a-z]+[a-z0-9-]*)/gi);
-	let attributes = querySelector.match(
+	const nodeType = querySelector.match(/^[a-z0-9]+/i);
+	const id = querySelector.match(/#([a-z]+[a-z0-9-]*)/gi);
+	const classes = querySelector.match(/\.([a-z]+[a-z0-9-]*)/gi);
+	const attributes = querySelector.match(
 		/\[([a-z][a-z-]+)(=['|"]?([^\]]*)['|"]?)?\]/gi,
 	);
-	let node = nodeType ? nodeType[0] : "div";
+	const node = nodeType ? nodeType[0] : "div";
 
 	if (id && id.length > 1) {
 		throw new Error("only 1 ID is allowed");
@@ -1077,11 +1081,11 @@ export function create(querySelector = "div", ...content) {
  * // Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
  * @returns {undefined}
  */
-export let context = () => {
-	var menu = document.createElement("UL");
+export const context = () => {
+	const menu = document.createElement("UL");
 	menu.id = "contextMenu";
 	document.body.appendChild(menu);
-	let styles = document.createElement("STYLE");
+	const styles = document.createElement("STYLE");
 	styles.innerHTML = `#contextMenu {
        pointer-events: none;
        padding: 0;
@@ -1117,7 +1121,7 @@ export let context = () => {
      }
      `;
 	document.body.appendChild(styles);
-	var elements = document.querySelectorAll("[contextmenu]");
+	const elements = document.querySelectorAll("[contextmenu]");
 	for (let i = 0; i < elements.length; i++) {
 		window.addEventListener("contextmenu", (e) => {
 			menu.style.pointerEvents = "auto";
@@ -1153,14 +1157,13 @@ export let context = () => {
 			menu.style.opacity = 1;
 		});
 	}
-	var contextTimer = 0;
+	let contextTimer = 0;
 	setInterval(() => {
 		contextTimer += 100;
 		if (contextTimer > 3000) {
 			menu.style.opacity = 0;
 			menu.style.pointerEvents = "none";
 			contextTimer = 0;
-			return;
 		}
 	}, 100);
 	_$.addEventListeners(menu, ["mousemove", "click", "scroll"], () => {
@@ -1182,12 +1185,12 @@ export let context = () => {
  * if (_$.inView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the element is completely in view.
  */
-export let inView = (el = req("HTMLElement", "element")) => {
+export const inView = (el = req("HTMLElement", "element")) => {
 	node();
-	var top = el.offsetTop;
-	var left = el.offsetLeft;
-	var width = el.offsetWidth;
-	var height = el.offsetHeight;
+	let top = el.offsetTop;
+	let left = el.offsetLeft;
+	const width = el.offsetWidth;
+	const height = el.offsetHeight;
 
 	while (el.offsetParent) {
 		el = el.offsetParent;
@@ -1212,12 +1215,12 @@ export let inView = (el = req("HTMLElement", "element")) => {
  * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the DOM element is partially in view.
  */
-export let inPartialView = (el = req("HTMLElement", "element")) => {
+export const inPartialView = (el = req("HTMLElement", "element")) => {
 	node();
-	var top = el.offsetTop;
-	var left = el.offsetLeft;
-	var width = el.offsetWidth;
-	var height = el.offsetHeight;
+	let top = el.offsetTop;
+	let left = el.offsetLeft;
+	const width = el.offsetWidth;
+	const height = el.offsetHeight;
 
 	while (el.offsetParent) {
 		el = el.offsetParent;
@@ -1244,7 +1247,7 @@ export let inPartialView = (el = req("HTMLElement", "element")) => {
  * // Converts the text of the first <div> element to upperCase.
  * @returns {undefined}
  */
-export let replaceText = (
+export const replaceText = (
 	el = req("HTMLElement", "element"),
 	callback = req("function", "callback"),
 ) => {
@@ -1262,7 +1265,7 @@ export let replaceText = (
  * @example
  * _$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements
  */
-export let textNodes = (el = req("HTMLElement", "element")) => {
+export const textNodes = (el = req("HTMLElement", "element")) => {
 	return [...el.childNodes].filter((node) => {
 		return (
 			node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ""
@@ -1279,10 +1282,12 @@ export let textNodes = (el = req("HTMLElement", "element")) => {
  * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
  * @returns {String} The generated querySelector.
  */
-export let querySelector = (elem = req("HTMLElement", "element")) => {
+export const querySelector = (
+	elem = req("HTMLElement", "element"),
+) => {
 	node();
-	var element = elem;
-	var str = "";
+	const element = elem;
+	let str = "";
 
 	function loop(element) {
 		if (
@@ -1302,18 +1307,18 @@ export let querySelector = (elem = req("HTMLElement", "element")) => {
 			return str;
 		}
 		if (element.getAttribute("class")) {
-			var elemClasses = ".";
+			let elemClasses = ".";
 			elemClasses += element.getAttribute("class");
 			elemClasses = elemClasses.replace(/\s/g, ".");
 			elemClasses = elemClasses.replace(/^/g, " ");
-			var classNth = "";
+			let classNth = "";
 			var childrens = element.parentNode.children;
 
 			if (childrens.length < 2) {
 				return;
 			}
 
-			var similarClasses = [];
+			const similarClasses = [];
 
 			for (var i = 0; i < childrens.length; i++) {
 				if (
@@ -1336,14 +1341,14 @@ export let querySelector = (elem = req("HTMLElement", "element")) => {
 
 			str = str.replace(/^/, elemClasses + classNth);
 		} else {
-			var name = element.nodeName;
+			let name = element.nodeName;
 			name = name.toLowerCase();
-			var nodeNth = "";
+			let nodeNth = "";
 
 			childrens = element.parentNode.children;
 
 			if (childrens.length > 2) {
-				var similarNodes = [];
+				const similarNodes = [];
 
 				for (var i = 0; i < childrens.length; i++) {
 					if (element.nodeName == childrens[i].nodeName) {
@@ -1387,15 +1392,16 @@ export let querySelector = (elem = req("HTMLElement", "element")) => {
  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
  * @returns {HTMLElement} The HTML element with the comments removed.
  */
-export let removeComments = (
+export const removeComments = (
 	el = req("HTMLElement", "HTMLElement"),
 ) => {
 	const isString = typeof el === "string";
 	el = isString ? _$.parseHTML(el) : el.cloneNode(true);
 	for (const child of [...el.querySelectorAll("*"), el]) {
 		for (const grandchild of child.childNodes) {
-			if (grandchild instanceof Comment)
+			if (grandchild instanceof Comment) {
 				child.removeChild(grandchild);
+			}
 		}
 	}
 	return isString ? el.outerHTML : el;
@@ -1411,7 +1417,7 @@ export let removeComments = (
  * html.querySelector("textarea");//Returns the textarea!
  * @returns {HTMLDocument} The HTML document element of the HTML string specified.
  */
-export let parseHTML = (
+export const parseHTML = (
 	string = req("string", "html string"),
 	mimeType = "text/html",
 ) => {
@@ -1429,7 +1435,7 @@ export let parseHTML = (
  * _$.drag('div span', 'div'); // Allows the first <div> on the page to be dragged by the <span> element inside it.
  * @returns {Element} The element.
  */
-export let drag = (
+export const drag = (
 	dragHandle = req("String|Element", "drag handle"),
 	dragTarget = req("String|Element", "drag target"),
 ) => {
@@ -1455,7 +1461,7 @@ export let drag = (
 		e.stopPropagation();
 		dragObj = dragTarget;
 		dragObj.style.position = "absolute";
-		let rect = dragObj.getBoundingClientRect();
+		const rect = dragObj.getBoundingClientRect();
 
 		if (e.type == "mousedown") {
 			xOffset = e.clientX - rect.left;
@@ -1473,7 +1479,6 @@ export let drag = (
 		e.stopPropagation();
 
 		if (dragObj == null) {
-			return;
 		} else if (e.type == "mousemove") {
 			dragObj.style.left = e.clientX - xOffset + "px";
 			dragObj.style.top = e.clientY - yOffset + "px";
@@ -1513,7 +1518,7 @@ export let drag = (
  * );
  * @returns {undefined}
  */
-export let addEventListeners = (
+export const addEventListeners = (
 	element = req("HTMLElement", "element"),
 	events = req("array", "events"),
 	handler = {},
@@ -1527,11 +1532,11 @@ export let addEventListeners = (
 			'(like ["click","mouseover"])'
 		);
 	}
-	//create a wrapper to be able to use additional arguments
-	var handlerFn = function (e) {
+	// create a wrapper to be able to use additional arguments
+	const handlerFn = function (e) {
 		handler.apply(this, args && args instanceof Array ? args : []);
 	};
-	for (var i = 0; i < events.length; i += 1) {
+	for (let i = 0; i < events.length; i += 1) {
 		element.addEventListener(events[i], handlerFn, useCapture);
 	}
 };
@@ -1548,17 +1553,17 @@ export let addEventListeners = (
  * _$.sortTable(document.querySelector("table"), (i) => i.getAttribute("data-sort"));//Sorts the table by each cell's 'data-sort' attribute.
  */
 
-export let sortTable = (
+export const sortTable = (
 	element = req("HTMLTableElement", "table element"),
 	cellVal = undefined,
 ) => {
-	var getCellValue = function (tr, idx) {
+	const getCellValue = function (tr, idx) {
 		return cellVal
 			? cellVal(tr.children[idx], tr, idx)
 			: tr.children[idx].innerText || tr.children[idx].textContent;
 	};
 
-	var comparer = function (idx, asc) {
+	const comparer = function (idx, asc) {
 		return function (a, b) {
 			return (function (v1, v2) {
 				return v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
@@ -1575,9 +1580,10 @@ export let sortTable = (
 		.call(element.querySelectorAll("th"))
 		.forEach(function (th) {
 			th.addEventListener("click", function () {
-				var table = th.parentNode;
-				while (table.tagName.toUpperCase() != "TABLE")
+				let table = th.parentNode;
+				while (table.tagName.toUpperCase() != "TABLE") {
 					table = table.parentNode;
+				}
 				Array.prototype.slice
 					.call(table.querySelectorAll("tr:nth-child(n+2)"))
 					.sort(
@@ -1610,15 +1616,15 @@ export let sortTable = (
  * @param {HTMLTableElement} th The table header (<th> element) to sort with.
  * @param {Boolean} acending Whether to sort the table ascending or descending.
  */
-export let sortTableBy = (
+export const sortTableBy = (
 	th = req("HTMLTableElement", "<th> element"),
 	acending = true,
 ) => {
-	var getCellValue = function (tr, idx) {
+	const getCellValue = function (tr, idx) {
 		return tr.children[idx].innerText || tr.children[idx].textContent;
 	};
 
-	var comparer = function (idx, asc) {
+	const comparer = function (idx, asc) {
 		return function (a, b) {
 			return (function (v1, v2) {
 				return v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
@@ -1631,9 +1637,10 @@ export let sortTableBy = (
 		};
 	};
 
-	var table = th.parentNode;
-	while (table.tagName.toUpperCase() != "TABLE")
+	let table = th.parentNode;
+	while (table.tagName.toUpperCase() != "TABLE") {
 		table = table.parentNode;
+	}
 	Array.prototype.slice
 		.call(table.querySelectorAll("tr:nth-child(n+2)"))
 		.sort(
@@ -1658,7 +1665,7 @@ export let sortTableBy = (
  * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
  * @returns {Object} the style object of the element.
  */
-export let addStyles = (
+export const addStyles = (
 	el = req("HTMLElement", "element"),
 	styles = req("Object", "styles"),
 ) => {
@@ -1676,7 +1683,7 @@ export let addStyles = (
  * _$.createElement("<div id='id_here'>Testing!</div>");
  * @returns {Element} The created element.
  */
-export let createElement = (
+export const createElement = (
 	str = req("String", "HTML element string"),
 ) => {
 	node();
@@ -1694,12 +1701,12 @@ export let createElement = (
  * console.log(_$.compStyle(document.documentElement, "background-color")); // logs the background colour of the document
  * @returns {String} The computed style property for the element specified.
  */
-export let compStyle = (
+export const compStyle = (
 	el = req("HTMLElement", "element"),
 	prop = req("String", "CSS property string"),
 ) => {
 	node();
-	var computedStyles = window.getComputedStyle(el);
+	const computedStyles = window.getComputedStyle(el);
 	return computedStyles.getPropertyValue(prop);
 };
 
@@ -1713,7 +1720,7 @@ export let compStyle = (
  * // Make every sibling of the first list item's background color white.
  * @returns {Element[]} The array of sibling elements.
  */
-export let elementSiblings = (n = req("HTMLElement", "element")) =>
+export const elementSiblings = (n = req("HTMLElement", "element")) =>
 	[...n.parentElement.children].filter((c) => c != n);
 /**
  * Disables right click on the element spcified.
@@ -1724,7 +1731,7 @@ export let elementSiblings = (n = req("HTMLElement", "element")) =>
  * _$.disableRightClick(document.documentElement)
  * @returns {undefined}
  */
-export let disableRightClick = (
+export const disableRightClick = (
 	el = req("HTMLElement", "element"),
 ) => {
 	node();
@@ -1739,11 +1746,11 @@ export let disableRightClick = (
  * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the <h1> element to inline using the style="___" attribute
  * @returns {undefined}
  */
-export let inlineCSS = (el = req("HTMLElement", "element")) => {
-	var cs = getComputedStyle(el, null);
-	var i;
+export const inlineCSS = (el = req("HTMLElement", "element")) => {
+	const cs = getComputedStyle(el, null);
+	let i;
 	for (i = 0; i < cs.length; i++) {
-		var s = cs[i] + "";
+		const s = cs[i] + "";
 		el.style[s] = cs[s];
 	}
 };
@@ -1757,9 +1764,9 @@ export let inlineCSS = (el = req("HTMLElement", "element")) => {
  * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
  * @return {Array.<object>} The array of objects representing the attributes
  */
-export let attributes = (el = req("HTMLElement", "element")) => {
+export const attributes = (el = req("HTMLElement", "element")) => {
 	node();
-	var output = [];
+	const output = [];
 	for (
 		var att, i = 0, atts = el.attributes, n = atts.length;
 		i < n;
@@ -1784,7 +1791,7 @@ export let attributes = (el = req("HTMLElement", "element")) => {
  * _$.observeMutations(document, console.log); // Logs all the mutations that happen to the console.
  * @returns {undefined}
  */
-export let observeMutations = (
+export const observeMutations = (
 	element = req("HTMLElement", "element"),
 	callback = req("function", "callback"),
 	options = {},
@@ -1827,14 +1834,14 @@ export let observeMutations = (
  *  _$.tilt(el, x, y);
  * }
  */
-export let tilt = (
+export const tilt = (
 	el = req("HTMLElement", "element"),
 	x = req("number", "x"),
 	y = req("number", "y"),
 	perspective = 500,
 	amount = 30,
 ) => {
-	//Old code
+	// Old code
 	/*  const xVal = x
       const yVal = y
       const yRotation = amount * ((xVal - width / 2) / width)
@@ -1842,7 +1849,7 @@ export let tilt = (
       const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
       el.style.transform = string */
 
-	//One liner
+	// One liner
 	el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
 		amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
 	}deg) rotateY(${
@@ -1858,7 +1865,9 @@ export let tilt = (
  * @example
  * _$.fullScreen(document.documentElement); // Make the window fullscreen
  */
-export let fullScreen = (element = req("HTMLElement", "element")) => {
+export const fullScreen = (
+	element = req("HTMLElement", "element"),
+) => {
 	return (
 		element.requestFullScreen ||
 		element.mozRequestFullScreen ||
@@ -1878,16 +1887,16 @@ export let fullScreen = (element = req("HTMLElement", "element")) => {
  * //Replaces the selection! =)
  * @param {String} replacementText The replacement HTML to replace with.
  */
-export let replaceSelection = (
+export const replaceSelection = (
 	replacementText = req("string", "replacement text"),
 ) => {
-	var sel, range;
+	let sel, range;
 	if (window.getSelection) {
 		sel = window.getSelection();
 		if (sel.rangeCount) {
 			range = sel.getRangeAt(0);
 			range.deleteContents();
-			let n = document.createElement("span");
+			const n = document.createElement("span");
 			n.insertAdjacentHTML("beforeend", replacementText);
 			range.insertNode(n);
 		}
@@ -1899,8 +1908,8 @@ export let replaceSelection = (
 		range.text = replacementText.replace(/<[^>]*>/g, "");
 	}
 };
-//#endregion Element
-//#region Event
+// #endregion Element
+// #region Event
 /**
  * Waits until a condition is met then resolves a promise.
  * @returns {Promise} A promise resolved when the condition returned by the function is true.
@@ -1918,12 +1927,12 @@ export let replaceSelection = (
  * @param {Function} condition The function which returns true when the condition is met
  * @param {Number} [wait=Infinity] The wait time in milliseconds to cancel the function and reject the promise.
  */
-export let waitUntil = async (
+export const waitUntil = async (
 	condition = req("function", "condition"),
 	wait = Infinity,
 ) => {
 	return new Promise(async (resolve, reject) => {
-		let startTime = Date.now();
+		const startTime = Date.now();
 		while (!condition()) {
 			if (Date.now() - startTime >= wait) {
 				reject(condition());
@@ -1945,7 +1954,7 @@ export let waitUntil = async (
  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
  * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
  */
-export let onOutsideClick = (
+export const onOutsideClick = (
 	element = req("HTMLElement", "element"),
 	callback = req("function", "callback"),
 ) => {
@@ -1970,7 +1979,7 @@ export let onOutsideClick = (
  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
  * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
  */
-export let onScrollStop = (
+export const onScrollStop = (
 	element = window,
 	callback = req("function", "callback"),
 	time = 150,
@@ -2004,7 +2013,7 @@ export let onScrollStop = (
  *   thing.emit("data", "Yay! Some data!!"); // Logs "Yay! Some data!!" to the console after 2 seconds.
  * }, 2000)
  */
-export let hub = () => ({
+export const hub = () => ({
 	hub: Object.create(null),
 	emit(event, data) {
 		(this.hub[event] || []).forEach((handler) => handler(data));
@@ -2031,19 +2040,19 @@ export let hub = () => ({
  * @param {EventTarget} [target=window] What to dispatch the event to.
  * @returns {undefined}
  */
-export let dispatch = (
+export const dispatch = (
 	args = req("object", "event properties"),
 	type = req("string", "type"),
 	target = window,
 ) => {
-	let e = new Event(type);
-	for (let o in args) {
+	const e = new Event(type);
+	for (const o in args) {
 		e[o] = args[o];
 	}
 	target.dispatchEvent(e);
 };
-//#endregion Event
-//#region Function
+// #endregion Event
+// #region Function
 /**
  * Runs a list of functions with a list of arguments.
  * @returns {Array.<array>} The list of outputs.
@@ -2057,7 +2066,7 @@ export let dispatch = (
   )(1, 2, 3); // [[2, 3, 4], [0, 1, 2], [10, 20, 30]]
  * @param  {...function} fns The functions to call.
  */
-export let juxt = (...fns) => (...args) =>
+export const juxt = (...fns) => (...args) =>
 	[...fns].map((fn) => [...args].map(fn));
 /**
  * Returns a promise after a specified number of milliseconds.
@@ -2072,7 +2081,7 @@ export let juxt = (...fns) => (...args) =>
  * })
  * @param {Number} ms The milliseconds to sleep.
  */
-export let sleep = (ms = req("number", "milliseconds")) =>
+export const sleep = (ms = req("number", "milliseconds")) =>
 	new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
@@ -2085,7 +2094,7 @@ export let sleep = (ms = req("number", "milliseconds")) =>
  * @param {Function} fn The function to call.
  * @param {Number} n The number of arguments to accept.
  */
-export let limitArgs = (
+export const limitArgs = (
 	fn = req("function", "function"),
 	n = req("number", "arguments"),
 ) => (...args) => fn(...args.slice(0, n));
@@ -2098,7 +2107,7 @@ export let limitArgs = (
  * @param {Array} fns The array of functions to execute.
  * @param {Number} [iterations=1000] How many times to execute the functions. (More is more reliable but takes longer.)
  */
-export let fastestFunction = (fns, iterations = 1000) => {
+export const fastestFunction = (fns, iterations = 1000) => {
 	const times = fns.map((fn) => {
 		const before = performance.now();
 		for (let i = 0; i < iterations; i++) fn();
@@ -2119,7 +2128,7 @@ export let fastestFunction = (fns, iterations = 1000) => {
   say(["Fred", "hi"]);//"Fred says hi"
  * @param {Function} fn The function to use
  */
-export let spread = (fn = req("function")) => {
+export const spread = (fn = req("function")) => {
 	return (args) => {
 		fn.apply(globalThis, args);
 	};
@@ -2133,11 +2142,11 @@ export let spread = (fn = req("function")) => {
  * let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid. (Note that _$.uuid is already very fast - it can generate up to 10 million values in 20 seconds.)
  * @returns {Function} The memoized function.
  */
-export let memoize = (fn = req("function")) => {
-	let cache = {};
+export const memoize = (fn = req("function")) => {
+	const cache = {};
 	return function () {
-		let args = JSON.stringify(Array.from(arguments));
-		let arg_array = Array.from(arguments);
+		const args = JSON.stringify(Array.from(arguments));
+		const arg_array = Array.from(arguments);
 		if (cache[args]) {
 			return cache[args];
 		} else {
@@ -2157,7 +2166,7 @@ export let memoize = (fn = req("function")) => {
  * const multiply2 = (x) => x * 2;
  * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  3 * 2 + 2
  */
-export let composeFunction = (...functions) => (args) => {
+export const composeFunction = (...functions) => (args) => {
 	req("functions", "function list", ![...functions].length);
 	return functions.reduceRight((arg, fn) => fn(arg), args);
 };
@@ -2173,7 +2182,7 @@ export let composeFunction = (...functions) => (args) => {
  * let fn = (x, y, z, w) => x * y * z * w;
  * console.log(_$.curryFunction(fn, 4, 5)(4)(3)(2)); // 120 i.e. 5 * 4 * 3 * 2
  */
-export let curryFunction = (
+export const curryFunction = (
 	fn = req("function"),
 	arity = fn.length,
 	...args
@@ -2191,7 +2200,7 @@ export let curryFunction = (
  * const asyncFn = async (x) => x ** 3; // It's a silly function, but a good example
  * console.log(_$.isAsync(asyncFn)); // true
  */
-export let isAsync = (val = req("function")) =>
+export const isAsync = (val = req("function")) =>
 	Object.prototype.toString.call(val) === "[object AsyncFunction]";
 
 /**
@@ -2205,11 +2214,11 @@ export let isAsync = (val = req("function")) =>
  * _$.timeFunction(() => prompt("What's your name?"));
  * @returns {Object} An object with "time" and "function" properties, time being time in milliseconds, and function being the original function passed.
  */
-export let timeFunction = (
+export const timeFunction = (
 	fn = req("function"),
 	name = "_$ function timer",
 ) => {
-	let startTime = performance.now();
+	const startTime = performance.now();
 	console.time(name);
 	fn();
 	console.timeEnd(name);
@@ -2227,25 +2236,25 @@ export let timeFunction = (
  * setInterval(alert_function, 1)
  * @returns {Function} The throttled function
  */
-export let throttle = (
+export const throttle = (
 	func = req("function"),
 	wait = req("number", "wait"),
 	options = {},
 ) => {
-	var context, args, result;
-	var timeout = null;
-	var previous = 0;
+	let context, args, result;
+	let timeout = null;
+	let previous = 0;
 	if (!options) options = {};
-	var later = function () {
+	const later = function () {
 		previous = options.leading === false ? 0 : Date.now();
 		timeout = null;
 		result = func.apply(context, args);
 		if (!timeout) context = args = null;
 	};
 	return function () {
-		var now = Date.now();
+		const now = Date.now();
 		if (!previous && options.leading === false) previous = now;
-		var remaining = wait - (now - previous);
+		const remaining = wait - (now - previous);
 		context = this;
 		args = arguments;
 		if (remaining <= 0 || remaining > wait) {
@@ -2272,7 +2281,7 @@ export let throttle = (
  * @param {Number} wait The milliseconds to wait between executions.
  * @param {Boolean} [immediate=false] Whether or not to run immediately, or after a group of executions.
  */
-export let debounce = (
+export const debounce = (
 	func = req("function"),
 	wait = req("number", "wait"),
 	immediate = false,
@@ -2280,17 +2289,17 @@ export let debounce = (
 	// 'private' variable for instance
 	// The returned function will be able to reference this due to closure.
 	// Each call to the returned function will share this common timer.
-	var timeout;
+	let timeout;
 
 	// Calling debounce returns a new anonymous function
 	return function () {
 		// reference the context and args for the setTimeout function
-		var context = this,
-			args = arguments;
+		const context = this;
+		const args = arguments;
 
 		// Should the function be called now? If immediate is true
 		//   and not already in a timeout then the answer is: Yes
-		var callNow = immediate && !timeout;
+		const callNow = immediate && !timeout;
 
 		// This is the basic debounce behaviour where you can call this
 		//   function several times, but it will only execute once
@@ -2326,7 +2335,7 @@ export let debounce = (
  * _$.runAsync(() =>  "hello world").then(console.log); // "hello world"
  * @returns {Promise} A promise that resolves into the return value of the function.
  */
-export let runAsync = (fn = req("function")) => {
+export const runAsync = (fn = req("function")) => {
 	const worker = new Worker(
 		URL.createObjectURL(new Blob([`postMessage((${fn})());`]), {
 			type: "application/javascript; charset=utf-8",
@@ -2341,13 +2350,13 @@ export let runAsync = (fn = req("function")) => {
 		};
 	});
 };
-//#endregion Function
-//#region Object
+// #endregion Function
+// #region Object
 /**
- * Flattens an object recursively into one. 
+ * Flattens an object recursively into one.
  * @memberOf object
  * @function
- * @example 
+ * @example
  * _$.flattenObj({
       hello: "world",
       another: {
@@ -2361,7 +2370,7 @@ export let runAsync = (fn = req("function")) => {
 * @param {Object} o The object to flatten
 * @returns {Object} The flattened object.
  */
-export let flattenObj = (o = req("object", "object")) => {
+export const flattenObj = (o = req("object", "object")) => {
 	return o !== Object(o) || Array.isArray(o)
 		? {}
 		: Object.assign(
@@ -2393,13 +2402,13 @@ export let flattenObj = (o = req("object", "object")) => {
  * let obj = { hello: { puny: "earthlings" }};
  * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
  */
-export let clone = (
+export const clone = (
 	src = req("object", "Object to clone"),
 	/* These params are internal */
 	_visited,
 	_copiesVisited,
 ) => {
-	var object_create = Object.create;
+	let object_create = Object.create;
 	if (typeof object_create !== "function") {
 		object_create = function (o) {
 			function F() {}
@@ -2410,7 +2419,7 @@ export let clone = (
 	if (src === null || typeof src !== "object") {
 		return src;
 	}
-	if (typeof src.clone == "function") {
+	if (typeof src.clone === "function") {
 		return src.clone(true);
 	}
 	if (src instanceof Date) {
@@ -2419,22 +2428,22 @@ export let clone = (
 	if (src instanceof RegExp) {
 		return new RegExp(src);
 	}
-	if (src.nodeType && typeof src.cloneNode == "function") {
+	if (src.nodeType && typeof src.cloneNode === "function") {
 		return src.cloneNode(true);
 	}
 	if (_visited === undefined) {
 		_visited = [];
 		_copiesVisited = [];
 	}
-	var i,
-		len = _visited.length;
+	var i;
+	const len = _visited.length;
 	for (i = 0; i < len; i++) {
 		if (src === _visited[i]) {
 			return _copiesVisited[i];
 		}
 	}
 	if (Object.prototype.toString.call(src) == "[object Array]") {
-		var ret = src.slice();
+		const ret = src.slice();
 		_visited.push(src);
 		_copiesVisited.push(ret);
 
@@ -2444,17 +2453,17 @@ export let clone = (
 		}
 		return ret;
 	}
-	var proto = Object.getPrototypeOf
+	let proto = Object.getPrototypeOf
 		? Object.getPrototypeOf(src)
 		: src.__proto__;
 	if (!proto) {
 		proto = src.constructor.prototype;
 	}
-	var dest = object_create(proto);
+	const dest = object_create(proto);
 	_visited.push(src);
 	_copiesVisited.push(dest);
 
-	for (var key in src) {
+	for (const key in src) {
 		dest[key] = clone(src[key], _visited, _copiesVisited);
 	}
 	return dest;
@@ -2472,7 +2481,7 @@ export let clone = (
  * obj.anotherThing = "Hello world!"; // Logs "Set abotherThing to Hello world!" to the console!
  * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
  */
-export let listen = (
+export const listen = (
 	obj = req("object"),
 	setCallback = () => null,
 	getCallback = () => null,
@@ -2499,11 +2508,11 @@ export let listen = (
  * @example
  * console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}
  */
-export let merge = function MergeRecursive(
+export const merge = function MergeRecursive(
 	obj1 = req("object", "object 1"),
 	obj2 = req("object", "object 2"),
 ) {
-	for (var p in obj2) {
+	for (const p in obj2) {
 		if (p in Object.prototype) continue;
 		try {
 			// Property in destination object set; update its value.
@@ -2530,7 +2539,7 @@ export let merge = function MergeRecursive(
  * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
  * @returns {Object} The new Object.
  */
-export let mapObjectKeys = (
+export const mapObjectKeys = (
 	obj = req("object"),
 	fn = req("function", "callback"),
 ) =>
@@ -2557,7 +2566,7 @@ export let mapObjectKeys = (
  * @example
  * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
  */
-export let mapObjectValues = (
+export const mapObjectValues = (
 	obj = req("object", "object"),
 	fn = req("function", "callback"),
 ) => {
@@ -2584,7 +2593,7 @@ export let mapObjectValues = (
  * const form = document.getElementById("form");
  * console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }
  */
-export let formToObject = (
+export const formToObject = (
 	form = req("HTMLFormElement", "the form"),
 ) => {
 	node();
@@ -2605,7 +2614,7 @@ export let formToObject = (
  * // The object is now {anotherThing: "Another value!", testing: "A value"}
  * @returns {Object} The sorted object.
  */
-export let sortObj = (obj = req("object", "object")) => {
+export const sortObj = (obj = req("object", "object")) => {
 	return Object.keys(obj)
 		.sort()
 		.reduce(function (result, key) {
@@ -2613,8 +2622,8 @@ export let sortObj = (obj = req("object", "object")) => {
 			return result;
 		}, {});
 };
-//#endregion Object
-//#region Math
+// #endregion Object
+// #region Math
 
 /**
  * Gets the greatest common divisor of a list of numbers.
@@ -2625,19 +2634,19 @@ export let sortObj = (obj = req("object", "object")) => {
  * _$.gcd(12, 4, 8);//Returns 4
  * @param {...Number} arr The numbers to compare
  */
-export let gcd = (...ary) => {
+export const gcd = (...ary) => {
 	if (ary[0] instanceof Array) {
 		return getGCD(ary[0]);
 	} else {
 		return getGCD([...ary]);
 	}
 	function getGCD(arr) {
-		let min = Math.min(...arr);
-		let max = Math.max(...arr);
+		const min = Math.min(...arr);
+		const max = Math.max(...arr);
 		if (min == max) {
 			return min;
 		} else {
-			for (let i in arr) {
+			for (const i in arr) {
 				if (arr[i] > min) {
 					arr[i] = arr[i] - min;
 				}
@@ -2660,14 +2669,16 @@ export let gcd = (...ary) => {
  * @param {*} a The first thing to test
  * @param {*} b The second thing to test
  */
-export let equals = (a = req("any", "a"), b = req("any", "b")) => {
+export const equals = (a = req("any", "a"), b = req("any", "b")) => {
 	if (a === b) return true;
-	if (a instanceof Date && b instanceof Date)
+	if (a instanceof Date && b instanceof Date) {
 		return a.getTime() === b.getTime();
-	if (!a || !b || (typeof a !== "object" && typeof b !== "object"))
+	}
+	if (!a || !b || (typeof a !== "object" && typeof b !== "object")) {
 		return a === b;
+	}
 	if (a.prototype !== b.prototype) return false;
-	let keys = Object.keys(a);
+	const keys = Object.keys(a);
 	if (keys.length !== Object.keys(b).length) return false;
 	return keys.every((k) => equals(a[k], b[k]));
 };
@@ -2681,7 +2692,7 @@ export let equals = (a = req("any", "a"), b = req("any", "b")) => {
  * _$.isPrime(10);//False
  * @param {Number} num The number to test.
  */
-export let isPrime = (num = req("number", "number")) => {
+export const isPrime = (num = req("number", "number")) => {
 	const boundary = Math.floor(Math.sqrt(num));
 	for (let i = 2; i <= boundary; i++) if (num % i === 0) return false;
 	return num >= 2;
@@ -2695,7 +2706,7 @@ export let isPrime = (num = req("number", "number")) => {
  * @example
  * _$.factorial(3);//6
  */
-export let factorial = (n = req("number")) =>
+export const factorial = (n = req("number")) =>
 	n < 0
 		? (() => {
 				throw new TypeError("Negative numbers are not allowed!");
@@ -2713,12 +2724,12 @@ export let factorial = (n = req("number")) =>
  * @memberOf math
  * @function
  */
-export let luhnCheck = (num = req("String|Number")) => {
-	let arr = (num + "")
+export const luhnCheck = (num = req("String|Number")) => {
+	const arr = (num + "")
 		.split("")
 		.reverse()
 		.map((x) => parseInt(x));
-	let lastDigit = arr.splice(0, 1)[0];
+	const lastDigit = arr.splice(0, 1)[0];
 	let sum = arr.reduce(
 		(acc, val, i) =>
 			i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9,
@@ -2743,18 +2754,17 @@ export let luhnCheck = (num = req("String|Number")) => {
  * @returns {undefined}
  */
 // prettier-ignore
-export let animate = (start = req("Number", "start"), end = req("Number", "end"), duration=req("number", "duration"), callback = req("function", "callback"), interval = 20, num = (num) => num) => {
-    var value = start;
-    var start_time = Date.now();
-    let update = setInterval(() => {
-        value = num((Date.now() - start_time) / duration) * (end - start) + start;
-        callback(value, num((Date.now() - start_time) / duration));
-    }, interval);
-    setTimeout(() => {
-        clearInterval(update);
-        callback(end, 1);
-        return;
-    }, duration);
+export const animate = (start = req('Number', 'start'), end = req('Number', 'end'), duration = req('number', 'duration'), callback = req('function', 'callback'), interval = 20, num = (num) => num) => {
+  let value = start
+  const start_time = Date.now()
+  const update = setInterval(() => {
+    value = num((Date.now() - start_time) / duration) * (end - start) + start
+    callback(value, num((Date.now() - start_time) / duration))
+  }, interval)
+  setTimeout(() => {
+    clearInterval(update)
+    callback(end, 1)
+  }, duration)
 }
 /**
  * Returns an array of the whole numbers (inclusive) between the numbers specified.
@@ -2766,7 +2776,7 @@ export let animate = (start = req("Number", "start"), end = req("Number", "end")
  * console.log(_$.range(-2, 1)); // [-2, -1, 0, 1]
  * @returns {Array.<Number>} An array of whole numbers (inclusive) between the numbers specified.
  */
-export let range = (start = req("number", "start"), end = 0) => {
+export const range = (start = req("number", "start"), end = 0) => {
 	if (start > end) {
 		[start, end] = [end, start];
 	}
@@ -2783,14 +2793,14 @@ export let range = (start = req("number", "start"), end = 0) => {
  * console.log(_$.uuid()); // e.g. "863d0193-863d-0193-863d-0193863d0193"
  * @returns {String} The UUID
  */
-export let uuid = (seed = Math.random()) => {
-	//Magic. Do not touch.
+export const uuid = (seed = Math.random()) => {
+	// Magic. Do not touch.
 	if (typeof seed === "string") {
 		// Convert string to a number between 0 and 1
 		seed = _temp.hashString(seed) / 10000000000000000;
 	}
 	function _p8(s) {
-		var p = (seed.toString(16) + "000000000").substr(2, 8);
+		const p = (seed.toString(16) + "000000000").substr(2, 8);
 		return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
 	}
 	return _p8() + _p8(true) + _p8(true) + _p8();
@@ -2804,14 +2814,14 @@ export let uuid = (seed = Math.random()) => {
  * console.log(_$.primesTo(10)); // [2, 3, 5, 7]
  * @returns {Array.<Number>} Returns an array of prime numbers up to the given number.
  */
-export let primesTo = (num = req("number", "number")) => {
+export const primesTo = (num = req("number", "number")) => {
 	let arr = Array.from({
-			length: num - 1,
-		}).map((x, i) => i + 2),
-		sqroot = Math.floor(Math.sqrt(num)),
-		numsTillSqroot = Array.from({
-			length: sqroot - 1,
-		}).map((x, i) => i + 2);
+		length: num - 1,
+	}).map((x, i) => i + 2);
+	const sqroot = Math.floor(Math.sqrt(num));
+	const numsTillSqroot = Array.from({
+		length: sqroot - 1,
+	}).map((x, i) => i + 2);
 	numsTillSqroot.forEach(
 		(x) => (arr = arr.filter((y) => y % x !== 0 || y === x)),
 	);
@@ -2829,7 +2839,7 @@ export let primesTo = (num = req("number", "number")) => {
  * @example
  * console.log(_$.random(0, 100)); // e.g. 47
  */
-export let random = (
+export const random = (
 	min = req("number", "min"),
 	max = 0,
 	round = true,
@@ -2853,8 +2863,8 @@ export let random = (
  * console.log(_$.seedRandom(13)); // 0.5663226493634284
  * @returns {Number} The random number from the seed.
  */
-export let seedRandom = (seed = req("number", "seed")) => {
-	var t = (seed += 0x6d2b79f5);
+export const seedRandom = (seed = req("number", "seed")) => {
+	let t = (seed += 0x6d2b79f5);
 	t = Math.imul(t ^ (t >>> 15), t | 1);
 	t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
 	return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
@@ -2869,7 +2879,7 @@ export let seedRandom = (seed = req("number", "seed")) => {
  * console.log(_$.formatNumber(100000000)); // "100,000,000"
  * @returns {String} The formatted string representation of the number.
  */
-export let formatNumber = (n = req("number", "number")) =>
+export const formatNumber = (n = req("number", "number")) =>
 	n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 /**
  * Easing functions
@@ -2879,7 +2889,7 @@ export let formatNumber = (n = req("number", "number")) =>
  * console.log(_$.ease.easeInOutQuad(.3)); // 0.18 - the eased point of about 1/3 along the animation.
  * @returns {Function} The easing function.
  */
-export let ease = {
+export const ease = {
 	// no easing, no acceleration
 	linear: (t = req("number", "percentage")) => t,
 	easeInSine: (t = req("number", "percentage")) =>
@@ -3001,8 +3011,8 @@ export let ease = {
 			: (1 + ease.easeOutBounce(2 * t - 1)) / 2,
 };
 
-//#endregion Math
-//#region String
+// #endregion Math
+// #region String
 /**
  * Compares two strings using the Jaro-Winkler Distance algorithm.
  * @memberOf string
@@ -3013,8 +3023,8 @@ export let ease = {
  * @param {String} a The first string
  * @param {String} b The second string
  */
-export let jaroDistance = function (a, b) {
-	let adjustments = {
+export const jaroDistance = function (a, b) {
+	const adjustments = {
 		A: "E",
 		A: "I",
 		A: "O",
@@ -3060,17 +3070,17 @@ export let jaroDistance = function (a, b) {
 	}
 	a = a.trim().toUpperCase();
 	b = b.trim().toUpperCase();
-	var a_len = a.length;
-	var b_len = b.length;
-	var a_flag = [];
-	var b_flag = [];
-	var search_range = Math.floor(Math.max(a_len, b_len) / 2) - 1;
-	var minv = Math.min(a_len, b_len);
-	var Num_com = 0;
-	var yl1 = b_len - 1;
+	const a_len = a.length;
+	const b_len = b.length;
+	const a_flag = [];
+	const b_flag = [];
+	const search_range = Math.floor(Math.max(a_len, b_len) / 2) - 1;
+	const minv = Math.min(a_len, b_len);
+	let Num_com = 0;
+	const yl1 = b_len - 1;
 	for (var i = 0; i < a_len; i++) {
-		var lowlim = i >= search_range ? i - search_range : 0;
-		var hilim = i + search_range <= yl1 ? i + search_range : yl1;
+		const lowlim = i >= search_range ? i - search_range : 0;
+		const hilim = i + search_range <= yl1 ? i + search_range : yl1;
 		for (var j = lowlim; j <= hilim; j++) {
 			if (b_flag[j] !== 1 && a[j] === b[i]) {
 				a_flag[j] = 1;
@@ -3083,8 +3093,8 @@ export let jaroDistance = function (a, b) {
 	if (Num_com === 0) {
 		return 0.0;
 	}
-	var k = 0;
-	var N_trans = 0;
+	let k = 0;
+	let N_trans = 0;
 	for (var i = 0; i < a_len; i++) {
 		if (a_flag[i] === 1) {
 			var j;
@@ -3100,8 +3110,8 @@ export let jaroDistance = function (a, b) {
 		}
 	}
 	N_trans = Math.floor(N_trans / 2);
-	var N_simi = 0;
-	var adjwt = adjustments;
+	let N_simi = 0;
+	const adjwt = adjustments;
 	if (minv > Num_com) {
 		for (var i = 0; i < a_len; i++) {
 			if (!a_flag[i]) {
@@ -3117,8 +3127,8 @@ export let jaroDistance = function (a, b) {
 			}
 		}
 	}
-	var Num_sim = N_simi / 10.0 + Num_com;
-	var weight =
+	const Num_sim = N_simi / 10.0 + Num_com;
+	let weight =
 		Num_sim / a_len + Num_sim / b_len + (Num_com - N_trans) / Num_com;
 	weight = weight / 3;
 	if (weight > 0.7) {
@@ -3145,7 +3155,7 @@ export let jaroDistance = function (a, b) {
  * @param {String} prop The property to prefix.
  * @returns {String} The prefixed value (camelCased, instead of css-case, so mozAppearance instead of -moz-appearance).
  */
-export let prefixCSS = (prop = req("string", "property")) => {
+export const prefixCSS = (prop = req("string", "property")) => {
 	node();
 	const capitalizedProp =
 		prop.charAt(0).toUpperCase() + prop.slice(1);
@@ -3171,7 +3181,7 @@ export let prefixCSS = (prop = req("string", "property")) => {
  * _$.parseCookie("foo=bar; something=hello%20world");//Returns {foo: "bar", something: "hello world"};
  * @param {String} str The string to parse.
  */
-export let parseCookie = (str = req("string", "cookie string")) =>
+export const parseCookie = (str = req("string", "cookie string")) =>
 	str
 		.split(";")
 		.map((v) => v.split("="))
@@ -3182,7 +3192,7 @@ export let parseCookie = (str = req("string", "cookie string")) =>
 			return acc;
 		}, {});
 /**
- * Hashes a string using the crypto api. 
+ * Hashes a string using the crypto api.
  * @memberOf string
  * @function
  * @example
@@ -3193,17 +3203,18 @@ export let parseCookie = (str = req("string", "cookie string")) =>
  * @param {String} val The string to hash
  * @returns {Promise} A promise that resolves into the hashed string.
  */
-export let hash = (val = req("string", "input string")) => {
+export const hash = (val = req("string", "input string")) => {
 	node();
 	return crypto.subtle
 		.digest("SHA-256", new TextEncoder("utf-8").encode(val))
 		.then((h) => {
-			let hexes = [],
-				view = new DataView(h);
-			for (let i = 0; i < view.byteLength; i += 4)
+			const hexes = [];
+			const view = new DataView(h);
+			for (let i = 0; i < view.byteLength; i += 4) {
 				hexes.push(
 					("00000000" + view.getUint32(i).toString(16)).slice(-8),
 				);
+			}
 			return hexes.join("");
 		});
 };
@@ -3218,7 +3229,7 @@ export let hash = (val = req("string", "input string")) => {
  * // "Things: an apple an orange
  * @returns {String} String that has been for looped
  */
-export let forTemplateLiteral = (
+export const forTemplateLiteral = (
 	arr = req("array", "array"),
 	callback = req("function", "callback"),
 ) => {
@@ -3233,7 +3244,7 @@ export let forTemplateLiteral = (
  * @param {String} str The string to map
  * @param {Function} fn The callback function to run to map the string.
  */
-export let mapString = (
+export const mapString = (
 	str = req("string", "string"),
 	fn = req("function", "callback"),
 ) => Array.prototype.map.call(str, fn).join("");
@@ -3246,7 +3257,7 @@ export let mapString = (
  * console.log(_$.decurr("déjà vu")); // "deja vu"
  * @param {String} str The string to use.
  */
-export let deburr = (str = req("string", "string")) =>
+export const deburr = (str = req("string", "string")) =>
 	str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 /**
@@ -3258,7 +3269,7 @@ export let deburr = (str = req("string", "string")) =>
  * console.log(_$.removeTags("<div>Hello</div>")); // "Hello"
  * @returns {String} THe string of HTML without the tags.
  */
-export let removeTags = (html = req("string", "html string")) =>
+export const removeTags = (html = req("string", "html string")) =>
 	html.replace(/<[^>]*>/g, "");
 
 /**
@@ -3276,7 +3287,7 @@ export let removeTags = (html = req("string", "html string")) =>
  * _$.speak("Bijou is awesome!"); // speaks "Bijou is awesome!"
  * @returns {undefined}
  */
-export let speak = (
+export const speak = (
 	text = req("string", "text"),
 	lang = "en",
 	volume = 1,
@@ -3284,9 +3295,9 @@ export let speak = (
 	pitch = 1,
 	rate = 1,
 ) => {
-	var msg = new SpeechSynthesisUtterance();
-	var voices = window.speechSynthesis.getVoices();
-	let def = voices.filter((c) => c.default);
+	const msg = new SpeechSynthesisUtterance();
+	const voices = window.speechSynthesis.getVoices();
+	const def = voices.filter((c) => c.default);
 	msg.voice = voice
 		? typeof voice === "number"
 			? voices[voice]
@@ -3309,10 +3320,10 @@ export let speak = (
  * //Replaces the last space in the <h1>'s innerText with "&nbsp;"
  * @returns {String} The replaced string.
  */
-export let widows = (text = req("string", "text")) => {
-	var wordArray = text.split(" ");
-	var finalTitle = "";
-	for (var i = 0; i <= wordArray.length - 1; i++) {
+export const widows = (text = req("string", "text")) => {
+	const wordArray = text.split(" ");
+	let finalTitle = "";
+	for (let i = 0; i <= wordArray.length - 1; i++) {
 		finalTitle += wordArray[i];
 		if (i == wordArray.length - 2) {
 			finalTitle += "&nbsp;";
@@ -3332,7 +3343,7 @@ export let widows = (text = req("string", "text")) => {
  * console.log(_$.unCamelCase("helloWorld")); // "Hello World"
  * @returns {String} The string of unCamelCased code.
  */
-export let unCamelCase = function (str = req("string", "string")) {
+export const unCamelCase = function (str = req("string", "string")) {
 	return str
 		.replace(/([a-z])([A-Z])/g, "$1 $2")
 		.replace(/\b([A-Z]+)([A-Z])([a-z])/, "$1 $2$3")
@@ -3350,7 +3361,7 @@ export let unCamelCase = function (str = req("string", "string")) {
  * console.log(_$.camelCase("Hello world")); // "helloWorld"
  * @returns {String} The camelCased string.
  */
-export let camelCase = (str = req("string", "string")) => {
+export const camelCase = (str = req("string", "string")) => {
 	return str
 		.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
 			return index === 0 ? word.toLowerCase() : word.toUpperCase();
@@ -3366,13 +3377,13 @@ export let camelCase = (str = req("string", "string")) => {
  * console.log(_$.scrambleString("Hello world")); // e.g. "owllH rdloe"
  * @returns {String} The scrambled text.
  */
-export let scrambleString = (str = req("string")) => {
-	var a = str.split(""),
-		n = a.length;
+export const scrambleString = (str = req("string")) => {
+	const a = str.split("");
+	const n = a.length;
 
-	for (var i = n - 1; i > 0; i--) {
-		var j = Math.floor(Math.random() * (i + 1));
-		var tmp = a[i];
+	for (let i = n - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		const tmp = a[i];
 		a[i] = a[j];
 		a[j] = tmp;
 	}
@@ -3388,9 +3399,9 @@ export let scrambleString = (str = req("string")) => {
  * console.log(_$.hashString("Hello world")); // 3494146707865688
  * @returns {Number} The hashed string.
  */
-export let hashString = (str = req("string"), seed = 0) => {
-	let h1 = 0xdeadbeef ^ seed,
-		h2 = 0x41c6ce57 ^ seed;
+export const hashString = (str = req("string"), seed = 0) => {
+	let h1 = 0xdeadbeef ^ seed;
+	let h2 = 0x41c6ce57 ^ seed;
 	for (let i = 0, ch; i < str.length; i++) {
 		ch = str.charCodeAt(i);
 		h1 = Math.imul(h1 ^ ch, 2654435761);
@@ -3415,23 +3426,23 @@ export let hashString = (str = req("string"), seed = 0) => {
  * console.log(_$.editDistance("hello", "Hello")); // 1
  * @returns {Number} The edit distance between two strings
  */
-export let editDistance = (
+export const editDistance = (
 	a = req("string", "string 1"),
 	b = req("string", "string 2"),
 ) => {
 	if (a.length == 0) return b.length;
 	if (b.length == 0) return a.length;
 
-	var matrix = [];
+	const matrix = [];
 
 	// increment along the first column of each row
-	var i;
+	let i;
 	for (i = 0; i <= b.length; i++) {
 		matrix[i] = [i];
 	}
 
 	// increment each column in the first row
-	var j;
+	let j;
 	for (j = 0; j <= a.length; j++) {
 		matrix[0][j] = j;
 	}
@@ -3464,7 +3475,7 @@ export let editDistance = (
  * console.log(_$.byteSize("Hello world")); 11
  * @returns {Number} The byte size of the string.
  */
-export let byteSize = (str = req("string", "string")) =>
+export const byteSize = (str = req("string", "string")) =>
 	new Blob([str]).size;
 
 /**
@@ -3477,11 +3488,11 @@ export let byteSize = (str = req("string", "string")) =>
  * _$.replaceMultiple("I have a cat, a dog, and a goat.", {dog: "cat", goat: "dog", cat: "goat"});//Returns "I have a goat, a cat and a dog"
  * @returns {String} The replaced string
  */
-export let replaceMultiple = (
+export const replaceMultiple = (
 	text = req("string", "text"),
 	replace = req("object", "replace key pairs"),
 ) => {
-	var re = new RegExp(Object.keys(replace).join("|"), "gi");
+	const re = new RegExp(Object.keys(replace).join("|"), "gi");
 	text = text.replace(re, function (matched) {
 		return mapObj[matched];
 	});
@@ -3500,13 +3511,13 @@ export let replaceMultiple = (
  * console.log(_$.urlQuery("q", "https://google.com/search?q=something")); // "something"
  * @returns {String} The url query
  */
-export let urlQuery = (
+export const urlQuery = (
 	query = req("string", "query"),
 	url = window.location.href,
 ) => {
 	query = query.replace(/[\[\]]/g, "\\$&");
-	var regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`),
-		results = regex.exec(url);
+	const regex = new RegExp(`[?&]${query}(=([^&#]*)|&|#|$)`);
+	const results = regex.exec(url);
 	if (!results) return null;
 	if (!results[2]) return "";
 	return decodeURIComponent(results[2].replace(/\+/g, " "));
@@ -3523,7 +3534,7 @@ export let urlQuery = (
  * console.log(_$.sanitizeHTML("<script>alert('hello')></script><b>A normal tag</b>")); // "<b>A normal tag</b>"
  * @returns {String} The sanitized HTML string.
  */
-export let sanitize = (
+export const sanitize = (
 	html = req("string", "input html"),
 	tags = undefined,
 	attributes = undefined,
@@ -3554,7 +3565,7 @@ export let sanitize = (
 		{
 			attribute: "alt",
 			tags: ["IMG", "AREA", "INPUT"],
-			//"^" and "$" match beggining and end
+			// "^" and "$" match beggining and end
 			regex: /^[0-9a-zA-Z]+$/,
 		},
 		{
@@ -3623,7 +3634,7 @@ export let sanitize = (
 		if (typeof el === "string") {
 			return { attribute: el, tags: "*", regex: /^.+$/ };
 		}
-		let output = el;
+		const output = el;
 		if (!el.hasOwnProperty("tags")) {
 			output.tags = "*";
 		}
@@ -3632,11 +3643,11 @@ export let sanitize = (
 		}
 		return output;
 	});
-	var el = new DOMParser().parseFromString(html, "text/html");
-	var elements = el.querySelectorAll("*");
+	const el = new DOMParser().parseFromString(html, "text/html");
+	const elements = el.querySelectorAll("*");
 	for (let i = 0; i < elements.length; i++) {
 		const current = elements[i];
-		let attr_list = get_attributes(current);
+		const attr_list = get_attributes(current);
 		for (let j = 0; j < attr_list.length; j++) {
 			const attribute = attr_list[j];
 			if (!attribute_matches(current, attribute)) {
@@ -3649,8 +3660,8 @@ export let sanitize = (
 	}
 	return el.documentElement.innerHTML;
 	function attribute_matches(element, attribute) {
-		let output = attributes.filter((attr) => {
-			let returnval =
+		const output = attributes.filter((attr) => {
+			const returnval =
 				attr.attribute === attribute &&
 				(attr.tags === "*" || attr.tags.includes(element.tagName)) &&
 				attr.regex.test(element.getAttribute(attribute));
@@ -3679,25 +3690,25 @@ export let sanitize = (
  * console.log(_$.markdownToHTML("_Italic text_, **bold text**")); // "<em>Italic text</em>, <b>bold text</b>"
  * @returns {String} The string of HTML converted from the markdown input.
  */
-export let markdownToHTML = (src = req("string", "input")) => {
-	var rx_lt = /</g;
-	var rx_gt = />/g;
-	var rx_space = /\t|\r|\uf8ff/g;
-	var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
-	var rx_hr = /^([*\-=_] *){3,}$/gm;
-	var rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g;
-	var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
-	var rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g;
-	var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
-	var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|(( {4}.*?\n)+))/g;
-	var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
-	var rx_table = /\n(( *\|.*?\| *\n)+)/g;
-	var rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
-	var rx_row = /.*\n/g;
-	var rx_cell = /\||(.*?[^\\])\|/g;
-	var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
-	var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
-	var rx_stash = /-\d+\uf8ff/g;
+export const markdownToHTML = (src = req("string", "input")) => {
+	const rx_lt = /</g;
+	const rx_gt = />/g;
+	const rx_space = /\t|\r|\uf8ff/g;
+	const rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
+	const rx_hr = /^([*\-=_] *){3,}$/gm;
+	const rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g;
+	const rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
+	const rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g;
+	const rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
+	const rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|(( {4}.*?\n)+))/g;
+	const rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
+	const rx_table = /\n(( *\|.*?\| *\n)+)/g;
+	const rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
+	const rx_row = /.*\n/g;
+	const rx_cell = /\||(.*?[^\\])\|/g;
+	const rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
+	const rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
+	const rx_stash = /-\d+\uf8ff/g;
 
 	function replace(rex, fn) {
 		src = src.replace(rex, fn);
@@ -3720,7 +3731,7 @@ export let markdownToHTML = (src = req("string", "input")) => {
 		return src.replace(
 			rx_list,
 			function (all, ind, ol, num, low, content) {
-				var entry = element(
+				const entry = element(
 					"li",
 					highlight(
 						content
@@ -3789,8 +3800,8 @@ export let markdownToHTML = (src = req("string", "input")) => {
 		return str.replace(rx_escape, "$1");
 	}
 
-	var stash = [];
-	var si = 0;
+	const stash = [];
+	let si = 0;
 
 	src = "\n" + src + "\n";
 
@@ -3819,29 +3830,29 @@ export let markdownToHTML = (src = req("string", "input")) => {
 
 	// link or image
 	replace(rx_link, function (all, p1, p2, p3, p4, p5, p6) {
-		stash[--si] = p6
-			? p6
-			: p2
-			? p4
-				? '<img src="' +
+		stash[--si] =
+			p6 ||
+			(p2
+				? p4
+					? '<img src="' +
+					  _$.escapeHTML(p4) +
+					  '" alt="' +
+					  _$.escapeHTML(p3) +
+					  '"/>'
+					: p1
+				: /^https?:\/\//g.test(p4)
+				? '<a href="' +
 				  _$.escapeHTML(p4) +
-				  '" alt="' +
-				  _$.escapeHTML(p3) +
-				  '"/>'
-				: p1
-			: /^https?:\/\//g.test(p4)
-			? '<a href="' +
-			  _$.escapeHTML(p4) +
-			  '">' +
-			  unesc(highlight(p3)) +
-			  "</a>"
-			: p1;
+				  '">' +
+				  unesc(highlight(p3)) +
+				  "</a>"
+				: p1);
 		return si + "\uf8ff";
 	});
 
 	// table
 	replace(rx_table, function (all, table) {
-		var sep = table.match(rx_thead)[1];
+		const sep = table.match(rx_thead)[1];
 		return (
 			"\n" +
 			element(
@@ -3892,9 +3903,9 @@ export let markdownToHTML = (src = req("string", "input")) => {
  * console.log(_$.syllables("Hello")); // 2
  * @returns {Number} The number of syllables in the specified word.
  */
-export let syllables = (word = req("string", "word")) => {
+export const syllables = (word = req("string", "word")) => {
 	word = word.toLowerCase();
-	var t_some = 0;
+	let t_some = 0;
 	if (word.length > 3) {
 		if (word.substring(0, 4) == "some") {
 			word = word.replace("some", "");
@@ -3903,7 +3914,7 @@ export let syllables = (word = req("string", "word")) => {
 	}
 	word = word.replace(/(?:[^laeiouy]|ed|[^laeiouy]e)$/, "");
 	word = word.replace(/^y/, "");
-	var syl = word.match(/[aeiouy]{1,2}/g);
+	const syl = word.match(/[aeiouy]{1,2}/g);
 	console.log(syl);
 	if (syl) {
 		return syl.length + t_some;
@@ -3918,7 +3929,7 @@ export let syllables = (word = req("string", "word")) => {
  * _$.titleCase("hello world");//Returns "Hello World"
  * @returns {String} The string in title case.
  */
-export let titleCase = (str = req("string", "string")) =>
+export const titleCase = (str = req("string", "string")) =>
 	str
 		.toLowerCase()
 		.split(" ")
@@ -3964,7 +3975,7 @@ export let titleCase = (str = req("string", "string")) =>
  * console.log(_$.capitalize("hello world")); // "Hello world"
  * @returns {String} The capitalized string.
  */
-export let capitalize = (str = req("string", "string")) =>
+export const capitalize = (str = req("string", "string")) =>
 	String.fromCodePoint(str.codePointAt(0)).toUpperCase() +
 	str.slice(str.codePointAt(0) > 0xffff ? 2 : 1);
 /**
@@ -3979,7 +3990,7 @@ export let capitalize = (str = req("string", "string")) =>
  * @param {String} what What to replace with.
  * @returns {String} The replaced string
  */
-export let replaceBetween = (
+export const replaceBetween = (
 	string = req("string", "string"),
 	start = req("number", "start"),
 	end = req("number", "end"),
@@ -3994,7 +4005,7 @@ export let replaceBetween = (
  * console.log(_$.escapeHTML("<div>")); // "&lt;div&gt;"
  * @returns {String} The escaped HTML.
  */
-export let escapeHTML = (str = req("string")) =>
+export const escapeHTML = (str = req("string")) =>
 	str.replace(
 		/[&<>'"]/g,
 		(tag) =>
@@ -4015,7 +4026,7 @@ export let escapeHTML = (str = req("string")) =>
  * console.log(_$.unescapeHTML("&lt;div&gt;")); // "<div>"
  * @returns {String} The unescaped HTML.
  */
-export let unescapeHTML = (str = req("string")) =>
+export const unescapeHTML = (str = req("string")) =>
 	str.replace(
 		/&amp;|&lt;|&gt;|&#39;|&quot;/g,
 		(tag) =>
@@ -4035,12 +4046,12 @@ export let unescapeHTML = (str = req("string")) =>
  * console.log(_$.previousPage()); // e.g. "https://bijou.js.org"
  * @returns {String} The url of the previous page the user visited.
  */
-export let previousPage = () => {
+export const previousPage = () => {
 	node();
 	return document.referrer || window.location.href;
 };
-//#endregion String
-//#region Utility
+// #endregion String
+// #region Utility
 /**
  * Resizes an image from a URL and returns a promise with it's data URL.
  * @memberOf utility
@@ -4050,24 +4061,24 @@ export let previousPage = () => {
  * @param {Number} [height=Natural width of the image] The target height of the new image
  * @returns {Promise.<string>} A data URL of the resized image.
  */
-export let resize = async (
+export const resize = async (
 	url = req("string", "html"),
 	width,
 	height,
 ) => {
 	node();
 	url = url.replace(/^(?:http|https)\:\/\//, "");
-	let img = new Image();
+	const img = new Image();
 	img.src = await _$.imageToData(
 		"https://cors.explosionscratc.repl.co/" + url,
 	);
 	await new Promise((res) => (img.onload = res));
-	let canvas = document.createElement("canvas");
-	let ctx = canvas.getContext("2d");
+	const canvas = document.createElement("canvas");
+	const ctx = canvas.getContext("2d");
 	canvas.width = width < 1 || !width ? img.width : width;
 	canvas.height = height < 1 || !width ? img.height : height;
 	ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-	let data = canvas.toDataURL(0, 0, canvas.width, canvas.height);
+	const data = canvas.toDataURL(0, 0, canvas.width, canvas.height);
 	return data;
 };
 /**
@@ -4082,21 +4093,21 @@ export let resize = async (
  * @param {Number} [opts.height=400]  The height of the output image.
  * @returns {Promise.<string>} A promise that resolves into the data URL string of the image.
  */
-export let htmlToImage = (
+export const htmlToImage = (
 	html = req("string", "html string"),
 	{ x = 0, y = 0, width = 300, height = 400 },
 ) => {
 	node();
-	let canvas = document.createElement("canvas");
+	const canvas = document.createElement("canvas");
 	canvas.width = width;
 	canvas.height = height;
-	var ctx = canvas.getContext("2d");
+	const ctx = canvas.getContext("2d");
 	return new Promise((res) => {
-		var xml = toXML(html);
+		let xml = toXML(html);
 		xml = xml.replace(/\#/g, "%23");
-		var data = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><foreignObject width="100%" height="100%">${xml}</foreignObject></svg>`;
+		const data = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><foreignObject width="100%" height="100%">${xml}</foreignObject></svg>`;
 
-		var img = new Image();
+		const img = new Image();
 		img.onload = function () {
 			ctx.drawImage(img, x, y, width, height);
 			res(canvas.toDataURL());
@@ -4104,7 +4115,7 @@ export let htmlToImage = (
 		img.src = data;
 	});
 	function toXML(html) {
-		var doc = document.implementation.createHTMLDocument("");
+		const doc = document.implementation.createHTMLDocument("");
 		doc.write(html);
 		doc.documentElement.setAttribute(
 			"xmlns",
@@ -4129,7 +4140,7 @@ export let htmlToImage = (
  *
  * getUUID(console.log, 500);//Get 500 uuid's from my API and log them to the console.
  */
-let callbackify = (fn = req("function", "function")) => (
+const callbackify = (fn = req("function", "function")) => (
 	callback,
 	...args
 ) =>
@@ -4151,7 +4162,7 @@ let callbackify = (fn = req("function", "function")) => (
  * 	console.log("It's been 2 seconds.")
  * })();
  */
-let promisify = (fn = req("function"), argIndex = 0) => {
+const promisify = (fn = req("function"), argIndex = 0) => {
 	return (...args) =>
 		new Promise((resolve, reject) => {
 			try {
@@ -4186,7 +4197,7 @@ let promisify = (fn = req("function"), argIndex = 0) => {
  * @param {Number} timeout The timeout to cancel after.
  * @param {Function} calcelCb The callback to run when cancelled, defaults to throwing an error.
  */
-export let race = (
+export const race = (
 	fn = req("function"),
 	timeout = req("number", "timeout"),
 	cancelCb = undefined,
@@ -4196,13 +4207,12 @@ export let race = (
 		new Promise((_, reject) =>
 			setTimeout(
 				() =>
-					cancelCb
-						? cancelCb
-						: reject(
-								new Error(
-									"Promise timed out (Bijou.js _$.race function)",
-								),
-						  ),
+					cancelCb ||
+					reject(
+						new Error(
+							"Promise timed out (Bijou.js _$.race function)",
+						),
+					),
 				timeout,
 			),
 		),
@@ -4224,7 +4234,7 @@ export let race = (
  * @param {*} e The thing to get the type of.
  * @param {Boolean} lowerCase Whether to return the string lowercased or not.
  */
-export let typeOf = (e = req("any", "any"), lowerCase = true) =>
+export const typeOf = (e = req("any", "any"), lowerCase = true) =>
 	Object.prototype.toString.call(e).split(" ")[1].replace(/]$/, "");
 /**
  * Injects CSS into the document head.
@@ -4251,9 +4261,9 @@ export let typeOf = (e = req("any", "any"), lowerCase = true) =>
  * @returns {HTMLElement} The CSS <style> element.
  * @param {String} css The CSS to inject.
  */
-export let injectCSS = (css = req("string", "css")) => {
+export const injectCSS = (css = req("string", "css")) => {
 	node();
-	let el = document.createElement("style");
+	const el = document.createElement("style");
 	el.setAttribute("type", "text/css");
 	el.innerText = css;
 	document.head.appendChild(el);
@@ -4268,7 +4278,7 @@ export let injectCSS = (css = req("string", "css")) => {
  * @example
  * console.log(_$.mobileOrDesktop()); // e.g. "desktop"
  */
-export let mobileOrDesktop = () => {
+export const mobileOrDesktop = () => {
 	node();
 	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
 		navigator.userAgent,
@@ -4287,12 +4297,12 @@ export let mobileOrDesktop = () => {
  * _$.playSection(new Audio("file.mp3"), 5, 20.5); // Plays file.mp3, starting with second 5 and ending at 20.5 seconds into the file.
  * @returns {undefined}
  */
-export let playSection = (
+export const playSection = (
 	audioObj = req("HTMLMediaElement", "audio"),
 	start = req("number", "start"),
 	stop = req("number", "stop"),
 ) => {
-	let audioObjNew = audioObj.cloneNode(true); //this is to prevent "play() request was interrupted" error.
+	const audioObjNew = audioObj.cloneNode(true); // this is to prevent "play() request was interrupted" error.
 	audioObjNew.currentTime = start;
 	audioObjNew.play();
 	audioObjNew.int = setInterval(function () {
@@ -4317,10 +4327,10 @@ export let playSection = (
    ```
  * @returns {String} The formatted string of HTML.
  */
-export let formatHTML = (html = req("string", "html")) => {
-	var tab = "\t";
-	var result = "";
-	var indent = "";
+export const formatHTML = (html = req("string", "html")) => {
+	const tab = "\t";
+	let result = "";
+	let indent = "";
 
 	html.split(/>\s*</).forEach(function (element) {
 		if (element.match(/^\/\w/)) {
@@ -4349,7 +4359,7 @@ export let formatHTML = (html = req("string", "html")) => {
  * _$.getJSON("http://date.jsontest.com/", (json) => {alert("The current time is " + json.time)})
  * @returns {Promise} A promise resolved when the JSON is fetched and parsed.
  */
-export let getJSON = (
+export const getJSON = (
 	url = req("string", "url"),
 	callback = () => {},
 ) => {
@@ -4378,7 +4388,7 @@ export let getJSON = (
  * _$.getHTML("https://wikipedia.org", (html) => console.log(html));
  * @returns {Promise} A promise resolved when the HTML is fetched and parsed.
  */
-export let getHTML = (
+export const getHTML = (
 	url = req("string", "url"),
 	callback = () => {},
 ) => {
@@ -4406,10 +4416,10 @@ export let getHTML = (
  * _$.preloadImage("https://unsplash.com/some_huge_image.png"); // Preloads the unsplash image "some_huge_image.png" :P
  * @returns {undefined}
  */
-export let preloadImage = (...urls) => {
+export const preloadImage = (...urls) => {
 	req("string", "url arguments", ![...urls].length);
-	let images = [];
-	for (var i = 0; i < urls.length; i++) {
+	const images = [];
+	for (let i = 0; i < urls.length; i++) {
 		images[i] = new Image();
 		images[i].src = urls[i];
 	}
@@ -4425,16 +4435,16 @@ export let preloadImage = (...urls) => {
  * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
  * @returns {undefined}
  */
-export let saveBlob = (
+export const saveBlob = (
 	blob = req("blob", "blob"),
 	fileName = "output.txt",
 ) => {
 	node();
-	var a = document.createElement("a");
+	const a = document.createElement("a");
 	document.body.appendChild(a);
 	a.style = "display: none";
 
-	var url = window.URL.createObjectURL(blob);
+	const url = window.URL.createObjectURL(blob);
 	a.href = url;
 	a.download = fileName;
 	a.click();
@@ -4449,25 +4459,25 @@ export let saveBlob = (
  * @param {Number} delay The delay time in milliseconds to run the function.
  * @returns {Object}
  */
-export let requestInterval = function (
+export const requestInterval = function (
 	fn = req("function", "function"),
 	delay = req("number", "delay"),
 ) {
 	node();
-	var requestAnimFrame = (function () {
-			return (
-				window.requestAnimationFrame ||
-				function (callback) {
-					window.setTimeout(callback, 1000 / 60);
-				}
-			);
-		})(),
-		start = new Date().getTime(),
-		handle = {};
+	const requestAnimFrame = (function () {
+		return (
+			window.requestAnimationFrame ||
+			function (callback) {
+				window.setTimeout(callback, 1000 / 60);
+			}
+		);
+	})();
+	let start = new Date().getTime();
+	const handle = {};
 	function loop() {
 		handle.value = requestAnimFrame(loop);
-		var current = new Date().getTime(),
-			delta = current - start;
+		const current = new Date().getTime();
+		const delta = current - start;
 		if (delta >= delay) {
 			fn.call();
 			start = new Date().getTime();
@@ -4487,7 +4497,7 @@ export let requestInterval = function (
  * _$.("script.js", ()=>alert("Script loaded!"));//Loads the script from the "script.js" file
  * @returns {Promise} A promise resolved once the script is loaded.
  */
-export let loadScript = (
+export const loadScript = (
 	url = req("string", "url"),
 	callback = () => {},
 	options = {},
@@ -4500,9 +4510,9 @@ export let loadScript = (
 		}
 	}
 	return new Promise((resolve, reject) => {
-		var script = document.createElement("script");
+		const script = document.createElement("script");
 		script.type = "text/javascript";
-		let keys = Object.keys(options);
+		const keys = Object.keys(options);
 		_$.each(keys, (key) => {
 			script.setAttribute(key, options[key]);
 		});
@@ -4544,15 +4554,15 @@ export let loadScript = (
  * })
  * @returns {Promise} A promise fulfulled when the image is loaded.
  */
-export let imageToData = async (
+export const imageToData = async (
 	url = req("string", "url"),
 	callback = () => {},
 ) => {
 	node();
 	return new Promise(async (res, reject) => {
-		let blob = await fetch(url).then((r) => r.blob());
-		let dataUrl = await new Promise((resolve) => {
-			let reader = new FileReader();
+		const blob = await fetch(url).then((r) => r.blob());
+		const dataUrl = await new Promise((resolve) => {
+			const reader = new FileReader();
 			reader.onload = () => resolve(reader.result);
 			reader.readAsDataURL(blob);
 		});
@@ -4568,7 +4578,7 @@ export let imageToData = async (
  * _$.cookies.setItem("a_cookie", "Hello world!", 1); // Set a_cookie to "Hello world" and have it expire in a day.
  * @returns {Function} The function that the user wanted
  */
-export let cookies = {
+export const cookies = {
 	/**
 	 * Sets a cookie to a value
 	 * @function
@@ -4584,9 +4594,9 @@ export let cookies = {
 		days = 1000,
 	) => {
 		node();
-		var expires = "";
+		let expires = "";
 		if (days) {
-			var date = new Date();
+			const date = new Date();
 			date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
 			expires = "; expires=" + date.toUTCString();
 		}
@@ -4603,13 +4613,14 @@ export let cookies = {
 	getItem: (name = req("string", "name")) => {
 		node();
 
-		var nameEQ = name + "=";
-		var ca = document.cookie.split(";");
-		for (var i = 0; i < ca.length; i++) {
-			var c = ca[i];
+		const nameEQ = name + "=";
+		const ca = document.cookie.split(";");
+		for (let i = 0; i < ca.length; i++) {
+			let c = ca[i];
 			while (c.charAt(0) == " ") c = c.substring(1, c.length);
-			if (c.indexOf(nameEQ) === 0)
+			if (c.indexOf(nameEQ) === 0) {
 				return c.substring(nameEQ.length, c.length);
+			}
 		}
 		return null;
 	},
@@ -4634,7 +4645,7 @@ export let cookies = {
  * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
  * @returns {Regexp} A regex
  */
-export let regex = {
+export const regex = {
 	/**
 	 * Valid formats:
 	 * (123) 456-7890
@@ -4689,17 +4700,17 @@ export let regex = {
 	ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
 	/* Match IPv6 address */
 	ipv6: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/,
-	/**Both ipv4 and ipv6 */
+	/** Both ipv4 and ipv6 */
 	ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
-	/**Social security number */
+	/** Social security number */
 	socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
-	/**Hex color */
+	/** Hex color */
 	hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
 	/** Zip code */
 	zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
-	/**Phone */
+	/** Phone */
 	simplePhone: /^\+?[\d\s]{3,}$/,
-	/**Credit cards */
+	/** Credit cards */
 	visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
 	expressCredit: /^3[47][0–9]{13}$/,
 	mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
@@ -4725,7 +4736,7 @@ export let regex = {
   "","7"
    * @returns {String} The string of comma separated values (CSV) created from the JSON.
    */
-export let jsonToCsv = (
+export const jsonToCsv = (
 	arr = req("array", "array"),
 	columns = req("number", "columns"),
 	delimiter = ",",
@@ -4752,7 +4763,7 @@ export let jsonToCsv = (
  * console.log(_$.arrayToCSV([1,2,3,4])); // "1,2,3,4"
  * @returns {String} The comma separated array.
  */
-export let arrayToCSV = (
+export const arrayToCSV = (
 	arr = req("array", "array"),
 	delimiter = ",",
 ) =>
@@ -4775,7 +4786,7 @@ export let arrayToCSV = (
  * _$.notify("Hello", "Hi there! This is a notification!"); Notifies the user with the title "Hello" and the body text "Hi there! This is a notification!"
  * @returns {Promise} A promise that fulfills once the notification is sent, and is rejected when there is an error
  */
-export let notify = async (
+export const notify = async (
 	title = req("string", "text"),
 	body = req("string", "body"),
 	icon = undefined,
@@ -4785,22 +4796,20 @@ export let notify = async (
 		throw new Error("browser does not support notifications.");
 	} else {
 		if (Notification.permission === "granted") {
-			var notify = new Notification(title, {
+			const notify = new Notification(title, {
 				body: body,
 				icon: icon,
 			});
-			return;
 		} else {
 			// request permission from user
 			Notification.requestPermission()
 				.then(function (p) {
 					if (p === "granted") {
 						// show notification here
-						var notify = new Notification(title, {
+						const notify = new Notification(title, {
 							body: body,
 							icon: icon,
 						});
-						return;
 					} else {
 						throw new Error("User blocked notifications");
 					}
@@ -4820,7 +4829,7 @@ export let notify = async (
  * _$.copy("Hello world");
  * @returns {String} The string copied.
  */
-export let copy = (str = req("string", "string")) => {
+export const copy = (str = req("string", "string")) => {
 	node();
 	const el = document.createElement("textarea");
 	el.value = str;
@@ -4849,30 +4858,30 @@ export let copy = (str = req("string", "string")) => {
  * _$.browser(); // For me this (correctly) returns "Chrome"
  * @returns {String} A string of the browser name that the user is using.
  */
-export let browser = () => {
+export const browser = () => {
 	node();
-	var isOpera =
+	const isOpera =
 		(!!window.opr && !!opr.addons) ||
 		!!window.opera ||
 		navigator.userAgent.indexOf(" OPR/") >= 0;
-	var isFirefox = typeof InstallTrigger !== "undefined";
-	var isSafari =
+	const isFirefox = typeof InstallTrigger !== "undefined";
+	const isSafari =
 		/constructor/i.test(window.HTMLElement) ||
 		(function (p) {
 			return p.toString() === "[object SafariRemoteNotification]";
 		})(
-			!window["safari"] ||
+			!window.safari ||
 				(typeof safari !== "undefined" &&
-					window["safari"].pushNotification),
+					window.safari.pushNotification),
 		);
-	var isIE = /*@cc_on!@*/ false || !!document.documentMode;
-	var isEdge = !isIE && !!window.StyleMedia;
-	var isChrome =
+	const isIE = /* @cc_on!@ */ false || !!document.documentMode;
+	const isEdge = !isIE && !!window.StyleMedia;
+	const isChrome =
 		!!window.chrome &&
 		(!!window.chrome.webstore || !!window.chrome.runtime);
-	var isEdgeChromium =
+	const isEdgeChromium =
 		isChrome && navigator.userAgent.indexOf("Edg") != -1;
-	var isBlink = (isChrome || isOpera) && !!window.CSS;
+	const isBlink = (isChrome || isOpera) && !!window.CSS;
 	if (isOpera) {
 		return "Opera";
 	}
@@ -4905,7 +4914,7 @@ export let browser = () => {
  * @param {HTMLFormElement} form The form element.
  * @returns {String} The string of url queries (Excluding the hostname and path) of the form data.
  */
-export let serializeForm = (
+export const serializeForm = (
 	form = req("HTMLFormElement", "form"),
 ) => {
 	node();
@@ -4923,35 +4932,35 @@ export let serializeForm = (
  * @memberOf utility
  * @function
  */
-export let soundex = (s = req("string", "word")) => {
-	var a = s.toLowerCase().split(""),
-		f = a.shift(),
-		r = "",
-		codes = {
-			a: "",
-			e: "",
-			i: "",
-			o: "",
-			u: "",
-			b: 1,
-			f: 1,
-			p: 1,
-			v: 1,
-			c: 2,
-			g: 2,
-			j: 2,
-			k: 2,
-			q: 2,
-			s: 2,
-			x: 2,
-			z: 2,
-			d: 3,
-			t: 3,
-			l: 4,
-			m: 5,
-			n: 5,
-			r: 6,
-		};
+export const soundex = (s = req("string", "word")) => {
+	const a = s.toLowerCase().split("");
+	const f = a.shift();
+	let r = "";
+	const codes = {
+		a: "",
+		e: "",
+		i: "",
+		o: "",
+		u: "",
+		b: 1,
+		f: 1,
+		p: 1,
+		v: 1,
+		c: 2,
+		g: 2,
+		j: 2,
+		k: 2,
+		q: 2,
+		s: 2,
+		x: 2,
+		z: 2,
+		d: 3,
+		t: 3,
+		l: 4,
+		m: 5,
+		n: 5,
+		r: 6,
+	};
 
 	r =
 		f +
@@ -4966,24 +4975,23 @@ export let soundex = (s = req("string", "word")) => {
 
 	return (r + "000").slice(0, 4).toUpperCase();
 };
-//#endregion Utility
-//#endregion bijou
+// #endregion Utility
+// #endregion bijou
 
 /**
  *Converts most of the functions of Bijou.js to prototype functions.
  * Note that you have to call this function to add the prototypes.
  * @param {Object} options The options to use, supports overwrite (boolean of whether to overwrite existing prototypes), and try, (boolean for whether to wrap in a try..catch)
  */
-export let prototype = (
+export const prototype = (
 	options = { overwrite: true, tryCatch: false },
 ) => {
 	function proto(fn, thing, name) {
-		let title =
+		const title =
 			name || fn ? fn.name : "noNameHehe124672463467432376453";
-		let overwrite =
+		const overwrite = !!(
 			options.overwrite !== undefined && options.overwrite !== false
-				? true
-				: false;
+		);
 		if (!thing.prototype.hasOwnProperty(title) || overwrite) {
 			Object.defineProperty(thing.prototype, title, {
 				value: function (...args) {
@@ -4994,13 +5002,13 @@ export let prototype = (
 							options.catchErrors) === true
 					) {
 						try {
-							let t = this;
+							const t = this;
 							return fn(t, ...args);
 						} catch (e) {
 							return e;
 						}
 					} else {
-						let t = this;
+						const t = this;
 						return fn(t, ...args);
 					}
 				},
@@ -5277,11 +5285,11 @@ let _temp = {
 _temp = sortObj(_temp);
 // Imports and exports
 export default _temp;
-//Export so that when people do <script src="bijou" type="module"></script>
+// Export so that when people do <script src="bijou" type="module"></script>
 if (!isNode) {
 	window._$ = _temp;
 }
-//So that we can use bijou in the source code.
+// So that we can use bijou in the source code.
 export const _$ = _temp;
 if (isNode) {
 	try {
