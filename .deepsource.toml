@@ -1,7 +1,7 @@
 version = 1
 
 exclude_patterns = [
-    "docs/docs",
+    "/docs/docs",
     "bijou.js",
     "bijou-min.js",
     "bijou_node.js",
