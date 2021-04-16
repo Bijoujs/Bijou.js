@@ -14,8 +14,8 @@ jobs:
       - run: rm bijou_node.js
              && rm bijou.js
       - run: cat ./js/_copyright.js ./js/array.js ./js/color.js ./js/date.js ./js/element.js ./js/event.js ./js/function.js ./js/object.js ./js/math.js ./js/string.js ./js/utility.js ./js/_end.js > bijou.js
-      - run: rm -r docs/docs
-             && rm bijou-min.js
+      - run: rm -rf docs/docs
+             && rm -f bijou-min.js
       - run: jsdoc -c jsdoc.json
              && prettier --write -- .
       - run: rollup bijou.js --file bijou_node.js --format cjs
