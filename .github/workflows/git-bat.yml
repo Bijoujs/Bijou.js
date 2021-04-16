@@ -22,6 +22,8 @@ jobs:
              && terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
              && terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
       - run: prettier --write ./
+      - run: git add --force docs/docs
+      - run: git add --force bijou.js && git add --force bijou-min.js && git add --force bijou_node.js
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
          commit_message: Applying automated CI items
