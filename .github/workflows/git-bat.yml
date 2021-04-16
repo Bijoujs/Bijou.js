@@ -26,6 +26,6 @@ jobs:
       - run: git add --force bijou.js && git add --force bijou-min.js && git add --force bijou_node.js
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-         commit_message: Applying automated CI items
+         commit_message: Building files
 
         
