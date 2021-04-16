@@ -21,6 +21,7 @@ jobs:
       - run: rollup bijou.js --file bijou_node.js --format cjs
              && terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
              && terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
+      - run: prettier --write ./
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
          commit_message: Applying automated CI items
