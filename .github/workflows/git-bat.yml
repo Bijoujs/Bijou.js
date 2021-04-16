@@ -2,7 +2,6 @@ on: [pull_request, workflow_dispatch, push]
 name: Automated CI
 jobs:
  git-bat:
-    if: "contains(github.event.head_commit.message, '[Actions]')"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -11,8 +10,7 @@ jobs:
         uses: actions/setup-node@v2.1.4
       - run: ls
       - run: npm install
-      - run: sudo npm i -g rollup eslint jsdoc prettier terser figlet-cli
-      - run: COMMIT=$(git status --porcelain)
+      - run: sudo npm i -g rollup eslint jsdoc prettier terser
       - run: rm bijou_node.js
              && rm bijou.js
       - run: cat ./js/_copyright.js ./js/array.js ./js/color.js ./js/date.js ./js/element.js ./js/event.js ./js/function.js ./js/object.js ./js/math.js ./js/string.js ./js/utility.js ./js/_end.js > bijou.js
