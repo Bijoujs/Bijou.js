@@ -1,4 +1,4 @@
-//#region Element
+// #region Element
 /**
  * Applies a material design ripple effect to the element specified. Works best with buttons and similar elements.
  * This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple
@@ -13,7 +13,7 @@
  * // data-event: The event to listen for to apply the ripple.
  * @param {HTMLElement} el The element to apply the ripple effect to.
  */
-export let ripple = (el = req("element", "element")) => {
+export const ripple = (el = req("element", "element")) => {
 	node();
 	const time = (+el.getAttribute("data-time") || 1000) * 3;
 	const color = el.getAttribute("data-color") || "currentColor";
@@ -22,12 +22,12 @@ export let ripple = (el = req("element", "element")) => {
 	el.style.overflow = "hidden";
 	el.style.position = "relative";
 	el.addEventListener(event, (e) => {
-		var ripple_div = document.createElement("DIV");
+		const ripple_div = document.createElement("DIV");
 		ripple_div.style.position = "absolute";
 		ripple_div.style.background = `${color}`;
 		ripple_div.style.borderRadius = "50%";
-		var bx = el.getBoundingClientRect();
-		var largestdemensions;
+		const bx = el.getBoundingClientRect();
+		let largestdemensions;
 		if (bx.width > bx.height) {
 			largestdemensions = bx.width * 3;
 		} else {
@@ -36,7 +36,7 @@ export let ripple = (el = req("element", "element")) => {
 		ripple_div.style.pointerEvents = "none";
 		ripple_div.style.height = `${largestdemensions}px`;
 		ripple_div.style.width = `${largestdemensions}px`;
-		ripple_div.style.transform = `translate(-50%, -50%) scale(0)`;
+		ripple_div.style.transform = "translate(-50%, -50%) scale(0)";
 		ripple_div.style.top = `${e.pageY - (bx.top + window.scrollY)}px`;
 		ripple_div.style.left = `${
 			e.pageX - (bx.left + window.scrollX)
@@ -46,7 +46,7 @@ export let ripple = (el = req("element", "element")) => {
 		ripple_div.style.opacity = opacity;
 		el.appendChild(ripple_div);
 		setTimeout(() => {
-			ripple_div.style.transform = `translate(-50%, -50%) scale(1)`;
+			ripple_div.style.transform = "translate(-50%, -50%) scale(1)";
 			ripple_div.style.opacity = "0";
 			setTimeout(() => {
 				ripple_div.remove();
@@ -79,7 +79,7 @@ export function elementReady(
 			Array.from(parent.querySelectorAll(selector)).forEach(
 				(element) => {
 					resolve(element);
-					//Once we have resolved we don't need the observer anymore.
+					// Once we have resolved we don't need the observer anymore.
 					observer.disconnect();
 				},
 			);
@@ -108,7 +108,7 @@ export function elementReady(
  * @param {HTMLElement} parent The parent element to test.
  * @param {HTMLElement} child The child element to test.
  */
-export let elementContains = (
+export const elementContains = (
 	parent = req("HTMLElement", "parent"),
 	child = req("HTMLElement", "child"),
 ) => {
@@ -136,7 +136,7 @@ export let elementContains = (
  * _$.parents(document.querySelector("img"));//[div#img, body, html]
  * @param {HTMLElement} el The element
  */
-export let parents = (el = req("element")) => {
+export const parents = (el = req("element")) => {
 	node();
 	return [
 		...(function* (e) {
@@ -160,7 +160,7 @@ export let parents = (el = req("element")) => {
  * @param {HTMLElement} [el=document.documentElement] The element to get images from (e.g. document.body)
  * @param {Boolean} [includeDuplicates=false] Whether to include duplicate images, defaults to false.
  */
-export let getImages = (
+export const getImages = (
 	el = document.documentElement,
 	includeDuplicates = false,
 ) => {
@@ -188,7 +188,7 @@ export let getImages = (
  * @param {Object} param The type of object (the HTML tagName)
  * @param {HTMLElement} container The html element to render it in.
  */
-export let renderElement = (
+export const renderElement = (
 	{ type, props = {} } = req("object", "options"),
 	container = req("HTMLElement", "container"),
 ) => {
@@ -203,14 +203,16 @@ export let renderElement = (
 
 	Object.keys(props).forEach((p) => {
 		if (isAttribute(p)) element[p] = props[p];
-		if (!isTextElement && isListener(p))
+		if (!isTextElement && isListener(p)) {
 			element.addEventListener(p.toLowerCase().slice(2), props[p]);
+		}
 	});
 
-	if (!isTextElement && props.children && props.children.length)
+	if (!isTextElement && props.children && props.children.length) {
 		props.children.forEach((childElement) =>
 			renderElement(childElement, element),
 		);
+	}
 
 	container.appendChild(element);
 };
@@ -229,13 +231,13 @@ export let renderElement = (
  */
 export function create(querySelector = "div", ...content) {
 	node();
-	let nodeType = querySelector.match(/^[a-z0-9]+/i);
-	let id = querySelector.match(/#([a-z]+[a-z0-9-]*)/gi);
-	let classes = querySelector.match(/\.([a-z]+[a-z0-9-]*)/gi);
-	let attributes = querySelector.match(
+	const nodeType = querySelector.match(/^[a-z0-9]+/i);
+	const id = querySelector.match(/#([a-z]+[a-z0-9-]*)/gi);
+	const classes = querySelector.match(/\.([a-z]+[a-z0-9-]*)/gi);
+	const attributes = querySelector.match(
 		/\[([a-z][a-z-]+)(=['|"]?([^\]]*)['|"]?)?\]/gi,
 	);
-	let node = nodeType ? nodeType[0] : "div";
+	const node = nodeType ? nodeType[0] : "div";
 
 	if (id && id.length > 1) {
 		throw new Error("only 1 ID is allowed");
@@ -291,12 +293,12 @@ export function create(querySelector = "div", ...content) {
  * // Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
  * @returns {undefined}
  */
-export let context = () => {
+export const context = () => {
 	node();
-	var menu = document.createElement("UL");
+	const menu = document.createElement("UL");
 	menu.id = "contextMenu";
 	document.body.appendChild(menu);
-	let styles = document.createElement("STYLE");
+	const styles = document.createElement("STYLE");
 	styles.innerHTML = `#contextMenu {
        pointer-events: none;
        padding: 0;
@@ -332,7 +334,7 @@ export let context = () => {
      }
      `;
 	document.body.appendChild(styles);
-	var elements = document.querySelectorAll("[contextmenu]");
+	const elements = document.querySelectorAll("[contextmenu]");
 	for (let i = 0; i < elements.length; i++) {
 		window.addEventListener("contextmenu", (e) => {
 			menu.style.pointerEvents = "auto";
@@ -368,14 +370,13 @@ export let context = () => {
 			menu.style.opacity = 1;
 		});
 	}
-	var contextTimer = 0;
+	let contextTimer = 0;
 	setInterval(() => {
 		contextTimer += 100;
 		if (contextTimer > 3000) {
 			menu.style.opacity = 0;
 			menu.style.pointerEvents = "none";
 			contextTimer = 0;
-			return;
 		}
 	}, 100);
 	_$.addEventListeners(menu, ["mousemove", "click", "scroll"], () => {
@@ -397,12 +398,12 @@ export let context = () => {
  * if (_$.inView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the element is completely in view.
  */
-export let inView = (el = req("HTMLElement", "element")) => {
+export const inView = (el = req("HTMLElement", "element")) => {
 	node();
-	var top = el.offsetTop;
-	var left = el.offsetLeft;
-	var width = el.offsetWidth;
-	var height = el.offsetHeight;
+	let top = el.offsetTop;
+	let left = el.offsetLeft;
+	const width = el.offsetWidth;
+	const height = el.offsetHeight;
 
 	while (el.offsetParent) {
 		el = el.offsetParent;
@@ -427,12 +428,12 @@ export let inView = (el = req("HTMLElement", "element")) => {
  * if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
  * @returns {Boolean} Whether the DOM element is partially in view.
  */
-export let inPartialView = (el = req("HTMLElement", "element")) => {
+export const inPartialView = (el = req("HTMLElement", "element")) => {
 	node();
-	var top = el.offsetTop;
-	var left = el.offsetLeft;
-	var width = el.offsetWidth;
-	var height = el.offsetHeight;
+	let top = el.offsetTop;
+	let left = el.offsetLeft;
+	const width = el.offsetWidth;
+	const height = el.offsetHeight;
 
 	while (el.offsetParent) {
 		el = el.offsetParent;
@@ -459,7 +460,7 @@ export let inPartialView = (el = req("HTMLElement", "element")) => {
  * // Converts the text of the first <div> element to upperCase.
  * @returns {undefined}
  */
-export let replaceText = (
+export const replaceText = (
 	el = req("HTMLElement", "element"),
 	callback = req("function", "callback"),
 ) => {
@@ -477,7 +478,7 @@ export let replaceText = (
  * @example
  * _$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements
  */
-export let textNodes = (el = req("HTMLElement", "element")) => {
+export const textNodes = (el = req("HTMLElement", "element")) => {
 	node();
 	return [...el.childNodes].filter((node) => {
 		return (
@@ -495,10 +496,12 @@ export let textNodes = (el = req("HTMLElement", "element")) => {
  * console.log(_$.querySelector(textarea)); //Logs "#textarea" to the console.
  * @returns {String} The generated querySelector.
  */
-export let querySelector = (elem = req("HTMLElement", "element")) => {
+export const querySelector = (
+	elem = req("HTMLElement", "element"),
+) => {
 	node();
-	var element = elem;
-	var str = "";
+	const element = elem;
+	let str = "";
 
 	function loop(element) {
 		if (
@@ -518,18 +521,18 @@ export let querySelector = (elem = req("HTMLElement", "element")) => {
 			return str;
 		}
 		if (element.getAttribute("class")) {
-			var elemClasses = ".";
+			let elemClasses = ".";
 			elemClasses += element.getAttribute("class");
 			elemClasses = elemClasses.replace(/\s/g, ".");
 			elemClasses = elemClasses.replace(/^/g, " ");
-			var classNth = "";
+			let classNth = "";
 			var childrens = element.parentNode.children;
 
 			if (childrens.length < 2) {
 				return;
 			}
 
-			var similarClasses = [];
+			const similarClasses = [];
 
 			for (var i = 0; i < childrens.length; i++) {
 				if (
@@ -552,14 +555,14 @@ export let querySelector = (elem = req("HTMLElement", "element")) => {
 
 			str = str.replace(/^/, elemClasses + classNth);
 		} else {
-			var name = element.nodeName;
+			let name = element.nodeName;
 			name = name.toLowerCase();
-			var nodeNth = "";
+			let nodeNth = "";
 
 			childrens = element.parentNode.children;
 
 			if (childrens.length > 2) {
-				var similarNodes = [];
+				const similarNodes = [];
 
 				for (var i = 0; i < childrens.length; i++) {
 					if (element.nodeName == childrens[i].nodeName) {
@@ -603,7 +606,7 @@ export let querySelector = (elem = req("HTMLElement", "element")) => {
  * _$.removeComments(document.documentElement);//Removes the comments from the document element.
  * @returns {HTMLElement} The HTML element with the comments removed.
  */
-export let removeComments = (
+export const removeComments = (
 	el = req("HTMLElement", "HTMLElement"),
 ) => {
 	node();
@@ -611,8 +614,9 @@ export let removeComments = (
 	el = isString ? _$.parseHTML(el) : el.cloneNode(true);
 	for (const child of [...el.querySelectorAll("*"), el]) {
 		for (const grandchild of child.childNodes) {
-			if (grandchild instanceof Comment)
+			if (grandchild instanceof Comment) {
 				child.removeChild(grandchild);
+			}
 		}
 	}
 	return isString ? el.outerHTML : el;
@@ -628,7 +632,7 @@ export let removeComments = (
  * html.querySelector("textarea");//Returns the textarea!
  * @returns {HTMLDocument} The HTML document element of the HTML string specified.
  */
-export let parseHTML = (
+export const parseHTML = (
 	string = req("string", "html string"),
 	mimeType = "text/html",
 ) => {
@@ -646,7 +650,7 @@ export let parseHTML = (
  * _$.drag('div span', 'div'); // Allows the first <div> on the page to be dragged by the <span> element inside it.
  * @returns {Element} The element.
  */
-export let drag = (
+export const drag = (
 	dragHandle = req("String|Element", "drag handle"),
 	dragTarget = req("String|Element", "drag target"),
 ) => {
@@ -672,7 +676,7 @@ export let drag = (
 		e.stopPropagation();
 		dragObj = dragTarget;
 		dragObj.style.position = "absolute";
-		let rect = dragObj.getBoundingClientRect();
+		const rect = dragObj.getBoundingClientRect();
 
 		if (e.type == "mousedown") {
 			xOffset = e.clientX - rect.left;
@@ -690,7 +694,6 @@ export let drag = (
 		e.stopPropagation();
 
 		if (dragObj == null) {
-			return;
 		} else if (e.type == "mousemove") {
 			dragObj.style.left = e.clientX - xOffset + "px";
 			dragObj.style.top = e.clientY - yOffset + "px";
@@ -730,7 +733,7 @@ export let drag = (
  * );
  * @returns {undefined}
  */
-export let addEventListeners = (
+export const addEventListeners = (
 	element = req("HTMLElement", "element"),
 	events = req("array", "events"),
 	handler = {},
@@ -745,11 +748,11 @@ export let addEventListeners = (
 			'(like ["click","mouseover"])'
 		);
 	}
-	//create a wrapper to be able to use additional arguments
-	var handlerFn = function (e) {
+	// create a wrapper to be able to use additional arguments
+	const handlerFn = function (e) {
 		handler.apply(this, args && args instanceof Array ? args : []);
 	};
-	for (var i = 0; i < events.length; i += 1) {
+	for (let i = 0; i < events.length; i += 1) {
 		element.addEventListener(events[i], handlerFn, useCapture);
 	}
 };
@@ -766,18 +769,18 @@ export let addEventListeners = (
  * _$.sortTable(document.querySelector("table"), (i) => i.getAttribute("data-sort"));//Sorts the table by each cell's 'data-sort' attribute.
  */
 
-export let sortTable = (
+export const sortTable = (
 	element = req("HTMLTableElement", "table element"),
 	cellVal = undefined,
 ) => {
 	node();
-	var getCellValue = function (tr, idx) {
+	const getCellValue = function (tr, idx) {
 		return cellVal
 			? cellVal(tr.children[idx], tr, idx)
 			: tr.children[idx].innerText || tr.children[idx].textContent;
 	};
 
-	var comparer = function (idx, asc) {
+	const comparer = function (idx, asc) {
 		return function (a, b) {
 			return (function (v1, v2) {
 				return v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
@@ -794,9 +797,10 @@ export let sortTable = (
 		.call(element.querySelectorAll("th"))
 		.forEach(function (th) {
 			th.addEventListener("click", function () {
-				var table = th.parentNode;
-				while (table.tagName.toUpperCase() != "TABLE")
+				let table = th.parentNode;
+				while (table.tagName.toUpperCase() != "TABLE") {
 					table = table.parentNode;
+				}
 				Array.prototype.slice
 					.call(table.querySelectorAll("tr:nth-child(n+2)"))
 					.sort(
@@ -829,16 +833,16 @@ export let sortTable = (
  * @param {HTMLTableElement} th The table header (<th> element) to sort with.
  * @param {Boolean} acending Whether to sort the table ascending or descending.
  */
-export let sortTableBy = (
+export const sortTableBy = (
 	th = req("HTMLTableElement", "<th> element"),
 	acending = true,
 ) => {
 	node();
-	var getCellValue = function (tr, idx) {
+	const getCellValue = function (tr, idx) {
 		return tr.children[idx].innerText || tr.children[idx].textContent;
 	};
 
-	var comparer = function (idx, asc) {
+	const comparer = function (idx, asc) {
 		return function (a, b) {
 			return (function (v1, v2) {
 				return v1 !== "" && v2 !== "" && !isNaN(v1) && !isNaN(v2)
@@ -851,9 +855,10 @@ export let sortTableBy = (
 		};
 	};
 
-	var table = th.parentNode;
-	while (table.tagName.toUpperCase() != "TABLE")
+	let table = th.parentNode;
+	while (table.tagName.toUpperCase() != "TABLE") {
 		table = table.parentNode;
+	}
 	Array.prototype.slice
 		.call(table.querySelectorAll("tr:nth-child(n+2)"))
 		.sort(
@@ -878,7 +883,7 @@ export let sortTableBy = (
  * _$.addStyles(document.documentElement, {backgroundColor: "#101010", color: "white"})
  * @returns {Object} the style object of the element.
  */
-export let addStyles = (
+export const addStyles = (
 	el = req("HTMLElement", "element"),
 	styles = req("Object", "styles"),
 ) => {
@@ -896,7 +901,7 @@ export let addStyles = (
  * _$.createElement("<div id='id_here'>Testing!</div>");
  * @returns {Element} The created element.
  */
-export let createElement = (
+export const createElement = (
 	str = req("String", "HTML element string"),
 ) => {
 	node();
@@ -914,12 +919,12 @@ export let createElement = (
  * console.log(_$.compStyle(document.documentElement, "background-color")); // logs the background colour of the document
  * @returns {String} The computed style property for the element specified.
  */
-export let compStyle = (
+export const compStyle = (
 	el = req("HTMLElement", "element"),
 	prop = req("String", "CSS property string"),
 ) => {
 	node();
-	var computedStyles = window.getComputedStyle(el);
+	const computedStyles = window.getComputedStyle(el);
 	return computedStyles.getPropertyValue(prop);
 };
 
@@ -933,7 +938,9 @@ export let compStyle = (
  * // Make every sibling of the first list item's background color white.
  * @returns {Element[]} The array of sibling elements.
  */
-export let elementSiblings = (n = req("HTMLElement", "element")) => {
+export const elementSiblings = (
+	n = req("HTMLElement", "element"),
+) => {
 	node();
 	return [...n.parentElement.children].filter((c) => c != n);
 };
@@ -946,7 +953,7 @@ export let elementSiblings = (n = req("HTMLElement", "element")) => {
  * _$.disableRightClick(document.documentElement)
  * @returns {undefined}
  */
-export let disableRightClick = (
+export const disableRightClick = (
 	el = req("HTMLElement", "element"),
 ) => {
 	node();
@@ -961,12 +968,12 @@ export let disableRightClick = (
  * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the <h1> element to inline using the style="___" attribute
  * @returns {undefined}
  */
-export let inlineCSS = (el = req("HTMLElement", "element")) => {
+export const inlineCSS = (el = req("HTMLElement", "element")) => {
 	node();
-	var cs = getComputedStyle(el, null);
-	var i;
+	const cs = getComputedStyle(el, null);
+	let i;
 	for (i = 0; i < cs.length; i++) {
-		var s = cs[i] + "";
+		const s = cs[i] + "";
 		el.style[s] = cs[s];
 	}
 };
@@ -980,9 +987,9 @@ export let inlineCSS = (el = req("HTMLElement", "element")) => {
  * console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
  * @return {Array.<object>} The array of objects representing the attributes
  */
-export let attributes = (el = req("HTMLElement", "element")) => {
+export const attributes = (el = req("HTMLElement", "element")) => {
 	node();
-	var output = [];
+	const output = [];
 	for (
 		var att, i = 0, atts = el.attributes, n = atts.length;
 		i < n;
@@ -1007,7 +1014,7 @@ export let attributes = (el = req("HTMLElement", "element")) => {
  * _$.observeMutations(document, console.log); // Logs all the mutations that happen to the console.
  * @returns {undefined}
  */
-export let observeMutations = (
+export const observeMutations = (
 	element = req("HTMLElement", "element"),
 	callback = req("function", "callback"),
 	options = {},
@@ -1051,7 +1058,7 @@ export let observeMutations = (
  *  _$.tilt(el, x, y);
  * }
  */
-export let tilt = (
+export const tilt = (
 	el = req("HTMLElement", "element"),
 	x = req("number", "x"),
 	y = req("number", "y"),
@@ -1059,7 +1066,7 @@ export let tilt = (
 	amount = 30,
 ) => {
 	node();
-	//Old code
+	// Old code
 	/*  const xVal = x
       const yVal = y
       const yRotation = amount * ((xVal - width / 2) / width)
@@ -1067,7 +1074,7 @@ export let tilt = (
       const string = `perspective(${perspective}px) scale(1.1) rotateX(${xRotation}deg) rotateY(${yRotation}deg)`
       el.style.transform = string */
 
-	//One liner
+	// One liner
 	el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
 		amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
 	}deg) rotateY(${
@@ -1083,7 +1090,9 @@ export let tilt = (
  * @example
  * _$.fullScreen(document.documentElement); // Make the window fullscreen
  */
-export let fullScreen = (element = req("HTMLElement", "element")) => {
+export const fullScreen = (
+	element = req("HTMLElement", "element"),
+) => {
 	node();
 	return (
 		element.requestFullScreen ||
@@ -1104,17 +1113,17 @@ export let fullScreen = (element = req("HTMLElement", "element")) => {
  * //Replaces the selection! =)
  * @param {String} replacementText The replacement HTML to replace with.
  */
-export let replaceSelection = (
+export const replaceSelection = (
 	replacementText = req("string", "replacement text"),
 ) => {
 	node();
-	var sel, range;
+	let sel, range;
 	if (window.getSelection) {
 		sel = window.getSelection();
 		if (sel.rangeCount) {
 			range = sel.getRangeAt(0);
 			range.deleteContents();
-			let n = document.createElement("span");
+			const n = document.createElement("span");
 			n.insertAdjacentHTML("beforeend", replacementText);
 			range.insertNode(n);
 		}
@@ -1126,4 +1135,4 @@ export let replaceSelection = (
 		range.text = replacementText.replace(/<[^>]*>/g, "");
 	}
 };
-//#endregion Element
+// #endregion Element
