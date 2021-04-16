@@ -68,7 +68,7 @@
 
 
     <title>
-      date
+      js/_copyright.js
     </title>
 
     <!--[if lt IE 9]>
@@ -204,7 +204,7 @@ div.code-copy-icon-container:hover * {
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        date
+        js/_copyright.js
       </h1>
       
 
@@ -212,1620 +212,171 @@ div.code-copy-icon-container:hover * {
 
 
 
-
-<section>
-
-
-<header>
     
-        
-        <h2>
-        
-        date
-        
-        </h2>
-        
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The date namespace of Bijou.js, containing functions to format dates, do math with them and more!</p></div>
-        
-
-        
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".addDaysToDate">
-        <a href="#.addDaysToDate">#</a>
-        <span class="type-signature">(static) </span>addDaysToDate<span class="signature">(date, n)</span><span class="type-signature"> &rarr; {Date}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Adds a specified number of days to a date.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The date to add days to</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>n</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>How many days to add to the date.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The date with the specified number of days added.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Date</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".addMinutesToDate">
-        <a href="#.addMinutesToDate">#</a>
-        <span class="type-signature">(static) </span>addMinutesToDate<span class="signature">(date, n)</span><span class="type-signature"> &rarr; {Date}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Adds a certain number of minutes to a date object.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-|
-
-<span class="param-type"><a href="string.html">string</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The date to add minutes to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>n</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>How many minutes to add to the date.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The date with minutes added.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Date</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.addMinutesToDate(new Date(), 4);//Create a date 4 minutes from now.</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".dayName">
-        <a href="#.dayName">#</a>
-        <span class="type-signature">(static) </span>dayName<span class="signature">(date<span class="signature-attributes">opt</span>, locale<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Returns the name of the weekday from the Date object specified.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    new Date()
-                
-                </td>
-            
-
-            <td class="description last"><p>The date object to use.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>locale</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    en-US
-                
-                </td>
-            
-
-            <td class="description last"><p>The locale to use.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The day name from the date.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.dayName)); // e.g. "Friday"</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.addDaysToDate">
-        <a href="#.exports.addDaysToDate">#</a>
-        <span class="type-signature">(static) </span>exports.addDaysToDate<span class="signature">(date, n)</span><span class="type-signature"> &rarr; {Date}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Adds a specified number of days to a date.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The date to add days to</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>n</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>How many days to add to the date.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The date with the specified number of days added.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Date</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.addMinutesToDate">
-        <a href="#.exports.addMinutesToDate">#</a>
-        <span class="type-signature">(static) </span>exports.addMinutesToDate<span class="signature">(date, n)</span><span class="type-signature"> &rarr; {Date}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Adds a certain number of minutes to a date object.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-|
-
-<span class="param-type"><a href="string.html">string</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The date to add minutes to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>n</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>How many minutes to add to the date.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The date with minutes added.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Date</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.addMinutesToDate(new Date(), 4);//Create a date 4 minutes from now.</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.dayName">
-        <a href="#.exports.dayName">#</a>
-        <span class="type-signature">(static) </span>exports.dayName<span class="signature">(date<span class="signature-attributes">opt</span>, locale<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Returns the name of the weekday from the Date object specified.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    new Date()
-                
-                </td>
-            
-
-            <td class="description last"><p>The date object to use.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>locale</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    en-US
-                
-                </td>
-            
-
-            <td class="description last"><p>The locale to use.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The day name from the date.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.dayName)); // e.g. "Friday"</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.formatMilliseconds">
-        <a href="#.exports.formatMilliseconds">#</a>
-        <span class="type-signature">(static) </span>exports.formatMilliseconds<span class="signature">(ms)</span><span class="type-signature"> &rarr; {String}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Formats a number of milliseconds</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>ms</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-|
-
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The number of milliseconds to format to a string.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The string of formatted milliseconds.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.isDateValid">
-        <a href="#.exports.isDateValid">#</a>
-        <span class="type-signature">(static) </span>exports.isDateValid<span class="signature">(&hellip;val)</span><span class="type-signature"> &rarr; {Boolean}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Validates a date from a string.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>val</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">any</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;repeatable><br>
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The arguments of the date to validate.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>Returns if the date is valid or not.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Boolean</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.isDateValid('December 17, 1995 03:24:00'); // true
-    _$.isDateValid('1995-12-17T03:24:00'); // true
-    _$.isDateValid('1995-12-17 T03:24:00'); // false
-    _$.isDateValid('Duck'); // false
-    _$.isDateValid(1995, 11, 17); // true
-    _$.isDateValid(1995, 11, 17, 'Duck'); // false
-    _$.isDateValid({}); // false</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".formatMilliseconds">
-        <a href="#.formatMilliseconds">#</a>
-        <span class="type-signature">(static) </span>formatMilliseconds<span class="signature">(ms)</span><span class="type-signature"> &rarr; {String}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Formats a number of milliseconds</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>ms</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-|
-
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The number of milliseconds to format to a string.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The string of formatted milliseconds.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".isDateValid">
-        <a href="#.isDateValid">#</a>
-        <span class="type-signature">(static) </span>isDateValid<span class="signature">(&hellip;val)</span><span class="type-signature"> &rarr; {Boolean}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Validates a date from a string.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>val</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">any</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;repeatable><br>
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The arguments of the date to validate.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>Returns if the date is valid or not.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Boolean</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.isDateValid('December 17, 1995 03:24:00'); // true
-    _$.isDateValid('1995-12-17T03:24:00'); // true
-    _$.isDateValid('1995-12-17 T03:24:00'); // false
-    _$.isDateValid('Duck'); // false
-    _$.isDateValid(1995, 11, 17); // true
-    _$.isDateValid(1995, 11, 17, 'Duck'); // false
-    _$.isDateValid({}); // false</code></pre>
-
-    </div>
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @file bijou.js
+ * @author Explosion-Scratch, Bijou.js contributors
+ * @since v0.0.0
+ * @copyright © Explosion-Scratch, All rights reserved.
+ */
+
+/* --------------------------------------------------------------------------|
+  ____ ___    _  ___  _   _   _     
+ | __ )_ _|  | |/ _ \| | | | (_)___ 
+ |  _ \| |_  | | | | | | | | | / __|
+ | |_) | | |_| | |_| | |_| | | \__ \
+ |____/___\___/ \___/ \___(_)/ |___/
+                           |__/     
+------------------------------------------------------------------------------|
+Bijou.js is copyrighted by Explosion-Scratch of GitHub and released under the GPL-3.0 License.
+This software comes with ABSOLUTELY NO WARRANTY and is provided "As is" (with the best intentions of Explosion-Scratch and contributors! =D )
+
+-----------------------------------------------------------------------------|
+   ____ ___  _   _ _____ ____  ___ ____  _   _ _____ ___  ____  ____
+  / ___/ _ \| \ | |_   _|  _ \|_ _| __ )| | | |_   _/ _ \|  _ \/ ___|
+ | |  | | | |  \| | | | | |_) || ||  _ \| | | | | || | | | |_) \___ \
+ | |__| |_| | |\  | | | |  _ &lt; | || |_) | |_| | | || |_| |  _ &lt; ___) |
+  \____\___/|_| \_| |_| |_| \_\___|____/ \___/  |_| \___/|_| \_\____/
+-----------------------------------------------------------------------------|
+Contributors to Bijou.js:
+╔═══════════════════╦════════════════════════════╗
+║ GITHUB USERNAME   ║ CONTRIBUTIONS              ║
+╠═══════════════════╬════════════════════════════╣
+║ Explosion-Scratch ║ Founder and creator of     ║
+║                   ║ Bijou.js, over 1500        ║
+║                   ║ commits to the source      ║
+║                   ║ repository.                ║
+╠═══════════════════╬════════════════════════════╣
+║ GrahamSH-LLK      ║ Great guy, contributed     ║
+║                   ║ a ton towards the          ║
+║                   ║ development of this        ║
+║                   ║ project. He fixed glitches ║
+║                   ║ suggested new features,    ║
+║                   ║ and helped publish this    ║
+║                   ║ to NPM and fix the GitHub  ║
+║                   ║ actions on the project.    ║
+╠═══════════════════╬════════════════════════════╣
+║ Touchcreator      ║ Pointed out several bugs   ║
+║                   ║ in Bijou.js and suggested  ║
+║                   ║ several new features.      ║
+╠═══════════════════╬════════════════════════════╣
+║ TheColaber        ║ Collaborated?? (lol)       ║
+║                   ║ Fixed tons of bugs         ║
+╠═══════════════════╬════════════════════════════╣
+║ Hans5958          ║ Helped fix glitches in the ║
+║                   ║ website and suggested      ║
+║                   ║ fixes for GitHub actions   ║
+║                   ║ glitches.                  ║
+╠═══════════════════╬════════════════════════════╣
+║ retronbv          ║ Suggested a lot of         ║
+║                   ║ features and bug fixes.    ║
+║═══════════════════║════════════════════════════║
+║ thecoder876       ║ Made some improvements.    ║
+╚═══════════════════╩════════════════════════════╝
+
+
+(c) 2021 Explosion-Scratch, all rights reserved.
+
+ */
+
+let isNode = false;
+if (
+	typeof window === "undefined" ||
+	typeof document === "undefined"
+) {
+	isNode = true;
+} else {
+	isNode = false;
+}
+
+if (isNode) {
+	console.warn();
+}
+/**
+ * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
+ */
+let node = () => {
+	if (isNode) {
+		throw new Error(
+			"You are using Node.js, this function does not work in Node.js! Sorry!",
+		);
+	}
+};
+/*
+  ____   ___  _   _ ____   ____ _____
+ / ___| / _ \| | | |  _ \ / ___| ____|
+ \___ \| | | | | | | |_) | |   |  _|
+  ___) | |_| | |_| |  _ &lt;| |___| |___
+ |____/ \___/ \___/|_| \_\\____|_____|
+*/
+/**
+ * The array namespace of Bijou.js
+ * @namespace array
+ */
+let array_namespace = {};
+/**
+ * The color namespace of Bijou.js
+ * @namespace color
+ */
+let color_namespace = {};
+/**
+ * The date namespace of Bijou.js, containing functions to format dates, do math with them and more!
+ * @namespace date
+ */
+let date_namespace = {};
+/**
+ * The element namespace of Bijou.js, containing functions to create elements from query selectors, enable custom right click options, test if an element is on screen, replace the text of an element without altering it's styling, and much more!
+ * @namespace element
+ */
+let element_namespace = {};
+/**
+ * The event namespace of Bijou.js, containing functions to listen and dispatch events, such as scroll stop, outside click, and multiple event listeners.
+ * @namespace event
+ */
+let event_namespace = {};
+/**
+ * The function namespace of Bijou.js, containing functions to work with functions themselves, such as debouncing, throttling, memoizing, currying, timing and much more!
+ * @namespace function
+ */
+let function_namespace = {};
+/**
+ * The math namespace of Bijou.js, containing functions to validate credit card numbers, animate with JavaScript, generate unique id's and much more!
+ * @namespace math
+ */
+let math_namespace = {};
+/**
+ * The object namespace of Bijou.js, for stuff like flattening nested objects, cloning, merging, and even listening to changes to objects!
+ * @namespace object
+ */
+let object_namespace = {};
+/**
+ * The string namespace of Bijou.js, containing functions to map strings, remove accents from strings, speak text, syntax highlight JS, HTML and CSS and much more!
+ * @namespace string
+ */
+let string_namespace = {};
+/**
+ * The utility namespace of Bijou.js, containing utilities to do many things, such as playing audio, fetching JSON, preloading images and much more.
+ * @namespace utility
+ */
+let utility_namespace = {};
+
+const req = (type, desc, condition = true) => {
+	if (!condition) return;
+	let err = "Missing parameter";
+	if (type) {
+		err += " of type " + type;
+	}
+	if (desc) {
+		err = `Parameter ${desc} ${type ? `(${type})` : ""} required.`;
+	}
+	throw new Error(err);
+};
+//#region bijou
+</code></pre>
+        </article>
+    </section>
 
 
 

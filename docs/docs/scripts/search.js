@@ -1,21 +1,12 @@
 /* global document */
-/**
- *
- */
 function hideSearchList() {
     document.getElementById('search-item-ul').style.display = 'none';
 }
 
-/**
- *
- */
 function showSearchList() {
     document.getElementById('search-item-ul').style.display = 'block';
 }
 
-/**
- * @param e
- */
 function checkClick(e) {
     if ( e.target.id !== 'search-box-input') {
         setTimeout(function() {
@@ -27,12 +18,6 @@ function checkClick(e) {
     }
 }
 
-/**
- * @param list
- * @param options
- * @param keys
- * @param searchKey
- */
 function search(list, options, keys, searchKey) {
     var defaultOptions = {
         shouldSort: true,
@@ -46,18 +31,9 @@ function search(list, options, keys, searchKey) {
 
     var op = Object.assign({}, defaultOptions, options);
 
-    // eslint-disable-next-line no-undef
-    var searchIndex = Fuse.createIndex(op.keys, list);
-
     /* eslint-disable-next-line */
-    var fuse = new Fuse(list, op, searchIndex);
-
+    var fuse = new Fuse(list, op);
     var result = fuse.search(searchKey);
-
-    console.log(result, result.length);
-    if (result.length > 20) { result = result.slice(0, 20); }
-
-    console.log(result);
     var searchUL = document.getElementById('search-item-ul');
 
     searchUL.innerHTML = '';
@@ -65,8 +41,8 @@ function search(list, options, keys, searchKey) {
     if (result.length === 0) {
         searchUL.innerHTML += '<li class="p-h-n"> No Result Found </li>';
     } else {
-        result.forEach(function(obj) {
-            searchUL.innerHTML += '<li>' + obj.item.link + '</li>';
+        result.forEach(function(item) {
+            searchUL.innerHTML += '<li>' + item.link + '</li>';
         });
     }
 }

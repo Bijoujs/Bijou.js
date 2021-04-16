@@ -68,7 +68,7 @@
 
 
     <title>
-      date
+      js/object.js
     </title>
 
     <!--[if lt IE 9]>
@@ -204,7 +204,7 @@ div.code-copy-icon-container:hover * {
     <div id="main" class="main-content">
       
       <h1 id='page-title' class="page-title">
-        date
+        js/object.js
       </h1>
       
 
@@ -212,1620 +212,284 @@ div.code-copy-icon-container:hover * {
 
 
 
-
-<section>
-
-
-<header>
     
-        
-        <h2>
-        
-        date
-        
-        </h2>
-        
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>The date namespace of Bijou.js, containing functions to format dates, do math with them and more!</p></div>
-        
-
-        
-
-
-
-
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".addDaysToDate">
-        <a href="#.addDaysToDate">#</a>
-        <span class="type-signature">(static) </span>addDaysToDate<span class="signature">(date, n)</span><span class="type-signature"> &rarr; {Date}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Adds a specified number of days to a date.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The date to add days to</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>n</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>How many days to add to the date.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The date with the specified number of days added.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Date</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".addMinutesToDate">
-        <a href="#.addMinutesToDate">#</a>
-        <span class="type-signature">(static) </span>addMinutesToDate<span class="signature">(date, n)</span><span class="type-signature"> &rarr; {Date}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Adds a certain number of minutes to a date object.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-|
-
-<span class="param-type"><a href="string.html">string</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The date to add minutes to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>n</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>How many minutes to add to the date.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The date with minutes added.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Date</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.addMinutesToDate(new Date(), 4);//Create a date 4 minutes from now.</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".dayName">
-        <a href="#.dayName">#</a>
-        <span class="type-signature">(static) </span>dayName<span class="signature">(date<span class="signature-attributes">opt</span>, locale<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Returns the name of the weekday from the Date object specified.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    new Date()
-                
-                </td>
-            
-
-            <td class="description last"><p>The date object to use.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>locale</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    en-US
-                
-                </td>
-            
-
-            <td class="description last"><p>The locale to use.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The day name from the date.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.dayName)); // e.g. "Friday"</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.addDaysToDate">
-        <a href="#.exports.addDaysToDate">#</a>
-        <span class="type-signature">(static) </span>exports.addDaysToDate<span class="signature">(date, n)</span><span class="type-signature"> &rarr; {Date}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Adds a specified number of days to a date.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The date to add days to</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>n</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>How many days to add to the date.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The date with the specified number of days added.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Date</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.addMinutesToDate">
-        <a href="#.exports.addMinutesToDate">#</a>
-        <span class="type-signature">(static) </span>exports.addMinutesToDate<span class="signature">(date, n)</span><span class="type-signature"> &rarr; {Date}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Adds a certain number of minutes to a date object.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-|
-
-<span class="param-type"><a href="string.html">string</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The date to add minutes to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>n</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>How many minutes to add to the date.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The date with minutes added.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Date</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.addMinutesToDate(new Date(), 4);//Create a date 4 minutes from now.</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.dayName">
-        <a href="#.exports.dayName">#</a>
-        <span class="type-signature">(static) </span>exports.dayName<span class="signature">(date<span class="signature-attributes">opt</span>, locale<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Returns the name of the weekday from the Date object specified.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>date</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    new Date()
-                
-                </td>
-            
-
-            <td class="description last"><p>The date object to use.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>locale</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    en-US
-                
-                </td>
-            
-
-            <td class="description last"><p>The locale to use.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The day name from the date.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.dayName)); // e.g. "Friday"</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.formatMilliseconds">
-        <a href="#.exports.formatMilliseconds">#</a>
-        <span class="type-signature">(static) </span>exports.formatMilliseconds<span class="signature">(ms)</span><span class="type-signature"> &rarr; {String}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Formats a number of milliseconds</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>ms</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-|
-
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The number of milliseconds to format to a string.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The string of formatted milliseconds.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".exports.isDateValid">
-        <a href="#.exports.isDateValid">#</a>
-        <span class="type-signature">(static) </span>exports.isDateValid<span class="signature">(&hellip;val)</span><span class="type-signature"> &rarr; {Boolean}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Validates a date from a string.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>val</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">any</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;repeatable><br>
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The arguments of the date to validate.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>Returns if the date is valid or not.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Boolean</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.isDateValid('December 17, 1995 03:24:00'); // true
-    _$.isDateValid('1995-12-17T03:24:00'); // true
-    _$.isDateValid('1995-12-17 T03:24:00'); // false
-    _$.isDateValid('Duck'); // false
-    _$.isDateValid(1995, 11, 17); // true
-    _$.isDateValid(1995, 11, 17, 'Duck'); // false
-    _$.isDateValid({}); // false</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".formatMilliseconds">
-        <a href="#.formatMilliseconds">#</a>
-        <span class="type-signature">(static) </span>formatMilliseconds<span class="signature">(ms)</span><span class="type-signature"> &rarr; {String}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Formats a number of milliseconds</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>ms</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-|
-
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The number of milliseconds to format to a string.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>The string of formatted milliseconds.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>console.log(_$.formatMilliseconds(1324765128475)); // "1 century, 7 years, 2 days, 22 hours, 18 minutes, 48 seconds, 475 milliseconds"</code></pre>
-
-    </div>
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".isDateValid">
-        <a href="#.isDateValid">#</a>
-        <span class="type-signature">(static) </span>isDateValid<span class="signature">(&hellip;val)</span><span class="type-signature"> &rarr; {Boolean}</span>
-    </h4>
-
-    
-
-
-
-    <div class="description">
-        <p>Validates a date from a string.</p>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>val</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">any</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;repeatable><br>
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The arguments of the date to validate.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-<div class="param-desc">
-    <p>Returns if the date is valid or not.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Boolean</span>
-
-
-    </dd>
-</dl>
-
-            
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <pre class="prettyprint"><code>_$.isDateValid('December 17, 1995 03:24:00'); // true
-    _$.isDateValid('1995-12-17T03:24:00'); // true
-    _$.isDateValid('1995-12-17 T03:24:00'); // false
-    _$.isDateValid('Duck'); // false
-    _$.isDateValid(1995, 11, 17); // true
-    _$.isDateValid(1995, 11, 17, 'Duck'); // false
-    _$.isDateValid({}); // false</code></pre>
-
-    </div>
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//#region Object
+/**
+ * Flattens an object recursively into one. 
+ * @memberOf object
+ * @function
+ * @example 
+ * _$.flattenObj({
+      hello: "world",
+      another: {
+          nested: "Value",
+          anotherNestedValue: {
+              "something": "A value"
+          },
+          "more Values!!": "lol"
+      }
+  }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }
+* @param {Object} o The object to flatten
+* @returns {Object} The flattened object.
+ */
+export let flattenObj = (o = req("object", "object")) => {
+	return o !== Object(o) || Array.isArray(o)
+		? {}
+		: Object.assign(
+				{},
+				...(function leaves(o) {
+					return [].concat.apply(
+						[],
+						Object.entries(o).map(([k, v]) => {
+							return !v ||
+								typeof v !== "object" ||
+								!Object.keys(v).some((key) =>
+									v.hasOwnProperty(key),
+								) ||
+								Array.isArray(v)
+								? { [k]: v }
+								: leaves(v);
+						}),
+					);
+				})(o),
+		  );
+};
+/**
+ * Deep clones an object (or anything else, like an array or string)
+ * @function
+ * @memberOf object
+ * @param {Object} obj The object to clone.
+ * @returns {Object} The output cloned object.
+ * @example
+ * let obj = { hello: { puny: "earthlings" }};
+ * let cloned = _$.clone(obj); // cloned can be operated on without changing obj
+ */
+export let clone = (
+	src = req("object", "Object to clone"),
+	/* These params are internal */
+	_visited,
+	_copiesVisited,
+) => {
+	var object_create = Object.create;
+	if (typeof object_create !== "function") {
+		object_create = function (o) {
+			function F() {}
+			F.prototype = o;
+			return new F();
+		};
+	}
+	if (src === null || typeof src !== "object") {
+		return src;
+	}
+	if (typeof src.clone == "function") {
+		return src.clone(true);
+	}
+	if (src instanceof Date) {
+		return new Date(src.getTime());
+	}
+	if (src instanceof RegExp) {
+		return new RegExp(src);
+	}
+	if (src.nodeType &amp;&amp; typeof src.cloneNode == "function") {
+		return src.cloneNode(true);
+	}
+	if (_visited === undefined) {
+		_visited = [];
+		_copiesVisited = [];
+	}
+	var i,
+		len = _visited.length;
+	for (i = 0; i &lt; len; i++) {
+		if (src === _visited[i]) {
+			return _copiesVisited[i];
+		}
+	}
+	if (Object.prototype.toString.call(src) == "[object Array]") {
+		var ret = src.slice();
+		_visited.push(src);
+		_copiesVisited.push(ret);
+
+		var i = ret.length;
+		while (i--) {
+			ret[i] = clone(ret[i], _visited, _copiesVisited);
+		}
+		return ret;
+	}
+	var proto = Object.getPrototypeOf
+		? Object.getPrototypeOf(src)
+		: src.__proto__;
+	if (!proto) {
+		proto = src.constructor.prototype;
+	}
+	var dest = object_create(proto);
+	_visited.push(src);
+	_copiesVisited.push(dest);
+
+	for (var key in src) {
+		dest[key] = clone(src[key], _visited, _copiesVisited);
+	}
+	return dest;
+};
+/**
+ * @memberOf object
+ * @function
+ * @param {Object} obj The object to listen to.
+ * @param {Function} [getCallback=()=>null] The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).
+ * @param {Function} [setCallback=()=>null] The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).
+ * @example
+ * let obj = {something: "This is part of the object", anotherThing: "This is another!"};
+ * obj = _$.listen(obj, (k, v) => console.log(`set ${k} to ${v}`), () => console.log("Gotten"));
+ * obj.something; // Logs "Gotten" to the console!
+ * obj.anotherThing = "Hello world!"; // Logs "Set abotherThing to Hello world!" to the console!
+ * @returns {Proxy} A proxy object that behaves like any other object but listens to changes.
+ */
+export let listen = (
+	obj = req("object"),
+	setCallback = () => null,
+	getCallback = () => null,
+) => {
+	return new Proxy(obj, {
+		set: function (target, key, value) {
+			setCallback(key, value);
+			target[key] = value;
+			return target[key];
+		},
+		get: function (target, key, value) {
+			getCallback(key, value);
+			return obj[key];
+		},
+	});
+};
+/**
+ * Merges two objects into one. Note that object 2 properties will overwrite those of object 2.
+ * @memberOf object
+ * @function
+ * @param {Object} obj1 The 1st object to merge
+ * @param {Object} obj2 The 2nd object to merge.
+ * @returns {Object} The merged object.
+ * @example
+ * console.log(_$.merge({hello: "Hello!!"}, {world: " World", world: " Earthlings"})); // {hello: "Hello!!", world: " Earthlings"}
+ */
+export let merge = function MergeRecursive(
+	obj1 = req("object", "object 1"),
+	obj2 = req("object", "object 2"),
+) {
+	for (var p in obj2) {
+		if (p in Object.prototype) continue;
+		try {
+			// Property in destination object set; update its value.
+			if (obj2[p].constructor == Object) {
+				obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+			} else {
+				obj1[p] = obj2[p];
+			}
+		} catch (e) {
+			// Property in destination object not set; create it and set its value.
+			obj1[p] = obj2[p];
+		}
+	}
+	return obj1;
+};
+/**
+ * Maps the keys of an object.
+ * @function
+ * @memberOf object
+ * @param {Object} obj The object to map.
+ * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
+ * @example
+ * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
+ * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
+ * @returns {Object} The new Object.
+ */
+export let mapObjectKeys = (
+	obj = req("object"),
+	fn = req("function", "callback"),
+) =>
+	Array.isArray(obj)
+		? obj.map((val) => _$.mapObjectKeys(val, fn))
+		: typeof obj === "object"
+		? Object.keys(obj).reduce((acc, current) => {
+				const key = fn(current);
+				const val = obj[current];
+				acc[key] =
+					val !== null &amp;&amp; typeof val === "object"
+						? _$.mapObjectKeys(val, fn)
+						: val;
+				return acc;
+		  }, {})
+		: obj;
+/**
+ * Maps an object's values.
+ * @memberOf object
+ * @function
+ * @param {Object} obj The object to map the values of.
+ * @param {Function} fn The callback function to use.
+ * @returns {Object} The mapped object.
+ * @example
+ * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
+ */
+export let mapObjectValues = (
+	obj = req("object", "object"),
+	fn = req("function", "callback"),
+) => {
+	Object.keys(obj).map(function (key, index) {
+		obj[key] = fn(obj[key], index);
+	});
+	return obj;
+};
+/**
+ * Converts a form to an Object.
+ * @function
+ * @memberOf object
+ * @param {HTMLFormElement} form The form element.
+ * @returns {Object} The object of form data (The keys are the "name" attributes of the form inputs and the values are the value attributes of the form data.)
+ * @example
+ * html:
+ * ```
+ * &lt;form id="form">
+ *   &lt;input name"input" />
+ *   &lt;input name="input2" />
+ * &lt;/form>
+ * ```
+ * js:
+ * const form = document.getElementById("form");
+ * console.log(_$.formToObject(form)); // e.g. { input: "hello", input2: "world" }
+ */
+export let formToObject = (
+	form = req("HTMLFormElement", "the form"),
+) => {
+	node();
+	return Array.from(new FormData(form)).reduce(
+		(acc, [key, value]) => ({
+			...acc,
+			[key]: value,
+		}),
+	);
+};
+/**
+ * Sorts an object alphabetically by its keys.
+ * @function
+ * @memberOf object
+ * @param {Object} obj The object to sort.
+ * @example
+ * let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
+ * // The object is now {anotherThing: "Another value!", testing: "A value"}
+ * @returns {Object} The sorted object.
+ */
+export let sortObj = (obj = req("object", "object")) => {
+	return Object.keys(obj)
+		.sort()
+		.reduce(function (result, key) {
+			result[key] = obj[key];
+			return result;
+		}, {});
+};
+//#endregion Object
+</code></pre>
+        </article>
+    </section>
 
 
 
