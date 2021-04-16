@@ -11,7 +11,7 @@ jobs:
         uses: actions/setup-node@v2.1.4
       - run: ls
       - run: npm install
-      - run: sudo npm i -g rollup eslint eslint-plugin-jsdoc jsdoc prettier terser figlet-cli
+      - run: sudo npm i -g rollup eslint jsdoc prettier terser figlet-cli
       - run: COMMIT=$(git status --porcelain)
       - run: rm bijou_node.js
              && rm bijou.js

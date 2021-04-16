@@ -1,4 +1,5 @@
 npm install;
+npm i -g eslint prettier terser jsdoc rollup figlet-cli
 
 COMMIT=$(git status --porcelain)
 rm bijou_node.js

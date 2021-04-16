@@ -1,5 +1,5 @@
 npm install;
-npm i -g eslint prettier terser jsdoc rollup
+npm i -g eslint prettier terser jsdoc rollup figlet-cli
 function remove {
   rm -f .git/index.lock
 }
