@@ -809,6 +809,7 @@ function elementReady(
 	selector = req("string", "query selector"),
 	parent = document.documentElement,
 ) {
+	node();
 	return new Promise((resolve, reject) => {
 		const el = parent.querySelector(selector);
 		if (el) {
@@ -851,7 +852,10 @@ function elementReady(
 let elementContains = (
 	parent = req("HTMLElement", "parent"),
 	child = req("HTMLElement", "child"),
-) => parent !== child && parent.contains(child);
+) => {
+	node();
+	return parent !== child && parent.contains(child);
+};
 /**
  * Gets the parent elements of the element given.
  * @returns {Array.<HTMLElement>} An array of the parent elements from deepest to outermost.
@@ -873,13 +877,16 @@ let elementContains = (
  * _$.parents(document.querySelector("img"));//[div#img, body, html]
  * @param {HTMLElement} el The element
  */
-let parents = (el = req("element")) => [
-	...(function* (e) {
-		while ((e = e.parentNode)) {
-			yield e;
-		}
-	})(el),
-];
+let parents = (el = req("element")) => {
+	node();
+	return [
+		...(function* (e) {
+			while ((e = e.parentNode)) {
+				yield e;
+			}
+		})(el),
+	];
+};
 /**
  * Gets all the images that are children of the specified element.
  * @returns {Array} The array of image urls.
@@ -898,6 +905,7 @@ let getImages = (
 	el = document.documentElement,
 	includeDuplicates = false,
 ) => {
+	node();
 	const images = [...el.getElementsByTagName("img")].map((img) =>
 		img.getAttribute("src"),
 	);
@@ -925,6 +933,7 @@ let renderElement = (
 	{ type, props = {} } = req("object", "options"),
 	container = req("HTMLElement", "container"),
 ) => {
+	node();
 	const isTextElement = !type;
 	const element = isTextElement
 		? document.createTextNode("")
@@ -1024,6 +1033,7 @@ function create(querySelector = "div", ...content) {
  * @returns {undefined}
  */
 let context = () => {
+	node();
 	var menu = document.createElement("UL");
 	menu.id = "contextMenu";
 	document.body.appendChild(menu);
@@ -1209,6 +1219,7 @@ let replaceText = (
  * _$.textNodes(document.querySelector("h1"))[0].textContent = "hello world"; // replaces the text with "hello world" without deleting other elements
  */
 let textNodes = (el = req("HTMLElement", "element")) => {
+	node();
 	return [...el.childNodes].filter((node) => {
 		return (
 			node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== ""
@@ -1336,6 +1347,7 @@ let querySelector = (elem = req("HTMLElement", "element")) => {
 let removeComments = (
 	el = req("HTMLElement", "HTMLElement"),
 ) => {
+	node();
 	const isString = typeof el === "string";
 	el = isString ? _$.parseHTML(el) : el.cloneNode(true);
 	for (const child of [...el.querySelectorAll("*"), el]) {
@@ -1466,6 +1478,7 @@ let addEventListeners = (
 	useCapture = false,
 	args = false,
 ) => {
+	node();
 	if (!(events instanceof Array)) {
 		throw (
 			"addMultipleListeners: " +
@@ -1498,6 +1511,7 @@ let sortTable = (
 	element = req("HTMLTableElement", "table element"),
 	cellVal = undefined,
 ) => {
+	node();
 	var getCellValue = function (tr, idx) {
 		return cellVal
 			? cellVal(tr.children[idx], tr, idx)
@@ -1560,6 +1574,7 @@ let sortTableBy = (
 	th = req("HTMLTableElement", "<th> element"),
 	acending = true,
 ) => {
+	node();
 	var getCellValue = function (tr, idx) {
 		return tr.children[idx].innerText || tr.children[idx].textContent;
 	};
@@ -1659,8 +1674,10 @@ let compStyle = (
  * // Make every sibling of the first list item's background color white.
  * @returns {Element[]} The array of sibling elements.
  */
-let elementSiblings = (n = req("HTMLElement", "element")) =>
-	[...n.parentElement.children].filter((c) => c != n);
+let elementSiblings = (n = req("HTMLElement", "element")) => {
+	node();
+	return [...n.parentElement.children].filter((c) => c != n);
+};
 /**
  * Disables right click on the element spcified.
  * @function
@@ -1686,6 +1703,7 @@ let disableRightClick = (
  * @returns {undefined}
  */
 let inlineCSS = (el = req("HTMLElement", "element")) => {
+	node();
 	var cs = getComputedStyle(el, null);
 	var i;
 	for (i = 0; i < cs.length; i++) {
@@ -1735,6 +1753,7 @@ let observeMutations = (
 	callback = req("function", "callback"),
 	options = {},
 ) => {
+	nodd();
 	const observer = new MutationObserver((mutations) =>
 		mutations.forEach((m) => callback(m)),
 	);
@@ -1780,6 +1799,7 @@ let tilt = (
 	perspective = 500,
 	amount = 30,
 ) => {
+	node();
 	//Old code
 	/*  const xVal = x
       const yVal = y
@@ -1805,6 +1825,7 @@ let tilt = (
  * _$.fullScreen(document.documentElement); // Make the window fullscreen
  */
 let fullScreen = (element = req("HTMLElement", "element")) => {
+	node();
 	return (
 		element.requestFullScreen ||
 		element.mozRequestFullScreen ||
@@ -1827,6 +1848,7 @@ let fullScreen = (element = req("HTMLElement", "element")) => {
 let replaceSelection = (
 	replacementText = req("string", "replacement text"),
 ) => {
+	node();
 	var sel, range;
 	if (window.getSelection) {
 		sel = window.getSelection();
