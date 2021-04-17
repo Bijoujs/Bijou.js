@@ -17,6 +17,7 @@ jobs:
       - run: cat ./js/_copyright.js ./js/array.js ./js/color.js ./js/date.js ./js/element.js ./js/event.js ./js/function.js ./js/object.js ./js/math.js ./js/string.js ./js/utility.js ./js/_end.js > bijou.js
       - run: rm -rf docs/docs
              && rm -f bijou-min.js
+      - run: rm -f docs/bijou.js
       - run: jsdoc -c jsdoc.json
              && prettier --write -- .
       - run: rollup bijou.js --file bijou_node.js --format cjs
@@ -24,6 +25,7 @@ jobs:
              && terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
       - run: prettier --write ./
       - run: git add --force docs/docs
+      - run: git add --force docs/bijou.js
       - run: git add --force bijou.js && git add --force bijou-min.js && git add --force bijou_node.js
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
