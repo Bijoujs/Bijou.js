@@ -1,7 +1,7 @@
 # Contributing to Bijou.js
 
 Contributing to Bijou.js is simple! Follow the steps below:
-
+ 
 ## I want to add a new function to Bijou
 
 Follow this template:
