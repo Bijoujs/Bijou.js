@@ -53,7 +53,10 @@
       "contributions": [
         "bug",
         "doc",
-        "test"
+        "test",
+        "tool",
+        "question",
+        "tutorial"
       ]
     },
     {
