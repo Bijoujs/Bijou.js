@@ -167,6 +167,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://touchcreator.github.io"><img src="https://avatars.githubusercontent.com/u/64277067?v=4?s=100" width="100px;" alt=""/><br /><sub><b>TouchIsNotAGoodCoder</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3ATouchcreator" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://scratch.mit.edu/users/TheColaber/"><img src="https://avatars.githubusercontent.com/u/72760579?v=4?s=100" width="100px;" alt=""/><br /><sub><b>TheColaber</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3ATheColaber" title="Bug reports">🐛</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=TheColaber" title="Code">💻</a> <a href="https://github.com/Bijou-js/Bijou.js/commits?author=TheColaber" title="Documentation">📖</a></td>
     <td align="center"><a href="https://thecoder876.github.io"><img src="https://avatars.githubusercontent.com/u/76265544?v=4?s=100" width="100px;" alt=""/><br /><sub><b>thecoder876</b></sub></a><br /><a href="https://github.com/Bijou-js/Bijou.js/issues?q=author%3Athecoder876" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="http://mtm828.github.io"><img src="https://avatars.githubusercontent.com/u/71281115?v=4?s=100" width="100px;" alt=""/><br /><sub><b>MTM828</b></sub></a><br /><a href="#content-MTM828" title="Content">🖋</a></td>
   </tr>
 </table>
 
