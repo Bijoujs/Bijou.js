@@ -16,7 +16,10 @@
         "bug",
         "doc",
         "infra",
-        "test"
+        "test",
+        "content",
+        "ideas",
+        "platform"
       ]
     },
     {
