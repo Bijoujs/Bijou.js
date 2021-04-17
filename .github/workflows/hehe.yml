@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Test
-    - uses: BrianMitchL/pr-chatter-action@v1
+      uses: BrianMitchL/pr-chatter-action@v1
       with:
         # required
         TENOR_API_KEY: ${{ secrets.TENOR_API_KEY }}
