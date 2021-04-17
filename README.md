@@ -1,4 +1,4 @@
-<div align="center"><a href="https://bijou.js.org"><img width="700" src="https://bijou.js.org/bijou.png"></a></div>
+<div align="center"><a href="https://bijou.js.org"><img width="700" src="https://bijou.js.org/Bijou.png"></a></div>
  
 [![NPM Downloads](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
 [![GitHub stars](https://img.shields.io/github/stars/bijou-js/bijou.js?color=lightseagreen&style=for-the-badge)](https://github.com/bijou-js/bijou.js/stargazers)
