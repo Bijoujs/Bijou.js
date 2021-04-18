@@ -21,7 +21,7 @@ jobs:
            rm -r docs/docs
            rm bijou-min.js
            jsdoc -c jsdoc.json
-           sudo eslint --fix ./ || eskunt --fix ./ || ls
+           sudo eslint --fix ./ || eslint --fix ./ || ls
            prettier --write -- .
            rollup bijou.js --file bijou_node.js --format cjs
            terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
