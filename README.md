@@ -110,7 +110,7 @@ If you need to use a custom prefix than you can set a variable that you want to 
 
 # Who made Bijou.js?
 
-Me (@Explosion-Scratch) and my good friend @GrahamSH-LLK with a lot of help from other people such as retronbv and TheColaber!
+I (@Explosion-Scratch) started it and continually maintain and supervise the project, but many other amazing people have helped. See [the contributors section](#contributors) for more info.
 
 # Why use Bijou?
 
