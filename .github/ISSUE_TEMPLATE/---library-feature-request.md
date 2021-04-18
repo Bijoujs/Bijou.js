@@ -3,7 +3,7 @@ name: "\U0001F4D9 Library feature request"
 about: A new idea for Bijou.js? Great! Suggest it below! =)
 title: "[Feature request]"
 labels: ''
-assignees: Explosion-Scratch
+assignees: ''
 
 ---
 

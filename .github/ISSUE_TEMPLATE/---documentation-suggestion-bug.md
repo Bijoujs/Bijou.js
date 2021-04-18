@@ -3,7 +3,7 @@ name: "\U0001F4C4 Documentation suggestion/bug"
 about: Oh noes! Something about the documentation isn't right!
 title: "[Docs] "
 labels: documentation
-assignees: Explosion-Scratch
+assignees: ''
 
 ---
 

@@ -3,7 +3,7 @@ name: "\U0001F41B Library Bug report"
 about: There's a bug in the Bijou.js source code!
 title: "[Bug] "
 labels: bug
-assignees: Explosion-Scratch
+assignees: ''
 
 ---
 
