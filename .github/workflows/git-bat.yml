@@ -13,8 +13,8 @@ jobs:
        uses: technote-space/create-pr-action@v2
        with:
          EXECUTE_COMMANDS: |
-           npm install;
-           npm i -g eslint prettier terser jsdoc rollup figlet-cli
+           sudo npm install;
+           sudo npm i -g eslint prettier terser jsdoc rollup figlet-cli
            rm bijou_node.js
            rm bijou.js
            cat ./js/_copyright.js ./js/array.js ./js/color.js ./js/date.js ./js/element.js ./js/event.js ./js/function.js ./js/object.js ./js/math.js ./js/string.js ./js/utility.js ./js/_end.js > bijou.js
