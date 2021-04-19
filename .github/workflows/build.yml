@@ -2,16 +2,20 @@ on:
  workflow_dispatch:
  push:
  schedule:
-   - cron: 0 0 * * *
+   - cron: 30 * * * *
  pull_request:
    types: [opened, synchronize, reopened, closed]
 name: Build + compile
 jobs:
+ event:
+  runs-on: ubuntu-latest
+  steps:
+     - run: echo "${{ toJson(github) }}"
  release:
+   if: github.actor != "Explosion-Scratch" || !github.event.pull_request
    name: Build + compile
    runs-on: ubuntu-latest
    steps:
-     - run: echo "${{ toJson(github) }}"
      - name: Build and compile
        uses: technote-space/create-pr-action@v2
        with:
