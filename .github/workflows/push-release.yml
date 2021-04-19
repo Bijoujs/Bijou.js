@@ -70,6 +70,6 @@ jobs:
         with:
           registry-url: 'https://npm.pkg.github.com'
           scope: "Bijou-js"
-      - run: npm publish --registry=https://npm.pkg.github.com/ 
+      - run: npm publish --registry=https://npm.pkg.github.com/@Bijou-js
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
