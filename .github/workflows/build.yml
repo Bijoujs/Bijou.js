@@ -12,14 +12,12 @@ jobs:
   steps:
      - run: echo "${{ toJson(github) }}"
  release:
-   if: 'github.actor != "Explosion-Scratch" || !github.event.pull_request'
    name: Build + compile
    runs-on: ubuntu-latest
    steps:
      - name: Build and compile
        uses: technote-space/create-pr-action@v2
        with:
-         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
          EXECUTE_COMMANDS: |
            sudo npm install;
            sudo npm i -g eslint --loglevel verbose
