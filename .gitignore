@@ -1,4 +1,4 @@
 .theia/
 node_modules/
 .vscode/
-/docs/docs/
+docs/docs/
