@@ -36,9 +36,6 @@ jobs:
            terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
            terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
            jsdoc2md bijou.js > documentation.md
-           git add --force bijou.js
-           git add --force bijou_node.js
-           git add --force bijou-min.js
          COMMIT_MESSAGE: "Automated build"
          COMMIT_NAME: 'Build bot'
          COMMIT_EMAIL: 'explosionscratch@gmail.com'
