@@ -7,10 +7,6 @@ on:
    types: [opened, synchronize, reopened, closed]
 name: Build + compile
 jobs:
- event:
-  runs-on: ubuntu-latest
-  steps:
-     - run: echo "${{ toJson(github) }}"
  release:
    name: Build + compile
    runs-on: ubuntu-latest
