@@ -12,7 +12,7 @@ jobs:
   steps:
      - run: echo "${{ toJson(github) }}"
  release:
-   if: github.actor != "Explosion-Scratch" || !github.event.pull_request
+   if: 'github.actor != "Explosion-Scratch" || !github.event.pull_request'
    name: Build + compile
    runs-on: ubuntu-latest
    steps:
