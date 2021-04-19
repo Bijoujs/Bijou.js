@@ -34,8 +34,8 @@ jobs:
            terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
            terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
            jsdoc2md bijou.js > documentation.md
-         COMMIT_MESSAGE: "${FILES_SUMMARY}\n\n${PR_TITLE}\n${PR_LINK}\n\n${FILES}"
+         COMMIT_MESSAGE: '${FILES_SUMMARY}\n\n${PR_TITLE}\n${PR_LINK}\n\n${FILES}'
          COMMIT_NAME: 'Build bot'
          COMMIT_EMAIL: 'explosionscratch@gmail.com'
-         PR_BRANCH_NAME: 'build-pr-${PR_NUMBER}'
-         PR_TITLE: 'Build and compile ${PR_NUMBER_REF}'
+         PR_BRANCH_NAME: 'build-pr-${{PR_NUMBER}}'
+         PR_TITLE: 'Build and compile ${{PR_NUMBER_REF}}'
