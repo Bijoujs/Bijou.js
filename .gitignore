@@ -2,6 +2,3 @@
 node_modules/
 .vscode/
 /docs/docs/
-bijou.js
-bijou-min.js
-bijou_node.js
