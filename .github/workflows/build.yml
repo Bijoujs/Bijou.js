@@ -15,7 +15,13 @@ jobs:
        with:
          EXECUTE_COMMANDS: |
            sudo npm install;
-           sudo npm i -g eslint prettier terser jsdoc rollup figlet-cli jsdoc-to-markdown
+           sudo npm i -g eslint --loglevel verbose
+           sudo npm i -g prettier --loglevel verbose
+           sudo npm i -g terser --loglevel verbose
+           sudo npm i -g jsdoc --loglevel verbose
+           sudo npm i -g rollup --loglevel verbose
+           sudo npm i -g figlet-cli --loglevel verbose
+           sudo npm i -g jsdoc-to-markdown --loglevel verbose
            rm bijou_node.js
            rm bijou.js
            cat ./js/_copyright.js ./js/array.js ./js/color.js ./js/date.js ./js/element.js ./js/event.js ./js/function.js ./js/object.js ./js/math.js ./js/string.js ./js/utility.js ./js/_end.js > bijou.js
