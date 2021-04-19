@@ -37,5 +37,5 @@ jobs:
          COMMIT_MESSAGE: '${FILES_SUMMARY}\n\n${PR_TITLE}\n${PR_LINK}\n\n${FILES}'
          COMMIT_NAME: 'Build bot'
          COMMIT_EMAIL: 'explosionscratch@gmail.com'
-         PR_BRANCH_NAME: 'build-pr-${{PR_NUMBER}}'
-         PR_TITLE: 'Build and compile ${{PR_NUMBER_REF}}'
+         PR_BRANCH_NAME: 'build-pr-${PR_NUMBER}'
+         PR_TITLE: 'Build and compile ${PR_NUMBER_REF}'
