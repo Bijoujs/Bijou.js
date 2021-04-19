@@ -27,6 +27,8 @@ This software comes with ABSOLUTELY NO WARRANTY and is provided "As is" (with th
  | |__| |_| | |\  | | | |  _ < | || |_) | |_| | | || |_| |  _ < ___) |
   \____\___/|_| \_| |_| |_| \_\___|____/ \___/  |_| \___/|_| \_\____/
 -----------------------------------------------------------------------------|
+NOTE: Please see https://github.com/bijou-js/bijou.js#contributors- for up to date contributors with what they did.
+
 Contributors to Bijou.js:
 ╔═══════════════════╦════════════════════════════╗
 ║ GITHUB USERNAME   ║ CONTRIBUTIONS              ║
