@@ -37,7 +37,7 @@ jobs:
            git add --force bijou.js
            git add --force bijou_node.js
            git add --force bijou-min.js
-         COMMIT_MESSAGE: ${FILES_SUMMARY}
+         COMMIT_MESSAGE: "Automated build"
          COMMIT_NAME: 'Build bot'
          COMMIT_EMAIL: 'explosionscratch@gmail.com'
          PR_BRANCH_NAME: 'build-pr-${PR_NUMBER}'
