@@ -22,16 +22,21 @@ jobs:
         run: npm version ${{ github.event.inputs.version }} --allow-same-version
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-         commit_message: Applying automated CI items
+         commit_message: Updating version.
+      - name: Extract version
+        id: extract_version
+        uses: Saionaro/extract-package-version@v1.0.6
+      - name: Print version
+        run: echo "${{ steps.extract_version.outputs.version }}"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.event.inputs.version }}
-          release_name: Release ${{ github.event.inputs.version }}
+          tag_name: ${{ steps.extract_version.outputs.version }}
+          release_name: Release ${{ steps.extract_version.outputs.version }}
           body: |
-            Automated release of version ${{ github.event.inputs.version }}
+            Automated release.
           draft: false
           prerelease: false
