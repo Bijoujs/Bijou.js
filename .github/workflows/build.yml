@@ -36,6 +36,7 @@ jobs:
            sudo eslint --fix ./ || eslint --fix ./ || ls
            prettier --write -- .
            rollup bijou.js --file bijou_node.js --format cjs
+           cat bijou.js
            terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
            terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
            jsdoc2md bijou.js > documentation.md
