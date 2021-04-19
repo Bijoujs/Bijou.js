@@ -6,9 +6,6 @@
 	"jsdelivr": "bijou.js",
 	"unpkg": "bijou.js",
 	"browser": "bijou.js",
-	"publishConfig": {
-	    "registry":"https://npm.pkg.github.com/@Bijou-js"
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/bijou-js/bijou.js.git"
@@ -24,7 +21,7 @@
 		"library"
 	],
 	"author": "Bijou.js contributors",
-	"license": "GPL-3.0 License",
+	"license": "GPL-3.0",
 	"bugs": {
 		"url": "https://github.com/bijou-js/bijou.js/issues"
 	},
