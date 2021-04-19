@@ -11,6 +11,7 @@ jobs:
    name: Build + compile
    runs-on: ubuntu-latest
    steps:
+     - run: echo "${{ toJson(github) }}"
      - name: Build and compile
        uses: technote-space/create-pr-action@v2
        with:
