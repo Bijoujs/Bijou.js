@@ -1,6 +1,7 @@
 on:
+ workflow_dispatch:
  schedule:
-   - cron: 0 0 * * *
+   - cron: 0 */2 * * *
  pull_request:
    types: [opened, synchronize, reopened, closed]
 name: Build + compile
@@ -27,8 +28,14 @@ jobs:
            terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o docs/bijou.js -- bijou.js
            terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
            jsdoc2md bijou.js > documentation.md
-         COMMIT_MESSAGE: 'Automated build'
-         COMMIT_NAME: 'Automated build'
+         COMMIT_MESSAGE: |
+          ${FILES_SUMMARY}
+          
+          ${PR_TITLE}
+          ${PR_LINK}
+          
+          ${FILES}
+         COMMIT_NAME: 'Build bot'
          COMMIT_EMAIL: 'explosionscratch@gmail.com'
-         PR_BRANCH_NAME: 'build-${PR_ID}'
-         PR_TITLE: 'Build and compile #${PR_ID}'
+         PR_BRANCH_NAME: 'build-pr-${PR_NUMBER}'
+         PR_TITLE: 'Build and compile ${PR_NUMBER_REF}'
