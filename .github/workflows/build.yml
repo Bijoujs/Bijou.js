@@ -43,7 +43,7 @@ jobs:
            terser --comments false --ecma 6 --ie8 --module --compress --drop-console --mangle -o bijou-min.js -- bijou.js
            jsdoc2md bijou.js > documentation.md
          COMMIT_MESSAGE: "Automated build"
-         COMMIT_NAME: 'Build bot'
+         COMMIT_NAME: 'Explosion-Scratch'
          COMMIT_EMAIL: 'explosionscratch@gmail.com'
          PR_BRANCH_NAME: 'build-pr-${PR_NUMBER}'
          PR_TITLE: 'Build and compile ${PR_NUMBER_REF}'
