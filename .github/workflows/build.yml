@@ -12,6 +12,7 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - run: echo "${{ toJson(github) }}"
+     - run: echo "${{ github.actor != 'Explosion-Scratch' || !github.event.pull_request }}"
  release:
    name: Build + compile
    runs-on: ubuntu-latest
