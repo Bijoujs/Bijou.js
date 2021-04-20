@@ -2,7 +2,7 @@ on:
  workflow_dispatch:
  push:
  schedule:
-   - cron: 0 * * * *
+   - cron: 30 * * * *
  pull_request:
    types: [opened, synchronize, reopened, closed]
 name: Build + compile
@@ -11,7 +11,6 @@ jobs:
    name: Echo github context
    runs-on: ubuntu-latest
    steps:
-     - run: echo "${{ toJson(github) }}"
      - run: echo "${{ github.actor != 'Explosion-Scratch' || !github.event.pull_request }}"
  release:
    name: Build + compile
