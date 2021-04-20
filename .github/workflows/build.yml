@@ -12,7 +12,9 @@ jobs:
    runs-on: ubuntu-latest
    steps:
       - name: Spill secrets (lol)
-        run: echo "${{ secrets.GITHUB_EVENT_NAME }}"
+        env:
+          GITHUB_CONTEXT: ${{ secrets.GITHUB_EVENT_NAME }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
