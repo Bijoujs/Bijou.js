@@ -2,7 +2,7 @@ on:
  workflow_dispatch:
  push:
  schedule:
-   - cron: 30 * * * *
+   - cron: 0 0 * * *
  pull_request:
    types: [opened, synchronize, reopened, closed]
 name: Build + compile
