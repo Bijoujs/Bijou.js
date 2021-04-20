@@ -11,6 +11,8 @@ jobs:
    name: Echo github
    runs-on: ubuntu-latest
    steps:
+      - name: Spill secrets (lol)
+        run: echo "${{ secrets.GITHUB_EVENT_NAME }}"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
@@ -36,7 +38,7 @@ jobs:
           MATRIX_CONTEXT: ${{ toJSON(matrix) }}
         run: echo "$MATRIX_CONTEXT"
  release:
-   if: github.actor != 'Explosion-Scratch' || github.event_type != 'pull_request'
+   if: github.actor != 'Explosion-Scratch' || ${{ secrets.GITHUB_EVENT_NAME }} != 'pull_request'
    name: Build + compile
    runs-on: ubuntu-latest
    steps:
