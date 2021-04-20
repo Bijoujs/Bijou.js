@@ -36,7 +36,7 @@ jobs:
           MATRIX_CONTEXT: ${{ toJSON(matrix) }}
         run: echo "$MATRIX_CONTEXT"
  release:
-   if: github.actor != 'Explosion-Scratch' || github.event_type != "pull_request"
+   if: github.actor != 'Explosion-Scratch' || github.event_type != 'pull_request'
    name: Build + compile
    runs-on: ubuntu-latest
    steps:
