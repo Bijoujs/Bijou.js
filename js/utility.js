@@ -7,7 +7,7 @@
  * console.log(t`This will not be escaped <i>Italics!</i> ${"But this will, <i>Not italic</i>"}`)
  * @param {Function} k The function to run on new (interpolated) text in the template literal.
  * @param {Function} o The function to run on the normal text in the template literal.
- * @returns {Function.<String>} A template literal tagging function, which returns a string.
+ * @returns {Function} A template literal tagging function, which returns a string.
  */
 export let tag = (k = (j) => j, o = (j) => j) => {
     return (old, ...int) => {
