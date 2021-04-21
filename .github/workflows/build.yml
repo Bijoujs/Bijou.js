@@ -13,10 +13,11 @@ jobs:
      - run: echo "${{ !(github.actor == 'Explosion-Scratch' && github.event.pull_request) }}"
      - run: echo "Github actor is Explosion-Scratch? ${{ github.actor == 'Explosion-Scratch' }}"
      - run: echo "Is PR? ${{ !!github.event.pull_request }}"
+     - run: echo "PR author – ${{github.event.pull_request.user.login}}
  release:
    name: Build + compile
    runs-on: ubuntu-latest
-   if: github.actor != 'Explosion-Scratch' || !github.event.pull_request
+   if: github.actor != 'Explosion-Scratch' || !github.event.pull_request || github.event.pull_request.user.login != 'Explosion-Scratch'
    steps:
      - name: Build and compile
        uses: technote-space/create-pr-action@v2
