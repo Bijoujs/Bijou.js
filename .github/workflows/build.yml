@@ -1,6 +1,5 @@
 on:
  workflow_dispatch:
- push:
  schedule:
    - cron: 30 * * * *
  pull_request:
@@ -11,7 +10,9 @@ jobs:
    name: Echo github context
    runs-on: ubuntu-latest
    steps:
-     - run: echo "${{ github.actor != 'Explosion-Scratch' || !github.event.pull_request }}"
+     - run: echo "${{ !(github.actor == 'Explosion-Scratch' && github.event.pull_request) }}"
+     - run: echo "Github actor ${{ github.actor }}"
+     - run: echo "Is PR? ${{ !!github.event.pull_request }}"
  release:
    name: Build + compile
    runs-on: ubuntu-latest
