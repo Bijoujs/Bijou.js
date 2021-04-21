@@ -10,15 +10,15 @@
  * @returns {Function} A template literal tagging function, which returns a string.
  */
 export let tag = (k = (j) => j, o = (j) => j) => {
-    return (old, ...int) => {
-        let n = [];
-        int.push("");
-        for (let i = 0; i < old.length; i++) {
-            n.push(o(old[i]), k(int[i]));
-        }
-        return n.join("");
-    }
-}
+	return (old, ...int) => {
+		let n = [];
+		int.push("");
+		for (let i = 0; i < old.length; i++) {
+			n.push(o(old[i]), k(int[i]));
+		}
+		return n.join("");
+	};
+};
 /**
  * Resizes an image from a URL and returns a promise with it's data URL.
  * @memberOf utility

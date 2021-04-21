@@ -4012,6 +4012,26 @@ let previousPage = () => {
 //#endregion String
 //#region Utility
 /**
+ * Creates a template literal tag. Read more here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
+ * @example
+ * let t = tag(_$.escapeHTML);
+ * //Notice the "t" at the beginning of the template literal. (t`Some text`).
+ * console.log(t`This will not be escaped <i>Italics!</i> ${"But this will, <i>Not italic</i>"}`)
+ * @param {Function} k The function to run on new (interpolated) text in the template literal.
+ * @param {Function} o The function to run on the normal text in the template literal.
+ * @returns {Function} A template literal tagging function, which returns a string.
+ */
+let tag = (k = (j) => j, o = (j) => j) => {
+	return (old, ...int) => {
+		let n = [];
+		int.push("");
+		for (let i = 0; i < old.length; i++) {
+			n.push(o(old[i]), k(int[i]));
+		}
+		return n.join("");
+	};
+};
+/**
  * Resizes an image from a URL and returns a promise with it's data URL.
  * @memberOf utility
  * @function
@@ -5347,6 +5367,7 @@ exports.splice = splice;
 exports.spliceArrayBuffer = spliceArrayBuffer;
 exports.spread = spread;
 exports.syllables = syllables;
+exports.tag = tag;
 exports.textNodes = textNodes;
 exports.throttle = throttle;
 exports.tilt = tilt;
