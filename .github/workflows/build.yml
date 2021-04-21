@@ -1,6 +1,5 @@
 on:
  workflow_dispatch:
- push:
  schedule:
    - cron: 30 * * * *
  pull_request:
@@ -11,16 +10,19 @@ jobs:
    name: Echo github context
    runs-on: ubuntu-latest
    steps:
-     - run: echo "${{ github.actor != 'Explosion-Scratch' || !github.event.pull_request }}"
+     - run: echo "${{ !(github.actor == 'Explosion-Scratch' && github.event.pull_request) }}"
+     - run: echo "Github actor is Explosion-Scratch? ${{ github.actor == 'Explosion-Scratch' }}"
+     - run: echo "Is PR? ${{ !!github.event.pull_request }}"
+     - run: echo "PR author – ${{github.event.pull_request.user.login}}"
  release:
    name: Build + compile
    runs-on: ubuntu-latest
-   if: github.actor != 'Explosion-Scratch' || !github.event.pull_request
+   if: github.actor != 'Explosion-Scratch' || !github.event.pull_request || github.event.pull_request.user.login != 'Explosion-Scratch'
    steps:
      - name: Build and compile
        uses: technote-space/create-pr-action@v2
        with:
-         GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN}}
+         GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN || github.token}}
          EXECUTE_COMMANDS: |
            sudo npm install;
            sudo npm i -g eslint
@@ -30,11 +32,11 @@ jobs:
            sudo npm i -g rollup
            sudo npm i -g figlet-cli
            sudo npm i -g jsdoc-to-markdown
-           rm bijou_node.js
-           rm bijou.js
+           rm -f bijou_node.js
+           rm -f bijou.js
            cat ./js/_copyright.js ./js/array.js ./js/color.js ./js/date.js ./js/element.js ./js/event.js ./js/function.js ./js/object.js ./js/math.js ./js/string.js ./js/utility.js ./js/_end.js > bijou.js
-           rm -r docs/docs
-           rm bijou-min.js
+           rm -rf docs/docs
+           rm -f bijou-min.js
            jsdoc -c jsdoc.json
            sudo eslint --fix ./ || eslint --fix ./ || ls
            prettier --write -- .
