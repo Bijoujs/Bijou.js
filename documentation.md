@@ -1,6 +1,9 @@
 ## Members
 
 <dl>
+<dt><a href="#tag">tag</a> ⇒ <code><a href="#function">function</a></code></dt>
+<dd><p>Creates a template literal tag. Read more here: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates</a></p>
+</dd>
 <dt><a href="#prototype">prototype</a></dt>
 <dd><p>Converts most of the functions of Bijou.js to prototype functions.
 Note that you have to call this function to add the prototypes.</p>
@@ -53,6 +56,25 @@ Note that you have to call this function to add the prototypes.</p>
 </dd>
 </dl>
 
+<a name="tag"></a>
+
+## tag ⇒ [<code>function</code>](#function)
+Creates a template literal tag. Read more here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
+
+**Kind**: global variable  
+**Returns**: [<code>function</code>](#function) - A template literal tagging function, which returns a string.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| k | [<code>function</code>](#function) | The function to run on new (interpolated) text in the template literal. |
+| o | [<code>function</code>](#function) | The function to run on the normal text in the template literal. |
+
+**Example**  
+```js
+let t = tag(_$.escapeHTML);
+//Notice the "t" at the beginning of the template literal. (t`Some text`).
+console.log(t`This will not be escaped <i>Italics!</i> ${"But this will, <i>Not italic</i>"}`)
+```
 <a name="prototype"></a>
 
 ## prototype
