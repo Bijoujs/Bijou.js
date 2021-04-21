@@ -32,11 +32,11 @@ jobs:
            sudo npm i -g rollup
            sudo npm i -g figlet-cli
            sudo npm i -g jsdoc-to-markdown
-           rm bijou_node.js
-           rm bijou.js
+           rm -f bijou_node.js
+           rm -f bijou.js
            cat ./js/_copyright.js ./js/array.js ./js/color.js ./js/date.js ./js/element.js ./js/event.js ./js/function.js ./js/object.js ./js/math.js ./js/string.js ./js/utility.js ./js/_end.js > bijou.js
-           rm -r docs/docs
-           rm bijou-min.js
+           rm -rf docs/docs
+           rm -f bijou-min.js
            jsdoc -c jsdoc.json
            sudo eslint --fix ./ || eslint --fix ./ || ls
            prettier --write -- .
