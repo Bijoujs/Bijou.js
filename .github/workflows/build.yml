@@ -20,7 +20,7 @@ jobs:
      - name: Build and compile
        uses: technote-space/create-pr-action@v2
        with:
-         GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN}}
+         GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN || github.token}}
          EXECUTE_COMMANDS: |
            sudo npm install;
            sudo npm i -g eslint
