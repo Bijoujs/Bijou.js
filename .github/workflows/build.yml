@@ -17,12 +17,10 @@ jobs:
  release:
    name: Build + compile
    runs-on: ubuntu-latest
-   if: github.actor != 'Explosion-Scratch' || !github.event.pull_request || github.event.pull_request.user.login != 'Explosion-Scratch'
    steps:
      - name: Build and compile
        uses: technote-space/create-pr-action@v2
        with:
-         GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN || github.token}}
          EXECUTE_COMMANDS: |
            sudo npm install;
            sudo npm i -g eslint
