@@ -5303,6 +5303,7 @@ let _temp = {
 	spliceArrayBuffer,
 	spread,
 	syllables,
+	tag,
 	textNodes,
 	throttle,
 	tilt,
