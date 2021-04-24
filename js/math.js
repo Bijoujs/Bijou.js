@@ -222,7 +222,8 @@ export let random = (
 	if (min > max) {
 		[min, max] = [max, min];
 	}
-	let out = seed * (max - min + 1) + min
+	var out = seed * (max - min + 1) + min
+	if (round) { out = Math.round(out)}
 	return out;
 };
 /**
