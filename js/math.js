@@ -30,7 +30,7 @@ export let gcd = (...ary) => {
 		}
 	}
 };
-
+export let round = (number = req("number"), amount = 1) => Math.round(number / amount) * amount
 /**
  * Tests if two things are equal, like "thing === thing2" but it also works for dates and objects.
  * @memberOf math
