@@ -46,6 +46,7 @@ export let round = (number = req("number"), amount = 1) => Math.round(number / a
  */
 export let equals = (a = req("any", "a"), b = req("any", "b")) => {
 	if (a === b) return true;
+	if (_$.typeOf(a) === "RegExp" && _$.typeOf(b) === "RegExp") return String(a) === String(b)
 	if (a instanceof Date && b instanceof Date)
 		return a.getTime() === b.getTime();
 	if (!a || !b || (typeof a !== "object" && typeof b !== "object"))
