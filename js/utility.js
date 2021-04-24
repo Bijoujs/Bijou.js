@@ -62,7 +62,7 @@ export let resize = async (
  */
 export let htmlToImage = (
 	html = req("string", "html string"),
-	{ x = 0, y = 0, width = 300, height = 400 },
+	{ x = 0, y = 0, width = 300, height = 400 } = {},
 ) => {
 	node();
 	let canvas = document.createElement("canvas");
