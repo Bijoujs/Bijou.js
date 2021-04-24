@@ -1,6 +1,6 @@
 {
 	"name": "bijou.js",
-	"version": "8.1.0",
+	"version": "8.2.0",
 	"description": "Useful JavaScript snippets, in one simple library.",
 	"main": "bijou_node.js",
 	"jsdelivr": "bijou.js",

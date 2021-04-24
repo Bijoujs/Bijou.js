@@ -203,7 +203,16 @@ export let race = (
  * @param {Boolean} lowerCase Whether to return the string lowercased or not.
  */
 export let typeOf = (e = req("any", "any"), lowerCase = true) =>
-	lowerCase ? Object.prototype.toString.call(e).split(" ")[1].replace(/]$/, "").toLowerCase() : Object.prototype.toString.call(e).split(" ")[1].replace(/]$/, "");
+	lowerCase
+		? Object.prototype.toString
+				.call(e)
+				.split(" ")[1]
+				.replace(/]$/, "")
+				.toLowerCase()
+		: Object.prototype.toString
+				.call(e)
+				.split(" ")[1]
+				.replace(/]$/, "");
 /**
  * Injects CSS into the document head.
  * @memberOf utility
