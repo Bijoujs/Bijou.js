@@ -214,19 +214,16 @@ export let primesTo = (num = req("number", "number")) => {
  * console.log(_$.random(0, 100)); // e.g. 47
  */
 export let random = (
+	max = req("number", "max"),
 	min = req("number", "min"),
-	max = 0,
 	round = true,
 	seed = Math.random(),
 ) => {
 	if (min > max) {
 		[min, max] = [max, min];
 	}
-	if (round) {
-		return Math.floor(seed * (max - min + 1) + min);
-	} else {
-		return Math.random() * (max - min + 1) + min;
-	}
+	let out = seed * (max - min + 1) + min
+	return out;
 };
 /**
  * Get a random number from a seed.
