@@ -1350,7 +1350,7 @@ The function namespace of Bijou.js, containing functions to work with functions 
     * [.exports.isAsync(val)](#function.exports.isAsync) ⇒ <code>Boolean</code>
     * [.exports.timeFunction(fn, [name])](#function.exports.timeFunction) ⇒ <code>Object</code>
     * [.exports.throttle(func, options, wait)](#function.exports.throttle) ⇒ [<code>function</code>](#function)
-    * [.exports.debounce(func, wait, [immediate])](#function.exports.debounce)
+    * [.exports.debounce(func, wait, [immediate])](#function.exports.debounce) ⇒ [<code>function</code>](#function)
     * [.exports.runAsync(fn)](#function.exports.runAsync) ⇒ <code>Promise</code>
 
 <a name="function.exports.juxt"></a>
@@ -1555,10 +1555,11 @@ setInterval(alert_function, 1)
 ```
 <a name="function.exports.debounce"></a>
 
-### function.exports.debounce(func, wait, [immediate])
-Debounces a function
+### function.exports.debounce(func, wait, [immediate]) ⇒ [<code>function</code>](#function)
+Debounces a function so that it only runs after it has not been called for a certain amount of time.
 
 **Kind**: static method of [<code>function</code>](#function)  
+**Returns**: [<code>function</code>](#function) - The debounced function.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |

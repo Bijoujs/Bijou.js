@@ -2257,9 +2257,10 @@ let throttle = (
 	};
 };
 /**
- * Debounces a function
+ * Debounces a function so that it only runs after it has not been called for a certain amount of time.
  * @memberOf function
  * @function
+ * @returns {Function} The debounced function.
  * @example
  * window.addEventListener("keyup", _$.debounce(expensiveFunction, 100));//Run the function expensiveFunction at most every 100ms.
  * @param {Function} func The function to throttle.
