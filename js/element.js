@@ -13,6 +13,10 @@
  * // data-event: The event to listen for to apply the ripple.
  * @param {HTMLElement} el The element to apply the ripple effect to.
  * @param {Object} obj The object with (optional) time, color, opacity and event parameters for controlling the ripple effect. If these are not present the effect relies on data-* attributes, and then defaults and look good in general.
+ * @param {Number} [obj.time=1000] The time in milliseconds the ripple should take.
+ * @param {String} [obj.color="currentColor"] The color of the ripple effect.
+ * @param {Number} [obj.opacity=.3] The opacity of the ripple effect.
+ * @param {String} [obj.event="mousedown"] The event to listen for to trigger the ripple effect.
  * @returns {HTMLElement} The HTML element that the ripple effect was applied to. (The same one passed in the first param).
  */
 export let ripple = (
@@ -23,7 +27,7 @@ export let ripple = (
 	time = time || (+el.getAttribute("data-time") || 1000) * 3;
 	color = color || el.getAttribute("data-color") || "currentColor";
 	opacity = opacity || el.getAttribute("data-opacity") || ".3";
-	event = event || el.getAttribute("data-event") || "click";
+	event = event || el.getAttribute("data-event") || "mousedown";
 	el.style.overflow = "hidden";
 	el.style.position = "relative";
 	el.addEventListener(event, (e) => {
@@ -296,7 +300,7 @@ export function create(querySelector = "div", ...content) {
  * //JS
  * _$.context();
  * // Now the user can corner click the items that have parents with a "contextmenu" attribute! Try it out here: https://bcs88.csb.app/
- * @returns {undefined}
+ * @returns {Array.<HTMLElement>} An array of all the HTML elements passed.
  */
 export let context = () => {
 	node();
@@ -392,6 +396,7 @@ export let context = () => {
 		menu.style.opacity = 0;
 		menu.style.pointerEvents = "none";
 	});
+	return elements;
 };
 
 /**
@@ -464,7 +469,7 @@ export let inPartialView = (el = req("HTMLElement", "element")) => {
  * @example
  * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
  * // Converts the text of the first <div> element to upperCase.
- * @returns {undefined}
+ * @returns {HTMLElement} The HTML element passed.
  */
 export let replaceText = (
 	el = req("HTMLElement", "element"),
@@ -474,6 +479,7 @@ export let replaceText = (
 	_$.each(_$.textNodes(el), (node) => {
 		node.textContent = callback(node.textContent);
 	});
+	return el;
 };
 /**
  * Gets a list of all the text nodes in an element
@@ -735,14 +741,14 @@ export let drag = (
  *  ["mousemove", "click", "scroll", "keypress"],
  *  () => timer = 0,
  * );
- * @returns {undefined}
+ * @returns {Element} The HTML element passed.
  */
 export let addEventListeners = (
 	element = req("HTMLElement", "element"),
 	events = req("array", "events"),
-	handler = {},
+	handler = () => {},
 	useCapture = false,
-	args = false,
+	args = [],
 ) => {
 	node();
 	if (!(events instanceof Array)) {
@@ -759,11 +765,12 @@ export let addEventListeners = (
 	for (var i = 0; i < events.length; i += 1) {
 		element.addEventListener(events[i], handlerFn, useCapture);
 	}
+	return element;
 };
 /**
  * @memberOf element
  * @function
- * @returns {undefined}
+ * @returns {HTMLTableElement} The table element.
  * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
  * @param {HTMLTableElement} element The table to sort
  * @param {Function} [cellVal] The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell.
@@ -819,12 +826,14 @@ export let sortTable = (
 					});
 			});
 		});
+
+	return element;
 };
 /**
  * Sorts a table by a <th> element.
  * @memberOf element
  * @function
- * @returns {undefined}
+ * @returns {HTMLTableElement} The table element.
  * @example
  * //Note that this example pretty much recreates the _$ sortTable function, which is much more cross browser and good than this recreation. If sorting a whole table please use that.
  * _$.each(document.querySelectorAll("#table th"), (th) => {
@@ -834,11 +843,11 @@ export let sortTable = (
  *  });
  * })
  * @param {HTMLTableElement} th The table header (<th> element) to sort with.
- * @param {Boolean} acending Whether to sort the table ascending or descending.
+ * @param {Boolean} ascending Whether to sort the table ascending or descending.
  */
 export let sortTableBy = (
 	th = req("HTMLTableElement", "<th> element"),
-	acending = true,
+	ascending = true,
 ) => {
 	node();
 	var getCellValue = function (tr, idx) {
@@ -868,12 +877,13 @@ export let sortTableBy = (
 				Array.prototype.slice
 					.call(th.parentNode.children)
 					.indexOf(th),
-				acending,
+				ascending,
 			),
 		)
 		.forEach(function (tr) {
 			table.appendChild(tr);
 		});
+	return table;
 };
 /**
  * Adds the specified styles to the element specified.
@@ -945,19 +955,20 @@ export let elementSiblings = (n = req("HTMLElement", "element")) => {
 	return [...n.parentElement.children].filter((c) => c != n);
 };
 /**
- * Disables right click on the element spcified.
+ * Disables right click on the element specified.
  * @function
  * @memberOf element
- * @param {Element} el The element to disable right click on.
+ * @param {HTMLElement} el The element to disable right click on.
  * @example
  * _$.disableRightClick(document.documentElement)
- * @returns {undefined}
+ * @returns {HTMLElement} The HTML element that now has right click disabled.
  */
 export let disableRightClick = (
 	el = req("HTMLElement", "element"),
 ) => {
 	node();
-	return (el.oncontextmenu = false);
+	el.addEventListener("contextmenu", (e) => e.preventDefault());
+	return el;
 };
 /**
  * Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
@@ -966,7 +977,7 @@ export let disableRightClick = (
  * @param {Element} el The element to convert.
  * @example
  * _$.inlineCSS(document.querySelector("h1")); // Converts the styles for the <h1> element to inline using the style="___" attribute
- * @returns {undefined}
+ * @returns {Object} The computed styles of the element.
  */
 export let inlineCSS = (el = req("HTMLElement", "element")) => {
 	node();
@@ -976,6 +987,7 @@ export let inlineCSS = (el = req("HTMLElement", "element")) => {
 		var s = cs[i] + "";
 		el.style[s] = cs[s];
 	}
+	return cs;
 };
 /**
  * Returns an array of objects representing the attributes of a passed element.
@@ -1012,7 +1024,7 @@ export let attributes = (el = req("HTMLElement", "element")) => {
  * @param {Object} options The options to use.
  * @example
  * _$.observeMutations(document, console.log); // Logs all the mutations that happen to the console.
- * @returns {undefined}
+ * @returns {MutationObserver} The mutation observer.
  */
 export let observeMutations = (
 	element = req("HTMLElement", "element"),
@@ -1048,7 +1060,7 @@ export let observeMutations = (
  * @param {Number} y The y value of the mouse
  * @param {Number} [perspective=500] The perspective
  * @param {Number} [amount=30] The amount to tilt.
- * @returns {undefined}
+ * @returns {String} The css transform string.
  * @example
  * // Tilt the first image in the document whenever the mouse moves.
  * let el = document.querySelector("img");
@@ -1075,18 +1087,20 @@ export let tilt = (
       el.style.transform = string */
 
 	//One liner
-	el.style.transform = `perspective(${perspective}px) scale(1.1) rotateX(${
+	let transform = `perspective(${perspective}px) scale(1.1) rotateX(${
 		amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
 	}deg) rotateY(${
 		amount * ((x - el.clientWidth / 2) / el.clientWidth)
-	}deg)`;
+	}deg)`
+	el.style.transform = transform;
+	return transform;
 };
 /**
  * Enters fullscreen on an element.
  * @memberOf element
  * @function
  * @param {Element} element The element to enter full screen with.
- * @returns {undefined}
+ * @returns {Promise} A promise resolved when fullscreen is entered.
  * @example
  * _$.fullScreen(document.documentElement); // Make the window fullscreen
  */
@@ -1103,7 +1117,7 @@ export let fullScreen = (element = req("HTMLElement", "element")) => {
  * Replaces the selected text in a contentEditable div with the HTML given.
  * @memberOf element
  * @function
- * @returns {undefined}
+ * @returns {Range} A range representing the users selection.
  * @example
  * // Add a simple contenteditable div to the page.
  * document.appendChild(_$.createElement("<div contenteditable id='text'></div>"));
@@ -1132,5 +1146,6 @@ export let replaceSelection = (
 		range = document.selection.createRange();
 		range.text = replacementText.replace(/<[^>]*>/g, "");
 	}
+	return window.getSelection();
 };
 //#endregion Element

@@ -127,7 +127,7 @@ export let hub = () => ({
  * @param {String} type The type of event to dispatch (E.g. "mousemove")
  * @param {Object} args The argument representing the event, e.g. {clientX: 100, clientY: 150}
  * @param {EventTarget} [target=window] What to dispatch the event to.
- * @returns {undefined}
+ * @returns {Event} The event object.
  */
 export let dispatch = (
 	args = req("object", "event properties"),
@@ -139,5 +139,6 @@ export let dispatch = (
 		e[o] = args[o];
 	}
 	target.dispatchEvent(e);
+	return e;
 };
 //#endregion Event

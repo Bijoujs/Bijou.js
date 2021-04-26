@@ -272,7 +272,7 @@ export let mobileOrDesktop = () => {
  * @function
  * @example
  * _$.playSection(new Audio("file.mp3"), 5, 20.5); // Plays file.mp3, starting with second 5 and ending at 20.5 seconds into the file.
- * @returns {undefined}
+ * @returns {Audio} The audio object first passed.
  */
 export let playSection = (
 	audioObj = req("HTMLMediaElement", "audio"),
@@ -288,6 +288,7 @@ export let playSection = (
 			clearInterval(audioObjNew.int);
 		}
 	}, 10);
+	return audioObjNew;
 };
 /**
  * Formats a string of HTML using indents. Note that this does not format CSS or JS in the HTML.
@@ -391,7 +392,7 @@ export let getHTML = (
  * @param {...String} urls The urls of the images to be preloaded.
  * @example
  * _$.preloadImage("https://unsplash.com/some_huge_image.png"); // Preloads the unsplash image "some_huge_image.png" :P
- * @returns {undefined}
+ * @returns {Array.<Image>} An array of all the Image elements created to preload.
  */
 export let preloadImage = (...urls) => {
 	req("string", "url arguments", ![...urls].length);
@@ -400,6 +401,7 @@ export let preloadImage = (...urls) => {
 		images[i] = new Image();
 		images[i].src = urls[i];
 	}
+	return images;
 };
 
 /**
@@ -410,7 +412,7 @@ export let preloadImage = (...urls) => {
  * @param {String} [fileName=output.txt] The name of the output file (Must include the extension.)
  * @example
  * _$.saveBlob(new Blob(["Yay! I'm in a text file!"]), "Cool file.txt");
- * @returns {undefined}
+ * @returns {Blob} The blob saved.
  */
 export let saveBlob = (
 	blob = req("blob", "blob"),
@@ -426,6 +428,7 @@ export let saveBlob = (
 	a.download = fileName;
 	a.click();
 	window.URL.revokeObjectURL(url);
+	return blob;
 };
 
 /**
@@ -604,13 +607,14 @@ export let cookies = {
 	 * Deletes a cookie
 	 * @memberOf utility
 	 * @param {String} name The name of the cookie to delete.
-	 * @returns {undefined}
+	 * @returns {String} The new document.cookie
 	 */
 	removeItem: (name = req("string", "name")) => {
 		node();
 
 		document.cookie =
 			name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+		return document.cookie;
 	},
 };
 /**

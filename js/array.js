@@ -304,7 +304,7 @@ export let uniqueArray = (array = req("array", "array")) => [
  * // 3
  * // 4
  * // 5
- * @returns {undefined}
+ * @returns {any[]} The array passed at the beginning.
  */
 export let each = (
 	array = req("Array|Number|String", "array"),
@@ -319,5 +319,6 @@ export let each = (
 	for (let i = 0; i < array.length; i++) {
 		callback(array[i], i, array);
 	}
+	return array;
 };
 //#endregion Array

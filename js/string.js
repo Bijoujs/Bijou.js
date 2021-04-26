@@ -270,7 +270,7 @@ export let removeTags = (html = req("string", "html string")) =>
  * @param {Number} [rate=1] The speed.
  * @example
  * _$.speak("Bijou is awesome!"); // speaks "Bijou is awesome!"
- * @returns {undefined}
+ * @returns {SpeechSynthesisUtterance} The SpeechSynthesisUtterance
  */
 export let speak = (
 	text = req("string", "text"),
@@ -293,7 +293,8 @@ export let speak = (
 	msg.pitch = pitch; // From 0 to 2
 	msg.text = text;
 	msg.lang = lang;
-	speechSynthesis.speak(msg);
+	window.speechSynthesis.speak(msg);
+	return msg
 };
 /**
  * Returns the last space in the string given replaced with "&nbsp;"

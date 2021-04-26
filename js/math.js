@@ -137,7 +137,7 @@ export let luhnCheck = (num = req("String|Number")) => {
  * @example
  * Animates from 50 to 100 over the course of 3 seconds, updating every half second, and writing the current value to the document body.
  * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
- * @returns {undefined}
+ * @returns {Number} A unique number representing the setInterval loop used in the animation.
  */
 // prettier-ignore
 export let animate = (start = req("Number", "start"), end = req("Number", "end"), duration=req("number", "duration"), callback = req("function", "callback"), interval = 20, num = (num) => num) => {
@@ -152,6 +152,7 @@ export let animate = (start = req("Number", "start"), end = req("Number", "end")
         callback(end, 1);
         return;
     }, duration);
+	return update
 }
 /**
  * Returns an array of the whole numbers (inclusive) between the numbers specified.

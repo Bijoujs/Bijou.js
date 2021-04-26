@@ -64,7 +64,7 @@ export function parseHTML(string?: string, mimeType?: string): HTMLDocument;
 export function drag(dragHandle?: Element, dragTarget?: Element): Element;
 export function addEventListeners(element?: Element, events?: Array<string>, handler?: Function, useCapture?: boolean | any, args?: any[]): undefined;
 export function sortTable(element?: HTMLTableElement, cellVal?: Function): undefined;
-export function sortTableBy(th?: HTMLTableElement, acending?: boolean): undefined;
+export function sortTableBy(th?: HTMLTableElement, ascending?: boolean): undefined;
 export function addStyles(el?: Element, styles?: any): any;
 export function createElement(str?: string): Element;
 export function compStyle(el?: Element, prop?: string): string;
