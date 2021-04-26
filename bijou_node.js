@@ -2623,6 +2623,16 @@ let gcd = (...ary) => {
 		}
 	}
 };
+/**
+ * Rounds a number.
+ * @example
+ * console.log(_$.round(14, 10));//Logs 10 to the console, as 14 rounded to the nearest 10 is 10.
+ * @example
+ * console.log(_$.round(Math.PI));//Logs 3 to the console.
+ * @param {Number} number The number to round.
+ * @param {Number} amount An optional multiple to round it to.
+ * @returns {Number} The rounded number
+ */
 let round = (number = req("number"), amount = 1) =>
 	Math.round(number / amount) * amount;
 /**
@@ -3316,7 +3326,7 @@ let hash = (val = req("string", "input string")) => {
  * @function
  * @memberOf string
  * @param {Array} arr The array to loop.
- * @param {Function} callbak The callback to return strings
+ * @param {Function} callback The callback to return strings
  * @example
  * console.log(`Things: ${_$.forTemplateLiteral(["apple", "orange"], (item, i) => {return `an ${item}`})}`)
  * // "Things: an apple an orange

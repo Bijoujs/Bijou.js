@@ -1,6 +1,9 @@
 ## Members
 
 <dl>
+<dt><a href="#round">round</a> ⇒ <code>Number</code></dt>
+<dd><p>Rounds a number.</p>
+</dd>
 <dt><a href="#tag">tag</a> ⇒ <code><a href="#function">function</a></code></dt>
 <dd><p>Creates a template literal tag. Read more here: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates</a></p>
 </dd>
@@ -56,6 +59,27 @@ Note that you have to call this function to add the prototypes.</p>
 </dd>
 </dl>
 
+<a name="round"></a>
+
+## round ⇒ <code>Number</code>
+Rounds a number.
+
+**Kind**: global variable  
+**Returns**: <code>Number</code> - The rounded number  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| number | <code>Number</code> | The number to round. |
+| amount | <code>Number</code> | An optional multiple to round it to. |
+
+**Example**  
+```js
+console.log(_$.round(14, 10));//Logs 10 to the console, as 14 rounded to the nearest 10 is 10.
+```
+**Example**  
+```js
+console.log(_$.round(Math.PI));//Logs 3 to the console.
+```
 <a name="tag"></a>
 
 ## tag ⇒ [<code>function</code>](#function)
@@ -1969,7 +1993,7 @@ The string namespace of Bijou.js, containing functions to map strings, remove ac
     * [.exports.prefixCSS(prop)](#string.exports.prefixCSS) ⇒ <code>String</code>
     * [.exports.parseCookie(str)](#string.exports.parseCookie)
     * [.exports.hash(val)](#string.exports.hash) ⇒ <code>Promise</code>
-    * [.exports.forTemplateLiteral(arr, callbak)](#string.exports.forTemplateLiteral) ⇒ <code>String</code>
+    * [.exports.forTemplateLiteral(arr, callback)](#string.exports.forTemplateLiteral) ⇒ <code>String</code>
     * [.exports.mapString(str, fn)](#string.exports.mapString)
     * [.exports.deburr(str)](#string.exports.deburr) ⇒ <code>String</code>
     * [.exports.removeTags(html)](#string.exports.removeTags) ⇒ <code>String</code>
@@ -2062,7 +2086,7 @@ _$.hash(
 ```
 <a name="string.exports.forTemplateLiteral"></a>
 
-### string.exports.forTemplateLiteral(arr, callbak) ⇒ <code>String</code>
+### string.exports.forTemplateLiteral(arr, callback) ⇒ <code>String</code>
 Lets you use a for loop in template literals.
 
 **Kind**: static method of [<code>string</code>](#string)  
@@ -2071,7 +2095,7 @@ Lets you use a for loop in template literals.
 | Param | Type | Description |
 | --- | --- | --- |
 | arr | <code>Array</code> | The array to loop. |
-| callbak | [<code>function</code>](#function) | The callback to return strings |
+| callback | [<code>function</code>](#function) | The callback to return strings |
 
 **Example**  
 ```js
