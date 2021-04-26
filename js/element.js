@@ -1091,7 +1091,7 @@ export let tilt = (
 		amount * -1 * ((y - el.clientHeight / 2) / el.clientHeight)
 	}deg) rotateY(${
 		amount * ((x - el.clientWidth / 2) / el.clientWidth)
-	}deg)`
+	}deg)`;
 	el.style.transform = transform;
 	return transform;
 };
