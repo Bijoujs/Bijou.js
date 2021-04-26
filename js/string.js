@@ -294,7 +294,7 @@ export let speak = (
 	msg.text = text;
 	msg.lang = lang;
 	window.speechSynthesis.speak(msg);
-	return msg
+	return msg;
 };
 /**
  * Returns the last space in the string given replaced with "&nbsp;"

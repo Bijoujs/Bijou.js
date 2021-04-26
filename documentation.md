@@ -139,7 +139,7 @@ The array namespace of Bijou.js
     * [.exports.unionArrays(x, y)](#array.exports.unionArrays) ⇒ <code>Array</code>
     * [.exports.averageBy(arr, fn)](#array.exports.averageBy) ⇒ <code>Number</code>
     * [.exports.uniqueArray(array)](#array.exports.uniqueArray) ⇒ <code>Array</code>
-    * [.exports.each(array, callback)](#array.exports.each) ⇒ <code>undefined</code>
+    * [.exports.each(array, callback)](#array.exports.each) ⇒ <code>Array.&lt;any&gt;</code>
 
 <a name="array.exports.count"></a>
 
@@ -363,10 +363,11 @@ console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]
 ```
 <a name="array.exports.each"></a>
 
-### array.exports.each(array, callback) ⇒ <code>undefined</code>
+### array.exports.each(array, callback) ⇒ <code>Array.&lt;any&gt;</code>
 For each item in an array, run a callback with it.
 
 **Kind**: static method of [<code>array</code>](#array)  
+**Returns**: <code>Array.&lt;any&gt;</code> - The array passed at the beginning.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -610,29 +611,29 @@ The element namespace of Bijou.js, containing functions to create elements from 
     * [.exports.getImages([el], [includeDuplicates])](#element.exports.getImages) ⇒ <code>Array</code>
     * [.exports.renderElement(param, container)](#element.exports.renderElement) ⇒ <code>HTMLElement</code>
     * [.exports.create(querySelector, [...content])](#element.exports.create) ⇒
-    * [.exports.context()](#element.exports.context) ⇒ <code>undefined</code>
+    * [.exports.context()](#element.exports.context) ⇒ <code>Array.&lt;HTMLElement&gt;</code>
     * [.exports.inView(el)](#element.exports.inView) ⇒ <code>Boolean</code>
     * [.exports.inPartialView(el)](#element.exports.inPartialView) ⇒ <code>Boolean</code>
-    * [.exports.replaceText(el, callback)](#element.exports.replaceText) ⇒ <code>undefined</code>
+    * [.exports.replaceText(el, callback)](#element.exports.replaceText) ⇒ <code>HTMLElement</code>
     * [.exports.textNodes(el)](#element.exports.textNodes) ⇒ <code>Array</code>
     * [.exports.querySelector(elem)](#element.exports.querySelector) ⇒ <code>String</code>
     * [.exports.removeComments(el)](#element.exports.removeComments) ⇒ <code>HTMLElement</code>
     * [.exports.parseHTML(string, [mimeType])](#element.exports.parseHTML) ⇒ <code>HTMLDocument</code>
     * [.exports.drag(dragHandle, dragTarget)](#element.exports.drag) ⇒ <code>Element</code>
-    * [.exports.addEventListeners(element, events, handler, [useCapture], [args])](#element.exports.addEventListeners) ⇒ <code>undefined</code>
-    * [.exports.sortTable(element, [cellVal])](#element.exports.sortTable) ⇒ <code>undefined</code>
-    * [.exports.sortTableBy(th, acending)](#element.exports.sortTableBy) ⇒ <code>undefined</code>
+    * [.exports.addEventListeners(element, events, handler, [useCapture], [args])](#element.exports.addEventListeners) ⇒ <code>Element</code>
+    * [.exports.sortTable(element, [cellVal])](#element.exports.sortTable) ⇒ <code>HTMLTableElement</code>
+    * [.exports.sortTableBy(th, ascending)](#element.exports.sortTableBy) ⇒ <code>HTMLTableElement</code>
     * [.exports.addStyles(el, styles)](#element.exports.addStyles) ⇒ <code>Object</code>
     * [.exports.createElement(str)](#element.exports.createElement) ⇒ <code>Element</code>
     * [.exports.compStyle(el, prop)](#element.exports.compStyle) ⇒ <code>String</code>
     * [.exports.elementSiblings(n)](#element.exports.elementSiblings) ⇒ <code>Array.&lt;Element&gt;</code>
-    * [.exports.disableRightClick(el)](#element.exports.disableRightClick) ⇒ <code>undefined</code>
-    * [.exports.inlineCSS(el)](#element.exports.inlineCSS) ⇒ <code>undefined</code>
+    * [.exports.disableRightClick(el)](#element.exports.disableRightClick) ⇒ <code>HTMLElement</code>
+    * [.exports.inlineCSS(el)](#element.exports.inlineCSS) ⇒ <code>Object</code>
     * [.exports.attributes(el)](#element.exports.attributes) ⇒ [<code>Array.&lt;object&gt;</code>](#object)
-    * [.exports.observeMutations(element, callback, options)](#element.exports.observeMutations) ⇒ <code>undefined</code>
-    * [.exports.tilt(el, x, y, [perspective], [amount])](#element.exports.tilt) ⇒ <code>undefined</code>
-    * [.exports.fullScreen(element)](#element.exports.fullScreen) ⇒ <code>undefined</code>
-    * [.exports.replaceSelection(replacementText)](#element.exports.replaceSelection) ⇒ <code>undefined</code>
+    * [.exports.observeMutations(element, callback, options)](#element.exports.observeMutations) ⇒ <code>MutationObserver</code>
+    * [.exports.tilt(el, x, y, [perspective], [amount])](#element.exports.tilt) ⇒ <code>String</code>
+    * [.exports.fullScreen(element)](#element.exports.fullScreen) ⇒ <code>Promise</code>
+    * [.exports.replaceSelection(replacementText)](#element.exports.replaceSelection) ⇒ <code>Range</code>
 
 <a name="element.exports.ripple"></a>
 
@@ -643,10 +644,14 @@ This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple
 **Kind**: static method of [<code>element</code>](#element)  
 **Returns**: <code>HTMLElement</code> - The HTML element that the ripple effect was applied to. (The same one passed in the first param).  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| el | <code>HTMLElement</code> | The element to apply the ripple effect to. |
-| obj | <code>Object</code> | The object with (optional) time, color, opacity and event parameters for controlling the ripple effect. If these are not present the effect relies on data-* attributes, and then defaults and look good in general. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| el | <code>HTMLElement</code> |  | The element to apply the ripple effect to. |
+| obj | <code>Object</code> |  | The object with (optional) time, color, opacity and event parameters for controlling the ripple effect. If these are not present the effect relies on data-* attributes, and then defaults and look good in general. |
+| [obj.time] | <code>Number</code> | <code>1000</code> | The time in milliseconds the ripple should take. |
+| [obj.color] | <code>String</code> | <code>&quot;currentColor&quot;</code> | The color of the ripple effect. |
+| [obj.opacity] | <code>Number</code> | <code>.3</code> | The opacity of the ripple effect. |
+| [obj.event] | <code>String</code> | <code>&quot;mousedown&quot;</code> | The event to listen for to trigger the ripple effect. |
 
 **Example**  
 ```js
@@ -796,10 +801,11 @@ Create a DOM element from a querySelector with option to include content
 ```
 <a name="element.exports.context"></a>
 
-### element.exports.context() ⇒ <code>undefined</code>
+### element.exports.context() ⇒ <code>Array.&lt;HTMLElement&gt;</code>
 Re-enables the use of &lt;menu&gt; and &lt;menuitem&gt; tags for corner clicking.
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>Array.&lt;HTMLElement&gt;</code> - An array of all the HTML elements passed.  
 **Example**  
 //HTML:
 ```
@@ -848,10 +854,11 @@ if (_$.inPartialView(document.querySelector("div"))) alert("In view!");
 ```
 <a name="element.exports.replaceText"></a>
 
-### element.exports.replaceText(el, callback) ⇒ <code>undefined</code>
+### element.exports.replaceText(el, callback) ⇒ <code>HTMLElement</code>
 Replaces the text in an element by running it through a callback.
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>HTMLElement</code> - The HTML element passed.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -949,10 +956,11 @@ _$.drag('div span', 'div'); // Allows the first <div> on the page to be dragged 
 ```
 <a name="element.exports.addEventListeners"></a>
 
-### element.exports.addEventListeners(element, events, handler, [useCapture], [args]) ⇒ <code>undefined</code>
+### element.exports.addEventListeners(element, events, handler, [useCapture], [args]) ⇒ <code>Element</code>
 Adds multiple event listeners with one callback to the element specified.
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>Element</code> - The HTML element passed.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -975,9 +983,10 @@ _$.addEventListeners(
 ```
 <a name="element.exports.sortTable"></a>
 
-### element.exports.sortTable(element, [cellVal]) ⇒ <code>undefined</code>
+### element.exports.sortTable(element, [cellVal]) ⇒ <code>HTMLTableElement</code>
 **Kind**: static method of [<code>element</code>](#element)  
-**Returns**: <code>undefined</code> - Sorts a table using JavaScript. This appends click listeners to every TH in the table.  
+**Returns**: <code>HTMLTableElement</code> - The table element.
+Sorts a table using JavaScript. This appends click listeners to every TH in the table.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -994,15 +1003,16 @@ _$.sortTable(document.querySelector("table"), (i) => i.getAttribute("data-sort")
 ```
 <a name="element.exports.sortTableBy"></a>
 
-### element.exports.sortTableBy(th, acending) ⇒ <code>undefined</code>
+### element.exports.sortTableBy(th, ascending) ⇒ <code>HTMLTableElement</code>
 Sorts a table by a <th> element.
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>HTMLTableElement</code> - The table element.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | th | <code>HTMLTableElement</code> | The table header (<th> element) to sort with. |
-| acending | <code>Boolean</code> | Whether to sort the table ascending or descending. |
+| ascending | <code>Boolean</code> | Whether to sort the table ascending or descending. |
 
 **Example**  
 ```js
@@ -1084,14 +1094,15 @@ _$.each(_$.elementSiblings(document.querySelectorAll("li")), (el) => el.style.ba
 ```
 <a name="element.exports.disableRightClick"></a>
 
-### element.exports.disableRightClick(el) ⇒ <code>undefined</code>
-Disables right click on the element spcified.
+### element.exports.disableRightClick(el) ⇒ <code>HTMLElement</code>
+Disables right click on the element specified.
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>HTMLElement</code> - The HTML element that now has right click disabled.  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| el | <code>Element</code> | The element to disable right click on. |
+| el | <code>HTMLElement</code> | The element to disable right click on. |
 
 **Example**  
 ```js
@@ -1099,10 +1110,11 @@ _$.disableRightClick(document.documentElement)
 ```
 <a name="element.exports.inlineCSS"></a>
 
-### element.exports.inlineCSS(el) ⇒ <code>undefined</code>
+### element.exports.inlineCSS(el) ⇒ <code>Object</code>
 Converts all of the styles for an element to inline CSS. This is nice for production sites because it means that they will look the same on all browsers. (Because it uses computed style.)
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>Object</code> - The computed styles of the element.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1131,10 +1143,11 @@ console.log(Object.keys(_$.attributes(document.documentElement).join(", "));
 ```
 <a name="element.exports.observeMutations"></a>
 
-### element.exports.observeMutations(element, callback, options) ⇒ <code>undefined</code>
+### element.exports.observeMutations(element, callback, options) ⇒ <code>MutationObserver</code>
 Observes the mutations of the html element specified.
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>MutationObserver</code> - The mutation observer.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1148,10 +1161,11 @@ _$.observeMutations(document, console.log); // Logs all the mutations that happe
 ```
 <a name="element.exports.tilt"></a>
 
-### element.exports.tilt(el, x, y, [perspective], [amount]) ⇒ <code>undefined</code>
+### element.exports.tilt(el, x, y, [perspective], [amount]) ⇒ <code>String</code>
 Tilts a specified element to point towards the specified position. Note that 0,0 is the center of the screen in coordinates.
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>String</code> - The css transform string.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1173,10 +1187,11 @@ el.onmousemove = (e) => {
 ```
 <a name="element.exports.fullScreen"></a>
 
-### element.exports.fullScreen(element) ⇒ <code>undefined</code>
+### element.exports.fullScreen(element) ⇒ <code>Promise</code>
 Enters fullscreen on an element.
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>Promise</code> - A promise resolved when fullscreen is entered.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1188,10 +1203,11 @@ _$.fullScreen(document.documentElement); // Make the window fullscreen
 ```
 <a name="element.exports.replaceSelection"></a>
 
-### element.exports.replaceSelection(replacementText) ⇒ <code>undefined</code>
+### element.exports.replaceSelection(replacementText) ⇒ <code>Range</code>
 Replaces the selected text in a contentEditable div with the HTML given.
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>Range</code> - A range representing the users selection.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1216,7 +1232,7 @@ The event namespace of Bijou.js, containing functions to listen and dispatch eve
     * [.exports.onOutsideClick(element, callback)](#event.exports.onOutsideClick) ⇒ <code>Promise</code>
     * [.exports.onScrollStop([element], callback, [time])](#event.exports.onScrollStop) ⇒ <code>Promise</code>
     * [.exports.hub()](#event.exports.hub) ⇒ <code>Object</code>
-    * [.exports.dispatch(type, args, [target])](#event.exports.dispatch) ⇒ <code>undefined</code>
+    * [.exports.dispatch(type, args, [target])](#event.exports.dispatch) ⇒ <code>Event</code>
 
 <a name="event.exports.waitUntil"></a>
 
@@ -1298,10 +1314,11 @@ setTimeout(() => {
 ```
 <a name="event.exports.dispatch"></a>
 
-### event.exports.dispatch(type, args, [target]) ⇒ <code>undefined</code>
+### event.exports.dispatch(type, args, [target]) ⇒ <code>Event</code>
 Dispatches an event of the type specified with custom arguments.
 
 **Kind**: static method of [<code>event</code>](#event)  
+**Returns**: <code>Event</code> - The event object.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1583,7 +1600,7 @@ The math namespace of Bijou.js, containing functions to validate credit card num
     * [.exports.isPrime(num)](#math.exports.isPrime) ⇒ <code>boolean</code>
     * [.exports.factorial(n)](#math.exports.factorial) ⇒ <code>Number</code>
     * [.exports.luhnCheck(num)](#math.exports.luhnCheck)
-    * [.exports.animate(start, end, duration, callback, [interval], num)](#math.exports.animate) ⇒ <code>undefined</code>
+    * [.exports.animate(start, end, duration, callback, [interval], num)](#math.exports.animate) ⇒ <code>Number</code>
     * [.exports.range(start, end)](#math.exports.range) ⇒ <code>Array.&lt;Number&gt;</code>
     * [.exports.uuid([seed])](#math.exports.uuid) ⇒ <code>String</code>
     * [.exports.primesTo(num)](#math.exports.primesTo) ⇒ <code>Array.&lt;Number&gt;</code>
@@ -1692,10 +1709,11 @@ Performs the Luhn Check on a number, which is used to validate credit card numbe
 ```
 <a name="math.exports.animate"></a>
 
-### math.exports.animate(start, end, duration, callback, [interval], num) ⇒ <code>undefined</code>
+### math.exports.animate(start, end, duration, callback, [interval], num) ⇒ <code>Number</code>
 Animates a number from one value to another.
 
 **Kind**: static method of [<code>math</code>](#math)  
+**Returns**: <code>Number</code> - A unique number representing the setInterval loop used in the animation.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1997,7 +2015,7 @@ The string namespace of Bijou.js, containing functions to map strings, remove ac
     * [.exports.mapString(str, fn)](#string.exports.mapString)
     * [.exports.deburr(str)](#string.exports.deburr) ⇒ <code>String</code>
     * [.exports.removeTags(html)](#string.exports.removeTags) ⇒ <code>String</code>
-    * [.exports.speak(text, [lang], [volume], [voice], [pitch], [volume], [rate])](#string.exports.speak) ⇒ <code>undefined</code>
+    * [.exports.speak(text, [lang], [volume], [voice], [pitch], [volume], [rate])](#string.exports.speak) ⇒ <code>SpeechSynthesisUtterance</code>
     * [.exports.widows(text)](#string.exports.widows) ⇒ <code>String</code>
     * [.exports.unCamelCase(str)](#string.exports.unCamelCase) ⇒ <code>String</code>
     * [.exports.camelCase(str)](#string.exports.camelCase) ⇒ <code>String</code>
@@ -2152,10 +2170,11 @@ console.log(_$.removeTags("<div>Hello</div>")); // "Hello"
 ```
 <a name="string.exports.speak"></a>
 
-### string.exports.speak(text, [lang], [volume], [voice], [pitch], [volume], [rate]) ⇒ <code>undefined</code>
+### string.exports.speak(text, [lang], [volume], [voice], [pitch], [volume], [rate]) ⇒ <code>SpeechSynthesisUtterance</code>
 Speaks the text given.
 
 **Kind**: static method of [<code>string</code>](#string)  
+**Returns**: <code>SpeechSynthesisUtterance</code> - The SpeechSynthesisUtterance  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -2485,18 +2504,18 @@ The utility namespace of Bijou.js, containing utilities to do many things, such 
     * [.exports.typeOf(e, lowerCase)](#utility.exports.typeOf)
     * [.exports.injectCSS(css)](#utility.exports.injectCSS) ⇒ <code>HTMLElement</code>
     * [.exports.mobileOrDesktop()](#utility.exports.mobileOrDesktop) ⇒ <code>String</code>
-    * [.exports.playSection(audioObj, start, stop)](#utility.exports.playSection) ⇒ <code>undefined</code>
+    * [.exports.playSection(audioObj, start, stop)](#utility.exports.playSection) ⇒ <code>Audio</code>
     * [.exports.formatHTML(html)](#utility.exports.formatHTML) ⇒ <code>String</code>
     * [.exports.getJSON(url, callback)](#utility.exports.getJSON) ⇒ <code>Promise</code>
     * [.exports.getHTML(url, callback)](#utility.exports.getHTML) ⇒ <code>Promise</code>
-    * [.exports.preloadImage(...urls)](#utility.exports.preloadImage) ⇒ <code>undefined</code>
-    * [.exports.saveBlob(blob, [fileName])](#utility.exports.saveBlob) ⇒ <code>undefined</code>
+    * [.exports.preloadImage(...urls)](#utility.exports.preloadImage) ⇒ <code>Array.&lt;Image&gt;</code>
+    * [.exports.saveBlob(blob, [fileName])](#utility.exports.saveBlob) ⇒ <code>Blob</code>
     * [.exports.requestInterval(fn, delay)](#utility.exports.requestInterval) ⇒ <code>Object</code>
     * [.exports.loadScript(url, callback)](#utility.exports.loadScript) ⇒ <code>Promise</code>
     * [.exports.imageToData(url, callback)](#utility.exports.imageToData) ⇒ <code>Promise</code>
     * [.setItem(name, value, [days])](#utility.setItem) ⇒ <code>String</code>
     * [.getItem(name)](#utility.getItem) ⇒ <code>String</code>
-    * [.removeItem(name)](#utility.removeItem) ⇒ <code>undefined</code>
+    * [.removeItem(name)](#utility.removeItem) ⇒ <code>String</code>
     * [.exports.jsonToCsv(arr, columns, [delimiter])](#utility.exports.jsonToCsv) ⇒ <code>String</code>
     * [.exports.arrayToCSV(arr, [delimiter])](#utility.exports.arrayToCSV) ⇒ <code>String</code>
     * [.exports.notify(title, body, icon)](#utility.exports.notify) ⇒ <code>Promise</code>
@@ -2715,10 +2734,11 @@ console.log(_$.mobileOrDesktop()); // e.g. "desktop"
 ```
 <a name="utility.exports.playSection"></a>
 
-### utility.exports.playSection(audioObj, start, stop) ⇒ <code>undefined</code>
+### utility.exports.playSection(audioObj, start, stop) ⇒ <code>Audio</code>
 Plays a section of an audio file.
 
 **Kind**: static method of [<code>utility</code>](#utility)  
+**Returns**: <code>Audio</code> - The audio object first passed.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -2787,10 +2807,11 @@ _$.getHTML("https://wikipedia.org", (html) => console.log(html));
 ```
 <a name="utility.exports.preloadImage"></a>
 
-### utility.exports.preloadImage(...urls) ⇒ <code>undefined</code>
+### utility.exports.preloadImage(...urls) ⇒ <code>Array.&lt;Image&gt;</code>
 Preloads all of the image urls given in the arguments
 
 **Kind**: static method of [<code>utility</code>](#utility)  
+**Returns**: <code>Array.&lt;Image&gt;</code> - An array of all the Image elements created to preload.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -2802,10 +2823,11 @@ _$.preloadImage("https://unsplash.com/some_huge_image.png"); // Preloads the uns
 ```
 <a name="utility.exports.saveBlob"></a>
 
-### utility.exports.saveBlob(blob, [fileName]) ⇒ <code>undefined</code>
+### utility.exports.saveBlob(blob, [fileName]) ⇒ <code>Blob</code>
 Saves a blob as a file!
 
 **Kind**: static method of [<code>utility</code>](#utility)  
+**Returns**: <code>Blob</code> - The blob saved.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -2895,10 +2917,11 @@ Gets a cookie from its name.
 
 <a name="utility.removeItem"></a>
 
-### utility.removeItem(name) ⇒ <code>undefined</code>
+### utility.removeItem(name) ⇒ <code>String</code>
 Deletes a cookie
 
 **Kind**: static method of [<code>utility</code>](#utility)  
+**Returns**: <code>String</code> - The new document.cookie  
 
 | Param | Type | Description |
 | --- | --- | --- |
