@@ -268,47 +268,123 @@ export let formatNumber = (n = req("number", "number")) =>
  */
 export let ease = {
 	// no easing, no acceleration
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	linear: (t = req("number", "percentage")) => t,
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInSine: (t = req("number", "percentage")) =>
 		1 - Math.cos((t * Math.PI) / 2),
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeOutSine: (t = req("number", "percentage")) =>
 		Math.sin((t * Math.PI) / 2),
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInOutSine: (t = req("number", "percentage")) =>
 		-(Math.cos(Math.PI * t) - 1) / 2,
 	// accelerating from zero velocity
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInQuad: (t = req("number", "percentage")) => t * t,
 	// decelerating to zero velocity
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeOutQuad: (t = req("number", "percentage")) => t * (2 - t),
 	// acceleration until halfway, then deceleration
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInOutQuad: (t = req("number", "percentage")) =>
 		t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
 	// accelerating from zero velocity
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInCubic: (t = req("number", "percentage")) => t * t * t,
 	// decelerating to zero velocity
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeOutCubic: (t = req("number", "percentage")) => --t * t * t + 1,
 	// acceleration until halfway, then deceleration
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInOutCubic: (t = req("number", "percentage")) =>
 		t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
 	// accelerating from zero velocity
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInQuart: (t = req("number", "percentage")) => t * t * t * t,
 	// decelerating to zero velocity
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeOutQuart: (t = req("number", "percentage")) =>
 		1 - --t * t * t * t,
 	// acceleration until halfway, then deceleration
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInOutQuart: (t = req("number", "percentage")) =>
 		t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
 	// accelerating from zero velocity
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInQuint: (t = req("number", "percentage")) => t * t * t * t * t,
 	// decelerating to zero velocity
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeOutQuint: (t = req("number", "percentage")) =>
 		1 + --t * t * t * t * t,
 	// acceleration until halfway, then deceleration
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInOutQuint: (t = req("number", "percentage")) =>
 		t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInExpo: (t = req("number", "percentage")) =>
 		t === 0 ? 0 : Math.pow(2, 10 * t - 10),
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeOutExpo: (t = req("number", "percentage")) =>
 		t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInOutExpo: (t = req("number", "percentage")) =>
 		t === 0
 			? 0
@@ -317,18 +393,42 @@ export let ease = {
 			: t < 0.5
 			? Math.pow(2, 20 * t - 10) / 2
 			: (2 - Math.pow(2, -20 * t + 10)) / 2,
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInCirc: (t = req("number", "percentage")) =>
 		1 - Math.sqrt(1 - t * t),
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeOutCirc: (t = req("number", "percentage")) =>
 		Math.sqrt(1 - (t - 1) * (t - 1)),
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInOutCirc: (t = req("number", "percentage")) =>
 		t < 0.5
 			? 1 - Math.sqrt(1 - 4 * t * t) / 2
 			: (Math.sqrt(1 - Math.pow(-2 * t + 2, 2)) + 1) / 2,
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInBack: (t = req("number", "percentage")) =>
 		2.70158 * t * t * t - 1.70158 * t * t,
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeOutBack: (t = req("number", "percentage")) =>
 		1 + 2.70158 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2),
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInOutBack: (t) => {
 		const c = 2.5949095;
 
@@ -337,6 +437,10 @@ export let ease = {
 			: (Math.pow(2 * t - 2, 2) * ((c + 1) * (t * 2 - 2) + c) + 2) /
 					2;
 	},
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInElastic: (t = req("number", "percentage")) =>
 		t === 0
 			? 0
@@ -344,6 +448,10 @@ export let ease = {
 			? 1
 			: -Math.pow(2, 10 * t - 10) *
 			  Math.sin(((t * 10 - 10.75) * (2 * Math.PI)) / 3),
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeOutElastic: (t = req("number", "percentage")) =>
 		t === 0
 			? 0
@@ -352,6 +460,10 @@ export let ease = {
 			: Math.pow(2, -10 * t) *
 					Math.sin(((t * 10 - 0.75) * (2 * Math.PI)) / 3) +
 			  1,
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInOutElastic: (t = req("number", "percentage")) =>
 		t === 0
 			? 0
@@ -366,8 +478,16 @@ export let ease = {
 					Math.sin(((20 * t - 11.125) * (2 * Math.PI)) / 4.5)) /
 					2 +
 			  1,
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInBounce: (t = req("number", "percentage")) =>
 		1 - ease.easeOutBounce(1 - t),
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeOutBounce: (t = req("number", "percentage")) => {
 		const n = 7.5625;
 		const d = 2.75;
@@ -382,6 +502,10 @@ export let ease = {
 			return n * (t -= 2.625 / d) * t + 0.984375;
 		}
 	},
+	/**
+	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
+	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
+	 */
 	easeInOutBounce: (t = req("number", "percentage")) =>
 		t < 0.5
 			? (1 - ease.easeOutBounce(1 - 2 * t)) / 2

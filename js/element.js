@@ -12,13 +12,18 @@
  * // data-opacity: The starting opacity of the ripple effect.
  * // data-event: The event to listen for to apply the ripple.
  * @param {HTMLElement} el The element to apply the ripple effect to.
+ * @param {Object} obj The object with (optional) time, color, opacity and event parameters for controlling the ripple effect. If these are not present the effect relies on data-* attributes, and then defaults and look good in general.
+ * @returns {HTMLElement} The HTML element that the ripple effect was applied to. (The same one passed in the first param).
  */
-export let ripple = (el = req("element", "element")) => {
+export let ripple = (
+	el = req("element", "element"),
+	{ time, color, opacity, event },
+) => {
 	node();
-	const time = (+el.getAttribute("data-time") || 1000) * 3;
-	const color = el.getAttribute("data-color") || "currentColor";
-	const opacity = el.getAttribute("data-opacity") || ".3";
-	const event = el.getAttribute("data-event") || "click";
+	time = time || (+el.getAttribute("data-time") || 1000) * 3;
+	color = color || el.getAttribute("data-color") || "currentColor";
+	opacity = opacity || el.getAttribute("data-opacity") || ".3";
+	event = event || el.getAttribute("data-event") || "click";
 	el.style.overflow = "hidden";
 	el.style.position = "relative";
 	el.addEventListener(event, (e) => {
@@ -56,8 +61,8 @@ export let ripple = (el = req("element", "element")) => {
 };
 /**
  * Waits for an element satisfying selector to exist, then resolves promise with the element.
- * @param [parent=document.documentElement] The parent element to watch.
- * @param selector The querySelector to watch for.
+ * @param {HTMLElement} [parent=document.documentElement] The parent element to watch.
+ * @param {String} selector The querySelector to watch for.
  * @returns {Promise} A promise resolved when the element exists.
  * @memberOf element
  * @function
@@ -187,6 +192,7 @@ export let getImages = (
 }, document.body)
  * @param {Object} param The type of object (the HTML tagName)
  * @param {HTMLElement} container The html element to render it in.
+ * @returns {HTMLElement} The HTML element rendered.
  */
 export let renderElement = (
 	{ type, props = {} } = req("object", "options"),
@@ -213,6 +219,7 @@ export let renderElement = (
 		);
 
 	container.appendChild(element);
+	return element;
 };
 /**
  * Create a DOM element from a querySelector with option to include content

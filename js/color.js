@@ -130,7 +130,7 @@ export let randomColor = () =>
  * Lighten or darken a color by a certain amount
  * @function
  * @memberOf color
- * @param {String} color The color to lighten/darken
+ * @param {String} col The color to lighten/darken
  * @param {Number} amt The amount to lighten the color (out of 255).
  * @example
  * _$.lightenColor("#000000", 50); // #323232

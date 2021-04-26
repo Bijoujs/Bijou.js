@@ -43,7 +43,7 @@ export let flattenObj = (o = req("object", "object")) => {
  * Deep clones an object (or anything else, like an array or string)
  * @function
  * @memberOf object
- * @param {Object} obj The object to clone.
+ * @param {Object|Array|String} src The object to clone.
  * @returns {Object} The output cloned object.
  * @example
  * let obj = { hello: { puny: "earthlings" }};
