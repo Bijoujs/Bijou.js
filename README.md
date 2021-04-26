@@ -20,7 +20,7 @@ isn't in Bijou.js, just submit an issue with the code!
 
 # How to use Bijou.js
 
-Thanks for using Bijou.js! It's pretty simple to use, but here's a guide:
+Thanks for using Bijou.js! It's pretty simple to use, but here's the guide:
 
 ## CDN
 

@@ -1,5 +1,25 @@
 //#region Utility
 /**
+ * Creates a template literal tag. Read more here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
+ * @example
+ * let t = tag(_$.escapeHTML);
+ * //Notice the "t" at the beginning of the template literal. (t`Some text`).
+ * console.log(t`This will not be escaped <i>Italics!</i> ${"But this will, <i>Not italic</i>"}`)
+ * @param {Function} k The function to run on new (interpolated) text in the template literal.
+ * @param {Function} o The function to run on the normal text in the template literal.
+ * @returns {Function} A template literal tagging function, which returns a string.
+ */
+export let tag = (k = (j) => j, o = (j) => j) => {
+	return (old, ...int) => {
+		let n = [];
+		int.push("");
+		for (let i = 0; i < old.length; i++) {
+			n.push(o(old[i]), k(int[i]));
+		}
+		return n.join("");
+	};
+};
+/**
  * Resizes an image from a URL and returns a promise with it's data URL.
  * @memberOf utility
  * @function
@@ -42,7 +62,7 @@ export let resize = async (
  */
 export let htmlToImage = (
 	html = req("string", "html string"),
-	{ x = 0, y = 0, width = 300, height = 400 },
+	{ x = 0, y = 0, width = 300, height = 400 } = {},
 ) => {
 	node();
 	let canvas = document.createElement("canvas");
@@ -183,7 +203,16 @@ export let race = (
  * @param {Boolean} lowerCase Whether to return the string lowercased or not.
  */
 export let typeOf = (e = req("any", "any"), lowerCase = true) =>
-	Object.prototype.toString.call(e).split(" ")[1].replace(/]$/, "");
+	lowerCase
+		? Object.prototype.toString
+				.call(e)
+				.split(" ")[1]
+				.replace(/]$/, "")
+				.toLowerCase()
+		: Object.prototype.toString
+				.call(e)
+				.split(" ")[1]
+				.replace(/]$/, "");
 /**
  * Injects CSS into the document head.
  * @memberOf utility

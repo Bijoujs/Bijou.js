@@ -1,12 +1,11 @@
 {
 	"name": "bijou.js",
-	"version": "8.0.2",
-	"description": "Bijou.js is a library of super helpful JavaScript snippets! It has a bunch of useful snippets for all your coding needs! If there's something that's not in here currently but you use frequently feel free to submit an issue! I'd be happy to add it! Bijou's goal is to eliminate the need to copy paste the same thing from StackOverflow, another project or anywhere else! So if you ever find yourself typing the same thing over and over again, copy pasting the same snippet as you did a few days ago, use Bijou.js! If the snippet you're using isn't in Bijou.js just submit an issue with the code!",
+	"version": "8.2.0",
+	"description": "Useful JavaScript snippets, in one simple library.",
 	"main": "bijou_node.js",
 	"jsdelivr": "bijou.js",
 	"unpkg": "bijou.js",
 	"browser": "bijou.js",
-	"runkitExampleFilename": "runkit_example.js",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/bijou-js/bijou.js.git"
@@ -22,7 +21,7 @@
 		"library"
 	],
 	"author": "Bijou.js contributors",
-	"license": "GPL-3.0 License",
+	"license": "GPL-3.0",
 	"bugs": {
 		"url": "https://github.com/bijou-js/bijou.js/issues"
 	},
@@ -36,5 +35,6 @@
 		"prettier": "2.2.1",
 		"showdown": "^1.9.1",
 		"terser": "^5.6.1"
-	}
+	},
+	"dependencies": {}
 }

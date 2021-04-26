@@ -30,7 +30,8 @@ export let gcd = (...ary) => {
 		}
 	}
 };
-
+export let round = (number = req("number"), amount = 1) =>
+	Math.round(number / amount) * amount;
 /**
  * Tests if two things are equal, like "thing === thing2" but it also works for dates and objects.
  * @memberOf math
@@ -46,6 +47,8 @@ export let gcd = (...ary) => {
  */
 export let equals = (a = req("any", "a"), b = req("any", "b")) => {
 	if (a === b) return true;
+	if (_$.typeOf(a) === "RegExp" && _$.typeOf(b) === "RegExp")
+		return String(a) === String(b);
 	if (a instanceof Date && b instanceof Date)
 		return a.getTime() === b.getTime();
 	if (!a || !b || (typeof a !== "object" && typeof b !== "object"))
@@ -214,19 +217,19 @@ export let primesTo = (num = req("number", "number")) => {
  * console.log(_$.random(0, 100)); // e.g. 47
  */
 export let random = (
+	max = req("number", "max"),
 	min = req("number", "min"),
-	max = 0,
 	round = true,
 	seed = Math.random(),
 ) => {
 	if (min > max) {
 		[min, max] = [max, min];
 	}
+	var out = seed * (max - min + 1) + min;
 	if (round) {
-		return Math.floor(seed * (max - min + 1) + min);
-	} else {
-		return Math.random() * (max - min + 1) + min;
+		out = Math.round(out);
 	}
+	return out;
 };
 /**
  * Get a random number from a seed.
