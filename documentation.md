@@ -371,7 +371,7 @@ The color namespace of Bijou.js
     * [.exports.hexToRGB(hex)](#color.exports.hexToRGB) ⇒ <code>String</code>
     * [.exports.blendColors(color1, color2, [percent])](#color.exports.blendColors) ⇒ <code>String</code>
     * [.exports.randomColor()](#color.exports.randomColor) ⇒ <code>String</code>
-    * [.exports.lightenColor(color, amt)](#color.exports.lightenColor) ⇒ <code>String</code>
+    * [.exports.lightenColor(col, amt)](#color.exports.lightenColor) ⇒ <code>String</code>
     * [.exports.lightOrDark(color)](#color.exports.lightOrDark) ⇒ <code>Object</code>
 
 <a name="color.exports.rgbToHex"></a>
@@ -437,7 +437,7 @@ console.log(_$.randomColor()); // e.g. #5bf462
 ```
 <a name="color.exports.lightenColor"></a>
 
-### color.exports.lightenColor(color, amt) ⇒ <code>String</code>
+### color.exports.lightenColor(col, amt) ⇒ <code>String</code>
 Lighten or darken a color by a certain amount
 
 **Kind**: static method of [<code>color</code>](#color)  
@@ -445,7 +445,7 @@ Lighten or darken a color by a certain amount
 
 | Param | Type | Description |
 | --- | --- | --- |
-| color | <code>String</code> | The color to lighten/darken |
+| col | <code>String</code> | The color to lighten/darken |
 | amt | <code>Number</code> | The amount to lighten the color (out of 255). |
 
 **Example**  
@@ -579,12 +579,12 @@ The element namespace of Bijou.js, containing functions to create elements from 
 **Kind**: global namespace  
 
 * [element](#element) : [<code>object</code>](#object)
-    * [.exports.ripple(el)](#element.exports.ripple)
+    * [.exports.ripple(el, obj)](#element.exports.ripple) ⇒ <code>HTMLElement</code>
     * [.exports.elementReady([parent], selector)](#element.exports.elementReady) ⇒ <code>Promise</code>
     * [.exports.elementContains(parent, child)](#element.exports.elementContains) ⇒ <code>Boolean</code>
     * [.exports.parents(el)](#element.exports.parents) ⇒ <code>Array.&lt;HTMLElement&gt;</code>
     * [.exports.getImages([el], [includeDuplicates])](#element.exports.getImages) ⇒ <code>Array</code>
-    * [.exports.renderElement(param, container)](#element.exports.renderElement)
+    * [.exports.renderElement(param, container)](#element.exports.renderElement) ⇒ <code>HTMLElement</code>
     * [.exports.create(querySelector, [...content])](#element.exports.create) ⇒
     * [.exports.context()](#element.exports.context) ⇒ <code>undefined</code>
     * [.exports.inView(el)](#element.exports.inView) ⇒ <code>Boolean</code>
@@ -612,15 +612,17 @@ The element namespace of Bijou.js, containing functions to create elements from 
 
 <a name="element.exports.ripple"></a>
 
-### element.exports.ripple(el)
+### element.exports.ripple(el, obj) ⇒ <code>HTMLElement</code>
 Applies a material design ripple effect to the element specified. Works best with buttons and similar elements.
 This comes from my GitHub repo here: https://github.com/explosion-scratch/ripple
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>HTMLElement</code> - The HTML element that the ripple effect was applied to. (The same one passed in the first param).  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | el | <code>HTMLElement</code> | The element to apply the ripple effect to. |
+| obj | <code>Object</code> | The object with (optional) time, color, opacity and event parameters for controlling the ripple effect. If these are not present the effect relies on data-* attributes, and then defaults and look good in general. |
 
 **Example**  
 ```js
@@ -639,10 +641,10 @@ Waits for an element satisfying selector to exist, then resolves promise with th
 **Kind**: static method of [<code>element</code>](#element)  
 **Returns**: <code>Promise</code> - A promise resolved when the element exists.  
 
-| Param | Default | Description |
-| --- | --- | --- |
-| [parent] | <code>document.documentElement</code> | The parent element to watch. |
-| selector |  | The querySelector to watch for. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [parent] | <code>HTMLElement</code> | <code>document.documentElement</code> | The parent element to watch. |
+| selector | <code>String</code> |  | The querySelector to watch for. |
 
 **Example**  
 ```js
@@ -725,10 +727,11 @@ console.log(image_data_list);
 ```
 <a name="element.exports.renderElement"></a>
 
-### element.exports.renderElement(param, container)
+### element.exports.renderElement(param, container) ⇒ <code>HTMLElement</code>
 Renders an HTML element from an object in the container specified.
 
 **Kind**: static method of [<code>element</code>](#element)  
+**Returns**: <code>HTMLElement</code> - The HTML element rendered.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1793,7 +1796,7 @@ The object namespace of Bijou.js, for stuff like flattening nested objects, clon
 
 * [object](#object) : [<code>object</code>](#object)
     * [.exports.flattenObj(o)](#object.exports.flattenObj) ⇒ <code>Object</code>
-    * [.exports.clone(obj)](#object.exports.clone) ⇒ <code>Object</code>
+    * [.exports.clone(src)](#object.exports.clone) ⇒ <code>Object</code>
     * [.exports.listen(obj, [getCallback], [setCallback])](#object.exports.listen) ⇒ <code>Proxy</code>
     * [.exports.merge(obj1, obj2)](#object.exports.merge) ⇒ <code>Object</code>
     * [.exports.mapObjectKeys(obj, fn)](#object.exports.mapObjectKeys) ⇒ <code>Object</code>
@@ -1828,7 +1831,7 @@ _$.flattenObj({
 ```
 <a name="object.exports.clone"></a>
 
-### object.exports.clone(obj) ⇒ <code>Object</code>
+### object.exports.clone(src) ⇒ <code>Object</code>
 Deep clones an object (or anything else, like an array or string)
 
 **Kind**: static method of [<code>object</code>](#object)  
@@ -1836,7 +1839,7 @@ Deep clones an object (or anything else, like an array or string)
 
 | Param | Type | Description |
 | --- | --- | --- |
-| obj | <code>Object</code> | The object to clone. |
+| src | <code>Object</code> \| <code>Array</code> \| <code>String</code> | The object to clone. |
 
 **Example**  
 ```js
@@ -1966,7 +1969,7 @@ The string namespace of Bijou.js, containing functions to map strings, remove ac
     * [.exports.prefixCSS(prop)](#string.exports.prefixCSS) ⇒ <code>String</code>
     * [.exports.parseCookie(str)](#string.exports.parseCookie)
     * [.exports.hash(val)](#string.exports.hash) ⇒ <code>Promise</code>
-    * [.exports.forTemplateLiteral(The, Callback)](#string.exports.forTemplateLiteral) ⇒ <code>String</code>
+    * [.exports.forTemplateLiteral(arr, callbak)](#string.exports.forTemplateLiteral) ⇒ <code>String</code>
     * [.exports.mapString(str, fn)](#string.exports.mapString)
     * [.exports.deburr(str)](#string.exports.deburr) ⇒ <code>String</code>
     * [.exports.removeTags(html)](#string.exports.removeTags) ⇒ <code>String</code>
@@ -2059,7 +2062,7 @@ _$.hash(
 ```
 <a name="string.exports.forTemplateLiteral"></a>
 
-### string.exports.forTemplateLiteral(The, Callback) ⇒ <code>String</code>
+### string.exports.forTemplateLiteral(arr, callbak) ⇒ <code>String</code>
 Lets you use a for loop in template literals.
 
 **Kind**: static method of [<code>string</code>](#string)  
@@ -2067,8 +2070,8 @@ Lets you use a for loop in template literals.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| The | <code>arr</code> | array to loop. |
-| Callback | <code>callback</code> | to return strings |
+| arr | <code>Array</code> | The array to loop. |
+| callbak | [<code>function</code>](#function) | The callback to return strings |
 
 **Example**  
 ```js
