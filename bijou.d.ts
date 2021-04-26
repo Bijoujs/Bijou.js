@@ -97,7 +97,7 @@ export function curryFunction(fn?: Function, arity?: number, ...args: any[]): Fu
 export function isAsync(val?: Function): boolean;
 export function timeFunction(fn?: Function, name?: string): any;
 export function throttle(func?: Function, wait?: number, options?: any): Function;
-export function debounce(func?: Function, wait?: number, immediate?: boolean): (...args: any[]) => void;
+export function debounce(func?: Function, wait?: number, immediate?: boolean): Function;
 export function runAsync(fn?: Function): Promise<any>;
 export function flattenObj(o?: any): any;
 export function clone(src: any | any[] | string, _visited: any, _copiesVisited: any): any;
