@@ -207,8 +207,8 @@ export let hash = (val = req("string", "input string")) => {
  * Lets you use a for loop in template literals.
  * @function
  * @memberOf string
- * @param {arr} The array to loop.
- * @param {callback} Callback to return strings
+ * @param {Array} arr The array to loop.
+ * @param {Function} callbak The callback to return strings
  * @example
  * console.log(`Things: ${_$.forTemplateLiteral(["apple", "orange"], (item, i) => {return `an ${item}`})}`)
  * // "Things: an apple an orange
@@ -218,7 +218,7 @@ export let forTemplateLiteral = (
 	arr = req("array", "array"),
 	callback = req("function", "callback"),
 ) => {
-	return arr.map((item, i) => callback(item, i)).join``;
+	return arr.map(callback).join``;
 };
 /**
  * Maps a string like an array.
