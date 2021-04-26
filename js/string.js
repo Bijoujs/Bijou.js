@@ -208,7 +208,7 @@ export let hash = (val = req("string", "input string")) => {
  * @function
  * @memberOf string
  * @param {Array} arr The array to loop.
- * @param {Function} callbak The callback to return strings
+ * @param {Function} callback The callback to return strings
  * @example
  * console.log(`Things: ${_$.forTemplateLiteral(["apple", "orange"], (item, i) => {return `an ${item}`})}`)
  * // "Things: an apple an orange

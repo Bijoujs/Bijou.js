@@ -30,6 +30,16 @@ export let gcd = (...ary) => {
 		}
 	}
 };
+/**
+ * Rounds a number.
+ * @example
+ * console.log(_$.round(14, 10));//Logs 10 to the console, as 14 rounded to the nearest 10 is 10.
+ * @example
+ * console.log(_$.round(Math.PI));//Logs 3 to the console.
+ * @param {Number} number The number to round.
+ * @param {Number} amount An optional multiple to round it to.
+ * @returns {Number} The rounded number
+ */
 export let round = (number = req("number"), amount = 1) =>
 	Math.round(number / amount) * amount;
 /**
