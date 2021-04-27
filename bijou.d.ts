@@ -14,15 +14,15 @@ export function elementReady(selector?: string, parent?: HTMLElement): Promise<a
  * @memberOf element
  * @function
  * @param {String} querySelector (optional) default to div
- * @param {...*} [content] (optional) String|Number|DOMElement
+ * @param {...String|Number|DOMElement} [content] (optional)
  * @returns DOMElement
  *
  * @example
- * - createElement(); // <div>
- * - createElement('span#my-id.my-class.second-class'); // <span id="my-id" class="my-class second-class">
- * - createElement('#my-id.my-class.second-class', 'text to insert', 12345); // <div id="my-id" class="my-class second-class">
+ * - _$.create(); // <div>
+ * - _$.create('span#my-id.my-class.second-class'); // <span id="my-id" class="my-class second-class">
+ * - _$.create('#my-id.my-class.second-class', 'text to insert', 12345); // <div id="my-id" class="my-class second-class">
  */
-export function create(querySelector?: string, ...content?: any[]): HTMLElement;
+export function create(querySelector?: string, ...content?: (string | number | any)[]): HTMLElement;
 export function count(arr?: any[]): any;
 export function arrayDiff(a1?: any[] | string, a2?: any[] | string): any[] | string;
 export function diff(text1?: string, text2?: string): Array<Array<number>>;

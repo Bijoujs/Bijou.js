@@ -610,7 +610,7 @@ The element namespace of Bijou.js, containing functions to create elements from 
     * [.exports.parents(el)](#element.exports.parents) ⇒ <code>Array.&lt;HTMLElement&gt;</code>
     * [.exports.getImages([el], [includeDuplicates])](#element.exports.getImages) ⇒ <code>Array</code>
     * [.exports.renderElement(param, container)](#element.exports.renderElement) ⇒ <code>HTMLElement</code>
-    * [.exports.create(querySelector, [...content])](#element.exports.create) ⇒
+    * [.exports.create(querySelector, [content])](#element.exports.create) ⇒
     * [.exports.context()](#element.exports.context) ⇒ <code>Array.&lt;HTMLElement&gt;</code>
     * [.exports.inView(el)](#element.exports.inView) ⇒ <code>Boolean</code>
     * [.exports.inPartialView(el)](#element.exports.inPartialView) ⇒ <code>Boolean</code>
@@ -782,7 +782,7 @@ _$.renderElement({
 ```
 <a name="element.exports.create"></a>
 
-### element.exports.create(querySelector, [...content]) ⇒
+### element.exports.create(querySelector, [content]) ⇒
 Create a DOM element from a querySelector with option to include content
 
 **Kind**: static method of [<code>element</code>](#element)  
@@ -791,13 +791,13 @@ Create a DOM element from a querySelector with option to include content
 | Param | Type | Description |
 | --- | --- | --- |
 | querySelector | <code>String</code> | (optional) default to div |
-| [...content] | <code>\*</code> | (optional) String|Number|DOMElement |
+| [content] | <code>String</code> \| <code>Number</code> \| <code>DOMElement</code> | (optional) |
 
 **Example**  
 ```js
-- createElement(); // <div>
-- createElement('span#my-id.my-class.second-class'); // <span id="my-id" class="my-class second-class">
-- createElement('#my-id.my-class.second-class', 'text to insert', 12345); // <div id="my-id" class="my-class second-class">
+- _$.create(); // <div>
+- _$.create('span#my-id.my-class.second-class'); // <span id="my-id" class="my-class second-class">
+- _$.create('#my-id.my-class.second-class', 'text to insert', 12345); // <div id="my-id" class="my-class second-class">
 ```
 <a name="element.exports.context"></a>
 
