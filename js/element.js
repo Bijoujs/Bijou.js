@@ -230,13 +230,13 @@ export let renderElement = (
  * @memberOf element
  * @function
  * @param {String} querySelector (optional) default to div
- * @param {...*} [content] (optional) String|Number|DOMElement
+ * @param {...String|Number|DOMElement} [content] (optional)
  * @returns DOMElement
  *
  * @example
- * - createElement(); // <div>
- * - createElement('span#my-id.my-class.second-class'); // <span id="my-id" class="my-class second-class">
- * - createElement('#my-id.my-class.second-class', 'text to insert', 12345); // <div id="my-id" class="my-class second-class">
+ * - _$.create(); // <div>
+ * - _$.create('span#my-id.my-class.second-class'); // <span id="my-id" class="my-class second-class">
+ * - _$.create('#my-id.my-class.second-class', 'text to insert', 12345); // <div id="my-id" class="my-class second-class">
  */
 export function create(querySelector = "div", ...content) {
 	node();
@@ -246,13 +246,13 @@ export function create(querySelector = "div", ...content) {
 	let attributes = querySelector.match(
 		/\[([a-z][a-z-]+)(=['|"]?([^\]]*)['|"]?)?\]/gi,
 	);
-	let node = nodeType ? nodeType[0] : "div";
+	let _node = nodeType ? nodeType[0] : "div";
 
 	if (id && id.length > 1) {
 		throw new Error("only 1 ID is allowed");
 	}
 
-	const elt = document.createElement(node);
+	const elt = document.createElement(_node);
 
 	if (id) {
 		elt.id = id[0].replace("#", "");
