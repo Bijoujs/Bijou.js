@@ -1,5 +1,21 @@
 //#region Utility
 export let preload = {
+	init: () => {
+		//Set window.load and window.show so that the child iframe element can access those functions.
+		window.load = load;
+		window.show = show;
+		//Convert all links to preload on hover.
+		[...document.querySelectorAll("a")].forEach((a) => {
+			a.addEventListener("click", (e) => {
+				e.preventDefault();
+				show(a.href);
+			});
+			a.addEventListener("mouseenter", (e) => {
+				//you could alter this function so that it would preload if the mouse is close, or if the user has hovered for 200ms or more, but just onmouseenter is enough for this example.
+				load(a.href);
+			});
+		});
+	},
 	load: function load(page) {
 		//Return a promise fulfilled once the iframe loads, so that we can await load("page") in show("url") if the page isn't loaded already.
 		return new Promise((res) => {
@@ -18,7 +34,7 @@ export let preload = {
 			iframe.classList.add("preload");
 			iframe.onload = res; //Return promise once loaded
 			//Make it fill the window, but with display: none
-			addStyles(iframe, {
+			_$.addStyles(iframe, {
 				background: "transparent",
 				width: "100vw",
 				height: "100vh",
