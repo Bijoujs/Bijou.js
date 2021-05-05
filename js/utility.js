@@ -1,4 +1,164 @@
 //#region Utility
+export let preload = {
+	init: () => {
+		//Set window.load and window.show so that the child iframe element can access those functions.
+		window.load = load;
+		window.show = show;
+		//Convert all links to preload on hover.
+		[...document.querySelectorAll("a")].forEach((a) => {
+			a.addEventListener("click", (e) => {
+				e.preventDefault();
+				show(a.href);
+			});
+			a.addEventListener("mouseenter", (e) => {
+				//you could alter this function so that it would preload if the mouse is close, or if the user has hovered for 200ms or more, but just onmouseenter is enough for this example.
+				load(a.href);
+			});
+		});
+	},
+	load: function load(page) {
+		//Return a promise fulfilled once the iframe loads, so that we can await load("page") in show("url") if the page isn't loaded already.
+		return new Promise((res) => {
+			//If page is external don't load it, history.pushState only works with internal URLs.
+			if (!isLocal(page)) return;
+			//Don't load it twice.
+			if (document.getElementById(id(page))) return;
+			//Create an iframe
+			var iframe = document.createElement("iframe");
+			iframe.src = page;
+			//Add it to the document
+			document.documentElement.appendChild(iframe);
+			//Set a unique ID.
+			iframe.id = id(page);
+			//And add the preload class so it's easy to remove all iframes.
+			iframe.classList.add("preload");
+			iframe.onload = res; //Return promise once loaded
+			//Make it fill the window, but with display: none
+			_$.addStyles(iframe, {
+				background: "transparent",
+				width: "100vw",
+				height: "100vh",
+				padding: "0",
+				margin: "0",
+				display: "none",
+				border: "none",
+			});
+		});
+		function id(page) {
+			//This function gets a unique id from a page that works with CSS id standards.
+			//E.g. "#/page" is not a valid ID.
+			return `preload_${hash(page).toString(16)}`;
+		}
+		function isLocal(page) {
+			//Tests if a page is local
+			try {
+				//If the page doesn't start with "http" or "https" then it's definitely local.
+				if (
+					!(page.startsWith("http://") || page.startsWith("https://"))
+				)
+					return true;
+				//If it does start with "http" or "https" we need to see if the hostname (domain) is the same as the one of the current page, so we compare the window.location.hostname with that parsed from the input URL.
+				return new URL(page).hostname === window.location.hostname;
+			} catch (e) {
+				//Invalid url maybe?
+				// mailto:someone@somewhere.com will cause an error above.
+				return false;
+			}
+		}
+		function hash(str, seed = 0) {
+			// I could've done without the hash function, but hash functions are cool. So why not.
+			let h1 = 0xdeadbeef ^ seed,
+				h2 = 0x41c6ce57 ^ seed;
+			for (let i = 0, ch; i < str.length; i++) {
+				ch = str.charCodeAt(i);
+				h1 = Math.imul(h1 ^ ch, 2654435761);
+				h2 = Math.imul(h2 ^ ch, 1597334677);
+			}
+			h1 =
+				Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
+				Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+			h2 =
+				Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
+				Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+			return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+		}
+	},
+	show: async function show(page) {
+		if (!isLocal(page)) {
+			//Actually navigate to the page if it's not local, e.g. show('https://google.com') would just go to google.com
+			window.location.href = page;
+			//Stop the rest of the function.
+			return;
+		}
+		//If the page isn't already loaded then load it.
+		if (!document.getElementById(id(page))) {
+			await _$.preload.load(page);
+		}
+		//Update URL
+		//This step is the reason why this won't work with external URLs.
+		history.pushState({}, page, page);
+		//If there's current information on the page remove it.
+		//This translates into "if (document.body) document.body.remove()" but it's nicer.
+		document.body && document.body.remove();
+		let ifr = document.getElementById(id(page));
+		//Show the iframe.
+		ifr.style.display = "block";
+		//Get the content document of the iframe
+		let doc = ifr.contentDocument;
+		//For each element in the iframe make it prevent default on click, and preload on hover.
+		Array.from(doc.querySelectorAll("a")).forEach((a) => {
+			a.addEventListener("click", (e) => {
+				//Prevent default navigation.
+				e.preventDefault();
+				//Call the parent window (main window's) show function and remove the current iframe
+				_$.preload.show.call(window.parent, a.href);
+				ifr.remove();
+			});
+			a.addEventListener("mouseenter", (e) => {
+				//Preload the page.
+				_$.preload.load.call(window.parent, a.href);
+			});
+		});
+		function id(page) {
+			//This function gets a unique id from a page that works with CSS id standards.
+			//E.g. "#/page" is not a valid ID.
+			return `preload_${hash(page).toString(16)}`;
+		}
+		function isLocal(page) {
+			//Tests if a page is local
+			try {
+				//If the page doesn't start with "http" or "https" then it's definitely local.
+				if (
+					!(page.startsWith("http://") || page.startsWith("https://"))
+				)
+					return true;
+				//If it does start with "http" or "https" we need to see if the hostname (domain) is the same as the one of the current page, so we compare the window.location.hostname with that parsed from the input URL.
+				return new URL(page).hostname === window.location.hostname;
+			} catch (e) {
+				//Invalid url maybe?
+				// mailto:someone@somewhere.com will cause an error above.
+				return false;
+			}
+		}
+		function hash(str, seed = 0) {
+			// I could've done without the hash function, but hash functions are cool. So why not.
+			let h1 = 0xdeadbeef ^ seed,
+				h2 = 0x41c6ce57 ^ seed;
+			for (let i = 0, ch; i < str.length; i++) {
+				ch = str.charCodeAt(i);
+				h1 = Math.imul(h1 ^ ch, 2654435761);
+				h2 = Math.imul(h2 ^ ch, 1597334677);
+			}
+			h1 =
+				Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^
+				Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+			h2 =
+				Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^
+				Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+			return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+		}
+	},
+};
 /**
  * Creates a template literal tag. Read more here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
  * @example
