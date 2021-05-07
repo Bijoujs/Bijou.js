@@ -1,5 +1,5 @@
 <div align="center"><a href="https://bijou.js.org"><img width="700" src="https://bijou.js.org/Bijou.png"></a></div>
- 
+
 [![NPM Downloads](https://img.shields.io/npm/dm/bijou.js.svg?style=for-the-badge&color=lightseagreen)](https://npmjs.com/bijou.js)
 [![GitHub stars](https://img.shields.io/github/stars/bijou-js/bijou.js?color=lightseagreen&style=for-the-badge)](https://github.com/bijou-js/bijou.js/stargazers)
 [![Website](https://img.shields.io/website?down_color=lightseagreen&down_message=Down%20%3A%27%28&label=Website%20status&style=for-the-badge&up_color=lightseagreen&up_message=Online%21&url=https%3A%2F%2Fbijou.js.org)](https://bijou.js.org)
@@ -28,7 +28,7 @@ CDNJS
 
 ```html
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.0/bijou.js"
+	src="https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.1/bijou.js"
 	type="module"
 ></script>
 ```
@@ -57,7 +57,7 @@ You can also import parts of bijou, for example only the uuid() function:
 
 ```html
 <script type="module">
-	import { uuid } from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.0/bijou.js";
+	import { uuid } from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.1/bijou.js";
 	console.log(uuid()); //Same as _$.uuid() when importing the whole library.
 </script>
 ```
@@ -66,7 +66,7 @@ or you can import the whole thing:
 
 ```html
 <script type="module">
-	import * as _$ from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.0/bijou.js";
+	import * as _$ from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.1/bijou.js";
 	console.log(_$.uuid());
 </script>
 ```
@@ -138,7 +138,7 @@ or
 # CDN Url's
 
 ```
-https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.0/bijou.js
+https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.1/bijou.js
 https://esm.run/bijou.js
 https://cdn.jsdelivr.net/npm/bijou.js
 https://unpkg.com/bijou.js
