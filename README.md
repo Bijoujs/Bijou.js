@@ -28,7 +28,7 @@ CDNJS
 
 ```html
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js"
+	src="https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.0/bijou.js"
 	type="module"
 ></script>
 ```
@@ -57,7 +57,7 @@ You can also import parts of bijou, for example only the uuid() function:
 
 ```html
 <script type="module">
-	import { uuid } from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js";
+	import { uuid } from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.0/bijou.js";
 	console.log(uuid()); //Same as _$.uuid() when importing the whole library.
 </script>
 ```
@@ -66,7 +66,7 @@ or you can import the whole thing:
 
 ```html
 <script type="module">
-	import * as _$ from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js";
+	import * as _$ from "https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.0/bijou.js";
 	console.log(_$.uuid());
 </script>
 ```
@@ -138,7 +138,7 @@ or
 # CDN Url's
 
 ```
-https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/7.6.6/bijou.js
+https://cdnjs.cloudflare.com/ajax/libs/Bijou.js/8.2.0/bijou.js
 https://esm.run/bijou.js
 https://cdn.jsdelivr.net/npm/bijou.js
 https://unpkg.com/bijou.js
