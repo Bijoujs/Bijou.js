@@ -6,7 +6,7 @@
   "imageSize": 100,
   "commit": true,
   "types": {
-    "custom": {
+    "deleted": {
       "symbol": "🗑",
       "description": "This account is deleted",
       "link": "[<%= symbol %>](http://web.archive.org/web/*/<%= url %> \"<%= description %>\"),"
