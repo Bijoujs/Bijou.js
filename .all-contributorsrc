@@ -2,8 +2,16 @@
   "files": [
     "README.md"
   ],
+  "contributorsSortAlphabetically": true,
   "imageSize": 100,
-  "commit": false,
+  "commit": true,
+  "types": {
+    "custom": {
+      "symbol": "🗑",
+      "description": "This account is deleted",
+      "link": "[<%= symbol %>](http://web.archive.org/web/*/<%= url %> \"<%= description %>\"),"
+    }
+  },
   "contributors": [
     {
       "login": "Explosion-Scratch",
