@@ -12,8 +12,10 @@
   )(1, 2, 3); // [[2, 3, 4], [0, 1, 2], [10, 20, 30]]
  * @param  {...function} fns The functions to call.
  */
-export let juxt = (...fns) => (...args) =>
-	[...fns].map((fn) => [...args].map(fn));
+export let juxt =
+	(...fns) =>
+	(...args) =>
+		[...fns].map((fn) => [...args].map(fn));
 /**
  * Returns a promise after a specified number of milliseconds.
  * @returns {Promise}
@@ -40,10 +42,13 @@ export let sleep = (ms = req("number", "milliseconds")) =>
  * @param {Function} fn The function to call.
  * @param {Number} n The number of arguments to accept.
  */
-export let limitArgs = (
-	fn = req("function", "function"),
-	n = req("number", "arguments"),
-) => (...args) => fn(...args.slice(0, n));
+export let limitArgs =
+	(
+		fn = req("function", "function"),
+		n = req("number", "arguments"),
+	) =>
+	(...args) =>
+		fn(...args.slice(0, n));
 /**
  * Returns the index of the fastest function in an array of functions.
  * @memberOf function
@@ -112,10 +117,12 @@ export let memoize = (fn = req("function")) => {
  * const multiply2 = (x) => x * 2;
  * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  3 * 2 + 2
  */
-export let composeFunction = (...functions) => (args) => {
-	req("functions", "function list", ![...functions].length);
-	return functions.reduceRight((arg, fn) => fn(arg), args);
-};
+export let composeFunction =
+	(...functions) =>
+	(args) => {
+		req("functions", "function list", ![...functions].length);
+		return functions.reduceRight((arg, fn) => fn(arg), args);
+	};
 /**
  * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
  * @function
