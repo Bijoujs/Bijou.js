@@ -2051,8 +2051,10 @@ let dispatch = (
   )(1, 2, 3); // [[2, 3, 4], [0, 1, 2], [10, 20, 30]]
  * @param  {...function} fns The functions to call.
  */
-let juxt = (...fns) => (...args) =>
-	[...fns].map((fn) => [...args].map(fn));
+let juxt =
+	(...fns) =>
+	(...args) =>
+		[...fns].map((fn) => [...args].map(fn));
 /**
  * Returns a promise after a specified number of milliseconds.
  * @returns {Promise}
@@ -2079,10 +2081,13 @@ let sleep = (ms = req("number", "milliseconds")) =>
  * @param {Function} fn The function to call.
  * @param {Number} n The number of arguments to accept.
  */
-let limitArgs = (
-	fn = req("function", "function"),
-	n = req("number", "arguments"),
-) => (...args) => fn(...args.slice(0, n));
+let limitArgs =
+	(
+		fn = req("function", "function"),
+		n = req("number", "arguments"),
+	) =>
+	(...args) =>
+		fn(...args.slice(0, n));
 /**
  * Returns the index of the fastest function in an array of functions.
  * @memberOf function
@@ -2151,10 +2156,12 @@ let memoize = (fn = req("function")) => {
  * const multiply2 = (x) => x * 2;
  * console.log(_$.composeFunction(add2, multiply2)(3)) // 8 - i.e  3 * 2 + 2
  */
-let composeFunction = (...functions) => (args) => {
-	req("functions", "function list", ![...functions].length);
-	return functions.reduceRight((arg, fn) => fn(arg), args);
-};
+let composeFunction =
+	(...functions) =>
+	(args) => {
+		req("functions", "function list", ![...functions].length);
+		return functions.reduceRight((arg, fn) => fn(arg), args);
+	};
 /**
  * Returns the curried version of a function. Read more here: https://medium.com/@abitoprakash/implementing-a-curry-function-in-javascript-6a249dbcb1bb
  * @function
@@ -3820,16 +3827,20 @@ let markdownToHTML = (src = req("string", "input")) => {
 	var rx_escape = /\\([\\\|`*_{}\[\]()#+\-~])/g;
 	var rx_hr = /^([*\-=_] *){3,}$/gm;
 	var rx_blockquote = /\n *&gt; *([^]*?)(?=(\n|$){2})/g;
-	var rx_list = /\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
+	var rx_list =
+		/\n( *)(?:[*\-+]|((\d+)|([a-z])|[A-Z])[.)]) +([^]*?)(?=(\n|$){2})/g;
 	var rx_listjoin = /<\/(ol|ul)>\n\n<\1>/g;
-	var rx_highlight = /(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
+	var rx_highlight =
+		/(^|[^A-Za-z\d\\])(([*_])|(~)|(\^)|(--)|(\+\+)|`)(\2?)([^<]*?)\2\8(?!\2)(?=\W|_|$)/g;
 	var rx_code = /\n((```|~~~).*\n?([^]*?)\n?\2|(( {4}.*?\n)+))/g;
-	var rx_link = /((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
+	var rx_link =
+		/((!?)\[(.*?)\]\((.*?)( ".*")?\)|\\([\\`*_{}\[\]()#+\-.!~]))/g;
 	var rx_table = /\n(( *\|.*?\| *\n)+)/g;
 	var rx_thead = /^.*\n( *\|( *\:?-+\:?-+\:? *\|)* *\n|)/;
 	var rx_row = /.*\n/g;
 	var rx_cell = /\||(.*?[^\\])\|/g;
-	var rx_heading = /(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
+	var rx_heading =
+		/(?=^|>|\n)([>\s]*?)(#{1,6}) (.*?)( #*)? *(?=\n|$)/g;
 	var rx_para = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
 	var rx_stash = /-\d+\uf8ff/g;
 
@@ -4954,7 +4965,8 @@ let regex = {
 	 * 1 special character
 	 * At least 8 characters long
 	 */
-	strongPassword: /(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
+	strongPassword:
+		/(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
 	/**
 	 * Tests for a moderate password.
 	 * Should have:
@@ -4962,7 +4974,8 @@ let regex = {
 	 * 1 uppercase letter
 	 * 1 number
 	 * At least 8 characters long */
-	moderatePassword: /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
+	moderatePassword:
+		/(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
 	/** Ip adresses */
 	/* Match IPv4 address */
 	ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
@@ -4971,17 +4984,20 @@ let regex = {
 	/**Both ipv4 and ipv6 */
 	ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
 	/**Social security number */
-	socialSecurity: /^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
+	socialSecurity:
+		/^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
 	/**Hex color */
 	hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
 	/** Zip code */
-	zipCode: /(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
+	zipCode:
+		/(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
 	/**Phone */
 	simplePhone: /^\+?[\d\s]{3,}$/,
 	/**Credit cards */
 	visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
 	expressCredit: /^3[47][0–9]{13}$/,
-	mastercardCredit: /^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
+	mastercardCredit:
+		/^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
 	discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
 };
 /**
