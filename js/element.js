@@ -1106,7 +1106,7 @@ export let tilt = (
  */
 export let fullScreen = (element = req("HTMLElement", "element")) => {
 	node();
-        return (
+	return (
 		element.requestFullScreen?.() ||
 		element.mozRequestFullScreen?.() ||
 		element.webkitRequestFullScreen?.() ||
