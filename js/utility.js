@@ -834,7 +834,7 @@ export let regex = {
 	 */
 	name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
 	/**
-         * Validates email adresses
+         * Validates email addresses
 	 * @type {RegExp}
          */
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
@@ -865,7 +865,7 @@ export let regex = {
 	 */
 	moderatePassword:
 		/(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
-	// Ip adresses 
+	// Ip addresses 
 	/** Match IPv4 address
 	* @type {RegExp}
 	*/
@@ -905,7 +905,7 @@ export let regex = {
 	* @type {RegExp}
 	*/
 	expressCredit: /^3[47][0–9]{13}$/,
-	/** Mastercard cerdit card
+	/** Mastercard credit card
 	* @type {RegExp}
 	*/
 	mastercardCredit:
