@@ -1,5 +1,17 @@
 //#region Utility
+/** 
+ * preload links when hovering over them, to have no-refresh page navigation
+ * @namespace preload
+ * @memberof utility
+*/
 export let preload = {
+	/**
+	 * Initialises the preloader so that links to the same site always navigate without a page refresh
+	 * @function
+	 * @returns {undefined}
+	 * @example
+	 * _$.preload.init()
+	*/
 	init: () => {
 		//Set window.load and window.show so that the child iframe element can access those functions.
 		window.load = load;
@@ -16,6 +28,12 @@ export let preload = {
 			});
 		});
 	},
+	/**
+	 * preload a given url
+	 * @function
+	 * @param {string} page - the url to preload
+	 * @returns {Promise} Returns a promise fulfilled once the iframe loads, so that we can await load("page") in show("url") if the page isn't loaded already.
+	 */
 	load: function load(page) {
 		//Return a promise fulfilled once the iframe loads, so that we can await load("page") in show("url") if the page isn't loaded already.
 		return new Promise((res) => {
@@ -83,6 +101,12 @@ export let preload = {
 			return 4294967296 * (2097151 & h2) + (h1 >>> 0);
 		}
 	},
+	/**
+	 Navigate to the given url without a page refresh
+	 @function
+	 @param {string} page  - the url to navigate to
+	 @returns {undefined}
+	*/
 	show: async function show(page) {
 		if (!isLocal(page)) {
 			//Actually navigate to the page if it's not local, e.g. show('https://google.com') would just go to google.com
@@ -168,6 +192,7 @@ export let preload = {
  * @param {Function} k The function to run on new (interpolated) text in the template literal.
  * @param {Function} o The function to run on the normal text in the template literal.
  * @returns {Function} A template literal tagging function, which returns a string.
+ * @memberof utility
  */
 export let tag = (k = (j) => j, o = (j) => j) => {
 	return (old, ...int) => {
@@ -712,7 +737,7 @@ export let imageToData = async (
 /**
  * A set of functions to set and modify cookies.
  * @memberOf utility
- * @Object
+ * @namespace cookies
  * @example
  * _$.cookies.setItem("a_cookie", "Hello world!", 1); // Set a_cookie to "Hello world" and have it expire in a day.
  * @returns {Function} The function that the user wanted
@@ -721,7 +746,6 @@ export let cookies = {
 	/**
 	 * Sets a cookie to a value
 	 * @function
-	 * @memberOf utility
 	 * @param {String} name The name of the cookie to set
 	 * @param {String} value The value of the cookie
 	 * @param {Number} [days=1000] The days that the cookie should last.
@@ -745,7 +769,6 @@ export let cookies = {
 	/**
 	 * Gets a cookie from its name.
 	 * @function
-	 * @memberOf utility
 	 * @param {String} name The name of the cookie.
 	 * @returns {String} The value of the cookie
 	 */
@@ -764,7 +787,6 @@ export let cookies = {
 	},
 	/**
 	 * Deletes a cookie
-	 * @memberOf utility
 	 * @param {String} name The name of the cookie to delete.
 	 * @returns {String} The new document.cookie
 	 */
@@ -779,7 +801,7 @@ export let cookies = {
 /**
  * A collection of regular expressions to validate and get common things from a page
  * @memberOf utility
- * @Object
+ * @namespace
  * @example
  * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
  * @returns {Regexp} A regex
@@ -794,6 +816,7 @@ export let regex = {
 	 * 1234567890
 	 * +31636363634
 	 * 075-63546725
+	 * @type {RegExp}
 	 */
 	phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
 	/** Validates names, examples:
@@ -807,13 +830,16 @@ export let regex = {
 	 * Ai Wong
 	 * Chao Chang
 	 * Alzbeta Bara
+	 * @type {RegExp}
 	 */
 	name: /^(?:[a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?(?:[a-zA-Z]{1,})?)/,
 	/**
-      Validates email adresses
-      */
+         * Validates email addresses
+	 * @type {RegExp}
+         */
 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	/** Validates a link
+	* @type {RegExp}
 	 */
 	link: /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/,
 	/**
@@ -824,6 +850,7 @@ export let regex = {
 	 * 1 number
 	 * 1 special character
 	 * At least 8 characters long
+	 * @type {RegExp}
 	 */
 	strongPassword:
 		/(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}/,
@@ -833,31 +860,59 @@ export let regex = {
 	 * 1 lowercase letter
 	 * 1 uppercase letter
 	 * 1 number
-	 * At least 8 characters long */
+	 * At least 8 characters long
+	 * @type {RegExp}
+	 */
 	moderatePassword:
 		/(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/,
-	/** Ip adresses */
-	/* Match IPv4 address */
+	// Ip addresses 
+	/** Match IPv4 address
+	* @type {RegExp}
+	*/
 	ipv4: /^ (([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2}| 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3 } ([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5]) $ /,
-	/* Match IPv6 address */
+	/** Match IPv6 address 
+	* @type {RegExp}
+	*/
 	ipv6: /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/,
-	/**Both ipv4 and ipv6 */
+	/**Both ipv4 and ipv6 
+	* @type {RegExp}
+	*/
 	ip: / ((^\s*((([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2} | 2[0 - 4][0 - 9] | 25[0 - 5]) \.) { 3}([0 - 9] | [1 - 9][0 - 9] | 1[0 - 9]{ 2 }| 2[0 - 4][0 - 9] | 25[0 - 5])) \s * $)| (^\s * ((([0 - 9A - Fa - f]{ 1, 4 }:) { 7 } ([0 - 9A - Fa - f]{ 1, 4 }|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 6 } (: [0 - 9A - Fa - f]{ 1, 4 }| ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 5 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 2 })|: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 })|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 4 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 3 })| ((: [0 - 9A - Fa - f]{ 1, 4 })?: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 3 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 4 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 2 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 2 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 5 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 3 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (([0 - 9A - Fa - f]{ 1, 4 }:) { 1 } (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 6 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 4 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))| (: (((: [0 - 9A - Fa - f]{ 1, 4 }) { 1, 7 })| ((: [0 - 9A - Fa - f]{ 1, 4 }) { 0, 5 }: ((25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d) (\.(25[0 - 5] | 2[0 - 4]\d | 1\d\d | [1 - 9] ?\d)) { 3 }))|:))) (%.+) ?\s * $)) /,
-	/**Social security number */
+	/**Social security number 
+	* @type {RegExp}
+	*/
 	socialSecurity:
 		/^((?!219-09-9999|078-05-1120)(?!666|000|9\d{2})\d{3}-(?!00)\d{2}-(?!0{4})\d{4})|((?!219 09 9999|078 05 1120)(?!666|000|9\d{2})\d{3} (?!00)\d{2} (?!0{4})\d{4})|((?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4})$/,
-	/**Hex color */
+	/**Hex color
+	* @type {RegExp}
+	*/
 	hex: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/,
-	/** Zip code */
+	/** Zip code 
+	* @type {RegExp}
+	*/
 	zipCode:
 		/(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/,
-	/**Phone */
+	/**Phone 
+	* @type {RegExp}
+	*/
 	simplePhone: /^\+?[\d\s]{3,}$/,
-	/**Credit cards */
+	// Credit cards 
+	/** Visa credit card
+	* @type {RegExp}
+	*/
 	visaCredit: /^4[0–9]{12}(?:[0–9]{3})?$/,
+	/** Express credit card
+	* @type {RegExp}
+	*/
 	expressCredit: /^3[47][0–9]{13}$/,
+	/** Mastercard credit card
+	* @type {RegExp}
+	*/
 	mastercardCredit:
 		/^(?:5[1–5][0–9]{2}|222[1–9]|22[3–9][0–9]|2[3–6][0–9]{2}|27[01][0–9]|2720)[0–9]{12}$/,
+	/** Discover credit card
+	* @type {RegExp}
+	*/
 	discoverCredit: /^6(?:011|5[0–9]{2})[0–9]{12}$/,
 };
 /**

@@ -271,7 +271,7 @@ export let formatNumber = (n = req("number", "number")) =>
 	n.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 /**
  * Easing functions
- * @Object
+ * @namespace ease
  * @memberOf math
  * @example
  * console.log(_$.ease.easeInOutQuad(.3)); // 0.18 - the eased point of about 1/3 along the animation.
