@@ -169,7 +169,7 @@ export function scrambleString(str?: string): string;
 export function hashString(str?: string, seed?: number): number;
 export function editDistance(a?: string, b?: string): number;
 export function byteSize(str?: string): number;
-export function replaceMultiple(text?: string, replace?: any): string;
+export function replaceMultiple(text?: string, replacer?: void): string;
 export function urlQuery(query?: string, url?: string): string;
 export function sanitize(html?: string, tags?: any[], attributes?: any[]): string;
 export function markdownToHTML(src?: string): string;

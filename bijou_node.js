@@ -3620,11 +3620,11 @@ let byteSize = (str = req("string", "string")) =>
  */
 let replaceMultiple = (
 	text = req("string", "text"),
-	replace = req("object", "replace key pairs"),
+	replacer = req("object", "replace key pairs"),
 ) => {
-	var re = new RegExp(Object.keys(replace).join("|"), "gi");
+	var re = new RegExp(Object.keys(replacer).join("|"), "gi");
 	text = text.replace(re, function (matched) {
-		return mapObj[matched];
+		return replacer[matched];
 	});
 	return text;
 };
