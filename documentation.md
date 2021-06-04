@@ -4,9 +4,6 @@
 <dt><a href="#round">round</a> ⇒ <code>Number</code></dt>
 <dd><p>Rounds a number.</p>
 </dd>
-<dt><a href="#tag">tag</a> ⇒ <code><a href="#function">function</a></code></dt>
-<dd><p>Creates a template literal tag. Read more here: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates</a></p>
-</dd>
 <dt><a href="#prototype">prototype</a></dt>
 <dd><p>Converts most of the functions of Bijou.js to prototype functions.
 Note that you have to call this function to add the prototypes.</p>
@@ -79,25 +76,6 @@ console.log(_$.round(14, 10));//Logs 10 to the console, as 14 rounded to the nea
 **Example**  
 ```js
 console.log(_$.round(Math.PI));//Logs 3 to the console.
-```
-<a name="tag"></a>
-
-## tag ⇒ [<code>function</code>](#function)
-Creates a template literal tag. Read more here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
-
-**Kind**: global variable  
-**Returns**: [<code>function</code>](#function) - A template literal tagging function, which returns a string.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| k | [<code>function</code>](#function) | The function to run on new (interpolated) text in the template literal. |
-| o | [<code>function</code>](#function) | The function to run on the normal text in the template literal. |
-
-**Example**  
-```js
-let t = tag(_$.escapeHTML);
-//Notice the "t" at the beginning of the template literal. (t`Some text`).
-console.log(t`This will not be escaped <i>Italics!</i> ${"But this will, <i>Not italic</i>"}`)
 ```
 <a name="prototype"></a>
 
@@ -1595,7 +1573,7 @@ The math namespace of Bijou.js, containing functions to validate credit card num
 **Kind**: global namespace  
 
 * [math](#math) : [<code>object</code>](#object)
-    * [.exports.ease](#math.exports.ease) ⇒ [<code>function</code>](#function)
+    * [.ease](#math.ease) ⇒ [<code>function</code>](#function)
     * [.exports.gcd(...arr)](#math.exports.gcd) ⇒ <code>Number</code>
     * [.exports.equals(a, b)](#math.exports.equals)
     * [.exports.isPrime(num)](#math.exports.isPrime) ⇒ <code>boolean</code>
@@ -1609,14 +1587,13 @@ The math namespace of Bijou.js, containing functions to validate credit card num
     * [.exports.seedRandom(seed)](#math.exports.seedRandom) ⇒ <code>Number</code>
     * [.exports.formatNumber(n)](#math.exports.formatNumber) ⇒ <code>String</code>
 
-<a name="math.exports.ease"></a>
+<a name="math.ease"></a>
 
-### math.exports.ease ⇒ [<code>function</code>](#function)
+### math.ease ⇒ [<code>function</code>](#function)
 Easing functions
 
-**Kind**: static property of [<code>math</code>](#math)  
+**Kind**: static namespace of [<code>math</code>](#math)  
 **Returns**: [<code>function</code>](#function) - The easing function.  
-**Object**:   
 **Example**  
 ```js
 console.log(_$.ease.easeInOutQuad(.3)); // 0.18 - the eased point of about 1/3 along the animation.
@@ -2495,7 +2472,9 @@ The utility namespace of Bijou.js, containing utilities to do many things, such 
 **Kind**: global namespace  
 
 * [utility](#utility) : [<code>object</code>](#object)
-    * [.exports.cookies](#utility.exports.cookies) ⇒ [<code>function</code>](#function)
+    * [.exports.tag](#utility.exports.tag) ⇒ [<code>function</code>](#function)
+    * [.preload](#utility.preload) : [<code>object</code>](#object)
+    * [.cookies](#utility.cookies) ⇒ [<code>function</code>](#function)
     * [.exports.regex](#utility.exports.regex) ⇒ <code>Regexp</code>
     * [.exports.resize(url, [width], [height])](#utility.exports.resize) ⇒ [<code>Promise.&lt;string&gt;</code>](#string)
     * [.exports.htmlToImage(html, [opts])](#utility.exports.htmlToImage) ⇒ [<code>Promise.&lt;string&gt;</code>](#string)
@@ -2514,9 +2493,6 @@ The utility namespace of Bijou.js, containing utilities to do many things, such 
     * [.exports.requestInterval(fn, delay)](#utility.exports.requestInterval) ⇒ <code>Object</code>
     * [.exports.loadScript(url, callback)](#utility.exports.loadScript) ⇒ <code>Promise</code>
     * [.exports.imageToData(url, callback)](#utility.exports.imageToData) ⇒ <code>Promise</code>
-    * [.setItem(name, value, [days])](#utility.setItem) ⇒ <code>String</code>
-    * [.getItem(name)](#utility.getItem) ⇒ <code>String</code>
-    * [.removeItem(name)](#utility.removeItem) ⇒ <code>String</code>
     * [.exports.jsonToCsv(arr, columns, [delimiter])](#utility.exports.jsonToCsv) ⇒ <code>String</code>
     * [.exports.arrayToCSV(arr, [delimiter])](#utility.exports.arrayToCSV) ⇒ <code>String</code>
     * [.exports.notify(title, body, icon)](#utility.exports.notify) ⇒ <code>Promise</code>
@@ -2525,14 +2501,38 @@ The utility namespace of Bijou.js, containing utilities to do many things, such 
     * [.exports.serializeForm(form)](#utility.exports.serializeForm) ⇒ <code>String</code>
     * [.exports.soundex(s)](#utility.exports.soundex) ⇒ <code>String</code>
 
-<a name="utility.exports.cookies"></a>
+<a name="utility.exports.tag"></a>
 
-### utility.exports.cookies ⇒ [<code>function</code>](#function)
-A set of functions to set and modify cookies.
+### utility.exports.tag ⇒ [<code>function</code>](#function)
+Creates a template literal tag. Read more here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates
 
 **Kind**: static property of [<code>utility</code>](#utility)  
+**Returns**: [<code>function</code>](#function) - A template literal tagging function, which returns a string.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| k | [<code>function</code>](#function) | The function to run on new (interpolated) text in the template literal. |
+| o | [<code>function</code>](#function) | The function to run on the normal text in the template literal. |
+
+**Example**  
+```js
+let t = tag(_$.escapeHTML);
+//Notice the "t" at the beginning of the template literal. (t`Some text`).
+console.log(t`This will not be escaped <i>Italics!</i> ${"But this will, <i>Not italic</i>"}`)
+```
+<a name="utility.preload"></a>
+
+### utility.preload : [<code>object</code>](#object)
+preload links when hovering over them, to have no-refresh page navigation
+
+**Kind**: static namespace of [<code>utility</code>](#utility)  
+<a name="utility.cookies"></a>
+
+### utility.cookies ⇒ [<code>function</code>](#function)
+A set of functions to set and modify cookies.
+
+**Kind**: static namespace of [<code>utility</code>](#utility)  
 **Returns**: [<code>function</code>](#function) - The function that the user wanted  
-**Object**:   
 **Example**  
 ```js
 _$.cookies.setItem("a_cookie", "Hello world!", 1); // Set a_cookie to "Hello world" and have it expire in a day.
@@ -2542,9 +2542,8 @@ _$.cookies.setItem("a_cookie", "Hello world!", 1); // Set a_cookie to "Hello wor
 ### utility.exports.regex ⇒ <code>Regexp</code>
 A collection of regular expressions to validate and get common things from a page
 
-**Kind**: static property of [<code>utility</code>](#utility)  
+**Kind**: static namespace of [<code>utility</code>](#utility)  
 **Returns**: <code>Regexp</code> - A regex  
-**Object**:   
 **Example**  
 ```js
 if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
@@ -2890,44 +2889,6 @@ _$.each(document.querySelectorAll('img'), (img) => {
  })
 })
 ```
-<a name="utility.setItem"></a>
-
-### utility.setItem(name, value, [days]) ⇒ <code>String</code>
-Sets a cookie to a value
-
-**Kind**: static method of [<code>utility</code>](#utility)  
-**Returns**: <code>String</code> - The value of the cookie  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| name | <code>String</code> |  | The name of the cookie to set |
-| value | <code>String</code> |  | The value of the cookie |
-| [days] | <code>Number</code> | <code>1000</code> | The days that the cookie should last. |
-
-<a name="utility.getItem"></a>
-
-### utility.getItem(name) ⇒ <code>String</code>
-Gets a cookie from its name.
-
-**Kind**: static method of [<code>utility</code>](#utility)  
-**Returns**: <code>String</code> - The value of the cookie  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| name | <code>String</code> | The name of the cookie. |
-
-<a name="utility.removeItem"></a>
-
-### utility.removeItem(name) ⇒ <code>String</code>
-Deletes a cookie
-
-**Kind**: static method of [<code>utility</code>](#utility)  
-**Returns**: <code>String</code> - The new document.cookie  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| name | <code>String</code> | The name of the cookie to delete. |
-
 <a name="utility.exports.jsonToCsv"></a>
 
 ### utility.exports.jsonToCsv(arr, columns, [delimiter]) ⇒ <code>String</code>

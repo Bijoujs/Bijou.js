@@ -181,9 +181,9 @@ export function escapeHTML(str?: string): string;
 export function unescapeHTML(str?: string): string;
 export function previousPage(): string;
 export namespace preload {
-    function init(): void;
-    function load(page: any): any;
-    function show(page: any): Promise<void>;
+    function init(): undefined;
+    function load(page: string): Promise<any>;
+    function show(page: string): undefined;
 }
 export function tag(k?: Function, o?: Function): Function;
 export function resize(url?: string, width?: number, height?: number): Promise<string>;
