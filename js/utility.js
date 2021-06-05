@@ -983,7 +983,7 @@ export let arrayToCSV = (
  * @param {String} icon The url to the image for the icon of the notification.
  * @example
  * _$.notify("Hello", "Hi there! This is a notification!"); Notifies the user with the title "Hello" and the body text "Hi there! This is a notification!"
- * @returns {undefined}
+ * @returns {Promise} A promise that fulfills once the notification is sent, and is rejected when there is an error
  */
 export let notify = async (
 	title = req("string", "text"),
