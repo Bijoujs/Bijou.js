@@ -1207,8 +1207,8 @@ The event namespace of Bijou.js, containing functions to listen and dispatch eve
 
 * [event](#event) : [<code>object</code>](#object)
     * [.exports.waitUntil](#event.exports.waitUntil) ⇒ <code>Promise</code>
-    * [.exports.onOutsideClick(element, callback)](#event.exports.onOutsideClick) ⇒ <code>Promise</code>
-    * [.exports.onScrollStop([element], callback, [time])](#event.exports.onScrollStop) ⇒ <code>Promise</code>
+    * [.exports.onOutsideClick(element, callback)](#event.exports.onOutsideClick) ⇒ <code>undefined</code>
+    * [.exports.onScrollStop([element], callback, [time])](#event.exports.onScrollStop) ⇒ <code>umdefined</code>
     * [.exports.hub()](#event.exports.hub) ⇒ <code>Object</code>
     * [.exports.dispatch(type, args, [target])](#event.exports.dispatch) ⇒ <code>Event</code>
 
@@ -1218,7 +1218,7 @@ The event namespace of Bijou.js, containing functions to listen and dispatch eve
 Waits until a condition is met then resolves a promise.
 
 **Kind**: static property of [<code>event</code>](#event)  
-**Returns**: <code>Promise</code> - A promise resolved when the condition returned by the function is true.  
+**Returns**: <code>Promise</code> - A promise resolved when the condition returned by the function is true, or rejects if the time specified passes before the condition is met..  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -1234,18 +1234,17 @@ _$.waitUntil(() => new Date().getSeconds === 10).then(() => console.log("Done"))
 ```js
 //This DOES NOT work
 _$.waitUntil(() => Date.now() === Date.now() + 100);
-//Because it is evaluated many times, and the current date, is never ahead of itself. Therefore in this case the function will run infinitely.
+//Because it is evaluated many times, and the current date is never ahead of itself. Therefore in this case the function will run infinitely.
 //To fix this problem and cancel the function after a certain amount of time,
 //you can pass another argument to the function
 _$.waitUntil(() => false, 10000);//Waits 10 seconds, because the function always returns false.
 ```
 <a name="event.exports.onOutsideClick"></a>
 
-### event.exports.onOutsideClick(element, callback) ⇒ <code>Promise</code>
+### event.exports.onOutsideClick(element, callback) ⇒ <code>undefined</code>
 Returns the callback when a a click is registered outside the selected element
 
 **Kind**: static method of [<code>event</code>](#event)  
-**Returns**: <code>Promise</code> - A promise that is resolved when the user clicks outside the specified element.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1258,11 +1257,10 @@ _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outsi
 ```
 <a name="event.exports.onScrollStop"></a>
 
-### event.exports.onScrollStop([element], callback, [time]) ⇒ <code>Promise</code>
+### event.exports.onScrollStop([element], callback, [time]) ⇒ <code>umdefined</code>
 Returns the callback when the user stops scrolling.
 
 **Kind**: static method of [<code>event</code>](#event)  
-**Returns**: <code>Promise</code> - Returns a promise that is resolved when the user stops scrolling.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -2495,7 +2493,7 @@ The utility namespace of Bijou.js, containing utilities to do many things, such 
     * [.exports.imageToData(url, callback)](#utility.exports.imageToData) ⇒ <code>Promise</code>
     * [.exports.jsonToCsv(arr, columns, [delimiter])](#utility.exports.jsonToCsv) ⇒ <code>String</code>
     * [.exports.arrayToCSV(arr, [delimiter])](#utility.exports.arrayToCSV) ⇒ <code>String</code>
-    * [.exports.notify(title, body, icon)](#utility.exports.notify) ⇒ <code>Promise</code>
+    * [.exports.notify(title, body, icon)](#utility.exports.notify) ⇒ <code>undefined</code>
     * [.exports.copy(str)](#utility.exports.copy) ⇒ <code>String</code>
     * [.exports.browser()](#utility.exports.browser) ⇒ <code>String</code>
     * [.exports.serializeForm(form)](#utility.exports.serializeForm) ⇒ <code>String</code>
@@ -2935,11 +2933,10 @@ console.log(_$.arrayToCSV([1,2,3,4])); // "1,2,3,4"
 ```
 <a name="utility.exports.notify"></a>
 
-### utility.exports.notify(title, body, icon) ⇒ <code>Promise</code>
+### utility.exports.notify(title, body, icon) ⇒ <code>undefined</code>
 Displays a desktop notification with the specified text.
 
 **Kind**: static method of [<code>utility</code>](#utility)  
-**Returns**: <code>Promise</code> - A promise that fulfills once the notification is sent, and is rejected when there is an error  
 
 | Param | Type | Description |
 | --- | --- | --- |
