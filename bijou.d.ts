@@ -82,8 +82,8 @@ export function tilt(el?: Element, x?: number, y?: number, perspective?: number,
 export function fullScreen(element?: Element): Promise<any>;
 export function replaceSelection(replacementText?: string): Range;
 export function waitUntil(condition?: Function, wait?: number): Promise<any>;
-export function onOutsideClick(element?: Element, callback?: Function): undefined;
-export function onScrollStop(element?: HTMLElement, callback?: Function, time?: number): any;
+export function onOutsideClick(element?: Element, callback?: Function): Promise<any>;
+export function onScrollStop(element?: HTMLElement, callback?: Function, time?: number): Promise<any>;
 export function hub(): any;
 export function dispatch(args?: any, type?: string, target?: EventTarget): Event;
 export function juxt(...fns: Function[]): Array<any[]>;
@@ -227,7 +227,7 @@ export namespace regex {
 }
 export function jsonToCsv(arr?: any[], columns?: any[], delimiter?: string): string;
 export function arrayToCSV(arr?: any[], delimiter?: string): string;
-export function notify(title?: string, body?: string, icon?: string): undefined;
+export function notify(title?: string, body?: string, icon?: string): Promise<any>;
 export function copy(str?: string): string;
 export function browser(): string;
 export function serializeForm(form?: HTMLFormElement): string;

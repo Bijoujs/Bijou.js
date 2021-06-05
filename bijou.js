@@ -1904,12 +1904,12 @@ export let tilt = (
  */
 export let fullScreen = (element = req("HTMLElement", "element")) => {
 	node();
-	if (element.requestFullScreen) return element.requestFullScreen();
-	else if (element.mozRequestFullScreen)
-		return element.mozRequestFullScreen();
-	else if (element.webkitRequestFullScreen)
-		return element.webkitRequestFullScreen();
-	else return new Error("Fullscreen failed");
+	return (
+		element.requestFullScreen?.() ||
+		element.mozRequestFullScreen?.() ||
+		element.webkitRequestFullScreen?.() ||
+		new Error("Fullscreen failed")
+	);
 };
 /**
  * Replaces the selected text in a contentEditable div with the HTML given.
@@ -1950,7 +1950,7 @@ export let replaceSelection = (
 //#region Event
 /**
  * Waits until a condition is met then resolves a promise.
- * @returns {Promise} A promise resolved when the condition returned by the function is true, or rejects if the time specified passes before the condition is met..
+ * @returns {Promise} A promise resolved when the condition returned by the function is true.
  * @memberOf event
  * @example
  * //Waits until the current second of the current minute is 10.
@@ -1958,7 +1958,7 @@ export let replaceSelection = (
  * @example
  * //This DOES NOT work
  * _$.waitUntil(() => Date.now() === Date.now() + 100);
- * //Because it is evaluated many times, and the current date is never ahead of itself. Therefore in this case the function will run infinitely.
+ * //Because it is evaluated many times, and the current date, is never ahead of itself. Therefore in this case the function will run infinitely.
  * //To fix this problem and cancel the function after a certain amount of time,
  * //you can pass another argument to the function
  * _$.waitUntil(() => false, 10000);//Waits 10 seconds, because the function always returns false.
@@ -1990,17 +1990,20 @@ export let waitUntil = async (
  * @param {Function} callback The function to run when a click is registered outside the specified element.
  * @example
  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
- * @returns {undefined}
+ * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
  */
 export let onOutsideClick = (
 	element = req("HTMLElement", "element"),
 	callback = req("function", "callback"),
 ) => {
 	node();
-	document.addEventListener("click", (e) => {
-		if (!element.contains(e.target)) {
-			callback();
-		}
+	return new Promise((resolve, reject) => {
+		document.addEventListener("click", (e) => {
+			if (!element.contains(e.target)) {
+				callback();
+				resolve();
+			}
+		});
 	});
 };
 /**
@@ -2012,7 +2015,7 @@ export let onOutsideClick = (
  * @param {Number} [time=150]
  * @example
  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
- * @returns {umdefined}
+ * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
  */
 export let onScrollStop = (
 	element = window,
@@ -2021,17 +2024,19 @@ export let onScrollStop = (
 ) => {
 	let isScrolling;
 	node();
-	element.addEventListener(
-		"scroll",
-		(e) => {
-			clearTimeout(isScrolling);
-			isScrolling = setTimeout(() => {
-				callback(e);
-				resolve(e);
-			}, time);
-		},
-		false,
-	);
+	return new Promise((resolve, reject) => {
+		element.addEventListener(
+			"scroll",
+			(e) => {
+				clearTimeout(isScrolling);
+				isScrolling = setTimeout(() => {
+					callback(e);
+					resolve(e);
+				}, time);
+			},
+			false,
+		);
+	});
 };
 /**
  * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
@@ -5219,7 +5224,7 @@ export let arrayToCSV = (
  * @param {String} icon The url to the image for the icon of the notification.
  * @example
  * _$.notify("Hello", "Hi there! This is a notification!"); Notifies the user with the title "Hello" and the body text "Hi there! This is a notification!"
- * @returns {undefined}
+ * @returns {Promise} A promise that fulfills once the notification is sent, and is rejected when there is an error
  */
 export let notify = async (
 	title = req("string", "text"),
