@@ -1850,12 +1850,12 @@ let tilt = (
  */
 let fullScreen = (element = req("HTMLElement", "element")) => {
 	node();
-	return (
-		element.requestFullScreen?.() ||
-		element.mozRequestFullScreen?.() ||
-		element.webkitRequestFullScreen?.() ||
-		new Error("Fullscreen failed")
-	);
+	if (element.requestFullScreen) return element.requestFullScreen();
+	else if (element.mozRequestFullScreen)
+		return element.mozRequestFullScreen();
+	else if (element.webkitRequestFullScreen)
+		return element.webkitRequestFullScreen();
+	else return new Error("Fullscreen failed");
 };
 /**
  * Replaces the selected text in a contentEditable div with the HTML given.
@@ -1896,7 +1896,7 @@ let replaceSelection = (
 //#region Event
 /**
  * Waits until a condition is met then resolves a promise.
- * @returns {Promise} A promise resolved when the condition returned by the function is true.
+ * @returns {Promise} A promise resolved when the condition returned by the function is true, or rejects if the time specified passes before the condition is met..
  * @memberOf event
  * @example
  * //Waits until the current second of the current minute is 10.
@@ -1904,7 +1904,7 @@ let replaceSelection = (
  * @example
  * //This DOES NOT work
  * _$.waitUntil(() => Date.now() === Date.now() + 100);
- * //Because it is evaluated many times, and the current date, is never ahead of itself. Therefore in this case the function will run infinitely.
+ * //Because it is evaluated many times, and the current date is never ahead of itself. Therefore in this case the function will run infinitely.
  * //To fix this problem and cancel the function after a certain amount of time,
  * //you can pass another argument to the function
  * _$.waitUntil(() => false, 10000);//Waits 10 seconds, because the function always returns false.
@@ -1936,20 +1936,17 @@ let waitUntil = async (
  * @param {Function} callback The function to run when a click is registered outside the specified element.
  * @example
  * _$.onOutsideClick(document.querySelector("div"), () => {alert("You clicked outside the DIV!")});
- * @returns {Promise} A promise that is resolved when the user clicks outside the specified element.
+ * @returns {undefined}
  */
 let onOutsideClick = (
 	element = req("HTMLElement", "element"),
 	callback = req("function", "callback"),
 ) => {
 	node();
-	return new Promise((resolve, reject) => {
-		document.addEventListener("click", (e) => {
-			if (!element.contains(e.target)) {
-				callback();
-				resolve();
-			}
-		});
+	document.addEventListener("click", (e) => {
+		if (!element.contains(e.target)) {
+			callback();
+		}
 	});
 };
 /**
@@ -1961,7 +1958,7 @@ let onOutsideClick = (
  * @param {Number} [time=150]
  * @example
  * _$.onScrollStop(() => {alert("You stopped scrolling!")})
- * @returns {Promise} Returns a promise that is resolved when the user stops scrolling.
+ * @returns {umdefined}
  */
 let onScrollStop = (
 	element = window,
@@ -1970,19 +1967,17 @@ let onScrollStop = (
 ) => {
 	let isScrolling;
 	node();
-	return new Promise((resolve, reject) => {
-		element.addEventListener(
-			"scroll",
-			(e) => {
-				clearTimeout(isScrolling);
-				isScrolling = setTimeout(() => {
-					callback(e);
-					resolve(e);
-				}, time);
-			},
-			false,
-		);
-	});
+	element.addEventListener(
+		"scroll",
+		(e) => {
+			clearTimeout(isScrolling);
+			isScrolling = setTimeout(() => {
+				callback(e);
+				resolve(e);
+			}, time);
+		},
+		false,
+	);
 };
 /**
  * A lot like socket.io, this allows emit, on and off handlers. (Note that this is local, only your computer sends and recieves your data. Still useful though)
@@ -5123,7 +5118,7 @@ let arrayToCSV = (
  * @param {String} icon The url to the image for the icon of the notification.
  * @example
  * _$.notify("Hello", "Hi there! This is a notification!"); Notifies the user with the title "Hello" and the body text "Hi there! This is a notification!"
- * @returns {Promise} A promise that fulfills once the notification is sent, and is rejected when there is an error
+ * @returns {undefined}
  */
 let notify = async (
 	title = req("string", "text"),
