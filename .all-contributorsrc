@@ -152,6 +152,16 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "Sly-Little-Fox",
+      "name": "Sly Little Fox",
+      "avatar_url": "https://avatars.githubusercontent.com/u/69681150?v=4",
+      "profile": "https://sly-little-fox.ru",
+      "contributions": [
+        "bug",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
