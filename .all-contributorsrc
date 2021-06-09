@@ -142,11 +142,21 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "wgyt",
+      "name": "William Horning",
+      "avatar_url": "https://avatars.githubusercontent.com/u/68466727?v=4",
+      "profile": "http://wgyt.tk",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "Bijou.js",
-  "projectOwner": "Bijou-js",
+  "projectOwner": "Bijoujs",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true
