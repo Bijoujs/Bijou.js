@@ -801,7 +801,7 @@ export let cookies = {
 /**
  * A collection of regular expressions to validate and get common things from a page
  * @memberOf utility
- * @namespace
+ * @namespace regex
  * @example
  * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
  * @returns {Regexp} A regex
