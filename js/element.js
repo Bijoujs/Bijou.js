@@ -1109,8 +1109,7 @@ export let fullScreen = (element = req("HTMLElement", "element")) => {
         if (element.requestFullScreen) return element.requestFullScreen();
 	else if (element.mozRequestFullScreen) return element.mozRequestFullScreen();
 	else if (element.webkitRequestFullScreen) return element.webkitRequestFullScreen();
-	else return new Error("Fullscreen failed")
-	);
+	else return new Error("Fullscreen failed");
 };
 /**
  * Replaces the selected text in a contentEditable div with the HTML given.
