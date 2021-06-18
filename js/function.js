@@ -1,7 +1,12 @@
 //#region Function
 /**
- * Runs a list of functions with a list of arguments.
+ * @callback juxtCallback
+ * @param {...any} args The arguments to run on the functions
  * @returns {Array.<array>} The list of outputs.
+ */
+/**
+ * Runs a list of functions with a list of arguments.
+ * @returns {juxtCallback} The function to run with the args.
  * @memberOf function
  * @example
  * //It returns an array of outputs, each item in the base array is the output of one function, and each item in that array is the output for each argument.
@@ -55,7 +60,7 @@ export let limitArgs =
  * @returns {Number} The index of the fastest function in the array.
  * @example
  * _$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("<h1>Hello world</h1>", "html")]);//0, the first function.
- * @param {Array} fns The array of functions to execute.
+ * @param {Array.<Function>} fns The array of functions to execute.
  * @param {Number} [iterations=1000] How many times to execute the functions. (More is more reliable but takes longer.)
  */
 export let fastestFunction = (fns, iterations = 1000) => {
@@ -67,6 +72,11 @@ export let fastestFunction = (fns, iterations = 1000) => {
 	return times.indexOf(Math.min(...times));
 };
 
+/**
+ * @callback spreadCallback
+ * @param {Array}
+ * @returns {any}
+ */
 /**
  * Uses an array of arguments to make a function based on the one inputted.
  * @memberOf function
@@ -110,7 +120,7 @@ export let memoize = (fn = req("function")) => {
  * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
  * @function
  * @memberOf function
- * @param {...Function} The functions to be composed.
+ * @param {...Function} functions The functions to be composed.
  * @returns {Function} The composed function.
  * @example
  * const add2 = (x) => x + 2;
@@ -161,7 +171,7 @@ export let isAsync = (val = req("function")) =>
  * @function
  * @memberOf function
  * @param {Function} fn The function to run and time.
- * @param {String} [name=_$ function timer]
+ * @param {String} [name=_$ function timer] The name of the timer
  * @example
  * // Times how long it took the user to enter their name.
  * _$.timeFunction(() => prompt("What's your name?"));
