@@ -74,14 +74,14 @@ export let fastestFunction = (fns, iterations = 1000) => {
 
 /**
  * @callback spreadCallback
- * @param {Array}
+ * @param {Array} args The array of arguments
  * @returns {any}
  */
 /**
  * Uses an array of arguments to make a function based on the one inputted.
  * @memberOf function
  * @function
- * @returns {Function}
+ * @returns {spreadCallback}
  * @example
  * var say = _$.spread(function(who, what) {
     return who + ' says ' + what;
