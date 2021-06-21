@@ -146,7 +146,7 @@ export let luhnCheck = (num = req("String|Number")) => {
  * @param {Number} duration The duration of the animation in milliseconds
  * @param {animateCallback} callback The callback function to run with the number and the percentage (Between 0 and 1) of the animation.
  * @param {Number} [interval=20] The amount of time to wait between frames in milliseconds.
- * @param {animateNumCallback} [num=(num)=>num] The function to run to manipulate the timing of the animation, for example setting this to (current_number) => current_number **2 would make a simple ease in function. (The value recieved by this is also between 0 and 1, feel free to use some stuff from _$.ease.FUNCTION_HERE(current_number) to incorporate easy easing!)
+ * @param {animateNumCallback} [num=(num)=>num] The function to run to manipulate the timing of the animation, for example setting this to (current_number) => current_number **2 would make a simple ease in function. (The value received by this is also between 0 and 1, feel free to use some stuff from _$.ease.FUNCTION_HERE(current_number) to incorporate easy easing!)
  * @example
  * Animates from 50 to 100 over the course of 3 seconds, updating every half second, and writing the current value to the document body.
  * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
