@@ -56,6 +56,39 @@ Note that you have to call this function to add the prototypes.</p>
 </dd>
 </dl>
 
+## Typedefs
+
+<dl>
+<dt><a href="#averageByFn">averageByFn</a> ⇒ <code>Number</code></dt>
+<dd></dd>
+<dt><a href="#eachCallback">eachCallback</a> : <code><a href="#function">function</a></code></dt>
+<dd></dd>
+<dt><a href="#replaceTextCallback">replaceTextCallback</a> ⇒ <code>String</code></dt>
+<dd></dd>
+<dt><a href="#eventListenersCallback">eventListenersCallback</a> ⇒ <code>undefined</code></dt>
+<dd></dd>
+<dt><a href="#sortTableCallback">sortTableCallback</a> ⇒ <code>String</code></dt>
+<dd></dd>
+<dt><a href="#scrollStopCallback">scrollStopCallback</a> ⇒ <code>undefined</code></dt>
+<dd></dd>
+<dt><a href="#juxtCallback">juxtCallback</a> ⇒ <code><a href="#array">Array.&lt;array&gt;</a></code></dt>
+<dd></dd>
+<dt><a href="#spreadCallback">spreadCallback</a> ⇒ <code>any</code></dt>
+<dd></dd>
+<dt><a href="#listenCallback">listenCallback</a> ⇒ <code>undefined</code></dt>
+<dd></dd>
+<dt><a href="#mapObjKeysCallback">mapObjKeysCallback</a> ⇒ <code>String</code></dt>
+<dd></dd>
+<dt><a href="#mapObjValuesCallback">mapObjValuesCallback</a> ⇒ <code>any</code></dt>
+<dd></dd>
+<dt><a href="#animateNumCallback">animateNumCallback</a> ⇒ <code>Number</code></dt>
+<dd></dd>
+<dt><a href="#animateCallback">animateCallback</a> ⇒ <code>undefined</code></dt>
+<dd></dd>
+<dt><a href="#mapCallback">mapCallback</a> : <code><a href="#function">function</a></code></dt>
+<dd></dd>
+</dl>
+
 <a name="round"></a>
 
 ## round ⇒ <code>Number</code>
@@ -316,7 +349,7 @@ averageBy
 | Param | Type | Description |
 | --- | --- | --- |
 | arr | <code>Array.&lt;number&gt;</code> | The array to average |
-| fn | [<code>function</code>](#function) | The function to apply to each item of the array. |
+| fn | [<code>averageByFn</code>](#averageByFn) | The function to apply to each item of the array. |
 
 **Example**  
 ```js
@@ -350,7 +383,7 @@ For each item in an array, run a callback with it.
 | Param | Type | Description |
 | --- | --- | --- |
 | array | <code>Array</code> \| <code>String</code> \| <code>Number</code> | The array, string or number to run the callback with. |
-| callback | [<code>function</code>](#function) | The callback function to run on the array items. |
+| callback | [<code>eachCallback</code>](#eachCallback) | The callback function to run on the array items. |
 
 **Example**  
 ```js
@@ -841,7 +874,7 @@ Replaces the text in an element by running it through a callback.
 | Param | Type | Description |
 | --- | --- | --- |
 | el | <code>Element</code> | The element to replace the text of. |
-| callback | [<code>function</code>](#function) | The callback to run (Gets passed the element's text). |
+| callback | [<code>replaceTextCallback</code>](#replaceTextCallback) | The callback to run (Gets passed the element's text). |
 
 **Example**  
 ```js
@@ -944,7 +977,7 @@ Adds multiple event listeners with one callback to the element specified.
 | --- | --- | --- | --- |
 | element | <code>Element</code> |  | The element to add the event listeners to. |
 | events | <code>Array.&lt;String&gt;</code> |  | The array of events to listen for. |
-| handler | [<code>function</code>](#function) |  | The function to run when the events happen. |
+| handler | [<code>eventListenersCallback</code>](#eventListenersCallback) |  | The function to run when the events happen. |
 | [useCapture] | <code>Boolean</code> \| <code>Object</code> | <code>false</code> | Whether to use capture, or an options object. |
 | [args] | <code>Array</code> | <code>false</code> | The arguments to use in the handler function. |
 
@@ -969,7 +1002,7 @@ Sorts a table using JavaScript. This appends click listeners to every TH in the 
 | Param | Type | Description |
 | --- | --- | --- |
 | element | <code>HTMLTableElement</code> | The table to sort |
-| [cellVal] | [<code>function</code>](#function) | The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell. |
+| [cellVal] | [<code>sortTableCallback</code>](#sortTableCallback) | The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell. |
 
 **Example**  
 ```js
@@ -1317,13 +1350,13 @@ The function namespace of Bijou.js, containing functions to work with functions 
 **Kind**: global namespace  
 
 * [function](#function) : [<code>object</code>](#object)
-    * [.exports.juxt](#function.exports.juxt) ⇒ [<code>Array.&lt;array&gt;</code>](#array)
+    * [.exports.juxt](#function.exports.juxt) ⇒ [<code>juxtCallback</code>](#juxtCallback)
     * [.exports.sleep](#function.exports.sleep) ⇒ <code>Promise</code>
     * [.exports.limitArgs](#function.exports.limitArgs) ⇒ [<code>function</code>](#function)
     * [.exports.fastestFunction](#function.exports.fastestFunction) ⇒ <code>Number</code>
-    * [.exports.spread(fn)](#function.exports.spread) ⇒ [<code>function</code>](#function)
+    * [.exports.spread(fn)](#function.exports.spread) ⇒ [<code>spreadCallback</code>](#spreadCallback)
     * [.exports.memoize(fn)](#function.exports.memoize) ⇒ [<code>function</code>](#function)
-    * [.exports.composeFunction(...The)](#function.exports.composeFunction) ⇒ [<code>function</code>](#function)
+    * [.exports.composeFunction(...functions)](#function.exports.composeFunction) ⇒ [<code>function</code>](#function)
     * [.exports.curryFunction(fn, [arity])](#function.exports.curryFunction) ⇒ [<code>function</code>](#function)
     * [.exports.isAsync(val)](#function.exports.isAsync) ⇒ <code>Boolean</code>
     * [.exports.timeFunction(fn, [name])](#function.exports.timeFunction) ⇒ <code>Object</code>
@@ -1333,11 +1366,11 @@ The function namespace of Bijou.js, containing functions to work with functions 
 
 <a name="function.exports.juxt"></a>
 
-### function.exports.juxt ⇒ [<code>Array.&lt;array&gt;</code>](#array)
+### function.exports.juxt ⇒ [<code>juxtCallback</code>](#juxtCallback)
 Runs a list of functions with a list of arguments.
 
 **Kind**: static property of [<code>function</code>](#function)  
-**Returns**: [<code>Array.&lt;array&gt;</code>](#array) - The list of outputs.  
+**Returns**: [<code>juxtCallback</code>](#juxtCallback) - The function to run with the args.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1400,7 +1433,7 @@ Returns the index of the fastest function in an array of functions.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| fns | <code>Array</code> |  | The array of functions to execute. |
+| fns | <code>Array.&lt;function()&gt;</code> |  | The array of functions to execute. |
 | [iterations] | <code>Number</code> | <code>1000</code> | How many times to execute the functions. (More is more reliable but takes longer.) |
 
 **Example**  
@@ -1409,7 +1442,7 @@ _$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("<h1>Hello world</h1>", "h
 ```
 <a name="function.exports.spread"></a>
 
-### function.exports.spread(fn) ⇒ [<code>function</code>](#function)
+### function.exports.spread(fn) ⇒ [<code>spreadCallback</code>](#spreadCallback)
 Uses an array of arguments to make a function based on the one inputted.
 
 **Kind**: static method of [<code>function</code>](#function)  
@@ -1443,7 +1476,7 @@ let uuid = _$.memoize(() => _$.uuid()); // uuid will always return the same uuid
 ```
 <a name="function.exports.composeFunction"></a>
 
-### function.exports.composeFunction(...The) ⇒ [<code>function</code>](#function)
+### function.exports.composeFunction(...functions) ⇒ [<code>function</code>](#function)
 Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
 
 **Kind**: static method of [<code>function</code>](#function)  
@@ -1451,7 +1484,7 @@ Composes two functions together. Read more here: https://www.codementor.io/@mich
 
 | Param | Type | Description |
 | --- | --- | --- |
-| ...The | [<code>function</code>](#function) | functions to be composed. |
+| ...functions | [<code>function</code>](#function) | The functions to be composed. |
 
 **Example**  
 ```js
@@ -1505,7 +1538,7 @@ Times the function passed.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | fn | [<code>function</code>](#function) |  | The function to run and time. |
-| [name] | <code>String</code> | <code>_$ function timer</code> |  |
+| [name] | <code>String</code> | <code>_$ function timer</code> | The name of the timer |
 
 **Example**  
 ```js
@@ -1573,13 +1606,13 @@ The math namespace of Bijou.js, containing functions to validate credit card num
 **Kind**: global namespace  
 
 * [math](#math) : [<code>object</code>](#object)
-    * [.ease](#math.ease) ⇒ [<code>function</code>](#function)
+    * [.ease](#math.ease) : [<code>object</code>](#object)
     * [.exports.gcd(...arr)](#math.exports.gcd) ⇒ <code>Number</code>
     * [.exports.equals(a, b)](#math.exports.equals)
     * [.exports.isPrime(num)](#math.exports.isPrime) ⇒ <code>boolean</code>
     * [.exports.factorial(n)](#math.exports.factorial) ⇒ <code>Number</code>
     * [.exports.luhnCheck(num)](#math.exports.luhnCheck)
-    * [.exports.animate(start, end, duration, callback, [interval], num)](#math.exports.animate) ⇒ <code>Number</code>
+    * [.exports.animate(start, end, duration, callback, [interval], [num])](#math.exports.animate) ⇒ <code>Number</code>
     * [.exports.range(start, end)](#math.exports.range) ⇒ <code>Array.&lt;Number&gt;</code>
     * [.exports.uuid([seed])](#math.exports.uuid) ⇒ <code>String</code>
     * [.exports.primesTo(num)](#math.exports.primesTo) ⇒ <code>Array.&lt;Number&gt;</code>
@@ -1589,11 +1622,10 @@ The math namespace of Bijou.js, containing functions to validate credit card num
 
 <a name="math.ease"></a>
 
-### math.ease ⇒ [<code>function</code>](#function)
+### math.ease : [<code>object</code>](#object)
 Easing functions
 
 **Kind**: static namespace of [<code>math</code>](#math)  
-**Returns**: [<code>function</code>](#function) - The easing function.  
 **Example**  
 ```js
 console.log(_$.ease.easeInOutQuad(.3)); // 0.18 - the eased point of about 1/3 along the animation.
@@ -1687,7 +1719,7 @@ Performs the Luhn Check on a number, which is used to validate credit card numbe
 ```
 <a name="math.exports.animate"></a>
 
-### math.exports.animate(start, end, duration, callback, [interval], num) ⇒ <code>Number</code>
+### math.exports.animate(start, end, duration, callback, [interval], [num]) ⇒ <code>Number</code>
 Animates a number from one value to another.
 
 **Kind**: static method of [<code>math</code>](#math)  
@@ -1698,9 +1730,9 @@ Animates a number from one value to another.
 | start | <code>Number</code> |  | The initial value of the number in the animation |
 | end | <code>Number</code> |  | The final value of the number in the animation |
 | duration | <code>Number</code> |  | The duration of the animation in milliseconds |
-| callback | [<code>function</code>](#function) |  | The callback function to run with the number and the percentage (Between 0 and 1) of the animation. |
+| callback | [<code>animateCallback</code>](#animateCallback) |  | The callback function to run with the number and the percentage (Between 0 and 1) of the animation. |
 | [interval] | <code>Number</code> | <code>20</code> | The amount of time to wait between frames in milliseconds. |
-| num | [<code>function</code>](#function) |  | The function to run to manipulate the timing of the animation, for example setting this to (current_number) => current_number **2 would make a simple ease in function. (The value recieved by this is also between 0 and 1, feel free to use some stuff from _$.ease.FUNCTION_HERE(current_number) to incorporate easy easing!) |
+| [num] | [<code>animateNumCallback</code>](#animateNumCallback) | <code>(num)&#x3D;&gt;num</code> | The function to run to manipulate the timing of the animation, for example setting this to (current_number) => current_number **2 would make a simple ease in function. (The value received by this is also between 0 and 1, feel free to use some stuff from _$.ease.FUNCTION_HERE(current_number) to incorporate easy easing!) |
 
 **Example**  
 ```js
@@ -1875,8 +1907,8 @@ let cloned = _$.clone(obj); // cloned can be operated on without changing obj
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | obj | <code>Object</code> |  | The object to listen to. |
-| [getCallback] | [<code>function</code>](#function) | <code>()&#x3D;&gt;null</code> | The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key). |
-| [setCallback] | [<code>function</code>](#function) | <code>()&#x3D;&gt;null</code> | The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key). |
+| [getCallback] | [<code>listenCallback</code>](#listenCallback) | <code>()&#x3D;&gt;null</code> | The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key). |
+| [setCallback] | [<code>listenCallback</code>](#listenCallback) | <code>()&#x3D;&gt;null</code> | The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key). |
 
 **Example**  
 ```js
@@ -1913,7 +1945,7 @@ Maps the keys of an object.
 | Param | Type | Description |
 | --- | --- | --- |
 | obj | <code>Object</code> | The object to map. |
-| fn | [<code>function</code>](#function) | The function to run (passed the current key of the object) which returns the new value from that key. |
+| fn | [<code>mapObjKeysCallback</code>](#mapObjKeysCallback) | The function to run (passed the current key of the object) which returns the new value from that key. |
 
 **Example**  
 ```js
@@ -1931,7 +1963,7 @@ Maps an object's values.
 | Param | Type | Description |
 | --- | --- | --- |
 | obj | <code>Object</code> | The object to map the values of. |
-| fn | [<code>function</code>](#function) | The callback function to use. |
+| fn | [<code>mapObjValuesCallback</code>](#mapObjValuesCallback) | The callback function to use. |
 
 **Example**  
 ```js
@@ -2091,7 +2123,7 @@ Lets you use a for loop in template literals.
 | Param | Type | Description |
 | --- | --- | --- |
 | arr | <code>Array</code> | The array to loop. |
-| callback | [<code>function</code>](#function) | The callback to return strings |
+| callback | [<code>mapCallback</code>](#mapCallback) | The callback to return strings |
 
 **Example**  
 ```js
@@ -2108,7 +2140,7 @@ Maps a string like an array.
 | Param | Type | Description |
 | --- | --- | --- |
 | str | <code>String</code> | The string to map |
-| fn | [<code>function</code>](#function) | The callback function to run to map the string. |
+| fn | [<code>mapCallback</code>](#mapCallback) | The callback function to run to map the string. |
 
 **Example**  
 ```js
@@ -2475,7 +2507,7 @@ The utility namespace of Bijou.js, containing utilities to do many things, such 
     * [.exports.tag](#utility.exports.tag) ⇒ [<code>function</code>](#function)
     * [.preload](#utility.preload) : [<code>object</code>](#object)
     * [.cookies](#utility.cookies) ⇒ [<code>function</code>](#function)
-    * [.exports.regex](#utility.exports.regex) ⇒ <code>Regexp</code>
+    * [.regex](#utility.regex) ⇒ <code>Regexp</code>
     * [.exports.resize(url, [width], [height])](#utility.exports.resize) ⇒ [<code>Promise.&lt;string&gt;</code>](#string)
     * [.exports.htmlToImage(html, [opts])](#utility.exports.htmlToImage) ⇒ [<code>Promise.&lt;string&gt;</code>](#string)
     * [.callbackify(fn)](#utility.callbackify) ⇒ [<code>function</code>](#function)
@@ -2537,9 +2569,9 @@ A set of functions to set and modify cookies.
 ```js
 _$.cookies.setItem("a_cookie", "Hello world!", 1); // Set a_cookie to "Hello world" and have it expire in a day.
 ```
-<a name="utility.exports.regex"></a>
+<a name="utility.regex"></a>
 
-### utility.exports.regex ⇒ <code>Regexp</code>
+### utility.regex ⇒ <code>Regexp</code>
 A collection of regular expressions to validate and get common things from a page
 
 **Kind**: static namespace of [<code>utility</code>](#utility)  
@@ -3013,3 +3045,141 @@ _$.soundex("explosion");//"E214"
 Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
 
 **Kind**: global function  
+<a name="averageByFn"></a>
+
+## averageByFn ⇒ <code>Number</code>
+**Kind**: global typedef  
+**Returns**: <code>Number</code> - The number to average  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| number | <code>Number</code> | The number to perform the operation on |
+
+<a name="eachCallback"></a>
+
+## eachCallback : [<code>function</code>](#function)
+**Kind**: global typedef  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| x | <code>any</code> | The item of the array/string/number range |
+| i | <code>Number</code> | The index of the item in the array/string/number range |
+| array | <code>Array.&lt;any&gt;</code> | The original array |
+
+<a name="replaceTextCallback"></a>
+
+## replaceTextCallback ⇒ <code>String</code>
+**Kind**: global typedef  
+**Returns**: <code>String</code> - The replaced text  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| text | <code>String</code> | The text to replace |
+
+<a name="eventListenersCallback"></a>
+
+## eventListenersCallback ⇒ <code>undefined</code>
+**Kind**: global typedef  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| e | <code>Event</code> | The event object |
+
+<a name="sortTableCallback"></a>
+
+## sortTableCallback ⇒ <code>String</code>
+**Kind**: global typedef  
+**Returns**: <code>String</code> - The cell content  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| td | <code>HTMLTableCellElement</code> | The td element |
+| tr | <code>HTMLTableRowElement</code> | The tr element |
+| cellIndex | <code>Number</code> | The cell index |
+
+<a name="scrollStopCallback"></a>
+
+## scrollStopCallback ⇒ <code>undefined</code>
+**Kind**: global typedef  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| event | <code>UIEvent</code> | The event object |
+
+<a name="juxtCallback"></a>
+
+## juxtCallback ⇒ [<code>Array.&lt;array&gt;</code>](#array)
+**Kind**: global typedef  
+**Returns**: [<code>Array.&lt;array&gt;</code>](#array) - The list of outputs.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...args | <code>any</code> | The arguments to run on the functions |
+
+<a name="spreadCallback"></a>
+
+## spreadCallback ⇒ <code>any</code>
+**Kind**: global typedef  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| args | <code>Array</code> | The array of arguments |
+
+<a name="listenCallback"></a>
+
+## listenCallback ⇒ <code>undefined</code>
+**Kind**: global typedef  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>String</code> \| <code>Symbol</code> | The key being accessed |
+| value | <code>any</code> | The value of the key being accessed |
+
+<a name="mapObjKeysCallback"></a>
+
+## mapObjKeysCallback ⇒ <code>String</code>
+**Kind**: global typedef  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>String</code> | The key |
+
+<a name="mapObjValuesCallback"></a>
+
+## mapObjValuesCallback ⇒ <code>any</code>
+**Kind**: global typedef  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>any</code> | The value |
+
+<a name="animateNumCallback"></a>
+
+## animateNumCallback ⇒ <code>Number</code>
+**Kind**: global typedef  
+
+| Param | Type |
+| --- | --- |
+| num | <code>Number</code> | 
+
+<a name="animateCallback"></a>
+
+## animateCallback ⇒ <code>undefined</code>
+**Kind**: global typedef  
+
+| Param | Type |
+| --- | --- |
+| num | <code>Number</code> | 
+| percent | <code>Number</code> | 
+
+<a name="mapCallback"></a>
+
+## mapCallback : [<code>function</code>](#function)
+**Kind**: global typedef  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| item | <code>any</code> | The item |
+| i | <code>Number</code> | The index of the item |
+| arr | <code>Array</code> | The original array |
+
