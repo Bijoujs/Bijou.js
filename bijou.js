@@ -77,7 +77,9 @@ if (
 }
 
 if (isNode) {
-	console.warn();
+	console.warn(
+		"There is no document element in Node so some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.",
+	);
 }
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
@@ -421,11 +423,16 @@ export let unionArrays = (
 	return res;
 };
 /**
+ * @callback averageByFn
+ * @param {Number} number The number to perform the operation on
+ * @returns {Number} The number to average
+ */
+/**
  * averageBy
  * @function
  * @memberOf array
  * @param {Array.<number>} arr The array to average
- * @param {Function} fn The function to apply to each item of the array.
+ * @param {averageByFn} fn The function to apply to each item of the array.
  * @example
  * Logs the average of the first 4 square numbers:
  * console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5
@@ -452,11 +459,17 @@ export let uniqueArray = (array = req("array", "array")) => [
 	...new Set(array),
 ];
 /**
+ * @callback eachCallback
+ * @param {any} x The item of the array/string/number range
+ * @param {Number} i The index of the item in the array/string/number range
+ * @param {any[]} array The original array
+ */
+/**
  * For each item in an array, run a callback with it.
  * @function
  * @memberOf array
  * @param {Array|String|Number} array The array, string or number to run the callback with.
- * @param {Function} callback The callback function to run on the array items.
+ * @param {eachCallback} callback The callback function to run on the array items.
  * @example
  * _$.each(new Array(6), (array_item, i) => console.log(i));
  * // 0
@@ -1259,11 +1272,16 @@ export let inPartialView = (el = req("HTMLElement", "element")) => {
 };
 
 /**
+ * @callback replaceTextCallback
+ * @param {String} text The text to replace
+ * @returns {String} The replaced text
+ */
+/**
  * Replaces the text in an element by running it through a callback.
  * @function
  * @memberOf element
  * @param {Element} el The element to replace the text of.
- * @param {Function} callback The callback to run (Gets passed the element's text).
+ * @param {replaceTextCallback} callback The callback to run (Gets passed the element's text).
  * @example
  * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
  * // Converts the text of the first <div> element to upperCase.
@@ -1522,12 +1540,17 @@ export let drag = (
 };
 
 /**
+ * @callback eventListenersCallback
+ * @param {Event} e The event object
+ * @returns {undefined}
+ */
+/**
  * Adds multiple event listeners with one callback to the element specified.
  * @memberOf element
  * @function
  * @param {Element} element The element to add the event listeners to.
  * @param {Array.<String>} events The array of events to listen for.
- * @param {Function} handler The function to run when the events happen.
+ * @param {eventListenersCallback} handler The function to run when the events happen.
  * @param {Boolean|Object} [useCapture=false] Whether to use capture, or an options object.
  * @param {Array} [args=false] The arguments to use in the handler function.
  * @example
@@ -1565,19 +1588,26 @@ export let addEventListeners = (
 	}
 	return element;
 };
+
+/**
+ * @callback sortTableCallback
+ * @param {HTMLTableCellElement} td The td element
+ * @param {HTMLTableRowElement} tr The tr element
+ * @param {Number} cellIndex The cell index
+ * @returns {String} The cell content
+ */
 /**
  * @memberOf element
  * @function
  * @returns {HTMLTableElement} The table element.
  * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
  * @param {HTMLTableElement} element The table to sort
- * @param {Function} [cellVal] The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell.
+ * @param {sortTableCallback} [cellVal] The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell.
  * @example
  * _$.sortTable(document.querySelector("table"));//Done.
  * @example
  * _$.sortTable(document.querySelector("table"), (i) => i.getAttribute("data-sort"));//Sorts the table by each cell's 'data-sort' attribute.
  */
-
 export let sortTable = (
 	element = req("HTMLTableElement", "table element"),
 	cellVal = undefined,
@@ -1904,12 +1934,12 @@ export let tilt = (
  */
 export let fullScreen = (element = req("HTMLElement", "element")) => {
 	node();
-	return (
-		element.requestFullScreen?.() ||
-		element.mozRequestFullScreen?.() ||
-		element.webkitRequestFullScreen?.() ||
-		new Error("Fullscreen failed")
-	);
+	if (element.requestFullScreen) return element.requestFullScreen();
+	else if (element.mozRequestFullScreen)
+		return element.mozRequestFullScreen();
+	else if (element.webkitRequestFullScreen)
+		return element.webkitRequestFullScreen();
+	else return new Error("Fullscreen failed");
 };
 /**
  * Replaces the selected text in a contentEditable div with the HTML given.
@@ -2007,6 +2037,11 @@ export let onOutsideClick = (
 	});
 };
 /**
+ * @callback scrollStopCallback
+ * @param {UIEvent} event The event object
+ * @returns {undefined}
+ */
+/**
  * Returns the callback when the user stops scrolling.
  * @function
  * @memberOf event
@@ -2093,8 +2128,13 @@ export let dispatch = (
 //#endregion Event
 //#region Function
 /**
- * Runs a list of functions with a list of arguments.
+ * @callback juxtCallback
+ * @param {...any} args The arguments to run on the functions
  * @returns {Array.<array>} The list of outputs.
+ */
+/**
+ * Runs a list of functions with a list of arguments.
+ * @returns {juxtCallback} The function to run with the args.
  * @memberOf function
  * @example
  * //It returns an array of outputs, each item in the base array is the output of one function, and each item in that array is the output for each argument.
@@ -2148,7 +2188,7 @@ export let limitArgs =
  * @returns {Number} The index of the fastest function in the array.
  * @example
  * _$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("<h1>Hello world</h1>", "html")]);//0, the first function.
- * @param {Array} fns The array of functions to execute.
+ * @param {Array.<Function>} fns The array of functions to execute.
  * @param {Number} [iterations=1000] How many times to execute the functions. (More is more reliable but takes longer.)
  */
 export let fastestFunction = (fns, iterations = 1000) => {
@@ -2161,10 +2201,15 @@ export let fastestFunction = (fns, iterations = 1000) => {
 };
 
 /**
+ * @callback spreadCallback
+ * @param {Array} args The array of arguments
+ * @returns {any}
+ */
+/**
  * Uses an array of arguments to make a function based on the one inputted.
  * @memberOf function
  * @function
- * @returns {Function}
+ * @returns {spreadCallback}
  * @example
  * var say = _$.spread(function(who, what) {
     return who + ' says ' + what;
@@ -2203,7 +2248,7 @@ export let memoize = (fn = req("function")) => {
  * Composes two functions together. Read more here: https://www.codementor.io/@michelre/use-function-composition-in-javascript-gkmxos5mj
  * @function
  * @memberOf function
- * @param {...Function} The functions to be composed.
+ * @param {...Function} functions The functions to be composed.
  * @returns {Function} The composed function.
  * @example
  * const add2 = (x) => x + 2;
@@ -2254,7 +2299,7 @@ export let isAsync = (val = req("function")) =>
  * @function
  * @memberOf function
  * @param {Function} fn The function to run and time.
- * @param {String} [name=_$ function timer]
+ * @param {String} [name=_$ function timer] The name of the timer
  * @example
  * // Times how long it took the user to enter their name.
  * _$.timeFunction(() => prompt("What's your name?"));
@@ -2516,11 +2561,17 @@ export let clone = (
 	return dest;
 };
 /**
+ * @callback listenCallback
+ * @param {String|Symbol} key The key being accessed
+ * @param {any} value The value of the key being accessed
+ * @returns {undefined}
+ */
+/**
  * @memberOf object
  * @function
  * @param {Object} obj The object to listen to.
- * @param {Function} [getCallback=()=>null] The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).
- * @param {Function} [setCallback=()=>null] The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).
+ * @param {listenCallback} [getCallback=()=>null] The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).
+ * @param {listenCallback} [setCallback=()=>null] The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).
  * @example
  * let obj = {something: "This is part of the object", anotherThing: "This is another!"};
  * obj = _$.listen(obj, (k, v) => console.log(`set ${k} to ${v}`), () => console.log("Gotten"));
@@ -2576,11 +2627,16 @@ export let merge = function MergeRecursive(
 	return obj1;
 };
 /**
+ * @callback mapObjKeysCallback
+ * @param {String} key The key
+ * @returns {String}
+ */
+/**
  * Maps the keys of an object.
  * @function
  * @memberOf object
  * @param {Object} obj The object to map.
- * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
+ * @param {mapObjKeysCallback} fn The function to run (passed the current key of the object) which returns the new value from that key.
  * @example
  * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
  * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
@@ -2604,11 +2660,16 @@ export let mapObjectKeys = (
 		  }, {})
 		: obj;
 /**
+ * @callback mapObjValuesCallback
+ * @param {any} value The value
+ * @returns {any}
+ */
+/**
  * Maps an object's values.
  * @memberOf object
  * @function
  * @param {Object} obj The object to map the values of.
- * @param {Function} fn The callback function to use.
+ * @param {mapObjValuesCallback} fn The callback function to use.
  * @returns {Object} The mapped object.
  * @example
  * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }
@@ -2687,6 +2748,7 @@ export let gcd = (...ary) => {
 	} else {
 		return getGCD([...ary]);
 	}
+
 	function getGCD(arr) {
 		let min = Math.min(...arr);
 		let max = Math.max(...arr);
@@ -2797,22 +2859,33 @@ export let luhnCheck = (num = req("String|Number")) => {
 	return sum % 10 === 0;
 };
 /**
+ * @callback animateNumCallback
+ * @param {Number} num
+ * @returns {Number}
+ */
+/**
+ * @callback animateCallback
+ * @param {Number} num
+ * @param {Number} percent
+ * @returns {undefined}
+ */
+/**
  * Animates a number from one value to another.
  * @function
  * @memberOf math
  * @param {Number} start The initial value of the number in the animation
  * @param {Number} end The final value of the number in the animation
  * @param {Number} duration The duration of the animation in milliseconds
- * @param {Function} callback The callback function to run with the number and the percentage (Between 0 and 1) of the animation.
+ * @param {animateCallback} callback The callback function to run with the number and the percentage (Between 0 and 1) of the animation.
  * @param {Number} [interval=20] The amount of time to wait between frames in milliseconds.
- * @param {Function} num The function to run to manipulate the timing of the animation, for example setting this to (current_number) => current_number **2 would make a simple ease in function. (The value recieved by this is also between 0 and 1, feel free to use some stuff from _$.ease.FUNCTION_HERE(current_number) to incorporate easy easing!)
+ * @param {animateNumCallback} [num=(num)=>num] The function to run to manipulate the timing of the animation, for example setting this to (current_number) => current_number **2 would make a simple ease in function. (The value received by this is also between 0 and 1, feel free to use some stuff from _$.ease.FUNCTION_HERE(current_number) to incorporate easy easing!)
  * @example
  * Animates from 50 to 100 over the course of 3 seconds, updating every half second, and writing the current value to the document body.
  * _$.animate(50,100, 3000, (e) => document.body.innerHTML = (Math.round(e)), 500, (num) => _$.ease.easeInOutQuart(num));
  * @returns {Number} A unique number representing the setInterval loop used in the animation.
  */
 // prettier-ignore
-export let animate = (start = req("Number", "start"), end = req("Number", "end"), duration=req("number", "duration"), callback = req("function", "callback"), interval = 20, num = (num) => num) => {
+export let animate = (start = req("Number", "start"), end = req("Number", "end"), duration = req("number", "duration"), callback = req("function", "callback"), interval = 20, num = (num) => num) => {
     var value = start;
     var start_time = Date.now();
     let update = setInterval(() => {
@@ -2824,7 +2897,7 @@ export let animate = (start = req("Number", "start"), end = req("Number", "end")
         callback(end, 1);
         return;
     }, duration);
-	return update
+    return update
 }
 /**
  * Returns an array of the whole numbers (inclusive) between the numbers specified.
@@ -2859,6 +2932,7 @@ export let uuid = (seed = Math.random()) => {
 		// Convert string to a number between 0 and 1
 		seed = _temp.hashString(seed) / 10000000000000000;
 	}
+
 	function _p8(s) {
 		var p = (seed.toString(16) + "000000000").substr(2, 8);
 		return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
@@ -2905,12 +2979,9 @@ export let random = (
 	round = true,
 	seed = Math.random(),
 ) => {
-	if (min > max) {
-		[min, max] = [max, min];
-	}
-	var out = seed * (max - min + 1) + min;
+	let out = seed * (max - min + 1) + min;
 	if (round) {
-		out = Math.round(out);
+		out = Math.floor(out);
 	}
 	return out;
 };
@@ -2947,28 +3018,31 @@ export let formatNumber = (n = req("number", "number")) =>
  * @memberOf math
  * @example
  * console.log(_$.ease.easeInOutQuad(.3)); // 0.18 - the eased point of about 1/3 along the animation.
- * @returns {Function} The easing function.
  */
 export let ease = {
 	// no easing, no acceleration
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	linear: (t = req("number", "percentage")) => t,
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeInSine: (t = req("number", "percentage")) =>
 		1 - Math.cos((t * Math.PI) / 2),
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeOutSine: (t = req("number", "percentage")) =>
 		Math.sin((t * Math.PI) / 2),
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -2976,18 +3050,21 @@ export let ease = {
 		-(Math.cos(Math.PI * t) - 1) / 2,
 	// accelerating from zero velocity
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeInQuad: (t = req("number", "percentage")) => t * t,
 	// decelerating to zero velocity
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeOutQuad: (t = req("number", "percentage")) => t * (2 - t),
 	// acceleration until halfway, then deceleration
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -2995,18 +3072,21 @@ export let ease = {
 		t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
 	// accelerating from zero velocity
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeInCubic: (t = req("number", "percentage")) => t * t * t,
 	// decelerating to zero velocity
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeOutCubic: (t = req("number", "percentage")) => --t * t * t + 1,
 	// acceleration until halfway, then deceleration
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3014,12 +3094,14 @@ export let ease = {
 		t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
 	// accelerating from zero velocity
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeInQuart: (t = req("number", "percentage")) => t * t * t * t,
 	// decelerating to zero velocity
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3027,6 +3109,7 @@ export let ease = {
 		1 - --t * t * t * t,
 	// acceleration until halfway, then deceleration
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3034,12 +3117,14 @@ export let ease = {
 		t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t,
 	// accelerating from zero velocity
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeInQuint: (t = req("number", "percentage")) => t * t * t * t * t,
 	// decelerating to zero velocity
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3047,24 +3132,28 @@ export let ease = {
 		1 + --t * t * t * t * t,
 	// acceleration until halfway, then deceleration
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeInOutQuint: (t = req("number", "percentage")) =>
 		t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t,
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeInExpo: (t = req("number", "percentage")) =>
 		t === 0 ? 0 : Math.pow(2, 10 * t - 10),
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeOutExpo: (t = req("number", "percentage")) =>
 		t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3077,18 +3166,21 @@ export let ease = {
 			? Math.pow(2, 20 * t - 10) / 2
 			: (2 - Math.pow(2, -20 * t + 10)) / 2,
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeInCirc: (t = req("number", "percentage")) =>
 		1 - Math.sqrt(1 - t * t),
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeOutCirc: (t = req("number", "percentage")) =>
 		Math.sqrt(1 - (t - 1) * (t - 1)),
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3097,18 +3189,21 @@ export let ease = {
 			? 1 - Math.sqrt(1 - 4 * t * t) / 2
 			: (Math.sqrt(1 - Math.pow(-2 * t + 2, 2)) + 1) / 2,
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeInBack: (t = req("number", "percentage")) =>
 		2.70158 * t * t * t - 1.70158 * t * t,
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
 	easeOutBack: (t = req("number", "percentage")) =>
 		1 + 2.70158 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2),
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3121,6 +3216,7 @@ export let ease = {
 					2;
 	},
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3132,6 +3228,7 @@ export let ease = {
 			: -Math.pow(2, 10 * t - 10) *
 			  Math.sin(((t * 10 - 10.75) * (2 * Math.PI)) / 3),
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3144,6 +3241,7 @@ export let ease = {
 					Math.sin(((t * 10 - 0.75) * (2 * Math.PI)) / 3) +
 			  1,
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3162,6 +3260,7 @@ export let ease = {
 					2 +
 			  1,
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3186,6 +3285,7 @@ export let ease = {
 		}
 	},
 	/**
+	 * @function
 	 * @param {Number} t A number between 0 and 1 representing a linearly progressing percentage through the animation.
 	 * @returns {Number} A number between 0 and 1 that is the eased version of the 't' parameter.
 	 */
@@ -3402,11 +3502,17 @@ export let hash = (val = req("string", "input string")) => {
 		});
 };
 /**
+ * @callback mapCallback
+ * @param {any} item The item
+ * @param {Number} i The index of the item
+ * @param {Array} arr The original array
+ */
+/**
  * Lets you use a for loop in template literals.
  * @function
  * @memberOf string
  * @param {Array} arr The array to loop.
- * @param {Function} callback The callback to return strings
+ * @param {mapCallback} callback The callback to return strings
  * @example
  * console.log(`Things: ${_$.forTemplateLiteral(["apple", "orange"], (item, i) => {return `an ${item}`})}`)
  * // "Things: an apple an orange
@@ -3425,7 +3531,7 @@ export let forTemplateLiteral = (
  * @example
  * _$.mapString("Hello world", (e) => e.toUpperCase());//Returns "HELLO WORLD"
  * @param {String} str The string to map
- * @param {Function} fn The callback function to run to map the string.
+ * @param {mapCallback} fn The callback function to run to map the string.
  */
 export let mapString = (
 	str = req("string", "string"),
@@ -5042,7 +5148,7 @@ export let cookies = {
 /**
  * A collection of regular expressions to validate and get common things from a page
  * @memberOf utility
- * @namespace
+ * @namespace regex
  * @example
  * if (_$.regex.email.test("email@gmail.com") alert("That is a valid email!")
  * @returns {Regexp} A regex

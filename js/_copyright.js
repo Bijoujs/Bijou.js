@@ -77,7 +77,9 @@ if (
 }
 
 if (isNode) {
-	console.warn("There is no document element in Node so some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.");
+	console.warn(
+		"There is no document element in Node so some functions of bijou.js will not work. If you need these functions consider using a package like jsDom to recreate the document element.",
+	);
 }
 /**
  * @description Tests if the user is using Node.js or not and throws an error in specific functions (that require the DOM) if they are.
