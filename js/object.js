@@ -116,11 +116,17 @@ export let clone = (
 	return dest;
 };
 /**
+ * @callback listenCallback
+ * @param {String|Symbol} key The key being accessed
+ * @param {any} value The value of the key being accessed
+ * @returns {undefined}
+ */
+/**
  * @memberOf object
  * @function
  * @param {Object} obj The object to listen to.
- * @param {Function} [getCallback=()=>null] The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).
- * @param {Function} [setCallback=()=>null] The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).
+ * @param {listenCallback} [getCallback=()=>null] The callback function to run when a value is set, with the arguments, key (the key changed) and value (the new value of the key).
+ * @param {listenCallback} [setCallback=()=>null] The callback function to run when a value is gotten, with the arguments, key (the key got) and value (the value of the key).
  * @example
  * let obj = {something: "This is part of the object", anotherThing: "This is another!"};
  * obj = _$.listen(obj, (k, v) => console.log(`set ${k} to ${v}`), () => console.log("Gotten"));
@@ -176,11 +182,16 @@ export let merge = function MergeRecursive(
 	return obj1;
 };
 /**
+ * @callback mapObjKeysCallback
+ * @param {String} key The key
+ * @returns {String}
+ */
+/**
  * Maps the keys of an object.
  * @function
  * @memberOf object
  * @param {Object} obj The object to map.
- * @param {Function} fn The function to run (passed the current key of the object) which returns the new value from that key.
+ * @param {mapObjKeysCallback} fn The function to run (passed the current key of the object) which returns the new value from that key.
  * @example
  * _$.mapObjectKeys({something: "A value", anotherThing: "Another value!"}, (key) => key.toUpperCase());
  * //Returns {SOMETHING: "A value", ANOTHERTHING: "Another value!"}
@@ -204,11 +215,16 @@ export let mapObjectKeys = (
 		  }, {})
 		: obj;
 /**
+ * @callback mapObjValuesCallback
+ * @param {any} value The value
+ * @returns {any}
+ */
+/**
  * Maps an object's values.
  * @memberOf object
  * @function
  * @param {Object} obj The object to map the values of.
- * @param {Function} fn The callback function to use.
+ * @param {mapObjValuesCallback} fn The callback function to use.
  * @returns {Object} The mapped object.
  * @example
  * console.log(_$.mapObjectValues({ hello: "World", bijou: "is GREAT" }, val => val.toLowerCase())); // { hello: "world", bijou: "is great" }

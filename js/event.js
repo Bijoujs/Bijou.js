@@ -58,6 +58,11 @@ export let onOutsideClick = (
 	});
 };
 /**
+ * @callback scrollStopCallback
+ * @param {UIEvent} event The event object
+ * @returns {undefined}
+ */
+/**
  * Returns the callback when the user stops scrolling.
  * @function
  * @memberOf event

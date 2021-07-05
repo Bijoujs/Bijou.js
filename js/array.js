@@ -260,11 +260,16 @@ export let unionArrays = (
 	return res;
 };
 /**
+ * @callback averageByFn
+ * @param {Number} number The number to perform the operation on
+ * @returns {Number} The number to average
+ */
+/**
  * averageBy
  * @function
  * @memberOf array
  * @param {Array.<number>} arr The array to average
- * @param {Function} fn The function to apply to each item of the array.
+ * @param {averageByFn} fn The function to apply to each item of the array.
  * @example
  * Logs the average of the first 4 square numbers:
  * console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5
@@ -291,11 +296,17 @@ export let uniqueArray = (array = req("array", "array")) => [
 	...new Set(array),
 ];
 /**
+ * @callback eachCallback
+ * @param {any} x The item of the array/string/number range
+ * @param {Number} i The index of the item in the array/string/number range
+ * @param {any[]} array The original array
+ */
+/**
  * For each item in an array, run a callback with it.
  * @function
  * @memberOf array
  * @param {Array|String|Number} array The array, string or number to run the callback with.
- * @param {Function} callback The callback function to run on the array items.
+ * @param {eachCallback} callback The callback function to run on the array items.
  * @example
  * _$.each(new Array(6), (array_item, i) => console.log(i));
  * // 0

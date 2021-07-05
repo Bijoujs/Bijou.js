@@ -461,11 +461,16 @@ export let inPartialView = (el = req("HTMLElement", "element")) => {
 };
 
 /**
+ * @callback replaceTextCallback
+ * @param {String} text The text to replace
+ * @returns {String} The replaced text
+ */
+/**
  * Replaces the text in an element by running it through a callback.
  * @function
  * @memberOf element
  * @param {Element} el The element to replace the text of.
- * @param {Function} callback The callback to run (Gets passed the element's text).
+ * @param {replaceTextCallback} callback The callback to run (Gets passed the element's text).
  * @example
  * _$.replaceText(document.querySelector("div"), (text) => text.toUpperCase());
  * // Converts the text of the first <div> element to upperCase.
@@ -724,12 +729,17 @@ export let drag = (
 };
 
 /**
+ * @callback eventListenersCallback
+ * @param {Event} e The event object
+ * @returns {undefined}
+ */
+/**
  * Adds multiple event listeners with one callback to the element specified.
  * @memberOf element
  * @function
  * @param {Element} element The element to add the event listeners to.
  * @param {Array.<String>} events The array of events to listen for.
- * @param {Function} handler The function to run when the events happen.
+ * @param {eventListenersCallback} handler The function to run when the events happen.
  * @param {Boolean|Object} [useCapture=false] Whether to use capture, or an options object.
  * @param {Array} [args=false] The arguments to use in the handler function.
  * @example
@@ -767,19 +777,26 @@ export let addEventListeners = (
 	}
 	return element;
 };
+
+/**
+ * @callback sortTableCallback
+ * @param {HTMLTableCellElement} td The td element
+ * @param {HTMLTableRowElement} tr The tr element
+ * @param {Number} cellIndex The cell index
+ * @returns {String} The cell content
+ */
 /**
  * @memberOf element
  * @function
  * @returns {HTMLTableElement} The table element.
  * Sorts a table using JavaScript. This appends click listeners to every TH in the table.
  * @param {HTMLTableElement} element The table to sort
- * @param {Function} [cellVal] The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell.
+ * @param {sortTableCallback} [cellVal] The callback function to run with the element to get the value of the cell. This is passed the cell (<td>) element, and the row (<tr>) element, and the index of the cell.
  * @example
  * _$.sortTable(document.querySelector("table"));//Done.
  * @example
  * _$.sortTable(document.querySelector("table"), (i) => i.getAttribute("data-sort"));//Sorts the table by each cell's 'data-sort' attribute.
  */
-
 export let sortTable = (
 	element = req("HTMLTableElement", "table element"),
 	cellVal = undefined,
@@ -1109,8 +1126,7 @@ export let fullScreen = (element = req("HTMLElement", "element")) => {
         if (element.requestFullScreen) return element.requestFullScreen();
 	else if (element.mozRequestFullScreen) return element.mozRequestFullScreen();
 	else if (element.webkitRequestFullScreen) return element.webkitRequestFullScreen();
-	else return new Error("Fullscreen failed")
-	);
+	else return new Error("Fullscreen failed");
 };
 /**
  * Replaces the selected text in a contentEditable div with the HTML given.
