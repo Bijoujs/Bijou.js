@@ -1,5 +1,34 @@
 //#region Utility
 /**
+ * Creates a MediaStream with all of the tracks passed.
+ * @memberof utility
+ * @param  {...any} tracks A list of the tracks to add to the new media stream.
+ * @returns {MediaStream} A MediaStream object which has all of the tracks passed.
+ * @example
+ * //Combine video from screen share with audio from microphone
+ * const audioStream = await navigator.mediaDevices.getUserMedia({audio: true});
+ * //Get the audio track, streams can have more than one track.
+ * const audioTrack = audioStream.getAudioTracks()[0];
+ * 
+ * //Do the same for video (get from screen share)
+ * const videoStream = await navigator.mediaDevices.getDisplayMedia({video: true});
+ * const videoTrack = videoStream.getVideoTracks()[0];
+ * 
+ * //   Now use the _$.createStream function to create a new stream with the 
+ * // audio from the microphone and the video from the screen share.
+ * const combinedStream = createStream(audioStream, videoStream);//Order doesn't matter, _$.createStream also accepts an array of streams.
+ */
+export let createStream = (...tracks) => {
+    if (Array.isArray(arguments[0])) {
+        tracks = arguments[0];
+        //Also allow [stream1, stream2] etc
+    }
+    let newStream = new MediaStream();
+    tracks.forEach(i=>newStream.addTrack(i));
+    return newStream;
+}
+
+/**
  * @callback manipulateVideoStreamFunction
  * @param {Object} pixel
  * @param {Number} pixel.red The red value of the pixel (0-255)
@@ -19,7 +48,6 @@
  */
 /**
  * @memberof utility
- * @example 
  * @param {MediaStreamTrack} videoTrack A video track to manipulate
  * @param {manipulateVideoStreamFunction} fn The function given to manipulate the video stream.
  * @returns {Promise.<MediaStreamTrack>} Returns a promise that resolves into a mediaStream with the original videoStream but manipulated by whatever the fn function returns (see example).
@@ -36,15 +64,17 @@
  * //    Basically manipulate the video track using canvas, and for every color, 
  * // if its green value is above 200 then make that pixel transparent. 
  * // Creating a simple greenscreen effect.
- * video.srcObject = manipulate(videotrack, (color) => {
- * 	if (color.green > 200){
- * 		//Simple greenscreen effect
- * 		color.alpha = 0;
- * 	}
- * 	return color;
- * })
+ * video.srcObject = _$.createStream(
+ * _$.manipulate(videotrack, (color) => {
+ *		if (color.green > 200){
+ *			//Simple greenscreen effect
+ *			color.alpha = 0;
+ *		}
+ *		return color;
+ *	})
+ * )
  */
-async function manipulate(videoTrack = req("MediaStreamTrack", "video media stream track"), fn) {
+export let manipulate = async (videoTrack = req("MediaStreamTrack", "video media stream track"), fn) => {
   let canvas = document.createElement("canvas");
   let running = true;
   const ctx = canvas.getContext("2d");
