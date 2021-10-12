@@ -2,7 +2,7 @@
 /**
  * Creates a MediaStream with all of the tracks passed.
  * @memberof utility
- * @param  {...any} tracks A list of the tracks to add to the new media stream.
+ * @param  {...MediaStreamTrack} tracks A list of the tracks to add to the new media stream.
  * @returns {MediaStream} A MediaStream object which has all of the tracks passed.
  * @example
  * //Combine video from screen share with audio from microphone
