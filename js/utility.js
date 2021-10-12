@@ -9,24 +9,24 @@
  * const audioStream = await navigator.mediaDevices.getUserMedia({audio: true});
  * //Get the audio track, streams can have more than one track.
  * const audioTrack = audioStream.getAudioTracks()[0];
- * 
+ *
  * //Do the same for video (get from screen share)
  * const videoStream = await navigator.mediaDevices.getDisplayMedia({video: true});
  * const videoTrack = videoStream.getVideoTracks()[0];
- * 
- * //   Now use the _$.createStream function to create a new stream with the 
+ *
+ * //   Now use the _$.createStream function to create a new stream with the
  * // audio from the microphone and the video from the screen share.
  * const combinedStream = createStream(audioStream, videoStream);//Order doesn't matter, _$.createStream also accepts an array of streams.
  */
 export let createStream = (...tracks) => {
-    if (Array.isArray(arguments[0])) {
-        tracks = arguments[0];
-        //Also allow [stream1, stream2] etc
-    }
-    let newStream = new MediaStream();
-    tracks.forEach(i=>newStream.addTrack(i));
-    return newStream;
-}
+	if (Array.isArray(arguments[0])) {
+		tracks = arguments[0];
+		//Also allow [stream1, stream2] etc
+	}
+	let newStream = new MediaStream();
+	tracks.forEach((i) => newStream.addTrack(i));
+	return newStream;
+};
 
 /**
  * @callback manipulateVideoStreamFunction
@@ -35,8 +35,8 @@ export let createStream = (...tracks) => {
  * @param {Number} pixel.green The green value of the pixel (0-255)
  * @param {Number} pixel.blue The blue value of the pixel (0-255)
  * @param {Number} pixel.alpha The alpha value of the pixel (0-255)
- * @returns {{red: number, green: number, blue: number}} Returns an object with red, green, blue and alpha keys. 
- * @example 
+ * @returns {{red: number, green: number, blue: number}} Returns an object with red, green, blue and alpha keys.
+ * @example
  * //Example function given to _$.manipulate
  * (color) => {
  * 	if (color.green > 200){
@@ -56,13 +56,13 @@ export let createStream = (...tracks) => {
  * let video = document.createElement("video");
  * video.setAttribute("autoplay", true);
  * document.body.appendChild(video);
- * 
+ *
  * //Now the cool part
  * let videotrack = await navigator.mediaDevices.getUserMedia({video: true})
  * 		.then(stream => stream.getVideoTracks()[0]);
- * 
- * //    Basically manipulate the video track using canvas, and for every color, 
- * // if its green value is above 200 then make that pixel transparent. 
+ *
+ * //    Basically manipulate the video track using canvas, and for every color,
+ * // if its green value is above 200 then make that pixel transparent.
  * // Creating a simple greenscreen effect.
  * video.srcObject = _$.createStream(
  * _$.manipulate(videotrack, (color) => {
@@ -74,57 +74,60 @@ export let createStream = (...tracks) => {
  *	})
  * )
  */
-export let manipulate = async (videoTrack = req("MediaStreamTrack", "video media stream track"), fn) => {
-  let canvas = document.createElement("canvas");
-  let running = true;
-  const ctx = canvas.getContext("2d");
-  let video = document.createElement("video");
-  video.setAttribute("autoplay", true);
-  video.setAttribute("muted", true);
-  video.srcObject = createStream(videoTrack);
-  videoTrack.addEventListener("ended", () => {
-    running = false;
-  });
-  await new Promise((res) => video.addEventListener("play", res));
-  function animate() {
-    const { width, height } = videoTrack.getSettings();
-    Object.assign(canvas, {
-      width,
-      height,
-    });
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    // Recursively loop
-    const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const length = frame.data.length;
-    let data = frame.data;
-    for (let i = 0; i < length; i += 4) {
-      let o = fn({
-        red: data[i],
-        g: data[i + 1],
-        green: data[i + 1],
-        blue: data[i + 2],
-        alpha: data[i + 3],
-      });
-      data[i] = o.red;
-      data[i + 1] = o.green;
-      data[i + 2] = o.blue;
-      data[i + 3] = o.alpha;
-    }
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.putImageData(frame, 0, 0);
-    if (running) {
-      requestAnimationFrame(animate);
-    }
-  }
-  requestAnimationFrame(animate);
-//   Return the first video track
-  let track = canvas.captureStream(30).getVideoTracks()[0];
-  track.addEventListener("ended", () => {
-	//   When someone ends the track stop the loop.
-    running = false;
-  })
-  return track;
-}
+export let manipulate = async (
+	videoTrack = req("MediaStreamTrack", "video media stream track"),
+	fn,
+) => {
+	let canvas = document.createElement("canvas");
+	let running = true;
+	const ctx = canvas.getContext("2d");
+	let video = document.createElement("video");
+	video.setAttribute("autoplay", true);
+	video.setAttribute("muted", true);
+	video.srcObject = createStream(videoTrack);
+	videoTrack.addEventListener("ended", () => {
+		running = false;
+	});
+	await new Promise((res) => video.addEventListener("play", res));
+	function animate() {
+		const { width, height } = videoTrack.getSettings();
+		Object.assign(canvas, {
+			width,
+			height,
+		});
+		ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+		// Recursively loop
+		const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const length = frame.data.length;
+		let data = frame.data;
+		for (let i = 0; i < length; i += 4) {
+			let o = fn({
+				red: data[i],
+				g: data[i + 1],
+				green: data[i + 1],
+				blue: data[i + 2],
+				alpha: data[i + 3],
+			});
+			data[i] = o.red;
+			data[i + 1] = o.green;
+			data[i + 2] = o.blue;
+			data[i + 3] = o.alpha;
+		}
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.putImageData(frame, 0, 0);
+		if (running) {
+			requestAnimationFrame(animate);
+		}
+	}
+	requestAnimationFrame(animate);
+	//   Return the first video track
+	let track = canvas.captureStream(30).getVideoTracks()[0];
+	track.addEventListener("ended", () => {
+		//   When someone ends the track stop the loop.
+		running = false;
+	});
+	return track;
+};
 
 /**
  * preload links when hovering over them, to have no-refresh page navigation

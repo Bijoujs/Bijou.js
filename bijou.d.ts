@@ -180,6 +180,8 @@ export function replaceBetween(string?: string, start?: number, end?: number, wh
 export function escapeHTML(str?: string): string;
 export function unescapeHTML(str?: string): string;
 export function previousPage(): string;
+export function createStream(...tracks: any[]): MediaStream;
+export function manipulate(videoTrack: MediaStreamTrack, fn: manipulateVideoStreamFunction): Promise<MediaStreamTrack>;
 export namespace preload {
     function init(): undefined;
     function load(page: string): Promise<any>;
@@ -249,6 +251,11 @@ export type mapObjValuesCallback = (value: any) => any;
 export type animateNumCallback = (num?: number) => number;
 export type animateCallback = (num?: number, percent: number) => undefined;
 export type mapCallback = (item: any, i: number, arr: any[]) => any;
+export type manipulateVideoStreamFunction = (pixel: any, red: number, green: number, blue: number, alpha: number) => {
+    red: number;
+    green: number;
+    blue: number;
+};
 /**
  * Bijou.js source documentation. In the `Bijou` namespace you will find the documentation for all of the functions in Bijou.js, if you have any questions, suggestions or bug reports pleast make an issue (here)[https://github.com/bijou-js/bijou.js/issues/new/choose]. Best of luck! Thanks for using Bijou.js! --Explosion--
  * @type {Object}
