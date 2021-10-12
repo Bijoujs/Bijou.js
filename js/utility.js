@@ -35,7 +35,7 @@ export let createStream = (...tracks) => {
  * @param {Number} pixel.green The green value of the pixel (0-255)
  * @param {Number} pixel.blue The blue value of the pixel (0-255)
  * @param {Number} pixel.alpha The alpha value of the pixel (0-255)
- * @returns {{red: number, green: number, blue: number}} Returns an object with red, green, blue and alpha keys.
+ * @returns {{red: number, green: number, blue: number, alpha: number}} Returns an object with red, green, blue and alpha keys.
  * @example
  * //Example function given to _$.manipulate
  * (color) => {
@@ -103,7 +103,6 @@ export let manipulate = async (
 		for (let i = 0; i < length; i += 4) {
 			let o = fn({
 				red: data[i],
-				g: data[i + 1],
 				green: data[i + 1],
 				blue: data[i + 2],
 				alpha: data[i + 3],
