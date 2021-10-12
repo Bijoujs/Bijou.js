@@ -1,5 +1,102 @@
 //#region Utility
 /**
+ * @callback manipulateVideoStreamFunction
+ * @param {Object} pixel
+ * @param {Number} pixel.red The red value of the pixel (0-255)
+ * @param {Number} pixel.green The green value of the pixel (0-255)
+ * @param {Number} pixel.blue The blue value of the pixel (0-255)
+ * @param {Number} pixel.alpha The alpha value of the pixel (0-255)
+ * @returns {{red: number, green: number, blue: number}} Returns an object with red, green, blue and alpha keys. 
+ * @example 
+ * //Example function given to _$.manipulate
+ * (color) => {
+ * 	if (color.green > 200){
+ * 		//Simple greenscreen effect
+ * 		color.alpha = 0;
+ * 	}
+ * 	return color;
+ * }
+ */
+/**
+ * @memberof utility
+ * @example 
+ * @param {MediaStreamTrack} videoTrack A video track to manipulate
+ * @param {manipulateVideoStreamFunction} fn The function given to manipulate the video stream.
+ * @returns {Promise.<MediaStreamTrack>} Returns a promise that resolves into a mediaStream with the original videoStream but manipulated by whatever the fn function returns (see example).
+ * @example
+ * //Greenscreen effect
+ * let video = document.createElement("video");
+ * video.setAttribute("autoplay", true);
+ * document.body.appendChild(video);
+ * 
+ * //Now the cool part
+ * let videotrack = await navigator.mediaDevices.getUserMedia({video: true})
+ * 		.then(stream => stream.getVideoTracks()[0]);
+ * 
+ * //    Basically manipulate the video track using canvas, and for every color, 
+ * // if its green value is above 200 then make that pixel transparent. 
+ * // Creating a simple greenscreen effect.
+ * video.srcObject = manipulate(videotrack, (color) => {
+ * 	if (color.green > 200){
+ * 		//Simple greenscreen effect
+ * 		color.alpha = 0;
+ * 	}
+ * 	return color;
+ * })
+ */
+async function manipulate(videoTrack = req("MediaStreamTrack", "video media stream track"), fn) {
+  let canvas = document.createElement("canvas");
+  let running = true;
+  const ctx = canvas.getContext("2d");
+  let video = document.createElement("video");
+  video.setAttribute("autoplay", true);
+  video.setAttribute("muted", true);
+  video.srcObject = createStream(videoTrack);
+  videoTrack.addEventListener("ended", () => {
+    running = false;
+  });
+  await new Promise((res) => video.addEventListener("play", res));
+  function animate() {
+    const { width, height } = videoTrack.getSettings();
+    Object.assign(canvas, {
+      width,
+      height,
+    });
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    // Recursively loop
+    const frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const length = frame.data.length;
+    let data = frame.data;
+    for (let i = 0; i < length; i += 4) {
+      let o = fn({
+        red: data[i],
+        g: data[i + 1],
+        green: data[i + 1],
+        blue: data[i + 2],
+        alpha: data[i + 3],
+      });
+      data[i] = o.red;
+      data[i + 1] = o.green;
+      data[i + 2] = o.blue;
+      data[i + 3] = o.alpha;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.putImageData(frame, 0, 0);
+    if (running) {
+      requestAnimationFrame(animate);
+    }
+  }
+  requestAnimationFrame(animate);
+//   Return the first video track
+  let track = canvas.captureStream(30).getVideoTracks()[0];
+  track.addEventListener("ended", () => {
+	//   When someone ends the track stop the loop.
+    running = false;
+  })
+  return track;
+}
+
+/**
  * preload links when hovering over them, to have no-refresh page navigation
  * @namespace preload
  * @memberof utility
@@ -227,8 +324,8 @@ export let resize = async (
 	await new Promise((res) => (img.onload = res));
 	let canvas = document.createElement("canvas");
 	let ctx = canvas.getContext("2d");
-	canvas.width = width < 1 || !width ? img.width : width;
-	canvas.height = height < 1 || !width ? img.height : height;
+	canvas.width = width || img.width;
+	canvas.height = height || img.height;
 	ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 	let data = canvas.toDataURL(0, 0, canvas.width, canvas.height);
 	return data;
