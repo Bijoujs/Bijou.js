@@ -87,6 +87,8 @@ Note that you have to call this function to add the prototypes.</p>
 <dd></dd>
 <dt><a href="#mapCallback">mapCallback</a> : <code><a href="#function">function</a></code></dt>
 <dd></dd>
+<dt><a href="#manipulateVideoStreamFunction">manipulateVideoStreamFunction</a> ⇒ <code>Object</code></dt>
+<dd></dd>
 </dl>
 
 <a name="round"></a>
@@ -2504,6 +2506,8 @@ The utility namespace of Bijou.js, containing utilities to do many things, such 
 **Kind**: global namespace  
 
 * [utility](#utility) : [<code>object</code>](#object)
+    * [.exports.createStream](#utility.exports.createStream) ⇒ <code>MediaStream</code>
+    * [.exports.manipulate](#utility.exports.manipulate) ⇒ <code>Promise.&lt;MediaStreamTrack&gt;</code>
     * [.exports.tag](#utility.exports.tag) ⇒ [<code>function</code>](#function)
     * [.preload](#utility.preload) : [<code>object</code>](#object)
     * [.cookies](#utility.cookies) ⇒ [<code>function</code>](#function)
@@ -2533,6 +2537,68 @@ The utility namespace of Bijou.js, containing utilities to do many things, such 
     * [.exports.serializeForm(form)](#utility.exports.serializeForm) ⇒ <code>String</code>
     * [.exports.soundex(s)](#utility.exports.soundex) ⇒ <code>String</code>
 
+<a name="utility.exports.createStream"></a>
+
+### utility.exports.createStream ⇒ <code>MediaStream</code>
+Creates a MediaStream with all of the tracks passed.
+
+**Kind**: static property of [<code>utility</code>](#utility)  
+**Returns**: <code>MediaStream</code> - A MediaStream object which has all of the tracks passed.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ...tracks | <code>any</code> | A list of the tracks to add to the new media stream. |
+
+**Example**  
+```js
+//Combine video from screen share with audio from microphone
+const audioStream = await navigator.mediaDevices.getUserMedia({audio: true});
+//Get the audio track, streams can have more than one track.
+const audioTrack = audioStream.getAudioTracks()[0];
+
+//Do the same for video (get from screen share)
+const videoStream = await navigator.mediaDevices.getDisplayMedia({video: true});
+const videoTrack = videoStream.getVideoTracks()[0];
+
+//   Now use the _$.createStream function to create a new stream with the
+// audio from the microphone and the video from the screen share.
+const combinedStream = createStream(audioStream, videoStream);//Order doesn't matter, _$.createStream also accepts an array of streams.
+```
+<a name="utility.exports.manipulate"></a>
+
+### utility.exports.manipulate ⇒ <code>Promise.&lt;MediaStreamTrack&gt;</code>
+**Kind**: static property of [<code>utility</code>](#utility)  
+**Returns**: <code>Promise.&lt;MediaStreamTrack&gt;</code> - Returns a promise that resolves into a mediaStream with the original videoStream but manipulated by whatever the fn function returns (see example).  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| videoTrack | <code>MediaStreamTrack</code> | A video track to manipulate |
+| fn | [<code>manipulateVideoStreamFunction</code>](#manipulateVideoStreamFunction) | The function given to manipulate the video stream. |
+
+**Example**  
+```js
+//Greenscreen effect
+let video = document.createElement("video");
+video.setAttribute("autoplay", true);
+document.body.appendChild(video);
+
+//Now the cool part
+let videotrack = await navigator.mediaDevices.getUserMedia({video: true})
+		.then(stream => stream.getVideoTracks()[0]);
+
+//    Basically manipulate the video track using canvas, and for every color,
+// if its green value is above 200 then make that pixel transparent.
+// Creating a simple greenscreen effect.
+video.srcObject = _$.createStream(
+_$.manipulate(videotrack, (color) => {
+		if (color.green > 200){
+			//Simple greenscreen effect
+			color.alpha = 0;
+		}
+		return color;
+	})
+)
+```
 <a name="utility.exports.tag"></a>
 
 ### utility.exports.tag ⇒ [<code>function</code>](#function)
@@ -3183,3 +3249,28 @@ Tests if the user is using Node.js or not and throws an error in specific functi
 | i | <code>Number</code> | The index of the item |
 | arr | <code>Array</code> | The original array |
 
+<a name="manipulateVideoStreamFunction"></a>
+
+## manipulateVideoStreamFunction ⇒ <code>Object</code>
+**Kind**: global typedef  
+**Returns**: <code>Object</code> - Returns an object with red, green, blue and alpha keys.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pixel | <code>Object</code> |  |
+| pixel.red | <code>Number</code> | The red value of the pixel (0-255) |
+| pixel.green | <code>Number</code> | The green value of the pixel (0-255) |
+| pixel.blue | <code>Number</code> | The blue value of the pixel (0-255) |
+| pixel.alpha | <code>Number</code> | The alpha value of the pixel (0-255) |
+
+**Example**  
+```js
+//Example function given to _$.manipulate
+(color) => {
+	if (color.green > 200){
+		//Simple greenscreen effect
+		color.alpha = 0;
+	}
+	return color;
+}
+```
