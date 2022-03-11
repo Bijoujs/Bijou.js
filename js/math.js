@@ -33,6 +33,7 @@ export let gcd = (...ary) => {
 };
 /**
  * Rounds a number.
+ * @memberOf math
  * @example
  * console.log(_$.round(14, 10));//Logs 10 to the console, as 14 rounded to the nearest 10 is 10.
  * @example

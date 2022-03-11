@@ -125,6 +125,7 @@ export let prototype = (
 	proto(_$.replaceMultiple, Object);
 	proto(_$.replaceText, Element);
 	proto(_$.rgbToHex, String);
+	proto(_$.round, Number),
 	proto(_$.runAsync, Function);
 	proto(_$.sanitize, String);
 	proto(_$.saveBlob, Blob);

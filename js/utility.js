@@ -1255,6 +1255,7 @@ export let serializeForm = (
 
 /**
  * Request a URL and get the data back in a specific format.
+ * @memberOf utility
  * @param {Object} options The options object
  * @param {String} options.url The URL to fetch
  * @param {Object|String|FormData} options.body The body of the request
