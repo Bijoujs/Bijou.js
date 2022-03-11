@@ -1276,7 +1276,7 @@ export let serializeForm = (
  * })
  * // → {html: #document, bloburl: "blob:https://github.com/abc-def-ghi"}
  * 
- * @returns
+ * @returns {Object|Response|String|Image}
  */
 export let request = ({
 	url = req("URL to fetch", "options.url"),
