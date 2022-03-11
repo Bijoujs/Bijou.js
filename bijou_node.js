@@ -2712,6 +2712,7 @@ let gcd = (...ary) => {
 };
 /**
  * Rounds a number.
+ * @memberOf math
  * @example
  * console.log(_$.round(14, 10));//Logs 10 to the console, as 14 rounded to the nearest 10 is 10.
  * @example
@@ -5501,6 +5502,7 @@ let serializeForm = (
 
 /**
  * Request a URL and get the data back in a specific format.
+ * @memberOf utility
  * @param {Object} options The options object
  * @param {String} options.url The URL to fetch
  * @param {Object|String|FormData} options.body The body of the request
@@ -6056,7 +6058,7 @@ let prototype = (
 	proto(_$.replaceMultiple, Object);
 	proto(_$.replaceText, Element);
 	proto(_$.rgbToHex, String);
-	proto(_$.runAsync, Function);
+	proto(_$.round, Number), proto(_$.runAsync, Function);
 	proto(_$.sanitize, String);
 	proto(_$.saveBlob, Blob);
 	proto(_$.scrambleString, String, "scramble");

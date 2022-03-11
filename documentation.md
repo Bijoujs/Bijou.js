@@ -1,12 +1,6 @@
 ## Members
 
 <dl>
-<dt><a href="#round">round</a> ⇒ <code>Number</code></dt>
-<dd><p>Rounds a number.</p>
-</dd>
-<dt><a href="#request">request</a> ⇒ <code>Object</code> | <code>Response</code> | <code>String</code> | <code>Image</code></dt>
-<dd><p>Request a URL and get the data back in a specific format.</p>
-</dd>
 <dt><a href="#prototype">prototype</a></dt>
 <dd><p>Converts most of the functions of Bijou.js to prototype functions.
 Note that you have to call this function to add the prototypes.</p>
@@ -94,59 +88,6 @@ Note that you have to call this function to add the prototypes.</p>
 <dd></dd>
 </dl>
 
-<a name="round"></a>
-
-## round ⇒ <code>Number</code>
-Rounds a number.
-
-**Kind**: global variable  
-**Returns**: <code>Number</code> - The rounded number  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| number | <code>Number</code> | The number to round. |
-| amount | <code>Number</code> | An optional multiple to round it to. |
-
-**Example**  
-```js
-console.log(_$.round(14, 10));//Logs 10 to the console, as 14 rounded to the nearest 10 is 10.
-```
-**Example**  
-```js
-console.log(_$.round(Math.PI));//Logs 3 to the console.
-```
-<a name="request"></a>
-
-## request ⇒ <code>Object</code> \| <code>Response</code> \| <code>String</code> \| <code>Image</code>
-Request a URL and get the data back in a specific format.
-
-**Kind**: global variable  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| options | <code>Object</code> |  | The options object |
-| options.url | <code>String</code> |  | The URL to fetch |
-| options.body | <code>Object</code> \| <code>String</code> \| <code>FormData</code> |  | The body of the request |
-| [options.as] | <code>String</code> \| <code>Array.&lt;String&gt;</code> | <code>&quot;response&quot;</code> | What to fetch the data as. A string that is one of ["response", "blob", "json", "dataurl", "text", "image", "html", "bloburl", "headers"], or an Array of multiple. If an array (e.g. ["text", "json"]) an object with {text: "{'some': 'json'}", json: {some: "json"}} will be returned |
-| [options.method] | <code>String</code> | <code>&quot;GET&quot;</code> | One of ["GET", "HEAD", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"] |
-| [options.options] | <code>Object</code> | <code>{}</code> | An options object that is passed to fetch(url, options). |
-| [options.headers] | <code>Object</code> | <code>{}</code> | Headers object to add to the request before sent |
-| [options.type] | <code>Object</code> \| <code>String</code> | <code>&quot;json&quot;</code> | The type of the request payload. One of ["JSON", "urlencoded", "text", "formdata"] (not case sensitive). For urlencoded or JSON, pass an object as options.body, for text, pass a string, for formdata pass a FormData object, and for raw, pass anything. This is then added into fetch(url, {body: body}) |
-| [options.corsFallback] | <code>Boolean</code> | <code>true</code> | Whether to retry the request via a cors proxy if it fails |
-| [options.corsDomain] | <code>String</code> | <code>&#x27;https://cors.explosionscratc.repl.co/&#x27;</code> | The cors domain to use as a proxy |
-| [options.detectCors] | [<code>function</code>](#function) | <code>({response, error}) &#x3D;&gt; error || !response.ok</code> | Passed a response or an error. If this function returns true the request will be retried with the CORS domain proxy (up to once) |
-| [options.makeCorsUrl] | [<code>function</code>](#function) | <code>(url, domain) &#x3D;&gt; &#x60;${domain}${url.split(&quot;//&quot;)[1]}&#x60;</code> | The function which takes a URL and domain as an input and returns the altered URL to be retried with CORS. For example makeCors("https://google.com", "https://cors.explosionscratc.repl.co/") would return "https://cors.explosionscratc.repl.co/google.com" |
-| [options.timeout] | <code>Number</code> | <code></code> | The timeout (in ms) before cancelling the request. If null than there will be no timeout handling. |
-
-**Example**  
-```js
-let response = await _$.request({
-	url: "https://google.com",
-	as: ["html", "bloburl"],
-	timeout: 1000
-})
-// → {html: #document, bloburl: "blob:https://github.com/abc-def-ghi"}
-```
 <a name="prototype"></a>
 
 ## prototype
@@ -1643,6 +1584,7 @@ The math namespace of Bijou.js, containing functions to validate credit card num
 **Kind**: global namespace  
 
 * [math](#math) : [<code>object</code>](#object)
+    * [.exports.round](#math.exports.round) ⇒ <code>Number</code>
     * [.ease](#math.ease) : [<code>object</code>](#object)
     * [.exports.gcd(...arr)](#math.exports.gcd) ⇒ <code>Number</code>
     * [.exports.equals(a, b)](#math.exports.equals)
@@ -1657,6 +1599,27 @@ The math namespace of Bijou.js, containing functions to validate credit card num
     * [.exports.seedRandom(seed)](#math.exports.seedRandom) ⇒ <code>Number</code>
     * [.exports.formatNumber(n)](#math.exports.formatNumber) ⇒ <code>String</code>
 
+<a name="math.exports.round"></a>
+
+### math.exports.round ⇒ <code>Number</code>
+Rounds a number.
+
+**Kind**: static property of [<code>math</code>](#math)  
+**Returns**: <code>Number</code> - The rounded number  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| number | <code>Number</code> | The number to round. |
+| amount | <code>Number</code> | An optional multiple to round it to. |
+
+**Example**  
+```js
+console.log(_$.round(14, 10));//Logs 10 to the console, as 14 rounded to the nearest 10 is 10.
+```
+**Example**  
+```js
+console.log(_$.round(Math.PI));//Logs 3 to the console.
+```
 <a name="math.ease"></a>
 
 ### math.ease : [<code>object</code>](#object)
@@ -2544,6 +2507,7 @@ The utility namespace of Bijou.js, containing utilities to do many things, such 
     * [.exports.createStream](#utility.exports.createStream) ⇒ <code>MediaStream</code>
     * [.exports.manipulate](#utility.exports.manipulate) ⇒ <code>Promise.&lt;MediaStreamTrack&gt;</code>
     * [.exports.tag](#utility.exports.tag) ⇒ [<code>function</code>](#function)
+    * [.exports.request](#utility.exports.request) ⇒ <code>Object</code> \| <code>Response</code> \| <code>String</code> \| <code>Image</code>
     * [.preload](#utility.preload) : [<code>object</code>](#object)
     * [.cookies](#utility.cookies) ⇒ [<code>function</code>](#function)
     * [.regex](#utility.regex) ⇒ <code>Regexp</code>
@@ -2652,6 +2616,38 @@ Creates a template literal tag. Read more here: https://developer.mozilla.org/en
 let t = tag(_$.escapeHTML);
 //Notice the "t" at the beginning of the template literal. (t`Some text`).
 console.log(t`This will not be escaped <i>Italics!</i> ${"But this will, <i>Not italic</i>"}`)
+```
+<a name="utility.exports.request"></a>
+
+### utility.exports.request ⇒ <code>Object</code> \| <code>Response</code> \| <code>String</code> \| <code>Image</code>
+Request a URL and get the data back in a specific format.
+
+**Kind**: static property of [<code>utility</code>](#utility)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| options | <code>Object</code> |  | The options object |
+| options.url | <code>String</code> |  | The URL to fetch |
+| options.body | <code>Object</code> \| <code>String</code> \| <code>FormData</code> |  | The body of the request |
+| [options.as] | <code>String</code> \| <code>Array.&lt;String&gt;</code> | <code>&quot;response&quot;</code> | What to fetch the data as. A string that is one of ["response", "blob", "json", "dataurl", "text", "image", "html", "bloburl", "headers"], or an Array of multiple. If an array (e.g. ["text", "json"]) an object with {text: "{'some': 'json'}", json: {some: "json"}} will be returned |
+| [options.method] | <code>String</code> | <code>&quot;GET&quot;</code> | One of ["GET", "HEAD", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"] |
+| [options.options] | <code>Object</code> | <code>{}</code> | An options object that is passed to fetch(url, options). |
+| [options.headers] | <code>Object</code> | <code>{}</code> | Headers object to add to the request before sent |
+| [options.type] | <code>Object</code> \| <code>String</code> | <code>&quot;json&quot;</code> | The type of the request payload. One of ["JSON", "urlencoded", "text", "formdata"] (not case sensitive). For urlencoded or JSON, pass an object as options.body, for text, pass a string, for formdata pass a FormData object, and for raw, pass anything. This is then added into fetch(url, {body: body}) |
+| [options.corsFallback] | <code>Boolean</code> | <code>true</code> | Whether to retry the request via a cors proxy if it fails |
+| [options.corsDomain] | <code>String</code> | <code>&#x27;https://cors.explosionscratc.repl.co/&#x27;</code> | The cors domain to use as a proxy |
+| [options.detectCors] | [<code>function</code>](#function) | <code>({response, error}) &#x3D;&gt; error || !response.ok</code> | Passed a response or an error. If this function returns true the request will be retried with the CORS domain proxy (up to once) |
+| [options.makeCorsUrl] | [<code>function</code>](#function) | <code>(url, domain) &#x3D;&gt; &#x60;${domain}${url.split(&quot;//&quot;)[1]}&#x60;</code> | The function which takes a URL and domain as an input and returns the altered URL to be retried with CORS. For example makeCors("https://google.com", "https://cors.explosionscratc.repl.co/") would return "https://cors.explosionscratc.repl.co/google.com" |
+| [options.timeout] | <code>Number</code> | <code></code> | The timeout (in ms) before cancelling the request. If null than there will be no timeout handling. |
+
+**Example**  
+```js
+let response = await _$.request({
+	url: "https://google.com",
+	as: ["html", "bloburl"],
+	timeout: 1000
+})
+// → {html: #document, bloburl: "blob:https://github.com/abc-def-ghi"}
 ```
 <a name="utility.preload"></a>
 
