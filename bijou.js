@@ -151,7 +151,7 @@ let utility_namespace = {};
 
 const req = (type, desc, condition = true) => {
 	if (!condition) return;
-	let err = "Missing parameter";
+	let err = "[Bijou.js] Missing parameter";
 	if (type) {
 		err += " of type " + type;
 	}
@@ -4349,7 +4349,7 @@ export let previousPage = () => {
 /**
  * Creates a MediaStream with all of the tracks passed.
  * @memberof utility
- * @param  {...any} tracks A list of the tracks to add to the new media stream.
+ * @param  {...MediaStreamTrack} tracks A list of the tracks to add to the new media stream.
  * @returns {MediaStream} A MediaStream object which has all of the tracks passed.
  * @example
  * //Combine video from screen share with audio from microphone
@@ -4382,7 +4382,7 @@ export let createStream = (...tracks) => {
  * @param {Number} pixel.green The green value of the pixel (0-255)
  * @param {Number} pixel.blue The blue value of the pixel (0-255)
  * @param {Number} pixel.alpha The alpha value of the pixel (0-255)
- * @returns {{red: number, green: number, blue: number}} Returns an object with red, green, blue and alpha keys.
+ * @returns {{red: number, green: number, blue: number, alpha: number}} Returns an object with red, green, blue and alpha keys.
  * @example
  * //Example function given to _$.manipulate
  * (color) => {
@@ -4450,7 +4450,6 @@ export let manipulate = async (
 		for (let i = 0; i < length; i += 4) {
 			let o = fn({
 				red: data[i],
-				g: data[i + 1],
 				green: data[i + 1],
 				blue: data[i + 2],
 				alpha: data[i + 3],
@@ -5599,6 +5598,384 @@ export let serializeForm = (
 	return Array.from(new FormData(form), (field) =>
 		field.map(encodeURIComponent).join("="),
 	).join("&");
+};
+
+/**
+ * Request a URL and get the data back in a specific format.
+ * @param {Object} options The options object
+ * @param {String} options.url The URL to fetch
+ * @param {Object|String|FormData} options.body The body of the request
+ * @param {String|Array.<String>} [options.as="response"] What to fetch the data as. A string that is one of ["response", "blob", "json", "dataurl", "text", "image", "html", "bloburl", "headers"], or an Array of multiple. If an array (e.g. ["text", "json"]) an object with {text: "{'some': 'json'}", json: {some: "json"}} will be returned
+ * @param {String} [options.method="GET"] One of ["GET", "HEAD", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"]
+ * @param {Object} [options.options={}] An options object that is passed to fetch(url, options).
+ * @param {Object} [options.headers={}] Headers object to add to the request before sent
+ * @param {Object|String} [options.type="json"]  The type of the request payload. One of ["JSON", "urlencoded", "text", "formdata"] (not case sensitive). For urlencoded or JSON, pass an object as options.body, for text, pass a string, for formdata pass a FormData object, and for raw, pass anything. This is then added into fetch(url, {body: body})
+ * @param {Boolean} [options.corsFallback=true] Whether to retry the request via a cors proxy if it fails
+ * @param {String} [options.corsDomain='https://cors.explosionscratc.repl.co/'] The cors domain to use as a proxy
+ * @param {Function} [options.detectCors = ({response, error}) => error || !response.ok] Passed a response or an error. If this function returns true the request will be retried with the CORS domain proxy (up to once)
+ * @param {Function} [options.makeCorsUrl = (url, domain) => `${domain}${url.split("//")[1]}`] The function which takes a URL and domain as an input and returns the altered URL to be retried with CORS. For example makeCors("https://google.com", "https://cors.explosionscratc.repl.co/") would return "https://cors.explosionscratc.repl.co/google.com"
+ * @param {Number} [options.timeout=null] The timeout (in ms) before cancelling the request. If null than there will be no timeout handling.
+ * @example
+ * let response = await _$.request({
+ * 	url: "https://google.com",
+ * 	as: ["html", "bloburl"],
+ * 	timeout: 1000
+ * })
+ * // → {html: #document, bloburl: "blob:https://github.com/abc-def-ghi"}
+ *
+ * @returns {Object|Response|String|Image}
+ */
+export let request = ({
+	url = req("URL to fetch", "options.url"),
+	body,
+	as = "response",
+	method = "GET",
+	options = {},
+	authorization = {},
+	headers = {},
+	type = "json",
+	corsFallback = true,
+	corsDomain = "https://cors.explosionscratc.repl.co/",
+	//Given a response or an error.
+	detectCors = ({ response, error }) => error || !response.ok,
+	makeCorsUrl = (url, domain) => `${domain}${url.split("//")[1]}`,
+	timeout = null,
+}) => {
+	node();
+	return new Promise(async (resolve, reject) => {
+		let controller = new AbortController();
+		let OPTS = {
+			method: method.trim().toUpperCase(),
+			signal: controller.signal,
+			headers: {
+				...headers,
+			},
+			...options,
+		};
+
+		if (authorization && authorization.type) {
+			authorization.type = `${authorization.type[0].toUpperCase()}${authorization.type
+				.slice(1)
+				.toLowerCase()}`;
+			if (
+				!["Basic", "Bearer", "Other"].includes(authorization.type)
+			) {
+				return err({
+					type: "auth_type_not_supported",
+					message: `The authorization type ${authorization.type} is not supported.`,
+					supportedTypes: ["Basic", "Bearer", "Other"],
+				});
+			} else if (authorization.type === "Basic") {
+				if (
+					!(authorization.username && authorization.password) &&
+					!authorization.data
+				) {
+					return err({
+						type: "missing_param",
+						message:
+							"Basic authorization requires a username and password, or a data field.",
+						examples: [
+							{
+								type: "basic",
+								username: "johndoe",
+								password: "password123",
+							},
+							{ type: "basic", data: "am9obmRvZTpwYXNzd29yZDEyMw==" },
+						],
+					});
+				}
+				OPTS.headers.Authorization = `Basic ${atob(
+					`${authorization.username}:${authorization.password}`,
+				)}`;
+			} else if (authorization.type === "Bearer") {
+				if (!authorization.token) {
+					return err({
+						type: "no_token",
+						message: "No token for Bearer auth given",
+						examples: [
+							{ type: "bearer", token: "supersecretapitoken123" },
+						],
+					});
+				}
+				OPTS.headers.Authorization = `Bearer ${authorization.token}`;
+			} else if (authorization.type === "Other") {
+				if (!authorization.data) {
+					return err({
+						type: "missing_param",
+						message:
+							"Missing options.authorization.data for auth type 'Other'",
+						examples: [
+							{
+								type: "other",
+								data: "Digest 12409f873e141466c741ab81bf3f1ca6a69f4421d06af0ebb7106721c65a4aa4",
+							},
+						],
+					});
+				}
+				OPTS.headers.Authorization = authorization.data;
+			}
+		}
+
+		method = method.trim().toUpperCase();
+		if (
+			![
+				"GET",
+				"HEAD",
+				"POST",
+				"PUT",
+				"DELETE",
+				"CONNECT",
+				"OPTIONS",
+				"TRACE",
+				"PATCH",
+			].includes(method)
+		) {
+			return err({
+				type: "invalid_method",
+				message: `The method ${method} isn't supported.`,
+				supportedMethods: [
+					"GET",
+					"HEAD",
+					"POST",
+					"PUT",
+					"DELETE",
+					"CONNECT",
+					"OPTIONS",
+					"TRACE",
+					"PATCH",
+				],
+			});
+		}
+		if (method !== "GET") {
+			type = type.toLowerCase().trim();
+			if (
+				!["json", "urlencoded", "text", "formdata"].includes(type)
+			) {
+				return err({
+					type: "body_type_not_supported",
+					message: `The type ${type} isn't supported`,
+					supportedTypes: ["json", "urlencoded", "text", "formdata"],
+					examples: [
+						{ type: "json", body: { cool: "object" } },
+						{ type: "text", body: "Random text" },
+					],
+				});
+			} else if (!body) {
+				req("Object|String|FormData", "options.body");
+				return err({
+					type: "no_body",
+					message:
+						"Request body not provided, use options.body to provide it",
+					examples: [
+						{
+							type: "json",
+							body: { key1: "Object key #1", key2: "Object key #2" },
+						},
+					],
+				});
+			} else if (type === "json") {
+				OPTS.headers["Content-Type"] = "application/json";
+				OPTS.body = JSON.stringify(body);
+			} else if (type === "urlencoded") {
+				OPTS.headers["Content-Type"] =
+					"application/x-www-form-urlencoded";
+				OPTS.body = new URLSearchParams(body);
+			} else if (type === "text") {
+				OPTS.headers["Content-Type"] = "text/plain";
+				OPTS.body = body;
+			} else if (type === "formdata" || type === "raw") {
+				if (type === "formdata" && !(body instanceof FormData)) {
+					window.temp1 = body;
+					return err({
+						type: "expected_formdata",
+						message: `Expected body to be instanceof FormData. typeof body === ${typeof body}. Stored body as a temp global variable, window.temp1`,
+					});
+				}
+				OPTS.body = body;
+			}
+		}
+
+		if (timeout !== null) {
+			Promise.race([
+				new Promise((_, r) =>
+					setTimeout(
+						() => controller.abort() && r("REQUEST ABORTED"),
+						timeout,
+					),
+				),
+				corsFetch(url, OPTS, err),
+			])
+				.catch((e) => {
+					if (e === "REQUEST ABORTED") {
+						return err({
+							type: "timed_out",
+							message: `Request timed out [${timeout}ms timeout]`,
+						});
+					} else {
+						return err({
+							type: "fetch_error",
+							message: e.message,
+							error: e,
+						});
+					}
+				})
+				.then((response) => {
+					if (response instanceof Response) {
+						gotResponse(response);
+					} else {
+						return err({
+							type: "response_not_recognized",
+							message: "Response not instanceof Response",
+							typeofResponse: typeof response,
+							response: response,
+						});
+					}
+				});
+		} else {
+			gotResponse(
+				await corsFetch(url, OPTS, reject).catch((e) => {
+					return err({
+						type: "fetch_error",
+						message: e.message,
+						error: e,
+					});
+				}),
+			);
+		}
+
+		async function gotResponse(response) {
+			if (Array.isArray(as)) {
+				as = as.map((i) => i.toLowerCase());
+				//Make {text: "{}", json: {}, blob: Blob([...])}
+				resolve(
+					Object.fromEntries(
+						(
+							await Promise.all(as.map((i) => r(response.clone(), i)))
+						).map((i, idx) => [as[idx], i]),
+					),
+				);
+			} else {
+				resolve(await r(response.clone(), as));
+			}
+			async function r(res, as) {
+				if (as === "response") {
+					return res.clone();
+				} else if (as === "blob") {
+					return await res.blob();
+				} else if (as === "json") {
+					let j;
+					try {
+						return await res.json();
+					} catch (_) {
+						return err({
+							type: "invalid_json",
+							message: "Couldn't parse JSON",
+							response: res.clone(),
+						});
+					}
+				} else if (as === "dataurl") {
+					return toData(await res.blob());
+					function toData(blob) {
+						return new Promise((callback) => {
+							var a = new FileReader();
+							a.onload = function (e) {
+								callback(e.target.result);
+							};
+							a.readAsDataURL(blob);
+						});
+					}
+				} else if (as === "text") {
+					return await res.text();
+				} else if (as === "arraybuffer") {
+					return await res.arrayBuffer();
+				} else if (as === "html") {
+					return new DOMParser().parseFromString(
+						await res.text(),
+						"text/html",
+					);
+				} else if (as === "image") {
+					let img = new Image();
+					img.src = toData(await res.blob());
+					await new Promise((a) => (i.onload = a));
+					return img;
+				} else if (as === "bloburl") {
+					return URL.createObjectURL(await res.blob());
+				} else if (as === "headers") {
+					return Object.fromEntries(res.headers.entries());
+				}
+				function toData(blob) {
+					return new Promise((callback) => {
+						var a = new FileReader();
+						a.onload = function (e) {
+							callback(e.target.result);
+						};
+						a.readAsDataURL(blob);
+					});
+				}
+			}
+		}
+		function err(e) {
+			if (
+				e.type === "fetch_error" &&
+				e.message === "The user aborted a request." &&
+				timeout
+			) {
+				return reject({
+					type: "timed_out",
+					message: `Request timed out [${timeout}ms timeout]`,
+				});
+			}
+			reject(e);
+		}
+
+		function corsFetch(url, OPTS, reject, _retried = false) {
+			return new Promise((r, rej) => {
+				fetch(url, OPTS, reject)
+					.then(async (response) => {
+						if (detectCors({ response: response.clone() })) {
+							r(
+								await corsFetch(
+									makeCorsUrl(url, corsDomain),
+									OPTS,
+									reject,
+									true,
+								),
+							);
+						} else {
+							r(response.clone());
+						}
+					})
+					.catch(async (e) => {
+						//console.debug(`[cors retried request] Handled error %o`, e)
+						if (e.message !== "Failed to fetch") {
+							return reject({
+								type: "fetch_error",
+								message: e.message,
+								error: e,
+							});
+						}
+						if (_retried) {
+							reject({
+								type: "cors_rejected",
+								message:
+									"Retried request with cors proxy and it still failed",
+							});
+						} else {
+							if (detectCors({ error: e })) {
+								r(
+									await corsFetch(
+										makeCorsUrl(url, corsDomain),
+										OPTS,
+										reject,
+										true,
+									),
+								);
+							}
+						}
+					});
+			}).catch(reject);
+		}
+	});
 };
 /**
  * An implementation of the soundex algorithm in JavaScript, used to test if two words sound the same.
