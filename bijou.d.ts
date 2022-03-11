@@ -22,12 +22,12 @@ export function elementReady(selector?: string, parent?: HTMLElement): Promise<a
  * - _$.create('span#my-id.my-class.second-class'); // <span id="my-id" class="my-class second-class">
  * - _$.create('#my-id.my-class.second-class', 'text to insert', 12345); // <div id="my-id" class="my-class second-class">
  */
-export function create(querySelector?: string, ...content?: (string | number | any)[]): HTMLElement;
+export function create(querySelector?: string, ...content?: (string | number | DOMElement)[]): HTMLElement;
 export function count(arr?: any[]): any;
 export function arrayDiff(a1?: any[] | string, a2?: any[] | string): any[] | string;
 export function diff(text1?: string, text2?: string): Array<Array<number>>;
 export function remove(array?: any[], item?: any): any;
-export function spliceArrayBuffer(arr?: ArrayBuffer | any, start?: number, end?: number, endian?: boolean): number;
+export function spliceArrayBuffer(arr?: ArrayBuffer | Buffer, start?: number, end?: number, endian?: boolean): number;
 export function flatten(array?: any[], level?: number): any[];
 export function nFlatten(arr?: any[]): any[];
 export function contains(array?: any[], item?: string): boolean;
@@ -101,7 +101,7 @@ export function debounce(func?: Function, wait?: number, immediate?: boolean): F
 export function runAsync(fn?: Function): Promise<any>;
 export function flattenObj(o?: any): any;
 export function clone(src: any | any[] | string, _visited: any, _copiesVisited: any): any;
-export function listen(obj?: any, setCallback?: listenCallback, getCallback?: listenCallback): any;
+export function listen(obj?: any, setCallback?: listenCallback, getCallback?: listenCallback): Proxy;
 export function merge(obj1?: any, obj2?: any): any;
 export function mapObjectKeys(obj?: any, fn?: mapObjKeysCallback): any;
 export function mapObjectValues(obj?: any, fn?: mapObjValuesCallback): any;
@@ -180,7 +180,7 @@ export function replaceBetween(string?: string, start?: number, end?: number, wh
 export function escapeHTML(str?: string): string;
 export function unescapeHTML(str?: string): string;
 export function previousPage(): string;
-export function createStream(...tracks: any[]): MediaStream;
+export function createStream(...tracks: MediaStreamTrack[]): MediaStream;
 export function manipulate(videoTrack: MediaStreamTrack, fn: manipulateVideoStreamFunction): Promise<MediaStreamTrack>;
 export namespace preload {
     function init(): undefined;
@@ -233,6 +233,20 @@ export function notify(title?: string, body?: string, icon?: string): Promise<an
 export function copy(str?: string): string;
 export function browser(): string;
 export function serializeForm(form?: HTMLFormElement): string;
+export function request({ url, body, as, method, options, authorization, headers, type, corsFallback, corsDomain, detectCors, makeCorsUrl, timeout, }: {
+    url: string;
+    body: any | string | FormData;
+    as?: string | Array<string>;
+    method?: string;
+    options?: any;
+    headers?: any;
+    type?: any | string;
+    corsFallback?: boolean;
+    corsDomain?: string;
+    detectCors?: Function;
+    makeCorsUrl?: Function;
+    timeout?: number;
+}): any | Response | string | (new (width?: number, height?: number) => HTMLImageElement);
 export function soundex(s?: string): string;
 export function prototype(options?: any): void;
 export default _temp;
@@ -255,6 +269,7 @@ export type manipulateVideoStreamFunction = (pixel: any, red: number, green: num
     red: number;
     green: number;
     blue: number;
+    alpha: number;
 };
 /**
  * Bijou.js source documentation. In the `Bijou` namespace you will find the documentation for all of the functions in Bijou.js, if you have any questions, suggestions or bug reports pleast make an issue (here)[https://github.com/bijou-js/bijou.js/issues/new/choose]. Best of luck! Thanks for using Bijou.js! --Explosion--

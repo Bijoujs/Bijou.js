@@ -18,7 +18,7 @@
  * // audio from the microphone and the video from the screen share.
  * const combinedStream = createStream(audioStream, videoStream);//Order doesn't matter, _$.createStream also accepts an array of streams.
  */
- export let createStream = (...tracks) => {
+export let createStream = (...tracks) => {
 	if (Array.isArray(arguments[0])) {
 		tracks = arguments[0];
 		//Also allow [stream1, stream2] etc
@@ -1270,12 +1270,12 @@ export let serializeForm = (
  * @param {Number} [options.timeout=null] The timeout (in ms) before cancelling the request. If null than there will be no timeout handling.
  * @example
  * let response = await _$.request({
- * 	url: "https://google.com", 
- * 	as: ["html", "bloburl"], 
+ * 	url: "https://google.com",
+ * 	as: ["html", "bloburl"],
  * 	timeout: 1000
  * })
  * // → {html: #document, bloburl: "blob:https://github.com/abc-def-ghi"}
- * 
+ *
  * @returns {Object|Response|String|Image}
  */
 export let request = ({
@@ -1414,7 +1414,7 @@ export let request = ({
 					],
 				});
 			} else if (!body) {
-				req("Object|String|FormData", "options.body")
+				req("Object|String|FormData", "options.body");
 				return err({
 					type: "no_body",
 					message:
