@@ -8,7 +8,7 @@
 	"browser": "bijou.js",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bijou-js/bijou.js.git"
+		"url": "git+https://github.com/bijoujs/bijou.js.git"
 	},
 	"scripts": {
 		"doc": "jsdoc -c jsdoc.json",
@@ -23,7 +23,7 @@
 	"author": "Bijou.js contributors",
 	"license": "GPL-3.0",
 	"bugs": {
-		"url": "https://github.com/bijou-js/bijou.js/issues"
+		"url": "https://github.com/bijoujs/bijou.js/issues"
 	},
 	"homepage": "https://bijou.js.org",
 	"devDependencies": {
