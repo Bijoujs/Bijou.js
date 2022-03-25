@@ -14,6 +14,9 @@
 		"doc": "jsdoc -c jsdoc.json",
 		"build": "npm install"
 	},
+	"publishConfig": {
+	    "registry": "https://npm.pkg.github.com/@Bijoujs"
+	},
 	"keywords": [
 		"js",
 		"useful",
