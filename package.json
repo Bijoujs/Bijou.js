@@ -30,7 +30,7 @@
 	},
 	"homepage": "https://bijou.js.org",
 	"devDependencies": {
-		"clean-jsdoc-theme": "4.1.10",
+		"clean-jsdoc-theme": "4.2.2",
 		"eslint": "^8.0.0",
 		"eslint-config-prettier": "^8.2.0",
 		"eslint-plugin-prettier": "^4.0.0",
