@@ -1,238 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bijou.js - Docs array</title>
 
-    <!-- Adding favicon -->
-    
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-    <!-- Adding meta -->
-    
-    
-    <meta name="author" content="Explosion-Scratch" />
-    
-    <meta name="description" content="Bijou.js documentation: Everything function in Bijou.js documented!" />
-    
-    <meta name="keywords" content="Bijou.js, Docs, documentation, library, JS, HTML, CSS" />
-    
-    <meta name="theme-color" content="#008080" />
-    
-    <meta property="twitter:card" content="summary_large_image" />
-    
-    <meta property="twitter:url" content="https://bijou.js.org/docs" />
-    
-    <meta property="twitter:title" content="Bijou.js docs" />
-    
-    <meta property="og:title" content="Bijou.js docs" />
-    
-    <meta property="og:site_name" content="Bijou.js" />
-    
-    <meta property="og:description" content="Bijou.js documentation: Every function in Bijou.js is documented here!" />
-    
-    <meta property="og:image" content="https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401" />
-    
-    <meta property="twitter:image" content="https://media.discordapp.net/attachments/795728683548540929/812363131153809418/bijou.png?width=628&height=401" />
-    
-    <meta property="twitter:description" content="Bijou.js documentation: Every function in Bijou.js is documented here!" />
-    
-    <meta name="language" content="English" />
-    
-    <meta name="revisit-after" content="1 days" />
-    
-    
-
-    <!-- Adding external script-->
-    
-    
-    <script href="https://unpkg.com/bijou.js@v6.2.0" type="module" ></script>
-    
-    
-
-    <!-- Adding external style-->
-    
-    
-    <link rel="shortcut icon" type="image/png" href="https://bijou.js.org/favicon.png" />
-    
-    
-
-    <!-- Adding scripts-->
-    
-
-    <!-- Adding style-->
-    
-
-    <!-- Adding overlay script-->
-    
-
-    <!-- Adding overlay style-->
-    
+  
+</head>
 
 
-    <title>
-      array
-    </title>
 
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/third-party/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/third-party/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/reset.css">
-    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
-    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
     
-    <style>
-      pre, pre * {font-family: monospace !important;} .tooltip * {color: white !important}
 
-nav {
-  background: linear-gradient(to right, #088, #0ca) !important;
-  padding: 10px !important;
-}
-nav, nav * {
-  box-sizing: border-box !important;
-}
-nav * {
-  color: white !important;
-}
-div.search-box-input-container {
-  background: #fff4 !important;
-  border-radius: 5px !important;
-}
-nav ::placeholder {
-  color: #ddd !important;
-}
-nav svg {
-  fill: white !important;
-}
-.methods {
-  background: #0001 !important;
-}
-.accordion-content {
-  background: #fff1 !important;
-}
-div.accordion-heading {
-  background: #fff3 !important;
-}
-
-::-webkit-scrollbar {
-  width: 3px !important;
-}
-::-webkit-scrollbar-track{
-  background: #0bb1 !important;
-}
-
-nav ::-webkit-scrollbar-thumb{
-  border-radius: 1000px !important;
-  background: #fff3 !important;
-}
-
-.page-title, header * {
-  border-color: #0ca5;
-}
-article pre * {
-  background: #111;
-}
-
-li.p-h-n {
-  color: #333 !important;
-}
-#search-item-ul * {
-  color: #333 !important;
-}
-#search-item-ul {
-  background: #fff9 !important;
-  backdrop-filter: blur(10px) !important;
-  border-radius: 3px !important;
-}
-
-div.code-copy-icon-container:hover * {
-  color: white !important;
-  fill: white !important;
-}
-    </style>
-    
-    <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-    style="display:none">
-    <defs>
-        <symbol id="copy-icon" viewbox="0 0 488.3 488.3">
-            <g>
-                <path
-                    d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z" />
-                <path
-                    d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6    V38.6C439.65,17.3,422.35,0,401.05,0z" />
-            </g>
-        </symbol>
-        <symbol id='search-icon' viewBox="0 0 512 512">
-            <g>
-                <g>
-                    <path
-                        d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474    c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323    c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848    S326.847,409.323,225.474,409.323z" />
-                </g>
-            </g>
-            <g>
-                <g>
-                    <path
-                        d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328    c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z" />
-                </g>
-            </g>
-        </symbol>
-        <symbol id="down-icon" viewBox="0 0 16 16">
-            <path 
-                fill-rule="evenodd" 
-                clip-rule="evenodd" 
-                d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"
-            >
-            </path>
-        </symbol>
-    </defs>
-</svg>
-  </head>
-
-  <body>
-
-    <nav class="navbar" id="navbar">
-      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><ul><li class="menu-li"><a href='https://bijou.js.org' class=' menu-link' id='' target=''>Home</a></li><li class="menu-li"><a href='https://github.com/bijou-js/bijou.js' class=' menu-link' id='' target='_blank'>Github</a></li><li class="menu-li"><a href='https://bijou.js.org/docs/' class=' menu-link' id='' target=''>Functions in Bijou</a></li></ul><div class="accordion collapsed" id="2758103" > <h3 class="accordion-heading">Namespaces<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion collapsed child" id=5292267><div class="accordion-heading child"><a href="array.html">array</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="array.html#.exports.arrayDiff">exports.arrayDiff</a></li><li data-type='method'><a href="array.html#.exports.averageBy">exports.averageBy</a></li><li data-type='method'><a href="array.html#.exports.contains">exports.contains</a></li><li data-type='method'><a href="array.html#.exports.count">exports.count</a></li><li data-type='method'><a href="array.html#.exports.diff">exports.diff</a></li><li data-type='method'><a href="array.html#.exports.each">exports.each</a></li><li data-type='method'><a href="array.html#.exports.flatten">exports.flatten</a></li><li data-type='method'><a href="array.html#.exports.nFlatten">exports.nFlatten</a></li><li data-type='method'><a href="array.html#.exports.remove">exports.remove</a></li><li data-type='method'><a href="array.html#.exports.shuffleArray">exports.shuffleArray</a></li><li data-type='method'><a href="array.html#.exports.splice">exports.splice</a></li><li data-type='method'><a href="array.html#.exports.spliceArrayBuffer">exports.spliceArrayBuffer</a></li><li data-type='method'><a href="array.html#.exports.unionArrays">exports.unionArrays</a></li><li data-type='method'><a href="array.html#.exports.uniqueArray">exports.uniqueArray</a></li></ul></li><li class="accordion collapsed child" id=9281561><div class="accordion-heading child"><a href="color.html">color</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="color.html#.exports.blendColors">exports.blendColors</a></li><li data-type='method'><a href="color.html#.exports.hexToRGB">exports.hexToRGB</a></li><li data-type='method'><a href="color.html#.exports.lightenColor">exports.lightenColor</a></li><li data-type='method'><a href="color.html#.exports.lightOrDark">exports.lightOrDark</a></li><li data-type='method'><a href="color.html#.exports.randomColor">exports.randomColor</a></li><li data-type='method'><a href="color.html#.exports.rgbToHex">exports.rgbToHex</a></li></ul></li><li class="accordion collapsed child" id=8660196><div class="accordion-heading child"><a href="date.html">date</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="date.html#.exports.addDaysToDate">exports.addDaysToDate</a></li><li data-type='method'><a href="date.html#.exports.addMinutesToDate">exports.addMinutesToDate</a></li><li data-type='method'><a href="date.html#.exports.dayName">exports.dayName</a></li><li data-type='method'><a href="date.html#.exports.formatMilliseconds">exports.formatMilliseconds</a></li><li data-type='method'><a href="date.html#.exports.isDateValid">exports.isDateValid</a></li></ul></li><li class="accordion collapsed child" id=6997047><div class="accordion-heading child"><a href="element.html">element</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="element.html#.exports.addEventListeners">exports.addEventListeners</a></li><li data-type='method'><a href="element.html#.exports.addStyles">exports.addStyles</a></li><li data-type='method'><a href="element.html#.exports.attributes">exports.attributes</a></li><li data-type='method'><a href="element.html#.exports.compStyle">exports.compStyle</a></li><li data-type='method'><a href="element.html#.exports.context">exports.context</a></li><li data-type='method'><a href="element.html#.exports.create">exports.create</a></li><li data-type='method'><a href="element.html#.exports.createElement">exports.createElement</a></li><li data-type='method'><a href="element.html#.exports.disableRightClick">exports.disableRightClick</a></li><li data-type='method'><a href="element.html#.exports.drag">exports.drag</a></li><li data-type='method'><a href="element.html#.exports.elementContains">exports.elementContains</a></li><li data-type='method'><a href="element.html#.exports.elementReady">exports.elementReady</a></li><li data-type='method'><a href="element.html#.exports.elementSiblings">exports.elementSiblings</a></li><li data-type='method'><a href="element.html#.exports.fullScreen">exports.fullScreen</a></li><li data-type='method'><a href="element.html#.exports.getImages">exports.getImages</a></li><li data-type='method'><a href="element.html#.exports.inlineCSS">exports.inlineCSS</a></li><li data-type='method'><a href="element.html#.exports.inPartialView">exports.inPartialView</a></li><li data-type='method'><a href="element.html#.exports.inView">exports.inView</a></li><li data-type='method'><a href="element.html#.exports.observeMutations">exports.observeMutations</a></li><li data-type='method'><a href="element.html#.exports.parents">exports.parents</a></li><li data-type='method'><a href="element.html#.exports.parseHTML">exports.parseHTML</a></li><li data-type='method'><a href="element.html#.exports.querySelector">exports.querySelector</a></li><li data-type='method'><a href="element.html#.exports.removeComments">exports.removeComments</a></li><li data-type='method'><a href="element.html#.exports.renderElement">exports.renderElement</a></li><li data-type='method'><a href="element.html#.exports.replaceSelection">exports.replaceSelection</a></li><li data-type='method'><a href="element.html#.exports.replaceText">exports.replaceText</a></li><li data-type='method'><a href="element.html#.exports.ripple">exports.ripple</a></li><li data-type='method'><a href="element.html#.exports.sortTable">exports.sortTable</a></li><li data-type='method'><a href="element.html#.exports.sortTableBy">exports.sortTableBy</a></li><li data-type='method'><a href="element.html#.exports.textNodes">exports.textNodes</a></li><li data-type='method'><a href="element.html#.exports.tilt">exports.tilt</a></li></ul></li><li class="accordion collapsed child" id=9185975><div class="accordion-heading child"><a href="event.html">event</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="event.html#.exports.dispatch">exports.dispatch</a></li><li data-type='method'><a href="event.html#.exports.hub">exports.hub</a></li><li data-type='method'><a href="event.html#.exports.onOutsideClick">exports.onOutsideClick</a></li><li data-type='method'><a href="event.html#.exports.onScrollStop">exports.onScrollStop</a></li></ul></li><li class="accordion collapsed child" id=939038><div class="accordion-heading child"><a href="function.html">function</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="function.html#.exports.composeFunction">exports.composeFunction</a></li><li data-type='method'><a href="function.html#.exports.curryFunction">exports.curryFunction</a></li><li data-type='method'><a href="function.html#.exports.debounce">exports.debounce</a></li><li data-type='method'><a href="function.html#.exports.isAsync">exports.isAsync</a></li><li data-type='method'><a href="function.html#.exports.memoize">exports.memoize</a></li><li data-type='method'><a href="function.html#.exports.runAsync">exports.runAsync</a></li><li data-type='method'><a href="function.html#.exports.spread">exports.spread</a></li><li data-type='method'><a href="function.html#.exports.throttle">exports.throttle</a></li><li data-type='method'><a href="function.html#.exports.timeFunction">exports.timeFunction</a></li></ul></li><li class="accordion collapsed child" id=4540160><div class="accordion-heading child"><a href="math.html">math</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="math.html#.exports.animate">exports.animate</a></li><li data-type='method'><a href="math.html#.exports.equals">exports.equals</a></li><li data-type='method'><a href="math.html#.exports.factorial">exports.factorial</a></li><li data-type='method'><a href="math.html#.exports.formatNumber">exports.formatNumber</a></li><li data-type='method'><a href="math.html#.exports.gcd">exports.gcd</a></li><li data-type='method'><a href="math.html#.exports.isPrime">exports.isPrime</a></li><li data-type='method'><a href="math.html#.exports.luhnCheck">exports.luhnCheck</a></li><li data-type='method'><a href="math.html#.exports.primesTo">exports.primesTo</a></li><li data-type='method'><a href="math.html#.exports.random">exports.random</a></li><li data-type='method'><a href="math.html#.exports.range">exports.range</a></li><li data-type='method'><a href="math.html#.exports.seedRandom">exports.seedRandom</a></li><li data-type='method'><a href="math.html#.exports.uuid">exports.uuid</a></li></ul></li><li class="accordion-list" id=""><a href="math.ease.html">ease</a></li><li class="accordion collapsed child" id=2914657><div class="accordion-heading child"><a href="object.html">object</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="object.html#.exports.clone">exports.clone</a></li><li data-type='method'><a href="object.html#.exports.flattenObj">exports.flattenObj</a></li><li data-type='method'><a href="object.html#.exports.formToObject">exports.formToObject</a></li><li data-type='method'><a href="object.html#.exports.listen">exports.listen</a></li><li data-type='method'><a href="object.html#.exports.mapObjectKeys">exports.mapObjectKeys</a></li><li data-type='method'><a href="object.html#.exports.mapObjectValues">exports.mapObjectValues</a></li><li data-type='method'><a href="object.html#.exports.merge">exports.merge</a></li><li data-type='method'><a href="object.html#.exports.sortObj">exports.sortObj</a></li></ul></li><li class="accordion collapsed child" id=915632><div class="accordion-heading child"><a href="string.html">string</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="string.html#.exports.byteSize">exports.byteSize</a></li><li data-type='method'><a href="string.html#.exports.camelCase">exports.camelCase</a></li><li data-type='method'><a href="string.html#.exports.capitalize">exports.capitalize</a></li><li data-type='method'><a href="string.html#.exports.deburr">exports.deburr</a></li><li data-type='method'><a href="string.html#.exports.editDistance">exports.editDistance</a></li><li data-type='method'><a href="string.html#.exports.escapeHTML">exports.escapeHTML</a></li><li data-type='method'><a href="string.html#.exports.forTemplateLiteral">exports.forTemplateLiteral</a></li><li data-type='method'><a href="string.html#.exports.hash">exports.hash</a></li><li data-type='method'><a href="string.html#.exports.hashString">exports.hashString</a></li><li data-type='method'><a href="string.html#.exports.jaroDistance">exports.jaroDistance</a></li><li data-type='method'><a href="string.html#.exports.mapString">exports.mapString</a></li><li data-type='method'><a href="string.html#.exports.markdownToHTML">exports.markdownToHTML</a></li><li data-type='method'><a href="string.html#.exports.parseCookie">exports.parseCookie</a></li><li data-type='method'><a href="string.html#.exports.prefixCSS">exports.prefixCSS</a></li><li data-type='method'><a href="string.html#.exports.previousPage">exports.previousPage</a></li><li data-type='method'><a href="string.html#.exports.removeTags">exports.removeTags</a></li><li data-type='method'><a href="string.html#.exports.replaceBetween">exports.replaceBetween</a></li><li data-type='method'><a href="string.html#.exports.replaceMultiple">exports.replaceMultiple</a></li><li data-type='method'><a href="string.html#.exports.sanitize">exports.sanitize</a></li><li data-type='method'><a href="string.html#.exports.scrambleString">exports.scrambleString</a></li><li data-type='method'><a href="string.html#.exports.speak">exports.speak</a></li><li data-type='method'><a href="string.html#.exports.syllables">exports.syllables</a></li><li data-type='method'><a href="string.html#.exports.titleCase">exports.titleCase</a></li><li data-type='method'><a href="string.html#.exports.unCamelCase">exports.unCamelCase</a></li><li data-type='method'><a href="string.html#.exports.unescapeHTML">exports.unescapeHTML</a></li><li data-type='method'><a href="string.html#.exports.urlQuery">exports.urlQuery</a></li><li data-type='method'><a href="string.html#.exports.widows">exports.widows</a></li></ul></li><li class="accordion collapsed child" id=3168486><div class="accordion-heading child"><a href="utility.html">utility</a><svg><use xlink:href="#down-icon"></use></svg></div><ul class='methods accordion-content'><li data-type='method'><a href="utility.html#.callbackify">callbackify</a></li><li data-type='method'><a href="utility.html#.exports.arrayToCSV">exports.arrayToCSV</a></li><li data-type='method'><a href="utility.html#.exports.browser">exports.browser</a></li><li data-type='method'><a href="utility.html#.exports.copy">exports.copy</a></li><li data-type='method'><a href="utility.html#.exports.formatHTML">exports.formatHTML</a></li><li data-type='method'><a href="utility.html#.exports.getHTML">exports.getHTML</a></li><li data-type='method'><a href="utility.html#.exports.getJSON">exports.getJSON</a></li><li data-type='method'><a href="utility.html#.exports.htmlToImage">exports.htmlToImage</a></li><li data-type='method'><a href="utility.html#.exports.imageToData">exports.imageToData</a></li><li data-type='method'><a href="utility.html#.exports.injectCSS">exports.injectCSS</a></li><li data-type='method'><a href="utility.html#.exports.jsonToCsv">exports.jsonToCsv</a></li><li data-type='method'><a href="utility.html#.exports.loadScript">exports.loadScript</a></li><li data-type='method'><a href="utility.html#.exports.mobileOrDesktop">exports.mobileOrDesktop</a></li><li data-type='method'><a href="utility.html#.exports.notify">exports.notify</a></li><li data-type='method'><a href="utility.html#.exports.playSection">exports.playSection</a></li><li data-type='method'><a href="utility.html#.exports.preloadImage">exports.preloadImage</a></li><li data-type='method'><a href="utility.html#.exports.race">exports.race</a></li><li data-type='method'><a href="utility.html#.exports.requestInterval">exports.requestInterval</a></li><li data-type='method'><a href="utility.html#.exports.resize">exports.resize</a></li><li data-type='method'><a href="utility.html#.exports.saveBlob">exports.saveBlob</a></li><li data-type='method'><a href="utility.html#.exports.serializeForm">exports.serializeForm</a></li><li data-type='method'><a href="utility.html#.exports.soundex">exports.soundex</a></li><li data-type='method'><a href="utility.html#.exports.typeOf">exports.typeOf</a></li><li data-type='method'><a href="utility.html#.promisify">promisify</a></li></ul></li><li class="accordion-list" id=""><a href="utility.cookies.html">cookies</a></li><li class="accordion-list" id=""><a href="utility.preload.html">preload</a></li><li class="accordion-list" id=""><a href="utility.regex.html">regex</a></li></ul> </div><div class="accordion collapsed" id="3690373" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#_temp">_temp</a></li><li class="accordion-list" id=""><a href="global.html#animateCallback">animateCallback</a></li><li class="accordion-list" id=""><a href="global.html#animateNumCallback">animateNumCallback</a></li><li class="accordion-list" id=""><a href="global.html#averageByFn">averageByFn</a></li><li class="accordion-list" id=""><a href="global.html#eachCallback">eachCallback</a></li><li class="accordion-list" id=""><a href="global.html#eventListenersCallback">eventListenersCallback</a></li><li class="accordion-list" id=""><a href="global.html#juxtCallback">juxtCallback</a></li><li class="accordion-list" id=""><a href="global.html#listenCallback">listenCallback</a></li><li class="accordion-list" id=""><a href="global.html#manipulateVideoStreamFunction">manipulateVideoStreamFunction</a></li><li class="accordion-list" id=""><a href="global.html#mapCallback">mapCallback</a></li><li class="accordion-list" id=""><a href="global.html#mapObjKeysCallback">mapObjKeysCallback</a></li><li class="accordion-list" id=""><a href="global.html#mapObjValuesCallback">mapObjValuesCallback</a></li><li class="accordion-list" id=""><a href="global.html#node">node</a></li><li class="accordion-list" id=""><a href="global.html#prototype">prototype</a></li><li class="accordion-list" id=""><a href="global.html#replaceTextCallback">replaceTextCallback</a></li><li class="accordion-list" id=""><a href="global.html#scrollStopCallback">scrollStopCallback</a></li><li class="accordion-list" id=""><a href="global.html#sortTableCallback">sortTableCallback</a></li><li class="accordion-list" id=""><a href="global.html#spreadCallback">spreadCallback</a></li></ul> </div>
-      
-
-    </nav>
-    <div class="navbar-ham" id="navbar-ham">
-      <div>
-        <div class="first"></div>
-        <div class="second"></div>
-        <div class="third"></div>
-      </div>
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">Bijou.js</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://bijou.js.org"
+                        >
+                            Home
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/bijou-js/bijou.js"
+                        >
+                            Github
+                        </a>
+                    
+                        <a
+                            class="link user-link "
+                            href="https://bijou.js.org/docs/"
+                        >
+                            Functions in Bijou
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
     </div>
-
-    <div id="main" class="main-content">
-      
-      <h1 id='page-title' class="page-title">
-        array
-      </h1>
-      
-
-      
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Namespaces</h3><ul><li><a href="array.html">array</a></li><li><a href="color.html">color</a></li><li><a href="date.html">date</a></li><li><a href="element.html">element</a></li><li><a href="event.html">event</a></li><li><a href="function.html">function</a></li><li><a href="math.html">math</a></li><li><a href="math.ease.html">ease</a></li><li><a href="object.html">object</a></li><li><a href="string.html">string</a></li><li><a href="utility.html">utility</a></li><li><a href="utility.cookies.html">cookies</a></li><li><a href="utility.preload.html">preload</a></li><li><a href="utility.regex.html">regex</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_temp">_temp</a></li><li><a href="global.html#node">node</a></li><li><a href="global.html#prototype">prototype</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Namespace</p>
+                    <h1>array</h1>
+                </header>
+                
 
 
 
 
 <section>
 
-
 <header>
     
-        
-        <h2>
-        
-        array
-        
-        </h2>
-        
+        <h2>array</h2>
         
     
 </header>
-
 
 <article>
     <div class="container-overview">
@@ -244,8 +131,6 @@ div.code-copy-icon-container:hover * {
         
 
 
-
-
 <dl class="details">
 
     
@@ -271,29 +156,32 @@ div.code-copy-icon-container:hover * {
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="-_copyright.js.html" class="button">View Source</a>
+            <span>
                 <a href="-_copyright.js.html">_copyright.js</a>, <a href="-_copyright.js.html#line101">line 101</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
-
-
 
 
         
     
     </div>
+    
+    
+
+    
+
+    
 
     
 
@@ -301,122 +189,128 @@ div.code-copy-icon-container:hover * {
 
     
 
-     
-
     
 
     
+        <div class='vertical-section'>
+            <h1>Methods</h1>
+            <div class="members">
+            
+                <div class="member">
+
 
     
-        <h3 class="subsection-title">Methods</h3>
-
+    <h4 class="name" id=".exports.arrayDiff">
+        <a class="href-link" href="#.exports.arrayDiff">#</a>
         
             
-
-    
-
-    <h4 class="name" id=".exports.arrayDiff">
-        <a href="#.exports.arrayDiff">#</a>
-        <span class="type-signature">(static) </span>exports.arrayDiff<span class="signature">(a1, a2)</span><span class="type-signature"> &rarr; {Array|String}</span>
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.arrayDiff<span class="signature">(a1, a2)</span><span class="type-signature"> &rarr; {Array|String}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Returns the difference between two arrays or strings.</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>a1</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
+            <th>Type</th>
+
             
-                
-<span class="param-type">Array</span>
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>a1</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
 |
 
-<span class="param-type">String</span>
+<code class="param-type">String</code>
 
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The first array or string</p></td>
+</tr>
+
+
+        
 
             
-            </td>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>a2</code></td>
+  
 
-            
-
-            
-
-            <td class="description last"><p>The first array or string</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>a2</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
 |
 
-<span class="param-type">String</span>
+<code class="param-type">String</code>
 
 
-            
-            </td>
+  
+  </td>
 
-            
+  
 
-            
+  
 
-            <td class="description last"><p>The 2nd array or string.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
+  <td class="description last"><p>The 2nd array or string.</p></td>
+</tr>
 
 
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -447,20 +341,19 @@ div.code-copy-icon-container:hover * {
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line30">line 30</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -478,149 +371,158 @@ div.code-copy-icon-container:hover * {
 
 
 
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-<div class="param-desc">
-    <p>The difference between two arrays or strings.</p>
-</div>
+                    
 
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>The difference between two arrays or strings.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
         
-<span class="param-type">Array</span>
+<code class="param-type">Array</code>
 |
 
-<span class="param-type">String</span>
+<code class="param-type">String</code>
 
 
-    </dd>
-</dl>
+    </div>
+    
+</div>
 
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>console.log(_$.arrayDiff(['a', 'b'], ['a', 'b', 'c', 'd'])); // ["c", "d"]</code></pre>
+    
+
+
+</div>
             
-    </div>
+                <div class="member">
 
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>console.log(_$.arrayDiff(['a', 'b'], ['a', 'b', 'c', 'd'])); // ["c", "d"]</code></pre>
-    
-    
-    </div>
-
-    </div>
-
-
-        
-            
 
     
-
     <h4 class="name" id=".exports.averageBy">
-        <a href="#.exports.averageBy">#</a>
-        <span class="type-signature">(static) </span>exports.averageBy<span class="signature">(arr, fn)</span><span class="type-signature"> &rarr; {Number}</span>
+        <a class="href-link" href="#.exports.averageBy">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.averageBy<span class="signature">(arr, fn)</span><span class="type-signature"> &rarr; {Number}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>averageBy</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>arr</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;number></span>
-
-
-            
-            </td>
+            <th>Type</th>
 
             
 
             
 
-            <td class="description last"><p>The array to average</p></td>
+            <th class="last">Description</th>
         </tr>
+        </thead>
 
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#averageByFn">averageByFn</a></span>
-
+        <tbody>
+        
 
             
-            </td>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>arr</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Array.&lt;number></code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The array to average</p></td>
+</tr>
+
+
+        
 
             
+<tr class="deep-level-0">
+  
+      <td class="name"><code>fn</code></td>
+  
 
-            
-
-            <td class="description last"><p>The function to apply to each item of the array.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
+  <td class="type">
+  
+      
+<code class="param-type"><a href="global.html#averageByFn">averageByFn</a></code>
 
 
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The function to apply to each item of the array.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -651,20 +553,19 @@ div.code-copy-icon-container:hover * {
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line278">line 278</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -682,325 +583,340 @@ div.code-copy-icon-container:hover * {
 
 
 
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-<div class="param-desc">
-    <p>The average of the array.</p>
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>The average of the array.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Number</code>
+
+
+    </div>
+    
 </div>
 
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Number</span>
-
-
-    </dd>
-</dl>
-
-            
+                
+        </div>
     </div>
 
 
 
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>Logs the average of the first 4 square numbers:
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>Logs the average of the first 4 square numbers:
 console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5</code></pre>
     
+
+
+</div>
+            
+                <div class="member">
+
+
     
-    </div>
-
-    </div>
-
-
+    <h4 class="name" id=".exports.contains">
+        <a class="href-link" href="#.exports.contains">#</a>
         
             
-
-    
-
-    <h4 class="name" id=".exports.contains">
-        <a href="#.exports.contains">#</a>
-        <span class="type-signature">(static) </span>exports.contains<span class="signature">(array, item)</span><span class="type-signature"> &rarr; {Boolean}</span>
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.contains<span class="signature">(array, item)</span><span class="type-signature"> &rarr; {Boolean}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Returns whether the specified array or string contains the item given.</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>array</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
+            <th>Type</th>
 
             
 
             
 
-            <td class="description last"><p>The array to test with.</p></td>
+            <th class="last">Description</th>
         </tr>
+        </thead>
 
-    
-
-        <tr>
-            
-                <td class="name"><code>item</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The item to see if the array contains.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <a href="array.js.html">array.js</a>, <a href="array.js.html#line196">line 196</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
+        <tbody>
         
+
             
-<div class="param-desc">
-    <p>True or false depending on if the array contains that item.</p>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>array</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The array to test with.</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>item</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">String</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The item to see if the array contains.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
 </div>
 
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Boolean</span>
 
 
-    </dd>
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
+                <a href="array.js.html">array.js</a>, <a href="array.js.html#line196">line 196</a>
+            </span>
+        </p>
+    
 </dl>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-    </div>
+                    
 
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>console.log(_$.contains([1,2,3,4,5], 3)); // true</code></pre>
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>True or false depending on if the array contains that item.</p></div>
     
     
-    </div>
-
-    </div>
-
-
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
         
+<code class="param-type">Boolean</code>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>console.log(_$.contains([1,2,3,4,5], 3)); // true</code></pre>
+    
+
+
+</div>
             
+                <div class="member">
+
 
     
-
     <h4 class="name" id=".exports.count">
-        <a href="#.exports.count">#</a>
-        <span class="type-signature">(static) </span>exports.count<span class="signature">(arr)</span><span class="type-signature"> &rarr; {Object}</span>
+        <a class="href-link" href="#.exports.count">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.count<span class="signature">(arr)</span><span class="type-signature"> &rarr; {Object}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Counts the items in an array, returning a separate count for each object.</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>arr</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
+            <th>Type</th>
 
             
 
             
 
-            <td class="description last"><p>The array to count items in.</p></td>
+            <th class="last">Description</th>
         </tr>
+        </thead>
 
-    
-    </tbody>
-</table>
+        <tbody>
+        
 
-    </div>
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>arr</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
 
 
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The array to count items in.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -1031,176 +947,186 @@ console.log(_$.averageBy([1,2,3,4], (v) => v ** 2)); // 7.5</code></pre>
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line14">line 14</a>
-            </li></ul></dd>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Object</code>
+
+
+    </div>
+    
+</div>
+
+                
         </div>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
-            
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-            
     </div>
 
 
 
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>_$.count(['a', 'b', 'c', 'd', 'e', 'f'])//{'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1}
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>_$.count(['a', 'b', 'c', 'd', 'e', 'f'])//{'a': 1, 'b': 1, 'c': 1, 'd': 1, 'e': 1, 'f': 1}
 
 //But if you have multiple items:
 _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 'e': 1}</code></pre>
     
+
+
+</div>
+            
+                <div class="member">
+
+
     
-    </div>
-
-    </div>
-
-
+    <h4 class="name" id=".exports.diff">
+        <a class="href-link" href="#.exports.diff">#</a>
         
             
-
-    
-
-    <h4 class="name" id=".exports.diff">
-        <a href="#.exports.diff">#</a>
-        <span class="type-signature">(static) </span>exports.diff<span class="signature">(text1, text2)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span>
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.diff<span class="signature">(text1, text2)</span><span class="type-signature"> &rarr; {Array.&lt;Array.&lt;number>>}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Gets the difference between two strings.</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>text1</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
+            <th>Type</th>
 
             
 
             
 
-            <td class="description last"><p>The 1st text to compare</p></td>
+            <th class="last">Description</th>
         </tr>
+        </thead>
 
-    
-
-        <tr>
-            
-                <td class="name"><code>text2</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
+        <tbody>
+        
 
             
-            </td>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>text1</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">String</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The 1st text to compare</p></td>
+</tr>
+
+
+        
 
             
+<tr class="deep-level-0">
+  
+      <td class="name"><code>text2</code></td>
+  
 
-            
-
-            <td class="description last"><p>The 2nd text to compare with the 1st one.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
+  <td class="type">
+  
+      
+<code class="param-type">String</code>
 
 
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The 2nd text to compare with the 1st one.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -1231,20 +1157,19 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line62">line 62</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -1262,152 +1187,161 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
 
 
 
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-<div class="param-desc">
-    <p>An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.</p>
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>An array of arrays, each array in the main array contains 2 numbers, the start and then end of the difference.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Array.&lt;Array.&lt;number>></code>
+
+
+    </div>
+    
 </div>
 
+                
+        </div>
+    </div>
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;Array.&lt;number>></span>
 
 
-    </dd>
-</dl>
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]</code></pre>
+    
 
+
+</div>
             
-    </div>
+                <div class="member">
 
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>console.log(_$.diff("hello earthlings", "hello world"); // [[6,8],[9,16]]</code></pre>
-    
-    
-    </div>
-
-    </div>
-
-
-        
-            
 
     
-
     <h4 class="name" id=".exports.each">
-        <a href="#.exports.each">#</a>
-        <span class="type-signature">(static) </span>exports.each<span class="signature">(array, callback)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+        <a class="href-link" href="#.exports.each">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.each<span class="signature">(array, callback)</span><span class="type-signature"> &rarr; {Array.&lt;any>}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>For each item in an array, run a callback with it.</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>array</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
+            <th>Type</th>
+
             
-                
-<span class="param-type">Array</span>
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>array</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
 |
 
-<span class="param-type">String</span>
+<code class="param-type">String</code>
 |
 
-<span class="param-type">Number</span>
+<code class="param-type">Number</code>
 
 
-            
-            </td>
+  
+  </td>
 
-            
+  
 
-            
+  
 
-            <td class="description last"><p>The array, string or number to run the callback with.</p></td>
-        </tr>
+  <td class="description last"><p>The array, string or number to run the callback with.</p></td>
+</tr>
 
-    
 
-        <tr>
-            
-                <td class="name"><code>callback</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#eachCallback">eachCallback</a></span>
-
+        
 
             
-            </td>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>callback</code></td>
+  
 
-            
-
-            
-
-            <td class="description last"><p>The callback function to run on the array items.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
+  <td class="type">
+  
+      
+<code class="param-type"><a href="global.html#eachCallback">eachCallback</a></code>
 
 
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The callback function to run on the array items.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -1438,20 +1372,19 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line320">line 320</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -1469,38 +1402,41 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
 
 
 
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-<div class="param-desc">
-    <p>The array passed at the beginning.</p>
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>The array passed at the beginning.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Array.&lt;any></code>
+
+
+    </div>
+    
 </div>
 
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;any></span>
-
-
-    </dd>
-</dl>
-
-            
+                
+        </div>
     </div>
 
 
 
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>_$.each(new Array(6), (array_item, i) => console.log(i));
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>_$.each(new Array(6), (array_item, i) => console.log(i));
 // 0
 // 1
 // 2
@@ -1508,145 +1444,151 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
 // 4
 // 5</code></pre>
     
+
+
+</div>
+            
+                <div class="member">
+
+
     
-    </div>
-
-    </div>
-
-
+    <h4 class="name" id=".exports.flatten">
+        <a class="href-link" href="#.exports.flatten">#</a>
         
             
-
-    
-
-    <h4 class="name" id=".exports.flatten">
-        <a href="#.exports.flatten">#</a>
-        <span class="type-signature">(static) </span>exports.flatten<span class="signature">(array, level<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span>
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.flatten<span class="signature">(array, level<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Flattens an array <code>level</code> times.</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>array</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
+            <th>Type</th>
 
             
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
+            <th>Attributes</th>
             
 
             
-                <td class="default">
-                
-                </td>
+            <th>Default</th>
             
 
-            <td class="description last"><p>The array to flatten.</p></td>
+            <th class="last">Description</th>
         </tr>
+        </thead>
 
-    
-
-        <tr>
-            
-                <td class="name"><code>level</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
+        <tbody>
+        
 
             
-            </td>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>array</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The array to flatten.</p></td>
+</tr>
+
+
+        
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
+<tr class="deep-level-0">
+  
+      <td class="name"><code>level</code></td>
+  
 
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    1
-                
-                </td>
-            
-
-            <td class="description last"><p>The number of iterations to flatten it.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
+  <td class="type">
+  
+      
+<code class="param-type">Number</code>
 
 
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          1
+      
+      </td>
+  
+
+  <td class="description last"><p>The number of iterations to flatten it.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -1677,20 +1619,19 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line161">line 161</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -1708,123 +1649,130 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
 
 
 
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-<div class="param-desc">
-    <p>The flattened array.</p>
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>The flattened array.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Array</code>
+
+
+    </div>
+    
 </div>
 
+                
+        </div>
+    </div>
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
 
 
-    </dd>
-</dl>
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>console.log(_$.flatten(['a', 'b', ['c', 'd']])); // ['a', 'b', 'c', 'd'];</code></pre>
+    
 
+
+</div>
             
-    </div>
+                <div class="member">
 
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>console.log(_$.flatten(['a', 'b', ['c', 'd']])); // ['a', 'b', 'c', 'd'];</code></pre>
-    
-    
-    </div>
-
-    </div>
-
-
-        
-            
 
     
-
     <h4 class="name" id=".exports.nFlatten">
-        <a href="#.exports.nFlatten">#</a>
-        <span class="type-signature">(static) </span>exports.nFlatten<span class="signature">(arr)</span><span class="type-signature"> &rarr; {Array}</span>
+        <a class="href-link" href="#.exports.nFlatten">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.nFlatten<span class="signature">(arr)</span><span class="type-signature"> &rarr; {Array}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Flattens an array recursively.</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>arr</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
+            <th>Type</th>
 
             
 
             
 
-            <td class="description last"><p>The array to flatten.</p></td>
+            <th class="last">Description</th>
         </tr>
+        </thead>
 
-    
-    </tbody>
-</table>
+        <tbody>
+        
 
-    </div>
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>arr</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
 
 
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The array to flatten.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -1855,20 +1803,19 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line178">line 178</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -1886,146 +1833,155 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
 
 
 
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-<div class="param-desc">
-    <p>The flattened array.</p>
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>The flattened array.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Array</code>
+
+
+    </div>
+    
 </div>
 
+                
+        </div>
+    </div>
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
 
 
-    </dd>
-</dl>
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]</code></pre>
+    
 
+
+</div>
             
-    </div>
+                <div class="member">
 
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>console.log(_$.nFlatten([5,[[9,4],0],[7,6]])); // [5,9,4,0,6,7]</code></pre>
-    
-    
-    </div>
-
-    </div>
-
-
-        
-            
 
     
-
     <h4 class="name" id=".exports.remove">
-        <a href="#.exports.remove">#</a>
-        <span class="type-signature">(static) </span>exports.remove<span class="signature">(array, item)</span><span class="type-signature"></span>
+        <a class="href-link" href="#.exports.remove">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.remove<span class="signature">(array, item)</span><span class="type-signature"></span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Removes an item from the array specified.</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>array</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
+            <th>Type</th>
 
             
 
             
 
-            <td class="description last"><p>The array to remove the item from.</p></td>
+            <th class="last">Description</th>
         </tr>
+        </thead>
 
-    
-
-        <tr>
-            
-                <td class="name"><code>item</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
+        <tbody>
+        
 
             
-            </td>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>array</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The array to remove the item from.</p></td>
+</tr>
+
+
+        
 
             
+<tr class="deep-level-0">
+  
+      <td class="name"><code>item</code></td>
+  
 
-            
-
-            <td class="description last"><p>The item to remove.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
+  <td class="type">
+  
+      
+<code class="param-type">*</code>
 
 
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The item to remove.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -2056,20 +2012,19 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line109">line 109</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -2089,96 +2044,103 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
 
 
 
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]</code></pre>
+
+
+
+
+    <h5>Example</h5>
     
     
-    </div>
+        <pre class="prettyprint"><code>console.log(_$.remove([5, 4, 3, 2, 1], 4)); // [5, 3, 2, 1]</code></pre>
+    
 
-    </div>
+
+</div>
+            
+                <div class="member">
 
 
+    
+    <h4 class="name" id=".exports.shuffleArray">
+        <a class="href-link" href="#.exports.shuffleArray">#</a>
         
             
-
-    
-
-    <h4 class="name" id=".exports.shuffleArray">
-        <a href="#.exports.shuffleArray">#</a>
-        <span class="type-signature">(static) </span>exports.shuffleArray<span class="signature">(array)</span><span class="type-signature"> &rarr; {Array}</span>
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.shuffleArray<span class="signature">(array)</span><span class="type-signature"> &rarr; {Array}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Shuffles an array</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>array</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
+            <th>Type</th>
 
             
 
             
 
-            <td class="description last"><p>The array to shuffle.</p></td>
+            <th class="last">Description</th>
         </tr>
+        </thead>
 
-    
-    </tbody>
-</table>
+        <tbody>
+        
 
-    </div>
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>array</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
 
 
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The array to shuffle.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -2209,20 +2171,19 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line209">line 209</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -2240,252 +2201,265 @@ _$.count(['a', 'a', b', 'b', 'c', 'd', 'e']);//{'a': 2, 'b': 2, 'c': 1, 'd': 1, 
 
 
 
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-<div class="param-desc">
-    <p>The shuffled array.</p>
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>The shuffled array.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Array</code>
+
+
+    </div>
+    
 </div>
 
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
-
-
-    </dd>
-</dl>
-
-            
+                
+        </div>
     </div>
 
 
 
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>let array = [1,2,3,4,5];
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>let array = [1,2,3,4,5];
 console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]</code></pre>
     
+
+
+</div>
+            
+                <div class="member">
+
+
     
-    </div>
-
-    </div>
-
-
+    <h4 class="name" id=".exports.splice">
+        <a class="href-link" href="#.exports.splice">#</a>
         
             
-
-    
-
-    <h4 class="name" id=".exports.splice">
-        <a href="#.exports.splice">#</a>
-        <span class="type-signature">(static) </span>exports.splice<span class="signature">(array, index, item, remove<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String|Array}</span>
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.splice<span class="signature">(array, index, item, remove<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String|Array}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Splice but also for strings</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>array</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
+            <th>Type</th>
+
             
-                
-<span class="param-type">String</span>
+            <th>Attributes</th>
+            
+
+            
+            <th>Default</th>
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>array</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">String</code>
 |
 
-<span class="param-type">Array</span>
+<code class="param-type">Array</code>
 
 
-            
-            </td>
+  
+  </td>
 
-            
-                <td class="attributes">
-                
+  
+      <td class="attributes">
+      
 
-                
+      
 
-                
-                </td>
-            
+      
+      </td>
+  
 
-            
-                <td class="default">
-                
-                </td>
-            
+  
+      <td class="default">
+      
+      </td>
+  
 
-            <td class="description last"><p>The array or string to operate on</p></td>
-        </tr>
+  <td class="description last"><p>The array or string to operate on</p></td>
+</tr>
 
-    
 
-        <tr>
-            
-                <td class="name"><code>index</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
+        
 
             
-            </td>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>index</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Number</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The index to splice</p></td>
+</tr>
+
+
+        
 
             
-                <td class="attributes">
-                
+<tr class="deep-level-0">
+  
+      <td class="name"><code>item</code></td>
+  
 
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The index to splice</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>item</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
+  <td class="type">
+  
+      
+<code class="param-type">*</code>
 
 
-            
-            </td>
+  
+  </td>
 
-            
-                <td class="attributes">
-                
+  
+      <td class="attributes">
+      
 
-                
+      
 
-                
-                </td>
-            
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The item</p></td>
+</tr>
+
+
+        
 
             
-                <td class="default">
-                
-                </td>
-            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>remove</code></td>
+  
 
-            <td class="description last"><p>The item</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>remove</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
+  <td class="type">
+  
+      
+<code class="param-type">Number</code>
 
 
-            
-            </td>
+  
+  </td>
 
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
 
-                
+      
 
-                
-                </td>
-            
+      
+      </td>
+  
 
-            
-                <td class="default">
-                
-                    0
-                
-                </td>
-            
+  
+      <td class="default">
+      
+          0
+      
+      </td>
+  
 
-            <td class="description last"><p>How many to remove.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
+  <td class="description last"><p>How many to remove.</p></td>
+</tr>
 
 
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -2516,20 +2490,19 @@ console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]</code></pre>
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line224">line 224</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -2547,254 +2520,267 @@ console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]</code></pre>
 
 
 
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-<div class="param-desc">
-    <p>the spliced array or string</p>
-</div>
+                    
 
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>the spliced array or string</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
         
-<span class="param-type">String</span>
+<code class="param-type">String</code>
 |
 
-<span class="param-type">Array</span>
+<code class="param-type">Array</code>
 
 
-    </dd>
-</dl>
+    </div>
+    
+</div>
 
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"</code></pre>
+    
+
+
+</div>
             
-    </div>
+                <div class="member">
 
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>console.log(_$.splice("hello earthlings", 5, " puny")); // "hello puny earthlings"</code></pre>
-    
-    
-    </div>
-
-    </div>
-
-
-        
-            
 
     
-
     <h4 class="name" id=".exports.spliceArrayBuffer">
-        <a href="#.exports.spliceArrayBuffer">#</a>
-        <span class="type-signature">(static) </span>exports.spliceArrayBuffer<span class="signature">(arr, start, end, endian<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Number}</span>
+        <a class="href-link" href="#.exports.spliceArrayBuffer">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.spliceArrayBuffer<span class="signature">(arr, start, end, endian<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Number}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Splices an ArrayBuffer.</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>arr</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
+            <th>Type</th>
+
             
-                
-<span class="param-type">ArrayBuffer</span>
+            <th>Attributes</th>
+            
+
+            
+            <th>Default</th>
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>arr</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">ArrayBuffer</code>
 |
 
-<span class="param-type">Buffer</span>
+<code class="param-type">Buffer</code>
 
 
-            
-            </td>
+  
+  </td>
 
-            
-                <td class="attributes">
-                
+  
+      <td class="attributes">
+      
 
-                
+      
 
-                
-                </td>
-            
+      
+      </td>
+  
 
-            
-                <td class="default">
-                
-                </td>
-            
+  
+      <td class="default">
+      
+      </td>
+  
 
-            <td class="description last"><p>The ArrayBuffer to splice.</p></td>
-        </tr>
+  <td class="description last"><p>The ArrayBuffer to splice.</p></td>
+</tr>
 
-    
 
-        <tr>
-            
-                <td class="name"><code>start</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
+        
 
             
-            </td>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>start</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Number</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The start index.</p></td>
+</tr>
+
+
+        
 
             
-                <td class="attributes">
-                
+<tr class="deep-level-0">
+  
+      <td class="name"><code>end</code></td>
+  
 
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The start index.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>end</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
+  <td class="type">
+  
+      
+<code class="param-type">Number</code>
 
 
-            
-            </td>
+  
+  </td>
 
-            
-                <td class="attributes">
-                
+  
+      <td class="attributes">
+      
 
-                
+      
 
-                
-                </td>
-            
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>The end index.</p></td>
+</tr>
+
+
+        
 
             
-                <td class="default">
-                
-                </td>
-            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>endian</code></td>
+  
 
-            <td class="description last"><p>The end index.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>endian</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
+  <td class="type">
+  
+      
+<code class="param-type">Boolean</code>
 
 
-            
-            </td>
+  
+  </td>
 
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
 
-                
+      
 
-                
-                </td>
-            
+      
+      </td>
+  
 
-            
-                <td class="default">
-                
-                    false
-                
-                </td>
-            
+  
+      <td class="default">
+      
+          false
+      
+      </td>
+  
 
-            <td class="description last"><p>Whether to use big endian or not.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
+  <td class="description last"><p>Whether to use big endian or not.</p></td>
+</tr>
 
 
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -2825,20 +2811,19 @@ console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]</code></pre>
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line136">line 136</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -2856,135 +2841,148 @@ console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]</code></pre>
 
 
 
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-<div class="param-desc">
-    <p>The hex representation of part of the ArrayBuffer.</p>
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>The hex representation of part of the ArrayBuffer.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Number</code>
+
+
+    </div>
+    
 </div>
 
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Number</span>
-
-
-    </dd>
-</dl>
-
-            
+                
+        </div>
     </div>
 
 
 
 
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id=".exports.unionArrays">
+        <a class="href-link" href="#.exports.unionArrays">#</a>
         
             
-
-    
-
-    <h4 class="name" id=".exports.unionArrays">
-        <a href="#.exports.unionArrays">#</a>
-        <span class="type-signature">(static) </span>exports.unionArrays<span class="signature">(x, y)</span><span class="type-signature"> &rarr; {Array}</span>
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.unionArrays<span class="signature">(x, y)</span><span class="type-signature"> &rarr; {Array}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Joins two arrays together and removes duplicate items.</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>x</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
+            <th>Type</th>
 
             
 
             
 
-            <td class="description last"><p>The first array to join.</p></td>
+            <th class="last">Description</th>
         </tr>
+        </thead>
 
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
+        <tbody>
+        
 
             
-            </td>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>x</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The first array to join.</p></td>
+</tr>
+
+
+        
 
             
+<tr class="deep-level-0">
+  
+      <td class="name"><code>y</code></td>
+  
 
-            
-
-            <td class="description last"><p>The second array to join.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
 
 
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The second array to join.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -3015,20 +3013,19 @@ console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]</code></pre>
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line249">line 249</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -3046,123 +3043,130 @@ console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]</code></pre>
 
 
 
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-<div class="param-desc">
-    <p>The joined array from the two other arrays.</p>
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>The joined array from the two other arrays.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Array</code>
+
+
+    </div>
+    
 </div>
 
+                
+        </div>
+    </div>
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
 
 
-    </dd>
-</dl>
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]</code></pre>
+    
 
+
+</div>
             
-    </div>
+                <div class="member">
 
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>console.log(_$.unionArrays([1,2,3,4], [4,5,6])); // [1,2,3,4,5,6]</code></pre>
-    
-    
-    </div>
-
-    </div>
-
-
-        
-            
 
     
-
     <h4 class="name" id=".exports.uniqueArray">
-        <a href="#.exports.uniqueArray">#</a>
-        <span class="type-signature">(static) </span>exports.uniqueArray<span class="signature">(array)</span><span class="type-signature"> &rarr; {Array}</span>
+        <a class="href-link" href="#.exports.uniqueArray">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                exports.uniqueArray<span class="signature">(array)</span><span class="type-signature"> &rarr; {Array}</span>
+            
+        </span>
     </h4>
-
     
 
-
-
+    
+    
     <div class="description">
         <p>Removes duplicates from an array</p>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>array</code></td>
+            <th>Name</th>
             
 
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
+            <th>Type</th>
 
             
 
             
 
-            <td class="description last"><p>The array to remove duplicates from.</p></td>
+            <th class="last">Description</th>
         </tr>
+        </thead>
 
-    
-    </tbody>
-</table>
+        <tbody>
+        
 
-    </div>
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>array</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">Array</code>
 
 
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>The array to remove duplicates from.</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -3193,20 +3197,19 @@ console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]</code></pre>
     
 
     
+    
 
     
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
+
+    
+
+    
+        <p class="tag-source">
+            <a href="array.js.html" class="button">View Source</a>
+            <span>
                 <a href="array.js.html">array.js</a>, <a href="array.js.html#line295">line 295</a>
-            </li></ul></dd>
-        </div>
-    
-
-    
-
-    
-
+            </span>
+        </p>
     
 </dl>
 
@@ -3224,46 +3227,48 @@ console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]</code></pre>
 
 
 
-    <div class="method-member-container mt-20">
-    <strong>Returns:</strong>
-        
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-<div class="param-desc">
-    <p>The array with no duplicates.</p>
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>The array with no duplicates.</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">Array</code>
+
+
+    </div>
+    
 </div>
 
+                
+        </div>
+    </div>
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array</span>
 
 
-    </dd>
-</dl>
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]</code></pre>
+    
 
+
+</div>
             
-    </div>
-
-
-
-    <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Example</strong>
-        
-    <div class="rel">
-    <pre class="prettyprint"><code>console.log(_$.uniqueArray([1,1,2,3,4,4,4,5,6)); // [1,2,3,4,5,6]</code></pre>
-    
-    
-    </div>
-
-    </div>
-
-
-        
+            </div>
+        </div>
     
 
     
@@ -3276,51 +3281,28 @@ console.log(_$.shuffleArray(array)); // e.g. [2,4,1,5,3]</code></pre>
 
 
 
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
     </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
 
-    <footer class="footer" id="footer">
-      
-    </footer>
-
-    <script src="scripts/third-party/prettify.js"></script>
-    <script src="scripts/third-party/lang-css.js"></script>
-    <script type="text/javascript" src="scripts/misc.js"></script>
-
-    <script>prettyPrint();</script>
-    <script src="scripts/linenumber.js"></script>
-    <script src="scripts/fix-code-block.js"></script>
-    <script src="scripts/fix-navbar.js"></script>
-    
-      <script src="scripts/search.js"></script>
-      <script src="scripts/third-party/fuse.js"></script>
-      <script>
-        var list = [{"title":"array","link":"<a href=\"array.html\">array</a>"},{"title":"array.exports.arrayDiff","link":"<a href=\"array.html#.exports.arrayDiff\">array &rtrif; exports</a>"},{"title":"array.exports.averageBy","link":"<a href=\"array.html#.exports.averageBy\">array &rtrif; exports</a>"},{"title":"array.exports.contains","link":"<a href=\"array.html#.exports.contains\">array &rtrif; exports</a>"},{"title":"array.exports.count","link":"<a href=\"array.html#.exports.count\">array &rtrif; exports</a>"},{"title":"array.exports.diff","link":"<a href=\"array.html#.exports.diff\">array &rtrif; exports</a>"},{"title":"array.exports.each","link":"<a href=\"array.html#.exports.each\">array &rtrif; exports</a>"},{"title":"array.exports.flatten","link":"<a href=\"array.html#.exports.flatten\">array &rtrif; exports</a>"},{"title":"array.exports.nFlatten","link":"<a href=\"array.html#.exports.nFlatten\">array &rtrif; exports</a>"},{"title":"array.exports.remove","link":"<a href=\"array.html#.exports.remove\">array &rtrif; exports</a>"},{"title":"array.exports.shuffleArray","link":"<a href=\"array.html#.exports.shuffleArray\">array &rtrif; exports</a>"},{"title":"array.exports.splice","link":"<a href=\"array.html#.exports.splice\">array &rtrif; exports</a>"},{"title":"array.exports.spliceArrayBuffer","link":"<a href=\"array.html#.exports.spliceArrayBuffer\">array &rtrif; exports</a>"},{"title":"array.exports.unionArrays","link":"<a href=\"array.html#.exports.unionArrays\">array &rtrif; exports</a>"},{"title":"array.exports.uniqueArray","link":"<a href=\"array.html#.exports.uniqueArray\">array &rtrif; exports</a>"},{"title":"color","link":"<a href=\"color.html\">color</a>"},{"title":"color.exports.blendColors","link":"<a href=\"color.html#.exports.blendColors\">color &rtrif; exports</a>"},{"title":"color.exports.hexToRGB","link":"<a href=\"color.html#.exports.hexToRGB\">color &rtrif; exports</a>"},{"title":"color.exports.lightenColor","link":"<a href=\"color.html#.exports.lightenColor\">color &rtrif; exports</a>"},{"title":"color.exports.lightOrDark","link":"<a href=\"color.html#.exports.lightOrDark\">color &rtrif; exports</a>"},{"title":"color.exports.randomColor","link":"<a href=\"color.html#.exports.randomColor\">color &rtrif; exports</a>"},{"title":"color.exports.rgbToHex","link":"<a href=\"color.html#.exports.rgbToHex\">color &rtrif; exports</a>"},{"title":"date","link":"<a href=\"date.html\">date</a>"},{"title":"date.exports.addDaysToDate","link":"<a href=\"date.html#.exports.addDaysToDate\">date &rtrif; exports</a>"},{"title":"date.exports.addMinutesToDate","link":"<a href=\"date.html#.exports.addMinutesToDate\">date &rtrif; exports</a>"},{"title":"date.exports.dayName","link":"<a href=\"date.html#.exports.dayName\">date &rtrif; exports</a>"},{"title":"date.exports.formatMilliseconds","link":"<a href=\"date.html#.exports.formatMilliseconds\">date &rtrif; exports</a>"},{"title":"date.exports.isDateValid","link":"<a href=\"date.html#.exports.isDateValid\">date &rtrif; exports</a>"},{"title":"element","link":"<a href=\"element.html\">element</a>"},{"title":"element.exports.addEventListeners","link":"<a href=\"element.html#.exports.addEventListeners\">element &rtrif; exports</a>"},{"title":"element.exports.addStyles","link":"<a href=\"element.html#.exports.addStyles\">element &rtrif; exports</a>"},{"title":"element.exports.attributes","link":"<a href=\"element.html#.exports.attributes\">element &rtrif; exports</a>"},{"title":"element.exports.compStyle","link":"<a href=\"element.html#.exports.compStyle\">element &rtrif; exports</a>"},{"title":"element.exports.context","link":"<a href=\"element.html#.exports.context\">element &rtrif; exports</a>"},{"title":"element.exports.create","link":"<a href=\"element.html#.exports.create\">element &rtrif; exports</a>"},{"title":"element.exports.createElement","link":"<a href=\"element.html#.exports.createElement\">element &rtrif; exports</a>"},{"title":"element.exports.disableRightClick","link":"<a href=\"element.html#.exports.disableRightClick\">element &rtrif; exports</a>"},{"title":"element.exports.drag","link":"<a href=\"element.html#.exports.drag\">element &rtrif; exports</a>"},{"title":"element.exports.elementContains","link":"<a href=\"element.html#.exports.elementContains\">element &rtrif; exports</a>"},{"title":"element.exports.elementReady","link":"<a href=\"element.html#.exports.elementReady\">element &rtrif; exports</a>"},{"title":"element.exports.elementSiblings","link":"<a href=\"element.html#.exports.elementSiblings\">element &rtrif; exports</a>"},{"title":"element.exports.fullScreen","link":"<a href=\"element.html#.exports.fullScreen\">element &rtrif; exports</a>"},{"title":"element.exports.getImages","link":"<a href=\"element.html#.exports.getImages\">element &rtrif; exports</a>"},{"title":"element.exports.inlineCSS","link":"<a href=\"element.html#.exports.inlineCSS\">element &rtrif; exports</a>"},{"title":"element.exports.inPartialView","link":"<a href=\"element.html#.exports.inPartialView\">element &rtrif; exports</a>"},{"title":"element.exports.inView","link":"<a href=\"element.html#.exports.inView\">element &rtrif; exports</a>"},{"title":"element.exports.observeMutations","link":"<a href=\"element.html#.exports.observeMutations\">element &rtrif; exports</a>"},{"title":"element.exports.parents","link":"<a href=\"element.html#.exports.parents\">element &rtrif; exports</a>"},{"title":"element.exports.parseHTML","link":"<a href=\"element.html#.exports.parseHTML\">element &rtrif; exports</a>"},{"title":"element.exports.querySelector","link":"<a href=\"element.html#.exports.querySelector\">element &rtrif; exports</a>"},{"title":"element.exports.removeComments","link":"<a href=\"element.html#.exports.removeComments\">element &rtrif; exports</a>"},{"title":"element.exports.renderElement","link":"<a href=\"element.html#.exports.renderElement\">element &rtrif; exports</a>"},{"title":"element.exports.replaceSelection","link":"<a href=\"element.html#.exports.replaceSelection\">element &rtrif; exports</a>"},{"title":"element.exports.replaceText","link":"<a href=\"element.html#.exports.replaceText\">element &rtrif; exports</a>"},{"title":"element.exports.ripple","link":"<a href=\"element.html#.exports.ripple\">element &rtrif; exports</a>"},{"title":"element.exports.sortTable","link":"<a href=\"element.html#.exports.sortTable\">element &rtrif; exports</a>"},{"title":"element.exports.sortTableBy","link":"<a href=\"element.html#.exports.sortTableBy\">element &rtrif; exports</a>"},{"title":"element.exports.textNodes","link":"<a href=\"element.html#.exports.textNodes\">element &rtrif; exports</a>"},{"title":"element.exports.tilt","link":"<a href=\"element.html#.exports.tilt\">element &rtrif; exports</a>"},{"title":"event","link":"<a href=\"event.html\">event</a>"},{"title":"event.exports.dispatch","link":"<a href=\"event.html#.exports.dispatch\">event &rtrif; exports</a>"},{"title":"event.exports.hub","link":"<a href=\"event.html#.exports.hub\">event &rtrif; exports</a>"},{"title":"event.exports.onOutsideClick","link":"<a href=\"event.html#.exports.onOutsideClick\">event &rtrif; exports</a>"},{"title":"event.exports.onScrollStop","link":"<a href=\"event.html#.exports.onScrollStop\">event &rtrif; exports</a>"},{"title":"function","link":"<a href=\"function.html\">function</a>"},{"title":"function.exports.composeFunction","link":"<a href=\"function.html#.exports.composeFunction\">function &rtrif; exports</a>"},{"title":"function.exports.curryFunction","link":"<a href=\"function.html#.exports.curryFunction\">function &rtrif; exports</a>"},{"title":"function.exports.debounce","link":"<a href=\"function.html#.exports.debounce\">function &rtrif; exports</a>"},{"title":"function.exports.isAsync","link":"<a href=\"function.html#.exports.isAsync\">function &rtrif; exports</a>"},{"title":"function.exports.memoize","link":"<a href=\"function.html#.exports.memoize\">function &rtrif; exports</a>"},{"title":"function.exports.runAsync","link":"<a href=\"function.html#.exports.runAsync\">function &rtrif; exports</a>"},{"title":"function.exports.spread","link":"<a href=\"function.html#.exports.spread\">function &rtrif; exports</a>"},{"title":"function.exports.throttle","link":"<a href=\"function.html#.exports.throttle\">function &rtrif; exports</a>"},{"title":"function.exports.timeFunction","link":"<a href=\"function.html#.exports.timeFunction\">function &rtrif; exports</a>"},{"title":"math","link":"<a href=\"math.html\">math</a>"},{"title":"math.exports.animate","link":"<a href=\"math.html#.exports.animate\">math &rtrif; exports</a>"},{"title":"math.exports.equals","link":"<a href=\"math.html#.exports.equals\">math &rtrif; exports</a>"},{"title":"math.exports.factorial","link":"<a href=\"math.html#.exports.factorial\">math &rtrif; exports</a>"},{"title":"math.exports.formatNumber","link":"<a href=\"math.html#.exports.formatNumber\">math &rtrif; exports</a>"},{"title":"math.exports.gcd","link":"<a href=\"math.html#.exports.gcd\">math &rtrif; exports</a>"},{"title":"math.exports.isPrime","link":"<a href=\"math.html#.exports.isPrime\">math &rtrif; exports</a>"},{"title":"math.exports.luhnCheck","link":"<a href=\"math.html#.exports.luhnCheck\">math &rtrif; exports</a>"},{"title":"math.exports.primesTo","link":"<a href=\"math.html#.exports.primesTo\">math &rtrif; exports</a>"},{"title":"math.exports.random","link":"<a href=\"math.html#.exports.random\">math &rtrif; exports</a>"},{"title":"math.exports.range","link":"<a href=\"math.html#.exports.range\">math &rtrif; exports</a>"},{"title":"math.exports.seedRandom","link":"<a href=\"math.html#.exports.seedRandom\">math &rtrif; exports</a>"},{"title":"math.exports.uuid","link":"<a href=\"math.html#.exports.uuid\">math &rtrif; exports</a>"},{"title":"ease","link":"<a href=\"math.ease.html\">ease</a>"},{"title":"object","link":"<a href=\"object.html\">object</a>"},{"title":"object.exports.clone","link":"<a href=\"object.html#.exports.clone\">object &rtrif; exports</a>"},{"title":"object.exports.flattenObj","link":"<a href=\"object.html#.exports.flattenObj\">object &rtrif; exports</a>"},{"title":"object.exports.formToObject","link":"<a href=\"object.html#.exports.formToObject\">object &rtrif; exports</a>"},{"title":"object.exports.listen","link":"<a href=\"object.html#.exports.listen\">object &rtrif; exports</a>"},{"title":"object.exports.mapObjectKeys","link":"<a href=\"object.html#.exports.mapObjectKeys\">object &rtrif; exports</a>"},{"title":"object.exports.mapObjectValues","link":"<a href=\"object.html#.exports.mapObjectValues\">object &rtrif; exports</a>"},{"title":"object.exports.merge","link":"<a href=\"object.html#.exports.merge\">object &rtrif; exports</a>"},{"title":"object.exports.sortObj","link":"<a href=\"object.html#.exports.sortObj\">object &rtrif; exports</a>"},{"title":"string","link":"<a href=\"string.html\">string</a>"},{"title":"string.exports.byteSize","link":"<a href=\"string.html#.exports.byteSize\">string &rtrif; exports</a>"},{"title":"string.exports.camelCase","link":"<a href=\"string.html#.exports.camelCase\">string &rtrif; exports</a>"},{"title":"string.exports.capitalize","link":"<a href=\"string.html#.exports.capitalize\">string &rtrif; exports</a>"},{"title":"string.exports.deburr","link":"<a href=\"string.html#.exports.deburr\">string &rtrif; exports</a>"},{"title":"string.exports.editDistance","link":"<a href=\"string.html#.exports.editDistance\">string &rtrif; exports</a>"},{"title":"string.exports.escapeHTML","link":"<a href=\"string.html#.exports.escapeHTML\">string &rtrif; exports</a>"},{"title":"string.exports.forTemplateLiteral","link":"<a href=\"string.html#.exports.forTemplateLiteral\">string &rtrif; exports</a>"},{"title":"string.exports.hash","link":"<a href=\"string.html#.exports.hash\">string &rtrif; exports</a>"},{"title":"string.exports.hashString","link":"<a href=\"string.html#.exports.hashString\">string &rtrif; exports</a>"},{"title":"string.exports.jaroDistance","link":"<a href=\"string.html#.exports.jaroDistance\">string &rtrif; exports</a>"},{"title":"string.exports.mapString","link":"<a href=\"string.html#.exports.mapString\">string &rtrif; exports</a>"},{"title":"string.exports.markdownToHTML","link":"<a href=\"string.html#.exports.markdownToHTML\">string &rtrif; exports</a>"},{"title":"string.exports.parseCookie","link":"<a href=\"string.html#.exports.parseCookie\">string &rtrif; exports</a>"},{"title":"string.exports.prefixCSS","link":"<a href=\"string.html#.exports.prefixCSS\">string &rtrif; exports</a>"},{"title":"string.exports.previousPage","link":"<a href=\"string.html#.exports.previousPage\">string &rtrif; exports</a>"},{"title":"string.exports.removeTags","link":"<a href=\"string.html#.exports.removeTags\">string &rtrif; exports</a>"},{"title":"string.exports.replaceBetween","link":"<a href=\"string.html#.exports.replaceBetween\">string &rtrif; exports</a>"},{"title":"string.exports.replaceMultiple","link":"<a href=\"string.html#.exports.replaceMultiple\">string &rtrif; exports</a>"},{"title":"string.exports.sanitize","link":"<a href=\"string.html#.exports.sanitize\">string &rtrif; exports</a>"},{"title":"string.exports.scrambleString","link":"<a href=\"string.html#.exports.scrambleString\">string &rtrif; exports</a>"},{"title":"string.exports.speak","link":"<a href=\"string.html#.exports.speak\">string &rtrif; exports</a>"},{"title":"string.exports.syllables","link":"<a href=\"string.html#.exports.syllables\">string &rtrif; exports</a>"},{"title":"string.exports.titleCase","link":"<a href=\"string.html#.exports.titleCase\">string &rtrif; exports</a>"},{"title":"string.exports.unCamelCase","link":"<a href=\"string.html#.exports.unCamelCase\">string &rtrif; exports</a>"},{"title":"string.exports.unescapeHTML","link":"<a href=\"string.html#.exports.unescapeHTML\">string &rtrif; exports</a>"},{"title":"string.exports.urlQuery","link":"<a href=\"string.html#.exports.urlQuery\">string &rtrif; exports</a>"},{"title":"string.exports.widows","link":"<a href=\"string.html#.exports.widows\">string &rtrif; exports</a>"},{"title":"utility","link":"<a href=\"utility.html\">utility</a>"},{"title":"utility.callbackify","link":"<a href=\"utility.html#.callbackify\">utility &rtrif; callbackify</a>"},{"title":"utility.exports.arrayToCSV","link":"<a href=\"utility.html#.exports.arrayToCSV\">utility &rtrif; exports</a>"},{"title":"utility.exports.browser","link":"<a href=\"utility.html#.exports.browser\">utility &rtrif; exports</a>"},{"title":"utility.exports.copy","link":"<a href=\"utility.html#.exports.copy\">utility &rtrif; exports</a>"},{"title":"utility.exports.formatHTML","link":"<a href=\"utility.html#.exports.formatHTML\">utility &rtrif; exports</a>"},{"title":"utility.exports.getHTML","link":"<a href=\"utility.html#.exports.getHTML\">utility &rtrif; exports</a>"},{"title":"utility.exports.getJSON","link":"<a href=\"utility.html#.exports.getJSON\">utility &rtrif; exports</a>"},{"title":"utility.exports.htmlToImage","link":"<a href=\"utility.html#.exports.htmlToImage\">utility &rtrif; exports</a>"},{"title":"utility.exports.imageToData","link":"<a href=\"utility.html#.exports.imageToData\">utility &rtrif; exports</a>"},{"title":"utility.exports.injectCSS","link":"<a href=\"utility.html#.exports.injectCSS\">utility &rtrif; exports</a>"},{"title":"utility.exports.jsonToCsv","link":"<a href=\"utility.html#.exports.jsonToCsv\">utility &rtrif; exports</a>"},{"title":"utility.exports.loadScript","link":"<a href=\"utility.html#.exports.loadScript\">utility &rtrif; exports</a>"},{"title":"utility.exports.mobileOrDesktop","link":"<a href=\"utility.html#.exports.mobileOrDesktop\">utility &rtrif; exports</a>"},{"title":"utility.exports.notify","link":"<a href=\"utility.html#.exports.notify\">utility &rtrif; exports</a>"},{"title":"utility.exports.playSection","link":"<a href=\"utility.html#.exports.playSection\">utility &rtrif; exports</a>"},{"title":"utility.exports.preloadImage","link":"<a href=\"utility.html#.exports.preloadImage\">utility &rtrif; exports</a>"},{"title":"utility.exports.race","link":"<a href=\"utility.html#.exports.race\">utility &rtrif; exports</a>"},{"title":"utility.exports.requestInterval","link":"<a href=\"utility.html#.exports.requestInterval\">utility &rtrif; exports</a>"},{"title":"utility.exports.resize","link":"<a href=\"utility.html#.exports.resize\">utility &rtrif; exports</a>"},{"title":"utility.exports.saveBlob","link":"<a href=\"utility.html#.exports.saveBlob\">utility &rtrif; exports</a>"},{"title":"utility.exports.serializeForm","link":"<a href=\"utility.html#.exports.serializeForm\">utility &rtrif; exports</a>"},{"title":"utility.exports.soundex","link":"<a href=\"utility.html#.exports.soundex\">utility &rtrif; exports</a>"},{"title":"utility.exports.typeOf","link":"<a href=\"utility.html#.exports.typeOf\">utility &rtrif; exports</a>"},{"title":"utility.promisify","link":"<a href=\"utility.html#.promisify\">utility &rtrif; promisify</a>"},{"title":"cookies","link":"<a href=\"utility.cookies.html\">cookies</a>"},{"title":"preload","link":"<a href=\"utility.preload.html\">preload</a>"},{"title":"regex","link":"<a href=\"utility.regex.html\">regex</a>"},{"title":"_temp","link":"<a href=\"global.html#_temp\">_temp</a>"},{"title":"animateCallback","link":"<a href=\"global.html#animateCallback\">animateCallback</a>"},{"title":"animateNumCallback","link":"<a href=\"global.html#animateNumCallback\">animateNumCallback</a>"},{"title":"averageByFn","link":"<a href=\"global.html#averageByFn\">averageByFn</a>"},{"title":"eachCallback","link":"<a href=\"global.html#eachCallback\">eachCallback</a>"},{"title":"eventListenersCallback","link":"<a href=\"global.html#eventListenersCallback\">eventListenersCallback</a>"},{"title":"juxtCallback","link":"<a href=\"global.html#juxtCallback\">juxtCallback</a>"},{"title":"listenCallback","link":"<a href=\"global.html#listenCallback\">listenCallback</a>"},{"title":"manipulateVideoStreamFunction","link":"<a href=\"global.html#manipulateVideoStreamFunction\">manipulateVideoStreamFunction</a>"},{"title":"mapCallback","link":"<a href=\"global.html#mapCallback\">mapCallback</a>"},{"title":"mapObjKeysCallback","link":"<a href=\"global.html#mapObjKeysCallback\">mapObjKeysCallback</a>"},{"title":"mapObjValuesCallback","link":"<a href=\"global.html#mapObjValuesCallback\">mapObjValuesCallback</a>"},{"title":"node","link":"<a href=\"global.html#node\">node</a>"},{"title":"prototype","link":"<a href=\"global.html#prototype\">prototype</a>"},{"title":"replaceTextCallback","link":"<a href=\"global.html#replaceTextCallback\">replaceTextCallback</a>"},{"title":"scrollStopCallback","link":"<a href=\"global.html#scrollStopCallback\">scrollStopCallback</a>"},{"title":"sortTableCallback","link":"<a href=\"global.html#sortTableCallback\">sortTableCallback</a>"},{"title":"spreadCallback","link":"<a href=\"global.html#spreadCallback\">spreadCallback</a>"}];
-        var options = 
-          setupSearch(list, options)
-      </script>
-    
-
-    
-    <script type="text/javascript">
-        setInterval(() => {
-  try {
-    document.querySelector('.os-content-arrange').remove();
-  } catch (e) {}
-
-  var els = Array.from(document.querySelectorAll('ul.accordion-content a')).filter(el => el.innerText.startsWith("exports."));
-  for (var i = 0; i < els.length; i++) {
-    els[i].innerText = els[i].innerText.replace(/^exports\./, '');
-  }
-}, 100);
-
-    </script>
-    
-
-    
-
-    
+<script src="scripts/search.js"> </script>
 
 
-  </body>
-
+</body>
 </html>

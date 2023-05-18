@@ -8,6 +8,7 @@
  * Runs a list of functions with a list of arguments.
  * @returns {juxtCallback} The function to run with the args.
  * @memberOf function
+ * @function
  * @example
  * //It returns an array of outputs, each item in the base array is the output of one function, and each item in that array is the output for each argument.
  * _$.juxt(
@@ -25,6 +26,7 @@ export let juxt =
  * Returns a promise after a specified number of milliseconds.
  * @returns {Promise}
  * @memberOf function
+ * @function
  * @example
  * (async () => {
  *    while (true){
@@ -43,6 +45,7 @@ export let sleep = (ms = req("number", "milliseconds")) =>
  * //Now console can only log one item. How utterly useless but explanatory at the same time!
  * console.log = _$.limitArgs(console.log, 1);
  * @memberOf function
+ * @function
  * @returns {Function} The new function that only takes the 1st n arguments.
  * @param {Function} fn The function to call.
  * @param {Number} n The number of arguments to accept.
@@ -57,6 +60,7 @@ export let limitArgs =
 /**
  * Returns the index of the fastest function in an array of functions.
  * @memberOf function
+ * @function
  * @returns {Number} The index of the fastest function in the array.
  * @example
  * _$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("<h1>Hello world</h1>", "html")]);//0, the first function.

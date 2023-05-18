@@ -5,14 +5,14 @@
  * @function
  * @example 
  * _$.flattenObj({
-      hello: "world",
-      another: {
-          nested: "Value",
-          anotherNestedValue: {
-              "something": "A value"
-          },
-          "more Values!!": "lol"
-      }
+	  hello: "world",
+	  another: {
+		  nested: "Value",
+		  anotherNestedValue: {
+			  "something": "A value"
+		  },
+		  "more Values!!": "lol"
+	  }
   }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }
 * @param {Object} o The object to flatten
 * @returns {Object} The flattened object.
@@ -285,4 +285,64 @@ export let sortObj = (obj = req("object", "object")) => {
 			return result;
 		}, {});
 };
+
+/**
+ * Retrieves a deeply nested value from an object given a key.
+ * @memberOf object
+ * @function
+ * @param {string|string[]} key - The key (if string will split by '.') or an array of keys to access the value.
+ * @param {object} object - The object to retrieve the value from.
+ * @example
+ * _$.deepGet("hello.world", {hello: {world: "Hello World!"}}); // "Hello World!"
+ * @returns {*} The retrieved value or null if the key does not exist.
+ */
+export let deepGet = (key, object) => {
+	if (typeof key === "string") {
+		key = key.split(".");
+	}
+	let ref = object;
+	for (let k of key) {
+		if (!ref.hasOwnProperty(k)) {
+			return null;
+		}
+		ref = ref[k];
+	}
+	return ref;
+};
+
+/**
+ * A function that sets a value at a given path in an object by creating nested objects
+ * along the way for any undefined keys in the path, while keeping the original object immutable.
+ *
+ * @memberOf object
+ * @function deepSet
+ * @param {string|Array<string>} path - The path to set the value at, can be either a string or an array of strings
+ * @param {any} value - The value to set at the given path
+ * @param {Object} obj - The object to set the value in
+ * @returns {Object} A new object with the updated value at the given path
+ * @example
+ * const obj = { a: { b: { c: 1 } } };
+ * const newObj = deepSet("a.b.d", 2, obj);
+ *
+ * console.log(newObj);
+ * // Output: { a: { b: { c: 1, d: 2 } } } }
+ */
+export let deepSet = (path, value, obj) => {
+	let clone = { ...obj };
+	var schema = clone;
+	var pList = path;
+	if (typeof path === "string") {
+		pList = path.split(".");
+	}
+	var len = pList.length;
+	for (var i = 0; i < len - 1; i++) {
+		var elem = pList[i];
+		if (!schema[elem]) schema[elem] = {};
+		schema = schema[elem];
+	}
+
+	schema[pList[len - 1]] = value;
+	return clone;
+};
+
 //#endregion Object

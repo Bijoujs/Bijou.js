@@ -3,6 +3,7 @@
  * Waits until a condition is met then resolves a promise.
  * @returns {Promise} A promise resolved when the condition returned by the function is true.
  * @memberOf event
+ * @function
  * @example
  * //Waits until the current second of the current minute is 10.
  * _$.waitUntil(() => new Date().getSeconds === 10).then(() => console.log("Done"))

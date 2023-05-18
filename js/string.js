@@ -183,7 +183,7 @@ export let parseCookie = (str = req("string", "cookie string")) =>
  * @function
  * @example
  * _$.hash(
-    JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
+	JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
   ).then(console.log);
   // '04aa106279f5977f59f9067fa9712afc4aedc6f5862a8defc34552d8c7206393'
  * @param {String} val The string to hash
@@ -1045,5 +1045,34 @@ export let unescapeHTML = (str = req("string")) =>
 export let previousPage = () => {
 	node();
 	return document.referrer || window.location.href;
+};
+
+/**
+ * Processes a markdown list by extracting the content of each list item and returning
+ * an array of objects with the content and its index in the list.
+ *
+ * @memberOf string
+ * @function
+ * @param {string} list - the list to be processed
+ * @returns {Array} - An array of objects with the content and its index in the list
+ * @example
+ *
+ * const list = '- Item 1\n- Item 2\n- Item 3';
+ * const processedList = processList(list);
+ *
+ * // Returns:
+ * // [
+ * //   { content: 'Item 1', idx: 0 },
+ * //   { content: 'Item 2', idx: 1 },
+ * //   { content: 'Item 3', idx: 2 }
+ * // ]
+ *
+ */
+export let processList = (list) => {
+	const list_re =
+		/\n(?:-|(?:[0-9]+|[a-zA-Z])\.?)\s*(?<content>[^\n]+)/gi;
+	return list
+		.match(new RegExp(list_re, "gi"))
+		.map((i, idx) => ({ ...i.match(list_re).groups, idx }));
 };
 //#endregion String
