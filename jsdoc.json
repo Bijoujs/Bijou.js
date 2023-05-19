@@ -11,9 +11,7 @@
 		"recurse": true,
 		"template": "./node_modules/better-docs"
 	},
-	"plugins": [
-		"plugins/markdown"
-	],
+	"plugins": ["plugins/markdown"],
 	"templates": {
 		"search": true,
 		"better-docs": {
