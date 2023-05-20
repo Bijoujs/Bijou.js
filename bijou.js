@@ -1982,6 +1982,7 @@ export let replaceSelection = (
  * Waits until a condition is met then resolves a promise.
  * @returns {Promise} A promise resolved when the condition returned by the function is true.
  * @memberOf event
+ * @function
  * @example
  * //Waits until the current second of the current minute is 10.
  * _$.waitUntil(() => new Date().getSeconds === 10).then(() => console.log("Done"))
@@ -2136,6 +2137,7 @@ export let dispatch = (
  * Runs a list of functions with a list of arguments.
  * @returns {juxtCallback} The function to run with the args.
  * @memberOf function
+ * @function
  * @example
  * //It returns an array of outputs, each item in the base array is the output of one function, and each item in that array is the output for each argument.
  * _$.juxt(
@@ -2153,6 +2155,7 @@ export let juxt =
  * Returns a promise after a specified number of milliseconds.
  * @returns {Promise}
  * @memberOf function
+ * @function
  * @example
  * (async () => {
  *    while (true){
@@ -2171,6 +2174,7 @@ export let sleep = (ms = req("number", "milliseconds")) =>
  * //Now console can only log one item. How utterly useless but explanatory at the same time!
  * console.log = _$.limitArgs(console.log, 1);
  * @memberOf function
+ * @function
  * @returns {Function} The new function that only takes the 1st n arguments.
  * @param {Function} fn The function to call.
  * @param {Number} n The number of arguments to accept.
@@ -2185,6 +2189,7 @@ export let limitArgs =
 /**
  * Returns the index of the fastest function in an array of functions.
  * @memberOf function
+ * @function
  * @returns {Number} The index of the fastest function in the array.
  * @example
  * _$.fastestFunction([_$.uuid, () => _$.syntaxHighlight("<h1>Hello world</h1>", "html")]);//0, the first function.
@@ -2450,14 +2455,14 @@ export let runAsync = (fn = req("function")) => {
  * @function
  * @example 
  * _$.flattenObj({
-      hello: "world",
-      another: {
-          nested: "Value",
-          anotherNestedValue: {
-              "something": "A value"
-          },
-          "more Values!!": "lol"
-      }
+	  hello: "world",
+	  another: {
+		  nested: "Value",
+		  anotherNestedValue: {
+			  "something": "A value"
+		  },
+		  "more Values!!": "lol"
+	  }
   }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }
 * @param {Object} o The object to flatten
 * @returns {Object} The flattened object.
@@ -2730,6 +2735,66 @@ export let sortObj = (obj = req("object", "object")) => {
 			return result;
 		}, {});
 };
+
+/**
+ * Retrieves a deeply nested value from an object given a key.
+ * @memberOf object
+ * @function
+ * @param {string|string[]} key - The key (if string will split by '.') or an array of keys to access the value.
+ * @param {object} object - The object to retrieve the value from.
+ * @example
+ * _$.deepGet("hello.world", {hello: {world: "Hello World!"}}); // "Hello World!"
+ * @returns {*} The retrieved value or null if the key does not exist.
+ */
+export let deepGet = (key, object) => {
+	if (typeof key === "string") {
+		key = key.split(".");
+	}
+	let ref = object;
+	for (let k of key) {
+		if (!ref.hasOwnProperty(k)) {
+			return null;
+		}
+		ref = ref[k];
+	}
+	return ref;
+};
+
+/**
+ * A function that sets a value at a given path in an object by creating nested objects
+ * along the way for any undefined keys in the path, while keeping the original object immutable.
+ *
+ * @memberOf object
+ * @function deepSet
+ * @param {string|Array<string>} path - The path to set the value at, can be either a string or an array of strings
+ * @param {any} value - The value to set at the given path
+ * @param {Object} obj - The object to set the value in
+ * @returns {Object} A new object with the updated value at the given path
+ * @example
+ * const obj = { a: { b: { c: 1 } } };
+ * const newObj = deepSet("a.b.d", 2, obj);
+ *
+ * console.log(newObj);
+ * // Output: { a: { b: { c: 1, d: 2 } } } }
+ */
+export let deepSet = (path, value, obj) => {
+	let clone = { ...obj };
+	var schema = clone;
+	var pList = path;
+	if (typeof path === "string") {
+		pList = path.split(".");
+	}
+	var len = pList.length;
+	for (var i = 0; i < len - 1; i++) {
+		var elem = pList[i];
+		if (!schema[elem]) schema[elem] = {};
+		schema = schema[elem];
+	}
+
+	schema[pList[len - 1]] = value;
+	return clone;
+};
+
 //#endregion Object
 //#region Math
 
@@ -2767,6 +2832,7 @@ export let gcd = (...ary) => {
 /**
  * Rounds a number.
  * @memberOf math
+ * @function
  * @example
  * console.log(_$.round(14, 10));//Logs 10 to the console, as 14 rounded to the nearest 10 is 10.
  * @example
@@ -3482,7 +3548,7 @@ export let parseCookie = (str = req("string", "cookie string")) =>
  * @function
  * @example
  * _$.hash(
-    JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
+	JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
   ).then(console.log);
   // '04aa106279f5977f59f9067fa9712afc4aedc6f5862a8defc34552d8c7206393'
  * @param {String} val The string to hash
@@ -4344,6 +4410,35 @@ export let unescapeHTML = (str = req("string")) =>
 export let previousPage = () => {
 	node();
 	return document.referrer || window.location.href;
+};
+
+/**
+ * Processes a markdown list by extracting the content of each list item and returning
+ * an array of objects with the content and its index in the list.
+ *
+ * @memberOf string
+ * @function
+ * @param {string} list - the list to be processed
+ * @returns {Array} - An array of objects with the content and its index in the list
+ * @example
+ *
+ * const list = '- Item 1\n- Item 2\n- Item 3';
+ * const processedList = processList(list);
+ *
+ * // Returns:
+ * // [
+ * //   { content: 'Item 1', idx: 0 },
+ * //   { content: 'Item 2', idx: 1 },
+ * //   { content: 'Item 3', idx: 2 }
+ * // ]
+ *
+ */
+export let processList = (list) => {
+	const list_re =
+		/\n(?:-|(?:[0-9]+|[a-zA-Z])\.?)\s*(?<content>[^\n]+)/gi;
+	return list
+		.match(new RegExp(list_re, "gi"))
+		.map((i, idx) => ({ ...i.match(list_re).groups, idx }));
 };
 //#endregion String
 //#region Utility

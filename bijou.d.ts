@@ -107,6 +107,8 @@ export function mapObjectKeys(obj?: any, fn?: mapObjKeysCallback): any;
 export function mapObjectValues(obj?: any, fn?: mapObjValuesCallback): any;
 export function formToObject(form?: HTMLFormElement): any;
 export function sortObj(obj?: any): any;
+export function deepGet(key: string | string[], object: object): any;
+export function deepSet(path: string | Array<string>, value: any, obj: any): any;
 export function gcd(...ary: any[]): number;
 export function round(number?: number, amount?: number): number;
 export function equals(a?: any, b?: any): any;
@@ -180,6 +182,7 @@ export function replaceBetween(string?: string, start?: number, end?: number, wh
 export function escapeHTML(str?: string): string;
 export function unescapeHTML(str?: string): string;
 export function previousPage(): string;
+export function processList(list: string): any[];
 export function createStream(...tracks: MediaStreamTrack[]): MediaStream;
 export function manipulate(videoTrack: MediaStreamTrack, fn: manipulateVideoStreamFunction): Promise<MediaStreamTrack>;
 export namespace preload {

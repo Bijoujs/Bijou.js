@@ -1217,7 +1217,7 @@ The event namespace of Bijou.js, containing functions to listen and dispatch eve
 **Kind**: global namespace  
 
 * [event](#event) : [<code>object</code>](#object)
-    * [.exports.waitUntil](#event.exports.waitUntil) ⇒ <code>Promise</code>
+    * [.exports.waitUntil(condition, [wait])](#event.exports.waitUntil) ⇒ <code>Promise</code>
     * [.exports.onOutsideClick(element, callback)](#event.exports.onOutsideClick) ⇒ <code>Promise</code>
     * [.exports.onScrollStop([element], callback, [time])](#event.exports.onScrollStop) ⇒ <code>Promise</code>
     * [.exports.hub()](#event.exports.hub) ⇒ <code>Object</code>
@@ -1225,10 +1225,10 @@ The event namespace of Bijou.js, containing functions to listen and dispatch eve
 
 <a name="event.exports.waitUntil"></a>
 
-### event.exports.waitUntil ⇒ <code>Promise</code>
+### event.exports.waitUntil(condition, [wait]) ⇒ <code>Promise</code>
 Waits until a condition is met then resolves a promise.
 
-**Kind**: static property of [<code>event</code>](#event)  
+**Kind**: static method of [<code>event</code>](#event)  
 **Returns**: <code>Promise</code> - A promise resolved when the condition returned by the function is true.  
 
 | Param | Type | Default | Description |
@@ -1328,10 +1328,10 @@ The function namespace of Bijou.js, containing functions to work with functions 
 **Kind**: global namespace  
 
 * [function](#function) : [<code>object</code>](#object)
-    * [.exports.juxt](#function.exports.juxt) ⇒ [<code>juxtCallback</code>](#juxtCallback)
-    * [.exports.sleep](#function.exports.sleep) ⇒ <code>Promise</code>
-    * [.exports.limitArgs](#function.exports.limitArgs) ⇒ [<code>function</code>](#function)
-    * [.exports.fastestFunction](#function.exports.fastestFunction) ⇒ <code>Number</code>
+    * [.exports.juxt(...fns)](#function.exports.juxt) ⇒ [<code>juxtCallback</code>](#juxtCallback)
+    * [.exports.sleep(ms)](#function.exports.sleep) ⇒ <code>Promise</code>
+    * [.exports.limitArgs(fn, n)](#function.exports.limitArgs) ⇒ [<code>function</code>](#function)
+    * [.exports.fastestFunction(fns, [iterations])](#function.exports.fastestFunction) ⇒ <code>Number</code>
     * [.exports.spread(fn)](#function.exports.spread) ⇒ [<code>spreadCallback</code>](#spreadCallback)
     * [.exports.memoize(fn)](#function.exports.memoize) ⇒ [<code>function</code>](#function)
     * [.exports.composeFunction(...functions)](#function.exports.composeFunction) ⇒ [<code>function</code>](#function)
@@ -1344,10 +1344,10 @@ The function namespace of Bijou.js, containing functions to work with functions 
 
 <a name="function.exports.juxt"></a>
 
-### function.exports.juxt ⇒ [<code>juxtCallback</code>](#juxtCallback)
+### function.exports.juxt(...fns) ⇒ [<code>juxtCallback</code>](#juxtCallback)
 Runs a list of functions with a list of arguments.
 
-**Kind**: static property of [<code>function</code>](#function)  
+**Kind**: static method of [<code>function</code>](#function)  
 **Returns**: [<code>juxtCallback</code>](#juxtCallback) - The function to run with the args.  
 
 | Param | Type | Description |
@@ -1365,10 +1365,10 @@ _$.juxt(
 ```
 <a name="function.exports.sleep"></a>
 
-### function.exports.sleep ⇒ <code>Promise</code>
+### function.exports.sleep(ms) ⇒ <code>Promise</code>
 Returns a promise after a specified number of milliseconds.
 
-**Kind**: static property of [<code>function</code>](#function)  
+**Kind**: static method of [<code>function</code>](#function)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -1385,10 +1385,10 @@ Returns a promise after a specified number of milliseconds.
 ```
 <a name="function.exports.limitArgs"></a>
 
-### function.exports.limitArgs ⇒ [<code>function</code>](#function)
+### function.exports.limitArgs(fn, n) ⇒ [<code>function</code>](#function)
 Limits the arguments that a given function takes to only the 1st n arguments.
 
-**Kind**: static property of [<code>function</code>](#function)  
+**Kind**: static method of [<code>function</code>](#function)  
 **Returns**: [<code>function</code>](#function) - The new function that only takes the 1st n arguments.  
 
 | Param | Type | Description |
@@ -1403,10 +1403,10 @@ console.log = _$.limitArgs(console.log, 1);
 ```
 <a name="function.exports.fastestFunction"></a>
 
-### function.exports.fastestFunction ⇒ <code>Number</code>
+### function.exports.fastestFunction(fns, [iterations]) ⇒ <code>Number</code>
 Returns the index of the fastest function in an array of functions.
 
-**Kind**: static property of [<code>function</code>](#function)  
+**Kind**: static method of [<code>function</code>](#function)  
 **Returns**: <code>Number</code> - The index of the fastest function in the array.  
 
 | Param | Type | Default | Description |
@@ -1584,9 +1584,9 @@ The math namespace of Bijou.js, containing functions to validate credit card num
 **Kind**: global namespace  
 
 * [math](#math) : [<code>object</code>](#object)
-    * [.exports.round](#math.exports.round) ⇒ <code>Number</code>
     * [.ease](#math.ease) : [<code>object</code>](#object)
     * [.exports.gcd(...arr)](#math.exports.gcd) ⇒ <code>Number</code>
+    * [.exports.round(number, amount)](#math.exports.round) ⇒ <code>Number</code>
     * [.exports.equals(a, b)](#math.exports.equals)
     * [.exports.isPrime(num)](#math.exports.isPrime) ⇒ <code>boolean</code>
     * [.exports.factorial(n)](#math.exports.factorial) ⇒ <code>Number</code>
@@ -1599,27 +1599,6 @@ The math namespace of Bijou.js, containing functions to validate credit card num
     * [.exports.seedRandom(seed)](#math.exports.seedRandom) ⇒ <code>Number</code>
     * [.exports.formatNumber(n)](#math.exports.formatNumber) ⇒ <code>String</code>
 
-<a name="math.exports.round"></a>
-
-### math.exports.round ⇒ <code>Number</code>
-Rounds a number.
-
-**Kind**: static property of [<code>math</code>](#math)  
-**Returns**: <code>Number</code> - The rounded number  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| number | <code>Number</code> | The number to round. |
-| amount | <code>Number</code> | An optional multiple to round it to. |
-
-**Example**  
-```js
-console.log(_$.round(14, 10));//Logs 10 to the console, as 14 rounded to the nearest 10 is 10.
-```
-**Example**  
-```js
-console.log(_$.round(Math.PI));//Logs 3 to the console.
-```
 <a name="math.ease"></a>
 
 ### math.ease : [<code>object</code>](#object)
@@ -1645,6 +1624,27 @@ Gets the greatest common divisor of a list of numbers.
 **Example**  
 ```js
 _$.gcd(12, 4, 8);//Returns 4
+```
+<a name="math.exports.round"></a>
+
+### math.exports.round(number, amount) ⇒ <code>Number</code>
+Rounds a number.
+
+**Kind**: static method of [<code>math</code>](#math)  
+**Returns**: <code>Number</code> - The rounded number  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| number | <code>Number</code> | The number to round. |
+| amount | <code>Number</code> | An optional multiple to round it to. |
+
+**Example**  
+```js
+console.log(_$.round(14, 10));//Logs 10 to the console, as 14 rounded to the nearest 10 is 10.
+```
+**Example**  
+```js
+console.log(_$.round(Math.PI));//Logs 3 to the console.
 ```
 <a name="math.exports.equals"></a>
 
@@ -1855,6 +1855,8 @@ The object namespace of Bijou.js, for stuff like flattening nested objects, clon
     * [.exports.mapObjectValues(obj, fn)](#object.exports.mapObjectValues) ⇒ <code>Object</code>
     * [.exports.formToObject(form)](#object.exports.formToObject) ⇒ <code>Object</code>
     * [.exports.sortObj(obj)](#object.exports.sortObj) ⇒ <code>Object</code>
+    * [.exports.deepGet(key, object)](#object.exports.deepGet) ⇒ <code>\*</code>
+    * [.deepSet(path, value, obj)](#object.deepSet) ⇒ <code>Object</code>
 
 <a name="object.exports.flattenObj"></a>
 
@@ -1871,14 +1873,14 @@ Flattens an object recursively into one.
 **Example**  
 ```js
 _$.flattenObj({
-      hello: "world",
-      another: {
-          nested: "Value",
-          anotherNestedValue: {
-              "something": "A value"
-          },
-          "more Values!!": "lol"
-      }
+	  hello: "world",
+	  another: {
+		  nested: "Value",
+		  anotherNestedValue: {
+			  "something": "A value"
+		  },
+		  "more Values!!": "lol"
+	  }
   }); //  { hello: "world", nested: "Value", something: "A value", more Values!!: "lol" }
 ```
 <a name="object.exports.clone"></a>
@@ -2009,6 +2011,46 @@ Sorts an object alphabetically by its keys.
 let object = _$.sortObj({testing: "A value", anotherThing: "Another value!"});
 // The object is now {anotherThing: "Another value!", testing: "A value"}
 ```
+<a name="object.exports.deepGet"></a>
+
+### object.exports.deepGet(key, object) ⇒ <code>\*</code>
+Retrieves a deeply nested value from an object given a key.
+
+**Kind**: static method of [<code>object</code>](#object)  
+**Returns**: <code>\*</code> - The retrieved value or null if the key does not exist.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| key | [<code>string</code>](#string) \| [<code>Array.&lt;string&gt;</code>](#string) | The key (if string will split by '.') or an array of keys to access the value. |
+| object | [<code>object</code>](#object) | The object to retrieve the value from. |
+
+**Example**  
+```js
+_$.deepGet("hello.world", {hello: {world: "Hello World!"}}); // "Hello World!"
+```
+<a name="object.deepSet"></a>
+
+### object.deepSet(path, value, obj) ⇒ <code>Object</code>
+A function that sets a value at a given path in an object by creating nested objects
+along the way for any undefined keys in the path, while keeping the original object immutable.
+
+**Kind**: static method of [<code>object</code>](#object)  
+**Returns**: <code>Object</code> - A new object with the updated value at the given path  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| path | [<code>string</code>](#string) \| [<code>Array.&lt;string&gt;</code>](#string) | The path to set the value at, can be either a string or an array of strings |
+| value | <code>any</code> | The value to set at the given path |
+| obj | <code>Object</code> | The object to set the value in |
+
+**Example**  
+```js
+const obj = { a: { b: { c: 1 } } };
+const newObj = deepSet("a.b.d", 2, obj);
+
+console.log(newObj);
+// Output: { a: { b: { c: 1, d: 2 } } } }
+```
 <a name="string"></a>
 
 ## string : [<code>object</code>](#object)
@@ -2044,6 +2086,7 @@ The string namespace of Bijou.js, containing functions to map strings, remove ac
     * [.exports.escapeHTML(str)](#string.exports.escapeHTML) ⇒ <code>String</code>
     * [.exports.unescapeHTML(str)](#string.exports.unescapeHTML) ⇒ <code>String</code>
     * [.exports.previousPage()](#string.exports.previousPage) ⇒ <code>String</code>
+    * [.exports.processList(list)](#string.exports.processList) ⇒ <code>Array</code>
 
 <a name="string.exports.jaroDistance"></a>
 
@@ -2108,7 +2151,7 @@ Hashes a string using the crypto api.
 **Example**  
 ```js
 _$.hash(
-    JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
+	JSON.stringify({ a: 'a', b: [1, 2, 3, 4], foo: { c: 'bar' } })
   ).then(console.log);
   // '04aa106279f5977f59f9067fa9712afc4aedc6f5862a8defc34552d8c7206393'
 ```
@@ -2495,6 +2538,31 @@ Returns the previous page that the user visited.
 **Example**  
 ```js
 console.log(_$.previousPage()); // e.g. "https://bijou.js.org"
+```
+<a name="string.exports.processList"></a>
+
+### string.exports.processList(list) ⇒ <code>Array</code>
+Processes a markdown list by extracting the content of each list item and returning
+an array of objects with the content and its index in the list.
+
+**Kind**: static method of [<code>string</code>](#string)  
+**Returns**: <code>Array</code> - - An array of objects with the content and its index in the list  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| list | [<code>string</code>](#string) | the list to be processed |
+
+**Example**  
+```js
+const list = '- Item 1\n- Item 2\n- Item 3';
+const processedList = processList(list);
+
+// Returns:
+// [
+//   { content: 'Item 1', idx: 0 },
+//   { content: 'Item 2', idx: 1 },
+//   { content: 'Item 3', idx: 2 }
+// ]
 ```
 <a name="utility"></a>
 
