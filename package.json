@@ -34,7 +34,7 @@
 		"clean-jsdoc-theme": "4.2.7",
 		"eslint": "^8.40.0",
 		"eslint-config-prettier": "^8.8.0",
-		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-prettier": "^5.0.1",
 		"jsdoc": "^4.0.2",
 		"prettier": "3.0.2",
 		"showdown": "^2.1.0",
