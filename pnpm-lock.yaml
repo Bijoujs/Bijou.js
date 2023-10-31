@@ -45,7 +45,7 @@ devDependencies:
     version: 2.7.3
   terser:
     specifier: ^5.17.4
-    version: 5.17.4
+    version: 5.23.0
   typescript:
     specifier: ^5.0.4
     version: 5.1.6
@@ -1476,7 +1476,7 @@ packages:
     resolution: {integrity: sha512-FlCHFwNnutLgVTflOYHPW2pPcl2AACqVzExlkGQNsi4CJgqOHN7YTgDd4LuhgN1BFO3TS0vLAruV1Td6dwWPJA==}
     peerDependencies:
       '@types/markdown-it': '*'
-      markdown-it: '*'
+      markdown-it: '>=12.3.2'
     dependencies:
       '@types/markdown-it': 12.2.3
       markdown-it: 12.3.2
@@ -2021,8 +2021,8 @@ packages:
     resolution: {integrity: sha512-GQ3gtYFSOAxSMN/apGtDKKkbJf+8izz5YfbGqIsUc7AMiQOapARZ76dhilRY2h39cynYxBFdafQo5HUL5vgkrg==}
     dev: true
 
-  /terser@5.17.4:
-    resolution: {integrity: sha512-jcEKZw6UPrgugz/0Tuk/PVyLAPfMBJf5clnGueo45wTweoV8yh7Q7PEkhkJ5uuUbC7zAxEcG3tqNr1bstkQ8nw==}
+  /terser@5.23.0:
+    resolution: {integrity: sha512-Iyy83LN0uX9ZZLCX4Qbu5JiHiWjOCTwrmM9InWOzVeM++KNWEsqV4YgN9U9E8AlohQ6Gs42ztczlWOG/lwDAMA==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
